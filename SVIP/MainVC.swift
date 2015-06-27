@@ -10,10 +10,12 @@ import UIKit
 
 class MainVC: UIViewController {
   
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("MainVC", owner:self, options:nil)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    view.backgroundColor = UIColor.cyanColor()
   }
   
 }

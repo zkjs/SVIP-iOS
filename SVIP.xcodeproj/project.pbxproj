@@ -19,7 +19,10 @@
 		40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
 		40641FAC1B3E7C8100CF150D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641FAA1B3E7C8100CF150D /* MainVC.swift */; };
-		40641FAD1B3E7C8100CF150D /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641FAB1B3E7C8100CF150D /* MainVC.xib */; };
+		40641FB81B3E931F00CF150D /* MessageCenterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641FB71B3E931F00CF150D /* MessageCenterTVC.swift */; };
+		40641FBC1B3E93EE00CF150D /* HotelMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641FBA1B3E93EE00CF150D /* HotelMessageCell.swift */; };
+		40641FBD1B3E93EE00CF150D /* HotelMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641FBB1B3E93EE00CF150D /* HotelMessageCell.xib */; };
+		40FCACF01B3ED434005E3EB2 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40FCACEF1B3ED434005E3EB2 /* MainVC.xib */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +62,10 @@
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
 		40641FAA1B3E7C8100CF150D /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		40641FAB1B3E7C8100CF150D /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
+		40641FB71B3E931F00CF150D /* MessageCenterTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCenterTVC.swift; path = MessageCenter/MessageCenterTVC.swift; sourceTree = "<group>"; };
+		40641FBA1B3E93EE00CF150D /* HotelMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotelMessageCell.swift; path = MessageCenter/HotelMessageCell.swift; sourceTree = "<group>"; };
+		40641FBB1B3E93EE00CF150D /* HotelMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HotelMessageCell.xib; path = MessageCenter/HotelMessageCell.xib; sourceTree = "<group>"; };
+		40FCACEF1B3ED434005E3EB2 /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,7 +125,8 @@
 			children = (
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				40641FAA1B3E7C8100CF150D /* MainVC.swift */,
-				40641FAB1B3E7C8100CF150D /* MainVC.xib */,
+				40FCACEF1B3ED434005E3EB2 /* MainVC.xib */,
+				40641FB91B3E932300CF150D /* MessageCenter */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
 			);
@@ -197,6 +204,16 @@
 				40641F9C1B3E79A300CF150D /* ZKJSTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		40641FB91B3E932300CF150D /* MessageCenter */ = {
+			isa = PBXGroup;
+			children = (
+				40641FB71B3E931F00CF150D /* MessageCenterTVC.swift */,
+				40641FBA1B3E93EE00CF150D /* HotelMessageCell.swift */,
+				40641FBB1B3E93EE00CF150D /* HotelMessageCell.xib */,
+			);
+			name = MessageCenter;
 			sourceTree = "<group>";
 		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
@@ -290,8 +307,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40641FAD1B3E7C8100CF150D /* MainVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
+				40FCACF01B3ED434005E3EB2 /* MainVC.xib in Resources */,
+				40641FBD1B3E93EE00CF150D /* HotelMessageCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,12 +361,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40641FBC1B3E93EE00CF150D /* HotelMessageCell.swift in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				40641FAC1B3E7C8100CF150D /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
+				40641FB81B3E931F00CF150D /* MessageCenterTVC.swift in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
