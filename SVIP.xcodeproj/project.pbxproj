@@ -13,6 +13,14 @@
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
 		40641F141B3E569800CF150D /* SVIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641F131B3E569800CF150D /* SVIPTests.swift */; };
+		40641F761B3E778C00CF150D /* NSString+ZKJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F611B3E778C00CF150D /* NSString+ZKJS.m */; };
+		40641F771B3E778C00CF150D /* UIImage+ZKJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F631B3E778C00CF150D /* UIImage+ZKJS.m */; };
+		40641F781B3E778C00CF150D /* ZKJSDiffie-HellmanProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F661B3E778C00CF150D /* ZKJSDiffie-HellmanProtocol.m */; };
+		40641F791B3E778C00CF150D /* HTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641F681B3E778C00CF150D /* HTTPSessionManager.swift */; };
+		40641F7A1B3E778C00CF150D /* ZKJSHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F6B1B3E778C00CF150D /* ZKJSHTTPSessionManager.m */; };
+		40641F7B1B3E778C00CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F6D1B3E778C00CF150D /* ZKJSHTTPSMSSessionManager.m */; };
+		40641F7C1B3E778C00CF150D /* ZKJSTCPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F6F1B3E778C00CF150D /* ZKJSTCPSessionManager.m */; };
+		40641F7E1B3E778C00CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F741B3E778C00CF150D /* ZKJSTool.m */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +45,23 @@
 		40641F0D1B3E569800CF150D /* SVIPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVIPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641F121B3E569800CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40641F131B3E569800CF150D /* SVIPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVIPTests.swift; sourceTree = "<group>"; };
+		40641F601B3E778C00CF150D /* NSString+ZKJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZKJS.h"; sourceTree = "<group>"; };
+		40641F611B3E778C00CF150D /* NSString+ZKJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZKJS.m"; sourceTree = "<group>"; };
+		40641F621B3E778C00CF150D /* UIImage+ZKJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZKJS.h"; sourceTree = "<group>"; };
+		40641F631B3E778C00CF150D /* UIImage+ZKJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZKJS.m"; sourceTree = "<group>"; };
+		40641F651B3E778C00CF150D /* ZKJSDiffie-HellmanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKJSDiffie-HellmanProtocol.h"; sourceTree = "<group>"; };
+		40641F661B3E778C00CF150D /* ZKJSDiffie-HellmanProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKJSDiffie-HellmanProtocol.m"; sourceTree = "<group>"; };
+		40641F681B3E778C00CF150D /* HTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSessionManager.swift; sourceTree = "<group>"; };
+		40641F691B3E778C00CF150D /* Networkcfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networkcfg.h; sourceTree = "<group>"; };
+		40641F6A1B3E778C00CF150D /* ZKJSHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPSessionManager.h; sourceTree = "<group>"; };
+		40641F6B1B3E778C00CF150D /* ZKJSHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSessionManager.m; sourceTree = "<group>"; };
+		40641F6C1B3E778C00CF150D /* ZKJSHTTPSMSSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPSMSSessionManager.h; sourceTree = "<group>"; };
+		40641F6D1B3E778C00CF150D /* ZKJSHTTPSMSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSMSSessionManager.m; sourceTree = "<group>"; };
+		40641F6E1B3E778C00CF150D /* ZKJSTCPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTCPSessionManager.h; sourceTree = "<group>"; };
+		40641F6F1B3E778C00CF150D /* ZKJSTCPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTCPSessionManager.m; sourceTree = "<group>"; };
+		40641F711B3E778C00CF150D /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		40641F731B3E778C00CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
+		40641F741B3E778C00CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +98,7 @@
 		40641EEF1B3E569700CF150D = {
 			isa = PBXGroup;
 			children = (
+				40641F5D1B3E778C00CF150D /* Common */,
 				40641EFA1B3E569700CF150D /* SVIP */,
 				40641F101B3E569800CF150D /* SVIPTests */,
 				40641EF91B3E569700CF150D /* Products */,
@@ -126,6 +152,62 @@
 				40641F121B3E569800CF150D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40641F5D1B3E778C00CF150D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				40641F5F1B3E778C00CF150D /* Category */,
+				40641F641B3E778C00CF150D /* Cryptography */,
+				40641F671B3E778C00CF150D /* Networking */,
+				40641F711B3E778C00CF150D /* Singleton.h */,
+				40641F721B3E778C00CF150D /* Tool */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		40641F5F1B3E778C00CF150D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				40641F601B3E778C00CF150D /* NSString+ZKJS.h */,
+				40641F611B3E778C00CF150D /* NSString+ZKJS.m */,
+				40641F621B3E778C00CF150D /* UIImage+ZKJS.h */,
+				40641F631B3E778C00CF150D /* UIImage+ZKJS.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		40641F641B3E778C00CF150D /* Cryptography */ = {
+			isa = PBXGroup;
+			children = (
+				40641F651B3E778C00CF150D /* ZKJSDiffie-HellmanProtocol.h */,
+				40641F661B3E778C00CF150D /* ZKJSDiffie-HellmanProtocol.m */,
+			);
+			path = Cryptography;
+			sourceTree = "<group>";
+		};
+		40641F671B3E778C00CF150D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				40641F681B3E778C00CF150D /* HTTPSessionManager.swift */,
+				40641F691B3E778C00CF150D /* Networkcfg.h */,
+				40641F6A1B3E778C00CF150D /* ZKJSHTTPSessionManager.h */,
+				40641F6B1B3E778C00CF150D /* ZKJSHTTPSessionManager.m */,
+				40641F6C1B3E778C00CF150D /* ZKJSHTTPSMSSessionManager.h */,
+				40641F6D1B3E778C00CF150D /* ZKJSHTTPSMSSessionManager.m */,
+				40641F6E1B3E778C00CF150D /* ZKJSTCPSessionManager.h */,
+				40641F6F1B3E778C00CF150D /* ZKJSTCPSessionManager.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		40641F721B3E778C00CF150D /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				40641F731B3E778C00CF150D /* ZKJSTool.h */,
+				40641F741B3E778C00CF150D /* ZKJSTool.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
@@ -271,8 +353,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40641F7A1B3E778C00CF150D /* ZKJSHTTPSessionManager.m in Sources */,
+				40641F7C1B3E778C00CF150D /* ZKJSTCPSessionManager.m in Sources */,
 				40641F001B3E569700CF150D /* ViewController.swift in Sources */,
+				40641F7E1B3E778C00CF150D /* ZKJSTool.m in Sources */,
+				40641F7B1B3E778C00CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
+				40641F761B3E778C00CF150D /* NSString+ZKJS.m in Sources */,
+				40641F791B3E778C00CF150D /* HTTPSessionManager.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
+				40641F771B3E778C00CF150D /* UIImage+ZKJS.m in Sources */,
+				40641F781B3E778C00CF150D /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +491,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Common",
+				);
 				INFOPLIST_FILE = SVIP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -413,6 +507,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Common",
+				);
 				INFOPLIST_FILE = SVIP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
