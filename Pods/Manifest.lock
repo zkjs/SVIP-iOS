@@ -1,0 +1,68 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Colours (5.6.2)
+  - DateTools (1.6.1)
+  - MBProgressHUD (0.9.1)
+  - MessageDisplayKit (3.0.3)
+  - MJExtension (2.3.6)
+  - PKYStepper (0.0.1)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
+  - SocketRocket (0.2.0)
+  - SSKeychain (1.2.3)
+
+DEPENDENCIES:
+  - AFNetworking
+  - Colours
+  - DateTools
+  - MBProgressHUD
+  - MessageDisplayKit (from `https://github.com/hanton/MessageDisplayKit.git`)
+  - MJExtension
+  - PKYStepper
+  - SDWebImage (~> 3.7)
+  - SocketRocket
+  - SSKeychain (~> 1.2.3)
+
+EXTERNAL SOURCES:
+  MessageDisplayKit:
+    :git: https://github.com/hanton/MessageDisplayKit.git
+
+CHECKOUT OPTIONS:
+  MessageDisplayKit:
+    :commit: 56f35fc2cef098fc0c152184f3d2e75f8f5dec43
+    :git: https://github.com/hanton/MessageDisplayKit.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
+  DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MessageDisplayKit: c82efa1d113740dea0bc23f72a919be037d2177c
+  MJExtension: eb9d381740563b520fbabdfa6caf92d666314467
+  PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  SocketRocket: 54a4ac2f354c4e8c51ef5dcd4a13bc556d4f2b7c
+  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+
+COCOAPODS: 0.37.1

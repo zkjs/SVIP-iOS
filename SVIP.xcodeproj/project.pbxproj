@@ -13,6 +13,7 @@
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
 		40641F141B3E569800CF150D /* SVIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641F131B3E569800CF150D /* SVIPTests.swift */; };
+		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,9 @@
 		40641F0D1B3E569800CF150D /* SVIPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVIPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641F121B3E569800CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40641F131B3E569800CF150D /* SVIPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVIPTests.swift; sourceTree = "<group>"; };
+		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
+		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,12 +61,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35D3481E8EFB7901D0E20AFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */,
+				DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		40641EEF1B3E569700CF150D = {
 			isa = PBXGroup;
 			children = (
 				40641EFA1B3E569700CF150D /* SVIP */,
 				40641F101B3E569800CF150D /* SVIPTests */,
 				40641EF91B3E569700CF150D /* Products */,
+				35D3481E8EFB7901D0E20AFC /* Pods */,
+				D8D0F96B75FA018B7CF90312 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +128,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46501E00CF356A221CE759C9 /* libPods-SVIP.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F171B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIP" */;
 			buildPhases = (
+				CE9D0013278675E332F984EB /* Check Pods Manifest.lock */,
 				40641EF41B3E569700CF150D /* Sources */,
 				40641EF51B3E569700CF150D /* Frameworks */,
 				40641EF61B3E569700CF150D /* Resources */,
+				667A5268AD89F73F6ECE5B4F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,6 +232,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		667A5268AD89F73F6ECE5B4F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE9D0013278675E332F984EB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		40641EF41B3E569700CF150D /* Sources */ = {
@@ -338,8 +397,10 @@
 		};
 		40641F181B3E569800CF150D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SVIP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -348,8 +409,10 @@
 		};
 		40641F191B3E569800CF150D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SVIP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -409,6 +472,7 @@
 				40641F191B3E569800CF150D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40641F1A1B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIPTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +481,7 @@
 				40641F1C1B3E569800CF150D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
