@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    window?.rootViewController = ViewController()
+    window?.rootViewController?.view.layer.cornerRadius = 6
+    window?.rootViewController?.view.layer.masksToBounds = true
+    window?.makeKeyAndVisible()
     return true
   }
 
