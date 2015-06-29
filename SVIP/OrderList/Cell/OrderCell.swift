@@ -8,17 +8,34 @@
 
 import UIKit
 
+private let kCellReuseId = "OrderCellReuseId"
+private let kOrderCell = "OrderCell"
+
 class OrderCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  class func reuseIdentifier()->String {
+    return kCellReuseId
+  }
+  
+  class func nibName()->String {
+    return kOrderCell
+  }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    
+    self.selectionStyle = .None
+  }
+  
+  //  func setCity(city: YALCity) {
+  //    self.nameLable?.text = city.name
+  //    self.pictureImageView?.alpha = 0.0
+  //    self.pictureImageView?.image = city.image
+  //
+  //    UIView.animateWithDuration(0.3, animations: { () -> Void in
+  //      self.pictureImageView?.alpha = 1.0
+  //      return
+  //    })
+  //  }
     
 }

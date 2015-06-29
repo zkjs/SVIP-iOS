@@ -20,6 +20,8 @@
 		405266571B4128E900B277BE /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405266551B4128E900B277BE /* OrderCell.xib */; };
 		4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266591B4128F900B277BE /* HotelMessageCell.swift */; };
 		4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052665A1B4128F900B277BE /* HotelMessageCell.xib */; };
+		405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266641B41470F00B277BE /* OrderListHeaderView.swift */; };
+		405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405266651B41470F00B277BE /* OrderListHeaderView.xib */; };
 		40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641EFD1B3E569700CF150D /* AppDelegate.swift */; };
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
@@ -58,6 +60,8 @@
 		405266551B4128E900B277BE /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		405266591B4128F900B277BE /* HotelMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelMessageCell.swift; sourceTree = "<group>"; };
 		4052665A1B4128F900B277BE /* HotelMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelMessageCell.xib; sourceTree = "<group>"; };
+		405266641B41470F00B277BE /* OrderListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListHeaderView.swift; sourceTree = "<group>"; };
+		405266651B41470F00B277BE /* OrderListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListHeaderView.xib; sourceTree = "<group>"; };
 		40641EF81B3E569700CF150D /* SVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641EFC1B3E569700CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40641EFD1B3E569700CF150D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				405266321B41279B00B277BE /* Model */,
+				405266631B41470F00B277BE /* HeaderView */,
 				405266531B4128E900B277BE /* Cell */,
 				405266331B41279B00B277BE /* OrderListTVC.swift */,
 				4052663A1B4127B400B277BE /* OrderDetailVC.swift */,
@@ -187,6 +192,15 @@
 				4052665A1B4128F900B277BE /* HotelMessageCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		405266631B41470F00B277BE /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				405266641B41470F00B277BE /* OrderListHeaderView.swift */,
+				405266651B41470F00B277BE /* OrderListHeaderView.xib */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 		40641EEF1B3E569700CF150D = {
@@ -275,14 +289,14 @@
 		40641F8F1B3E79A300CF150D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				40641F901B3E79A300CF150D /* HTTPSessionManager.swift */,
 				40641F911B3E79A300CF150D /* Networkcfg.h */,
+				40641F961B3E79A300CF150D /* ZKJSTCPSessionManager.h */,
+				40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */,
 				40641F921B3E79A300CF150D /* ZKJSHTTPSessionManager.h */,
 				40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */,
 				40641F941B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.h */,
 				40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */,
-				40641F961B3E79A300CF150D /* ZKJSTCPSessionManager.h */,
-				40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */,
+				40641F901B3E79A300CF150D /* HTTPSessionManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -391,6 +405,7 @@
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
+				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				405266521B41283900B277BE /* MainVC.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
@@ -458,6 +473,7 @@
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
 				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
+				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
 			);
