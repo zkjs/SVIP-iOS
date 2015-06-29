@@ -72,6 +72,12 @@
 #define COCOAPODS_VERSION_MINOR_MJExtension 3
 #define COCOAPODS_VERSION_PATCH_MJExtension 6
 
+// MJRefresh
+#define COCOAPODS_POD_AVAILABLE_MJRefresh
+#define COCOAPODS_VERSION_MAJOR_MJRefresh 2
+#define COCOAPODS_VERSION_MINOR_MJRefresh 0
+#define COCOAPODS_VERSION_PATCH_MJRefresh 4
+
 // MessageDisplayKit
 #define COCOAPODS_POD_AVAILABLE_MessageDisplayKit
 #define COCOAPODS_VERSION_MAJOR_MessageDisplayKit 3

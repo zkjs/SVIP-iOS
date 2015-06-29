@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SVIP-MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SVIP-MessageDisplayKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,62 +72,67 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09EB7A65D798064D3EB62AA3</key>
+		<key>19F6A66BBA68846591B01FBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>226DA6B32B5BC0C25EE7C636</key>
+		<key>2A65270085D704174B1ED445</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2CBCA6494DD5507E01BFDB1E</key>
+		<key>590A3AA6F97A5A1D7B216B8F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4434FD4A309F64FAA611CBD0</key>
+		<key>7727F34B36067F731255173C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>516ADB2183CF7AC2960FA620</key>
+		<key>8D830A7C877D1E789145FECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B6A0D902EE4592A352A7AD1</key>
+		<key>90D6287C8F3771C62FAA1961</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C72FB6A5DFF2883D2F61C65</key>
+		<key>C177DF1FAD5419662C6127CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>644901A31B5884E7A6FEF050</key>
+		<key>CD135BFB75F3D27756C47FF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C028FBC8FB8C3B56F956CA1</key>
+		<key>D9069A7CE93F937EEC8BFBFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>92CDEDF88131BDDFE14C860E</key>
+		<key>E9F4BA0CF5959A30171072AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AEE26F695EC3E996E6DFBDE5</key>
+		<key>F45668B53CB8642929C90514</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EBB14E0253BE6E2FD659DB2C</key>
+		<key>F7846C7A8E8BA673C952517D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA3CA990793FECB7129369D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

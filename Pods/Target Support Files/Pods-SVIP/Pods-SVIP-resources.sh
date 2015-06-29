@@ -59,6 +59,7 @@ install_resource()
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "DateTools/DateTools/DateTools.bundle"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "MessageDisplayKit/MessageDisplayKit/Resources/AddGroupMemberBtn@2x.png"
   install_resource "MessageDisplayKit/MessageDisplayKit/Resources/AddGroupMemberBtnHL@2x.png"
   install_resource "MessageDisplayKit/MessageDisplayKit/Resources/avator@2x.png"
@@ -153,6 +154,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "DateTools/DateTools/DateTools.bundle"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "MessageDisplayKit/MessageDisplayKit/Resources/AddGroupMemberBtn@2x.png"
   install_resource "MessageDisplayKit/MessageDisplayKit/Resources/AddGroupMemberBtnHL@2x.png"
   install_resource "MessageDisplayKit/MessageDisplayKit/Resources/avator@2x.png"

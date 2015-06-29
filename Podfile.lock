@@ -25,6 +25,7 @@ PODS:
   - MBProgressHUD (0.9.1)
   - MessageDisplayKit (3.0.3)
   - MJExtension (2.3.6)
+  - MJRefresh (2.0.4)
   - PKYStepper (0.0.1)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MessageDisplayKit (from `https://github.com/hanton/MessageDisplayKit.git`)
   - MJExtension
+  - MJRefresh
   - PKYStepper
   - SDWebImage (~> 3.7)
   - SocketRocket
@@ -67,6 +69,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MessageDisplayKit: c82efa1d113740dea0bc23f72a919be037d2177c
   MJExtension: eb9d381740563b520fbabdfa6caf92d666314467
+  MJRefresh: ea153717001d3c02444bd22b75c111d2937d2104
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SocketRocket: 54a4ac2f354c4e8c51ef5dcd4a13bc556d4f2b7c
