@@ -13,12 +13,16 @@ private let kOrderCell = "OrderCell"
 
 class OrderCell: UITableViewCell {
 
-  class func reuseIdentifier()->String {
+  class func reuseIdentifier() -> String {
     return kCellReuseId
   }
   
-  class func nibName()->String {
+  class func nibName() -> String {
     return kOrderCell
+  }
+  
+  class func height() -> CGFloat {
+    return 116.0
   }
   
   override func awakeFromNib() {

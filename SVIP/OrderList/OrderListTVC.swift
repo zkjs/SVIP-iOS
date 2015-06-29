@@ -16,11 +16,11 @@ class OrderListTVC: UITableViewController {
     
     self.title = "足迹"
     
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Bordered, target: self, action: "dismissSelf")
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
     
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
-    
+    self.tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     self.tableView.separatorStyle = .None
     self.tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
   }
@@ -36,7 +36,7 @@ class OrderListTVC: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 116
+    return OrderCell.height()
   }
   
   override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -56,6 +56,12 @@ class OrderListTVC: UITableViewController {
   }
 
   // MARK: - Private Method
+  
+  func loadMoreData() -> Void {
+    self.tableView.reloadData()
+    self.tableView.footer.noticeNoMoreData()
+//    self.tableView.footer.endRefreshing()
+  }
   
   func dismissSelf() -> Void {
     self.dismissViewControllerAnimated(true, completion: nil)
