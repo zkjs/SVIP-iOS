@@ -7,8 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		405265E11B40F50F00B277BE /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405265DF1B40F50F00B277BE /* MainVC.swift */; };
-		405265E21B40F50F00B277BE /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405265E01B40F50F00B277BE /* MainVC.xib */; };
+		405266371B41279B00B277BE /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266331B41279B00B277BE /* OrderListTVC.swift */; };
+		4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052663A1B4127B400B277BE /* OrderDetailVC.swift */; };
+		4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052663B1B4127B400B277BE /* OrderDetailVC.xib */; };
+		405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */; };
+		405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */; };
+		405266491B4127F600B277BE /* ChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266431B4127F600B277BE /* ChatTVC.swift */; };
+		4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266441B4127F600B277BE /* MessageCenterTVC.swift */; };
+		405266511B41283900B277BE /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052664E1B41283900B277BE /* MainVC.swift */; };
+		405266521B41283900B277BE /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052664F1B41283900B277BE /* MainVC.xib */; };
+		405266561B4128E900B277BE /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266541B4128E900B277BE /* OrderCell.swift */; };
+		405266571B4128E900B277BE /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405266551B4128E900B277BE /* OrderCell.xib */; };
+		4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266591B4128F900B277BE /* HotelMessageCell.swift */; };
+		4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052665A1B4128F900B277BE /* HotelMessageCell.xib */; };
 		40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641EFD1B3E569700CF150D /* AppDelegate.swift */; };
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
@@ -20,9 +31,6 @@
 		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
 		40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
-		40641FB81B3E931F00CF150D /* MessageCenterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641FB71B3E931F00CF150D /* MessageCenterTVC.swift */; };
-		40641FBC1B3E93EE00CF150D /* HotelMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641FBA1B3E93EE00CF150D /* HotelMessageCell.swift */; };
-		40641FBD1B3E93EE00CF150D /* HotelMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641FBB1B3E93EE00CF150D /* HotelMessageCell.xib */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
 
@@ -37,8 +45,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		405265DF1B40F50F00B277BE /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		405265E01B40F50F00B277BE /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
+		405266331B41279B00B277BE /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTVC.swift; sourceTree = "<group>"; };
+		4052663A1B4127B400B277BE /* OrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailVC.swift; sourceTree = "<group>"; };
+		4052663B1B4127B400B277BE /* OrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailVC.xib; sourceTree = "<group>"; };
+		4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderDetailVC.swift; sourceTree = "<group>"; };
+		4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOrderDetailVC.xib; sourceTree = "<group>"; };
+		405266431B4127F600B277BE /* ChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTVC.swift; sourceTree = "<group>"; };
+		405266441B4127F600B277BE /* MessageCenterTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCenterTVC.swift; sourceTree = "<group>"; };
+		4052664E1B41283900B277BE /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		4052664F1B41283900B277BE /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
+		405266541B4128E900B277BE /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		405266551B4128E900B277BE /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
+		405266591B4128F900B277BE /* HotelMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelMessageCell.swift; sourceTree = "<group>"; };
+		4052665A1B4128F900B277BE /* HotelMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelMessageCell.xib; sourceTree = "<group>"; };
 		40641EF81B3E569700CF150D /* SVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641EFC1B3E569700CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40641EFD1B3E569700CF150D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,9 +82,6 @@
 		40641F991B3E79A300CF150D /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
-		40641FB71B3E931F00CF150D /* MessageCenterTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCenterTVC.swift; path = MessageCenter/MessageCenterTVC.swift; sourceTree = "<group>"; };
-		40641FBA1B3E93EE00CF150D /* HotelMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotelMessageCell.swift; path = MessageCenter/HotelMessageCell.swift; sourceTree = "<group>"; };
-		40641FBB1B3E93EE00CF150D /* HotelMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HotelMessageCell.xib; path = MessageCenter/HotelMessageCell.xib; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,13 +115,78 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		405265DE1B40F50F00B277BE /* Main */ = {
+		405266311B41279B00B277BE /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
-				405265DF1B40F50F00B277BE /* MainVC.swift */,
-				405265E01B40F50F00B277BE /* MainVC.xib */,
+				405266321B41279B00B277BE /* Model */,
+				405266531B4128E900B277BE /* Cell */,
+				405266331B41279B00B277BE /* OrderListTVC.swift */,
+				4052663A1B4127B400B277BE /* OrderDetailVC.swift */,
+				4052663B1B4127B400B277BE /* OrderDetailVC.xib */,
+				4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */,
+				4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */,
+			);
+			path = OrderList;
+			sourceTree = "<group>";
+		};
+		405266321B41279B00B277BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		405266421B4127F600B277BE /* MessageCenter */ = {
+			isa = PBXGroup;
+			children = (
+				405266451B4127F600B277BE /* Model */,
+				405266581B4128F900B277BE /* Cell */,
+				405266441B4127F600B277BE /* MessageCenterTVC.swift */,
+				405266431B4127F600B277BE /* ChatTVC.swift */,
+			);
+			path = MessageCenter;
+			sourceTree = "<group>";
+		};
+		405266451B4127F600B277BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4052664D1B41283900B277BE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				405266501B41283900B277BE /* Model */,
+				4052664E1B41283900B277BE /* MainVC.swift */,
+				4052664F1B41283900B277BE /* MainVC.xib */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		405266501B41283900B277BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		405266531B4128E900B277BE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				405266541B4128E900B277BE /* OrderCell.swift */,
+				405266551B4128E900B277BE /* OrderCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		405266581B4128F900B277BE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				405266591B4128F900B277BE /* HotelMessageCell.swift */,
+				4052665A1B4128F900B277BE /* HotelMessageCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		40641EEF1B3E569700CF150D = {
@@ -133,8 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
-				405265DE1B40F50F00B277BE /* Main */,
-				40641FB91B3E932300CF150D /* MessageCenter */,
+				4052664D1B41283900B277BE /* Main */,
+				405266421B4127F600B277BE /* MessageCenter */,
+				405266311B41279B00B277BE /* OrderList */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
 			);
@@ -212,16 +294,6 @@
 				40641F9C1B3E79A300CF150D /* ZKJSTool.m */,
 			);
 			path = Tool;
-			sourceTree = "<group>";
-		};
-		40641FB91B3E932300CF150D /* MessageCenter */ = {
-			isa = PBXGroup;
-			children = (
-				40641FB71B3E931F00CF150D /* MessageCenterTVC.swift */,
-				40641FBA1B3E93EE00CF150D /* HotelMessageCell.swift */,
-				40641FBB1B3E93EE00CF150D /* HotelMessageCell.xib */,
-			);
-			name = MessageCenter;
 			sourceTree = "<group>";
 		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
@@ -315,9 +387,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
+				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
+				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
+				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
-				405265E21B40F50F00B277BE /* MainVC.xib in Resources */,
-				40641FBD1B3E93EE00CF150D /* HotelMessageCell.xib in Resources */,
+				405266521B41283900B277BE /* MainVC.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,14 +444,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40641FBC1B3E93EE00CF150D /* HotelMessageCell.swift in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
+				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
+				4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */,
+				4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */,
+				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
+				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
+				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
-				405265E11B40F50F00B277BE /* MainVC.swift in Sources */,
+				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
-				40641FB81B3E931F00CF150D /* MessageCenterTVC.swift in Sources */,
+				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
