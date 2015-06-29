@@ -20,6 +20,15 @@ class MainVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let motionView = YXTMotionView(frame: self.view.bounds, image: UIImage(named: "星空中心"))
+    motionView.motionEnabled = true
+    motionView.scrollIndicatorEnabled = false
+    motionView.zoomEnabled = false
+    motionView.scrollDragEnabled = false
+    motionView.scrollBounceEnabled = false
+    self.view.addSubview(motionView)
+    self.view.sendSubviewToBack(motionView)
   }
   
   @IBAction func didSelectMainButton(sender: AnyObject) {
