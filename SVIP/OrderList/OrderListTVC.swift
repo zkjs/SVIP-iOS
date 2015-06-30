@@ -86,9 +86,11 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     let rooms = order["rooms"] as! String
     
     if status.toInt() == 0 {
+      cell.rightUtilityButtons = nil
       cell.bookingImageView.hidden = false
       cell.amountLabel.hidden = true
     } else {
+      cell.rightUtilityButtons = rightButtons() as [AnyObject]
       cell.bookingImageView.hidden = true
       cell.amountLabel.hidden = false
       cell.amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
@@ -97,8 +99,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     cell.dateLabel.text = dateFormatter.stringFromDate(startDate!)
     cell.nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
     cell.countLabel.text = "\(days)晚"
-    
-    cell.rightUtilityButtons = rightButtons() as [AnyObject]
     cell.delegate = self
     
     return cell
@@ -143,7 +143,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, orderID: orderID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        ZKJSTool.showMsg(error.description)
+        ZKJSTool.showMsg("删除失败")
       })
     default:
       break
