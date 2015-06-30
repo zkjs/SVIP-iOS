@@ -12,6 +12,13 @@ private let kCellReuseId = "OrderCellReuseId"
 private let kOrderCell = "OrderCell"
 
 class OrderCell: UITableViewCell {
+  
+  @IBOutlet weak var bookingImageView: UIImageView!
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var amountLabel: UILabel!
+  @IBOutlet weak var countLabel: UILabel!
+  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var logoImageView: UIImageView!
 
   class func reuseIdentifier() -> String {
     return kCellReuseId

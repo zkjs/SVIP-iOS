@@ -21,7 +21,7 @@ class MainVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let motionView = YXTMotionView(frame: self.view.bounds, image: UIImage(named: "星空中心"))
+    let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
     motionView.motionEnabled = true
     motionView.scrollIndicatorEnabled = false
     motionView.zoomEnabled = false
