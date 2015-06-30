@@ -9,7 +9,19 @@
 import UIKit
 import Foundation
 
-class OrderListTVC: UITableViewController {
+extension NSDate {
+  class func daysFromDate(fromDate: NSDate, toDate: NSDate) -> Int {
+    var startingDate: NSDate? = nil
+    var resultDate: NSDate? = nil
+    let calendar = NSCalendar.currentCalendar()
+    calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &startingDate, interval: nil, forDate: fromDate)
+    calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &resultDate, interval: nil, forDate: toDate)
+    let dateComponets = calendar.components(NSCalendarUnit.DayCalendarUnit, fromDate: startingDate!, toDate: resultDate!, options: NSCalendarOptions.allZeros)
+    return dateComponets.day
+  }
+}
+
+class OrderListTVC: UITableViewController, BookingOrderDetailVCDelegate {
   
   var orders: NSMutableArray = []
   var orderPage = 1
@@ -67,7 +79,7 @@ class OrderListTVC: UITableViewController {
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(startDateString)
     let endDate = dateFormatter.dateFromString(endDateString)
-    let days = daysFromDate(startDate!, toDate: endDate!)
+    let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
     let status = order["status"] as! String
     let room_rate_string = order["room_rate"] as! NSString
     let room_rate = Int(room_rate_string.doubleValue)
@@ -78,24 +90,35 @@ class OrderListTVC: UITableViewController {
       cell.amountLabel.hidden = true
     } else {
       cell.bookingImageView.hidden = true
+      cell.amountLabel.hidden = false
       cell.amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
     }
-    cell.dateLabel.text = startDateString
+    dateFormatter.dateFormat = "yyyy/MM/dd"
+    cell.dateLabel.text = dateFormatter.stringFromDate(startDate!)
     cell.nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
     cell.countLabel.text = "\(days)晚"
     
     return cell
   }
   
+  // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let order = orders[indexPath.row] as! NSDictionary
     let status = order["status"] as! String
     
     if status.toInt() == 0 {
-      navigationController?.pushViewController(BookingOrderDetailVC(), animated: true)
+      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
+      bookingOrderDetailVC.delegate = self
+      navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
     } else {
-      navigationController?.pushViewController(OrderDetailVC(), animated: true)
+      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
     }
+  }
+  
+  // MARK: - BookingOrderDetailVCDelegate
+  func didCancelOrder(order: NSDictionary) {
+    orders.removeObject(order)
+    tableView.reloadData()
   }
 
   // MARK: - Private Method
@@ -123,14 +146,4 @@ class OrderListTVC: UITableViewController {
     dismissViewControllerAnimated(true, completion: nil)
   }
   
-  func daysFromDate(fromDate: NSDate, toDate: NSDate) -> Int {
-    var startingDate: NSDate? = nil
-    var resultDate: NSDate? = nil
-    let calendar = NSCalendar.currentCalendar()
-    calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &startingDate, interval: nil, forDate: fromDate)
-    calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &resultDate, interval: nil, forDate: toDate)
-    let dateComponets = calendar.components(NSCalendarUnit.DayCalendarUnit, fromDate: startingDate!, toDate: resultDate!, options: NSCalendarOptions.allZeros)
-    return dateComponets.day
-  }
-
 }

@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
                         <rect key="frame" x="160" y="0.0" width="1" height="115"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="qWt-h4-AUx" userLabel="Logo Image View">

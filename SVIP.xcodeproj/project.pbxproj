@@ -22,6 +22,7 @@
 		4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052665A1B4128F900B277BE /* HotelMessageCell.xib */; };
 		405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266641B41470F00B277BE /* OrderListHeaderView.swift */; };
 		405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405266651B41470F00B277BE /* OrderListHeaderView.xib */; };
+		405BC0FC1B42495F00081C0A /* DotLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405BC0FB1B42495F00081C0A /* DotLine.swift */; };
 		40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641EFD1B3E569700CF150D /* AppDelegate.swift */; };
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
@@ -62,6 +63,7 @@
 		4052665A1B4128F900B277BE /* HotelMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelMessageCell.xib; sourceTree = "<group>"; };
 		405266641B41470F00B277BE /* OrderListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListHeaderView.swift; sourceTree = "<group>"; };
 		405266651B41470F00B277BE /* OrderListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListHeaderView.xib; sourceTree = "<group>"; };
+		405BC0FB1B42495F00081C0A /* DotLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLine.swift; sourceTree = "<group>"; };
 		40641EF81B3E569700CF150D /* SVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641EFC1B3E569700CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40641EFD1B3E569700CF150D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				4052663B1B4127B400B277BE /* OrderDetailVC.xib */,
 				4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */,
 				4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */,
+				405BC0FB1B42495F00081C0A /* DotLine.swift */,
 			);
 			path = OrderList;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
 				4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */,
+				405BC0FC1B42495F00081C0A /* DotLine.swift in Sources */,
 				4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
