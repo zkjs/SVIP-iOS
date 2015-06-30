@@ -32,6 +32,7 @@ PODS:
   - SDWebImage/Core (3.7.2)
   - SocketRocket (0.2.0)
   - SSKeychain (1.2.3)
+  - SWTableViewCell (0.3.7)
   - YXTMotionView (0.1)
 
 DEPENDENCIES:
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7)
   - SocketRocket
   - SSKeychain (~> 1.2.3)
+  - SWTableViewCell
   - YXTMotionView (from `https://github.com/hanton/YXTMotionView.git`)
 
 EXTERNAL SOURCES:
@@ -74,6 +76,7 @@ SPEC CHECKSUMS:
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SocketRocket: 54a4ac2f354c4e8c51ef5dcd4a13bc556d4f2b7c
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   YXTMotionView: 6a7d30ecbfe04f3a560d136c7fe211e33825df7e
 
 COCOAPODS: 0.37.1

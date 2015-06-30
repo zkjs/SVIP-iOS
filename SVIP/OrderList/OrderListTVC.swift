@@ -21,7 +21,7 @@ extension NSDate {
   }
 }
 
-class OrderListTVC: UITableViewController, BookingOrderDetailVCDelegate {
+class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrderDetailVCDelegate {
   
   var orders: NSMutableArray = []
   var orderPage = 1
@@ -98,6 +98,9 @@ class OrderListTVC: UITableViewController, BookingOrderDetailVCDelegate {
     cell.nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
     cell.countLabel.text = "\(days)晚"
     
+    cell.rightUtilityButtons = rightButtons() as [AnyObject]
+    cell.delegate = self
+    
     return cell
   }
   
@@ -106,7 +109,7 @@ class OrderListTVC: UITableViewController, BookingOrderDetailVCDelegate {
     let order = orders[indexPath.row] as! NSDictionary
     let status = order["status"] as! String
     
-    if status.toInt() == 0 {
+    if status.toInt() == 0 {  // 0 未确认可取消订单
       let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
       bookingOrderDetailVC.delegate = self
       navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
@@ -117,8 +120,34 @@ class OrderListTVC: UITableViewController, BookingOrderDetailVCDelegate {
   
   // MARK: - BookingOrderDetailVCDelegate
   func didCancelOrder(order: NSDictionary) {
-    orders.removeObject(order)
-    tableView.reloadData()
+    let replacedOrder = NSMutableDictionary(dictionary: order)
+    replacedOrder["status"] = "1"  // 1 取消订单
+    let index = orders.indexOfObject(order)
+    orders.replaceObjectAtIndex(index, withObject: replacedOrder)
+    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+  }
+  
+  // MARK: - SWTableViewDelegate
+  func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+    switch index {
+    case 0:
+      let indexPath = tableView.indexPathForCell(cell)!
+      let order = orders[indexPath.row] as! NSDictionary
+      orders.removeObjectAtIndex(indexPath.row)
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+      
+      let userID = "557cff54a9a97"
+      let token = "wzWqj5elcC50gosP"
+      let orderID = order["id"] as! String
+      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, orderID: orderID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        
+        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        ZKJSTool.showMsg(error.description)
+      })
+    default:
+      break
+    }
   }
 
   // MARK: - Private Method
@@ -144,6 +173,12 @@ class OrderListTVC: UITableViewController, BookingOrderDetailVCDelegate {
   
   func dismissSelf() -> Void {
     dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  func rightButtons() -> NSArray {
+    let rightUtilityButtons: NSMutableArray = []
+    rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.redColor(), title: "删除")
+    return rightUtilityButtons
   }
   
 }

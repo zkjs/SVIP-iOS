@@ -11,7 +11,7 @@ import UIKit
 private let kCellReuseId = "OrderCellReuseId"
 private let kOrderCell = "OrderCell"
 
-class OrderCell: UITableViewCell {
+class OrderCell: SWTableViewCell {
   
   @IBOutlet weak var bookingImageView: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
