@@ -51,9 +51,7 @@
 
   self.title = @"聊天";
     
-  if (CURRENT_SYS_VERSION >= 7.0) {
-    self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan=NO;
-  }
+  self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan=NO;
   
   self.messageSender = @"我";
   self.messageReceiver = @"556825758efb0";
@@ -82,12 +80,12 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
-  self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-  self.activityIndicator.center = CGPointMake(self.view.center.x, (self.view.frame.size.height-64)/2.0);
-  NSLog(@"%@", NSStringFromCGPoint(self.activityIndicator.center));
-  self.activityIndicator.hidesWhenStopped = YES;
-  [self.view addSubview:self.activityIndicator];
-  [self.activityIndicator startAnimating];
+//  self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//  self.activityIndicator.center = CGPointMake(self.view.center.x, (self.view.frame.size.height-64)/2.0);
+//  NSLog(@"%@", NSStringFromCGPoint(self.activityIndicator.center));
+//  self.activityIndicator.hidesWhenStopped = YES;
+//  [self.view addSubview:self.activityIndicator];
+//  [self.activityIndicator startAnimating];
 }
 
 - (void)requestWaiter {
@@ -324,7 +322,7 @@
   self.messageReceiver = self.employerID;
 //  NSLog(@"===========%@ %@ %@", notification.userInfo[@"empid"], self.employerID, self.employerList);
 //  [ZKJSTool hideHUD];
-  [self.activityIndicator stopAnimating];
+//  [self.activityIndicator stopAnimating];
   
 //  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 //  [formatter setDateFormat:@"yyyy-MM-dd"];

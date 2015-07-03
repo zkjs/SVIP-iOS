@@ -41,31 +41,31 @@ class MainVC: UIViewController, CRMotionViewDelegate {
   }
   
   @IBAction func didSelectMainButton(sender: AnyObject) {
-//    for _ in 1...10 {
-      let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-      let dictionary: [String: AnyObject] = [
-        "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-        "devtoken": "2327ad9f487b67fe262941c08e2069fbb6ecc47883a049a260e7155020880ef2",
-        "appid": "HOTELVIP",
-        "userid": "557cff54a9a97",
-        "shopid": "120",
-        "locid": "1",
-        "username": "金石",
-        "timestamp": NSNumber(longLong: timestamp)
-      ]
-      ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-//    }
+    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let dictionary: [String: AnyObject] = [
+      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
+      "devtoken": "2327ad9f487b67fe262941c08e2069fbb6ecc47883a049a260e7155020880ef2",
+      "appid": "HOTELVIP",
+      "userid": "557cff54a9a97",
+      "shopid": "120",
+      "locid": "1",
+      "username": "金石",
+      "timestamp": NSNumber(longLong: timestamp)
+    ]
+    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
   }
   
   @IBAction func didSelectLeftButton(sender: AnyObject) {
     let navController = UINavigationController(rootViewController: OrderListTVC())
     navController.navigationBar.tintColor = UIColor.blackColor()
+    navController.navigationBar.translucent = false
     presentViewController(navController, animated: true, completion: nil)
   }
   
   @IBAction func didSelectRightButton(sender: AnyObject) {
     let navController = UINavigationController(rootViewController: MessageCenterTVC())
     navController.navigationBar.tintColor = UIColor.blackColor()
+    navController.navigationBar.translucent = false
     presentViewController(navController, animated: true, completion: nil)
   }
   

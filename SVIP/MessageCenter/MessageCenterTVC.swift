@@ -21,8 +21,6 @@ class MessageCenterTVC: UITableViewController {
     let cellNib = UINib(nibName: HotelMessageCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: HotelMessageCell.reuseIdentifier())
     tableView.tableFooterView = UIView()
-    
-    clearsSelectionOnViewWillAppear = false
   }
   
   // MARK: - Table view data source
@@ -50,6 +48,7 @@ class MessageCenterTVC: UITableViewController {
   // MARK: - Table view delegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
     navigationController?.pushViewController(JSHChatVC(), animated: true)
   }
   
