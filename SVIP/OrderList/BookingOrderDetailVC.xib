@@ -6,10 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookingOrderDetailVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="chatButton" destination="lNy-kj-BxP" id="1sV-jz-9I3"/>
                 <outlet property="dateDurationLabel" destination="zin-jD-dcu" id="CoD-PL-aYN"/>
                 <outlet property="dateLabel" destination="106-SK-AHW" id="yZW-wI-Mwe"/>
                 <outlet property="durationLabel" destination="eTr-ZE-WjX" id="Etb-Su-OSl"/>
                 <outlet property="nameLabel" destination="2sA-wj-zMw" id="XHi-r9-HSp"/>
+                <outlet property="remarkLabel" destination="dW7-a4-lIt" id="ZOQ-AU-TDu"/>
                 <outlet property="roomTypeLabel" destination="Ubq-3h-3uN" id="Ly8-B4-6Fb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -84,12 +86,6 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="6"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="showChatView:" destination="-1" eventType="touchUpInside" id="UbC-Nz-IRR"/>
                     </connections>
@@ -127,7 +123,7 @@
                         <action selector="cancelOrder:" destination="-1" eventType="touchUpInside" id="uvh-6o-FSp"/>
                     </connections>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="离电梯近     安静     景色好" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFR-Bs-Io8">
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="离电梯近     安静     景色好" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFR-Bs-Io8">
                     <rect key="frame" x="66" y="343" width="205" height="59"/>
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>

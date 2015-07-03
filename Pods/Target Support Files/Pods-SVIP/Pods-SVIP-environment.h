@@ -84,6 +84,12 @@
 #define COCOAPODS_VERSION_MINOR_MJRefresh 0
 #define COCOAPODS_VERSION_PATCH_MJRefresh 4
 
+// Masonry
+#define COCOAPODS_POD_AVAILABLE_Masonry
+#define COCOAPODS_VERSION_MAJOR_Masonry 0
+#define COCOAPODS_VERSION_MINOR_Masonry 6
+#define COCOAPODS_VERSION_PATCH_Masonry 1
+
 // MessageDisplayKit
 #define COCOAPODS_POD_AVAILABLE_MessageDisplayKit
 #define COCOAPODS_VERSION_MAJOR_MessageDisplayKit 3
@@ -107,6 +113,12 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 2
+
+// SKTagView
+#define COCOAPODS_POD_AVAILABLE_SKTagView
+#define COCOAPODS_VERSION_MAJOR_SKTagView 0
+#define COCOAPODS_VERSION_MINOR_SKTagView 7
+#define COCOAPODS_VERSION_PATCH_SKTagView 0
 
 // SSKeychain
 #define COCOAPODS_POD_AVAILABLE_SSKeychain

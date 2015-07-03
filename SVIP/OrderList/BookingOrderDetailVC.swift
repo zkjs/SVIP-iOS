@@ -18,9 +18,12 @@ class BookingOrderDetailVC: UIViewController {
   @IBOutlet weak var roomTypeLabel: UILabel!
   @IBOutlet weak var durationLabel: UILabel!
   @IBOutlet weak var dateDurationLabel: UILabel!
+  @IBOutlet weak var remarkLabel: UILabel!
+  @IBOutlet weak var chatButton: UIButton!
   
   let order: NSDictionary
   
+  var tagView = SKTagView()
   var delegate: BookingOrderDetailVCDelegate? = nil
   
   // MARK: - Init
@@ -64,6 +67,47 @@ class BookingOrderDetailVC: UIViewController {
     startDateString = dateFormatter.stringFromDate(startDate!)
     endDateString = dateFormatter.stringFromDate(endDate!)
     dateDurationLabel.text = "\(startDateString)-\(endDateString)"
+    
+    let remark = "离电梯近,无烟房,安静,高层,枕头高"//order["remark"] as! String
+    let tags = remark.componentsSeparatedByString(",")
+    setupTagView(tags)
+    
+    setupChatButton()
+  }
+  
+  // MARK: - Private Method
+  func setupTagView(tags: [String]) {
+    tagView.backgroundColor = UIColor(fromHexString: "F4F4F3")
+    tagView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    tagView.padding = UIEdgeInsetsMake(8.0, 30.0, 8.0, 30.0)
+    tagView.insets = 25
+    tagView.lineSpace = 10
+    view.addSubview(tagView)
+    tagView.mas_makeConstraints { (make: MASConstraintMaker!) -> Void in
+      let superView = self.view
+      make.top.equalTo()(self.remarkLabel.mas_bottom)
+      make.leading.equalTo()(superView.mas_leading)
+      make.trailing.equalTo()(superView.mas_trailing)
+    }
+    
+    for tag in tags {
+      let tagButton = SKTag(text: tag)
+      tagButton.textColor = UIColor.blackColor()
+      tagButton.fontSize = 15
+      tagButton.padding = UIEdgeInsetsMake(8, 8, 8, 8)
+      tagButton.bgColor = UIColor(fromHexString: "F4F4F3")
+      tagButton.borderColor = UIColor.grayColor()
+      tagButton.borderWidth = 0.5
+      tagButton.cornerRadius = 6
+      tagView.addTag(tagButton)
+    }
+  }
+  
+  func setupChatButton() {
+    chatButton.layer.borderWidth = 0.6
+    chatButton.layer.borderColor = UIColor.blackColor().CGColor
+    chatButton.layer.cornerRadius = 6
+    chatButton.layer.masksToBounds = true
   }
   
   // MARK: - Button Action

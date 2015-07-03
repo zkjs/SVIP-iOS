@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 
 target 'SVIP' do
+  pod 'SKTagView'
   pod 'MIBadgeButton', :inhibit_warnings => true
   pod 'SWTableViewCell'
   pod 'MJRefresh'
