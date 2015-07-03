@@ -1,7 +1,7 @@
 platform :ios, '8.0'
 
 target 'SVIP' do
-  pod 'MIBadgeButton'
+  pod 'MIBadgeButton', :inhibit_warnings => true
   pod 'SWTableViewCell'
   pod 'MJRefresh'
   pod 'YXTMotionView', :git => 'https://github.com/hanton/YXTMotionView.git'

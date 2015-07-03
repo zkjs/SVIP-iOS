@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F5FC037AC882B466EBB741E5"
+               BlueprintIdentifier = "F7578980737FEAAB0B22DF4A"
                BuildableName = "libPods-SVIP-PKYStepper.a"
                BlueprintName = "Pods-SVIP-PKYStepper"
                ReferencedContainer = "container:Pods.xcodeproj">

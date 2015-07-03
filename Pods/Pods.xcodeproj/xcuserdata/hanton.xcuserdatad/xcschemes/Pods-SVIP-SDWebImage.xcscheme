@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F87E8606701A7C8925832906"
+               BlueprintIdentifier = "16FD8011B288F032B7CC5383"
                BuildableName = "libPods-SVIP-SDWebImage.a"
                BlueprintName = "Pods-SVIP-SDWebImage"
                ReferencedContainer = "container:Pods.xcodeproj">

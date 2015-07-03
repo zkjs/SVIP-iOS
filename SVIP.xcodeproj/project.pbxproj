@@ -34,6 +34,7 @@
 		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
 		40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
+		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,8 @@
 		40641F991B3E79A300CF150D /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
+		40DA7A011B463E850097CE3D /* JSHChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHChatVC.h; sourceTree = "<group>"; };
+		40DA7A021B463E850097CE3D /* JSHChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHChatVC.m; sourceTree = "<group>"; };
 		40E686F71B45297400C9725B /* BookingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrder.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +239,7 @@
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				4052664D1B41283900B277BE /* Main */,
 				405266421B4127F600B277BE /* MessageCenter */,
+				40DA7A001B463E850097CE3D /* Chat */,
 				405266311B41279B00B277BE /* OrderList */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
@@ -314,6 +318,15 @@
 				40641F9C1B3E79A300CF150D /* ZKJSTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		40DA7A001B463E850097CE3D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				40DA7A011B463E850097CE3D /* JSHChatVC.h */,
+				40DA7A021B463E850097CE3D /* JSHChatVC.m */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
@@ -482,6 +495,7 @@
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
 				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
+				40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */,
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,

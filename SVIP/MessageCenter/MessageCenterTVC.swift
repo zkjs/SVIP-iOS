@@ -47,6 +47,12 @@ class MessageCenterTVC: UITableViewController {
   return cell
   }
   
+  // MARK: - Table view delegate
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    navigationController?.pushViewController(JSHChatVC(), animated: true)
+  }
+  
   // MARK: - Private Method
   func dismissSelf() -> Void {
     dismissViewControllerAnimated(true, completion: nil)

@@ -96,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   func setupTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().delegate = self
+    println("setupTCPSessionManager")
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP("192.168.1.6", port: "7777")
   }
 

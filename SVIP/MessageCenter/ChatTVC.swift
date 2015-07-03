@@ -141,8 +141,6 @@ class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegat
     case .Voice:
       message.setIsRead!(true)
       messageTableViewCell.messageBubbleView.voiceUnreadDotImageView.hidden = true
-      
-//      XHAudioPlayerHelper.shareInstance().setDelegate((NSFileManagerDelegate)self)
     default:
       break
     }

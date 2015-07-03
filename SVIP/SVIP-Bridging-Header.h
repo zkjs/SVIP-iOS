@@ -13,4 +13,5 @@
 #import "XHAudioPlayerHelper.h"
 #import "XHDisplayMediaViewController.h"
 #import "ZKJSTCPSessionManager.h"
+#import "JSHChatVC.h"
 #import "MIBadgeButton.h"

@@ -68,7 +68,7 @@ class BookingOrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-    
+    navigationController?.pushViewController(JSHChatVC(), animated: true)
   }
 
   @IBAction func cancelOrder(sender: AnyObject) {
