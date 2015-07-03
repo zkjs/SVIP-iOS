@@ -31,33 +31,39 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="nwa-gB-ZGY">
-                        <rect key="frame" x="8" y="8" width="66" height="66"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="66" id="LRG-4M-6pa"/>
-                            <constraint firstAttribute="width" constant="66" id="jUT-4Z-wxv"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已确认" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1y3-J4-1Uv">
                         <rect key="frame" x="261" y="20" width="51" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eh-bz-dOD" customClass="MIBadgeButton">
+                        <rect key="frame" x="8" y="8" width="66" height="66"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="66" id="GJh-Np-2Y1"/>
+                            <constraint firstAttribute="width" constant="66" id="MXy-Fo-dOo"/>
+                        </constraints>
+                        <state key="normal" image="img_hotel_anli01">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="G3Y-vX-L4x" firstAttribute="leading" secondItem="nwa-gB-ZGY" secondAttribute="trailing" constant="10" id="3eY-Bq-0Zd"/>
                     <constraint firstItem="G3Y-vX-L4x" firstAttribute="top" secondItem="Vfe-Mp-6Mi" secondAttribute="bottom" constant="4" id="7rY-Ot-e2z"/>
-                    <constraint firstItem="nwa-gB-ZGY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="9ry-ZI-qNq"/>
-                    <constraint firstItem="nwa-gB-ZGY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="MlX-YE-v1u"/>
+                    <constraint firstItem="8eh-bz-dOD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="HeU-81-m31"/>
                     <constraint firstAttribute="trailing" secondItem="1y3-J4-1Uv" secondAttribute="trailing" constant="8" id="NB6-Gk-V4N"/>
+                    <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="leading" secondItem="8eh-bz-dOD" secondAttribute="trailing" constant="8" symbolic="YES" id="NOQ-uq-4jC"/>
                     <constraint firstAttribute="trailing" secondItem="mm0-9t-Rkm" secondAttribute="trailing" constant="8" id="Ql9-JA-ECX"/>
-                    <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="leading" secondItem="nwa-gB-ZGY" secondAttribute="trailing" constant="8" id="hMh-V1-icA"/>
+                    <constraint firstItem="G3Y-vX-L4x" firstAttribute="leading" secondItem="8eh-bz-dOD" secondAttribute="trailing" constant="10" id="XKr-d5-MRe"/>
                     <constraint firstItem="mm0-9t-Rkm" firstAttribute="top" secondItem="1y3-J4-1Uv" secondAttribute="bottom" constant="4" id="mIH-ff-eGq"/>
+                    <constraint firstItem="8eh-bz-dOD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="msl-hw-pwH"/>
                     <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="oSM-k9-ak9"/>
                     <constraint firstItem="1y3-J4-1Uv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="vkV-cR-wxA"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="logo" destination="8eh-bz-dOD" id="5nW-tR-Pyn"/>
+            </connections>
             <point key="canvasLocation" x="474" y="428"/>
         </tableViewCell>
     </objects>

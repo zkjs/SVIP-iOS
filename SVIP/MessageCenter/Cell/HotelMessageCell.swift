@@ -13,6 +13,8 @@ private let kHotelMessageCell = "HotelMessageCell"
 
 class HotelMessageCell: UITableViewCell {
   
+  @IBOutlet weak var logo: MIBadgeButton!
+  
   class func reuseIdentifier()->String {
     return kCellReuseId
   }
@@ -23,7 +25,10 @@ class HotelMessageCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
+    
+    logo.badgeEdgeInsets = UIEdgeInsetsMake(15.0, 0.0, 0.0, 10.0)
+    logo.badgeBackgroundColor = UIColor.redColor()
+    logo.badgeString = "1"
   }
   
 //  func setCity(city: YALCity) {

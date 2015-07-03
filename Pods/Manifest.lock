@@ -24,6 +24,7 @@ PODS:
   - DateTools (1.6.1)
   - MBProgressHUD (0.9.1)
   - MessageDisplayKit (3.0.3)
+  - MIBadgeButton (0.0.6)
   - MJExtension (2.3.6)
   - MJRefresh (2.0.4)
   - PKYStepper (0.0.1)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - DateTools
   - MBProgressHUD
   - MessageDisplayKit (from `https://github.com/hanton/MessageDisplayKit.git`)
+  - MIBadgeButton
   - MJExtension
   - MJRefresh
   - PKYStepper
@@ -70,6 +72,7 @@ SPEC CHECKSUMS:
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MessageDisplayKit: c82efa1d113740dea0bc23f72a919be037d2177c
+  MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
   MJExtension: eb9d381740563b520fbabdfa6caf92d666314467
   MJRefresh: ea153717001d3c02444bd22b75c111d2937d2104
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d

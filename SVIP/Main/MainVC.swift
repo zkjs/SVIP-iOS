@@ -12,7 +12,7 @@ class MainVC: UIViewController, CRMotionViewDelegate {
   
   @IBOutlet weak var mainButton: UIButton!
   @IBOutlet weak var leftButton: UIButton!
-  @IBOutlet weak var rightButton: UIButton!
+  @IBOutlet weak var rightButton: MIBadgeButton!
   
   func scrollViewDidScrollToOffset(offset: CGPoint) {
     println(offset)
@@ -24,6 +24,10 @@ class MainVC: UIViewController, CRMotionViewDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
+    rightButton.badgeBackgroundColor = UIColor.redColor()
+    rightButton.badgeString = "1"
     
     let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
     motionView.delegate = self

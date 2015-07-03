@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="leftButton" destination="AKo-kU-jaS" id="ban-Bv-e8W"/>
                 <outlet property="mainButton" destination="9qo-35-bbF" id="YIK-qX-j3R"/>
-                <outlet property="rightButton" destination="ZLm-u2-o02" id="kF3-js-art"/>
+                <outlet property="rightButton" destination="ZLm-u2-o02" id="z6e-Yh-EHj"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7Uu-iT-sHu"/>
             </connections>
         </placeholder>
@@ -35,7 +35,7 @@
                         <action selector="didSelectLeftButton:" destination="-1" eventType="touchUpInside" id="shK-qU-nQk"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-u2-o02" userLabel="Right Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-u2-o02" userLabel="Right Button" customClass="MIBadgeButton">
                     <rect key="frame" x="379" y="544" width="42" height="42"/>
                     <state key="normal" image="ic_xiaoxi">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,7 +84,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-9Q-dBR">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-9Q-dBR">
                     <rect key="frame" x="150" y="336" width="300" height="175"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_dongtai" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-xe-2cv">
@@ -146,51 +146,33 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="95w-YR-Vlf">
-                    <rect key="frame" x="248" y="312" width="104" height="21"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVC-wp-tfq">
-                    <rect key="frame" x="251" y="515" width="98" height="13"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="9qo-35-bbF" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="bottom" constant="8" id="1QE-jn-4ds"/>
                 <constraint firstAttribute="centerX" secondItem="9qo-35-bbF" secondAttribute="centerX" id="5dP-XA-QCA"/>
-                <constraint firstAttribute="centerX" secondItem="95w-YR-Vlf" secondAttribute="centerX" id="6aa-fT-5pZ"/>
                 <constraint firstItem="vBb-2A-ocr" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="26" id="81I-4M-JaZ"/>
                 <constraint firstItem="Rdp-DE-53L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="D6e-ak-WRI"/>
-                <constraint firstItem="9qo-35-bbF" firstAttribute="top" secondItem="sVC-wp-tfq" secondAttribute="bottom" id="Ezl-TC-aJP"/>
                 <constraint firstItem="NSK-gV-KA7" firstAttribute="top" secondItem="Ueh-PS-l0y" secondAttribute="bottom" constant="6" id="G8O-Ig-mwh"/>
-                <constraint firstItem="D5Q-9Q-dBR" firstAttribute="top" secondItem="95w-YR-Vlf" secondAttribute="bottom" id="IFw-Xt-bYu"/>
                 <constraint firstAttribute="centerX" secondItem="Ueh-PS-l0y" secondAttribute="centerX" id="JCg-nS-RfD"/>
                 <constraint firstItem="Ueh-PS-l0y" firstAttribute="top" secondItem="vBb-2A-ocr" secondAttribute="bottom" constant="16" id="JRR-64-RYp"/>
                 <constraint firstAttribute="centerX" secondItem="AKo-kU-jaS" secondAttribute="centerX" constant="100" id="JTW-9R-fNG"/>
-                <constraint firstItem="95w-YR-Vlf" firstAttribute="top" secondItem="NSK-gV-KA7" secondAttribute="bottom" id="Jfa-dc-3DL"/>
                 <constraint firstAttribute="centerX" secondItem="ZJh-oD-fwH" secondAttribute="centerX" id="MWY-3X-hh2"/>
                 <constraint firstAttribute="centerX" secondItem="ZLm-u2-o02" secondAttribute="centerX" constant="-100" id="NdC-Fv-mn9"/>
-                <constraint firstItem="95w-YR-Vlf" firstAttribute="top" secondItem="NSK-gV-KA7" secondAttribute="bottom" constant="2" id="Ppf-ep-eXv"/>
                 <constraint firstAttribute="bottom" secondItem="9qo-35-bbF" secondAttribute="bottom" constant="8" id="YhH-jq-Bai"/>
-                <constraint firstItem="95w-YR-Vlf" firstAttribute="height" secondItem="sVC-wp-tfq" secondAttribute="height" id="ZXk-JA-d7k"/>
                 <constraint firstAttribute="trailing" secondItem="Rdp-DE-53L" secondAttribute="trailing" id="aCn-vg-5iE"/>
                 <constraint firstAttribute="bottom" secondItem="ZLm-u2-o02" secondAttribute="bottom" constant="14" id="eFe-eS-hzj"/>
-                <constraint firstAttribute="centerX" secondItem="sVC-wp-tfq" secondAttribute="centerX" id="fDu-DF-eCi"/>
+                <constraint firstItem="9qo-35-bbF" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="bottom" constant="21" id="fim-LM-RKc"/>
                 <constraint firstAttribute="centerX" secondItem="vBb-2A-ocr" secondAttribute="centerX" id="gYn-pA-sWz"/>
                 <constraint firstAttribute="centerX" secondItem="bjJ-Dv-GFu" secondAttribute="centerX" id="hdD-tM-3DX"/>
                 <constraint firstAttribute="centerX" secondItem="D5Q-9Q-dBR" secondAttribute="centerX" id="kCn-4e-r8O"/>
                 <constraint firstAttribute="bottom" secondItem="AKo-kU-jaS" secondAttribute="bottom" constant="14" id="mDj-QC-qkE"/>
                 <constraint firstAttribute="centerX" secondItem="NSK-gV-KA7" secondAttribute="centerX" id="msL-sx-5cy"/>
                 <constraint firstItem="bjJ-Dv-GFu" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="66" id="n4K-Dj-RiI"/>
-                <constraint firstItem="sVC-wp-tfq" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="bottom" id="vua-CP-9Gz"/>
                 <constraint firstItem="ZJh-oD-fwH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="xP1-pK-Scf"/>
-                <constraint firstItem="D5Q-9Q-dBR" firstAttribute="top" secondItem="95w-YR-Vlf" secondAttribute="bottom" constant="3" id="yFE-vV-cTN"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="yFE-vV-cTN"/>
-                    <exclude reference="Ppf-ep-eXv"/>
                     <exclude reference="1QE-jn-4ds"/>
                 </mask>
             </variation>
