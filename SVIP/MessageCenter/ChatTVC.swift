@@ -7,91 +7,145 @@
 //
 
 import UIKit
+import AVFoundation
+import Foundation
 
-class ChatTVC: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate {
+  
+  let bookingOrder: BookingOrder
+  let currentSelectedCell = XHMessageTableViewCell()
+  
+  var activityIndicator = UIActivityIndicatorView()
+  var messageReceiver = ""
+  var employerID = ""
+  var employerList = []
+  var senderID = ""
+  
+  // MARK: - Init
+  init(bookingOrder: BookingOrder?) {
+    self.bookingOrder = bookingOrder!
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func viewDidLoad() {
+    allowsSendFace = false
+    
+    super.viewDidLoad()
+    
+    title = "聊天"
+    
+    messageSender = "我";
+    messageReceiver = "556825758efb0";
+    employerID = "paipai990";
+    employerList = NSMutableArray(array: [employerID])
+    messageReceiver = employerID;
+    senderID = "557cff54a9a97";
+    
+    var shareMenuItems = [XHShareMenuItem]()
+    let plugIcons = ["sharemore_pic", "sharemore_video"]
+    let plugTitles = ["照片", "拍摄"]
+    for plugIcon in plugIcons {
+      let shareMenuItem = XHShareMenuItem(normalIconImage: UIImage(named: plugIcon), title: plugTitles[find(plugIcons, plugIcon)!])
+      shareMenuItems.append(shareMenuItem)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    self.shareMenuItems = shareMenuItems
+    shareMenuView.reloadData()
+    
+//    loadDataSource()
+    setupNotification()
+    requestWaiter()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    activityIndicator.center = CGPointMake(view.center.x, (view.frame.size.height - 64.0) / 2.0)
+    activityIndicator.hidesWhenStopped = true
+    view.addSubview(activityIndicator)
+    activityIndicator.startAnimating()
+  }
+  
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    
+//    saveDataSource()
+  }
+  
+  deinit {
+    XHAudioPlayerHelper.shareInstance().setDelegate(nil)
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
+  // MARK: - Private Method
+  func setupNotification() {
+    
+  }
+  
+  func requestWaiter() {
+    
+  }
+  
+  func sendTextMessage(text: String) {
+    
+  }
+  
+  func sendImageMessage(photo: UIImage) {
+    
+  }
+  
+  func sendVoiceMessage(voicePath: String) {
+    
+  }
+  
+  // MARK: - XHMessageTableViewControllerDelegate
+  override func didSendText(text: String!, fromSender sender: String!, onDate date: NSDate!) {
+    sendTextMessage(text)
+    var message = XHMessage(text: text, sender: sender, timestamp: date)
+    message.avatar = UIImage(named: "ic_home_nor")
+    
+    addMessage(message)
+    finishSendMessageWithBubbleMessageType(.Text)
+  }
+  
+  override func didSendPhoto(photo: UIImage!, fromSender sender: String!, onDate date: NSDate!) {
+    sendImageMessage(photo)
+    var message = XHMessage(photo: photo, thumbnailUrl: nil, originPhotoUrl: nil, sender: sender, timestamp: date)
+    message.avatar = UIImage(named: "ic_home_nor")
+    
+    addMessage(message)
+    finishSendMessageWithBubbleMessageType(.Photo)
+  }
+  
+  override func didSendVoice(voicePath: String!, voiceDuration: String!, fromSender sender: String!, onDate date: NSDate!) {
+    sendTextMessage(voicePath)
+    var message = XHMessage(voicePath: voicePath, voiceUrl: nil, voiceDuration: voiceDuration, sender: sender, timestamp: date, isRead: true)
+    message.avatar = UIImage(named: "ic_home_nor")
+    
+    addMessage(message)
+    finishSendMessageWithBubbleMessageType(.Voice)
+  }
+  
+  // MARK: - XHMessageTableViewCellDelegate
+  override func multiMediaMessageDidSelectedOnMessage(message: XHMessageModel!, atIndexPath indexPath: NSIndexPath!, onMessageTableViewCell messageTableViewCell: XHMessageTableViewCell!) {
+    var displayVC: UIViewController
+    switch message.messageMediaType() {
+    case .Photo:
+      var messageDisplayTextView = XHDisplayMediaViewController()
+      messageDisplayTextView.message = message
+      displayVC = messageDisplayTextView
+    case .Voice:
+      message.setIsRead!(true)
+      messageTableViewCell.messageBubbleView.voiceUnreadDotImageView.hidden = true
+      
+//      XHAudioPlayerHelper.shareInstance().setDelegate((NSFileManagerDelegate)self)
+    default:
+      break
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
-    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  }
+  
 }

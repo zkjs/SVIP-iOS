@@ -30,6 +30,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    loadMoreData()
+    
     title = "足迹"
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
@@ -40,8 +42,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.footer.hidden = true
     tableView.separatorStyle = .None
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
-    
-    loadMoreData()
   }
   
   // MARK: - Table view data source
@@ -151,6 +151,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
 
   // MARK: - Private Method
+  func dismissSelf() -> Void {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
+  
   func loadMoreData() -> Void {
     let userID = "557cff54a9a97"
     let token = "wzWqj5elcC50gosP"
@@ -169,10 +173,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       
     }
-  }
-  
-  func dismissSelf() -> Void {
-    dismissViewControllerAnimated(true, completion: nil)
   }
   
   func rightButtons() -> NSArray {

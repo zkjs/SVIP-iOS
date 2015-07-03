@@ -47,7 +47,7 @@
                     <rect key="frame" x="506" y="196" width="73" height="71"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在2015/05/28 18:30 预订" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="106-SK-AHW">
-                    <rect key="frame" x="128" y="128" width="181" height="20"/>
+                    <rect key="frame" x="128" y="128" width="464" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -156,6 +156,7 @@
                 <constraint firstAttribute="centerX" secondItem="Dlg-SK-qs5" secondAttribute="centerX" id="RPq-Kc-F10"/>
                 <constraint firstItem="Dlg-SK-qs5" firstAttribute="top" secondItem="lNy-kj-BxP" secondAttribute="bottom" constant="19" id="Tln-dU-f8V"/>
                 <constraint firstItem="eTr-ZE-WjX" firstAttribute="leading" secondItem="9Fr-99-h6J" secondAttribute="trailing" constant="32" id="faw-Q4-rEq"/>
+                <constraint firstAttribute="trailing" secondItem="106-SK-AHW" secondAttribute="trailing" constant="8" id="ihf-P0-Wid"/>
                 <constraint firstItem="eTr-ZE-WjX" firstAttribute="centerY" secondItem="rrL-3F-FPY" secondAttribute="centerY" id="jC8-BG-se7"/>
                 <constraint firstItem="2sA-wj-zMw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="jsS-1C-wJ2"/>
                 <constraint firstItem="106-SK-AHW" firstAttribute="top" secondItem="2sA-wj-zMw" secondAttribute="bottom" constant="8" id="kyR-3c-erh"/>

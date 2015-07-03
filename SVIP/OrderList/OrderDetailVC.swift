@@ -51,11 +51,10 @@ class OrderDetailVC: UIViewController {
     let room_rate_string = order["room_rate"] as! NSString
     let room_rate = Int(room_rate_string.doubleValue)
     let rooms = order["rooms"] as! String
-    
-    dateFormatter.dateFormat = "yyyy/MM/dd"
-    startDateString = dateFormatter.stringFromDate(startDate!)
+    let createdDate = order["created"] as! String
+
     nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
-    dateLabel.text = "在 \(startDateString) 预订"
+    dateLabel.text = "在 \(createdDate) 预订"
     roomTypeLabel.text = order["room_type"] as? String
     durationLabel.text = "\(days)晚"
     dateFormatter.dateFormat = "M/dd"

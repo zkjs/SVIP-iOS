@@ -55,7 +55,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在2015/05/28 18:30 预订" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hoz-TT-l2I">
-                    <rect key="frame" x="128" y="125" width="181" height="20"/>
+                    <rect key="frame" x="128" y="125" width="464" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -128,6 +128,7 @@
                 <constraint firstItem="I2s-ce-v7j" firstAttribute="top" secondItem="4p8-k3-dQ7" secondAttribute="bottom" constant="25" id="jnY-w6-jSl"/>
                 <constraint firstItem="9gr-Kv-5pa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="mMx-lL-iKQ"/>
                 <constraint firstItem="424-7t-6pJ" firstAttribute="top" secondItem="I2s-ce-v7j" secondAttribute="bottom" constant="18" id="r7B-W1-utI"/>
+                <constraint firstAttribute="trailing" secondItem="Hoz-TT-l2I" secondAttribute="trailing" constant="8" id="sdP-OM-Xia"/>
                 <constraint firstAttribute="trailing" secondItem="fb8-a4-8s1" secondAttribute="trailing" constant="8" id="tAS-CK-wz5"/>
                 <constraint firstItem="4p8-k3-dQ7" firstAttribute="top" secondItem="hys-ji-mRM" secondAttribute="bottom" constant="7" id="vSt-35-KQq"/>
                 <constraint firstItem="Hoz-TT-l2I" firstAttribute="top" secondItem="fb8-a4-8s1" secondAttribute="bottom" constant="5" id="xk0-xe-usy"/>
