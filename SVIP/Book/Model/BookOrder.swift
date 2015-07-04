@@ -55,18 +55,17 @@ class BookOrder: NSObject {
 //  var <#string#>: String
 //  var <#string#>: String
   var cat_name: String?
-  
 
-  init(dic: Dictionary<String, String>?) {
+  init(dic: NSDictionary?) {
     if dic != nil{
-      goodsid = dic!["goodsid"]
-      name = dic!["name"]
-      unit = dic!["unit"]
-      goods_brief = dic!["goods_brief"]
-      goods_desc = dic!["goods_desc"]
-      cat_id = dic!["cat_id"]
-      goods_img = dic!["goods_img"]
-      market_price = dic!["market_price"]
+      goodsid = dic!["goodsid"] as? String
+      name = dic!["name"] as? String
+      unit = dic!["unit"] as? String
+      goods_brief = dic!["goods_brief"] as? String
+      goods_desc = dic!["goods_desc"] as? String
+      cat_id = dic!["cat_id"] as? String
+      goods_img = dic!["goods_img"] as? String
+      market_price = dic!["market_price"] as? String
     }
   }
 }

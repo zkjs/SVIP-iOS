@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookVC" rowHeight="230" id="KGk-i7-Jjw" customClass="BookRoomCell" customModule="SVIP" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BookVC" rowHeight="230" id="KGk-i7-Jjw" userLabel="BookRoomCell" customClass="BookRoomCell" customModule="SVIP" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="442" height="230"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -21,23 +21,6 @@
                             <constraint firstAttribute="height" constant="50" id="vme-eQ-2lH"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p58-hg-VO9">
-                        <rect key="frame" x="8" y="70" width="426" height="160"/>
-                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="160" id="scV-8A-D2o"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  双人套房 ￥999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K36-kR-ysN">
-                        <rect key="frame" x="8" y="103" width="426" height="30"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="8ep-u7-AwI"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0x-Mo-PAf">
                         <rect key="frame" x="66" y="22" width="42" height="21"/>
                         <constraints>
@@ -47,27 +30,70 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p58-hg-VO9">
+                        <rect key="frame" x="8" y="70" width="426" height="160"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="160" id="scV-8A-D2o"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  双人套房 ￥999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K36-kR-ysN">
+                        <rect key="frame" x="8" y="103" width="426" height="30"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="8ep-u7-AwI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" cocoaTouchSystemColor="lightTextColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_gouxuan2" translatesAutoresizingMaskIntoConstraints="NO" id="coO-qz-vS5">
+                        <rect key="frame" x="8" y="70" width="426" height="159"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="160" id="xv9-Uc-bOb"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="coO-qz-vS5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="28C-vi-q1Q"/>
+                    <constraint firstAttribute="trailing" secondItem="coO-qz-vS5" secondAttribute="trailing" id="2zZ-78-04f"/>
                     <constraint firstAttribute="trailing" secondItem="p58-hg-VO9" secondAttribute="trailing" constant="8" id="4MC-iD-MLL"/>
                     <constraint firstItem="02W-2n-qlu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7z7-r6-PiJ"/>
                     <constraint firstItem="K36-kR-ysN" firstAttribute="top" secondItem="02W-2n-qlu" secondAttribute="bottom" constant="45" id="IHZ-zz-C7c"/>
                     <constraint firstItem="K36-kR-ysN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="JIo-CS-rrw"/>
                     <constraint firstItem="p58-hg-VO9" firstAttribute="top" secondItem="02W-2n-qlu" secondAttribute="bottom" constant="12" id="LE5-n4-FNp"/>
+                    <constraint firstAttribute="bottom" secondItem="coO-qz-vS5" secondAttribute="bottom" id="LcX-Bd-F3g"/>
+                    <constraint firstAttribute="trailing" secondItem="coO-qz-vS5" secondAttribute="trailing" constant="8" id="PwH-tD-uaE"/>
                     <constraint firstAttribute="trailing" secondItem="K36-kR-ysN" secondAttribute="trailing" constant="8" id="SC8-B7-h1n"/>
                     <constraint firstItem="p58-hg-VO9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="VMd-Ug-n1X"/>
+                    <constraint firstItem="coO-qz-vS5" firstAttribute="top" secondItem="02W-2n-qlu" secondAttribute="bottom" constant="12" id="ZUS-8Z-Mhl"/>
+                    <constraint firstItem="coO-qz-vS5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cSm-XT-mpH"/>
                     <constraint firstItem="S0x-Mo-PAf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="iQc-Is-VyU"/>
                     <constraint firstItem="02W-2n-qlu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ixD-mB-Aca"/>
                     <constraint firstItem="S0x-Mo-PAf" firstAttribute="leading" secondItem="02W-2n-qlu" secondAttribute="trailing" constant="8" id="v6T-u1-qfn"/>
+                    <constraint firstItem="coO-qz-vS5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="wQM-37-Eys"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="28C-vi-q1Q"/>
+                        <exclude reference="2zZ-78-04f"/>
+                        <exclude reference="LcX-Bd-F3g"/>
+                        <exclude reference="cSm-XT-mpH"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="Avatar" destination="02W-2n-qlu" id="7pw-Lz-J3j"/>
                 <outlet property="name" destination="S0x-Mo-PAf" id="88T-gN-nir"/>
                 <outlet property="priceTag" destination="K36-kR-ysN" id="DXs-zq-efN"/>
                 <outlet property="roomLook" destination="p58-hg-VO9" id="DIx-Id-jDN"/>
+                <outlet property="selectedView" destination="coO-qz-vS5" id="GHQ-IQ-N2Z"/>
             </connections>
-            <point key="canvasLocation" x="207" y="376.5"/>
+            <point key="canvasLocation" x="207" y="376"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_gouxuan2" width="21" height="21"/>
+    </resources>
 </document>

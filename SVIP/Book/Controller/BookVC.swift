@@ -18,7 +18,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   @IBOutlet var singleSelectButtonArray: [BookItemButton]!
   @IBOutlet var mutipleSelectButtonArray: [BookItemButton]!
 //Data
-  var dataArray: Array<BookOrder>?
+  var dataArray = NSMutableArray()
+  var selectedRow : Int = 0
   
 //MARK:- FUNCTION
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -39,6 +40,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   func setUI() {
+    
+    
     let tap = UITapGestureRecognizer(target: self, action: Selector("searchMap:"))
     searchBar .addGestureRecognizer(tap)
     
@@ -53,12 +56,17 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   
   func loadData() {
     ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID("120", page: 1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      if let arr = responseObject as? Array<Dictionary?<String, String>> {
-//        for dic in arr {
-//          let order = BookOrder(dic: dic)
-//          self.dataArray?.append(order)
-//        }
-//      }
+      if let arr = responseObject as? Array<AnyObject> {
+        for dict in arr {
+//        let aDic = dict as! NSDictionary
+//          let order = BookOrder(dic: dict as? Dictionary)
+          let order = BookOrder(dic: dict as? NSDictionary)
+          self.dataArray.addObject(order)
+        }
+        self.tableView .reloadData()
+        self.selectedRow = 0
+        self.tableView .selectRowAtIndexPath(NSIndexPath(forRow: self.selectedRow, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Top)
+      }
 //      let dataDic = responseObject as! NSDictionary
 //      for (airportCode, airportName) in dataDic {
 //        println("\(airportCode): \(airportName)")
@@ -112,7 +120,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return self.dataArray.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -125,10 +133,21 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
       let arr = NSBundle .mainBundle() .loadNibNamed("BookRoomCell", owner: nil, options: nil) as Array
       cell = arr[0] as? BookRoomCell
     }
+//    if let order = dataArray?[indexPath.row] as? BookOrder{
+//      cell?.order = order as BookOrder
+//    }
+
+    cell?.order = (dataArray[indexPath.row] as! BookOrder)
     return cell!
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
+    let oldCell = tableView .cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
+    oldCell?.selected = false
+    let newCell = tableView .cellForRowAtIndexPath(indexPath)
+    newCell?.selected = true
+    self.selectedRow = indexPath.row
   }
+
 }
