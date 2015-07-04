@@ -340,6 +340,7 @@
 }
 
 // 获取商品列表
+/*
 - (void)getShopGoodsWithShopID:(NSString *)shopID page:(NSInteger)page categoryID:(NSString *)categoryID key:(NSString *)key success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *category = categoryID ? [NSString stringWithFormat:@"&cat_id=%@", categoryID] : @"";
   NSString *orderBy = key ? [NSString stringWithFormat:@"&by=%@", key] : @"";
@@ -352,6 +353,18 @@
     failure(task, error);
   }];
 }
+ */
+- (void)getShopGoodsWithShopID:(NSString *)shopID page:(NSInteger)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *urlString = [NSString stringWithFormat:@"shop/goods?shopid=%@&page=%ld", shopID, (long)page];
+  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSLog(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSLog(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
 
 // 获取商品
 - (void)getShopGoodsWithShopID:(NSString *)shopID goodsID:(NSString *)goodsID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
