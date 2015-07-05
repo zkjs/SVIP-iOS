@@ -29,7 +29,8 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="didSelectMainButton:" destination="-1" eventType="touchUpInside" id="yU2-Xq-gVL"/>
+                        <outletCollection property="gestureRecognizers" destination="yhD-3y-7tE" appends="YES" id="Eoh-XG-NwJ"/>
+                        <outletCollection property="gestureRecognizers" destination="4In-aJ-VYO" appends="YES" id="O8B-yU-OET"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKo-kU-jaS" userLabel="Left Button">
@@ -123,7 +124,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEv-uX-okC">
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEv-uX-okC" userLabel="长按智键呼叫服务员，单击发送消息">
                             <rect key="frame" x="19" y="140" width="238" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title=" 长按智键呼叫服务员，单击发送消息" image="ic_mi">
@@ -151,11 +152,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_nor" translatesAutoresizingMaskIntoConstraints="NO" id="X9I-KF-gBo">
+                    <rect key="frame" x="270" y="532" width="60" height="60"/>
+                    <gestureRecognizers/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="9qo-35-bbF" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="bottom" constant="8" id="1QE-jn-4ds"/>
+                <constraint firstAttribute="bottom" secondItem="X9I-KF-gBo" secondAttribute="bottom" constant="8" id="2UU-91-8da"/>
                 <constraint firstAttribute="centerX" secondItem="9qo-35-bbF" secondAttribute="centerX" id="5dP-XA-QCA"/>
+                <constraint firstAttribute="centerX" secondItem="X9I-KF-gBo" secondAttribute="centerX" id="5wC-gE-jH9"/>
                 <constraint firstItem="vBb-2A-ocr" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="26" id="81I-4M-JaZ"/>
                 <constraint firstItem="Rdp-DE-53L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="D6e-ak-WRI"/>
                 <constraint firstItem="D5Q-9Q-dBR" firstAttribute="top" secondItem="NSK-gV-KA7" secondAttribute="bottom" constant="8" id="E8s-gF-LtY"/>
@@ -185,6 +192,16 @@
             </variation>
             <point key="canvasLocation" x="518" y="562"/>
         </view>
+        <tapGestureRecognizer id="4In-aJ-VYO">
+            <connections>
+                <action selector="tappedMainButton:" destination="-1" id="qOC-Wq-tcI"/>
+            </connections>
+        </tapGestureRecognizer>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="yhD-3y-7tE">
+            <connections>
+                <action selector="longPressedMainButton:" destination="-1" id="uIT-D9-5l3"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
     <resources>
         <image name="bg_dongtai" width="350" height="178"/>

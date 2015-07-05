@@ -11,5 +11,5 @@
 @class JSHBookOrder;
 
 @interface JSHChatVC : XHMessageTableViewController
-- (instancetype)initWithBookOrder:(JSHBookOrder *)bookOrder;
+//- (instancetype)initWithBookOrder:(JSHBookOrder *)bookOrder;
 @end

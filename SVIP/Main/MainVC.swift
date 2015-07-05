@@ -53,6 +53,28 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupBeaconMonitor", name:"ZKJSSetupBeaconRegions", object: nil)
   }
   
+  override func viewWillAppear(animated: Bool) {
+    let userID = "557cff54a9a97"
+    let token = "wzWqj5elcC50gosP"
+    ZKJSHTTPSessionManager.sharedInstance().getOrderListWithUserID(userID, token: token, page: "1", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        let orderArray = responseObject as! NSArray
+        if orderArray.count > 0 {
+          let lastOrder = orderArray.firstObject as! NSDictionary
+          var order = [String: String]()
+          order["status"] = lastOrder["status"] as? String
+          order["arrival_date"] = lastOrder["arrival_date"] as? String
+          order["departure_date"] = lastOrder["departure_date"] as? String
+          order["room_type"] = lastOrder["room_type"] as? String
+          StorageManager.sharedInstance().updateLastOrder(order)
+        } else {
+          StorageManager.sharedInstance().updateLastOrder(nil)
+        }
+        self.updateSmartPanel()
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+  }
+  
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
@@ -140,6 +162,7 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
         notification.alertBody = alertMessage
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
       }
+      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
     }
   }
   
@@ -157,22 +180,68 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
       notification.alertBody = alertMessage
       UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
+    StorageManager.sharedInstance().updateLastBeacon(nil)
+  }
+  
+  func updateSmartPanel() {
+    let beacon = StorageManager.sharedInstance().lastBeacon()
+    let order = StorageManager.sharedInstance().lastOrder()
+    
+    var startDateString = order!["arrival_date"]
+    var endDateString = order!["departure_date"]
+    var dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let startDate = dateFormatter.dateFromString(startDateString!)
+    let endDate = dateFormatter.dateFromString(endDateString!)
+    let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
+    dateFormatter.dateFormat = "M/dd"
+    startDateString = dateFormatter.stringFromDate(startDate!)
+    
+    let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+    switch ruleType {
+    case .InRegion_HasOrder_Checkin:
+      statusLabel.text = "您已经到达酒店大堂"
+      statusLogo.image = UIImage(named: "sl_ruzhu")
+      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+    case .InRegion_HasOrder_UnCheckin:
+      roomType.text = order!["room_type"]
+      date.text = "\(startDateString!)入住"
+      duration.text = "\(days)晚"
+      statusLabel.text = "您已经到达酒店大堂,请办理入住手续"
+      statusLogo.image = UIImage(named: "sl_dating")
+      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+    case .InRegion_NoOrder:
+      statusLabel.text = "您已经在酒店大堂,请尽快预订酒店"
+      statusLogo.image = UIImage(named: "sl_dating")
+      tipsLabel.setTitle("", forState: UIControlState.Normal)
+    case .OutOfRegion_HasOrder_Checkin:
+      statusLabel.text = "您不在酒店,请注意保管好财物"
+      statusLogo.image = UIImage(named: "sl_ruzhu")
+      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+    case .OutOfRegion_HasOrder_UnCheckin:
+      roomType.text = order!["room_type"]
+      date.text = "\(startDateString!)入住"
+      duration.text = "\(days)晚"
+      statusLabel.text = "请注意您的行程,按时入住酒店"
+      statusLogo.image = UIImage(named: "sl_dengdai")
+      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+    case .OutOfRegion_NoOrder:
+      statusLabel.text = "您没有任何预订信息"
+      statusLogo.image = UIImage(named: "sl_wu")
+      tipsLabel.setTitle(" 请按智键进行预订", forState: .Normal)
+    }
+    println("Update Smart Panel")
   }
   
   // MARK: - Button Action
-  @IBAction func didSelectMainButton(sender: AnyObject) {
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-    let dictionary: [String: AnyObject] = [
-      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-      "devtoken": "2327ad9f487b67fe262941c08e2069fbb6ecc47883a049a260e7155020880ef2",
-      "appid": "HOTELVIP",
-      "userid": "557cff54a9a97",
-      "shopid": "120",
-      "locid": "1",
-      "username": "金石",
-      "timestamp": NSNumber(longLong: timestamp)
-    ]
-    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+  @IBAction func tappedMainButton(sender: AnyObject) {
+    println("Tap Main Button")
+  }
+  
+  @IBAction func longPressedMainButton(sender: AnyObject) {
+    if sender.state == UIGestureRecognizerState.Began {
+      println("Long Press Main Button")
+    }
   }
   
   @IBAction func didSelectLeftButton(sender: AnyObject) {

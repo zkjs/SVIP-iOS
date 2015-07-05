@@ -583,8 +583,11 @@
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
-                B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
+<<<<<<< Updated upstream
+				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
+=======
 				407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */,
+>>>>>>> Stashed changes
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,

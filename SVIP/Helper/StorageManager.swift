@@ -31,4 +31,22 @@ class StorageManager: NSObject {
     return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(kBeaconRegions)) as! Dictionary
   }
   
+  func lastOrder() -> [String: String]? {
+    return NSUserDefaults.standardUserDefaults().objectForKey("LastOrder") as? [String: String]
+  }
+  
+  func updateLastOrder(order: [String: String]?) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(order, forKey: "LastOrder")
+  }
+  
+  func lastBeacon() -> [String: String]? {
+    return NSUserDefaults.standardUserDefaults().objectForKey("LastBeacon") as? [String: String]
+  }
+  
+  func updateLastBeacon(beacon: [String: String]?) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(beacon, forKey: "LastBeacon")
+  }
+  
 }
