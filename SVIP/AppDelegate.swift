@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     setupWindow()
     setupNotification()
     setupTCPSessionManager()
+    fetchBeaconRegions()
     
     return true
   }
@@ -38,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP("192.168.1.6", port: "7777")
+    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     println("applicationWillEnterForeground")
   }
 
@@ -96,8 +97,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   func setupTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().delegate = self
+    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     println("setupTCPSessionManager")
-    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP("192.168.1.6", port: "7777")
+  }
+  
+  func fetchBeaconRegions() {
+    ZKJSHTTPSessionManager.sharedInstance().getBeaconRegionListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      var beaconRegions = [String: [String: String]]()
+      
+      for beaconInfo in responseObject as! NSArray {
+        var shopID = ""
+        var UUID = ""
+        var major = ""
+        var minor = ""
+        var locid = ""
+        var locdesc = ""
+        if let info = beaconInfo["shopid"] as? String {
+          shopID = info
+        }
+        if let info = beaconInfo["uuid"] as? String {
+          UUID = info
+        }
+        if let info = beaconInfo["major"] as? String {
+          major = info
+        }
+        if let info = beaconInfo["minior"] as? String {
+          minor = info
+        }
+        if let info = beaconInfo["locid"] as? String {
+          locid = info
+        }
+        if let info = beaconInfo["locdesc"] as? String {
+          locdesc = info
+        }
+        let beacon = [
+          "shopid": shopID,
+          "uuid": UUID,
+          "major": major,
+          "minor": minor,
+          "locid": locid,
+          "locdesc": locdesc
+        ]
+        let key = "\(shopID)\(UUID)\(major)\(minor)\(locid)"
+        beaconRegions[key] = beacon
+      }
+      StorageManager.sharedInstance().saveBeaconRegions(beaconRegions)
+      NSNotificationCenter.defaultCenter().postNotificationName("ZKJSSetupBeaconRegions", object: nil)
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      
+    })
   }
 
 }

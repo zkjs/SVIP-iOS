@@ -6,9 +6,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="date" destination="xoN-xT-UZF" id="YVG-Jf-PvW"/>
+                <outlet property="duration" destination="4pC-ld-ihZ" id="Cdz-WY-Qot"/>
                 <outlet property="leftButton" destination="AKo-kU-jaS" id="ban-Bv-e8W"/>
                 <outlet property="mainButton" destination="9qo-35-bbF" id="YIK-qX-j3R"/>
                 <outlet property="rightButton" destination="ZLm-u2-o02" id="z6e-Yh-EHj"/>
+                <outlet property="roomType" destination="jex-dy-3MJ" id="cLh-1p-bvR"/>
+                <outlet property="statusLabel" destination="Q4E-bt-OBM" id="dw6-gQ-jrX"/>
+                <outlet property="statusLogo" destination="FoP-wu-e2o" id="B0K-I1-OqM"/>
+                <outlet property="tipsLabel" destination="VEv-uX-okC" id="lwq-MB-0Q6"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7Uu-iT-sHu"/>
             </connections>
         </placeholder>
@@ -90,14 +96,8 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_dongtai" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-xe-2cv">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="175"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="长按智键呼叫服务员，单击发送消息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-qr-j6o">
-                            <rect key="frame" x="36" y="140" width="224" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="您已经到达酒店大堂,请办理入住手续" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4E-bt-OBM">
-                            <rect key="frame" x="43" y="69" width="277" height="21"/>
+                            <rect key="frame" x="43" y="71" width="245" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -111,9 +111,6 @@
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sl_dengdai" translatesAutoresizingMaskIntoConstraints="NO" id="FoP-wu-e2o">
                             <rect key="frame" x="11" y="68" width="24" height="24"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_mi" translatesAutoresizingMaskIntoConstraints="NO" id="NIx-NP-9SO">
-                            <rect key="frame" x="19" y="145" width="9" height="8"/>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6/26入住" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoN-xT-UZF">
                             <rect key="frame" x="122" y="19" width="57" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -126,6 +123,14 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEv-uX-okC">
+                            <rect key="frame" x="19" y="140" width="238" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title=" 长按智键呼叫服务员，单击发送消息" image="ic_mi">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="yRA-xe-2cv" secondAttribute="trailing" id="7v0-cx-ctH"/>
@@ -178,7 +183,7 @@
                     <exclude reference="fim-LM-RKc"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="390" y="582"/>
+            <point key="canvasLocation" x="518" y="562"/>
         </view>
     </objects>
     <resources>

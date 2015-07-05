@@ -18,3 +18,5 @@
 #import "SKTagView.h"
 #import "Masonry.h"
 #import "Colours.h"
+#import "EstimoteSDK.h"
+#import "Networkcfg.h"

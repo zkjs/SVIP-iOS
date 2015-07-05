@@ -10,11 +10,6 @@
 #import "Networkcfg.h"
 #import "SRWebSocket.h"
 
-//#define HOST @"112.74.82.82"
-#define HOST @"192.168.1.6"
-#define PORT 6666
-
-
 @interface ZKJSTCPSessionManager () <NSStreamDelegate, SRWebSocketDelegate> {
   NSInputStream *_inputStream;
   NSOutputStream *_outputStream;
@@ -123,7 +118,7 @@
   [_webSocket close];
   _webSocket = nil;
   
-  NSString *websocketURL = [NSString stringWithFormat:@"ws://%@:%@/ws", ip, port];
+  NSString *websocketURL = [NSString stringWithFormat:@"%@://%@:%@/zkjs", WEBSOCKET_PREFIX, ip, port];
   _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:websocketURL]]];
   _webSocket.delegate = self;
   
@@ -135,7 +130,7 @@
   [_webSocket close];
   _webSocket = nil;
   
-  NSString *websocketURL = [NSString stringWithFormat:@"ws://%@:7777/ws", HOST];
+  NSString *websocketURL = [NSString stringWithFormat:@"%@://%@:%@/ws", WEBSOCKET_PREFIX, HOST, PORT];
   _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:websocketURL]]];
   _webSocket.delegate = self;
   

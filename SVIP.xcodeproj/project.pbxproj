@@ -22,6 +22,7 @@
 		4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052665A1B4128F900B277BE /* HotelMessageCell.xib */; };
 		405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266641B41470F00B277BE /* OrderListHeaderView.swift */; };
 		405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405266651B41470F00B277BE /* OrderListHeaderView.xib */; };
+		4053EB3C1B480B09009B0DE1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053EB3B1B480B09009B0DE1 /* StorageManager.swift */; };
 		405BC0FC1B42495F00081C0A /* DotLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405BC0FB1B42495F00081C0A /* DotLine.swift */; };
 		40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641EFD1B3E569700CF150D /* AppDelegate.swift */; };
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
@@ -75,6 +76,7 @@
 		4052665A1B4128F900B277BE /* HotelMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelMessageCell.xib; sourceTree = "<group>"; };
 		405266641B41470F00B277BE /* OrderListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListHeaderView.swift; sourceTree = "<group>"; };
 		405266651B41470F00B277BE /* OrderListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListHeaderView.xib; sourceTree = "<group>"; };
+		4053EB3B1B480B09009B0DE1 /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Helper/StorageManager.swift; sourceTree = "<group>"; };
 		405BC0FB1B42495F00081C0A /* DotLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLine.swift; sourceTree = "<group>"; };
 		40641EF81B3E569700CF150D /* SVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641EFC1B3E569700CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -232,6 +234,14 @@
 			path = HeaderView;
 			sourceTree = "<group>";
 		};
+		4053EB3A1B480AE3009B0DE1 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4053EB3B1B480B09009B0DE1 /* StorageManager.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		40641EEF1B3E569700CF150D = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +266,7 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
+				4053EB3A1B480AE3009B0DE1 /* Helper */,
 				B2A6420F1B47C2A700AF0F28 /* Book */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				4052664D1B41283900B277BE /* Main */,
@@ -574,6 +585,7 @@
 				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,
 				B2A642211B47C2A700AF0F28 /* BookOrder.swift in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
+				4053EB3C1B480B09009B0DE1 /* StorageManager.swift in Sources */,
 				40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */,
 				B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */,
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,

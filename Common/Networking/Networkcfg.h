@@ -13,6 +13,13 @@
 #define kHeartBeatInterval          60
 #define kBufferLength               1024 * 400
 #define kPacketHeaderLength         4
-//static NSString* const kBaseURL = @"http://172.21.7.54/";  // 本地服务器地址
-static NSString* const kBaseURL = @"http://120.25.241.196/";  // 线上服务器地址
+//static NSString* const kBaseURL = @"http://172.21.7.54/";  // HTTP内网服务器地址
+static NSString* const kBaseURL = @"http://120.25.241.196/";  // HTTP外网服务器地址
+// TCP内网服务器
+//#define WEBSOCKET_PREFIX @"ws"
+//#define HOST @"192.168.1.6"
+// TCP外网服务器
+#define HOST @"im.zkjinshi.cn"
+#define WEBSOCKET_PREFIX @"wss"
+#define PORT @"8888"
 #endif
