@@ -20,3 +20,4 @@
 #import "Colours.h"
 #import "EstimoteSDK.h"
 #import "Networkcfg.h"
+#import "UIImageView+WebCache.h"

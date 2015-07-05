@@ -1,5 +1,5 @@
 //
-//  BookOrder.swift
+//  RoomGoods.swift
 //  SVIP
 //
 //  Created by dai.fengyi on 15/7/3.
@@ -41,7 +41,7 @@ import UIKit
 "shopid": "120",
 "cat_name": "\u8c6a\u534e\u53cc\u5e8a"
 */
-class BookOrder: NSObject {
+class RoomGoods: NSObject {
   var goodsid: String?
   var name: String?
   var unit: String?

@@ -17,7 +17,7 @@ class BookRoomCell: UITableViewCell {
   @IBOutlet weak var selectedView: UIImageView!
   
   //DATA
-  var order: BookOrder? {
+  var order: RoomGoods? {
     didSet {
       if order != nil {
         name.text = order!.name

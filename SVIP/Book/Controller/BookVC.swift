@@ -59,8 +59,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
       if let arr = responseObject as? Array<AnyObject> {
         for dict in arr {
 //        let aDic = dict as! NSDictionary
-//          let order = BookOrder(dic: dict as? Dictionary)
-          let order = BookOrder(dic: dict as? NSDictionary)
+//          let order = RoomGoods(dic: dict as? Dictionary)
+          let order = RoomGoods(dic: dict as? NSDictionary)
           self.dataArray.addObject(order)
         }
         self.tableView .reloadData()
@@ -133,11 +133,11 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
       let arr = NSBundle .mainBundle() .loadNibNamed("BookRoomCell", owner: nil, options: nil) as Array
       cell = arr[0] as? BookRoomCell
     }
-//    if let order = dataArray?[indexPath.row] as? BookOrder{
-//      cell?.order = order as BookOrder
+//    if let order = dataArray?[indexPath.row] as? RoomGoods{
+//      cell?.order = order as RoomGoods
 //    }
 
-    cell?.order = (dataArray[indexPath.row] as! BookOrder)
+    cell?.order = (dataArray[indexPath.row] as! RoomGoods)
     return cell!
   }
   
