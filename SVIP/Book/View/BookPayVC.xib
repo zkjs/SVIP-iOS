@@ -22,7 +22,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="1pZ-Im-cMl"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
@@ -41,7 +41,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ASg-cE-wzo"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
@@ -49,7 +49,8 @@
                                     <exclude reference="ASg-cE-wzo"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
+                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                <rect key="frame" x="157" y="98" width="88" height="21"/>
                                 <mask key="constraints">
                                     <include reference="ASg-cE-wzo"/>
                                 </mask>
@@ -58,10 +59,16 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="cG4-wV-pHh" firstAttribute="top" secondItem="trc-Lc-jBz" secondAttribute="bottom" constant="31" id="8Hy-SM-qjn"/>
+                        <constraint firstItem="cG4-wV-pHh" firstAttribute="top" secondItem="trc-Lc-jBz" secondAttribute="bottom" constant="31" id="8Hy-SM-qjn">
+                            <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                        </constraint>
                         <constraint firstAttribute="centerX" secondItem="trc-Lc-jBz" secondAttribute="centerX" id="FbW-Vt-KWm"/>
-                        <constraint firstItem="trc-Lc-jBz" firstAttribute="top" secondItem="c0W-UW-mX2" secondAttribute="top" constant="46" id="VcR-So-IUu"/>
-                        <constraint firstAttribute="height" constant="200" id="d85-sQ-bje"/>
+                        <constraint firstItem="trc-Lc-jBz" firstAttribute="top" secondItem="c0W-UW-mX2" secondAttribute="top" constant="46" id="VcR-So-IUu">
+                            <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                        </constraint>
+                        <constraint firstAttribute="height" constant="200" id="d85-sQ-bje">
+                            <variation key="heightClass=regular-widthClass=compact" constant="150"/>
+                        </constraint>
                         <constraint firstAttribute="centerX" secondItem="cG4-wV-pHh" secondAttribute="centerX" id="iEl-6J-a9f"/>
                     </constraints>
                     <variation key="default">
@@ -91,31 +98,12 @@
                         </mask>
                     </variation>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-U7-CNv">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="6H9-CT-BAX"/>
-                    </constraints>
-                    <state key="normal" title="我想到酒店后进行支付">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="6H9-CT-BAX"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="6H9-CT-BAX"/>
-                        </mask>
-                    </variation>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择一种支付方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edu-IJ-jqz">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="nwq-xV-fSf"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
@@ -179,6 +167,26 @@
                         <action selector="zhifubao:" destination="-1" eventType="touchUpInside" id="dtb-k8-oeb"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-U7-CNv">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6H9-CT-BAX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="我想到酒店后进行支付">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="6H9-CT-BAX"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="6H9-CT-BAX"/>
+                        </mask>
+                    </variation>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -187,23 +195,27 @@
                 <constraint firstAttribute="centerX" secondItem="zcu-U7-CNv" secondAttribute="centerX" id="GTX-PU-6DJ"/>
                 <constraint firstAttribute="bottom" secondItem="zcu-U7-CNv" secondAttribute="bottom" constant="44" id="H8M-vJ-p9z"/>
                 <constraint firstAttribute="centerX" secondItem="Hcr-cd-tLM" secondAttribute="centerX" id="JEf-Kd-hb9"/>
-                <constraint firstItem="R84-QZ-Ium" firstAttribute="top" secondItem="Hcr-cd-tLM" secondAttribute="bottom" constant="80" id="YIG-Gj-69b"/>
+                <constraint firstItem="R84-QZ-Ium" firstAttribute="top" secondItem="Hcr-cd-tLM" secondAttribute="bottom" constant="80" id="YIG-Gj-69b">
+                    <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                </constraint>
                 <constraint firstAttribute="trailing" secondItem="zcu-U7-CNv" secondAttribute="trailing" constant="125" id="YZe-hV-Ctl"/>
                 <constraint firstItem="c0W-UW-mX2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eLU-v9-Ihb"/>
                 <constraint firstItem="c0W-UW-mX2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="f8z-4x-CIp"/>
                 <constraint firstItem="zcu-U7-CNv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="125" id="fE3-fY-xut"/>
-                <constraint firstItem="zcu-U7-CNv" firstAttribute="top" secondItem="Edu-IJ-jqz" secondAttribute="bottom" constant="80" id="rRM-7L-R0f"/>
+                <constraint firstItem="zcu-U7-CNv" firstAttribute="top" secondItem="Edu-IJ-jqz" secondAttribute="bottom" constant="60" id="rRM-7L-R0f"/>
                 <constraint firstAttribute="centerX" secondItem="R84-QZ-Ium" secondAttribute="centerX" id="s82-Nn-Kck"/>
                 <constraint firstAttribute="centerX" secondItem="Edu-IJ-jqz" secondAttribute="centerX" id="vTO-Th-imZ"/>
-                <constraint firstItem="Hcr-cd-tLM" firstAttribute="top" secondItem="c0W-UW-mX2" secondAttribute="bottom" constant="77" id="xrY-Pz-RU8"/>
+                <constraint firstItem="Hcr-cd-tLM" firstAttribute="top" secondItem="c0W-UW-mX2" secondAttribute="bottom" constant="77" id="xrY-Pz-RU8">
+                    <variation key="heightClass=regular-widthClass=compact" constant="80"/>
+                </constraint>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="c0W-UW-mX2"/>
-                    <exclude reference="zcu-U7-CNv"/>
                     <exclude reference="Edu-IJ-jqz"/>
                     <exclude reference="R84-QZ-Ium"/>
                     <exclude reference="Hcr-cd-tLM"/>
+                    <exclude reference="zcu-U7-CNv"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="vTO-Th-imZ"/>
@@ -225,10 +237,10 @@
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="c0W-UW-mX2"/>
-                    <include reference="zcu-U7-CNv"/>
                     <include reference="Edu-IJ-jqz"/>
                     <include reference="R84-QZ-Ium"/>
                     <include reference="Hcr-cd-tLM"/>
+                    <include reference="zcu-U7-CNv"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="vTO-Th-imZ"/>

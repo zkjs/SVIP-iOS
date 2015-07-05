@@ -6,6 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookConfirmVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="avatar" destination="RgE-qh-tCr" id="LVA-Kk-RzC"/>
+                <outlet property="inDate" destination="GnP-7f-vuM" id="9yV-Vv-e2R"/>
+                <outlet property="name" destination="MoN-hl-Qvh" id="YJO-nM-sCK"/>
+                <outlet property="outDate" destination="TSV-T6-Ihm" id="jiE-e0-zkL"/>
+                <outlet property="price" destination="JUY-hr-WWr" id="ruP-wC-pNA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="optionButtonArray" destination="hH7-Nw-DMw" collectionClass="NSMutableArray" id="4o9-ic-qQm"/>
                 <outletCollection property="optionButtonArray" destination="daM-7F-T5a" collectionClass="NSMutableArray" id="TZd-dK-jxM"/>
@@ -131,7 +136,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>

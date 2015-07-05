@@ -10,6 +10,12 @@ import UIKit
 let buttonCount = 3
 class BookConfirmVC: UIViewController {
 
+  @IBOutlet weak var avatar: UIImageView!
+  @IBOutlet weak var name: UILabel!
+  @IBOutlet weak var price: UILabel!
+  @IBOutlet weak var inDate: UILabel!
+  @IBOutlet weak var outDate: UILabel!
+  
   @IBOutlet var buttonMarginConstraintArray: [NSLayoutConstraint]!
   @IBOutlet var optionButtonArray: [UIButton]!
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -28,6 +34,8 @@ class BookConfirmVC: UIViewController {
   }
   
   func setupUI() {
+    
+    
     for button in optionButtonArray {
       button.layer.borderColor = UIColor .grayColor().CGColor
       button.layer.borderWidth = 1
