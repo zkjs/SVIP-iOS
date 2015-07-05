@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
+let buttonCount = 3
 class BookConfirmVC: UIViewController {
 
+  @IBOutlet var buttonMarginConstraintArray: [NSLayoutConstraint]!
+  @IBOutlet var optionButtonArray: [UIButton]!
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: "BookConfirmVC", bundle: nil)
   }
@@ -22,27 +24,33 @@ class BookConfirmVC: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    setupUI()
+  }
+  
+  func setupUI() {
+    for button in optionButtonArray {
+      button.layer.borderColor = UIColor .grayColor().CGColor
+      button.layer.borderWidth = 1
+      button .addTarget(self, action: "optionSelect:", forControlEvents: UIControlEvents.TouchUpInside)
+    }
+  }
+  
+  override func updateViewConstraints() {
+    var screenWidth = UIScreen.mainScreen().bounds.size.width
+    var marginWidth = (Double(screenWidth) - Double(buttonCount) * 70.0) / Double(buttonCount + 1)
+    for constrainst in buttonMarginConstraintArray {
+      constrainst.constant = CGFloat(marginWidth)
+    }
+    super.updateViewConstraints()
+  }
+//MARK:- BUTTON ACTION
+  func optionSelect(sender: UIButton) {
+    sender.selected = !sender.selected
   }
   
   @IBAction func commit(sender: UIButton) {
   self.navigationController? .pushViewController(BookPayVC.new(), animated: true)
   }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  
-  /*
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using segue.destinationViewController.
-  // Pass the selected object to the new view controller.
-  }
-  */
+
 
 }

@@ -47,6 +47,7 @@
 		B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6421A1B47C2A700AF0F28 /* BookRoomCell.swift */; };
 		B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A6421B1B47C2A700AF0F28 /* BookRoomCell.xib */; };
 		B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A6421C1B47C2A700AF0F28 /* BookVC.xib */; };
+		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		B2A6421A1B47C2A700AF0F28 /* BookRoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookRoomCell.swift; sourceTree = "<group>"; };
 		B2A6421B1B47C2A700AF0F28 /* BookRoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookRoomCell.xib; sourceTree = "<group>"; };
 		B2A6421C1B47C2A700AF0F28 /* BookVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookVC.xib; sourceTree = "<group>"; };
+		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -386,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				B2A642151B47C2A700AF0F28 /* RoomGoods.swift */,
+				B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
+				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
