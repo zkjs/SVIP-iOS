@@ -129,7 +129,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     let order = BookOrder()
     if let selectedGoods = self.dataArray[selectedRow] as? RoomGoods {
       order.room_typeid = selectedGoods.goodsid
-      order.room_type = selectedGoods.cat_name
+      order.room_type = selectedGoods.name
       order.room_rate = selectedGoods.market_price
       order.rooms = "1"
     }

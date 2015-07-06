@@ -20,4 +20,7 @@ typedef void(^SuccessBlock)(NSDate *date);
 //default is in [UIApplication sharedApplication].keyWindow
 + (void)showSuccess:(SuccessBlock)success;
 + (void)showDelegate:(id <BlurDatePickerViewDelegate>)delegate;
+
+//for svip
++ (void)showInView:(UIView *)view startDate:(NSDate *)startDate success:(SuccessBlock)success;
 @end

@@ -34,6 +34,7 @@ class BookConfirmVC: UIViewController {
     
     // Do any additional setup after loading the view.
     setupUI()
+    updateSubviews()
   }
   
   func setupUI() {
@@ -55,12 +56,40 @@ class BookConfirmVC: UIViewController {
     }
     super.updateViewConstraints()
   }
+  
+  func updateSubviews() {
+    if inDate.date == nil {
+      inDate.date = NSDate()
+    }
+    
+    if outDate.date == nil {
+      outDate.date = inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)
+    }
+    
+    let duration = outDate.date!.timeIntervalSinceDate(inDate.date!)
+    let day = duration / 24 / 60 / 60
+    let dayInt = Int(day)
+    if let roomType = order?.room_type {
+      name.text = "\(roomType)    共\(dayInt)晚"
+    }
+    
+    if let str = order?.room_rate {
+      let danjia = (str as NSString).integerValue
+      let total = danjia * dayInt
+      price.text = "预计价格：￥\(total)"
+    }
+    
+//    price.text = "预计价格：\(totalMoney)"
+  }
 //MARK:- BUTTON ACTION
   @IBAction func dateSelect(sender: BookDateButton) {
 
-    BlurDatePickerView .showInView(self.view, success: { (date: NSDate!) -> Void in
+    BlurDatePickerView .showInView(self.view, startDate:sender == inDate ? NSDate() : (inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)), success: { (date: NSDate!) -> Void in
       sender.date = date
-      print(date)
+      if sender == self.inDate {
+        self.outDate.date = self.inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)
+      }
+      self.updateSubviews()
     })
     
   }

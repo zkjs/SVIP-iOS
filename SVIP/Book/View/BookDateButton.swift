@@ -11,14 +11,12 @@ import UIKit
 class BookDateButton: UIButton {
 
   var baseTitle: String!
-  var date: NSDate? = NSDate() {
+  var date: NSDate? {
     didSet {
       let formatter = NSDateFormatter()
       formatter.dateFormat = "yyyy年MM月dd日"
-      if oldValue != nil {
-        let titleStr = "\(baseTitle)：   \(formatter .stringFromDate(oldValue!))"
-        self .setTitle(titleStr, forState: UIControlState.Normal)
-      }
+      let titleStr = "\(baseTitle)：   \(formatter .stringFromDate(date!))"
+      self .setTitle(titleStr, forState: UIControlState.Normal)
     }
   }
   var dateString: String? {

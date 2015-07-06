@@ -23,7 +23,7 @@
 @property (strong, nonatomic) UIDatePicker *datePicker;
 @end
 @implementation BlurDatePickerView
-+ (void)showInView:(UIView *)view success:(SuccessBlock)success delegate:(id <BlurDatePickerViewDelegate>)delegate
++ (id)showInView:(UIView *)view success:(SuccessBlock)success delegate:(id <BlurDatePickerViewDelegate>)delegate
 {
     BlurDatePickerView *commentView = [[BlurDatePickerView alloc] initWithFrame:view.bounds];
     if (commentView) {
@@ -43,6 +43,7 @@
           commentView.sheetView.frame = CGRectMake(0, commentView.superview.bounds.size.height - commentView.sheetView.bounds.size.height, commentView.sheetView.bounds.size.width, kSheetViewHeight);
         } completion:nil];
     }
+  return commentView;
 }
 #pragma mark - 外部调用
 + (void)showSuccess:(SuccessBlock)success
@@ -63,6 +64,13 @@
 + (void)showInView:(UIView *)view delegate:(id<BlurDatePickerViewDelegate>)delegate
 {
     [BlurDatePickerView showInView:view success:nil delegate:delegate];
+}
+
+//for Svip
++ (void)showInView:(UIView *)view startDate:(NSDate *)startDate success:(SuccessBlock)success
+{
+  BlurDatePickerView *commentView = [BlurDatePickerView showInView:view success:success delegate:nil];
+  commentView.datePicker.minimumDate = startDate;
 }
 #pragma mark - 内部调用
 - (id)initWithFrame:(CGRect)frame
