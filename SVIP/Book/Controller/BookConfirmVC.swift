@@ -13,11 +13,14 @@ class BookConfirmVC: UIViewController {
   @IBOutlet weak var avatar: UIImageView!
   @IBOutlet weak var name: UILabel!
   @IBOutlet weak var price: UILabel!
-  @IBOutlet weak var inDate: UILabel!
-  @IBOutlet weak var outDate: UILabel!
+  @IBOutlet weak var inDate: BookDateButton!
+  @IBOutlet weak var outDate: BookDateButton!
   
   @IBOutlet var buttonMarginConstraintArray: [NSLayoutConstraint]!
   @IBOutlet var optionButtonArray: [UIButton]!
+  //DATA
+  var order: BookOrder?
+  
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: "BookConfirmVC", bundle: nil)
   }
@@ -34,7 +37,8 @@ class BookConfirmVC: UIViewController {
   }
   
   func setupUI() {
-    
+    inDate.baseTitle = "入住时间"
+    outDate.baseTitle = "离开时间"
     
     for button in optionButtonArray {
       button.layer.borderColor = UIColor .grayColor().CGColor
@@ -52,6 +56,15 @@ class BookConfirmVC: UIViewController {
     super.updateViewConstraints()
   }
 //MARK:- BUTTON ACTION
+  @IBAction func dateSelect(sender: BookDateButton) {
+
+    BlurDatePickerView .showInView(self.view, success: { (date: NSDate!) -> Void in
+      sender.date = date
+      print(date)
+    })
+    
+  }
+  
   func optionSelect(sender: UIButton) {
     sender.selected = !sender.selected
   }

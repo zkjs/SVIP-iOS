@@ -38,6 +38,9 @@
 		407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407761871B4905E7009B6FE9 /* RuleEngine.swift */; };
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
+		B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */; };
+		B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */; };
+		B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */; };
 		B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */; };
 		B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642121B47C2A700AF0F28 /* BookPayVC.swift */; };
 		B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642131B47C2A700AF0F28 /* BookVC.swift */; };
@@ -110,6 +113,11 @@
 		40E686F71B45297400C9725B /* BookingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrder.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
+		B277F8C11B4A59AA00A9F858 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
+		B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
+		B277F8C31B4A59AA00A9F858 /* BlurDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurDatePickerView.h; sourceTree = "<group>"; };
+		B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurDatePickerView.m; sourceTree = "<group>"; };
+		B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateButton.swift; sourceTree = "<group>"; };
 		B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookConfirmVC.swift; sourceTree = "<group>"; };
 		B2A642121B47C2A700AF0F28 /* BookPayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPayVC.swift; sourceTree = "<group>"; };
 		B2A642131B47C2A700AF0F28 /* BookVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookVC.swift; sourceTree = "<group>"; };
@@ -405,6 +413,7 @@
 				B2A6421A1B47C2A700AF0F28 /* BookRoomCell.swift */,
 				B2A6421B1B47C2A700AF0F28 /* BookRoomCell.xib */,
 				B2A6421C1B47C2A700AF0F28 /* BookVC.xib */,
+				B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +421,10 @@
 		B2A6421D1B47C2A700AF0F28 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				B277F8C11B4A59AA00A9F858 /* UIImageEffects.h */,
+				B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */,
+				B277F8C31B4A59AA00A9F858 /* BlurDatePickerView.h */,
+				B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -571,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
+				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
 				4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */,
@@ -578,16 +592,18 @@
 				4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				40E686F81B45297400C9725B /* BookingOrder.swift in Sources */,
+				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
-                B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
+				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
 				407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
+				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
 				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,

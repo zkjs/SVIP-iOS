@@ -100,14 +100,41 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   func mutipleSelect(sender: UIButton) {
     sender.selected = !sender.selected
   }
-  
+  /*
+  var goodsid: String?
+  var name: String?
+  var unit: String?
+  var goods_brief: String?
+  var goods_desc: String?
+  var cat_id: String?
+  var goods_img: String?
+  var market_price: String?
+  var cat_name: String?
+  */
+  /*  
+  var userid: String!
+  var token: String!
+  var shopid: String!
+  var room_typeid: String!
+  var guest: String!
+  var guesttel: String!
+  var rooms: String!
+  var room_type: String!
+  var room_rate: String!
+  var arrival_date: String!
+  var departure_date: String!
+  */
   @IBAction func book(sender: UIButton) {
-//    let bookConfirmVC = BookConfirmVC.new()
-//    self .presentViewController(bookConfirmVC, animated: true) { () -> Void in
-//      
-//    }
-
-    self.navigationController! .pushViewController(BookConfirmVC.new(), animated: true)
+    let bookConfirmVC = BookConfirmVC.new()
+    let order = BookOrder()
+    if let selectedGoods = self.dataArray[selectedRow] as? RoomGoods {
+      order.room_typeid = selectedGoods.goodsid
+      order.room_type = selectedGoods.cat_name
+      order.room_rate = selectedGoods.market_price
+      order.rooms = "1"
+    }
+    bookConfirmVC.order = order
+    self.navigationController! .pushViewController(bookConfirmVC, animated: true)
   }
   
   func searchMap(sender: UIView) {
