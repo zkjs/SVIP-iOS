@@ -38,6 +38,7 @@ class StorageManager: NSObject {
   func updateLastOrder(order: [String: String]?) {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.setObject(order, forKey: "LastOrder")
+    defaults.synchronize()
   }
   
   func lastBeacon() -> [String: String]? {
@@ -47,6 +48,17 @@ class StorageManager: NSObject {
   func updateLastBeacon(beacon: [String: String]?) {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.setObject(beacon, forKey: "LastBeacon")
+    defaults.synchronize()
+  }
+  
+  func chatSession(shopID: String) -> String {
+    return NSUserDefaults.standardUserDefaults().objectForKey(shopID) as! String
+  }
+  
+  func saveChatSession(chatSession: String, shopID: String) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(chatSession, forKey: shopID)
+    defaults.synchronize()
   }
   
 }

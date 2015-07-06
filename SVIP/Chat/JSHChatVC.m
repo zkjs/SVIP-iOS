@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 ZKJS. All rights reserved.
 //
 
+#import "SVIP-Swift.h"
 #import "JSHChatVC.h"
 #import "XHDisplayMediaViewController.h"
 #import "XHAudioPlayerHelper.h"
@@ -17,16 +18,15 @@
 @import AVFoundation;
 //#import "JSHStorage.h"
 
-#define FILENAME @"chat_log"
 
 @interface JSHChatVC () <XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
 @property (nonatomic, strong) NSString *messageReceiver;
-@property (nonatomic, strong) NSString *employerID;
-@property (nonatomic, strong) NSMutableArray *employerList;
+@property (nonatomic, strong) NSString *receiverName;
 @property (nonatomic, strong) NSString *senderID;
-//@property (nonatomic, strong) JSHBookOrder *bookOrder;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) NSString *senderName;
+@property (nonatomic) ChatType chatType;
+@property (nonatomic, strong) NSString *sessionID;
 @end
 
 @implementation JSHChatVC
@@ -39,26 +39,32 @@
 //  return self;
 //}
 
+- (instancetype)initWithChatType:(ChatType)chatType {
+  self = [super init];
+  if (self) {
+    self.chatType = chatType;
+  }
+  return self;
+}
+
+
 - (void)viewDidLoad {
   self.allowsSendFace = NO;
   
   [super viewDidLoad];
   
-//  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissSelf)];
-////  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(dismissSelf)];
-//  rightItem.tintColor = [UIColor blackColor];
-//  self.navigationItem.rightBarButtonItem = rightItem;
+  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStylePlain target:self action:@selector(dismissSelf)];
+  self.navigationItem.rightBarButtonItem = rightItem;
 
   self.title = @"聊天";
     
   self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan=NO;
   
   self.messageSender = @"我";
-  self.messageReceiver = @"556825758efb0";
-  self.employerID = @"paipai990";
-  self.employerList = [NSMutableArray arrayWithObjects:self.employerID, nil];
-  self.messageReceiver = self.employerID;
+  self.messageReceiver = self.receiverName;
   self.senderID = @"557cff54a9a97";//[JSHAccountManager sharedJSHAccountManager].userid;
+  self.senderName = @"金石";
+  self.shopID = @"120";
   
   NSMutableArray *shareMenuItems = [NSMutableArray array];
   NSArray *plugIcons = @[@"sharemore_pic", @"sharemore_video"];
@@ -70,42 +76,55 @@
   
   self.shareMenuItems = shareMenuItems;
   [self.shareMenuView reloadData];
-//  [self loadDataSource];
+  
+  [self loadDataSource];
   
   [self setupNotification];
   
-//  [self requestWaiter];
+  switch (self.chatType) {
+    case ChatNewSession: {
+      //  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+      //  [formatter setDateFormat:@"yyyy-MM-dd"];
+      NSString *orderInfo = @"";//[NSString stringWithFormat:@"系统消息\n订单号:%@\n客户姓名:%@\n客户电话:%@\n房间数量:%@\n到达时间:%@\n离店时间:%@\n入住天数:%ld天\n房型:%@\n房间价格:%@\n备注:%@", self.bookOrder.orderNO, self.bookOrder.guest, self.bookOrder.guestPhone, self.bookOrder.roomNum, [formatter stringFromDate:self.bookOrder.arrivalDate], [formatter stringFromDate:self.bookOrder.departureDate], (long)self.bookOrder.duration, self.bookOrder.roomType, self.bookOrder.roomRate, self.bookOrder.remark];
+      [self requestWaiter:orderInfo];
+      break;
+    }
+    case ChatOldSession: {
+      self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
+      break;
+    }
+    case ChatService: {
+      self.messageInputView.hidden = YES;
+      // setup view
+      // [self requestWaiter];
+      break;
+    }
+    default:
+      break;
+  }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  
-//  self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//  self.activityIndicator.center = CGPointMake(self.view.center.x, (self.view.frame.size.height-64)/2.0);
-//  NSLog(@"%@", NSStringFromCGPoint(self.activityIndicator.center));
-//  self.activityIndicator.hidesWhenStopped = YES;
-//  [self.view addSubview:self.activityIndicator];
-//  [self.activityIndicator startAnimating];
-}
-
-- (void)requestWaiter {
-//  [ZKJSTool showLoading:@"正在为您分配服务员, 请稍候"];
-//  [self.activityIndicator startAnimating];
-  
+- (void)requestWaiter:(NSString *)desc {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
+  [[StorageManager sharedInstance] saveChatSession:self.sessionID shopID:self.shopID];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],
+                               @"timestamp": timestamp,
+                               @"ruletype": @"0",  // 预订部
                                @"clientid": self.senderID,
-                               @"shopid": @"120",
-                               @"timestamp": timestamp
+                               @"clientname": self.senderName,
+                               @"shopid": self.shopID,
+                               @"desc": desc,
+                               @"sessionid": self.sessionID
                                };
   [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-  [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
   
-//  [self saveDataSource];
+  [self saveDataSource];
 }
 
 - (void)dealloc {
@@ -135,7 +154,7 @@
 
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString *)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendVoiceMessage:voicePath];
-  XHMessage *message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:nil voiceDuration:voiceDuration sender:sender timestamp:date];
+  XHMessage *message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voicePath voiceDuration:voiceDuration sender:sender timestamp:date];
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
   
   [self addMessage:message];
@@ -232,8 +251,11 @@
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:FILENAME];
-    NSMutableArray *messages = [NSMutableArray arrayWithContentsOfFile:filePath];
+    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+//    NSMutableArray *messages = [NSMutableArray arrayWithContentsOfFile:filePath];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSMutableArray *messages = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     NSLog(@"Loading Path: %@", filePath);
     dispatch_async(dispatch_get_main_queue(), ^{
       weakSelf.messages = messages;
@@ -247,9 +269,12 @@
 - (void)saveDataSource {
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsDirectory = [paths objectAtIndex:0];
-  NSString *filePath = [documentsDirectory stringByAppendingPathComponent:FILENAME];
+  NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
+  NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
   NSLog(@"Saving Path: %@", filePath);
-  [self.messages writeToFile:filePath atomically:YES];
+//  [self.messages writeToFile:filePath atomically:YES];
+  NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
+  [data writeToFile:filePath atomically:YES];
 }
 
 - (void)sendTextMessage:(NSString *)text {
@@ -260,8 +285,8 @@
                                @"fromid": self.senderID,
                                @"clientid": self.senderID,
                                @"clientname": @"SVIP",//[JSHStorage baseInfo].name,
-                               @"shopid": @"120",
-                               @"emps": self.employerList,
+                               @"shopid": self.shopID,
+                               @"sessionid": self.sessionID,
                                @"textmsg": text
                                };
   [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
@@ -277,8 +302,8 @@
                                @"fromid": self.senderID,
                                @"clientid": self.senderID,
                                @"clientname": @"SVIP",//[JSHStorage baseInfo].name,
-                               @"shopid": @"120",
-                               @"emps": self.employerList,
+                               @"shopid": self.shopID,
+                               @"sessionid": self.sessionID,
                                @"body": body
                                };
   [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
@@ -295,8 +320,8 @@
                                @"fromid": self.senderID,
                                @"clientid": self.senderID,
                                @"clientname": @"SVIP",//[JSHStorage baseInfo].name,
-                               @"shopid": @"120",
-                               @"emps": self.employerList,
+                               @"shopid": self.shopID,
+                               @"sessionid": self.sessionID,
                                @"body": body
                                };
   [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
@@ -310,24 +335,9 @@
 
 - (void)setupNotification {
   NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-  [center addObserver:self selector:@selector(setupChatting:) name:@"MessageServiceChatShopAssignmentNotification" object:nil];
   [center addObserver:self selector:@selector(showTextMessage:) name:@"MessageServiceChatCustomerServiceTextChatNotification" object:nil];
   [center addObserver:self selector:@selector(showImageMessage:) name:@"MessageServiceChatCustomerServiceImgChatNotification" object:nil];
   [center addObserver:self selector:@selector(showVoiceMessage:) name:@"MessageServiceChatCustomerServiceMediaChatNotification" object:nil];
-}
-
-- (void)setupChatting:(NSNotification *)notification {
-  self.employerID = notification.userInfo[@"empid"];
-  self.employerList = [NSMutableArray arrayWithObjects:self.employerID, nil];
-  self.messageReceiver = self.employerID;
-//  NSLog(@"===========%@ %@ %@", notification.userInfo[@"empid"], self.employerID, self.employerList);
-//  [ZKJSTool hideHUD];
-//  [self.activityIndicator stopAnimating];
-  
-//  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//  [formatter setDateFormat:@"yyyy-MM-dd"];
-//  NSString *textMessage = [NSString stringWithFormat:@"系统消息\n订单号:%@\n客户姓名:%@\n客户电话:%@\n房间数量:%@\n到达时间:%@\n离店时间:%@\n入住天数:%ld天\n房型:%@\n房间价格:%@\n备注:%@", self.bookOrder.orderNO, self.bookOrder.guest, self.bookOrder.guestPhone, self.bookOrder.roomNum, [formatter stringFromDate:self.bookOrder.arrivalDate], [formatter stringFromDate:self.bookOrder.departureDate], (long)self.bookOrder.duration, self.bookOrder.roomType, self.bookOrder.roomRate, self.bookOrder.remark];
-//  [self sendTextMessage:textMessage];
 }
 
 - (void)showTextMessage:(NSNotification *)notification {

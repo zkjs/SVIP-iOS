@@ -8,8 +8,18 @@
 
 #import "XHMessageTableViewController.h"
 
-@class JSHBookOrder;
+@class BookOrder;
+
+typedef NS_ENUM(NSInteger, ChatType) {
+  ChatNewSession,
+  ChatOldSession,
+  ChatService
+};
 
 @interface JSHChatVC : XHMessageTableViewController
-//- (instancetype)initWithBookOrder:(JSHBookOrder *)bookOrder;
+@property (nonatomic, strong) NSString *shopID;
+@property (nonatomic, strong) BookOrder *order;
+@property (nonatomic, strong) NSString *location;
+
+- (instancetype)initWithChatType:(ChatType)chatType;
 @end

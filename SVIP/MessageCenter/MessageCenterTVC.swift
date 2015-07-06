@@ -49,7 +49,9 @@ class MessageCenterTVC: UITableViewController {
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    navigationController?.pushViewController(JSHChatVC(), animated: true)
+    let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+    chatVC.shopID = "120"
+    navigationController?.pushViewController(chatVC, animated: true)
   }
   
   // MARK: - Private Method

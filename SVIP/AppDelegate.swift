@@ -74,7 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   // MARK: - TCPSessionManagerDelegate
   func didOpenTCPSocket() {
-    ZKJSTCPSessionManager.sharedInstance().clientLogin("557cff54a9a97", name: "SVIP", deviceToken: deviceToken)
+    if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
+      ZKJSTCPSessionManager.sharedInstance().clientLogin("557cff54a9a97", name: "SVIP", deviceToken: deviceToken)
+    }
   }
   
   func didReceivePacket(dictionary: [NSObject : AnyObject]!) {

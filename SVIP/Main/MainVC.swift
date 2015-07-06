@@ -236,11 +236,51 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
   // MARK: - Button Action
   @IBAction func tappedMainButton(sender: AnyObject) {
     println("Tap Main Button")
+    let beacon = StorageManager.sharedInstance().lastBeacon()
+    let order = StorageManager.sharedInstance().lastOrder()
+    
+    let ruleType = RuleType.InRegion_NoOrder//RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+    switch ruleType {
+    case .InRegion_NoOrder, .OutOfRegion_NoOrder:
+      let navController = UINavigationController(rootViewController: BookVC())
+      navController.navigationBar.tintColor = UIColor.blackColor()
+      navController.navigationBar.translucent = false
+      presentViewController(navController, animated: true, completion: nil)
+    case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
+      let navController = UINavigationController(rootViewController: JSHChatVC())
+      navController.navigationBar.tintColor = UIColor.blackColor()
+      navController.navigationBar.translucent = false
+      presentViewController(navController, animated: true, completion: nil)
+    case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
+      let navController = UINavigationController(rootViewController: JSHChatVC())
+      navController.navigationBar.tintColor = UIColor.blackColor()
+      navController.navigationBar.translucent = false
+      presentViewController(navController, animated: true, completion: nil)
+    }
   }
   
   @IBAction func longPressedMainButton(sender: AnyObject) {
     if sender.state == UIGestureRecognizerState.Began {
-      println("Long Press Main Button")
+      println("Long Press Main Button.")
+      
+      let beacon = StorageManager.sharedInstance().lastBeacon()
+      let order = StorageManager.sharedInstance().lastOrder()
+      
+      let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+      switch ruleType {
+      case .InRegion_NoOrder, .OutOfRegion_NoOrder:
+        return
+      case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
+        let navController = UINavigationController(rootViewController: JSHChatVC())
+        navController.navigationBar.tintColor = UIColor.blackColor()
+        navController.navigationBar.translucent = false
+        presentViewController(navController, animated: true, completion: nil)
+      case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
+        let navController = UINavigationController(rootViewController: JSHChatVC())
+        navController.navigationBar.tintColor = UIColor.blackColor()
+        navController.navigationBar.translucent = false
+        presentViewController(navController, animated: true, completion: nil)
+      }
     }
   }
   
