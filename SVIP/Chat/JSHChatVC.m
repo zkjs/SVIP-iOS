@@ -13,6 +13,7 @@
 #import "ZKJSTCPSessionManager.h"
 #import "UIImage+Resize.h"
 #import "ZKJSTool.h"
+#import "SKTagView.h"
 //#import "JSHAccountManager.h"
 //#import "JSHBookOrder.h"
 @import AVFoundation;
@@ -21,12 +22,14 @@
 
 @interface JSHChatVC () <XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
+@property (nonatomic, strong) SKTagView *tagView;
 @property (nonatomic, strong) NSString *messageReceiver;
 @property (nonatomic, strong) NSString *receiverName;
 @property (nonatomic, strong) NSString *senderID;
 @property (nonatomic, strong) NSString *senderName;
 @property (nonatomic) ChatType chatType;
 @property (nonatomic, strong) NSString *sessionID;
+@property (nonatomic, strong) UIButton *cancelButton;
 @end
 
 @implementation JSHChatVC
@@ -57,6 +60,8 @@
   self.navigationItem.rightBarButtonItem = rightItem;
 
   self.title = @"聊天";
+  
+  self.messageTableView.backgroundColor = [UIColor colorFromHexString:@"#CBCCCA"];
     
   self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan=NO;
   
@@ -81,6 +86,8 @@
   
   [self setupNotification];
   
+  self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
+  
   switch (self.chatType) {
     case ChatNewSession: {
       //  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -90,35 +97,35 @@
       break;
     }
     case ChatOldSession: {
-      self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
+      
+      break;
+    }
+    case ChatCallingWaiter: {
+      NSString *orderStatus = @"";
+      if ([self.order[@"status"] isEqualToString:@"0"]) {
+        orderStatus = @"未确认可取消订单";
+      } else if ([self.order[@"status"] isEqualToString:@"1"]) {
+        orderStatus = @"取消订单";
+      } else if ([self.order[@"status"] isEqualToString:@"2"]) {
+        orderStatus = @"已确认订单";
+      } else if ([self.order[@"status"] isEqualToString:@"3"]) {
+        orderStatus = @"已经完成的订单";
+      } else if ([self.order[@"status"] isEqualToString:@"5"]) {
+        orderStatus = @"删除订单";
+      }
+      
+      NSString *userInfo = [NSString stringWithFormat:@"客人所在区域:%@\n订单号:%@\n订单状态:%@\n客人名称:%@\n客人手机:%@\n入住时间:%@\n离店时间:%@\n房型:%@\n房价:%@\n", self.location, self.order[@"reservation_no"], orderStatus, self.order[@"guest"], self.order[@"guesttel"], self.order[@"arrival_date"], self.order[@"departure_date"], self.order[@"room_type"], self.order[@"room_rate"]];
+      [self requestWaiter:userInfo];
       break;
     }
     case ChatService: {
       self.messageInputView.hidden = YES;
-      // setup view
-      // [self requestWaiter];
+      [self setupTagView];
       break;
     }
     default:
       break;
   }
-}
-
-- (void)requestWaiter:(NSString *)desc {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
-  [[StorageManager sharedInstance] saveChatSession:self.sessionID shopID:self.shopID];
-  NSDictionary *dictionary = @{
-                               @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],
-                               @"timestamp": timestamp,
-                               @"ruletype": @"0",  // 预订部
-                               @"clientid": self.senderID,
-                               @"clientname": self.senderName,
-                               @"shopid": self.shopID,
-                               @"desc": desc,
-                               @"sessionid": self.sessionID
-                               };
-  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -246,6 +253,83 @@
 
 #pragma mark - Private Methods
 
+- (void)setupTagView {
+  self.tagView = ({
+    SKTagView *view = [SKTagView new];
+    view.backgroundColor = [UIColor whiteColor];
+    view.padding    = UIEdgeInsetsMake(10, 25, 10, 25);
+    view.insets    = 5;
+    view.lineSpace = 10;
+//    __weak SKTagView *weakView = view;
+    //Handle tag's click event
+    view.didClickTagAtIndex = ^(NSUInteger index){
+      //Remove tag
+//      [weakView removeTagAtIndex:index];
+    };
+    view;
+  });
+  [self.view addSubview:self.tagView];
+  [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *superView = self.view;
+    make.bottom.equalTo(superView.mas_bottom);
+    make.leading.equalTo(superView.mas_leading);
+    make.trailing.equalTo(superView.mas_trailing);
+  }];
+  
+  //Add Tags
+  NSArray *tags = @[@"大床房", @"双床房", @"我要高层房", @"我要角落房", @"我要无烟房",@"加床"];
+  [tags enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+   {
+   SKTag *tag = [SKTag tagWithText:obj];
+   tag.textColor = [UIColor blackColor];
+   tag.bgColor = [UIColor whiteColor];
+   tag.cornerRadius = 6;
+   tag.fontSize = 15;
+   tag.padding = UIEdgeInsetsMake(13.5, 12.5, 13.5, 12.5);
+   tag.borderColor = [UIColor grayColor];
+   tag.borderWidth = 0.5;
+   
+   [self.tagView addTag:tag];
+   }];
+  
+  self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [self.cancelButton addTarget:self
+             action:@selector(hideTagView)
+   forControlEvents:UIControlEventTouchUpInside];
+//  [button setTitle:@"Show View" forState:UIControlStateNormal];
+  [self.cancelButton setImage:[UIImage imageNamed:@"ic_quxiao2"] forState:UIControlStateNormal];
+  self.cancelButton.frame = CGRectMake(0.0, 0.0, 60.0, 60.0);
+  [self.view addSubview:self.cancelButton];
+  [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *tagView = self.tagView;
+    make.bottom.equalTo(tagView.mas_top).offset(-8);
+    make.trailing.equalTo(tagView.mas_trailing).offset(-8);
+  }];
+}
+
+- (void)hideTagView {
+  self.cancelButton.hidden = YES;
+  self.tagView.hidden = YES;
+  self.messageInputView.hidden = NO;
+}
+
+- (void)requestWaiter:(NSString *)desc {
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
+  [[StorageManager sharedInstance] saveChatSession:self.sessionID shopID:self.shopID];
+  NSDictionary *dictionary = @{
+                               @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],
+                               @"timestamp": timestamp,
+                               @"ruletype": @"0",  // 预订部
+                               @"clientid": self.senderID,
+                               @"clientname": self.senderName,
+                               @"shopid": self.shopID,
+                               @"desc": desc,
+                               @"sessionid": self.sessionID
+                               };
+  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+}
+
 - (void)loadDataSource {
   WEAKSELF
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -260,21 +344,22 @@
     dispatch_async(dispatch_get_main_queue(), ^{
       weakSelf.messages = messages;
       [weakSelf.messageTableView reloadData];
-
       [weakSelf scrollToBottomAnimated:NO];
     });
   });
 }
 
 - (void)saveDataSource {
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  NSString *documentsDirectory = [paths objectAtIndex:0];
-  NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
-  NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-  NSLog(@"Saving Path: %@", filePath);
-//  [self.messages writeToFile:filePath atomically:YES];
-  NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
-  [data writeToFile:filePath atomically:YES];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    NSLog(@"Saving Path: %@", filePath);
+  //  [self.messages writeToFile:filePath atomically:YES];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
+    [data writeToFile:filePath atomically:YES];
+  });
 }
 
 - (void)sendTextMessage:(NSString *)text {

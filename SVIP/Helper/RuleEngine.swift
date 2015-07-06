@@ -31,7 +31,7 @@ class RuleEngine: NSObject {
       // 在Beacon区域
       if let orderInfo = order {
         // 有订单
-        if orderInfo["status"] == "4" {
+        if orderInfo["status"] == "3" {
           // 已入住
           return RuleType.InRegion_HasOrder_Checkin
         } else {
@@ -46,7 +46,7 @@ class RuleEngine: NSObject {
       // 不在Beacon区域
       if let orderInfo = order {
         // 有订单
-        if orderInfo["status"] == "4" {
+        if orderInfo["status"] == "3" {
           // 已入住
           return RuleType.OutOfRegion_HasOrder_Checkin
         } else {

@@ -65,6 +65,10 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
           order["arrival_date"] = lastOrder["arrival_date"] as? String
           order["departure_date"] = lastOrder["departure_date"] as? String
           order["room_type"] = lastOrder["room_type"] as? String
+          order["guest"] = lastOrder["guest"] as? String
+          order["guesttel"] = lastOrder["guesttel"] as? String
+          order["reservation_no"] = lastOrder["reservation_no"] as? String
+          order["room_rate"] = lastOrder["room_rate"] as? String
           StorageManager.sharedInstance().updateLastOrder(order)
         } else {
           StorageManager.sharedInstance().updateLastOrder(nil)
@@ -239,7 +243,7 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
-    let ruleType = RuleType.InRegion_NoOrder//RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+    let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
     case .InRegion_NoOrder, .OutOfRegion_NoOrder:
       let navController = UINavigationController(rootViewController: BookVC())
@@ -247,12 +251,14 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
       navController.navigationBar.translucent = false
       presentViewController(navController, animated: true, completion: nil)
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
-      let navController = UINavigationController(rootViewController: JSHChatVC())
+      let chatVC = JSHChatVC(chatType: .Service)
+      let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
       navController.navigationBar.translucent = false
       presentViewController(navController, animated: true, completion: nil)
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
-      let navController = UINavigationController(rootViewController: JSHChatVC())
+      let chatVC = JSHChatVC(chatType: .Service)
+      let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
       navController.navigationBar.translucent = false
       presentViewController(navController, animated: true, completion: nil)
@@ -271,12 +277,17 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
       case .InRegion_NoOrder, .OutOfRegion_NoOrder:
         return
       case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
-        let navController = UINavigationController(rootViewController: JSHChatVC())
+        let chatVC = JSHChatVC(chatType: .CallingWaiter)
+        chatVC.order = order
+        chatVC.location = beacon!["locdesc"]
+        let navController = UINavigationController(rootViewController: chatVC)
         navController.navigationBar.tintColor = UIColor.blackColor()
         navController.navigationBar.translucent = false
         presentViewController(navController, animated: true, completion: nil)
       case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
-        let navController = UINavigationController(rootViewController: JSHChatVC())
+        let chatVC = JSHChatVC(chatType: .CallingWaiter)
+        chatVC.location = "不在酒店"
+        let navController = UINavigationController(rootViewController: chatVC)
         navController.navigationBar.tintColor = UIColor.blackColor()
         navController.navigationBar.translucent = false
         presentViewController(navController, animated: true, completion: nil)
