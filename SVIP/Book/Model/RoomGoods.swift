@@ -48,6 +48,7 @@ class RoomGoods: NSObject {
   var goods_brief: String?
   var goods_desc: String?
   var cat_id: String?
+  var keywords: String?
   var goods_img: String?
   var market_price: String?
 //  var <#string#>: String
@@ -64,6 +65,7 @@ class RoomGoods: NSObject {
       goods_brief = dic!["goods_brief"] as? String
       goods_desc = dic!["goods_desc"] as? String
       cat_id = dic!["cat_id"] as? String
+      keywords = dic!["keywords"] as? String
       goods_img = dic!["goods_img"] as? String
       market_price = dic!["market_price"] as? String
     }

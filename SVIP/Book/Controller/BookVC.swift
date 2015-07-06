@@ -59,9 +59,9 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
       if let arr = responseObject as? Array<AnyObject> {
         for dict in arr {
 //        let aDic = dict as! NSDictionary
-//          let order = RoomGoods(dic: dict as? Dictionary)
-          let order = RoomGoods(dic: dict as? NSDictionary)
-          self.dataArray.addObject(order)
+//          let goods = RoomGoods(dic: dict as? Dictionary)
+          let goods = RoomGoods(dic: dict as? NSDictionary)
+          self.dataArray.addObject(goods)
         }
         self.tableView .reloadData()
         self.selectedRow = 0
@@ -126,14 +126,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   */
   @IBAction func book(sender: UIButton) {
     let bookConfirmVC = BookConfirmVC.new()
-    let order = BookOrder()
-    if let selectedGoods = self.dataArray[selectedRow] as? RoomGoods {
-      order.room_typeid = selectedGoods.goodsid
-      order.room_type = selectedGoods.name
-      order.room_rate = selectedGoods.market_price
-      order.rooms = "1"
-    }
-    bookConfirmVC.order = order
+    bookConfirmVC.goods = self.dataArray[selectedRow] as? RoomGoods
     self.navigationController! .pushViewController(bookConfirmVC, animated: true)
   }
   
@@ -164,7 +157,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 //      cell?.order = order as RoomGoods
 //    }
 
-    cell?.order = (dataArray[indexPath.row] as! RoomGoods)
+    cell?.goods = (dataArray[indexPath.row] as! RoomGoods)
     return cell!
   }
   

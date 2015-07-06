@@ -17,23 +17,23 @@ class BookRoomCell: UITableViewCell {
   @IBOutlet weak var selectedView: UIImageView!
   
   //DATA
-  var order: RoomGoods? {
+  var goods: RoomGoods? {
     didSet {
-      if order != nil {
-        name.text = order!.name
+      if goods != nil {
+        name.text = goods!.name
         var nameStr = ""
         var priceStr = ""
-        if let a = order?.name {
+        if let a = goods?.name {
           nameStr = a
         }
-        if let b = order?.market_price {
+        if let b = goods?.market_price {
           priceStr = b
         }
         let tagStr = "  \(nameStr)   $\(priceStr)"
         priceTag.text = tagStr
 
         let baseUrl = "http://172.21.7.54/"
-        if let goodsImage = order?.goods_img {
+        if let goodsImage = goods?.goods_img {
           let urlStr = baseUrl .stringByAppendingString(goodsImage)
           let placeholderImage = UIImage(named: "星空中心")
           let url = NSURL(string: urlStr)
