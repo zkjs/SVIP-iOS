@@ -36,9 +36,9 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
-    rightButton.badgeBackgroundColor = UIColor.redColor()
-    rightButton.badgeString = "1"
+//    rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
+//    rightButton.badgeBackgroundColor = UIColor.redColor()
+//    rightButton.badgeString = "1"
     
     let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
     motionView.delegate = self

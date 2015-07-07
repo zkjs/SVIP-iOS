@@ -80,7 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
   
   func didReceivePacket(dictionary: [NSObject : AnyObject]!) {
-    
+    let type = dictionary["type"] as! String
+    if type.toInt() == MessageServiceChatType.CustomerServiceTextChat.rawValue {
+      NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceTextChatNotification", object: self, userInfo: dictionary)
+    } else if type.toInt() == MessageServiceChatType.CustomerServiceMediaChat.rawValue {
+      NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceMediaChatNotification", object: self, userInfo: dictionary)
+    } else if type.toInt() == MessageServiceChatType.CustomerServiceImgChat.rawValue {
+      NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
+    }
   }
 
   // MARK: - Private Method

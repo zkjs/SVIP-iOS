@@ -26,9 +26,9 @@ class HotelMessageCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    logo.badgeEdgeInsets = UIEdgeInsetsMake(15.0, 0.0, 0.0, 10.0)
-    logo.badgeBackgroundColor = UIColor.redColor()
-    logo.badgeString = "1"
+//    logo.badgeEdgeInsets = UIEdgeInsetsMake(15.0, 0.0, 0.0, 10.0)
+//    logo.badgeBackgroundColor = UIColor.redColor()
+//    logo.badgeString = "1"
   }
   
 //  func setCity(city: YALCity) {

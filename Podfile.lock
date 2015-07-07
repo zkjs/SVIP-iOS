@@ -23,6 +23,7 @@ PODS:
   - Colours (5.6.2)
   - DateTools (1.6.1)
   - EstimoteSDK (3.2.8)
+  - MagicalRecord (2.3.0)
   - Masonry (0.6.1)
   - MBProgressHUD (0.9.1)
   - MessageDisplayKit (3.0.3)
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - Colours
   - DateTools
   - EstimoteSDK
+  - MagicalRecord
   - MBProgressHUD
   - MessageDisplayKit (from `https://github.com/hanton/MessageDisplayKit.git`)
   - MIBadgeButton
@@ -77,6 +79,7 @@ SPEC CHECKSUMS:
   Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   EstimoteSDK: e370ea3d31ef7373d41df9bd6fd1f6fc63a276cf
+  MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MessageDisplayKit: c82efa1d113740dea0bc23f72a919be037d2177c
@@ -91,4 +94,4 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   YXTMotionView: 6a7d30ecbfe04f3a560d136c7fe211e33825df7e
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.37.1
