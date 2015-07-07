@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum RuleType {
-  case OutOfRegion_NoOrder
-  case OutOfRegion_HasOrder_UnCheckin
-  case OutOfRegion_HasOrder_Checkin
-  case InRegion_NoOrder
-  case InRegion_HasOrder_UnCheckin
-  case InRegion_HasOrder_Checkin
+enum RuleType: Int {
+  case OutOfRegion_NoOrder = 0,
+  OutOfRegion_HasOrder_UnCheckin,
+  OutOfRegion_HasOrder_Checkin,
+  InRegion_NoOrder,
+  InRegion_HasOrder_UnCheckin,
+  InRegion_HasOrder_Checkin
 }
 
 class RuleEngine: NSObject {

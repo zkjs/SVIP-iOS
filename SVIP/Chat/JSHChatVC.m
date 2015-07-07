@@ -21,6 +21,7 @@
 
 
 @interface JSHChatVC () <XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate>
+@property (nonatomic, strong) NSDictionary *data;
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
 @property (nonatomic, strong) SKTagView *tagView;
 @property (nonatomic, strong) NSString *messageReceiver;
@@ -30,6 +31,7 @@
 @property (nonatomic) ChatType chatType;
 @property (nonatomic, strong) NSString *sessionID;
 @property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) NSMutableSet *actionButtons;
 @end
 
 @implementation JSHChatVC
@@ -55,6 +57,8 @@
   self.allowsSendFace = NO;
   
   [super viewDidLoad];
+  
+  [self setupDataSource];
   
   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStylePlain target:self action:@selector(dismissSelf)];
   self.navigationItem.rightBarButtonItem = rightItem;
@@ -85,6 +89,10 @@
   [self loadDataSource];
   
   [self setupNotification];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   
   self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
   
@@ -93,7 +101,8 @@
       //  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
       //  [formatter setDateFormat:@"yyyy-MM-dd"];
       NSString *orderInfo = @"";//[NSString stringWithFormat:@"系统消息\n订单号:%@\n客户姓名:%@\n客户电话:%@\n房间数量:%@\n到达时间:%@\n离店时间:%@\n入住天数:%ld天\n房型:%@\n房间价格:%@\n备注:%@", self.bookOrder.orderNO, self.bookOrder.guest, self.bookOrder.guestPhone, self.bookOrder.roomNum, [formatter stringFromDate:self.bookOrder.arrivalDate], [formatter stringFromDate:self.bookOrder.departureDate], (long)self.bookOrder.duration, self.bookOrder.roomType, self.bookOrder.roomRate, self.bookOrder.remark];
-      [self requestWaiter:orderInfo];
+      [self requestWaiterWithRuleType:@"0" andDescription:orderInfo];  // 预订部
+      [self showSystemFeedbackWithText:orderInfo];
       break;
     }
     case ChatOldSession: {
@@ -115,12 +124,12 @@
       }
       
       NSString *userInfo = [NSString stringWithFormat:@"客人所在区域:%@\n订单号:%@\n订单状态:%@\n客人名称:%@\n客人手机:%@\n入住时间:%@\n离店时间:%@\n房型:%@\n房价:%@\n", self.location, self.order[@"reservation_no"], orderStatus, self.order[@"guest"], self.order[@"guesttel"], self.order[@"arrival_date"], self.order[@"departure_date"], self.order[@"room_type"], self.order[@"room_rate"]];
-      [self requestWaiter:userInfo];
+      [self requestWaiterWithRuleType:@"3" andDescription:userInfo];  // 总机
+      [self showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
       break;
     }
     case ChatService: {
-      self.messageInputView.hidden = YES;
-      [self setupTagView];
+      [self setupAssistantView];
       break;
     }
     default:
@@ -145,6 +154,7 @@
   [self sendTextMessage:text];
   XHMessage *message = [[XHMessage alloc] initWithText:text sender:sender timestamp:date];
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+//  message.avatarUrl = [[NSBundle mainBundle] pathForResource:@"ic_home_nor" ofType:@"png"];;
   
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
@@ -253,18 +263,214 @@
 
 #pragma mark - Private Methods
 
-- (void)setupTagView {
+- (void)showSystemFeedbackWithText:(NSString *)text {
+  XHMessage *message;
+  NSDate *timestamp = [NSDate date];
+  message = [[XHMessage alloc] initWithText:text sender:@"系统" timestamp:timestamp];
+  message.bubbleMessageType = XHBubbleMessageTypeReceiving;
+  message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  
+  [self.messages addObject:message];
+  [self.messageTableView reloadData];
+  [self scrollToBottomAnimated:NO];
+}
+
+- (void)setupDataSource {
+//0 OutOfRegion_NoOrder
+//1 OutOfRegion_HasOrder_UnCheckin
+//2 OutOfRegion_HasOrder_Checkin
+//3 InRegion_NoOrder
+//4 InRegion_HasOrder_UnCheckin
+//5 InRegion_HasOrder_Checkin
+   self.data = @{
+   @"0": @{
+         @"status": @"店外未预订",
+         @"actions": @[@{
+                         @"name": @"订房",
+                         @"icon": @"ic_dingfang",
+                         @"department": @"客房部",
+                         @"ruletype": @"1",
+                         @"tags": @[@"大床房", @"双床房", @"我要高层房", @"我要角落房", @"我要无烟房", @"加床"]
+                         },
+                       @{
+                         @"name": @"订餐",
+                         @"icon": @"ic_dingcan",
+                         @"department": @"餐饮部",
+                         @"ruletype": @"2",
+                         @"tags": @[@"中餐", @"西餐", @"特色菜", @"清淡"]
+                         },
+                       @{
+                         @"name": @"其它",
+                         @"icon": @"ic_qita",
+                         @"department": @"总机",
+                         @"ruletype": @"3",
+                         @"tags": @[@"咨询"]
+                         },
+                       ]
+         },
+   @"1": @{
+       @"status": @"店外已预订",
+       @"actions": @[@{
+                       @"name": @"查询订单",
+                       @"icon": @"ic_dingfang",
+                       @"department": @"前厅部",
+                       @"ruletype": @"4",
+                       @"tags": @[@"订单状态", @"更改订单"]
+                       },
+                     @{
+                       @"name": @"取消预定",
+                       @"icon": @"ic_dingcan",
+                       @"department": @"客房部",
+                       @"ruletype": @"1",
+                       @"tags": @[@"取消预定"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"icon": @"ic_qita",
+                       @"department": @"客房部",
+                       @"ruletype": @"1",
+                       @"tags": @[@"我要高层房", @"我要角落房", @"我要无烟房", @"加床", @"更换软枕", @"更换硬枕"]
+                       },
+                     ]
+       },
+   @"2": @{
+       @"status": @"店外已入住",
+       @"actions": @[@{
+                       @"name": @"办理离店",
+                       @"icon": @"ic_dingfang",
+                       @"department": @"前厅部",
+                       @"ruletype": @"4",
+                       @"tags": @[@"我的账单", @"索取发票"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"icon": @"ic_qita",
+                       @"department": @"总机",
+                       @"ruletype": @"3",
+                       @"tags": @[@"咨询"]
+                       },
+                     ]
+       },
+   @"3": @{
+       @"status": @"大堂未预订",
+       @"actions": @[@{
+                       @"name": @"订房",
+                       @"icon": @"ic_dingfang",
+                       @"department": @"客房部",
+                       @"ruletype": @"1",
+                       @"tags": @[@"大床房", @"双床房", @"我要高层房", @"我要角落房", @"我要无烟房", @"加床"]
+                       },
+                     @{
+                       @"name": @"订餐",
+                       @"icon": @"ic_dingcan",
+                       @"department": @"餐饮部",
+                       @"ruletype": @"2",
+                       @"tags": @[@"中餐", @"西餐", @"特色菜", @"清淡"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"icon": @"ic_qita",
+                       @"department": @"总机",
+                       @"ruletype": @"3",
+                       @"tags": @[@"咨询"]
+                       },
+                     ]
+       },
+   @"4": @{
+       @"status": @"大堂已预订",
+       @"actions": @[@{
+                       @"name": @"查询订单",
+                       @"icon": @"ic_dingfang",
+                       @"department": @"客房部",
+                       @"ruletype": @"1",
+                       @"tags": @[@"订单状态", @"更改订单"]
+                       },
+                     @{
+                       @"name": @"办理入住",
+                       @"icon": @"ic_dingcan",
+                       @"department": @"前厅部",
+                       @"ruletype": @"4",
+                       @"tags": @[@"上传身份证扫描件", @"等级信用卡信息"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"icon": @"ic_qita",
+                       @"department": @"客房部",
+                       @"ruletype": @"1",
+                       @"tags": @[@"我要高层房", @"我要角落房", @"我要无烟房", @"加床", @"更换软枕", @"更换硬枕"]
+                       },
+                     ]
+       },
+   @"5": @{
+       @"status": @"大堂已入住",
+       @"actions": @[@{
+                       @"name": @"办理离店",
+                       @"icon": @"ic_dingfang",
+                       @"department": @"前厅部",
+                       @"ruletype": @"4",
+                       @"tags": @[@"我的账单", @"索取发票"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"icon": @"ic_qita",
+                       @"department": @"总机",
+                       @"ruletype": @"3",
+                       @"tags": @[@"咨询"]
+                       },
+                     ]
+       },
+   };
+}
+
+- (void)setupAssistantView {
+  self.messageInputView.hidden = YES;
+  NSDictionary *actions = self.data[self.condition][@"actions"];
+  CGFloat division = self.view.frame.size.width / (actions.count * 2);
+  CGFloat centerX = division - 60.0 / 2.0;
+  self.actionButtons = [NSMutableSet set];
+  NSInteger index = 0;
+  for(NSDictionary* action in actions) {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self
+               action:@selector(showTagView:)
+    forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:action[@"icon"]] forState:UIControlStateNormal];
+    button.frame = CGRectMake(0.0, 0.0, 60.0, 60.0);
+    button.tag = index;
+    [self.view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+      UIView *superView = self.view;
+      make.bottom.equalTo(superView.mas_bottom).offset(-8);
+      make.leading.equalTo([NSNumber numberWithFloat:centerX]);
+    }];
+    centerX += division * 2;
+    [self.actionButtons addObject:button];
+    index++;
+  }
+}
+
+- (void)showTagView:(UIButton *)sender {
   self.tagView = ({
     SKTagView *view = [SKTagView new];
     view.backgroundColor = [UIColor whiteColor];
     view.padding    = UIEdgeInsetsMake(10, 25, 10, 25);
     view.insets    = 5;
     view.lineSpace = 10;
-//    __weak SKTagView *weakView = view;
+    //    __weak SKTagView *weakView = view;
     //Handle tag's click event
+    __weak __typeof(self) weakSelf = self;
     view.didClickTagAtIndex = ^(NSUInteger index){
       //Remove tag
-//      [weakView removeTagAtIndex:index];
+      //      [weakView removeTagAtIndex:index];
+      [weakSelf hideTagView];
+      weakSelf.messageInputView.hidden = NO;
+      for (UIButton *button in weakSelf.actionButtons) {
+        button.hidden = YES;
+      }
+      NSString *tag = self.data[self.condition][@"actions"][sender.tag][@"tags"][index];
+      NSString *ruleType = self.data[self.condition][@"actions"][sender.tag][@"ruletype"];
+      [self requestWaiterWithRuleType:ruleType andDescription:tag];
+      [self showSystemFeedbackWithText:[NSString stringWithFormat:@"您的需求-%@-已发送", tag]];
     };
     view;
   });
@@ -277,7 +483,7 @@
   }];
   
   //Add Tags
-  NSArray *tags = @[@"大床房", @"双床房", @"我要高层房", @"我要角落房", @"我要无烟房",@"加床"];
+  NSArray *tags = self.data[self.condition][@"actions"][sender.tag][@"tags"];
   [tags enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
    {
    SKTag *tag = [SKTag tagWithText:obj];
@@ -288,15 +494,13 @@
    tag.padding = UIEdgeInsetsMake(13.5, 12.5, 13.5, 12.5);
    tag.borderColor = [UIColor grayColor];
    tag.borderWidth = 0.5;
-   
    [self.tagView addTag:tag];
    }];
   
   self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [self.cancelButton addTarget:self
-             action:@selector(hideTagView)
-   forControlEvents:UIControlEventTouchUpInside];
-//  [button setTitle:@"Show View" forState:UIControlStateNormal];
+                        action:@selector(hideTagView)
+              forControlEvents:UIControlEventTouchUpInside];
   [self.cancelButton setImage:[UIImage imageNamed:@"ic_quxiao2"] forState:UIControlStateNormal];
   self.cancelButton.frame = CGRectMake(0.0, 0.0, 60.0, 60.0);
   [self.view addSubview:self.cancelButton];
@@ -310,17 +514,16 @@
 - (void)hideTagView {
   self.cancelButton.hidden = YES;
   self.tagView.hidden = YES;
-  self.messageInputView.hidden = NO;
 }
 
-- (void)requestWaiter:(NSString *)desc {
+- (void)requestWaiterWithRuleType:(NSString *)ruleType andDescription:(NSString *)desc {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
   [[StorageManager sharedInstance] saveChatSession:self.sessionID shopID:self.shopID];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],
                                @"timestamp": timestamp,
-                               @"ruletype": @"0",  // 预订部
+                               @"ruletype": ruleType,  // 预订部
                                @"clientid": self.senderID,
                                @"clientname": self.senderName,
                                @"shopid": self.shopID,

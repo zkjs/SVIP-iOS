@@ -197,7 +197,7 @@ static const CGFloat kXHBubbleMessageViewPadding = 8;
     } else if (avatarURL) {
         [self configAvatarWithPhotoURLString:avatarURL];
     } else {
-        UIImage *avatarPhoto = [XHMessageAvatarFactory avatarImageNamed:[UIImage imageNamed:@"avatar"] messageAvatarType:XHMessageAvatarTypeSquare];
+        UIImage *avatarPhoto = [XHMessageAvatarFactory avatarImageNamed:[UIImage imageNamed:@"ic_home_nor"] messageAvatarType:XHMessageAvatarTypeSquare];
         [self configAvatarWithPhoto:avatarPhoto];
     }
 }

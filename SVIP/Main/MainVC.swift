@@ -252,12 +252,14 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
       presentViewController(navController, animated: true, completion: nil)
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
+      chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
       navController.navigationBar.translucent = false
       presentViewController(navController, animated: true, completion: nil)
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
+      chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
       navController.navigationBar.translucent = false
