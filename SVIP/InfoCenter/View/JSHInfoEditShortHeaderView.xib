@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JSHInfoEditShortHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background" translatesAutoresizingMaskIntoConstraints="NO" id="4DX-id-b5t">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3m-j5-P01" customClass="JSHRoundRectButton">
+                    <rect key="frame" x="35" y="44" width="86" height="86"/>
+                    <color key="backgroundColor" red="0.1058823529" green="0.12549019610000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="86" id="2SF-2Q-GGc"/>
+                        <constraint firstAttribute="width" constant="86" id="IeZ-wn-Qec"/>
+                    </constraints>
+                    <state key="normal" image="ic_camera_nor">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王先生" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4H-qV-nKb">
+                    <rect key="frame" x="129" y="67" width="54" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="三一重工 · 业务经理" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNb-gW-D7S">
+                    <rect key="frame" x="129" y="97" width="107" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13875898862" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3l-lH-5OO">
+                    <rect key="frame" x="244" y="97" width="76" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vNb-gW-D7S" firstAttribute="top" secondItem="T4H-qV-nKb" secondAttribute="bottom" constant="8" id="3eM-Ov-ztT"/>
+                <constraint firstItem="U3m-j5-P01" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="45W-Tc-zRo"/>
+                <constraint firstAttribute="bottom" secondItem="F3l-lH-5OO" secondAttribute="bottom" constant="26" id="5QJ-lL-CzL"/>
+                <constraint firstItem="F3l-lH-5OO" firstAttribute="leading" secondItem="vNb-gW-D7S" secondAttribute="trailing" constant="8" id="5be-Ol-krk"/>
+                <constraint firstAttribute="bottom" secondItem="U3m-j5-P01" secondAttribute="bottom" constant="8" id="SYo-2w-tsV"/>
+                <constraint firstAttribute="bottom" secondItem="vNb-gW-D7S" secondAttribute="bottom" constant="26" id="XWn-WX-W4b"/>
+                <constraint firstItem="vNb-gW-D7S" firstAttribute="leading" secondItem="U3m-j5-P01" secondAttribute="trailing" constant="8" id="h0R-Gz-D2M"/>
+                <constraint firstAttribute="trailing" secondItem="4DX-id-b5t" secondAttribute="trailing" id="kBt-jy-DAM"/>
+                <constraint firstItem="4DX-id-b5t" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rae-Av-oeS"/>
+                <constraint firstItem="T4H-qV-nKb" firstAttribute="leading" secondItem="U3m-j5-P01" secondAttribute="trailing" constant="8" id="rtW-LD-n3b"/>
+                <constraint firstAttribute="bottom" secondItem="4DX-id-b5t" secondAttribute="bottom" id="yAA-L8-n9B"/>
+                <constraint firstItem="4DX-id-b5t" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z2o-2t-uoX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="avatarButton" destination="U3m-j5-P01" id="1NM-lN-B9Y"/>
+                <outlet property="bgImageView" destination="4DX-id-b5t" id="bo5-JO-jB8"/>
+                <outlet property="nameLabel" destination="T4H-qV-nKb" id="hG7-Wv-oab"/>
+                <outlet property="phoneLabel" destination="F3l-lH-5OO" id="Jtk-Xa-XqJ"/>
+                <outlet property="positionLabel" destination="vNb-gW-D7S" id="XJo-Gb-Wxc"/>
+            </connections>
+            <point key="canvasLocation" x="235.5" y="343"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_camera_nor" width="22" height="20"/>
+        <image name="img_background" width="375" height="374"/>
+    </resources>
+</document>

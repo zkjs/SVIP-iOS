@@ -26,3 +26,4 @@
 #import "AlipayOrder.h"
 #import "PartnerConfig.h"
 #import "DataSigner.h"
+#import "JSHAnimationVC.h"

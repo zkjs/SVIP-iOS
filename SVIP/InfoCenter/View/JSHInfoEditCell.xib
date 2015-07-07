@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="JSHInfoEditCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWT-p6-Otz">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="43"/>
+                        <state key="normal">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected">
+                            <color key="titleColor" red="0.88235294117647056" green="0.74901960784313726" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonSelectAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3hW-ho-xMN"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FJ-Ux-Yl0">
+                        <rect key="frame" x="160" y="0.0" width="160" height="43"/>
+                        <state key="normal">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected">
+                            <color key="titleColor" red="0.88235294117647056" green="0.74901960784313726" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonSelectAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IyB-BX-TR2"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lWT-p6-Otz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0bn-dF-V4j"/>
+                    <constraint firstAttribute="trailing" secondItem="7FJ-Ux-Yl0" secondAttribute="trailing" id="4yU-vm-InK"/>
+                    <constraint firstItem="7FJ-Ux-Yl0" firstAttribute="leading" secondItem="lWT-p6-Otz" secondAttribute="trailing" id="CRj-Al-HAT"/>
+                    <constraint firstItem="lWT-p6-Otz" firstAttribute="width" secondItem="7FJ-Ux-Yl0" secondAttribute="width" id="IjA-Y1-mMH"/>
+                    <constraint firstItem="7FJ-Ux-Yl0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="JCA-JL-LLG"/>
+                    <constraint firstAttribute="bottom" secondItem="7FJ-Ux-Yl0" secondAttribute="bottom" id="T34-gd-dBF"/>
+                    <constraint firstItem="lWT-p6-Otz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oc1-J2-O1p"/>
+                    <constraint firstAttribute="bottom" secondItem="lWT-p6-Otz" secondAttribute="bottom" id="uTC-hG-S4H"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="leftButton" destination="lWT-p6-Otz" id="1Ib-Uf-EXi"/>
+                <outlet property="rightButton" destination="7FJ-Ux-Yl0" id="6t2-ju-lpy"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
