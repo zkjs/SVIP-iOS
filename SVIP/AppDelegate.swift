@@ -9,21 +9,24 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   var deviceToken = ""
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
+//    ZKJSHTTPSessionManager .sharedInstance() .getOrderListWithUserID(<#userID: String!#>, token: <#String!#>, page: <#String!#>, success: <#((NSURLSessionDataTask!, AnyObject!) -> Void)!##(NSURLSessionDataTask!, AnyObject!) -> Void#>, failure: <#((NSURLSessionDataTask!, NSError!) -> Void)!##(NSURLSessionDataTask!, NSError!) -> Void#>)
+    
+    
     setupWindow()
-    setupNotification()
-    setupTCPSessionManager()
-    fetchBeaconRegions()
+//    setupNotification()
+//    setupTCPSessionManager()
+//    fetchBeaconRegions()
     
     return true
   }
-
+/*
   func applicationWillResignActive(application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -89,16 +92,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
     }
   }
-
+*/
+  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { ([NSObject : AnyObject]!) -> Void in
+      
+    })
+    return true
+  }
+  
   // MARK: - Private Method
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    window?.rootViewController = MainVC()
+    let naviController = UINavigationController(rootViewController: BookVC())
+    naviController.navigationBar .setBackgroundImage(UIImage(named: "星空中心"), forBarMetrics: UIBarMetrics.Default)
+//    window?.rootViewController = naviController
+    window?.rootViewController = JSHAnimationVC()
     window?.rootViewController?.view.layer.cornerRadius = 6
     window?.rootViewController?.view.layer.masksToBounds = true
     window?.makeKeyAndVisible()
   }
-  
+/*
   func setupNotification() {
     UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
     UIApplication.sharedApplication().registerForRemoteNotifications()
@@ -156,6 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       
     })
   }
-
+*/
 }
 
