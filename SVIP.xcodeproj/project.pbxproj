@@ -40,6 +40,16 @@
 		407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407761871B4905E7009B6FE9 /* RuleEngine.swift */; };
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
+		B23E537C1B4BB64C00CB7761 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536C1B4BB64C00CB7761 /* base64.m */; };
+		B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536F1B4BB64C00CB7761 /* DataSigner.m */; };
+		B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53711B4BB64C00CB7761 /* DataVerifier.m */; };
+		B23E537F1B4BB64C00CB7761 /* MD5DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53731B4BB64C00CB7761 /* MD5DataSigner.m */; };
+		B23E53801B4BB64C00CB7761 /* NSDataEx.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53751B4BB64C00CB7761 /* NSDataEx.m */; };
+		B23E53811B4BB64C00CB7761 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53771B4BB64C00CB7761 /* openssl_wrapper.m */; };
+		B23E53821B4BB64C00CB7761 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53791B4BB64C00CB7761 /* RSADataSigner.m */; };
+		B23E53831B4BB64C00CB7761 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E537B1B4BB64C00CB7761 /* RSADataVerifier.m */; };
+		B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */; };
+		B23E53D51B4BC12B00CB7761 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53D41B4BC12B00CB7761 /* openssl.framework */; };
 		B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */; };
 		B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */; };
 		B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */; };
@@ -53,6 +63,9 @@
 		B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6421A1B47C2A700AF0F28 /* BookRoomCell.swift */; };
 		B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A6421B1B47C2A700AF0F28 /* BookRoomCell.xib */; };
 		B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A6421C1B47C2A700AF0F28 /* BookVC.xib */; };
+		B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */; };
+		B2F4716B1B4B6CF0005122BB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F471691B4B6CF0005122BB /* AlipaySDK.framework */; };
+		B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F471701B4B7B21005122BB /* AlipayOrder.m */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
@@ -118,6 +131,25 @@
 		40E686F71B45297400C9725B /* BookingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrder.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
+		B23E536B1B4BB64C00CB7761 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		B23E536C1B4BB64C00CB7761 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
+		B23E536D1B4BB64C00CB7761 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		B23E536E1B4BB64C00CB7761 /* DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSigner.h; sourceTree = "<group>"; };
+		B23E536F1B4BB64C00CB7761 /* DataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSigner.m; sourceTree = "<group>"; };
+		B23E53701B4BB64C00CB7761 /* DataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVerifier.h; sourceTree = "<group>"; };
+		B23E53711B4BB64C00CB7761 /* DataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataVerifier.m; sourceTree = "<group>"; };
+		B23E53721B4BB64C00CB7761 /* MD5DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5DataSigner.h; sourceTree = "<group>"; };
+		B23E53731B4BB64C00CB7761 /* MD5DataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5DataSigner.m; sourceTree = "<group>"; };
+		B23E53741B4BB64C00CB7761 /* NSDataEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataEx.h; sourceTree = "<group>"; };
+		B23E53751B4BB64C00CB7761 /* NSDataEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataEx.m; sourceTree = "<group>"; };
+		B23E53761B4BB64C00CB7761 /* openssl_wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openssl_wrapper.h; sourceTree = "<group>"; };
+		B23E53771B4BB64C00CB7761 /* openssl_wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = openssl_wrapper.m; sourceTree = "<group>"; };
+		B23E53781B4BB64C00CB7761 /* RSADataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataSigner.h; sourceTree = "<group>"; };
+		B23E53791B4BB64C00CB7761 /* RSADataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataSigner.m; sourceTree = "<group>"; };
+		B23E537A1B4BB64C00CB7761 /* RSADataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataVerifier.h; sourceTree = "<group>"; };
+		B23E537B1B4BB64C00CB7761 /* RSADataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataVerifier.m; sourceTree = "<group>"; };
+		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B23E53D41B4BC12B00CB7761 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
 		B277F8C11B4A59AA00A9F858 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		B277F8C31B4A59AA00A9F858 /* BlurDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurDatePickerView.h; sourceTree = "<group>"; };
@@ -133,6 +165,11 @@
 		B2A6421A1B47C2A700AF0F28 /* BookRoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookRoomCell.swift; sourceTree = "<group>"; };
 		B2A6421B1B47C2A700AF0F28 /* BookRoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookRoomCell.xib; sourceTree = "<group>"; };
 		B2A6421C1B47C2A700AF0F28 /* BookVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookVC.xib; sourceTree = "<group>"; };
+		B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		B2F471691B4B6CF0005122BB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		B2F4716F1B4B7B21005122BB /* AlipayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipayOrder.h; sourceTree = "<group>"; };
+		B2F471701B4B7B21005122BB /* AlipayOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlipayOrder.m; sourceTree = "<group>"; };
+		B2F471721B4B7F61005122BB /* PartnerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartnerConfig.h; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,7 +179,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */,
+				B23E53D51B4BC12B00CB7761 /* openssl.framework in Frameworks */,
 				C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */,
+				B2F4716B1B4B6CF0005122BB /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +367,8 @@
 		40641F861B3E79A300CF150D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B23E53D41B4BC12B00CB7761 /* openssl.framework */,
+				B2F471671B4B6CB4005122BB /* AliPay */,
 				40641F871B3E79A300CF150D /* Category */,
 				40641F8F1B3E79A300CF150D /* Networking */,
 				40641F991B3E79A300CF150D /* Singleton.h */,
@@ -380,6 +422,30 @@
 				4063FEF41B4BC18000DF6E50 /* MessageModel.m */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		B23E536A1B4BB64C00CB7761 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B23E536B1B4BB64C00CB7761 /* base64.h */,
+				B23E536C1B4BB64C00CB7761 /* base64.m */,
+				B23E536D1B4BB64C00CB7761 /* config.h */,
+				B23E536E1B4BB64C00CB7761 /* DataSigner.h */,
+				B23E536F1B4BB64C00CB7761 /* DataSigner.m */,
+				B23E53701B4BB64C00CB7761 /* DataVerifier.h */,
+				B23E53711B4BB64C00CB7761 /* DataVerifier.m */,
+				B23E53721B4BB64C00CB7761 /* MD5DataSigner.h */,
+				B23E53731B4BB64C00CB7761 /* MD5DataSigner.m */,
+				B23E53741B4BB64C00CB7761 /* NSDataEx.h */,
+				B23E53751B4BB64C00CB7761 /* NSDataEx.m */,
+				B23E53761B4BB64C00CB7761 /* openssl_wrapper.h */,
+				B23E53771B4BB64C00CB7761 /* openssl_wrapper.m */,
+				B23E53781B4BB64C00CB7761 /* RSADataSigner.h */,
+				B23E53791B4BB64C00CB7761 /* RSADataSigner.m */,
+				B23E537A1B4BB64C00CB7761 /* RSADataVerifier.h */,
+				B23E537B1B4BB64C00CB7761 /* RSADataVerifier.m */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		B2A6420F1B47C2A700AF0F28 /* Book */ = {
@@ -437,9 +503,23 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
+		B2F471671B4B6CB4005122BB /* AliPay */ = {
+			isa = PBXGroup;
+			children = (
+				B23E536A1B4BB64C00CB7761 /* Util */,
+				B2F471721B4B7F61005122BB /* PartnerConfig.h */,
+				B2F4716F1B4B7B21005122BB /* AlipayOrder.h */,
+				B2F471701B4B7B21005122BB /* AlipayOrder.m */,
+				B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */,
+				B2F471691B4B6CF0005122BB /* AlipaySDK.framework */,
+			);
+			path = AliPay;
+			sourceTree = "<group>";
+		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */,
 				46501E00CF356A221CE759C9 /* libPods-SVIP.a */,
 			);
 			name = Frameworks;
@@ -532,6 +612,7 @@
 				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
+				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
@@ -591,7 +672,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B23E53831B4BB64C00CB7761 /* RSADataVerifier.m in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
+				B23E53801B4BB64C00CB7761 /* NSDataEx.m in Sources */,
+				B23E53821B4BB64C00CB7761 /* RSADataSigner.m in Sources */,
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
@@ -601,6 +685,7 @@
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				40E686F81B45297400C9725B /* BookingOrder.swift in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
+				B23E53811B4BB64C00CB7761 /* openssl_wrapper.m in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
@@ -608,7 +693,9 @@
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
 				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
+				B23E537C1B4BB64C00CB7761 /* base64.m in Sources */,
 				407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */,
+				B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
@@ -616,8 +703,11 @@
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
+				B23E537F1B4BB64C00CB7761 /* MD5DataSigner.m in Sources */,
 				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
+				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
+				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
 				4053EB3C1B480B09009B0DE1 /* StorageManager.swift in Sources */,
 				40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */,
@@ -749,6 +839,30 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
+					"$(PROJECT_DIR)/Common/AliPay",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/Colours\"",
+					"\"${PODS_ROOT}/Headers/Public/DateTools\"",
+					"\"${PODS_ROOT}/Headers/Public/EstimoteSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/MIBadgeButton\"",
+					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"${PODS_ROOT}/Headers/Public/MessageDisplayKit\"",
+					"\"${PODS_ROOT}/Headers/Public/PKYStepper\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SKTagView\"",
+					"\"${PODS_ROOT}/Headers/Public/SSKeychain\"",
+					"\"${PODS_ROOT}/Headers/Public/SWTableViewCell\"",
+					"\"${PODS_ROOT}/Headers/Public/SocketRocket\"",
+					"\"${PODS_ROOT}/Headers/Public/YXTMotionView\"",
+					"\"${PODS_ROOT}/Headers/EstimoteSDK\"",
+					"$(SRCROOT)/SVIP",
 				);
 				INFOPLIST_FILE = SVIP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -768,6 +882,30 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
+					"$(PROJECT_DIR)/Common/AliPay",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/Colours\"",
+					"\"${PODS_ROOT}/Headers/Public/DateTools\"",
+					"\"${PODS_ROOT}/Headers/Public/EstimoteSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/MIBadgeButton\"",
+					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"${PODS_ROOT}/Headers/Public/MessageDisplayKit\"",
+					"\"${PODS_ROOT}/Headers/Public/PKYStepper\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SKTagView\"",
+					"\"${PODS_ROOT}/Headers/Public/SSKeychain\"",
+					"\"${PODS_ROOT}/Headers/Public/SWTableViewCell\"",
+					"\"${PODS_ROOT}/Headers/Public/SocketRocket\"",
+					"\"${PODS_ROOT}/Headers/Public/YXTMotionView\"",
+					"\"${PODS_ROOT}/Headers/EstimoteSDK\"",
+					"$(SRCROOT)/SVIP",
 				);
 				INFOPLIST_FILE = SVIP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

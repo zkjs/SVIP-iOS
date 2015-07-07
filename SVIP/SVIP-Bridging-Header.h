@@ -22,3 +22,7 @@
 #import "Networkcfg.h"
 #import "UIImageView+WebCache.h"
 #import "BlurDatePickerView.h"
+#import "AlipaySDK/AlipaySDK.h"
+#import "AlipayOrder.h"
+#import "PartnerConfig.h"
+#import "DataSigner.h"

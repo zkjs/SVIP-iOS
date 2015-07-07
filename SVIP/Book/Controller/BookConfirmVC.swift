@@ -39,7 +39,19 @@ class BookConfirmVC: UIViewController {
     setupUI()
     updateSubviews()
   }
-  
+  /*
+  var userid: String!
+  var token: String!
+  var shopid: String!
+  var room_typeid: String!
+  var guest: String!
+  var guesttel: String!
+  var rooms: String!
+  var room_type: String!
+  var room_rate: String!
+  var arrival_date: String!
+  var departure_date: String!
+  */
   func loadData() {
     order = BookOrder()
     if let selectedGoods = goods {
@@ -47,6 +59,15 @@ class BookConfirmVC: UIViewController {
       order!.room_type = selectedGoods.name
       order!.room_rate = selectedGoods.market_price
       order!.rooms = "1"
+      
+      //from others
+      order!.userid = "120"
+      order!.token = "111"
+      order!.shopid = "1"
+      order!.guest = "laoliu"
+      order!.guesttel = "139758"
+      order!.arrival_date = "2015-12-1"
+      order!.departure_date = "2015-12-28"
     }
   }
   
@@ -127,9 +148,30 @@ class BookConfirmVC: UIViewController {
   func optionSelect(sender: UIButton) {
     sender.selected = !sender.selected
   }
-  
+  /*
+  [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+  [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+  [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
+  [formData appendPartWithFormData:[goodsID dataUsingEncoding:NSUTF8StringEncoding] name:@"room_typeid"];
+  [formData appendPartWithFormData:[guest dataUsingEncoding:NSUTF8StringEncoding] name:@"guest"];
+  [formData appendPartWithFormData:[guestPhone dataUsingEncoding:NSUTF8StringEncoding] name:@"guesttel"];
+  [formData appendPartWithFormData:[arrivalDate dataUsingEncoding:NSUTF8StringEncoding] name:@"arrival_date"];
+  [formData appendPartWithFormData:[departureDate dataUsingEncoding:NSUTF8StringEncoding] name:@"departure_date"];
+  [formData appendPartWithFormData:[roomNum dataUsingEncoding:NSUTF8StringEncoding] name:@"rooms"];
+  [formData appendPartWithFormData:[roomType dataUsingEncoding:NSUTF8StringEncoding] name:@"room_type"];
+  [formData appendPartWithFormData:[roomRate dataUsingEncoding:NSUTF8StringEncoding] name:@"room_rate"];
+  [formData appendPartWithFormData:[remark dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
+  [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
+  */
   @IBAction func commit(sender: UIButton) {
-  self.navigationController? .pushViewController(BookPayVC.new(), animated: true)
+    ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID("", token: "", shopID: order?.shopid, goodsID: order?.room_typeid, guest: order?.guest, guestPhone: order?.guesttel, roomNum: order?.rooms, arrivalDate: order?.arrival_date, departureDate: order?.departure_date, roomType: order?.room_type, roomRate: order?.room_rate, remark: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+
+    }
+    let payVC = BookPayVC()
+    payVC.bkOrder = self.order!
+    self.navigationController? .pushViewController(payVC, animated: true)
   }
 
 
