@@ -291,8 +291,8 @@ static NSString *identifier = @"infoCenterCell";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
   // Hanton
-  return 0;
-//    return _dataArray ? _dataArray.count : 0;
+//  return 0;
+    return _dataArray ? _dataArray.count : 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

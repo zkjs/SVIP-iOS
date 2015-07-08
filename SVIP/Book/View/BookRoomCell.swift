@@ -40,7 +40,7 @@ class BookRoomCell: UITableViewCell {
         let tagStr = "  \(room)\(type)   $\(priceStr)"
         priceTag.text = tagStr
 
-        let baseUrl = "http://172.21.7.54/"
+        let baseUrl = "http://120.25.241.196/"
         if let goodsImage = goods?.image {
           let urlStr = baseUrl .stringByAppendingString(goodsImage)
           let placeholderImage = UIImage(named: "星空中心")
