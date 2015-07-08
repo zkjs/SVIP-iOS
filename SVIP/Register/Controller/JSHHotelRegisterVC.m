@@ -155,7 +155,7 @@
                             }
 
                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                            [ZKJSTool showMsg:@"注册失败，请重试"];
+                            [ZKJSTool showMsg:@"请输入受邀请的手机号码"];
                         }];
 //                    }else{
 //                        _codeField.text = @"";

@@ -216,12 +216,18 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     startDateString = dateFormatter.stringFromDate(startDate!)
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+    roomType.hidden = true
+    date.hidden = true
+    duration.hidden = true
     switch ruleType {
     case .InRegion_HasOrder_Checkin:
       statusLabel.text = "您已经到达酒店大堂"
       statusLogo.image = UIImage(named: "sl_ruzhu")
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
     case .InRegion_HasOrder_UnCheckin:
+      roomType.hidden = false
+      date.hidden = false
+      duration.hidden = false
       roomType.text = order!["room_type"]
       date.text = "\(startDateString!)入住"
       duration.text = "\(days)晚"
@@ -237,6 +243,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       statusLogo.image = UIImage(named: "sl_ruzhu")
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:
+      roomType.hidden = false
+      date.hidden = false
+      duration.hidden = false
       roomType.text = order!["room_type"]
       date.text = "\(startDateString!)入住"
       duration.text = "\(days)晚"

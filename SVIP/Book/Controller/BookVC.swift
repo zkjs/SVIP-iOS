@@ -41,6 +41,9 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   
   func setUI() {
     
+    // Hanton
+    title = "预订"
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
     
     let tap = UITapGestureRecognizer(target: self, action: Selector("searchMap:"))
     searchBar .addGestureRecognizer(tap)
@@ -87,6 +90,11 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
       constrainst.constant = CGFloat(marginWidth)
     }
     super.updateViewConstraints()
+  }
+  
+  // Hanton
+  func dismissSelf() -> Void {
+    dismissViewControllerAnimated(true, completion: nil)
   }
 
 //MARK:- BUTTON ACTION

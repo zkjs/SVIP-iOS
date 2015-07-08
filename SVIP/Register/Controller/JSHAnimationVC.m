@@ -66,7 +66,7 @@
               
             }else {
                 //未注册 jump
-                [self presentViewController:[[JSHHotelRegisterVC alloc] init] animated:YES completion:^{
+                [self presentViewController:[JSHHotelRegisterVC new] animated:YES completion:^{
 //
                 }];
             }
