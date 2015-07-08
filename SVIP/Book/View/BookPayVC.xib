@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookPayVC" customModule="SVIP" customModuleProvider="target">
@@ -166,25 +166,35 @@
                         <action selector="zhifubao:" destination="-1" eventType="touchUpInside" id="dtb-k8-oeb"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-U7-CNv">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-U7-CNv">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="6H9-CT-BAX"/>
+                        <constraint firstAttribute="width" constant="185" id="RAZ-yV-4ua"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="我想到酒店后进行支付">
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="165" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="我想到酒店后进行支付" image="ic_xiayixiang">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="6H9-CT-BAX"/>
+                            <exclude reference="RAZ-yV-4ua"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <mask key="constraints">
                             <include reference="6H9-CT-BAX"/>
+                            <include reference="RAZ-yV-4ua"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="payInHotel:" destination="-1" eventType="touchUpInside" id="c7b-6i-rhR"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -201,7 +211,7 @@
                 <constraint firstItem="c0W-UW-mX2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eLU-v9-Ihb"/>
                 <constraint firstItem="c0W-UW-mX2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="f8z-4x-CIp"/>
                 <constraint firstItem="zcu-U7-CNv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="125" id="fE3-fY-xut"/>
-                <constraint firstItem="zcu-U7-CNv" firstAttribute="top" secondItem="Edu-IJ-jqz" secondAttribute="bottom" constant="60" id="rRM-7L-R0f"/>
+                <constraint firstItem="zcu-U7-CNv" firstAttribute="top" secondItem="Edu-IJ-jqz" secondAttribute="bottom" constant="20" id="rRM-7L-R0f"/>
                 <constraint firstAttribute="centerX" secondItem="R84-QZ-Ium" secondAttribute="centerX" id="s82-Nn-Kck"/>
                 <constraint firstAttribute="centerX" secondItem="Edu-IJ-jqz" secondAttribute="centerX" id="vTO-Th-imZ"/>
                 <constraint firstItem="Hcr-cd-tLM" firstAttribute="top" secondItem="c0W-UW-mX2" secondAttribute="bottom" constant="77" id="xrY-Pz-RU8">
@@ -262,6 +272,7 @@
     </objects>
     <resources>
         <image name="ic_weixinzhifu" width="142" height="37"/>
+        <image name="ic_xiayixiang" width="8" height="15"/>
         <image name="ic_zhifubao" width="145" height="41"/>
     </resources>
 </document>

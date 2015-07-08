@@ -26,22 +26,67 @@ class BookPayVC: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    self.navigationItem.hidesBackButton = true
+    let buttonItem = UIBarButtonItem(title: "取消订单", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("cancelOrder"))
+    self.navigationItem.rightBarButtonItem = buttonItem
   }
   
 
+  func cancelOrder() {
+    ZKJSTool .showLoading("正在取消订单")
+    let account = JSHAccountManager .sharedJSHAccountManager()
+    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithUserID(account.userid, token: account.token, orderID: bkOrder.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+          ZKJSTool .showMsg("订单已取消")
+          self .dismissViewControllerAnimated(true, completion: nil)
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        ZKJSTool .showMsg("订单取消失败，请进入订单列表取消订单")
+        self .dismissViewControllerAnimated(true, completion: nil)
+    }
 
+  }
   @IBAction func zhifubao(sender: UIButton) {
-    payAliOrder(bkOrder, tradeNo: "123")
+    payAliOrder(bkOrder)
   }
   @IBAction func weixinzhifu(sender: UIButton) {
   }
+  @IBAction func payInHotel(sender: UIButton) {
+    
+
+    let chatVC = JSHChatVC(chatType: .CallingWaiter)
+    chatVC.location = "不在酒店"
+//    let navController = UINavigationController(rootViewController: chatVC)
+//    navController.navigationBar.tintColor = UIColor.blackColor()
+//    navController.navigationBar.translucent = false
+//    //    presentViewController(navController, animated: true, completion: nil)
+//    UIApplication .sharedApplication().keyWindow?.rootViewController!.presentViewController(navController, animated: true) { () -> Void in
+//      self.dismissViewControllerAnimated(false, completion: nil)
+//      
+//    }
+    chatVC.navigationItem.hidesBackButton = true
+    self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+    self.navigationController?.navigationBar.translucent = false
+    self.navigationController?.pushViewController(chatVC, animated: true)
+    
+
+//    let chatVC = JSHChatVC(chatType: .CallingWaiter)
+//    chatVC.location = "不在酒店"
+//    let navController = UINavigationController(rootViewController: chatVC)
+//    navController.navigationBar.tintColor = UIColor.blackColor()
+//    navController.navigationBar.translucent = false
+////    presentViewController(navController, animated: true, completion: nil)
+//    presentViewController(navController, animated: true) { () -> Void in
+////      self.dismissViewControllerAnimated(false, completion: nil)
+//
+//    }
+  }
 
 //MARK:- ALIPAY
-  func payAliOrder(AbookOrder: BookOrder, tradeNo: String) {
+  func payAliOrder(AbookOrder: BookOrder) {
     let aliOrder = AlipayOrder()
     aliOrder.partner = partner
     aliOrder.seller = seller
-    aliOrder.tradeNO = tradeNo  //need to fetch
+//    aliOrder.tradeNO = tradeNo  //need to fetch 
+    aliOrder.tradeNO = AbookOrder.orderno
     aliOrder.productName = AbookOrder.room_type
     aliOrder.productDescription = "needtoknow"
     if let rooms = AbookOrder.rooms.toInt() {

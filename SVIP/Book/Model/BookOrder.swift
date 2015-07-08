@@ -37,5 +37,8 @@ class BookOrder: NSObject {
   var room_rate: String!
   var arrival_date: String!
   var departure_date: String!
+  
+  //for alipay
+  var orderno: String!
 
 }

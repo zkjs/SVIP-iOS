@@ -190,6 +190,10 @@ class BookConfirmVC: UIViewController {
     ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID(account.userid, token: account.token, shopID: order?.shopid, goodsID: order?.room_typeid, guest: order?.guest, guestPhone: order?.guesttel, roomNum: order?.rooms, arrivalDate: order?.arrival_date, departureDate: order?.departure_date, roomType: order?.room_type, roomRate: order?.room_rate, remark: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let payVC = BookPayVC()
         payVC.bkOrder = self.order!
+        let dic = responseObject as! NSDictionary
+        if let orderno = dic["orderno"] {
+          payVC.bkOrder.orderno = orderno as! String
+        }
         self.navigationController? .pushViewController(payVC, animated: true)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 
