@@ -162,7 +162,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         beaconRegions[key] = beacon
       }
       StorageManager.sharedInstance().saveBeaconRegions(beaconRegions)
-      NSNotificationCenter.defaultCenter().postNotificationName("ZKJSSetupBeaconRegions", object: nil)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       
     })

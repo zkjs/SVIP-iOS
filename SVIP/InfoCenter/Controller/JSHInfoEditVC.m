@@ -183,7 +183,10 @@ static NSString *identifier = @"infoCenterCell";
 //    _tableView.pagingEnabled = YES;
 //    _tableView.contentInset = UIEdgeInsetsMake(490, 0, 0, 0);
   
-    
+  
+  // Hanton
+  _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  _tableView.backgroundColor = [UIColor blackColor];
     //hanton,替换navigationBar中的右侧按钮
   UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
   [button addTarget:self
@@ -287,7 +290,9 @@ static NSString *identifier = @"infoCenterCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _dataArray ? _dataArray.count : 0;
+  // Hanton
+  return 0;
+//    return _dataArray ? _dataArray.count : 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

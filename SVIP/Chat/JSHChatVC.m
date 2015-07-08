@@ -71,8 +71,8 @@
   
   self.messageSender = @"我";
   self.messageReceiver = self.receiverName;
-  self.senderID = @"557cff54a9a97";//[JSHAccountManager sharedJSHAccountManager].userid;
-  self.senderName = @"金石";
+  self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
+  self.senderName = [JSHStorage baseInfo].name;
   self.shopID = @"120";
   
   NSMutableArray *shareMenuItems = [NSMutableArray array];
@@ -523,7 +523,7 @@
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],
                                @"timestamp": timestamp,
-                               @"ruletype": ruleType,  // 预订部
+                               @"ruletype": ruleType,
                                @"clientid": self.senderID,
                                @"clientname": self.senderName,
                                @"shopid": self.shopID,
@@ -572,7 +572,7 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"clientid": self.senderID,
-                               @"clientname": @"SVIP",//[JSHStorage baseInfo].name,
+                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"textmsg": text
@@ -589,7 +589,7 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"clientid": self.senderID,
-                               @"clientname": @"SVIP",//[JSHStorage baseInfo].name,
+                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"body": body
@@ -607,7 +607,7 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"clientid": self.senderID,
-                               @"clientname": @"SVIP",//[JSHStorage baseInfo].name,
+                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"body": body

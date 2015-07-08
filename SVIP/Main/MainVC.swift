@@ -53,9 +53,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     self.view.addSubview(motionView)
     self.view.sendSubviewToBack(motionView)
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupBeaconMonitor", name:"ZKJSSetupBeaconRegions", object: nil)
+    setupBeaconMonitor()
     
-     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -237,7 +237,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .InRegion_NoOrder:
       statusLabel.text = "您已经在酒店大堂,请尽快预订酒店"
       statusLogo.image = UIImage(named: "sl_dating")
-      tipsLabel.setTitle("", forState: UIControlState.Normal)
+      tipsLabel.setTitle(" 点击智键预订酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:
       statusLabel.text = "您不在酒店,请注意保管好财物"
       statusLogo.image = UIImage(named: "sl_ruzhu")
