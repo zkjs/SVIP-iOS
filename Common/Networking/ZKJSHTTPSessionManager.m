@@ -220,7 +220,7 @@
 // 取得指定条件的商家信息
 - (void)getAllShopInfoWithStart:(NSInteger)start page:(NSInteger)page key:(NSString *)key isDesc:(BOOL)isDesc success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *order = isDesc ? @"desc" : @"asc";
-  NSString *urlString = [NSString stringWithFormat:@"shop/select?web=0&stat=%ld&page=%ld&key=%@&desc=%@", (long)start, (long)page, key, order];
+  NSString *urlString = [NSString stringWithFormat:@"user/select?web=0&stat=%ld&page=%ld&key=%@&desc=%@", (long)start, (long)page, key, order];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -232,7 +232,7 @@
 
 // 取得商家信息
 - (void)getShopInfo:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"shop/select?&shopid=%@&web=0", shopID];
+  NSString *urlString = [NSString stringWithFormat:@"user/selectshop?&shopid=%@&web=0", shopID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -245,7 +245,7 @@
 // 取得商家评论信息
 - (void)getShopCommentsWithShopID:(NSString *)shopID start:(NSInteger)start page:(NSInteger)page key:(NSString *)key isDesc:(BOOL)isDesc success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *order = isDesc ? @"desc" : @"asc";
-  NSString *urlString = [NSString stringWithFormat:@"shop/comment?web=0&shopid=%@&stat=%ld&page=%ld&key=%@&desc=%@", shopID, (long)start, (long)page, key, order];
+  NSString *urlString = [NSString stringWithFormat:@"user/comment?web=0&shopid=%@&stat=%ld&page=%ld&key=%@&desc=%@", shopID, (long)start, (long)page, key, order];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -344,7 +344,7 @@
 - (void)getShopGoodsWithShopID:(NSString *)shopID page:(NSInteger)page categoryID:(NSString *)categoryID key:(NSString *)key success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *category = categoryID ? [NSString stringWithFormat:@"&cat_id=%@", categoryID] : @"";
   NSString *orderBy = key ? [NSString stringWithFormat:@"&by=%@", key] : @"";
-  NSString *urlString = [NSString stringWithFormat:@"shop/goods?shopid=%@&page=%ld%@%@", shopID, (long)page, category, orderBy];
+  NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&page=%ld%@%@", shopID, (long)page, category, orderBy];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -355,8 +355,8 @@
 }
  */
 - (void)getShopGoodsPage:(NSInteger)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-//    NSString *urlString = [NSString stringWithFormat:@"shop/goods?shopid=%@&page=%ld", shopID, (long)page];
-    NSString *urlString = [NSString stringWithFormat:@"shop/goods?page=%ld", (long)page];
+//    NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&page=%ld", shopID, (long)page];
+    NSString *urlString = [NSString stringWithFormat:@"user/goods?page=%ld", (long)page];
     [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -369,7 +369,7 @@
 
 // 获取商品
 - (void)getShopGoodsWithShopID:(NSString *)shopID goodsID:(NSString *)goodsID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"shop/goods?shopid=%@&goodsid=%@", shopID, goodsID];
+  NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&goodsid=%@", shopID, goodsID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -381,7 +381,7 @@
 
 // 获取商品分类
 - (void)getShopGoodsCategoryWith:(NSString *)categoryID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"shop/category/%@", categoryID];
+  NSString *urlString = [NSString stringWithFormat:@"user/category/%@", categoryID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -393,7 +393,7 @@
 
 // 上传酒店订单
 - (void)postBookingInfoWithUserID:(NSString *)userID token:(NSString *)token shopID:(NSString *)shopID goodsID:(NSString *)goodsID guest:(NSString *)guest guestPhone:(NSString *)guestPhone roomNum:(NSString *)roomNum arrivalDate:(NSString *)arrivalDate departureDate:(NSString *)departureDate roomType:(NSString *)roomType roomRate:(NSString *)roomRate remark:(NSString *)remark success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"shop/postvipre" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  [self POST:@"user/postvipre" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
@@ -418,7 +418,7 @@
 
 // 订单列表
 - (void)getOrderListWithUserID:(NSString *)userID token:(NSString *)token page:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"shop/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  [self POST:@"user/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
@@ -434,7 +434,7 @@
 
 // 取消订单
 - (void)cancelOrderWithUserID:(NSString *)userID token:(NSString *)token orderID:(NSString *)orderID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"shop/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  [self POST:@"user/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[orderID dataUsingEncoding:NSUTF8StringEncoding] name:@"id"];
@@ -451,7 +451,7 @@
 
 // 删除订单
 - (void)deleteOrderWithUserID:(NSString *)userID token:(NSString *)token orderID:(NSString *)orderID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"shop/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  [self POST:@"user/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[orderID dataUsingEncoding:NSUTF8StringEncoding] name:@"id"];
