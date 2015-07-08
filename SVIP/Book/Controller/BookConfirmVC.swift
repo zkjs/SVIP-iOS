@@ -81,7 +81,7 @@ class BookConfirmVC: UIViewController {
     inDate.baseTitle = "入住时间"
     outDate.baseTitle = "离开时间"
     
-    let baseUrl = "http://172.21.7.54/"
+    let baseUrl = "http://120.25.241.196/"
     if let goodsImage = goods?.image {
       let urlStr = baseUrl .stringByAppendingString(goodsImage)
       let placeholderImage = UIImage(named: "星空中心")
@@ -118,9 +118,11 @@ class BookConfirmVC: UIViewController {
 //      NSCalendar *calendar = self.datePicker.calendar;
 //      NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.datePicker.date];
 //      NSDate *tempDate = [self.datePicker.calendar dateFromComponents:components];
-      var calender = NSCalendar()
+      var calender = NSCalendar .currentCalendar()
       var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: NSDate())
       inDate.date = calender .dateFromComponents(components)
+//      let date = calender .dateFromComponents(components)
+
     }
     
     if outDate.date == nil {
@@ -155,8 +157,8 @@ class BookConfirmVC: UIViewController {
     BlurDatePickerView .showInView(self.view, startDate:sender == inDate ? NSDate() : (inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)), success: { (date: NSDate!) -> Void in
       
       
-      var calender = NSCalendar()
-      var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: NSDate())
+      var calender = NSCalendar .currentCalendar()
+      var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: date)
       sender.date = calender .dateFromComponents(components)
       if sender == self.inDate {
         self.outDate.date = self.inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)
