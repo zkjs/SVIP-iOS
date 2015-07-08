@@ -9,24 +9,21 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate {
 
   var window: UIWindow?
   var deviceToken = ""
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
-//    ZKJSHTTPSessionManager .sharedInstance() .getOrderListWithUserID(<#userID: String!#>, token: <#String!#>, page: <#String!#>, success: <#((NSURLSessionDataTask!, AnyObject!) -> Void)!##(NSURLSessionDataTask!, AnyObject!) -> Void#>, failure: <#((NSURLSessionDataTask!, NSError!) -> Void)!##(NSURLSessionDataTask!, NSError!) -> Void#>)
-    
-    
     setupWindow()
-//    setupNotification()
-//    setupTCPSessionManager()
-//    fetchBeaconRegions()
+    setupNotification()
+    setupTCPSessionManager()
+    fetchBeaconRegions()
     
     return true
   }
-/*
+
   func applicationWillResignActive(application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -68,31 +65,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-    let aps = userInfo["aps"] as! NSDictionary
-    let alertMessage = aps["alert"] as! String
-    let alert = UIAlertView(title: "新消息通知", message: alertMessage, delegate: nil, cancelButtonTitle: "了解")
-    alert.show()
+//    let aps = userInfo["aps"] as! NSDictionary
+//    let alertMessage = aps["alert"] as! String
+//    let alert = UIAlertView(title: "新消息通知", message: alertMessage, delegate: nil, cancelButtonTitle: "了解")
+//    alert.show()
     println(userInfo)
   }
   
   // MARK: - TCPSessionManagerDelegate
   func didOpenTCPSocket() {
     if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
-      ZKJSTCPSessionManager.sharedInstance().clientLogin("557cff54a9a97", name: "SVIP", deviceToken: deviceToken)
+      let userID = JSHAccountManager.sharedJSHAccountManager().userid
+      let userName = JSHStorage.baseInfo().name
+      ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
     }
   }
   
   func didReceivePacket(dictionary: [NSObject : AnyObject]!) {
-    let type = dictionary["type"] as! String
-    if type.toInt() == MessageServiceChatType.CustomerServiceTextChat.rawValue {
+    let type = dictionary["type"] as! NSNumber
+    if type.integerValue == MessageServiceChatType.CustomerServiceTextChat.rawValue {
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceTextChatNotification", object: self, userInfo: dictionary)
-    } else if type.toInt() == MessageServiceChatType.CustomerServiceMediaChat.rawValue {
+    } else if type.integerValue == MessageServiceChatType.CustomerServiceMediaChat.rawValue {
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceMediaChatNotification", object: self, userInfo: dictionary)
-    } else if type.toInt() == MessageServiceChatType.CustomerServiceImgChat.rawValue {
+    } else if type.integerValue == MessageServiceChatType.CustomerServiceImgChat.rawValue {
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
     }
   }
-*/
+  
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
     AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { ([NSObject : AnyObject]!) -> Void in
       
@@ -111,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.rootViewController?.view.layer.masksToBounds = true
     window?.makeKeyAndVisible()
   }
-/*
+
   func setupNotification() {
     UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
     UIApplication.sharedApplication().registerForRemoteNotifications()
@@ -119,7 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func setupTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().delegate = self
-    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     println("setupTCPSessionManager")
   }
   
@@ -169,6 +167,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
     })
   }
-*/
+
 }
 

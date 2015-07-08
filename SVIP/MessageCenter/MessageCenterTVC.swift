@@ -40,7 +40,10 @@ class MessageCenterTVC: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
   let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
   
-  // Configure the cell...
+  cell.name.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
+  cell.tips.text = ""
+  cell.status.text = ""
+  cell.date.text = ""
   
   return cell
   }

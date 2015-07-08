@@ -13,8 +13,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宁城海景国际酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfe-Mp-6Mi">
-                        <rect key="frame" x="82" y="20" width="136" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="宁城海景国际酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Vfe-Mp-6Mi">
+                        <rect key="frame" x="82" y="20" width="171" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -58,11 +58,16 @@
                     <constraint firstItem="mm0-9t-Rkm" firstAttribute="top" secondItem="1y3-J4-1Uv" secondAttribute="bottom" constant="4" id="mIH-ff-eGq"/>
                     <constraint firstItem="8eh-bz-dOD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="msl-hw-pwH"/>
                     <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="oSM-k9-ak9"/>
+                    <constraint firstItem="1y3-J4-1Uv" firstAttribute="leading" secondItem="Vfe-Mp-6Mi" secondAttribute="trailing" constant="8" id="tcT-05-cy5"/>
                     <constraint firstItem="1y3-J4-1Uv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="vkV-cR-wxA"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="date" destination="mm0-9t-Rkm" id="bnt-p2-cPb"/>
                 <outlet property="logo" destination="8eh-bz-dOD" id="5nW-tR-Pyn"/>
+                <outlet property="name" destination="Vfe-Mp-6Mi" id="t9d-3O-Xyj"/>
+                <outlet property="status" destination="1y3-J4-1Uv" id="v9L-OU-MzL"/>
+                <outlet property="tips" destination="G3Y-vX-L4x" id="07a-Tf-Ltf"/>
             </connections>
             <point key="canvasLocation" x="474" y="428"/>
         </tableViewCell>

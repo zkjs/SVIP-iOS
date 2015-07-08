@@ -27,3 +27,7 @@
 #import "PartnerConfig.h"
 #import "DataSigner.h"
 #import "JSHAnimationVC.h"
+#import "JSHStorage.h"
+#import "JSHAccountManager.h"
+#import "JSHInfoEditVC.h"
+#import "JSHAnimator.h"

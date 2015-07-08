@@ -434,14 +434,14 @@ static NSString *identifier = @"infoCenterCell";
 }
 */
 
-////hanton
-//#pragma mark - UINavigationControllerDelegate
-//- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
-//  
-//  if (operation == UINavigationControllerOperationPop) {
-//    return [JSHAnimator new];
-//  }
-//  return nil;
-//}
+//hanton
+#pragma mark - UINavigationControllerDelegate
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+  
+  if (operation == UINavigationControllerOperationPop) {
+    return [JSHAnimator new];
+  }
+  return nil;
+}
 
 @end

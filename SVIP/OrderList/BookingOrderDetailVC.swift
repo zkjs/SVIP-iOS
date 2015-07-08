@@ -116,8 +116,8 @@ class BookingOrderDetailVC: UIViewController {
   }
 
   @IBAction func cancelOrder(sender: AnyObject) {
-    let userID = "557cff54a9a97"
-    let token = "wzWqj5elcC50gosP"
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
     let orderID = order["id"] as! String
     ZKJSTool.showLoading("正在取消订单...")
     ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, orderID: orderID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in

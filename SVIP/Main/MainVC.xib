@@ -6,12 +6,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="avatarImage" destination="bjJ-Dv-GFu" id="AcW-YV-DMv"/>
                 <outlet property="date" destination="xoN-xT-UZF" id="YVG-Jf-PvW"/>
                 <outlet property="duration" destination="4pC-ld-ihZ" id="Cdz-WY-Qot"/>
                 <outlet property="leftButton" destination="AKo-kU-jaS" id="ban-Bv-e8W"/>
                 <outlet property="mainButton" destination="9qo-35-bbF" id="YIK-qX-j3R"/>
                 <outlet property="rightButton" destination="ZLm-u2-o02" id="z6e-Yh-EHj"/>
                 <outlet property="roomType" destination="jex-dy-3MJ" id="cLh-1p-bvR"/>
+                <outlet property="settingsButton" destination="Rdp-DE-53L" id="twr-6a-XpX"/>
                 <outlet property="statusLabel" destination="Q4E-bt-OBM" id="dw6-gQ-jrX"/>
                 <outlet property="statusLogo" destination="FoP-wu-e2o" id="B0K-I1-OqM"/>
                 <outlet property="tipsLabel" destination="VEv-uX-okC" id="lwq-MB-0Q6"/>
@@ -60,8 +62,12 @@
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_logo1" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-PG-wLD">
                     <rect key="frame" x="127" y="140" width="43" height="43"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_touxiang_anli" translatesAutoresizingMaskIntoConstraints="NO" id="bjJ-Dv-GFu">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_touxiang_anli" translatesAutoresizingMaskIntoConstraints="NO" id="bjJ-Dv-GFu">
                     <rect key="frame" x="257" y="123" width="86" height="86"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="86" id="H0C-Yu-1ge"/>
+                        <constraint firstAttribute="width" constant="86" id="d5h-UR-uFv"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="43"/>
@@ -81,7 +87,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdp-DE-53L">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdp-DE-53L">
                     <rect key="frame" x="556" y="26" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="hhz-U3-Igv"/>
@@ -90,6 +96,9 @@
                     <state key="normal" image="ic_bianji">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="showSettings:" destination="-1" eventType="touchUpInside" id="iAP-5s-pWz"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-9Q-dBR">
                     <rect key="frame" x="150" y="318" width="300" height="175"/>
@@ -190,7 +199,7 @@
                     <exclude reference="fim-LM-RKc"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="518" y="562"/>
+            <point key="canvasLocation" x="369" y="565"/>
         </view>
         <tapGestureRecognizer id="4In-aJ-VYO">
             <connections>

@@ -8,7 +8,10 @@
 
 import UIKit
 
-class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
+class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, ESTBeaconManagerDelegate {
+  
+  @IBOutlet weak var avatarImage: UIImageView!
+  @IBOutlet weak var settingsButton: UIButton!
   
   @IBOutlet weak var mainButton: UIButton!
   @IBOutlet weak var leftButton: UIButton!
@@ -51,11 +54,16 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
     self.view.sendSubviewToBack(motionView)
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupBeaconMonitor", name:"ZKJSSetupBeaconRegions", object: nil)
+    
+     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
   }
   
   override func viewWillAppear(animated: Bool) {
-    let userID = "557cff54a9a97"
-    let token = "wzWqj5elcC50gosP"
+    navigationController?.delegate = self;
+    avatarImage.image = JSHStorage.baseInfo().avatarImage
+    
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
     ZKJSHTTPSessionManager.sharedInstance().getOrderListWithUserID(userID, token: token, page: "1", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let orderArray = responseObject as! NSArray
         if orderArray.count > 0 {
@@ -77,6 +85,12 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.delegate = nil
   }
   
   deinit {
@@ -238,6 +252,10 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
   }
   
   // MARK: - Button Action
+  @IBAction func showSettings(sender: AnyObject) {
+    navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
+  }
+  
   @IBAction func tappedMainButton(sender: AnyObject) {
     println("Tap Main Button")
     let beacon = StorageManager.sharedInstance().lastBeacon()
@@ -318,6 +336,15 @@ class MainVC: UIViewController, CRMotionViewDelegate, ESTBeaconManagerDelegate {
   
   func beaconManager(manager: AnyObject!, didExitRegion region: CLBeaconRegion!) {
     didExitBeaconRegion(region)
+  }
+  
+  // MARK: - UINavigationControllerDelegate
+  func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    
+//    if operation == UINavigationControllerOperation.Push {
+      return JSHAnimator()
+//    }
+//    return nil
   }
   
 }

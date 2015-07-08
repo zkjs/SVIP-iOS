@@ -14,6 +14,10 @@ private let kHotelMessageCell = "HotelMessageCell"
 class HotelMessageCell: UITableViewCell {
   
   @IBOutlet weak var logo: MIBadgeButton!
+  @IBOutlet weak var name: UILabel!
+  @IBOutlet weak var tips: UILabel!
+  @IBOutlet weak var status: UILabel!
+  @IBOutlet weak var date: UILabel!
   
   class func reuseIdentifier()->String {
     return kCellReuseId

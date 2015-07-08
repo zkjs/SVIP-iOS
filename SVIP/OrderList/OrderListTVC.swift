@@ -137,8 +137,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       
-      let userID = "557cff54a9a97"
-      let token = "wzWqj5elcC50gosP"
+      let userID = JSHAccountManager.sharedJSHAccountManager().userid
+      let token = JSHAccountManager.sharedJSHAccountManager().token
       let orderID = order["id"] as! String
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, orderID: orderID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
@@ -156,8 +156,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
   
   func loadMoreData() -> Void {
-    let userID = "557cff54a9a97"
-    let token = "wzWqj5elcC50gosP"
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
     let page = String(orderPage)
     ZKJSHTTPSessionManager.sharedInstance().getOrderListWithUserID(userID, token: token, page: page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.tableView.footer.hidden = false

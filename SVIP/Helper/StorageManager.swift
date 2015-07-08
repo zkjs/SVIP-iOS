@@ -51,8 +51,8 @@ class StorageManager: NSObject {
     defaults.synchronize()
   }
   
-  func chatSession(shopID: String) -> String {
-    return NSUserDefaults.standardUserDefaults().objectForKey(shopID) as! String
+  func chatSession(shopID: String) -> String? {
+    return NSUserDefaults.standardUserDefaults().objectForKey(shopID) as? String
   }
   
   func saveChatSession(chatSession: String, shopID: String) {

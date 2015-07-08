@@ -59,18 +59,16 @@
 //            [self removeFromSuperview];
             if ([JSHAccountManager sharedJSHAccountManager].userid) {
                 //已注册 jump
-//                 UINavigationController *navigationController = [UINavigationController new];
-//                 navigationController.navigationBarHidden = YES;
-//                [navigationController setViewControllers:@[[JSHAccountVC new]] animated:NO];
-//                [[UIApplication sharedApplication].windows[0] setRootViewController:navigationController];
-              [[UIApplication sharedApplication].windows[0] setRootViewController:[[MainVC alloc] init]];
+                 UINavigationController *navigationController = [UINavigationController new];
+                 navigationController.navigationBarHidden = YES;
+                [navigationController setViewControllers:@[[MainVC new]] animated:NO];
+                [[UIApplication sharedApplication].windows[0] setRootViewController:navigationController];
               
             }else {
                 //未注册 jump
-                [[UIApplication sharedApplication].windows[0] setRootViewController:[[JSHHotelRegisterVC alloc] init]];
-//                [self presentViewController:[[JSHHotelRegisterVC alloc] init] animated:YES completion:^{
-//                    
-//                }];
+                [self presentViewController:[[JSHHotelRegisterVC alloc] init] animated:YES completion:^{
+//
+                }];
             }
           
         }

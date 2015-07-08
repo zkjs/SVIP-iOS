@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 405065F41B4CC23100DF25C0 /* JSHAnimator.m */; };
 		405266371B41279B00B277BE /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266331B41279B00B277BE /* OrderListTVC.swift */; };
 		4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052663A1B4127B400B277BE /* OrderDetailVC.swift */; };
 		4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052663B1B4127B400B277BE /* OrderDetailVC.xib */; };
@@ -108,6 +109,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		405065F31B4CC23100DF25C0 /* JSHAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimator.h; sourceTree = "<group>"; };
+		405065F41B4CC23100DF25C0 /* JSHAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimator.m; sourceTree = "<group>"; };
 		405266331B41279B00B277BE /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTVC.swift; sourceTree = "<group>"; };
 		4052663A1B4127B400B277BE /* OrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailVC.swift; sourceTree = "<group>"; };
 		4052663B1B4127B400B277BE /* OrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailVC.xib; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 				B2564D831B4C012C0098608F /* JSHStorage.m */,
 				B2564D851B4C017F0098608F /* NSString+JSH.h */,
 				B2564D861B4C017F0098608F /* NSString+JSH.m */,
+				405065F31B4CC23100DF25C0 /* JSHAnimator.h */,
+				405065F41B4CC23100DF25C0 /* JSHAnimator.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -905,6 +910,7 @@
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
+				405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */,
 				B2564D7B1B4BFE070098608F /* JSHBaseHeaderView.m in Sources */,
 				4063FEF51B4BC18000DF6E50 /* MessageModel.m in Sources */,
 				B2564D711B4BFE070098608F /* JSHInfoCheckVC.m in Sources */,
