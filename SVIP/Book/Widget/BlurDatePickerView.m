@@ -151,12 +151,17 @@
     }];
 }
 - (void)comment:(id)sender {
+
+   NSCalendar *calendar = self.datePicker.calendar;
+   NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.datePicker.date];
+   NSDate *tempDate = [self.datePicker.calendar dateFromComponents:components];
+ 
     //发送请求
     if (_success) {
-        _success(_datePicker.date);
+        _success(tempDate);
     }
     if ([_delegate respondsToSelector:@selector(commentDidFinished:)]) {
-        [_delegate commentDidFinished:_datePicker.date];
+        [_delegate commentDidFinished:tempDate];
     }
     [_sheetView endEditing:YES];
     [UIView animateWithDuration:ANIMATE_DURATION animations:^{

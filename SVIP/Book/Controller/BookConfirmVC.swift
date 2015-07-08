@@ -40,23 +40,29 @@ class BookConfirmVC: UIViewController {
     updateSubviews()
   }
   /*
-  var userid: String!
-  var token: String!
-  var shopid: String!
-  var room_typeid: String!
-  var guest: String!
-  var guesttel: String!
-  var rooms: String!
-  var room_type: String!
-  var room_rate: String!
-  var arrival_date: String!
-  var departure_date: String!
+  "id": "3",
+  "shopid": "120",
+  "room": "豪华",
+  "image": "uploads/rooms/3.jpg",
+  "type": "大床",
+  "meat": "双早",
+  "pice": "888.00",
+  "logo": "uploads/shops/120.png",
+  "fullname": "长沙芙蓉国温德姆至尊豪廷大酒店"
   */
   func loadData() {
     order = BookOrder()
     if let selectedGoods = goods {
       order!.room_typeid = selectedGoods.goodsid
-      order!.room_type = selectedGoods.type
+      var room: String! = ""
+      var type: String! = ""
+      if selectedGoods.room != nil {
+        room = selectedGoods.room!
+      }
+      if selectedGoods.type != nil {
+        type = selectedGoods.type!
+      }
+      order!.room_type = "\(room)\(type)"//有问题的，order与goods字段对不上
       order!.room_rate = selectedGoods.pice
       order!.rooms = "1"
       
@@ -83,7 +89,10 @@ class BookConfirmVC: UIViewController {
       roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
     }
     
-    self.preference.text = "\(goods?.room)\(goods?.meat)"
+    if let preference = order?.room_type {
+      self.preference.text = preference
+    }
+    
     
 //    if let preference = goods?.keywords {
 //      self.preference.text = preference
@@ -106,7 +115,12 @@ class BookConfirmVC: UIViewController {
   
   func updateSubviews() {
     if inDate.date == nil {
-      inDate.date = NSDate()
+//      NSCalendar *calendar = self.datePicker.calendar;
+//      NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.datePicker.date];
+//      NSDate *tempDate = [self.datePicker.calendar dateFromComponents:components];
+      var calender = NSCalendar()
+      var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: NSDate())
+      inDate.date = calender .dateFromComponents(components)
     }
     
     if outDate.date == nil {
@@ -139,7 +153,11 @@ class BookConfirmVC: UIViewController {
   @IBAction func dateSelect(sender: BookDateButton) {
 
     BlurDatePickerView .showInView(self.view, startDate:sender == inDate ? NSDate() : (inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)), success: { (date: NSDate!) -> Void in
-      sender.date = date
+      
+      
+      var calender = NSCalendar()
+      var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: NSDate())
+      sender.date = calender .dateFromComponents(components)
       if sender == self.inDate {
         self.outDate.date = self.inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)
       }

@@ -12,6 +12,17 @@ class BookDateButton: UIButton {
 
   var baseTitle: String!
   var date: NSDate? {
+//    get {
+//      return date
+//    }
+//    set {
+//      let calendar = NSCalendar()
+//      let components =
+//    }
+//    NSCalendar *calendar = self.datePicker.calendar;
+//    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.datePicker.date];
+//    NSDate *tempDate = [self.datePicker.calendar dateFromComponents:components];
+    
     didSet {
       let formatter = NSDateFormatter()
       formatter.dateFormat = "yyyy年MM月dd日"
