@@ -354,9 +354,10 @@
   }];
 }
  */
-- (void)getShopGoodsWithShopID:(NSString *)shopID page:(NSInteger)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"shop/goods?shopid=%@&page=%ld", shopID, (long)page];
-  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+- (void)getShopGoodsPage:(NSInteger)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+//    NSString *urlString = [NSString stringWithFormat:@"shop/goods?shopid=%@&page=%ld", shopID, (long)page];
+    NSString *urlString = [NSString stringWithFormat:@"shop/goods?page=%ld", (long)page];
+    [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {

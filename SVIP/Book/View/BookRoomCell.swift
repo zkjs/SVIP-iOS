@@ -20,24 +20,38 @@ class BookRoomCell: UITableViewCell {
   var goods: RoomGoods? {
     didSet {
       if goods != nil {
-        name.text = goods!.name
+        name.text = goods!.fullname
         var nameStr = ""
         var priceStr = ""
-        if let a = goods?.name {
+        if let a = goods?.fullname {
           nameStr = a
         }
-        if let b = goods?.market_price {
+        if let b = goods?.pice {
           priceStr = b
         }
-        let tagStr = "  \(nameStr)   $\(priceStr)"
+        var room: String! = ""
+        var type: String! = ""
+        if goods?.room != nil {
+          room = goods?.room
+        }
+        if goods?.type != nil {
+          type = goods?.type
+        }
+        let tagStr = "  \(room)\(type)   $\(priceStr)"
         priceTag.text = tagStr
 
         let baseUrl = "http://172.21.7.54/"
-        if let goodsImage = goods?.goods_img {
+        if let goodsImage = goods?.image {
           let urlStr = baseUrl .stringByAppendingString(goodsImage)
           let placeholderImage = UIImage(named: "星空中心")
           let url = NSURL(string: urlStr)
           roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+        }
+        if let logo = goods?.logo {
+          let urlStr = baseUrl .stringByAppendingString(logo)
+          let placeholderImage = UIImage(named: "星空中心")
+          let url = NSURL(string: urlStr)
+          Avatar.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
         }
       }
     }

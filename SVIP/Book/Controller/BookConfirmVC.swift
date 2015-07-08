@@ -56,8 +56,8 @@ class BookConfirmVC: UIViewController {
     order = BookOrder()
     if let selectedGoods = goods {
       order!.room_typeid = selectedGoods.goodsid
-      order!.room_type = selectedGoods.name
-      order!.room_rate = selectedGoods.market_price
+      order!.room_type = selectedGoods.type
+      order!.room_rate = selectedGoods.pice
       order!.rooms = "1"
       
       //from others
@@ -76,16 +76,18 @@ class BookConfirmVC: UIViewController {
     outDate.baseTitle = "离开时间"
     
     let baseUrl = "http://172.21.7.54/"
-    if let goodsImage = goods?.goods_img {
+    if let goodsImage = goods?.image {
       let urlStr = baseUrl .stringByAppendingString(goodsImage)
       let placeholderImage = UIImage(named: "星空中心")
       let url = NSURL(string: urlStr)
       roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
     }
     
-    if let preference = goods?.keywords {
-      self.preference.text = preference
-    }
+    self.preference.text = "\(goods?.room)\(goods?.meat)"
+    
+//    if let preference = goods?.keywords {
+//      self.preference.text = preference
+//    }
     for button in optionButtonArray {
       button.layer.borderColor = UIColor .grayColor().CGColor
       button.layer.borderWidth = 1

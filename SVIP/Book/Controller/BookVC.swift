@@ -15,10 +15,11 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var selectionView: UIView!
 
-  @IBOutlet var singleSelectButtonArray: [BookItemButton]!
-  @IBOutlet var mutipleSelectButtonArray: [BookItemButton]!
+  @IBOutlet var leftSelectButtonArray: [BookItemButton]!
+  @IBOutlet var rightSelectButtonArray: [BookItemButton]!
 //Data
   var dataArray = NSMutableArray()
+  var filtedArray = NSMutableArray()
   var selectedRow : Int = 0
   
 //MARK:- FUNCTION
@@ -48,17 +49,17 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     let tap = UITapGestureRecognizer(target: self, action: Selector("searchMap:"))
     searchBar .addGestureRecognizer(tap)
     
-    for button in singleSelectButtonArray {
-      button .addTarget(self, action: NSSelectorFromString("singleSelect:"), forControlEvents: UIControlEvents.TouchUpInside)
+    for button in leftSelectButtonArray {
+      button .addTarget(self, action: NSSelectorFromString("categorySelect:"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
-    for button in mutipleSelectButtonArray {
-      button .addTarget(self, action: Selector("mutipleSelect:"), forControlEvents: UIControlEvents.TouchUpInside)
+    for button in rightSelectButtonArray {
+      button .addTarget(self, action: Selector("breakfastSelect:"), forControlEvents: UIControlEvents.TouchUpInside)
     }
   }
   
   func loadData() {
-    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID("120", page: 1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsPage(1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? Array<AnyObject> {
         for dict in arr {
 //        let aDic = dict as! NSDictionary
@@ -66,9 +67,11 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
           let goods = RoomGoods(dic: dict as? NSDictionary)
           self.dataArray.addObject(goods)
         }
-        self.tableView .reloadData()
-        self.selectedRow = 0
-        self.tableView .selectRowAtIndexPath(NSIndexPath(forRow: self.selectedRow, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Top)
+        
+        let button = self.leftSelectButtonArray.last
+        self .categorySelect(button!)
+        
+
       }
 //      let dataDic = responseObject as! NSDictionary
 //      for (airportCode, airportName) in dataDic {
@@ -77,9 +80,22 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 //        println(dataDic)
 //      print("abc")
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-    
     }
+  }
+  
+  func filtArray(keyString: String?)->NSMutableArray {
+    if keyString == "全部" {
+      return NSMutableArray(array: dataArray)
+    }
+    var mutArr = NSMutableArray()
+    for tempObject in dataArray {
+      let goods = tempObject as! RoomGoods
+      if goods.room == keyString {
+        mutArr .addObject(goods)
 
+      }
+    }
+    return mutArr
   }
   
   override func updateViewConstraints() {
@@ -98,15 +114,23 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
 
 //MARK:- BUTTON ACTION
-  func singleSelect(sender: UIButton) {
-    for button in singleSelectButtonArray {
+  func categorySelect(sender: UIButton) {
+    for button in leftSelectButtonArray {
       button.selected = false
     }
     sender.selected  = true
+    
+    filtedArray = self .filtArray(sender.titleLabel?.text)
+    tableView .reloadData()
+    self.selectedRow = 0
+    self.tableView .selectRowAtIndexPath(NSIndexPath(forRow: self.selectedRow, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Top)
   }
   
-  func mutipleSelect(sender: UIButton) {
-    sender.selected = !sender.selected
+  func breakfastSelect(sender: UIButton) {
+    for button in rightSelectButtonArray {
+      button.selected = false
+    }
+    sender.selected  = true
   }
   /*
   var goodsid: String?
@@ -133,8 +157,17 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   var departure_date: String!
   */
   @IBAction func book(sender: UIButton) {
+    if self.filtedArray.count == 0 {
+      return
+    }
+    let goods = self.filtedArray[selectedRow] as? RoomGoods
+    for button in rightSelectButtonArray {
+      if button.selected == true {
+        goods?.meat = button.titleLabel?.text
+      }
+    }
     let bookConfirmVC = BookConfirmVC.new()
-    bookConfirmVC.goods = self.dataArray[selectedRow] as? RoomGoods
+    bookConfirmVC.goods = goods
     self.navigationController! .pushViewController(bookConfirmVC, animated: true)
   }
   
@@ -148,11 +181,11 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.dataArray.count
+    return self.filtedArray.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 230
+    return 235
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -161,11 +194,14 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
       let arr = NSBundle .mainBundle() .loadNibNamed("BookRoomCell", owner: nil, options: nil) as Array
       cell = arr[0] as? BookRoomCell
     }
-//    if let order = dataArray?[indexPath.row] as? RoomGoods{
+//    if let order = filtedArray?[indexPath.row] as? RoomGoods{
 //      cell?.order = order as RoomGoods
 //    }
 
-    cell?.goods = (dataArray[indexPath.row] as! RoomGoods)
+    cell?.goods = (filtedArray[indexPath.row] as! RoomGoods)
+//    cell?.frame = CGRectMake(5, 5, tableView.frame.width - 10, 230)
+//    cell?.backgroundColor = UIColor.blueColor()
+//    cell?.contentView.backgroundColor = UIColor.yellowColor()
     return cell!
   }
   

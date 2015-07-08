@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookVC" customModule="SVIP" customModuleProvider="target">
@@ -17,13 +17,13 @@
                 <outletCollection property="layoutConstaintArray" destination="IuU-BF-P0Q" collectionClass="NSMutableArray" id="2fr-o1-iRM"/>
                 <outletCollection property="layoutConstaintArray" destination="IYk-ph-g5e" collectionClass="NSMutableArray" id="CHB-sc-Wtf"/>
                 <outletCollection property="layoutConstaintArray" destination="Tem-NG-LSV" collectionClass="NSMutableArray" id="vBy-fm-Jye"/>
-                <outletCollection property="singleSelectButtonArray" destination="Cy2-DJ-RW5" collectionClass="NSMutableArray" id="a3d-sg-U9Z"/>
-                <outletCollection property="mutipleSelectButtonArray" destination="c9Q-fL-bdf" collectionClass="NSMutableArray" id="8t3-pb-O0n"/>
-                <outletCollection property="singleSelectButtonArray" destination="7YT-lI-6Ku" collectionClass="NSMutableArray" id="ZtO-uO-WYs"/>
-                <outletCollection property="mutipleSelectButtonArray" destination="xa4-zZ-B1i" collectionClass="NSMutableArray" id="Wdk-EL-waw"/>
-                <outletCollection property="mutipleSelectButtonArray" destination="0n2-2z-0sa" collectionClass="NSMutableArray" id="yj3-qO-qY1"/>
-                <outletCollection property="singleSelectButtonArray" destination="LDO-6E-qw6" collectionClass="NSMutableArray" id="fTB-Fw-Jt8"/>
-                <outletCollection property="singleSelectButtonArray" destination="nRD-RG-GNm" collectionClass="NSMutableArray" id="0uI-4r-fiQ"/>
+                <outletCollection property="leftSelectButtonArray" destination="7YT-lI-6Ku" collectionClass="NSMutableArray" id="hgM-lt-l0a"/>
+                <outletCollection property="leftSelectButtonArray" destination="LDO-6E-qw6" collectionClass="NSMutableArray" id="8mq-Rx-Exf"/>
+                <outletCollection property="leftSelectButtonArray" destination="nRD-RG-GNm" collectionClass="NSMutableArray" id="zQw-Yp-syZ"/>
+                <outletCollection property="leftSelectButtonArray" destination="Cy2-DJ-RW5" collectionClass="NSMutableArray" id="O5S-oV-eta"/>
+                <outletCollection property="rightSelectButtonArray" destination="0n2-2z-0sa" collectionClass="NSMutableArray" id="BMy-DT-ySE"/>
+                <outletCollection property="rightSelectButtonArray" destination="xa4-zZ-B1i" collectionClass="NSMutableArray" id="VNL-ed-6aU"/>
+                <outletCollection property="rightSelectButtonArray" destination="c9Q-fL-bdf" collectionClass="NSMutableArray" id="HDJ-Hr-oyN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -88,38 +88,63 @@
                                     <exclude reference="0l1-fy-JZm"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="44" y="11" width="134" height="21"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="0l1-fy-JZm"/>
                                 </mask>
                             </variation>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="635-Lv-Wc5">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="LR2-pj-9gG"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="LR2-pj-9gG"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="LR2-pj-9gG"/>
+                                </mask>
+                            </variation>
+                        </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="ShC-Rr-gOU" firstAttribute="top" secondItem="nfC-ev-jFa" secondAttribute="top" id="0sy-ea-9Tb"/>
                         <constraint firstItem="rdc-lV-7ia" firstAttribute="top" secondItem="nfC-ev-jFa" secondAttribute="top" constant="11" id="11X-gp-vba"/>
+                        <constraint firstAttribute="trailing" secondItem="635-Lv-Wc5" secondAttribute="trailing" id="4bW-ec-T6Y"/>
                         <constraint firstItem="ShC-Rr-gOU" firstAttribute="leading" secondItem="nfC-ev-jFa" secondAttribute="leading" id="8gK-Lz-RRT"/>
                         <constraint firstAttribute="trailing" secondItem="Fxi-B0-0WB" secondAttribute="trailing" id="Jvz-Qd-D9w"/>
                         <constraint firstItem="Fxi-B0-0WB" firstAttribute="top" secondItem="nfC-ev-jFa" secondAttribute="top" id="bs3-l0-1ZF"/>
                         <constraint firstItem="rdc-lV-7ia" firstAttribute="leading" secondItem="ShC-Rr-gOU" secondAttribute="trailing" id="ev8-WD-rpT"/>
+                        <constraint firstAttribute="bottom" secondItem="635-Lv-Wc5" secondAttribute="bottom" constant="1" id="mFM-J0-hU3">
+                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                        </constraint>
                         <constraint firstAttribute="height" constant="44" id="pkf-jh-R49"/>
+                        <constraint firstItem="635-Lv-Wc5" firstAttribute="leading" secondItem="nfC-ev-jFa" secondAttribute="leading" id="zEm-4F-XXd"/>
                     </constraints>
                     <variation key="default">
                         <mask key="subviews">
                             <exclude reference="Fxi-B0-0WB"/>
                             <exclude reference="ShC-Rr-gOU"/>
                             <exclude reference="rdc-lV-7ia"/>
+                            <exclude reference="635-Lv-Wc5"/>
                         </mask>
                         <mask key="constraints">
                             <exclude reference="pkf-jh-R49"/>
+                            <exclude reference="0sy-ea-9Tb"/>
+                            <exclude reference="8gK-Lz-RRT"/>
+                            <exclude reference="4bW-ec-T6Y"/>
+                            <exclude reference="mFM-J0-hU3"/>
+                            <exclude reference="zEm-4F-XXd"/>
                             <exclude reference="11X-gp-vba"/>
                             <exclude reference="ev8-WD-rpT"/>
                             <exclude reference="Jvz-Qd-D9w"/>
                             <exclude reference="bs3-l0-1ZF"/>
-                            <exclude reference="0sy-ea-9Tb"/>
-                            <exclude reference="8gK-Lz-RRT"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
@@ -127,26 +152,22 @@
                             <include reference="Fxi-B0-0WB"/>
                             <include reference="ShC-Rr-gOU"/>
                             <include reference="rdc-lV-7ia"/>
+                            <include reference="635-Lv-Wc5"/>
                         </mask>
                         <mask key="constraints">
                             <include reference="pkf-jh-R49"/>
+                            <include reference="0sy-ea-9Tb"/>
+                            <include reference="8gK-Lz-RRT"/>
+                            <include reference="4bW-ec-T6Y"/>
+                            <include reference="mFM-J0-hU3"/>
+                            <include reference="zEm-4F-XXd"/>
                             <include reference="11X-gp-vba"/>
                             <include reference="ev8-WD-rpT"/>
                             <include reference="Jvz-Qd-D9w"/>
                             <include reference="bs3-l0-1ZF"/>
-                            <include reference="0sy-ea-9Tb"/>
-                            <include reference="8gK-Lz-RRT"/>
                         </mask>
                     </variation>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAp-Va-ite">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="6Zy-MM-F8R"/>
-                        <outlet property="delegate" destination="-1" id="OmW-b9-mfb"/>
-                    </connections>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCd-jM-dE4">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
@@ -157,7 +178,7 @@
                                 <constraint firstAttribute="height" constant="60" id="c6p-l9-Ifm"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="经济" image="ic_xuanze">
+                            <state key="normal" title="豪华" image="ic_xuanze">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -182,7 +203,7 @@
                                 <constraint firstAttribute="width" constant="30" id="XHJ-3c-3Fh"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="豪华" image="ic_xuanze">
+                            <state key="normal" title="商务" image="ic_xuanze">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -207,7 +228,7 @@
                                 <constraint firstAttribute="height" constant="60" id="cOY-wh-t28"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="商务" image="ic_xuanze">
+                            <state key="normal" title="行政" image="ic_xuanze">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -232,7 +253,7 @@
                                 <constraint firstAttribute="height" constant="60" id="enj-k8-jkn"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="全能" image="ic_xuanze">
+                            <state key="normal" title="全部" image="ic_xuanze">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -257,9 +278,8 @@
                                 <constraint firstAttribute="height" constant="60" id="A9G-Nn-MCM"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="双床" image="ic_gouxuan">
+                            <state key="normal" title="双早" image="ic_gouxuan">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="ic_gouxuan2"/>
                             <state key="highlighted" image="ic_gouxuan2"/>
@@ -270,6 +290,7 @@
                                 </mask>
                             </variation>
                             <variation key="heightClass=regular-widthClass=compact">
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <mask key="constraints">
                                     <include reference="9FD-HW-riX"/>
                                     <include reference="A9G-Nn-MCM"/>
@@ -283,7 +304,7 @@
                                 <constraint firstAttribute="width" constant="30" id="sUO-0x-q3M"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="含早" image="ic_gouxuan">
+                            <state key="normal" title="单早" image="ic_gouxuan">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -309,7 +330,7 @@
                                 <constraint firstAttribute="width" constant="30" id="Ru9-Pc-Qaa"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="无烟" image="ic_gouxuan">
+                            <state key="normal" title="无早" image="ic_gouxuan">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -467,6 +488,14 @@
                         </mask>
                     </variation>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAp-Va-ite">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="6Zy-MM-F8R"/>
+                        <outlet property="delegate" destination="-1" id="OmW-b9-mfb"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -487,8 +516,8 @@
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="nfC-ev-jFa"/>
-                    <exclude reference="lAp-Va-ite"/>
                     <exclude reference="kCd-jM-dE4"/>
+                    <exclude reference="lAp-Va-ite"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="MEZ-6x-mif"/>
@@ -506,8 +535,8 @@
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="nfC-ev-jFa"/>
-                    <include reference="lAp-Va-ite"/>
                     <include reference="kCd-jM-dE4"/>
+                    <include reference="lAp-Va-ite"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="MEZ-6x-mif"/>

@@ -41,33 +41,40 @@ import UIKit
 "shopid": "120",
 "cat_name": "\u8c6a\u534e\u53cc\u5e8a"
 */
+
+/*
+"id": "3",
+"shopid": "120",
+"room": "豪华",
+"image": "uploads/rooms/3.jpg",
+"type": "大床",
+"meat": "双早",
+"pice": "888.00",
+"logo": "uploads/shops/120.png",
+"fullname": "长沙芙蓉国温德姆至尊豪廷大酒店"
+*/
 class RoomGoods: NSObject {
   var goodsid: String?
-  var name: String?
-  var unit: String?
-  var goods_brief: String?
-  var goods_desc: String?
-  var cat_id: String?
-  var keywords: String?
-  var goods_img: String?
-  var market_price: String?
-//  var <#string#>: String
-//  var <#string#>: String
-//  var <#string#>: String
-//  var <#string#>: String
-  var cat_name: String?
+  var shopid: String?
+  var room: String?
+  var image: String?
+  var type: String?
+  var meat: String?
+  var pice: String?
+  var logo: String?
+  var fullname: String?
 
   init(dic: NSDictionary?) {
     if dic != nil{
-      goodsid = dic!["goodsid"] as? String
-      name = dic!["name"] as? String
-      unit = dic!["unit"] as? String
-      goods_brief = dic!["goods_brief"] as? String
-      goods_desc = dic!["goods_desc"] as? String
-      cat_id = dic!["cat_id"] as? String
-      keywords = dic!["keywords"] as? String
-      goods_img = dic!["goods_img"] as? String
-      market_price = dic!["market_price"] as? String
+      goodsid = dic!["id"] as? String
+      shopid = dic!["shopid"] as? String
+      room = dic!["room"] as? String
+      image = dic!["image"] as? String
+      type = dic!["type"] as? String
+      meat = dic!["meat"] as? String
+      pice = dic!["pice"] as? String
+      logo = dic!["logo"] as? String
+      fullname = dic!["fullname"] as? String
     }
   }
 }
