@@ -71,7 +71,7 @@
   
   self.messageSender = @"我";
   self.messageReceiver = self.receiverName;
-  self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
+  self.senderID = @"120_2";//[JSHAccountManager sharedJSHAccountManager].userid;
   self.senderName = [JSHStorage baseInfo].name;
   self.shopID = @"120";
   
@@ -138,6 +138,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  
+  [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
   
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   NSDictionary *dictionary = @{

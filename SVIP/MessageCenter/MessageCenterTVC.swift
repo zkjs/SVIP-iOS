@@ -70,6 +70,10 @@ class MessageCenterTVC: UITableViewController {
       }
     }
     
+    if UIApplication.sharedApplication().applicationIconBadgeNumber > 0 {
+      cell.logo.badgeString = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
+    }
+    
     return cell
   }
   

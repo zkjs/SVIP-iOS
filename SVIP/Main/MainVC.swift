@@ -36,10 +36,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
-//    rightButton.badgeBackgroundColor = UIColor.redColor()
-//    rightButton.badgeString = "1"
-    
     let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
     println("Bounds: \(UIScreen.mainScreen().bounds)")
     motionView.delegate = self
@@ -50,6 +46,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     motionView.scrollBounceEnabled = false
     self.view.addSubview(motionView)
     self.view.sendSubviewToBack(motionView)
+    
+    rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
+    rightButton.badgeBackgroundColor = UIColor.redColor()
+    rightButton.badgeString = nil
     
     setupBeaconMonitor()
     
@@ -82,6 +82,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       self.determineCurrentRegionState()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
+    }
+    
+    if UIApplication.sharedApplication().applicationIconBadgeNumber > 0 {
+      rightButton.badgeString = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
     }
   }
   

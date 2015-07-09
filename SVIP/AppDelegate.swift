@@ -68,15 +68,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     println(userInfo)
     
     if let type = userInfo["type"] as? String {
-      let alertView = UIAlertController(title: "新消息", message: "您有新消息", preferredStyle: .Alert)
-      alertView.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
-      alertView.addAction(UIAlertAction(title: "查看", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
-        let navController = UINavigationController(rootViewController: JSHChatVC(chatType: ChatType.OldSession))
-        navController.navigationBar.tintColor = UIColor.blackColor()
-        navController.navigationBar.translucent = false
-        self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
-      }))
-      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+      if type == "newMessage" {
+        UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+        let alertView = UIAlertController(title: "新消息", message: "您有新消息", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+        alertView.addAction(UIAlertAction(title: "查看", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+          let navController = UINavigationController(rootViewController: JSHChatVC(chatType: ChatType.OldSession))
+          navController.navigationBar.tintColor = UIColor.blackColor()
+          navController.navigationBar.translucent = false
+          self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
+        }))
+        window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+      }
     }
   }
   
@@ -85,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
       let userID = JSHAccountManager.sharedJSHAccountManager().userid
       let userName = JSHStorage.baseInfo().name
-      ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
+      ZKJSTCPSessionManager.sharedInstance().clientLogin("120_2", name: userName, deviceToken: deviceToken)
     }
   }
   
