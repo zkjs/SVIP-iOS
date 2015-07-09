@@ -65,11 +65,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-//    let aps = userInfo["aps"] as! NSDictionary
-//    let alertMessage = aps["alert"] as! String
-//    let alert = UIAlertView(title: "新消息通知", message: alertMessage, delegate: nil, cancelButtonTitle: "了解")
-//    alert.show()
     println(userInfo)
+    
+    if let type = userInfo["type"] as? String {
+      let alertView = UIAlertController(title: "新消息", message: "您有新消息", preferredStyle: .Alert)
+      alertView.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+      alertView.addAction(UIAlertAction(title: "查看", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+        let navController = UINavigationController(rootViewController: JSHChatVC(chatType: ChatType.OldSession))
+        navController.navigationBar.tintColor = UIColor.blackColor()
+        navController.navigationBar.translucent = false
+        self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
+      }))
+      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+    }
   }
   
   // MARK: - TCPSessionManagerDelegate

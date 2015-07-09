@@ -89,10 +89,6 @@
   [self loadDataSource];
   
   [self setupNotification];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
   
   self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
   
@@ -135,6 +131,18 @@
     default:
       break;
   }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSDictionary *dictionary = @{
+                               @"type": [NSNumber numberWithInteger:MessageServiceChatOfflineMssage],
+                               @"timestamp": timestamp,
+                               @"userid": self.senderID
+                               };
+  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -628,19 +636,37 @@
   [center addObserver:self selector:@selector(showVoiceMessage:) name:@"MessageServiceChatCustomerServiceMediaChatNotification" object:nil];
 }
 
+- (void)sendReadAcknowledge:(NSDictionary *)userInfo {
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSDictionary *dictionary = @{
+                               @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceSessionMsgReadAck],
+                               @"timestamp": timestamp,
+                               @"shopid": userInfo[@"shopid"],
+                               @"sessionid": userInfo[@"seqid"],
+                               @"seqid": userInfo[@"seqid"],
+                               @"fromid": self.senderID,
+                               @"toid": userInfo[@"fromid"]
+                               };
+  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+}
+
 - (void)showTextMessage:(NSNotification *)notification {
   NSString *sender = notification.userInfo[@"fromid"];
   NSString *text = notification.userInfo[@"textmsg"];
   
   XHMessage *message;
-  NSDate *timestamp = [NSDate date];
-  message = [[XHMessage alloc] initWithText:text sender:sender timestamp:timestamp];
+  message = [[XHMessage alloc] initWithText:text sender:sender timestamp:[NSDate date]];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
   
   [self.messages addObject:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
+  
+  if ([notification.userInfo[@"isreadack"] isEqual: @1]) {
+    // 发送回执
+    [self sendReadAcknowledge:notification.userInfo];
+  }
 }
 
 - (void)showVoiceMessage:(NSNotification *)notification {
@@ -661,6 +687,11 @@
   [self.messages addObject:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
+  
+  if ([notification.userInfo[@"isreadack"] isEqual: @1]) {
+    // 发送回执
+    [self sendReadAcknowledge:notification.userInfo];
+  }
 }
 
 - (void)showImageMessage:(NSNotification *)notification {
@@ -678,6 +709,11 @@
   [self.messages addObject:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
+  
+  if ([notification.userInfo[@"isreadack"] isEqual: @1]) {
+    // 发送回执
+    [self sendReadAcknowledge:notification.userInfo];
+  }
 }
 
 - (NSString *)getVoiceDuration:(NSString *)recordPath {

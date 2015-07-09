@@ -44,6 +44,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //    rightButton.badgeString = "1"
     
     let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
+    println("Bounds: \(UIScreen.mainScreen().bounds)")
     motionView.delegate = self
     motionView.motionEnabled = true
     motionView.scrollIndicatorEnabled = false

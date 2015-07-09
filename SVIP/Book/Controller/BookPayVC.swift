@@ -52,8 +52,8 @@ class BookPayVC: UIViewController {
   @IBAction func payInHotel(sender: UIButton) {
     
 
-    let chatVC = JSHChatVC(chatType: .CallingWaiter)
-    chatVC.location = "不在酒店"
+    // Hanton
+    let chatVC = JSHChatVC(chatType: .NewSession)
 //    let navController = UINavigationController(rootViewController: chatVC)
 //    navController.navigationBar.tintColor = UIColor.blackColor()
 //    navController.navigationBar.translucent = false

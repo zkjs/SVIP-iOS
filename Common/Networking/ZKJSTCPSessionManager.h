@@ -213,7 +213,15 @@ typedef NS_ENUM(NSInteger, MessageServiceChatType) {
   
   //图片
   MessageServiceChatCustomerServiceImgChat     = 145,
-  MessageServiceChatCustomerServiceImgChat_RSP = 146
+  MessageServiceChatCustomerServiceImgChat_RSP = 146,
+  
+  //消息回执
+  MessageServiceChatCustomerServiceSessionMsgReadAck     = 212,
+  MessageServiceChatCustomerServiceSessionMsgReadAck_RSP = 213,
+  
+  //得到离线消息
+  MessageServiceChatOfflineMssage     = 225,
+  MessageServiceChatOfflineMssage_RSP = 226
 };
 
 

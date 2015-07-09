@@ -75,13 +75,13 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分: 5268" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-PS-l0y">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分: 5268" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-PS-l0y">
                     <rect key="frame" x="261" y="264" width="78" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等级: 白金VIP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSK-gV-KA7">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等级: 白金VIP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSK-gV-KA7">
                     <rect key="frame" x="251" y="290" width="98" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,7 +93,7 @@
                         <constraint firstAttribute="height" constant="44" id="hhz-U3-Igv"/>
                         <constraint firstAttribute="width" constant="44" id="xVQ-a0-SsD"/>
                     </constraints>
-                    <state key="normal" image="ic_bianji">
+                    <state key="normal" image="ic_shezhi">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -157,16 +157,16 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXH-2x-ccw">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_nor" translatesAutoresizingMaskIntoConstraints="NO" id="X9I-KF-gBo">
                     <rect key="frame" x="270" y="532" width="60" height="60"/>
                     <gestureRecognizers/>
                 </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yoc-zo-8Kk">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="9qo-35-bbF" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="bottom" constant="8" id="1QE-jn-4ds"/>
                 <constraint firstAttribute="bottom" secondItem="X9I-KF-gBo" secondAttribute="bottom" constant="8" id="2UU-91-8da"/>
@@ -199,7 +199,7 @@
                     <exclude reference="fim-LM-RKc"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="369" y="565"/>
+            <point key="canvasLocation" x="436" y="614"/>
         </view>
         <tapGestureRecognizer id="4In-aJ-VYO">
             <connections>
@@ -214,9 +214,9 @@
     </objects>
     <resources>
         <image name="bg_dongtai" width="350" height="178"/>
-        <image name="ic_bianji" width="16" height="18"/>
         <image name="ic_home_nor" width="60" height="60"/>
         <image name="ic_mi" width="9" height="8"/>
+        <image name="ic_shezhi" width="26" height="26"/>
         <image name="ic_xiaoxi" width="42" height="42"/>
         <image name="ic_zuji" width="42" height="42"/>
         <image name="img_logo1" width="43" height="43"/>
