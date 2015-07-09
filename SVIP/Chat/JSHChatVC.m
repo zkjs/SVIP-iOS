@@ -91,6 +91,9 @@
   [self setupNotification];
   
   self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
+  if (!self.sessionID) {
+    self.sessionID = [self newSessionID];
+  }
   
   switch (self.chatType) {
     case ChatNewSession: {
@@ -561,6 +564,9 @@
 }
 
 - (void)saveDataSource {
+  if (self.messages.count != 0) {
+    [self saveLastChatMessage:self.messages.lastObject];
+  }
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -571,6 +577,34 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
     [data writeToFile:filePath atomically:YES];
   });
+}
+
+- (void)saveLastChatMessage:(XHMessage*)message {
+  NSMutableDictionary *chatMessage = [NSMutableDictionary dictionary];
+  if (message.messageMediaType == XHBubbleMessageMediaTypeText) {
+    chatMessage[@"message"] = message.text;
+  } else if (message.messageMediaType == XHBubbleMessageMediaTypePhoto) {
+    chatMessage[@"message"] = @"图片消息";
+  } else if (message.messageMediaType == XHBubbleMessageMediaTypeVoice) {
+    chatMessage[@"message"] = @"语音消息";
+  }
+  NSDate *now = [NSDate date];
+  NSInteger duration = [NSDate daysFromDate:message.timestamp toDate:now];
+  if (duration == 0) {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"HH:mm"];
+    chatMessage[@"date"] = [NSString stringWithFormat:@"今天%@", [dateFormat stringFromDate:message.timestamp]];
+  } else if (duration == 1) {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"HH:mm"];
+    chatMessage[@"date"] = [NSString stringWithFormat:@"昨天%@", [dateFormat stringFromDate:message.timestamp]];
+  } else {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM-dd"];
+    chatMessage[@"date"] = [dateFormat stringFromDate:message.timestamp];
+  }
+  
+  [[StorageManager sharedInstance] updateLastChatMessage:chatMessage shopID:@"120"];
 }
 
 - (void)sendTextMessage:(NSString *)text {
@@ -625,6 +659,11 @@
 
 - (void)dismissSelf {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSString *)newSessionID {
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  return [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
 }
 
 #pragma mark - Notifications

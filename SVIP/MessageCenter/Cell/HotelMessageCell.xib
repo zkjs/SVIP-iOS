@@ -13,27 +13,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="宁城海景国际酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Vfe-Mp-6Mi">
-                        <rect key="frame" x="82" y="20" width="171" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="长沙芙蓉国温德姆至尊豪廷大酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="Vfe-Mp-6Mi">
+                        <rect key="frame" x="82" y="20" width="180" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客服已经和您确认订单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3Y-vX-L4x">
-                        <rect key="frame" x="84" y="45" width="130" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="客服已经和您确认订单" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3Y-vX-L4x">
+                        <rect key="frame" x="84" y="45" width="160" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昨天08:39" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm0-9t-Rkm">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昨天08:39" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm0-9t-Rkm">
                         <rect key="frame" x="252" y="45" width="60" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已确认" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1y3-J4-1Uv">
-                        <rect key="frame" x="261" y="20" width="51" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已确认" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1y3-J4-1Uv">
+                        <rect key="frame" x="270" y="23" width="42" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -55,11 +55,12 @@
                     <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="leading" secondItem="8eh-bz-dOD" secondAttribute="trailing" constant="8" symbolic="YES" id="NOQ-uq-4jC"/>
                     <constraint firstAttribute="trailing" secondItem="mm0-9t-Rkm" secondAttribute="trailing" constant="8" id="Ql9-JA-ECX"/>
                     <constraint firstItem="G3Y-vX-L4x" firstAttribute="leading" secondItem="8eh-bz-dOD" secondAttribute="trailing" constant="10" id="XKr-d5-MRe"/>
-                    <constraint firstItem="mm0-9t-Rkm" firstAttribute="top" secondItem="1y3-J4-1Uv" secondAttribute="bottom" constant="4" id="mIH-ff-eGq"/>
+                    <constraint firstItem="mm0-9t-Rkm" firstAttribute="top" secondItem="1y3-J4-1Uv" secondAttribute="bottom" constant="5" id="mIH-ff-eGq"/>
                     <constraint firstItem="8eh-bz-dOD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="msl-hw-pwH"/>
                     <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="oSM-k9-ak9"/>
+                    <constraint firstItem="mm0-9t-Rkm" firstAttribute="leading" secondItem="G3Y-vX-L4x" secondAttribute="trailing" constant="8" id="rRG-gy-MBc"/>
                     <constraint firstItem="1y3-J4-1Uv" firstAttribute="leading" secondItem="Vfe-Mp-6Mi" secondAttribute="trailing" constant="8" id="tcT-05-cy5"/>
-                    <constraint firstItem="1y3-J4-1Uv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="vkV-cR-wxA"/>
+                    <constraint firstItem="1y3-J4-1Uv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="vkV-cR-wxA"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

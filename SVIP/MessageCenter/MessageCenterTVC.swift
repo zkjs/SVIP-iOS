@@ -23,6 +23,10 @@ class MessageCenterTVC: UITableViewController {
     tableView.tableFooterView = UIView()
   }
   
+  override func viewWillAppear(animated: Bool) {
+    tableView.reloadData()
+  }
+  
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -40,12 +44,33 @@ class MessageCenterTVC: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
   let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
   
-  cell.name.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
-  cell.tips.text = ""
-  cell.status.text = ""
-  cell.date.text = ""
-  
-  return cell
+    cell.name.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
+    
+    if let chatMessage = StorageManager.sharedInstance().lastChatMessage("120") {
+      cell.tips.text = chatMessage["message"]
+      cell.date.text = chatMessage["date"]
+    }
+    
+    if let order = StorageManager.sharedInstance().lastOrder() {
+      if let status = order["status"] {
+        switch status {
+          case "0":
+          cell.status.text = "可取消"
+          case "1":
+          cell.status.text = "已取消"
+          case "2":
+          cell.status.text = "已确定"
+          case "3":
+          cell.status.text = "已完成"
+          case "5":
+          cell.status.text = "已删除"
+        default:
+          break
+        }
+      }
+    }
+    
+    return cell
   }
   
   // MARK: - Table view delegate

@@ -51,6 +51,16 @@ class StorageManager: NSObject {
     defaults.synchronize()
   }
   
+  func lastChatMessage(shopID: String) -> [String: String]? {
+    return NSUserDefaults.standardUserDefaults().objectForKey(shopID) as? [String: String]
+  }
+  
+  func updateLastChatMessage(message: [String: String]?, shopID: String) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(message, forKey: shopID)
+    defaults.synchronize()
+  }
+  
   func chatSession(shopID: String) -> String? {
     return NSUserDefaults.standardUserDefaults().objectForKey(shopID) as? String
   }

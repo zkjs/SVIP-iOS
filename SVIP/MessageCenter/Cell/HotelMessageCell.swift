@@ -30,6 +30,10 @@ class HotelMessageCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     
+    name.text = ""
+    status.text = ""
+    tips.text = ""
+    date.text = ""
 //    logo.badgeEdgeInsets = UIEdgeInsetsMake(15.0, 0.0, 0.0, 10.0)
 //    logo.badgeBackgroundColor = UIColor.redColor()
 //    logo.badgeString = "1"
