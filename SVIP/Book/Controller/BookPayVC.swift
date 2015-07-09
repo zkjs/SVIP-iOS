@@ -119,8 +119,13 @@ class BookPayVC: UIViewController {
 //      service .payOrder("abc", fromScheme: "abc", callback: { (resultDic: AnyObject!) -> Void in
 //
 //      })
-      service .payOrder(orderString, fromScheme: appScheme, callback: { ([NSObject : AnyObject]!) -> Void in
-        
+      service .payOrder(orderString, fromScheme: appScheme, callback: { (aDictionary) -> Void in
+        let resultStatus = aDictionary["resultStatus"] as! String
+        let result = aDictionary["result"] as! NSString
+        if self.validateResult(result) && resultStatus == "9000" {
+          //支付成功,跳到聊天
+          
+        }
       })
       
     }
@@ -137,6 +142,15 @@ class BookPayVC: UIViewController {
 //
 //    }
 
+  }
+  
+  func validateResult(result: NSString) -> Bool{
+//    let resultRange = NSRange(location: 0, length: count(result))
+//    let locale = NSLocale.systemLocale()
+//    result .rangeOfString("success=\"", options: NSStringCompareOptions.LiteralSearch, range: resultRange, locale:locale)
+    let range = result .rangeOfString("success=\"")
+    let str = result .substringWithRange(NSRange(location: range.location + range.length, length: 4))
+    return str == "true"
   }
   
   
