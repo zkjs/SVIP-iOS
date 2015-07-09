@@ -16,14 +16,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   @IBOutlet weak var mainButton: UIButton!
   @IBOutlet weak var leftButton: UIButton!
   @IBOutlet weak var rightButton: MIBadgeButton!
-  
-  @IBOutlet weak var roomType: UILabel!
-  @IBOutlet weak var date: UILabel!
-  @IBOutlet weak var duration: UILabel!
-  @IBOutlet weak var statusLogo: UIImageView!
-  @IBOutlet weak var statusLabel: UILabel!
-  @IBOutlet weak var tipsLabel: UIButton!
 
+  @IBOutlet weak var statusLabel: UIButton!
+  @IBOutlet weak var infoLabel: UILabel!
+  @IBOutlet weak var tipsLabel: UIButton!
+  
   let beaconManager = ESTBeaconManager()
   
   var beaconRegions = [String: [String: String]]()
@@ -245,51 +242,57 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     startDateString = dateFormatter.stringFromDate(startDate!)
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
-    roomType.hidden = true
-    date.hidden = true
-    duration.hidden = true
+    infoLabel.hidden = true
     switch ruleType {
     case .InRegion_HasOrder_Checkin:
-      statusLabel.text = "您已经到达酒店大堂"
-      statusLogo.image = UIImage(named: "sl_ruzhu")
+      statusLabel.setTitle(" 您已经到达酒店大堂", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_ruzhu"), forState: .Normal)
+      var roomType = ""
+      if let room_type = order!["room_type"] {
+        roomType = room_type
+      }
+      let date = "\(startDateString!)入住"
+      let duration = "\(days)晚"
+      infoLabel.text = "\(roomType) | \(date) | \(duration)";
+      infoLabel.sizeToFit()
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
     case .InRegion_HasOrder_UnCheckin:
-      roomType.hidden = false
-      date.hidden = false
-      duration.hidden = false
-      roomType.text = order!["room_type"]
-      roomType.sizeToFit()
-      date.text = "\(startDateString!)入住"
-      date.sizeToFit()
-      duration.text = "\(days)晚"
-      duration.sizeToFit()
-      statusLabel.text = "您已经到达酒店大堂,请办理入住手续"
-      statusLogo.image = UIImage(named: "sl_dating")
+      infoLabel.hidden = false
+      statusLabel.setTitle(" 您已经到达酒店大堂,请办理入住手续", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_dating"), forState: .Normal)
+      var roomType = ""
+      if let room_type = order!["room_type"] {
+        roomType = room_type
+      }
+      let date = "\(startDateString!)入住"
+      let duration = "\(days)晚"
+      infoLabel.text = "\(roomType) | \(date) | \(duration)";
+      infoLabel.sizeToFit()
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
     case .InRegion_NoOrder:
-      statusLabel.text = "您已经在酒店大堂,请尽快预订酒店"
-      statusLogo.image = UIImage(named: "sl_dating")
+      statusLabel.setTitle(" 您已经在酒店大堂,请尽快预订酒店", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_dating"), forState: .Normal)
       tipsLabel.setTitle(" 点击智键预订酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:
-      statusLabel.text = "您不在酒店,请注意保管好财物"
-      statusLogo.image = UIImage(named: "sl_ruzhu")
+      statusLabel.setTitle(" 您不在酒店,请注意保管好财物", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_ruzhu"), forState: .Normal)
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:
-      roomType.hidden = false
-      date.hidden = false
-      duration.hidden = false
-      roomType.text = order!["room_type"]
-      roomType.sizeToFit()
-      date.text = "\(startDateString!)入住"
-      date.sizeToFit()
-      duration.text = "\(days)晚"
-      duration.sizeToFit()
-      statusLabel.text = "请注意您的行程,按时入住酒店"
-      statusLogo.image = UIImage(named: "sl_dengdai")
+      infoLabel.hidden = false
+      statusLabel.setTitle(" 请注意您的行程,按时入住酒店", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
+      var roomType = ""
+      if let room_type = order!["room_type"] {
+        roomType = room_type
+      }
+      let date = "\(startDateString!)入住"
+      let duration = "\(days)晚"
+      infoLabel.text = "\(roomType) | \(date) | \(duration)";
+      infoLabel.sizeToFit()
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
     case .OutOfRegion_NoOrder:
-      statusLabel.text = "您没有任何预订信息"
-      statusLogo.image = UIImage(named: "sl_wu")
+      statusLabel.setTitle(" 您没有任何预订信息", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
       tipsLabel.setTitle(" 请按智键进行预订", forState: .Normal)
     }
     println("Update Smart Panel")

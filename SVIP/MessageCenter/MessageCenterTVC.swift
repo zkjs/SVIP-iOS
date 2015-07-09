@@ -10,7 +10,7 @@ import UIKit
 
 class MessageCenterTVC: UITableViewController {
   
-  // MARK: Life cycle
+  // MARK: - Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -61,5 +61,5 @@ class MessageCenterTVC: UITableViewController {
   func dismissSelf() -> Void {
     dismissViewControllerAnimated(true, completion: nil)
   }
-  
+
 }
