@@ -65,25 +65,54 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     ZKJSHTTPSessionManager.sharedInstance().getOrderListWithUserID(userID, token: token, page: "1", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        let orderArray = responseObject as! NSArray
-        if orderArray.count > 0 {
-          let lastOrder = orderArray.firstObject as! NSDictionary
-          var order = [String: String]()
-          order["status"] = lastOrder["status"] as? String
-          order["arrival_date"] = lastOrder["arrival_date"] as? String
-          order["departure_date"] = lastOrder["departure_date"] as? String
-          order["room_type"] = lastOrder["room_type"] as? String
-          order["guest"] = lastOrder["guest"] as? String
-          order["guesttel"] = lastOrder["guesttel"] as? String
-          order["reservation_no"] = lastOrder["reservation_no"] as? String
-          order["room_rate"] = lastOrder["room_rate"] as? String
-          StorageManager.sharedInstance().updateLastOrder(order)
-        } else {
-          StorageManager.sharedInstance().updateLastOrder(nil)
-        }
-        self.updateSmartPanel()
+      let orderArray = responseObject as! NSArray
+      if orderArray.count > 0 {
+        let lastOrder = orderArray.firstObject as! NSDictionary
+        var order = [String: String]()
+        order["status"] = lastOrder["status"] as? String
+        order["arrival_date"] = lastOrder["arrival_date"] as? String
+        order["departure_date"] = lastOrder["departure_date"] as? String
+        order["room_type"] = lastOrder["room_type"] as? String
+        order["guest"] = lastOrder["guest"] as? String
+        order["guesttel"] = lastOrder["guesttel"] as? String
+        order["reservation_no"] = lastOrder["reservation_no"] as? String
+        order["room_rate"] = lastOrder["room_rate"] as? String
+        StorageManager.sharedInstance().updateLastOrder(order)
+      } else {
+        StorageManager.sharedInstance().updateLastOrder(nil)
+      }
+      self.determineCurrentRegionState()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
+    }
+  }
+  
+  func determineCurrentRegionState() {
+    if let beaconInfo = StorageManager.sharedInstance().lastBeacon() {
+      let uuid = beaconInfo["uuid"]
+      let majorString = beaconInfo["major"]
+      let minorString = beaconInfo["minor"]
+      let identifier = "DetermineCurrentRegionState"
+      var major = 0
+      var minor = 0
+      if let majorValue = majorString?.toInt() {
+        major = majorValue
+      }
+      if let minorValue = minorString?.toInt() {
+        minor = minorValue
+      }
+      if minor == 0 && major == 0 {
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
+        beaconManager.requestStateForRegion(beaconRegion)
+      } else if minor == 0 {
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
+        beaconManager.requestStateForRegion(beaconRegion)
+      } else {
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
+        beaconManager.requestStateForRegion(beaconRegion)
+      }
+    } else {
+      self.updateSmartPanel()
     }
   }
   
@@ -138,7 +167,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
           beaconManager.startMonitoringForRegion(beaconRegion)
-//          didEnterBeaconRegion(beaconRegion)
         } else {
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
           beaconRegion.notifyOnExit = true
@@ -229,8 +257,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       date.hidden = false
       duration.hidden = false
       roomType.text = order!["room_type"]
+      roomType.sizeToFit()
       date.text = "\(startDateString!)入住"
+      date.sizeToFit()
       duration.text = "\(days)晚"
+      duration.sizeToFit()
       statusLabel.text = "您已经到达酒店大堂,请办理入住手续"
       statusLogo.image = UIImage(named: "sl_dating")
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
@@ -247,8 +278,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       date.hidden = false
       duration.hidden = false
       roomType.text = order!["room_type"]
+      roomType.sizeToFit()
       date.text = "\(startDateString!)入住"
+      date.sizeToFit()
       duration.text = "\(days)晚"
+      duration.sizeToFit()
       statusLabel.text = "请注意您的行程,按时入住酒店"
       statusLogo.image = UIImage(named: "sl_dengdai")
       tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
@@ -339,6 +373,16 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - ESTBeaconManagerDelegate
+  func beaconManager(manager: AnyObject!, didDetermineState state: CLRegionState, forRegion region: CLBeaconRegion!) {
+    if region.identifier == "DetermineCurrentRegionState" {
+      println(state.rawValue)
+      if state != CLRegionState.Inside {
+        StorageManager.sharedInstance().updateLastBeacon(nil)
+      }
+      self.updateSmartPanel()
+    }
+  }
+  
   func beaconManager(manager: AnyObject!, didEnterRegion region: CLBeaconRegion!) {
     didEnterBeaconRegion(region)
   }
@@ -350,10 +394,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   // MARK: - UINavigationControllerDelegate
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-//    if operation == UINavigationControllerOperation.Push {
+    if operation == UINavigationControllerOperation.Push {
       return JSHAnimator()
-//    }
-//    return nil
+    }
+    return nil
   }
   
 }

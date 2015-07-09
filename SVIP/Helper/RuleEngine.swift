@@ -60,7 +60,7 @@ class RuleEngine: NSObject {
           return RuleType.OutOfRegion_NoOrder
         } else if orderInfo["status"] == "1" {
           // 已取消
-          return RuleType.InRegion_NoOrder
+          return RuleType.OutOfRegion_NoOrder
         } else {
           // 未入住
           return RuleType.OutOfRegion_HasOrder_UnCheckin

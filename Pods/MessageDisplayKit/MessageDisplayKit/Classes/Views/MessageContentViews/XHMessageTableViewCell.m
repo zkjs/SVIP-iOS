@@ -405,6 +405,8 @@ static const CGFloat kXHBubbleMessageViewPadding = 8;
         }
         
         UIButton *avatarButton = [[UIButton alloc] initWithFrame:avatarButtonFrame];
+      avatarButton.layer.cornerRadius = avatarButtonFrame.size.width / 2.0;
+      avatarButton.layer.masksToBounds = YES;
         [avatarButton setImage:[XHMessageAvatarFactory avatarImageNamed:[UIImage imageNamed:@"avatar"] messageAvatarType:XHMessageAvatarTypeCircle] forState:UIControlStateNormal];
         [avatarButton addTarget:self action:@selector(avatarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:avatarButton];

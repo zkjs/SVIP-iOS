@@ -153,8 +153,8 @@
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendTextMessage:text];
   XHMessage *message = [[XHMessage alloc] initWithText:text sender:sender timestamp:date];
-  message.avatar = [UIImage imageNamed:@"ic_home_nor"];
-//  message.avatarUrl = [[NSBundle mainBundle] pathForResource:@"ic_home_nor" ofType:@"png"];;
+  message.avatar = [JSHStorage baseInfo].avatarImage;
+//  message.avatarUrl = [[NSBundle mainBundle] pathForResource:@"ic_home_nor" ofType:@"png"];
   
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
