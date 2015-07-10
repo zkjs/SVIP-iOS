@@ -43,6 +43,13 @@ class BookDateButton: UIButton {
       }
     }
   }
+  
+  override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
+    var rect = super.imageRectForContentRect(contentRect)
+    rect.origin.x = contentRect.width - rect.width
+
+    return rect
+  }
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
