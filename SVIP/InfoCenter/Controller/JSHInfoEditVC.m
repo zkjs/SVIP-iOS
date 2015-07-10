@@ -148,7 +148,9 @@ static NSString *identifier = @"infoCenterCell";
 //    baseInfo.position = @"IT工程师";
 //    baseInfo.company = @"360公司";
 
-    
+    UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"星空default"]];
+    bg.frame = self.view.bounds;
+    [self.view addSubview:bg];
     JSHInfoEditHeaderFrame *headerFrame = [[JSHInfoEditHeaderFrame alloc] init];
 //    headerFrame.baseInfo = baseInfo;
     headerFrame.Edit = YES;
@@ -174,7 +176,7 @@ static NSString *identifier = @"infoCenterCell";
     _tableView.dataSource = self;
     _tableView.bounces = NO;
 //    _tableView.tableHeaderView = _editHeader;
-    [self.view addSubview:_tableView];
+//    [self.view addSubview:_tableView];
     _header.tableView = _tableView;
     _header.viewController = self;
     
