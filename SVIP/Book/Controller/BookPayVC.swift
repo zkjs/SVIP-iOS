@@ -124,7 +124,14 @@ class BookPayVC: UIViewController {
         let result = aDictionary["result"] as! NSString
         if self.validateResult(result) && resultStatus == "9000" {
           //支付成功,跳到聊天
-          
+          let chatVC = JSHChatVC(chatType: .NewSession)
+          chatVC.navigationItem.hidesBackButton = true
+          self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+          self.navigationController?.navigationBar.translucent = false
+          self.navigationController?.pushViewController(chatVC, animated: true)
+        }else {
+          ZKJSTool .showMsg("支付失败")
+          self .dismissViewControllerAnimated(true, completion: nil)
         }
       })
       
