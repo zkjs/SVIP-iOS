@@ -25,9 +25,9 @@ class BookOrder: NSObject {
   departure_date=*离开日期 date类型 2015-06-07
   
   room_rate=*房价在上诉商品列表获取
+  
+  status 订单状态
 */
-  var userid: String!
-  var token: String!
   var shopid: String!
   var room_typeid: String!
   var guest: String!
@@ -41,4 +41,65 @@ class BookOrder: NSObject {
   //for alipay
   var orderno: String!
 
+  // Hanton
+  var created: String!
+  var orderid: String!  
+  var status: String!
+  var remark: String!
+  
+  override var description: String {
+    var output = ""
+    output += "shopid: \(shopid)\n"
+    output += "room_typeid: \(room_typeid)\n"
+    output += "guest: \(guest)\n"
+    output += "guesttel: \(guesttel)\n"
+    output += "rooms: \(rooms)\n"
+    output += "room_type: \(room_type)\n"
+    output += "room_rate: \(room_rate)\n"
+    output += "arrival_date: \(arrival_date)\n"
+    output += "departure_date: \(departure_date)\n"
+    output += "orderno: \(orderno)\n"
+    output += "created: \(created)\n"
+    output += "orderid: \(orderid)\n"
+    output += "status: \(status)\n"
+    output += "remark: \(remark)\n"
+    return output
+  }
+  
+  override init() {}
+  
+  init (coder aDecoder: NSCoder!) {
+    shopid = aDecoder.decodeObjectForKey("shopid") as! String
+    room_typeid = aDecoder.decodeObjectForKey("room_typeid") as! String
+    guest = aDecoder.decodeObjectForKey("guest") as! String
+    guesttel = aDecoder.decodeObjectForKey("guesttel") as! String
+    rooms = aDecoder.decodeObjectForKey("rooms") as! String
+    room_type = aDecoder.decodeObjectForKey("room_type") as! String
+    room_rate = aDecoder.decodeObjectForKey("room_rate") as! String
+    arrival_date = aDecoder.decodeObjectForKey("arrival_date") as! String
+    departure_date = aDecoder.decodeObjectForKey("departure_date") as! String
+    orderno = aDecoder.decodeObjectForKey("orderno") as! String
+    created = aDecoder.decodeObjectForKey("created") as! String
+    orderid = aDecoder.decodeObjectForKey("orderid") as! String
+    status = aDecoder.decodeObjectForKey("status") as! String
+    remark = aDecoder.decodeObjectForKey("remark") as! String
+  }
+  
+  func encodeWithCoder(aCoder: NSCoder!) {
+    aCoder.encodeObject(shopid, forKey:"shopid")
+    aCoder.encodeObject(room_typeid, forKey:"room_typeid")
+    aCoder.encodeObject(guest, forKey:"guest")
+    aCoder.encodeObject(guesttel, forKey:"guesttel")
+    aCoder.encodeObject(rooms, forKey:"rooms")
+    aCoder.encodeObject(room_type, forKey:"room_type")
+    aCoder.encodeObject(room_rate, forKey:"room_rate")
+    aCoder.encodeObject(arrival_date, forKey:"arrival_date")
+    aCoder.encodeObject(departure_date, forKey:"departure_date")
+    aCoder.encodeObject(orderno, forKey:"orderno")
+    aCoder.encodeObject(created, forKey:"created")
+    aCoder.encodeObject(orderid, forKey:"orderid")
+    aCoder.encodeObject(status, forKey:"status")
+    aCoder.encodeObject(remark, forKey:"remark")
+  }
+  
 }

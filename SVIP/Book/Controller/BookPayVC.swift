@@ -54,6 +54,7 @@ class BookPayVC: UIViewController {
 
     // Hanton
     let chatVC = JSHChatVC(chatType: .NewSession)
+    chatVC.order = bkOrder
 //    let navController = UINavigationController(rootViewController: chatVC)
 //    navController.navigationBar.tintColor = UIColor.blackColor()
 //    navController.navigationBar.translucent = false
@@ -119,12 +120,13 @@ class BookPayVC: UIViewController {
 //      service .payOrder("abc", fromScheme: "abc", callback: { (resultDic: AnyObject!) -> Void in
 //
 //      })
-      service .payOrder(orderString, fromScheme: appScheme, callback: { (aDictionary) -> Void in
+      service .payOrder(orderString, fromScheme: appScheme, callback: { [unowned self] (aDictionary) -> Void in
         let resultStatus = aDictionary["resultStatus"] as! String
         let result = aDictionary["result"] as! NSString
         if self.validateResult(result) && resultStatus == "9000" {
           //支付成功,跳到聊天
           let chatVC = JSHChatVC(chatType: .NewSession)
+          chatVC.order = self.bkOrder
           chatVC.navigationItem.hidesBackButton = true
           self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
           self.navigationController?.navigationBar.translucent = false

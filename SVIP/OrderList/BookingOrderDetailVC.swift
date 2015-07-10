@@ -68,9 +68,11 @@ class BookingOrderDetailVC: UIViewController {
     endDateString = dateFormatter.stringFromDate(endDate!)
     dateDurationLabel.text = "\(startDateString)-\(endDateString)"
     
-    let remark = "离电梯近,无烟房,安静,高层,枕头高"//order["remark"] as! String
-    let tags = remark.componentsSeparatedByString(",")
-    setupTagView(tags)
+    let remark = order["remark"] as! String
+    if !remark.isEmpty {
+      let tags = remark.componentsSeparatedByString(",")
+      setupTagView(tags)
+    }
     
     setupChatButton()
   }
@@ -112,7 +114,8 @@ class BookingOrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-    navigationController?.pushViewController(JSHChatVC(), animated: true)
+    let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+    navigationController?.pushViewController(chatVC, animated: true)
   }
 
   @IBAction func cancelOrder(sender: AnyObject) {

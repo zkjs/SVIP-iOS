@@ -9,6 +9,7 @@
 import UIKit
 
 private let kBeaconRegions = "kBeaconRegions.archive"
+private let kLastOrder = "kLastOrder.archive"
 
 class StorageManager: NSObject {
   
@@ -31,14 +32,16 @@ class StorageManager: NSObject {
     return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(kBeaconRegions)) as! Dictionary
   }
   
-  func lastOrder() -> [String: String]? {
-    return NSUserDefaults.standardUserDefaults().objectForKey("LastOrder") as? [String: String]
+  func lastOrder() -> BookOrder? {
+//    return NSUserDefaults.standardUserDefaults().objectForKey("LastOrder") as? BookOrder
+    return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(kLastOrder)) as? BookOrder
   }
   
-  func updateLastOrder(order: [String: String]?) {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setObject(order, forKey: "LastOrder")
-    defaults.synchronize()
+  func updateLastOrder(order: BookOrder) {
+//    let defaults = NSUserDefaults.standardUserDefaults()
+//    defaults.setObject(order, forKey: "LastOrder")
+//    defaults.synchronize()
+    NSKeyedArchiver.archiveRootObject(order, toFile: documentDirectory().stringByAppendingPathComponent(kLastOrder))
   }
   
   func lastBeacon() -> [String: String]? {

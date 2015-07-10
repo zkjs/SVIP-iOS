@@ -52,7 +52,7 @@ class MessageCenterTVC: UITableViewController {
     }
     
     if let order = StorageManager.sharedInstance().lastOrder() {
-      if let status = order["status"] {
+      if let status = order.status {
         switch status {
           case "0":
           cell.status.text = "可取消"

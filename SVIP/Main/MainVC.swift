@@ -66,18 +66,23 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let orderArray = responseObject as! NSArray
       if orderArray.count > 0 {
         let lastOrder = orderArray.firstObject as! NSDictionary
-        var order = [String: String]()
-        order["status"] = lastOrder["status"] as? String
-        order["arrival_date"] = lastOrder["arrival_date"] as? String
-        order["departure_date"] = lastOrder["departure_date"] as? String
-        order["room_type"] = lastOrder["room_type"] as? String
-        order["guest"] = lastOrder["guest"] as? String
-        order["guesttel"] = lastOrder["guesttel"] as? String
-        order["reservation_no"] = lastOrder["reservation_no"] as? String
-        order["room_rate"] = lastOrder["room_rate"] as? String
+        let order = BookOrder()
+        
+        order.arrival_date = lastOrder["arrival_date"] as? String
+        order.created = lastOrder["created"] as? String
+        order.departure_date = lastOrder["departure_date"] as? String
+        order.guest = lastOrder["guest"] as? String
+        order.guesttel = lastOrder["guesttel"] as? String
+        order.orderid = lastOrder["id"] as? String
+        order.remark = lastOrder["remark"] as? String
+        order.orderno = lastOrder["reservation_no"] as? String
+        order.room_rate = lastOrder["room_rate"] as? String
+        order.room_type = lastOrder["room_type"] as? String
+        order.room_typeid = lastOrder["room_typeid"] as? String
+        order.rooms = lastOrder["rooms"] as? String
+        order.shopid = lastOrder["shopid"] as? String
+        order.status = lastOrder["status"] as? String
         StorageManager.sharedInstance().updateLastOrder(order)
-      } else {
-        StorageManager.sharedInstance().updateLastOrder(nil)
       }
       self.determineCurrentRegionState()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -235,8 +240,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
-    var startDateString = order!["arrival_date"]
-    var endDateString = order!["departure_date"]
+    var startDateString = order?.arrival_date
+    var endDateString = order?.departure_date
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(startDateString!)
@@ -252,7 +257,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       statusLabel.setTitle(" 您已经到达酒店大堂", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_ruzhu"), forState: .Normal)
       var roomType = ""
-      if let room_type = order!["room_type"] {
+      if let room_type = order?.room_type {
         roomType = room_type
       }
       let date = "\(startDateString!)入住"
@@ -265,7 +270,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       statusLabel.setTitle(" 您已经到达酒店大堂,请办理入住手续", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_dating"), forState: .Normal)
       var roomType = ""
-      if let room_type = order!["room_type"] {
+      if let room_type = order?.room_type {
         roomType = room_type
       }
       let date = "\(startDateString!)入住"
@@ -286,7 +291,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       statusLabel.setTitle(" 请注意您的行程,按时入住酒店", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
       var roomType = ""
-      if let room_type = order!["room_type"] {
+      if let room_type = order?.room_type {
         roomType = room_type
       }
       let date = "\(startDateString!)入住"
@@ -357,6 +362,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         presentViewController(navController, animated: true, completion: nil)
       case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
         let chatVC = JSHChatVC(chatType: .CallingWaiter)
+        chatVC.order = order
         chatVC.location = "不在酒店"
         let navController = UINavigationController(rootViewController: chatVC)
         navController.navigationBar.tintColor = UIColor.blackColor()

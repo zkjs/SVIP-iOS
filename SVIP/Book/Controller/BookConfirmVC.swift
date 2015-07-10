@@ -67,8 +67,8 @@ class BookConfirmVC: UIViewController {
       order!.rooms = "1"
       
       //from others
-      order!.userid = "120"
-      order!.token = "111"
+//      order!.userid = "120"
+//      order!.token = "111"
       order!.shopid = "1"
       order!.guest = "laoliu"
       order!.guesttel = "139758"

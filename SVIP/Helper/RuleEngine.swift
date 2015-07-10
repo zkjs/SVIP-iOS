@@ -26,18 +26,18 @@ class RuleEngine: NSObject {
     return Singleton.instance
   }
   
-  func getRuleType(order: [String: String]?, beacon: [String: String]?) -> RuleType {
+  func getRuleType(order: BookOrder?, beacon: [String: String]?) -> RuleType {
     if let beaconInfo = beacon {
       // 在Beacon区域
       if let orderInfo = order {
         // 有订单
-        if orderInfo["status"] == "4" {
+        if orderInfo.status == "4" {
           // 已入住
           return RuleType.InRegion_HasOrder_Checkin
-        } else if orderInfo["status"] == "3" {
+        } else if orderInfo.status == "3" {
           // 已完成
           return RuleType.InRegion_NoOrder
-        } else if orderInfo["status"] == "1" {
+        } else if orderInfo.status == "1" {
           // 已取消
           return RuleType.InRegion_NoOrder
         } else {
@@ -52,13 +52,13 @@ class RuleEngine: NSObject {
       // 不在Beacon区域
       if let orderInfo = order {
         // 有订单
-        if orderInfo["status"] == "4" {
+        if orderInfo.status == "4" {
           // 已入住
           return RuleType.OutOfRegion_HasOrder_Checkin
-        } else if orderInfo["status"] == "3" {
+        } else if orderInfo.status == "3" {
           // 已完成
           return RuleType.OutOfRegion_NoOrder
-        } else if orderInfo["status"] == "1" {
+        } else if orderInfo.status == "1" {
           // 已取消
           return RuleType.OutOfRegion_NoOrder
         } else {

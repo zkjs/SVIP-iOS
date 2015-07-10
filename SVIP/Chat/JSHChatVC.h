@@ -8,7 +8,7 @@
 
 #import "XHMessageTableViewController.h"
 
-//@class BookOrder;
+@class BookOrder;
 
 typedef NS_ENUM(NSInteger, ChatType) {
   ChatNewSession,
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, ChatType) {
 
 @interface JSHChatVC : XHMessageTableViewController
 @property (nonatomic, strong) NSString *shopID;
-@property (nonatomic, strong) NSDictionary *order;
+@property (nonatomic, strong) BookOrder *order;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *condition;
 

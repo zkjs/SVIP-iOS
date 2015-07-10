@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
       let userID = JSHAccountManager.sharedJSHAccountManager().userid
       let userName = JSHStorage.baseInfo().name
-      ZKJSTCPSessionManager.sharedInstance().clientLogin("120_2", name: userName, deviceToken: deviceToken)
+      ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
     }
   }
   

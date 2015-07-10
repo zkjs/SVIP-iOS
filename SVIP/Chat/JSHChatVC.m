@@ -71,7 +71,7 @@
   
   self.messageSender = @"我";
   self.messageReceiver = self.receiverName;
-  self.senderID = @"120_2";//[JSHAccountManager sharedJSHAccountManager].userid;
+  self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
   self.senderName = [JSHStorage baseInfo].name;
   self.shopID = @"120";
   
@@ -97,11 +97,13 @@
   
   switch (self.chatType) {
     case ChatNewSession: {
-      //  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-      //  [formatter setDateFormat:@"yyyy-MM-dd"];
-      NSString *orderInfo = @"";//[NSString stringWithFormat:@"系统消息\n订单号:%@\n客户姓名:%@\n客户电话:%@\n房间数量:%@\n到达时间:%@\n离店时间:%@\n入住天数:%ld天\n房型:%@\n房间价格:%@\n备注:%@", self.bookOrder.orderNO, self.bookOrder.guest, self.bookOrder.guestPhone, self.bookOrder.roomNum, [formatter stringFromDate:self.bookOrder.arrivalDate], [formatter stringFromDate:self.bookOrder.departureDate], (long)self.bookOrder.duration, self.bookOrder.roomType, self.bookOrder.roomRate, self.bookOrder.remark];
-      [self requestWaiterWithRuleType:@"0" andDescription:orderInfo];  // 预订部
-      [self showSystemFeedbackWithText:orderInfo];
+      NSString *orderInfo = @"请问您还有其它服务吗 :)";//[NSString stringWithFormat:@"系统消息\n订单号: %@\n姓名: %@\n电话: %@\n到达时间: %@\n离店时间: %@\n房型: %@\n房间价格: %@\n备注: %@", self.order.orderno, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate, self.order.remark];
+      [self requestWaiterWithRuleType:@"booking" andDescription:orderInfo];  // 预订部
+      // Delay
+      __weak __typeof(self) weakSelf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf showSystemFeedbackWithText:orderInfo];
+      });
       break;
     }
     case ChatOldSession: {
@@ -110,21 +112,24 @@
     }
     case ChatCallingWaiter: {
       NSString *orderStatus = @"";
-      if ([self.order[@"status"] isEqualToString:@"0"]) {
+      if ([self.order.status isEqualToString:@"0"]) {
         orderStatus = @"未确认可取消订单";
-      } else if ([self.order[@"status"] isEqualToString:@"1"]) {
+      } else if ([self.order.status isEqualToString:@"1"]) {
         orderStatus = @"取消订单";
-      } else if ([self.order[@"status"] isEqualToString:@"2"]) {
+      } else if ([self.order.status isEqualToString:@"2"]) {
         orderStatus = @"已确认订单";
-      } else if ([self.order[@"status"] isEqualToString:@"3"]) {
+      } else if ([self.order.status isEqualToString:@"3"]) {
         orderStatus = @"已经完成的订单";
-      } else if ([self.order[@"status"] isEqualToString:@"5"]) {
+      } else if ([self.order.status isEqualToString:@"5"]) {
         orderStatus = @"删除订单";
       }
       
-      NSString *userInfo = [NSString stringWithFormat:@"客人所在区域:%@\n订单号:%@\n订单状态:%@\n客人名称:%@\n客人手机:%@\n入住时间:%@\n离店时间:%@\n房型:%@\n房价:%@\n", self.location, self.order[@"reservation_no"], orderStatus, self.order[@"guest"], self.order[@"guesttel"], self.order[@"arrival_date"], self.order[@"departure_date"], self.order[@"room_type"], self.order[@"room_rate"]];
-      [self requestWaiterWithRuleType:@"3" andDescription:userInfo];  // 总机
-      [self showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
+      NSString *userInfo = [NSString stringWithFormat:@"客人所在区域: %@\n订单号: %@\n订单状态: %@\n客人名称: %@\n客人手机: %@\n入住时间: %@\n离店时间: %@\n房型: %@\n房价: %@\n", self.location, self.order.orderno, orderStatus, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate];
+      [self requestWaiterWithRuleType:@"callcenter" andDescription:userInfo];  // 总机
+      __weak __typeof(self) weakSelf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
+      });
       break;
     }
     case ChatService: {
@@ -299,144 +304,144 @@
    @"0": @{
          @"status": @"店外未预订",
          @"actions": @[@{
-                         @"name": @"订房",
+                         @"name": @"房间",
                          @"icon": @"ic_dingfang",
-                         @"department": @"客房部",
-                         @"ruletype": @"1",
-                         @"tags": @[@"大床房", @"双床房", @"我要高层房", @"我要角落房", @"我要无烟房", @"加床"]
+                         @"department": @"预订部/前台",
+                         @"ruletype": @"Booking-FrontOffice",
+                         @"tags": @[@"我想要订房", @"订房有什么优惠吗？"]
                          },
                        @{
                          @"name": @"订餐",
                          @"icon": @"ic_dingcan",
-                         @"department": @"餐饮部",
-                         @"ruletype": @"2",
-                         @"tags": @[@"中餐", @"西餐", @"特色菜", @"清淡"]
-                         },
-                       @{
-                         @"name": @"其它",
-                         @"icon": @"ic_qita",
-                         @"department": @"总机",
-                         @"ruletype": @"3",
-                         @"tags": @[@"咨询"]
-                         },
+                         @"department": @"销售部",
+                         @"ruletype": @"Sale",
+                         @"tags": @[@"我要包厢", @"我要订餐"]
+                         }
                        ]
          },
    @"1": @{
        @"status": @"店外已预订",
        @"actions": @[@{
-                       @"name": @"查询订单",
+                       @"name": @"房间",
                        @"icon": @"ic_dingfang",
-                       @"department": @"前厅部",
-                       @"ruletype": @"4",
-                       @"tags": @[@"订单状态", @"更改订单"]
+                       @"department": @"预订部/前台",
+                       @"ruletype": @"Booking-FrontOffice",
+                       @"tags": @[@"我想取消订单", @"我想修改订单", @"我要指定房型"]
                        },
                      @{
-                       @"name": @"取消预定",
+                       @"name": @"订餐",
                        @"icon": @"ic_dingcan",
-                       @"department": @"客房部",
-                       @"ruletype": @"1",
-                       @"tags": @[@"取消预定"]
+                       @"department": @"总台/餐饮部",
+                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
                      @{
                        @"name": @"其它",
                        @"icon": @"ic_qita",
-                       @"department": @"客房部",
-                       @"ruletype": @"1",
-                       @"tags": @[@"我要高层房", @"我要角落房", @"我要无烟房", @"加床", @"更换软枕", @"更换硬枕"]
-                       },
+                       @"department": @"前台",
+                       @"ruletype": @"FrontOffice",
+                       @"tags": @[@"专属前台", @"我需要开发票"]
+                       }
                      ]
        },
    @"2": @{
        @"status": @"店外已入住",
        @"actions": @[@{
-                       @"name": @"办理离店",
+                       @"name": @"房间",
                        @"icon": @"ic_dingfang",
-                       @"department": @"前厅部",
-                       @"ruletype": @"4",
-                       @"tags": @[@"我的账单", @"索取发票"]
+                       @"department": @"客房部",
+                       @"ruletype": @"Housekeeping",
+                       @"tags": @[@"我要打扫房间", @"我要更换用品", @"我需要洗衣服务	"]
+                       },
+                     @{
+                       @"name": @"订餐",
+                       @"icon": @"ic_dingcan",
+                       @"department": @"总台/餐饮部",
+                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
                      @{
                        @"name": @"其它",
                        @"icon": @"ic_qita",
-                       @"department": @"总机",
-                       @"ruletype": @"3",
-                       @"tags": @[@"咨询"]
-                       },
+                       @"department": @"前台",
+                       @"ruletype": @"FrontOffice",
+                       @"tags": @[@"专属前台", @"我需要开发票"]
+                       }
                      ]
        },
    @"3": @{
        @"status": @"大堂未预订",
        @"actions": @[@{
-                       @"name": @"订房",
+                       @"name": @"房间",
                        @"icon": @"ic_dingfang",
-                       @"department": @"客房部",
-                       @"ruletype": @"1",
-                       @"tags": @[@"大床房", @"双床房", @"我要高层房", @"我要角落房", @"我要无烟房", @"加床"]
+                       @"department": @"预订部/前台",
+                       @"ruletype": @"Booking-FrontOffice",
+                       @"tags": @[@"我想要订房", @"订房有什么优惠吗？"]
                        },
                      @{
                        @"name": @"订餐",
                        @"icon": @"ic_dingcan",
-                       @"department": @"餐饮部",
-                       @"ruletype": @"2",
-                       @"tags": @[@"中餐", @"西餐", @"特色菜", @"清淡"]
-                       },
-                     @{
-                       @"name": @"其它",
-                       @"icon": @"ic_qita",
-                       @"department": @"总机",
-                       @"ruletype": @"3",
-                       @"tags": @[@"咨询"]
-                       },
+                       @"department": @"销售部",
+                       @"ruletype": @"Sale",
+                       @"tags": @[@"我要包厢", @"我要订餐"]
+                       }
                      ]
        },
    @"4": @{
        @"status": @"大堂已预订",
        @"actions": @[@{
-                       @"name": @"查询订单",
+                       @"name": @"房间",
                        @"icon": @"ic_dingfang",
-                       @"department": @"客房部",
-                       @"ruletype": @"1",
-                       @"tags": @[@"订单状态", @"更改订单"]
+                       @"department": @"预订部/前台",
+                       @"ruletype": @"Booking-FrontOffice",
+                       @"tags": @[@"我想取消订单", @"我想修改订单", @"我要指定房型"]
                        },
                      @{
-                       @"name": @"办理入住",
+                       @"name": @"订餐",
                        @"icon": @"ic_dingcan",
-                       @"department": @"前厅部",
-                       @"ruletype": @"4",
-                       @"tags": @[@"上传身份证扫描件", @"等级信用卡信息"]
+                       @"department": @"总台/餐饮部",
+                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
                      @{
                        @"name": @"其它",
                        @"icon": @"ic_qita",
-                       @"department": @"客房部",
-                       @"ruletype": @"1",
-                       @"tags": @[@"我要高层房", @"我要角落房", @"我要无烟房", @"加床", @"更换软枕", @"更换硬枕"]
-                       },
+                       @"department": @"前台",
+                       @"ruletype": @"FrontOffice",
+                       @"tags": @[@"专属前台", @"我需要开发票"]
+                       }
                      ]
        },
    @"5": @{
        @"status": @"大堂已入住",
        @"actions": @[@{
-                       @"name": @"办理离店",
+                       @"name": @"房间",
                        @"icon": @"ic_dingfang",
-                       @"department": @"前厅部",
-                       @"ruletype": @"4",
-                       @"tags": @[@"我的账单", @"索取发票"]
+                       @"department": @"客房部",
+                       @"ruletype": @"Housekeeping",
+                       @"tags": @[@"我要打扫房间", @"我要更换用品", @"我需要洗衣服务	"]
+                       },
+                     @{
+                       @"name": @"订餐",
+                       @"icon": @"ic_dingcan",
+                       @"department": @"总台/餐饮部",
+                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
                      @{
                        @"name": @"其它",
                        @"icon": @"ic_qita",
-                       @"department": @"总机",
-                       @"ruletype": @"3",
-                       @"tags": @[@"咨询"]
-                       },
+                       @"department": @"前台",
+                       @"ruletype": @"FrontOffice",
+                       @"tags": @[@"专属前台", @"我需要开发票"]
+                       }
                      ]
        },
    };
 }
 
 - (void)setupAssistantView {
-  self.messageInputView.hidden = YES;
+//  self.messageInputView.hidden = YES;
   NSDictionary *actions = self.data[self.condition][@"actions"];
   CGFloat division = self.view.frame.size.width / (actions.count * 2);
   CGFloat centerX = division - 60.0 / 2.0;
@@ -453,7 +458,7 @@
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
       UIView *superView = self.view;
-      make.bottom.equalTo(superView.mas_bottom).offset(-8);
+      make.bottom.equalTo(superView.mas_bottom).offset(-46);
       make.leading.equalTo([NSNumber numberWithFloat:centerX]);
     }];
     centerX += division * 2;
@@ -462,28 +467,43 @@
   }
 }
 
+- (void)showAllActionButtons {
+  for (UIButton *button in self.actionButtons) {
+    button.hidden = NO;
+  }
+}
+
+- (void)hideAllActionButtons {
+  for (UIButton *button in self.actionButtons) {
+    button.hidden = YES;
+  }
+}
+
 - (void)showTagView:(UIButton *)sender {
+  [self hideAllActionButtons];
+  
   self.tagView = ({
     SKTagView *view = [SKTagView new];
     view.backgroundColor = [UIColor whiteColor];
     view.padding    = UIEdgeInsetsMake(10, 25, 10, 25);
     view.insets    = 5;
     view.lineSpace = 10;
-    //    __weak SKTagView *weakView = view;
     //Handle tag's click event
     __weak __typeof(self) weakSelf = self;
-    view.didClickTagAtIndex = ^(NSUInteger index){
-      //Remove tag
-      //      [weakView removeTagAtIndex:index];
+    view.didClickTagAtIndex = ^(NSUInteger index) {
       [weakSelf hideTagView];
       weakSelf.messageInputView.hidden = NO;
-      for (UIButton *button in weakSelf.actionButtons) {
-        button.hidden = YES;
-      }
       NSString *tag = self.data[self.condition][@"actions"][sender.tag][@"tags"][index];
       NSString *ruleType = self.data[self.condition][@"actions"][sender.tag][@"ruletype"];
       [self requestWaiterWithRuleType:ruleType andDescription:tag];
-      [self showSystemFeedbackWithText:[NSString stringWithFormat:@"您的需求-%@-已发送", tag]];
+      XHMessage *message = [[XHMessage alloc] initWithText:tag sender:self.senderName timestamp:[NSDate date]];
+      message.avatar = [JSHStorage baseInfo].avatarImage;
+      [self addMessage:message];
+      [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
+      __weak __typeof(self) weakSelf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf showSystemFeedbackWithText:@"您的需求已收到"];
+      });
     };
     view;
   });
@@ -525,6 +545,7 @@
 }
 
 - (void)hideTagView {
+  [self showAllActionButtons];
   self.cancelButton.hidden = YES;
   self.tagView.hidden = YES;
 }
