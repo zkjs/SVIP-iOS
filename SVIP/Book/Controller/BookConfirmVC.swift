@@ -10,18 +10,18 @@ import UIKit
 let buttonCount = 3
 class BookConfirmVC: UIViewController {
 
-  @IBOutlet weak var roomLook: UIImageView!
-  @IBOutlet weak var name: UILabel!
-  @IBOutlet weak var price: UILabel!
-  @IBOutlet weak var preference: UILabel!
-  @IBOutlet weak var inDate: BookDateButton!
-  @IBOutlet weak var outDate: BookDateButton!
+  @IBOutlet private weak var roomLook: UIImageView!
+  @IBOutlet private weak var name: UILabel!
+  @IBOutlet private weak var price: UILabel!
+  @IBOutlet private weak var preference: UILabel!
+  @IBOutlet private weak var inDate: BookDateButton!
+  @IBOutlet private weak var outDate: BookDateButton!
   
-  @IBOutlet var buttonMarginConstraintArray: [NSLayoutConstraint]!
-  @IBOutlet var optionButtonArray: [UIButton]!
+  @IBOutlet private var buttonMarginConstraintArray: [NSLayoutConstraint]!
+  @IBOutlet private var optionButtonArray: [UIButton]!
   //DATA
   var goods:RoomGoods?
-  private var order: BookOrder?
+  private var order: BookOrder!
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: "BookConfirmVC", bundle: nil)
@@ -50,10 +50,10 @@ class BookConfirmVC: UIViewController {
   "logo": "uploads/shops/120.png",
   "fullname": "长沙芙蓉国温德姆至尊豪廷大酒店"
   */
-  func loadData() {
+  private func loadData() {
     order = BookOrder()
     if let selectedGoods = goods {
-      order!.room_typeid = selectedGoods.goodsid
+      order.room_typeid = selectedGoods.goodsid
       var room: String! = ""
       var type: String! = ""
       if selectedGoods.room != nil {
@@ -62,22 +62,18 @@ class BookConfirmVC: UIViewController {
       if selectedGoods.type != nil {
         type = selectedGoods.type!
       }
-      order!.room_type = "\(room)\(type)"//有问题的，order与goods字段对不上
-      order!.room_rate = selectedGoods.pice
-      order!.rooms = "1"
-      
-      //from others
-//      order!.userid = "120"
-//      order!.token = "111"
-      order!.shopid = "1"
-      order!.guest = "laoliu"
-      order!.guesttel = "139758"
-      order!.arrival_date = "2015-12-1"
-      order!.departure_date = "2015-12-28"
+      order.room_type = "\(room)\(type)"//有问题的，order与goods字段对不上
+      order.room_rate = selectedGoods.pice
+      order.rooms = "1"
+      order.shopid = "1"
+      order.guest = "laoliu"
+      order.guesttel = "139758"
+      order.arrival_date = "2015-12-1"
+      order.departure_date = "2015-12-28"
     }
   }
   
-  func setupUI() {
+  private func setupUI() {
     inDate.baseTitle = "入住时间"
     outDate.baseTitle = "离开时间"
     
@@ -89,14 +85,10 @@ class BookConfirmVC: UIViewController {
       roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
     }
     
-    if let preference = order?.room_type {
+    if let preference = order.room_type {
       self.preference.text = preference
     }
     
-    
-//    if let preference = goods?.keywords {
-//      self.preference.text = preference
-//    }
     for button in optionButtonArray {
       button.layer.borderColor = UIColor .grayColor().CGColor
       button.layer.borderWidth = 1
@@ -113,16 +105,11 @@ class BookConfirmVC: UIViewController {
     super.updateViewConstraints()
   }
   
-  func updateSubviews() {
+  private func updateSubviews() {
     if inDate.date == nil {
-//      NSCalendar *calendar = self.datePicker.calendar;
-//      NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.datePicker.date];
-//      NSDate *tempDate = [self.datePicker.calendar dateFromComponents:components];
       var calender = NSCalendar .currentCalendar()
       var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: NSDate())
       inDate.date = calender .dateFromComponents(components)
-//      let date = calender .dateFromComponents(components)
-
     }
     
     if outDate.date == nil {
@@ -132,11 +119,11 @@ class BookConfirmVC: UIViewController {
     let duration = outDate.date!.timeIntervalSinceDate(inDate.date!)
     let day = duration / 24 / 60 / 60
     let dayInt = Int(day)
-    if let roomType = order?.room_type {
+    if let roomType = order.room_type {
       name.text = "\(roomType)    共\(dayInt)晚"
     }
     
-    if let str = order?.room_rate {
+    if let str = order.room_rate {
       let danjia = (str as NSString).integerValue
       let total = danjia * dayInt
 
@@ -152,11 +139,9 @@ class BookConfirmVC: UIViewController {
     
   }
 //MARK:- BUTTON ACTION
-  @IBAction func dateSelect(sender: BookDateButton) {
+  @IBAction private func dateSelect(sender: BookDateButton) {
 
     BlurDatePickerView .showInView(self.view, startDate:sender == inDate ? NSDate() : (inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)), success: { (date: NSDate!) -> Void in
-      
-      
       var calender = NSCalendar .currentCalendar()
       var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: date)
       sender.date = calender .dateFromComponents(components)
@@ -185,21 +170,25 @@ class BookConfirmVC: UIViewController {
   [formData appendPartWithFormData:[remark dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
   [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
   */
-  @IBAction func commit(sender: UIButton) {
+  @IBAction private func commit(sender: UIButton) {
+    var remark: String! = ""
+    for optionButton in optionButtonArray {
+      if optionButton.selected == true {
+        remark = remark .stringByAppendingString(optionButton.titleLabel?.text as String!)
+      }
+    }
+    order.remark = remark
+
     let account = JSHAccountManager .sharedJSHAccountManager()
-    ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID(account.userid, token: account.token, shopID: order?.shopid, goodsID: order?.room_typeid, guest: order?.guest, guestPhone: order?.guesttel, roomNum: order?.rooms, arrivalDate: order?.arrival_date, departureDate: order?.departure_date, roomType: order?.room_type, roomRate: order?.room_rate, remark: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID(account.userid, token: account.token, shopID: order.shopid, goodsID: order.room_typeid, guest: order.guest, guestPhone: order.guesttel, roomNum: order.rooms, arrivalDate: order.arrival_date, departureDate: order.departure_date, roomType: order.room_type, roomRate: order.room_rate, remark: order.remark, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let payVC = BookPayVC()
-        payVC.bkOrder = self.order!
+        payVC.bkOrder = self.order
         let dic = responseObject as! NSDictionary
-        if let orderno = dic["orderno"] {
-          payVC.bkOrder.orderno = orderno as! String
+        if let orderno = (dic["orderno"] as? String) {
+          payVC.bkOrder.orderno = orderno
         }
         self.navigationController? .pushViewController(payVC, animated: true)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-
     }
-
   }
-
-
 }
