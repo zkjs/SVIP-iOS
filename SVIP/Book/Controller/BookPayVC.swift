@@ -50,35 +50,13 @@ class BookPayVC: UIViewController {
   @IBAction func weixinzhifu(sender: UIButton) {
   }
   @IBAction func payInHotel(sender: UIButton) {
-    
-
     // Hanton
     let chatVC = JSHChatVC(chatType: .NewSession)
     chatVC.order = bkOrder
-//    let navController = UINavigationController(rootViewController: chatVC)
-//    navController.navigationBar.tintColor = UIColor.blackColor()
-//    navController.navigationBar.translucent = false
-//    //    presentViewController(navController, animated: true, completion: nil)
-//    UIApplication .sharedApplication().keyWindow?.rootViewController!.presentViewController(navController, animated: true) { () -> Void in
-//      self.dismissViewControllerAnimated(false, completion: nil)
-//      
-//    }
     chatVC.navigationItem.hidesBackButton = true
     self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
     self.navigationController?.navigationBar.translucent = false
     self.navigationController?.pushViewController(chatVC, animated: true)
-    
-
-//    let chatVC = JSHChatVC(chatType: .CallingWaiter)
-//    chatVC.location = "不在酒店"
-//    let navController = UINavigationController(rootViewController: chatVC)
-//    navController.navigationBar.tintColor = UIColor.blackColor()
-//    navController.navigationBar.translucent = false
-////    presentViewController(navController, animated: true, completion: nil)
-//    presentViewController(navController, animated: true) { () -> Void in
-////      self.dismissViewControllerAnimated(false, completion: nil)
-//
-//    }
   }
 
 //MARK:- ALIPAY

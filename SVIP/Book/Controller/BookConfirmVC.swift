@@ -186,8 +186,16 @@ class BookConfirmVC: UIViewController {
   [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
   */
   @IBAction func commit(sender: UIButton) {
+    var remark: String! = ""
+    for optionButton in optionButtonArray {
+      if optionButton.selected == true {
+        remark = remark .stringByAppendingString(optionButton.titleLabel?.text as String!)
+      }
+    }
+    order?.remark = remark
+
     let account = JSHAccountManager .sharedJSHAccountManager()
-    ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID(account.userid, token: account.token, shopID: order?.shopid, goodsID: order?.room_typeid, guest: order?.guest, guestPhone: order?.guesttel, roomNum: order?.rooms, arrivalDate: order?.arrival_date, departureDate: order?.departure_date, roomType: order?.room_type, roomRate: order?.room_rate, remark: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID(account.userid, token: account.token, shopID: order?.shopid, goodsID: order?.room_typeid, guest: order?.guest, guestPhone: order?.guesttel, roomNum: order?.rooms, arrivalDate: order?.arrival_date, departureDate: order?.departure_date, roomType: order?.room_type, roomRate: order?.room_rate, remark: order?.remark, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let payVC = BookPayVC()
         payVC.bkOrder = self.order!
         let dic = responseObject as! NSDictionary
