@@ -447,6 +447,7 @@
     [button setImage:[UIImage imageNamed:action[@"icon"]] forState:UIControlStateNormal];
     button.frame = CGRectMake(0.0, 0.0, 60.0, 60.0);
     button.tag = index;
+    button.alpha = 0.6;
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
       UIView *superView = self.view;
