@@ -9,45 +9,40 @@
 import UIKit
 
 class BookRoomCell: UITableViewCell {
-
-  @IBOutlet weak var Avatar: UIImageView!
-  @IBOutlet weak var name: UILabel!
-  @IBOutlet weak var roomLook: UIImageView!
-  @IBOutlet weak var priceTag: UILabel!
-  @IBOutlet weak var selectedView: UIImageView!
+  @IBOutlet private weak var Avatar: UIImageView!
+  @IBOutlet private weak var name: UILabel!
+  @IBOutlet private weak var roomLook: UIImageView!
+  @IBOutlet private weak var priceTag: UILabel!
+  @IBOutlet private weak var selectedView: UIImageView!
   
   //DATA
   var goods: RoomGoods? {
     didSet {
-      if goods != nil {
-        name.text = goods!.fullname
-        var nameStr = ""
+      if let myGoods = goods {
+        name.text = myGoods.fullname
         var priceStr = ""
-        if let a = goods?.fullname {
-          nameStr = a
-        }
-        if let b = goods?.pice {
-          priceStr = b
-        }
         var room: String! = ""
         var type: String! = ""
-        if goods?.room != nil {
-          room = goods?.room
+        if let b = myGoods.pice {
+          priceStr = b
         }
-        if goods?.type != nil {
-          type = goods?.type
+        if myGoods.room != nil {
+          room = myGoods.room
+        }
+        if myGoods.type != nil {
+          type = myGoods.type
         }
         let tagStr = "  \(room)\(type)   $\(priceStr)"
         priceTag.text = tagStr
 
         let baseUrl = "http://120.25.241.196/"
-        if let goodsImage = goods?.image {
+        if let goodsImage = myGoods.image {
           let urlStr = baseUrl .stringByAppendingString(goodsImage)
           let placeholderImage = UIImage(named: "星空中心")
           let url = NSURL(string: urlStr)
           roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
         }
-        if let logo = goods?.logo {
+        if let logo = myGoods.logo {
           let urlStr = baseUrl .stringByAppendingString(logo)
           let placeholderImage = UIImage(named: "星空中心")
           let url = NSURL(string: urlStr)

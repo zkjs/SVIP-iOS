@@ -42,6 +42,7 @@ import UIKit
 "cat_name": "\u8c6a\u534e\u53cc\u5e8a"
 */
 
+//user开头的API的返回值
 /*
 "id": "3",
 "shopid": "120",
@@ -64,17 +65,15 @@ class RoomGoods: NSObject {
   var logo: String?
   var fullname: String?
 
-  init(dic: NSDictionary?) {
-    if dic != nil{
-      goodsid = dic!["id"] as? String
-      shopid = dic!["shopid"] as? String
-      room = dic!["room"] as? String
-      image = dic!["image"] as? String
-      type = dic!["type"] as? String
-      meat = dic!["meat"] as? String
-      pice = dic!["pice"] as? String
-      logo = dic!["logo"] as? String
-      fullname = dic!["fullname"] as? String
-    }
+  init(dic: NSDictionary) {
+      goodsid = dic["id"] as? String
+      shopid = dic["shopid"] as? String
+      room = dic["room"] as? String
+      image = dic["image"] as? String
+      type = dic["type"] as? String
+      meat = dic["meat"] as? String
+      pice = dic["pice"] as? String
+      logo = dic["logo"] as? String
+      fullname = dic["fullname"] as? String
   }
 }

@@ -44,12 +44,12 @@ class BookPayVC: UIViewController {
     }
 
   }
-  @IBAction func zhifubao(sender: UIButton) {
+  @IBAction private func zhifubao(sender: UIButton) {
     payAliOrder(bkOrder)
   }
-  @IBAction func weixinzhifu(sender: UIButton) {
+  @IBAction private func weixinzhifu(sender: UIButton) {
   }
-  @IBAction func payInHotel(sender: UIButton) {
+  @IBAction private func payInHotel(sender: UIButton) {
     // Hanton
     let chatVC = JSHChatVC(chatType: .NewSession)
     chatVC.order = bkOrder
@@ -60,7 +60,7 @@ class BookPayVC: UIViewController {
   }
 
 //MARK:- ALIPAY
-  func payAliOrder(AbookOrder: BookOrder) {
+  private func payAliOrder(AbookOrder: BookOrder) {
     let aliOrder = AlipayOrder()
     aliOrder.partner = partner
     aliOrder.seller = seller
@@ -114,9 +114,7 @@ class BookPayVC: UIViewController {
           self .dismissViewControllerAnimated(true, completion: nil)
         }
       })
-      
     }
-    
     //将签名成功字符串格式化为订单字符串,请严格按照该格式
 //    NSString *orderString = nil;
 //    if (signedString != nil) {
@@ -128,10 +126,9 @@ class BookPayVC: UIViewController {
 //      }];
 //
 //    }
-
   }
   
-  func validateResult(result: NSString) -> Bool{
+  private func validateResult(result: NSString) -> Bool{
 //    let resultRange = NSRange(location: 0, length: count(result))
 //    let locale = NSLocale.systemLocale()
 //    result .rangeOfString("success=\"", options: NSStringCompareOptions.LiteralSearch, range: resultRange, locale:locale)
@@ -139,7 +136,4 @@ class BookPayVC: UIViewController {
     let str = result .substringWithRange(NSRange(location: range.location + range.length, length: 4))
     return str == "true"
   }
-  
-  
-  
 }
