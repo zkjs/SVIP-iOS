@@ -146,14 +146,6 @@
   [super viewWillAppear:animated];
   
   [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-  
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSDictionary *dictionary = @{
-                               @"type": [NSNumber numberWithInteger:MessageServiceChatOfflineMssage],
-                               @"timestamp": timestamp,
-                               @"userid": self.senderID
-                               };
-  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -580,6 +572,7 @@
       weakSelf.messages = messages;
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
+      [self requestOfflineMessages];
     });
   });
 }
@@ -588,7 +581,8 @@
   if (self.messages.count != 0) {
     [self saveLastChatMessage:self.messages.lastObject];
   }
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+  
+//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
@@ -597,7 +591,8 @@
   //  [self.messages writeToFile:filePath atomically:YES];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
     [data writeToFile:filePath atomically:YES];
-  });
+//  });
+  [ZKJSTool hideHUD];
 }
 
 - (void)saveLastChatMessage:(XHMessage*)message {
@@ -679,12 +674,23 @@
 }
 
 - (void)dismissSelf {
+  [ZKJSTool showLoading:@"正在保存聊天记录"];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSString *)newSessionID {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   return [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
+}
+
+- (void)requestOfflineMessages {
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSDictionary *dictionary = @{
+                               @"type": [NSNumber numberWithInteger:MessageServiceChatOfflineMssage],
+                               @"timestamp": timestamp,
+                               @"userid": self.senderID
+                               };
+  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
 }
 
 #pragma mark - Notifications
