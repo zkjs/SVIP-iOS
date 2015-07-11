@@ -254,8 +254,22 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     infoLabel.hidden = true
     switch ruleType {
     case .InRegion_HasOrder_Checkin:
-      statusLabel.setTitle(" 您已经到达酒店大堂", forState: .Normal)
-      statusLabel.setImage(UIImage(named: "sl_ruzhu"), forState: .Normal)
+      if NSDate.daysFromDate(NSDate(), toDate: endDate!) == 0 {
+        // 退房状态
+        statusLabel.setTitle(" 您的订单今天需要退房，旅途愉快", forState: .Normal)
+        statusLabel.setImage(UIImage(named: "sl_tuifang"), forState: .Normal)
+      } else {
+        // 入住状态
+        if let location = beacon!["locdesc"] {
+          if location.isEmpty {
+            statusLabel.setTitle(" 您已入住温德姆至尊豪廷，旅途愉快", forState: .Normal)
+          } else {
+            statusLabel.setTitle(" 您已到达\(location)，旅途愉快", forState: .Normal)
+          }
+        }
+        statusLabel.setImage(UIImage(named: "sl_ruzhu"), forState: .Normal)
+      }
+      
       var roomType = ""
       if let room_type = order?.room_type {
         roomType = room_type
@@ -264,11 +278,20 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let duration = "\(days)晚"
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
-      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_HasOrder_UnCheckin:
       infoLabel.hidden = false
-      statusLabel.setTitle(" 您已经到达酒店大堂,请办理入住手续", forState: .Normal)
-      statusLabel.setImage(UIImage(named: "sl_dating"), forState: .Normal)
+      if let orderInfo = order {
+        if orderInfo.status == "0" {
+          // 预订状态
+          statusLabel.setTitle(" 您已经提交订单，请等待酒店确定", forState: .Normal)
+          statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
+        } else {
+          // 确定订单
+          statusLabel.setTitle(" 您的订单已确定，请按时到达酒店", forState: .Normal)
+          statusLabel.setImage(UIImage(named: "sl_yueding"), forState: .Normal)
+        }
+      }
       var roomType = ""
       if let room_type = order?.room_type {
         roomType = room_type
@@ -277,19 +300,33 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let duration = "\(days)晚"
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
-      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_NoOrder:
-      statusLabel.setTitle(" 您已经在酒店大堂,请尽快预订酒店", forState: .Normal)
-      statusLabel.setImage(UIImage(named: "sl_dating"), forState: .Normal)
-      tipsLabel.setTitle(" 点击智键预订酒店", forState: UIControlState.Normal)
+      statusLabel.setTitle(" 温德姆至尊豪廷欢迎您，点击查看信息", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
+      tipsLabel.setTitle(" 按智键快速马上预定酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:
-      statusLabel.setTitle(" 您不在酒店,请注意保管好财物", forState: .Normal)
-      statusLabel.setImage(UIImage(named: "sl_ruzhu"), forState: .Normal)
-      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+      statusLabel.setTitle(" 温德姆至尊豪廷随时为您服务!", forState: .Normal)
+      statusLabel.setImage(UIImage(named: "sl_likai"), forState: .Normal)
+      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:
       infoLabel.hidden = false
-      statusLabel.setTitle(" 请注意您的行程,按时入住酒店", forState: .Normal)
-      statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
+      if let orderInfo = order {
+        if orderInfo.status == "0" {
+          // 预订状态
+          statusLabel.setTitle(" 您已经提交订单，请等待酒店确定", forState: .Normal)
+          statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
+        } else {
+          // 确定订单
+          let days = NSDate.daysFromDate(NSDate(), toDate: startDate!)
+          if days == 0 {
+            statusLabel.setTitle(" 今天入住温德姆至尊豪廷", forState: .Normal)
+          } else {
+            statusLabel.setTitle(" 您的订单已确定, 请与\(days)天后入住温德姆至尊豪廷", forState: .Normal)
+          }
+          statusLabel.setImage(UIImage(named: "sl_zhuyi"), forState: .Normal)
+        }
+      }
       var roomType = ""
       if let room_type = order?.room_type {
         roomType = room_type
@@ -298,11 +335,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let duration = "\(days)晚"
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
-      tipsLabel.setTitle(" 长按智键呼叫服务员，单击发送消息", forState: .Normal)
+      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_NoOrder:
       statusLabel.setTitle(" 您没有任何预订信息", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
-      tipsLabel.setTitle(" 请按智键进行预订", forState: .Normal)
+      tipsLabel.setTitle(" 按智键快速马上预定酒店", forState: .Normal)
     }
     println("Update Smart Panel")
   }
@@ -312,8 +349,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
   }
   
-  @IBAction func tappedMainButton(sender: AnyObject) {
-    println("Tap Main Button")
+  
+  @IBAction func tappedSmartPanel(sender: AnyObject) {
+    println("Tap Smart Panel")
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
@@ -324,6 +362,52 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       navController.navigationBar.tintColor = UIColor.blackColor()
       navController.navigationBar.translucent = false
       presentViewController(navController, animated: true, completion: nil)
+    case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
+//      if let orderInfo = order {
+//        if orderInfo.status == "0" {  // 0 未确认可取消订单
+//          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
+//          navController.navigationBar.tintColor = UIColor.blackColor()
+//          navController.navigationBar.translucent = false
+//          presentViewController(navController, animated: true, completion: nil)
+//        } else {
+//          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
+//          navController.navigationBar.tintColor = UIColor.blackColor()
+//          navController.navigationBar.translucent = false
+//          presentViewController(navController, animated: true, completion: nil)
+//        }
+//      }
+      break
+    case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
+//      if let orderInfo = order {
+//        if orderInfo.status == "0" {  // 0 未确认可取消订单
+//          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
+//          navController.navigationBar.tintColor = UIColor.blackColor()
+//          navController.navigationBar.translucent = false
+//          presentViewController(navController, animated: true, completion: nil)
+//        } else {
+//          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
+//          navController.navigationBar.tintColor = UIColor.blackColor()
+//          navController.navigationBar.translucent = false
+//          presentViewController(navController, animated: true, completion: nil)
+//        }
+//      }
+      break
+    }
+  }
+  
+  @IBAction func tappedMainButton(sender: AnyObject) {
+    println("Tap Main Button")
+    let beacon = StorageManager.sharedInstance().lastBeacon()
+    let order = StorageManager.sharedInstance().lastOrder()
+    
+    let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+    switch ruleType {
+    case .InRegion_NoOrder, .OutOfRegion_NoOrder:
+//      let navController = UINavigationController(rootViewController: BookVC())
+//      navController.navigationBar.tintColor = UIColor.blackColor()
+//      navController.navigationBar.translucent = false
+//      presentViewController(navController, animated: true, completion: nil)
+      break
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.condition = String(ruleType.rawValue)
@@ -361,13 +445,14 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         navController.navigationBar.translucent = false
         presentViewController(navController, animated: true, completion: nil)
       case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
-        let chatVC = JSHChatVC(chatType: .CallingWaiter)
-        chatVC.order = order
-        chatVC.location = "不在酒店"
-        let navController = UINavigationController(rootViewController: chatVC)
-        navController.navigationBar.tintColor = UIColor.blackColor()
-        navController.navigationBar.translucent = false
-        presentViewController(navController, animated: true, completion: nil)
+//        let chatVC = JSHChatVC(chatType: .CallingWaiter)
+//        chatVC.order = order
+//        chatVC.location = "不在酒店"
+//        let navController = UINavigationController(rootViewController: chatVC)
+//        navController.navigationBar.tintColor = UIColor.blackColor()
+//        navController.navigationBar.translucent = false
+//        presentViewController(navController, animated: true, completion: nil)
+        break
       }
     }
   }

@@ -113,16 +113,30 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Np-ol-Cvw">
+                            <rect key="frame" x="0.0" y="0.0" width="574" height="140"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="tappedSmartPanel:" destination="-1" eventType="touchUpInside" id="hUR-it-Mvo"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="VEv-uX-okC" secondAttribute="centerX" id="1gk-6S-mPV"/>
                         <constraint firstAttribute="trailing" secondItem="yRA-xe-2cv" secondAttribute="trailing" id="7v0-cx-ctH"/>
                         <constraint firstAttribute="centerX" secondItem="xNk-xA-Dnk" secondAttribute="centerX" id="AIJ-Vc-s5q"/>
+                        <constraint firstItem="7Np-ol-Cvw" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="E6T-LS-X2T"/>
+                        <constraint firstAttribute="trailing" secondItem="7Np-ol-Cvw" secondAttribute="trailing" id="N5O-Mu-AaN"/>
                         <constraint firstItem="xNk-xA-Dnk" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="top" constant="30" id="P37-R9-J45"/>
                         <constraint firstAttribute="centerX" secondItem="T43-K7-b5R" secondAttribute="centerX" id="PNR-EY-IJo"/>
+                        <constraint firstItem="T43-K7-b5R" firstAttribute="leading" secondItem="7Np-ol-Cvw" secondAttribute="trailing" id="Rxq-bg-8xZ"/>
                         <constraint firstItem="yRA-xe-2cv" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="SPN-cp-nTK"/>
                         <constraint firstAttribute="height" constant="140" id="Tr1-4t-2tv"/>
+                        <constraint firstAttribute="bottom" secondItem="7Np-ol-Cvw" secondAttribute="bottom" id="UOE-zw-jI5"/>
                         <constraint firstItem="T43-K7-b5R" firstAttribute="top" secondItem="xNk-xA-Dnk" secondAttribute="bottom" constant="16" id="gCz-bD-cZa"/>
+                        <constraint firstItem="7Np-ol-Cvw" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="top" id="hBx-E0-lQz"/>
                         <constraint firstItem="VEv-uX-okC" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" constant="31" id="l36-lV-f8M"/>
                         <constraint firstItem="yRA-xe-2cv" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="top" id="mcr-TV-mL6"/>
                         <constraint firstItem="VEv-uX-okC" firstAttribute="top" secondItem="T43-K7-b5R" secondAttribute="bottom" constant="30" id="oCA-RN-2dD"/>
@@ -137,6 +151,7 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="l36-lV-f8M"/>
+                            <exclude reference="Rxq-bg-8xZ"/>
                         </mask>
                     </variation>
                 </view>
