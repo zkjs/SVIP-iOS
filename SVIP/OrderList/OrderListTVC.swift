@@ -87,14 +87,14 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     if status.toInt() == 0 {
       cell.rightUtilityButtons = nil
-      cell.bookingImageView.hidden = false
-      cell.amountLabel.hidden = true
     } else {
       cell.rightUtilityButtons = rightButtons() as [AnyObject]
       cell.bookingImageView.hidden = true
-      cell.amountLabel.hidden = false
-      cell.amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
     }
+    
+    cell.amountLabel.hidden = false
+    cell.amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
+    
     dateFormatter.dateFormat = "yyyy/MM/dd"
     cell.dateLabel.text = dateFormatter.stringFromDate(startDate!)
     cell.nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
