@@ -133,6 +133,9 @@ class BookPayVC: UIViewController {
 //    let locale = NSLocale.systemLocale()
 //    result .rangeOfString("success=\"", options: NSStringCompareOptions.LiteralSearch, range: resultRange, locale:locale)
     let range = result .rangeOfString("success=\"")
+    if range.length == 0 {
+      return false
+    }
     let str = result .substringWithRange(NSRange(location: range.location + range.length, length: 4))
     return str == "true"
   }
