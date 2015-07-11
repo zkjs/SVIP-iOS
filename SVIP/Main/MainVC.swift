@@ -196,15 +196,20 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let delayTime = dispatch_time(DISPATCH_TIME_NOW,
         Int64(1 * Double(NSEC_PER_SEC)))
       dispatch_after(delayTime, dispatch_get_main_queue()) {
+#if DEBUG
+          let appid = "HOTELVIP_DEBUG";
+#else
+          let appid = "HOTELVIP";
+#endif
         let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
         let dictionary: [String: AnyObject] = [
           "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-          "devtoken": "2327ad9f487b67fe262941c08e2069fbb6ecc47883a049a260e7155020880ef2",
-          "appid": "HOTELVIP",
-          "userid": "557cff54a9a97",
+          "devtoken": JSHStorage.deviceToken(),
+          "appid": appid,
+          "userid": JSHAccountManager.sharedJSHAccountManager().userid,
           "shopid": shopID!,
           "locid": locid!,
-          "username": "金石",
+          "username": JSHStorage.baseInfo().name,
           "timestamp": NSNumber(longLong: timestamp)
         ]
         ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
@@ -239,20 +244,19 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
-    var startDateString = order?.arrival_date
-    var endDateString = order?.departure_date
-    var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    let startDate = dateFormatter.dateFromString(startDateString!)
-    let endDate = dateFormatter.dateFromString(endDateString!)
-    let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
-    dateFormatter.dateFormat = "M/dd"
-    startDateString = dateFormatter.stringFromDate(startDate!)
-    
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     infoLabel.hidden = true
     switch ruleType {
     case .InRegion_HasOrder_Checkin:
+      var startDateString = order?.arrival_date
+      var endDateString = order?.departure_date
+      var dateFormatter = NSDateFormatter()
+      dateFormatter.dateFormat = "yyyy-MM-dd"
+      let startDate = dateFormatter.dateFromString(startDateString!)
+      let endDate = dateFormatter.dateFromString(endDateString!)
+      let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
+      dateFormatter.dateFormat = "M/dd"
+      startDateString = dateFormatter.stringFromDate(startDate!)
       if NSDate.daysFromDate(NSDate(), toDate: endDate!) == 0 {
         // 退房状态
         statusLabel.setTitle(" 您的订单今天需要退房，旅途愉快", forState: .Normal)
@@ -279,6 +283,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_HasOrder_UnCheckin:
+      var startDateString = order?.arrival_date
+      var endDateString = order?.departure_date
+      var dateFormatter = NSDateFormatter()
+      dateFormatter.dateFormat = "yyyy-MM-dd"
+      let startDate = dateFormatter.dateFromString(startDateString!)
+      let endDate = dateFormatter.dateFromString(endDateString!)
+      let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
+      dateFormatter.dateFormat = "M/dd"
+      startDateString = dateFormatter.stringFromDate(startDate!)
       infoLabel.hidden = false
       if let orderInfo = order {
         if orderInfo.status == "0" {
@@ -309,6 +322,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       statusLabel.setImage(UIImage(named: "sl_likai"), forState: .Normal)
       tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:
+      var startDateString = order?.arrival_date
+      var endDateString = order?.departure_date
+      var dateFormatter = NSDateFormatter()
+      dateFormatter.dateFormat = "yyyy-MM-dd"
+      let startDate = dateFormatter.dateFromString(startDateString!)
+      let endDate = dateFormatter.dateFromString(endDateString!)
+      let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
+      dateFormatter.dateFormat = "M/dd"
+      startDateString = dateFormatter.stringFromDate(startDate!)
       infoLabel.hidden = false
       if let orderInfo = order {
         if orderInfo.status == "0" {
@@ -321,7 +343,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           if days == 0 {
             statusLabel.setTitle(" 今天入住温德姆至尊豪廷", forState: .Normal)
           } else {
-            statusLabel.setTitle(" 您的订单已确定, 请与\(days)天后入住温德姆至尊豪廷", forState: .Normal)
+            statusLabel.setTitle(" 请于\(days)天后入住温德姆至尊豪廷", forState: .Normal)
           }
           statusLabel.setImage(UIImage(named: "sl_zhuyi"), forState: .Normal)
         }

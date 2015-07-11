@@ -171,12 +171,18 @@
 
 - (void)clientLogin:(NSString *)clientID name:(NSString *)name deviceToken:(NSString *)deviceToken {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+#if DEBUG
+  NSString *appid = @"HOTELVIP_DEBUG";
+#else
+  NSString *appid = @"HOTELVIP";
+#endif
   NSDictionary *dictionary = @{
     @"type": [NSNumber numberWithInteger:MessageIMClientLogin],
     @"id": clientID,
     @"name": name,
     @"devtoken": deviceToken,
     @"role": @0,  //0: APP用户 1:商家
+    @"appid": appid,
     @"timestamp": timestamp
   };
   
