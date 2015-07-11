@@ -19,6 +19,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self initSubviews];
+        _headerFrame.Edit = !_headerFrame.isEdit;
+        [self changeFrame];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
     }
     return self;
@@ -176,9 +178,10 @@
 - (void)clickInView:(id)sender
 {
     [self endEditing:YES];
-    _headerFrame.Edit = !_headerFrame.isEdit;
+//    _headerFrame.Edit = !_headerFrame.isEdit;
 
-    [self changeFrame];
+//    [self changeFrame];
+  
 //    [UIView animateWithDuration:kDuration animations:^{
 //    
 //        self.headerFrame = _headerFrame;
