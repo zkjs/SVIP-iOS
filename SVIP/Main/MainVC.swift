@@ -75,7 +75,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         order.guesttel = lastOrder["guesttel"] as? String
         order.orderid = lastOrder["id"] as? String
         order.remark = lastOrder["remark"] as? String
-        order.orderno = lastOrder["reservation_no"] as? String
+        order.reservation_no = lastOrder["reservation_no"] as? String
         order.room_rate = lastOrder["room_rate"] as? String
         order.room_type = lastOrder["room_type"] as? String
         order.room_typeid = lastOrder["room_typeid"] as? String

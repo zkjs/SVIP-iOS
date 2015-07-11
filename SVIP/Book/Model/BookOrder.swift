@@ -39,7 +39,7 @@ class BookOrder: NSObject {
   var departure_date: String!
   
   //for alipay
-  var orderno: String!
+  var reservation_no: String!
 
   // Hanton
   var created: String!
@@ -58,7 +58,7 @@ class BookOrder: NSObject {
     output += "room_rate: \(room_rate)\n"
     output += "arrival_date: \(arrival_date)\n"
     output += "departure_date: \(departure_date)\n"
-    output += "orderno: \(orderno)\n"
+    output += "reservation_no: \(reservation_no)\n"
     output += "created: \(created)\n"
     output += "orderid: \(orderid)\n"
     output += "status: \(status)\n"
@@ -78,7 +78,7 @@ class BookOrder: NSObject {
     room_rate = aDecoder.decodeObjectForKey("room_rate") as! String
     arrival_date = aDecoder.decodeObjectForKey("arrival_date") as! String
     departure_date = aDecoder.decodeObjectForKey("departure_date") as! String
-    orderno = aDecoder.decodeObjectForKey("orderno") as! String
+    reservation_no = aDecoder.decodeObjectForKey("reservation_no") as! String
     created = aDecoder.decodeObjectForKey("created") as! String
     orderid = aDecoder.decodeObjectForKey("orderid") as! String
     status = aDecoder.decodeObjectForKey("status") as! String
@@ -95,7 +95,7 @@ class BookOrder: NSObject {
     aCoder.encodeObject(room_rate, forKey:"room_rate")
     aCoder.encodeObject(arrival_date, forKey:"arrival_date")
     aCoder.encodeObject(departure_date, forKey:"departure_date")
-    aCoder.encodeObject(orderno, forKey:"orderno")
+    aCoder.encodeObject(reservation_no, forKey:"reservation_no")
     aCoder.encodeObject(created, forKey:"created")
     aCoder.encodeObject(orderid, forKey:"orderid")
     aCoder.encodeObject(status, forKey:"status")

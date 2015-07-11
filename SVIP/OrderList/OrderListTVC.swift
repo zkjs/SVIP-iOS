@@ -187,7 +187,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           order.guesttel = orderInfo["guesttel"] as? String
           order.orderid = orderInfo["id"] as? String
           order.remark = orderInfo["remark"] as? String
-          order.orderno = orderInfo["reservation_no"] as? String
+          order.reservation_no = orderInfo["reservation_no"] as? String
           order.room_rate = orderInfo["room_rate"] as? String
           order.room_type = orderInfo["room_type"] as? String
           order.room_typeid = orderInfo["room_typeid"] as? String

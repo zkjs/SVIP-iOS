@@ -35,7 +35,7 @@ class BookPayVC: UIViewController {
   func cancelOrder() {
     ZKJSTool .showLoading("正在取消订单")
     let account = JSHAccountManager .sharedJSHAccountManager()
-    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithUserID(account.userid, token: account.token, orderID: bkOrder.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithUserID(account.userid, token: account.token, reservation_no: bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
           ZKJSTool .showMsg("订单已取消")
           self .dismissViewControllerAnimated(true, completion: nil)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -65,7 +65,7 @@ class BookPayVC: UIViewController {
     aliOrder.partner = partner
     aliOrder.seller = seller
 //    aliOrder.tradeNO = tradeNo  //need to fetch 
-    aliOrder.tradeNO = AbookOrder.orderno
+    aliOrder.tradeNO = AbookOrder.reservation_no
     aliOrder.productName = AbookOrder.room_type
     aliOrder.productDescription = "needtoknow"
     if let rooms = AbookOrder.rooms.toInt() {

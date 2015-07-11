@@ -184,8 +184,8 @@ class BookConfirmVC: UIViewController {
         let payVC = BookPayVC()
         payVC.bkOrder = self.order
         let dic = responseObject as! NSDictionary
-        if let orderno = (dic["orderno"] as? String) {
-          payVC.bkOrder.orderno = orderno
+        if let reservation_no = (dic["reservation_no"] as? String) {
+          payVC.bkOrder.reservation_no = reservation_no
         }
         self.navigationController? .pushViewController(payVC, animated: true)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
