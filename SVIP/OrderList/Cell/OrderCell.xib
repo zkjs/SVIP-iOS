@@ -16,8 +16,12 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
                         <rect key="frame" x="160" y="0.0" width="1" height="115"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="qWt-h4-AUx" userLabel="Logo Image View">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="qWt-h4-AUx" userLabel="Logo Image View">
                         <rect key="frame" x="116" y="27" width="88" height="88"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="88" id="1H2-Z7-b2T"/>
+                            <constraint firstAttribute="width" constant="88" id="VQh-Az-Zfk"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015/05/06" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMj-f0-rBu" userLabel="Date Label">
                         <rect key="frame" x="25" y="47" width="83" height="20"/>
@@ -46,7 +50,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-yuding" translatesAutoresizingMaskIntoConstraints="NO" id="QuE-m1-vBo" userLabel="Booking Image View">
                         <rect key="frame" x="181" y="88" width="23" height="23"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已确定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrk-wv-JaX" userLabel="Count Label">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="已确定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrk-wv-JaX" userLabel="Count Label">
                         <rect key="frame" x="60" y="92" width="48" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.98431372549019602" green="0.15686274509803921" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -70,7 +74,7 @@
                     <constraint firstItem="iaP-Kr-A36" firstAttribute="leading" secondItem="Qrk-wv-JaX" secondAttribute="leading" id="fFb-Zj-NU1"/>
                     <constraint firstAttribute="centerX" secondItem="8bg-lG-oeF" secondAttribute="centerX" id="mUk-wd-A8M"/>
                     <constraint firstAttribute="trailing" secondItem="I9m-Me-nUQ" secondAttribute="trailing" constant="8" id="o6z-9P-ld8"/>
-                    <constraint firstItem="Qrk-wv-JaX" firstAttribute="top" secondItem="2fB-OD-xhL" secondAttribute="bottom" constant="2" id="rkI-35-XqI"/>
+                    <constraint firstItem="Qrk-wv-JaX" firstAttribute="top" secondItem="2fB-OD-xhL" secondAttribute="bottom" constant="3" id="rkI-35-XqI"/>
                     <constraint firstItem="2fB-OD-xhL" firstAttribute="trailing" secondItem="Qrk-wv-JaX" secondAttribute="trailing" id="wbc-sJ-bq3"/>
                     <constraint firstAttribute="centerX" secondItem="qWt-h4-AUx" secondAttribute="centerX" id="yev-VA-pLc"/>
                 </constraints>
@@ -95,6 +99,6 @@
     <resources>
         <image name="ic-yuding" width="23" height="23"/>
         <image name="ic_shape01" width="1" height="365"/>
-        <image name="img_hotel_anli01" width="88" height="88"/>
+        <image name="img_hotel_anli01" width="131" height="131"/>
     </resources>
 </document>

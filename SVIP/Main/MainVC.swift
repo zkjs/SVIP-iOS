@@ -118,9 +118,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
         beaconManager.requestStateForRegion(beaconRegion)
       }
-    } else {
-      self.updateSmartPanel()
     }
+    self.updateSmartPanel()
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -289,7 +288,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         } else {
           // 确定订单
           statusLabel.setTitle(" 您的订单已确定，请按时到达酒店", forState: .Normal)
-          statusLabel.setImage(UIImage(named: "sl_yueding"), forState: .Normal)
+          statusLabel.setImage(UIImage(named: "sl_yuding"), forState: .Normal)
         }
       }
       var roomType = ""
@@ -304,7 +303,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .InRegion_NoOrder:
       statusLabel.setTitle(" 温德姆至尊豪廷欢迎您，点击查看信息", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
-      tipsLabel.setTitle(" 按智键快速马上预定酒店", forState: UIControlState.Normal)
+      tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:
       statusLabel.setTitle(" 温德姆至尊豪廷随时为您服务!", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_likai"), forState: .Normal)
@@ -339,7 +338,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .OutOfRegion_NoOrder:
       statusLabel.setTitle(" 您没有任何预订信息", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
-      tipsLabel.setTitle(" 按智键快速马上预定酒店", forState: .Normal)
+      tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
     }
     println("Update Smart Panel")
   }
@@ -363,34 +362,34 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       navController.navigationBar.translucent = false
       presentViewController(navController, animated: true, completion: nil)
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
-//      if let orderInfo = order {
-//        if orderInfo.status == "0" {  // 0 未确认可取消订单
-//          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
-//          navController.navigationBar.tintColor = UIColor.blackColor()
-//          navController.navigationBar.translucent = false
-//          presentViewController(navController, animated: true, completion: nil)
-//        } else {
-//          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
-//          navController.navigationBar.tintColor = UIColor.blackColor()
-//          navController.navigationBar.translucent = false
-//          presentViewController(navController, animated: true, completion: nil)
-//        }
-//      }
+      if let orderInfo = order {
+        if orderInfo.status == "0" {  // 0 未确认可取消订单
+          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
+          navController.navigationBar.tintColor = UIColor.blackColor()
+          navController.navigationBar.translucent = false
+          presentViewController(navController, animated: true, completion: nil)
+        } else {
+          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
+          navController.navigationBar.tintColor = UIColor.blackColor()
+          navController.navigationBar.translucent = false
+          presentViewController(navController, animated: true, completion: nil)
+        }
+      }
       break
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
-//      if let orderInfo = order {
-//        if orderInfo.status == "0" {  // 0 未确认可取消订单
-//          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
-//          navController.navigationBar.tintColor = UIColor.blackColor()
-//          navController.navigationBar.translucent = false
-//          presentViewController(navController, animated: true, completion: nil)
-//        } else {
-//          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
-//          navController.navigationBar.tintColor = UIColor.blackColor()
-//          navController.navigationBar.translucent = false
-//          presentViewController(navController, animated: true, completion: nil)
-//        }
-//      }
+      if let orderInfo = order {
+        if orderInfo.status == "0" {  // 0 未确认可取消订单
+          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
+          navController.navigationBar.tintColor = UIColor.blackColor()
+          navController.navigationBar.translucent = false
+          presentViewController(navController, animated: true, completion: nil)
+        } else {
+          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
+          navController.navigationBar.tintColor = UIColor.blackColor()
+          navController.navigationBar.translucent = false
+          presentViewController(navController, animated: true, completion: nil)
+        }
+      }
       break
     }
   }
@@ -403,10 +402,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
     case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-//      let navController = UINavigationController(rootViewController: BookVC())
-//      navController.navigationBar.tintColor = UIColor.blackColor()
-//      navController.navigationBar.translucent = false
-//      presentViewController(navController, animated: true, completion: nil)
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BookingOrderDetailVCDelegate {
-  func didCancelOrder(order: NSDictionary)
+  func didCancelOrder(order: BookOrder)
 }
 
 class BookingOrderDetailVC: UIViewController {
@@ -21,13 +21,13 @@ class BookingOrderDetailVC: UIViewController {
   @IBOutlet weak var remarkLabel: UILabel!
   @IBOutlet weak var chatButton: UIButton!
   
-  let order: NSDictionary
+  let order: BookOrder
   
   var tagView = SKTagView()
   var delegate: BookingOrderDetailVCDelegate? = nil
   
   // MARK: - Init
-  init(order: NSDictionary?) {
+  init(order: BookOrder?) {
     self.order = order!
     super.init(nibName: nil, bundle: nil)
   }
@@ -46,29 +46,29 @@ class BookingOrderDetailVC: UIViewController {
     
     title = "预定中的订单"
     
-    var startDateString = order["arrival_date"] as! String
-    var endDateString = order["departure_date"] as! String
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    
+    var startDateString = order.arrival_date
+    var endDateString = order.departure_date
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(startDateString)
     let endDate = dateFormatter.dateFromString(endDateString)
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
-    let status = order["status"] as! String
-    let room_rate_string = order["room_rate"] as! NSString
-    let room_rate = Int(room_rate_string.doubleValue)
-    let rooms = order["rooms"] as! String
-    let createdDate = order["created"] as! String
+    let status = order.status
+    let rooms = order.rooms
+    let createdDate = order.created
     
     nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
     dateLabel.text = "在 \(createdDate) 预订"
-    roomTypeLabel.text = order["room_type"] as? String
+    roomTypeLabel.text = order.room_type
     durationLabel.text = "\(days)晚"
     dateFormatter.dateFormat = "M/dd"
     startDateString = dateFormatter.stringFromDate(startDate!)
     endDateString = dateFormatter.stringFromDate(endDate!)
     dateDurationLabel.text = "\(startDateString)-\(endDateString)"
     
-    let remark = order["remark"] as! String
+    let remark = order.remark
     if !remark.isEmpty {
       let tags = remark.componentsSeparatedByString(",")
       setupTagView(tags)
@@ -78,6 +78,10 @@ class BookingOrderDetailVC: UIViewController {
   }
   
   // MARK: - Private Method
+  func dismissSelf() -> Void {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
+  
   func setupTagView(tags: [String]) {
     tagView.backgroundColor = UIColor(fromHexString: "F4F4F3")
     tagView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -121,12 +125,14 @@ class BookingOrderDetailVC: UIViewController {
   @IBAction func cancelOrder(sender: AnyObject) {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
-    let orderID = order["id"] as! String
+    let orderID = order.orderid
     ZKJSTool.showLoading("正在取消订单...")
     ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, orderID: orderID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       ZKJSTool.hideHUD()
+      ZKJSTool.showMsg("已成功取消订单")
       self.delegate?.didCancelOrder(self.order)
       self.navigationController?.popToRootViewControllerAnimated(true)
+      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       ZKJSTool.hideHUD()
       ZKJSTool.showMsg(error.description)

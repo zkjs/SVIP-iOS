@@ -220,8 +220,8 @@ typedef NS_ENUM(NSInteger, MessageServiceChatType) {
   MessageServiceChatCustomerServiceSessionMsgReadAck_RSP = 213,
   
   //得到离线消息
-  MessageServiceChatOfflineMssage     = 225,
-  MessageServiceChatOfflineMssage_RSP = 226
+  MessageServiceChatOfflineMssage     = 227,
+  MessageServiceChatOfflineMssage_RSP = 228
 };
 
 

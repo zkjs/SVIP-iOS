@@ -33,14 +33,10 @@ class StorageManager: NSObject {
   }
   
   func lastOrder() -> BookOrder? {
-//    return NSUserDefaults.standardUserDefaults().objectForKey("LastOrder") as? BookOrder
     return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(kLastOrder)) as? BookOrder
   }
   
   func updateLastOrder(order: BookOrder) {
-//    let defaults = NSUserDefaults.standardUserDefaults()
-//    defaults.setObject(order, forKey: "LastOrder")
-//    defaults.synchronize()
     NSKeyedArchiver.archiveRootObject(order, toFile: documentDirectory().stringByAppendingPathComponent(kLastOrder))
   }
   

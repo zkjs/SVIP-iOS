@@ -711,7 +711,7 @@
 }
 
 - (void)showTextMessage:(NSNotification *)notification {
-  NSString *sender = notification.userInfo[@"fromid"];
+  NSString *sender = notification.userInfo[@"fromname"];
   NSString *text = notification.userInfo[@"textmsg"];
   
   XHMessage *message;
@@ -730,7 +730,7 @@
 }
 
 - (void)showVoiceMessage:(NSNotification *)notification {
-  NSString *sender = notification.userInfo[@"fromid"];
+  NSString *sender = notification.userInfo[@"fromname"];
   NSString *body = notification.userInfo[@"body"];
   NSData *voiceData = [[NSData alloc] initWithBase64EncodedString:body options:NSDataBase64DecodingIgnoreUnknownCharacters];
   NSString *voicePath = [self getPlayPath];
@@ -755,7 +755,7 @@
 }
 
 - (void)showImageMessage:(NSNotification *)notification {
-  NSString *sender = notification.userInfo[@"fromid"];
+  NSString *sender = notification.userInfo[@"fromname"];
   NSString *body = notification.userInfo[@"body"];
   NSData *imageData = [[NSData alloc] initWithBase64EncodedString:body options:NSDataBase64DecodingIgnoreUnknownCharacters];
   UIImage *image = [UIImage imageWithData:imageData];

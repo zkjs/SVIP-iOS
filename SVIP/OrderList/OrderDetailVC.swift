@@ -18,10 +18,10 @@ class OrderDetailVC: UIViewController {
   @IBOutlet weak var amountFormulaLabel: UILabel!
   @IBOutlet weak var amountLabel: UILabel!
   
-  let order: NSDictionary
+  let order: BookOrder
   
   // MARK: - Init
-  init(order: NSDictionary?) {
+  init(order: BookOrder?) {
     self.order = order!
     super.init(nibName: nil, bundle: nil)
   }
@@ -40,22 +40,26 @@ class OrderDetailVC: UIViewController {
     
     title = "订单详情"
     
-    var startDateString = order["arrival_date"] as! String
-    var endDateString = order["departure_date"] as! String
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    
+    var startDateString = order.arrival_date
+    var endDateString = order.departure_date
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(startDateString)
     let endDate = dateFormatter.dateFromString(endDateString)
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
-    let status = order["status"] as! String
-    let room_rate_string = order["room_rate"] as! NSString
-    let room_rate = Int(room_rate_string.doubleValue)
-    let rooms = order["rooms"] as! String
-    let createdDate = order["created"] as! String
+    let status = order.status
+    var room_rate = 0
+    if let roomRate = order.room_rate.toInt() {
+      room_rate = roomRate
+    }
+    let rooms = order.rooms
+    let createdDate = order.created
 
     nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
     dateLabel.text = "在 \(createdDate) 预订"
-    roomTypeLabel.text = order["room_type"] as? String
+    roomTypeLabel.text = order.room_type
     durationLabel.text = "\(days)晚"
     dateFormatter.dateFormat = "M/dd"
     startDateString = dateFormatter.stringFromDate(startDate!)
@@ -65,4 +69,8 @@ class OrderDetailVC: UIViewController {
     amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
   }
   
+  // MARK: - Private Method
+  func dismissSelf() -> Void {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
 }

@@ -71,23 +71,26 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     }
     
     let cell: OrderCell = tableView.dequeueReusableCellWithIdentifier(OrderCell.reuseIdentifier()) as! OrderCell
-    let order = orders[indexPath.row] as! NSDictionary
+    let order = orders[indexPath.row] as! BookOrder
     cell.logoImageView.image = UIImage(named: "img_hotel_anli01")
-    let startDateString = order["arrival_date"] as! String
-    let endDateString = order["departure_date"] as! String
+    let startDateString = order.arrival_date
+    let endDateString = order.departure_date
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(startDateString)
     let endDate = dateFormatter.dateFromString(endDateString)
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
-    let status = order["status"] as! String
-    let room_rate_string = order["room_rate"] as! NSString
-    let room_rate = Int(room_rate_string.doubleValue)
-    let rooms = order["rooms"] as! String
+    let status = order.status
+    var room_rate = 0
+    if let roomRate = order.room_rate.toInt() {
+      room_rate = roomRate
+    }
+    let rooms = order.rooms
     
     // status=订单状态 默认0 未确认可取消订单 1取消订单 2已确认订单 3已经完成的订单 5删除订单
     if status.toInt() == 0 {
       cell.rightUtilityButtons = nil
+      cell.bookingImageView.hidden = false
       cell.statusLabel.text = "未确定"
     } else if status.toInt() == 1 {
       cell.rightUtilityButtons = rightButtons() as [AnyObject]
@@ -121,10 +124,9 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let order = orders[indexPath.row] as! NSDictionary
-    let status = order["status"] as! String
+    let order = orders[indexPath.row] as! BookOrder
     
-    if status.toInt() == 0 {  // 0 未确认可取消订单
+    if order.status.toInt() == 0 {  // 0 未确认可取消订单
       let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
       bookingOrderDetailVC.delegate = self
       navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
@@ -134,11 +136,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
   
   // MARK: - BookingOrderDetailVCDelegate
-  func didCancelOrder(order: NSDictionary) {
-    let replacedOrder = NSMutableDictionary(dictionary: order)
-    replacedOrder["status"] = "1"  // 1 取消订单
+  func didCancelOrder(order: BookOrder) {
+    order.status = "1"  // 1 取消订单
     let index = orders.indexOfObject(order)
-    orders.replaceObjectAtIndex(index, withObject: replacedOrder)
+    orders.replaceObjectAtIndex(index, withObject: order)
     let indexPath = NSIndexPath(forRow: index, inSection: 0)
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
   }
@@ -148,14 +149,13 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     switch index {
     case 0:
       let indexPath = tableView.indexPathForCell(cell)!
-      let order = orders[indexPath.row] as! NSDictionary
+      let order = orders[indexPath.row] as! BookOrder
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       
       let userID = JSHAccountManager.sharedJSHAccountManager().userid
       let token = JSHAccountManager.sharedJSHAccountManager().token
-      let orderID = order["id"] as! String
-      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, orderID: orderID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, orderID: order.orderid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg("删除失败")
@@ -178,7 +178,24 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       self.tableView.footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
-        self.orders.addObjectsFromArray(orderArray as [AnyObject])
+        for orderInfo in orderArray {
+          let order = BookOrder()
+          order.arrival_date = orderInfo["arrival_date"] as? String
+          order.created = orderInfo["created"] as? String
+          order.departure_date = orderInfo["departure_date"] as? String
+          order.guest = orderInfo["guest"] as? String
+          order.guesttel = orderInfo["guesttel"] as? String
+          order.orderid = orderInfo["id"] as? String
+          order.remark = orderInfo["remark"] as? String
+          order.orderno = orderInfo["reservation_no"] as? String
+          order.room_rate = orderInfo["room_rate"] as? String
+          order.room_type = orderInfo["room_type"] as? String
+          order.room_typeid = orderInfo["room_typeid"] as? String
+          order.rooms = orderInfo["rooms"] as? String
+          order.shopid = orderInfo["shopid"] as? String
+          order.status = orderInfo["status"] as? String
+          self.orders.addObject(order)
+        }
         self.tableView.reloadData()
         self.tableView.footer.endRefreshing()
         self.orderPage++

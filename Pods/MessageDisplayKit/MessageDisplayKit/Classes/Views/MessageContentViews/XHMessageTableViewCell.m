@@ -214,6 +214,7 @@ static const CGFloat kXHBubbleMessageViewPadding = 8;
 
 - (void)configUserNameWithMessage:(id <XHMessageModel>)message {
     self.userNameLabel.text = [message sender];
+  self.userNameLabel.sizeToFit;
 }
 
 - (void)configureMessageBubbleViewWithMessage:(id <XHMessageModel>)message {
