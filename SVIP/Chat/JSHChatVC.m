@@ -82,9 +82,10 @@
     XHShareMenuItem *shareMenuItem = [[XHShareMenuItem alloc] initWithNormalIconImage:[UIImage imageNamed:plugIcon] title:[plugTitle objectAtIndex:[plugIcons indexOfObject:plugIcon]]];
     [shareMenuItems addObject:shareMenuItem];
   }
-  
   self.shareMenuItems = shareMenuItems;
   [self.shareMenuView reloadData];
+  
+  self.messageInputView.delegate = self;
   
   [self loadDataSource];
   
@@ -441,7 +442,6 @@
 }
 
 - (void)setupAssistantView {
-//  self.messageInputView.hidden = YES;
   NSDictionary *actions = self.data[self.condition][@"actions"];
   CGFloat division = self.view.frame.size.width / (actions.count * 2);
   CGFloat centerX = division - 60.0 / 2.0;
@@ -492,7 +492,6 @@
     __weak __typeof(self) weakSelf = self;
     view.didClickTagAtIndex = ^(NSUInteger index) {
       [weakSelf hideTagView];
-      weakSelf.messageInputView.hidden = NO;
       NSString *tag = self.data[self.condition][@"actions"][sender.tag][@"tags"][index];
       NSString *ruleType = self.data[self.condition][@"actions"][sender.tag][@"ruletype"];
       [self requestWaiterWithRuleType:ruleType andDescription:tag];
@@ -545,7 +544,6 @@
 }
 
 - (void)hideTagView {
-  [self showAllActionButtons];
   self.cancelButton.hidden = YES;
   self.tagView.hidden = YES;
 }
@@ -790,6 +788,23 @@
     recordDuration = [NSString stringWithFormat:@"%.1f", play.duration];
   }
   return recordDuration;
+}
+
+#pragma mark - XHMessageInputViewDelegate
+
+- (void)inputTextViewWillBeginEditing:(XHMessageTextView *)messageInputTextView {
+  [super inputTextViewWillBeginEditing:messageInputTextView];
+  [self hideAllActionButtons];
+}
+
+- (void)didSelectedMultipleMediaAction {
+  [super didSelectedMultipleMediaAction];
+  [self hideAllActionButtons];
+}
+
+- (void)prepareRecordingVoiceActionWithCompletion:(BOOL (^)(void))completion {
+  [super prepareRecordingVoiceActionWithCompletion:completion];
+  [self hideAllActionButtons];
 }
 
 @end
