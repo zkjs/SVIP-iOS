@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
                         <rect key="frame" x="160" y="0.0" width="1" height="115"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="qWt-h4-AUx" userLabel="Logo Image View">
@@ -26,13 +26,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2晚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaP-Kr-A36" userLabel="Count Label">
-                        <rect key="frame" x="25" y="75" width="26" height="20"/>
+                        <rect key="frame" x="25" y="70" width="26" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fB-OD-xhL" userLabel="Amount Label">
-                        <rect key="frame" x="89" y="75" width="19" height="20"/>
+                        <rect key="frame" x="89" y="70" width="19" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -46,25 +46,39 @@
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-yuding" translatesAutoresizingMaskIntoConstraints="NO" id="QuE-m1-vBo" userLabel="Booking Image View">
                         <rect key="frame" x="181" y="88" width="23" height="23"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已确定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrk-wv-JaX" userLabel="Count Label">
+                        <rect key="frame" x="60" y="92" width="48" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.98431372549019602" green="0.15686274509803921" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="I9m-Me-nUQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="47" id="1Ej-Ld-8IG"/>
                     <constraint firstAttribute="bottom" secondItem="QuE-m1-vBo" secondAttribute="bottom" constant="4" id="2WL-X8-5oo"/>
                     <constraint firstItem="I9m-Me-nUQ" firstAttribute="leading" secondItem="qWt-h4-AUx" secondAttribute="trailing" constant="8" id="36n-yW-MvF"/>
-                    <constraint firstItem="iaP-Kr-A36" firstAttribute="top" secondItem="vMj-f0-rBu" secondAttribute="bottom" constant="8" id="4bc-F8-qHs"/>
+                    <constraint firstItem="iaP-Kr-A36" firstAttribute="top" secondItem="vMj-f0-rBu" secondAttribute="bottom" constant="3" id="4bc-F8-qHs"/>
                     <constraint firstAttribute="centerX" secondItem="QuE-m1-vBo" secondAttribute="centerX" constant="-32" id="5Qu-08-BV5"/>
                     <constraint firstItem="vMj-f0-rBu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="47" id="5ly-xb-QBW"/>
                     <constraint firstAttribute="bottom" secondItem="qWt-h4-AUx" secondAttribute="bottom" id="HVf-Th-6dW"/>
-                    <constraint firstItem="2fB-OD-xhL" firstAttribute="top" secondItem="vMj-f0-rBu" secondAttribute="bottom" constant="8" id="LVl-nH-utO"/>
+                    <constraint firstItem="2fB-OD-xhL" firstAttribute="top" secondItem="vMj-f0-rBu" secondAttribute="bottom" constant="3" id="LVl-nH-utO"/>
                     <constraint firstItem="8bg-lG-oeF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Of8-2v-Yfy"/>
                     <constraint firstItem="vMj-f0-rBu" firstAttribute="leading" secondItem="iaP-Kr-A36" secondAttribute="leading" id="Uey-wQ-00x"/>
                     <constraint firstItem="qWt-h4-AUx" firstAttribute="leading" secondItem="vMj-f0-rBu" secondAttribute="trailing" constant="8" id="ZHY-6r-qtJ"/>
                     <constraint firstItem="2fB-OD-xhL" firstAttribute="trailing" secondItem="vMj-f0-rBu" secondAttribute="trailing" id="Zmc-te-cNi"/>
                     <constraint firstAttribute="bottom" secondItem="8bg-lG-oeF" secondAttribute="bottom" id="e9I-bN-G3x"/>
+                    <constraint firstItem="iaP-Kr-A36" firstAttribute="leading" secondItem="Qrk-wv-JaX" secondAttribute="leading" id="fFb-Zj-NU1"/>
                     <constraint firstAttribute="centerX" secondItem="8bg-lG-oeF" secondAttribute="centerX" id="mUk-wd-A8M"/>
                     <constraint firstAttribute="trailing" secondItem="I9m-Me-nUQ" secondAttribute="trailing" constant="8" id="o6z-9P-ld8"/>
+                    <constraint firstItem="Qrk-wv-JaX" firstAttribute="top" secondItem="2fB-OD-xhL" secondAttribute="bottom" constant="2" id="rkI-35-XqI"/>
+                    <constraint firstItem="2fB-OD-xhL" firstAttribute="trailing" secondItem="Qrk-wv-JaX" secondAttribute="trailing" id="wbc-sJ-bq3"/>
                     <constraint firstAttribute="centerX" secondItem="qWt-h4-AUx" secondAttribute="centerX" id="yev-VA-pLc"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="fFb-Zj-NU1"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="amountLabel" destination="2fB-OD-xhL" id="fbm-bJ-X3Q"/>
@@ -73,6 +87,7 @@
                 <outlet property="dateLabel" destination="vMj-f0-rBu" id="ge6-eF-ubV"/>
                 <outlet property="logoImageView" destination="qWt-h4-AUx" id="96d-uD-O2J"/>
                 <outlet property="nameLabel" destination="I9m-Me-nUQ" id="4St-gx-OZ4"/>
+                <outlet property="statusLabel" destination="Qrk-wv-JaX" id="ph4-ns-qjP"/>
             </connections>
             <point key="canvasLocation" x="378" y="212"/>
         </tableViewCell>

@@ -19,6 +19,7 @@ class OrderCell: SWTableViewCell {
   @IBOutlet weak var countLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var logoImageView: UIImageView!
+  @IBOutlet weak var statusLabel: UILabel!
 
   class func reuseIdentifier() -> String {
     return kCellReuseId
