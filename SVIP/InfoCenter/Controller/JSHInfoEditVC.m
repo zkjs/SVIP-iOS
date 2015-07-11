@@ -83,6 +83,7 @@ static NSString *identifier = @"infoCenterCell";
     
     
     // 取得标签
+  /*
     NSMutableArray *myArray = [NSMutableArray array];
     [[ZKJSHTTPSessionManager sharedInstance] getTagsShowWithCallback:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
@@ -106,27 +107,11 @@ static NSString *identifier = @"infoCenterCell";
         }
         _dataArray = [NSArray arrayWithArray:myArray];
         
-        [_tableView reloadData];
-        //myArray已经收取所有数据
-        /*myArray的一个元素
-         children =     (
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7a490>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7c1a0>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7c3b0>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7c5c0>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7c7d0>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7ca10>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7cc20>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7c9e0>",
-         "<JSHInfoEditLabelLevel1Model: 0x7fe0a3d7d060>"
-         );
-         tag = "\U5730\U70b9\U4fe1\U606f*\U4e2d\U56fd";
-
-         */
-        
+        [_tableView reloadData];        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
+*/
 }
 
 - (void)initSubviews
@@ -249,6 +234,7 @@ static NSString *identifier = @"infoCenterCell";
     }];
     
     //上传标签
+/*
     NSLog(@"%@",_dataArray);
     NSMutableArray *mutArray = [NSMutableArray array];
     NSMutableString *mutString = [[NSMutableString alloc] init];
@@ -271,7 +257,7 @@ static NSString *identifier = @"infoCenterCell";
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
-
+*/
 }
 - (void)viewDidAppear:(BOOL)animated
 {
