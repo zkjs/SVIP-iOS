@@ -407,7 +407,12 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //      navController.navigationBar.tintColor = UIColor.blackColor()
 //      navController.navigationBar.translucent = false
 //      presentViewController(navController, animated: true, completion: nil)
-      break
+      let chatVC = JSHChatVC(chatType: .Service)
+      chatVC.condition = String(ruleType.rawValue)
+      let navController = UINavigationController(rootViewController: chatVC)
+      navController.navigationBar.tintColor = UIColor.blackColor()
+      navController.navigationBar.translucent = false
+      presentViewController(navController, animated: true, completion: nil)
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.condition = String(ruleType.rawValue)
