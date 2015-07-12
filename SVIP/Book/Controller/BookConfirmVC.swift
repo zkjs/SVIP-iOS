@@ -178,7 +178,8 @@ class BookConfirmVC: UIViewController {
       }
     }
     order.remark = remark
-
+    order.arrival_date = inDate.dateString
+    order.departure_date = outDate.dateString
     let account = JSHAccountManager .sharedJSHAccountManager()
     ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID(account.userid, token: account.token, shopID: order.shopid, goodsID: order.room_typeid, guest: order.guest, guestPhone: order.guesttel, roomNum: order.rooms, arrivalDate: order.arrival_date, departureDate: order.departure_date, roomType: order.room_type, roomRate: order.room_rate, remark: order.remark, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let payVC = BookPayVC()
