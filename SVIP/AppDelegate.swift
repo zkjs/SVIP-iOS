@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         let alertView = UIAlertController(title: "新消息", message: "您有新消息", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
         alertView.addAction(UIAlertAction(title: "查看", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+          println("查看")
           let navController = UINavigationController(rootViewController: JSHChatVC(chatType: ChatType.OldSession))
           navController.navigationBar.tintColor = UIColor.blackColor()
           navController.navigationBar.translucent = false

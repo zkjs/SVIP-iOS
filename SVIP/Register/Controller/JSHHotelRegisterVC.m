@@ -137,9 +137,9 @@
     
     if (_phoneField.text.length == 11) {
         if ([ZKJSTool validateMobile:_phoneField.text]) {
-//            if (_codeField.text.length == 6) {
-//                [[ZKJSHTTPSMSSessionManager sharedInstance] verifySmsCode:_codeField.text mobilePhoneNumber:_phoneField.text callback:^(BOOL succeeded, NSError *error) {
-//                    if (succeeded) {
+            if (_codeField.text.length == 6) {
+                [[ZKJSHTTPSMSSessionManager sharedInstance] verifySmsCode:_codeField.text mobilePhoneNumber:_phoneField.text callback:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
                         //注册
                         [[ZKJSHTTPSessionManager sharedInstance] userSignUpWithPhone:_phoneField.text success:^(NSURLSessionDataTask *task, id responseObject) {
                             if ([[responseObject objectForKey:@"set"] boolValue]) {
@@ -157,12 +157,12 @@
                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
                             [ZKJSTool showMsg:@"请输入受邀请的手机号码"];
                         }];
-//                    }else{
-//                        _codeField.text = @"";
-//                        [ZKJSTool showMsg:@"验证码错误"];
-//                    }
-//                }];
-                
+                    }else{
+                        _codeField.text = @"";
+                        [ZKJSTool showMsg:@"验证码错误"];
+                    }
+                }];
+              
                 //test
 //                [[ZKJSHTTPSessionManager sharedInstance] userSignUpWithPhone:_phoneField.text success:^(NSURLSessionDataTask *task, id responseObject) {
 //                    if ([[responseObject objectForKey:@"set"] boolValue]) {
@@ -183,7 +183,7 @@
 //                    [ZKJSTool showMsg:@"注册失败，请重试"];
 //                }];
 
-//            }
+            }
         }
     }
 }
