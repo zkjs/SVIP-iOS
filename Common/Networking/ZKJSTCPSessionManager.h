@@ -25,59 +25,6 @@ typedef NS_ENUM(NSInteger, MessageIMType) {
   
   //user重复连接时,踢走前,给旧连接发条消息
   MessageIMServerRepeatLogin = 6,
-  //构建讨论组
-  MessageIMBuildGroup     = 10,
-  MessageIMBuildGroup_RSP = 11,
-  
-  //解散讨论组
-  MessageIMDisbandGroup     = 12,
-  MessageIMDisbandGroup_RSP = 13,
-  
-  //组信息
-  MessageIMGetGroupList     = 14,
-  MessageIMGetGroupList_RSP = 15,
-  
-  //加入讨论组
-  MessageIMJoinGroup     = 16,
-  MessageIMJoinGroup_RSP = 17,
-  
-  //离开讨论组
-  MessageIMLeaveGroup     = 18,
-  MessageIMLeaveGroup_RSP = 19,
-  
-  //文本消息
-  MessageIMC2CTextChat     = 20,
-  MessageIMC2CTextChat_RSP = 21,
-  
-  //语音消息
-  MessageIMC2CMediaChat     = 22,
-  MessageIMC2CMediaChat_RSP = 23,
-  
-  //图片消息
-  MessageIMC2CImgChat     = 24,
-  MessageIMC2CImgChat_RSP = 25,
-  
-  //组文本消息
-  MessageIMGroupTextChat     = 26,
-  MessageIMGroupTextChat_RSP = 27,
-  
-  //组语音消息
-  MessageIMGroupMediaChat     = 28,
-  MessageIMGroupMediaChat_RSP = 29,
-  
-  //组图片消息
-  MessageIMGroupImgChat     = 30,
-  MessageIMGroupImgChat_RSP = 31,
-  
-  //离线文本消息
-  MessageIMC2COfflineText     = 32,
-  MessageIMC2COfflineText_RSP = 33,
-  
-  //组离线文本消息
-  MessageIMGroupOfflineText     = 34,
-  MessageIMGroupOfflineText_RSP = 35
-  
-  //禁言/拉黑/T人
 };
 
 typedef NS_ENUM(NSInteger, MessagePushType) {

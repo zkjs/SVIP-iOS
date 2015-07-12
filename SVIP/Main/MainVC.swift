@@ -91,6 +91,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
     if UIApplication.sharedApplication().applicationIconBadgeNumber > 0 {
       rightButton.badgeString = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
+    } else {
+      rightButton.badgeString = nil
     }
   }
   

@@ -92,6 +92,7 @@
   [self setupNotification];
   
   self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
+//  self.sessionID = [JSHStorage chatSessionWithShopID:self.shopID];
   if (!self.sessionID) {
     self.sessionID = [self newSessionID];
   }
@@ -543,7 +544,8 @@
 
 - (void)requestWaiterWithRuleType:(NSString *)ruleType andDescription:(NSString *)desc {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
+  self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, timestamp];
+//  [JSHStorage saveChatSession:self.sessionID withShopID:self.shopID];
   [[StorageManager sharedInstance] saveChatSession:self.sessionID shopID:self.shopID];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],
