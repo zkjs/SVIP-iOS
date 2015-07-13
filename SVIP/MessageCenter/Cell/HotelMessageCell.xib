@@ -74,6 +74,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="img_hotel_anli01" width="88" height="88"/>
+        <image name="img_hotel_anli01" width="131" height="131"/>
     </resources>
 </document>

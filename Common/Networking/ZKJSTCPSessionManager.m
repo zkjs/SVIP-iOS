@@ -11,7 +11,7 @@
 #import "SRWebSocket.h"
 #import "CocoaLumberjack.h"
 
-static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
+static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 @interface ZKJSTCPSessionManager () <NSStreamDelegate, SRWebSocketDelegate> {
   NSInputStream *_inputStream;
@@ -77,7 +77,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #pragma mark - SRWebSocketDelegate
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-  DDLogWarn(@"Websocket Connected");
+  DDLogInfo(@"Websocket Connected");
     
   if (self.delegate && [self.delegate respondsToSelector:@selector(didOpenTCPSocket)]) {
     [self.delegate didOpenTCPSocket];
@@ -85,7 +85,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-  DDLogWarn(@"Websocket Failed With Error %@", error);
+  DDLogInfo(@"Websocket Failed With Error %@", error);
   _webSocket = nil;
 }
 
@@ -94,9 +94,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
   NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
-  DDLogWarn(@"Feedback: %@", dictionary);
+  DDLogInfo(@"Feedback: %@", dictionary);
   if ([dictionary[@"type"] integerValue] == MessageIMClientLogin_RSP) {
-    DDLogWarn(@"startHeartbeat");
+    DDLogInfo(@"startHeartbeat");
     [self startHeartbeat];
   }
   
@@ -106,12 +106,12 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-  DDLogWarn(@"WebSocket closed");
+  DDLogInfo(@"WebSocket closed");
   _webSocket = nil;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload {
-  DDLogWarn(@"Websocket received pong");
+  DDLogInfo(@"Websocket received pong");
 }
 
 #pragma mark Public Method
@@ -213,29 +213,29 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 //  NSData *packet = [self packet:jsonString];
 //  [_outputStream write:[packet bytes] maxLength:[packet length]];
   
-  DDLogWarn(@"%@", jsonString);
+  DDLogInfo(@"%@", jsonString);
 }
 
 #pragma mark NSStreamDelegate
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode {
   switch (eventCode) {
     case NSStreamEventNone:
-      DDLogWarn(@"NSStreamEventNone");
+      DDLogInfo(@"NSStreamEventNone");
       break;
       
     case NSStreamEventOpenCompleted:
-      DDLogWarn(@"Stream opened");
+      DDLogInfo(@"Stream opened");
       break;
       
     case NSStreamEventHasBytesAvailable:
-      DDLogWarn(@"NSStreamEventHasBytesAvailable");
+      DDLogInfo(@"NSStreamEventHasBytesAvailable");
       if (aStream == _inputStream) {
         if ([_inputStream hasBytesAvailable]) {
           uint8_t inputData[4096];  // 每次最多读4k
           NSUInteger inputDataLength;
           
           inputDataLength = [_inputStream read:inputData maxLength:sizeof(inputData)];
-          DDLogWarn(@"inputDataLength: %tu", inputDataLength);
+          DDLogInfo(@"inputDataLength: %tu", inputDataLength);
           (void)memcpy(_buffer + _bufferLength, inputData, inputDataLength);
           _bufferLength += inputDataLength;
           
@@ -264,7 +264,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
               // 读包体
               while (_bufferLength < (_bodyLength + kPacketHeaderLength)) {
                 inputDataLength = [_inputStream read:inputData maxLength:sizeof(inputData)];
-                DDLogWarn(@"inputDataLength: %tu", inputDataLength);
+                DDLogInfo(@"inputDataLength: %tu", inputDataLength);
                 if (inputDataLength == 0) {
                   // 已无数据可读, 但包体还没读完整
                   return;
@@ -281,9 +281,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
                                                                          options:NSJSONReadingMutableContainers
                                                                            error:nil];
               
-              DDLogWarn(@"Feedback: %@", dictionary);
+              DDLogInfo(@"Feedback: %@", dictionary);
               if ([dictionary[@"type"] integerValue] == MessageIMClientLogin_RSP) {
-                DDLogWarn(@"startHeartbeat");
+                DDLogInfo(@"startHeartbeat");
                 [self startHeartbeat];
               }
               
@@ -311,22 +311,22 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
       break;
       
     case NSStreamEventHasSpaceAvailable: {
-      DDLogWarn(@"NSStreamEventHasSpaceAvailable");
+      DDLogInfo(@"NSStreamEventHasSpaceAvailable");
       break;
     }
       
     case NSStreamEventErrorOccurred: {
       NSError *error = [aStream streamError];
-      DDLogWarn(@"Stream Error: %@", error);
+      DDLogInfo(@"Stream Error: %@", error);
       break;
     }
       
     case NSStreamEventEndEncountered:
-      DDLogWarn(@"NSStreamEventEndEncountered");
+      DDLogInfo(@"NSStreamEventEndEncountered");
       break;
       
     default:
-      DDLogWarn(@"Unknown event");
+      DDLogInfo(@"Unknown event");
   }
 }
 
@@ -364,7 +364,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
   if (jsonData) {
     jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
   } else {
-    DDLogWarn(@"Got an error: %@", error);
+    DDLogInfo(@"Got an error: %@", error);
   }
   
   return jsonString;

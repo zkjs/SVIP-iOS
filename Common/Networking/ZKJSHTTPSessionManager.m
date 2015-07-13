@@ -9,6 +9,9 @@
 #import "ZKJSHTTPSessionManager.h"
 #import "NSString+ZKJS.h"
 #import "Networkcfg.h"
+#import "CocoaLumberjack.h"
+
+static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 @interface ZKJSHTTPSessionManager ()
 
@@ -37,10 +40,10 @@
 // 获取Beacon列表
 - (void)getBeaconRegionListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"user/location" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -67,10 +70,10 @@
                                @"RegForm": RegForm
                                };
   [self POST:@"user/reg" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -96,10 +99,10 @@
                                @"LoginForm": LoginForm
                                };
   [self POST:@"user/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -120,10 +123,10 @@
                               @"RegForm": RegForm
                               };
   [self POST:@"user/reg" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -132,10 +135,10 @@
 - (void)logoutWithUserID:(NSString *)userID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/logout?userid=%@", userID];
   [self POST:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -144,10 +147,10 @@
 - (void)checkDuplicatePhoneWithPhone:(NSString *)phone success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/reg?phone=%@", phone];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -162,10 +165,10 @@
                                @"UploadForm": UploadForm
                                };
   [self POST:@"user/chg" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -189,10 +192,10 @@
       [formData appendPartWithFormData:[occupation dataUsingEncoding:NSUTF8StringEncoding] name:@"UploadForm[remark]"];
     }
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -209,10 +212,10 @@
 - (void)getUserInfo:(NSString *)userID token:(NSString *)token success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/select?&userid=%@&token=%@", userID, token];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -222,10 +225,10 @@
   NSString *order = isDesc ? @"desc" : @"asc";
   NSString *urlString = [NSString stringWithFormat:@"user/select?web=0&stat=%ld&page=%ld&key=%@&desc=%@", (long)start, (long)page, key, order];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -234,10 +237,10 @@
 - (void)getShopInfo:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/selectshop?&shopid=%@&web=0", shopID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -247,10 +250,10 @@
   NSString *order = isDesc ? @"desc" : @"asc";
   NSString *urlString = [NSString stringWithFormat:@"user/comment?web=0&shopid=%@&stat=%ld&page=%ld&key=%@&desc=%@", shopID, (long)start, (long)page, key, order];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -275,10 +278,10 @@
 - (void)getTagsShowTreeWithCallback:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   
   [self GET:@"tags/showtree" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -316,10 +319,10 @@
 - (void)getTagsShowWithCallback:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   
   [self GET:@"tags/show" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -331,10 +334,10 @@
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[tags dataUsingEncoding:NSUTF8StringEncoding] name:@"tags"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -346,10 +349,10 @@
   NSString *orderBy = key ? [NSString stringWithFormat:@"&by=%@", key] : @"";
   NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&page=%ld%@%@", shopID, (long)page, category, orderBy];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -358,10 +361,10 @@
 //    NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&page=%ld", shopID, (long)page];
     NSString *urlString = [NSString stringWithFormat:@"user/goods?page=%ld", (long)page];
     [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -371,10 +374,10 @@
 - (void)getShopGoodsWithShopID:(NSString *)shopID goodsID:(NSString *)goodsID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&goodsid=%@", shopID, goodsID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -383,10 +386,10 @@
 - (void)getShopGoodsCategoryWith:(NSString *)categoryID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/category/%@", categoryID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -408,10 +411,10 @@
     [formData appendPartWithFormData:[remark dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
     [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -424,10 +427,10 @@
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
     [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -441,10 +444,10 @@
     [formData appendPartWithFormData:[@"0" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
     [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }
@@ -458,10 +461,10 @@
     [formData appendPartWithFormData:[@"0" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
     [formData appendPartWithFormData:[@"5" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
 }

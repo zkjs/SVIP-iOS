@@ -32,3 +32,4 @@
 #import "JSHInfoEditVC.h"
 #import "JSHAnimator.h"
 #import "CocoaLumberjack.h"
+#import "CompressingLogFileManager.h"

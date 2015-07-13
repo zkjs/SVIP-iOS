@@ -127,16 +127,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func setupLogger() {
     DDLog.addLogger(DDASLLogger.sharedInstance())
     DDLog.addLogger(DDTTYLogger.sharedInstance())
-    let fileLogger = DDFileLogger()
-    fileLogger.rollingFrequency = 60 * 60 * 24
-    fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+    
+    let logFileManager = CompressingLogFileManager(logsDirectory: LogManager.sharedInstance().logsDirectory())
+    println(logFileManager.logsDirectory())
+    let fileLogger = DDFileLogger(logFileManager: logFileManager)
+    fileLogger.maximumFileSize = 1024 * 512
+//    fileLogger.rollingFrequency = 60 * 60 * 24
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 1
     DDLog.addLogger(fileLogger)
   }
   
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    let naviController = UINavigationController(rootViewController: BookVC())
-    naviController.navigationBar .setBackgroundImage(UIImage(named: "星空中心"), forBarMetrics: UIBarMetrics.Default)
+//    let naviController = UINavigationController(rootViewController: BookVC())
+//    naviController.navigationBar .setBackgroundImage(UIImage(named: "星空中心"), forBarMetrics: UIBarMetrics.Default)
 //    window?.rootViewController = naviController
     window?.rootViewController = JSHAnimationVC()
     window?.rootViewController?.view.layer.cornerRadius = 6

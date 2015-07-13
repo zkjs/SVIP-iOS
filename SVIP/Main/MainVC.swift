@@ -377,7 +377,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
   }
   
-  
   @IBAction func tappedSmartPanel(sender: AnyObject) {
     println("Tap Smart Panel")
     let beacon = StorageManager.sharedInstance().lastBeacon()

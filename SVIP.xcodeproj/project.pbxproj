@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */; };
 		404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18451B535A5F00F11122 /* NSData+AES256.m */; };
+		404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18491B53675300F11122 /* CompressingLogFileManager.m */; };
+		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
+		404C18501B53A46D00F11122 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C184F1B53A46D00F11122 /* LogManager.swift */; };
 		405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 405065F41B4CC23100DF25C0 /* JSHAnimator.m */; };
 		405266371B41279B00B277BE /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266331B41279B00B277BE /* OrderListTVC.swift */; };
 		4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052663A1B4127B400B277BE /* OrderDetailVC.swift */; };
@@ -115,6 +118,10 @@
 		404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKJSDiffie-HellmanProtocol.m"; sourceTree = "<group>"; };
 		404C18441B535A5F00F11122 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
 		404C18451B535A5F00F11122 /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
+		404C18481B53675300F11122 /* CompressingLogFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompressingLogFileManager.h; sourceTree = "<group>"; };
+		404C18491B53675300F11122 /* CompressingLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompressingLogFileManager.m; sourceTree = "<group>"; };
+		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		404C184F1B53A46D00F11122 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogManager.swift; path = Helper/LogManager.swift; sourceTree = "<group>"; };
 		405065F31B4CC23100DF25C0 /* JSHAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimator.h; sourceTree = "<group>"; };
 		405065F41B4CC23100DF25C0 /* JSHAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimator.m; sourceTree = "<group>"; };
 		405266331B41279B00B277BE /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTVC.swift; sourceTree = "<group>"; };
@@ -263,6 +270,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */,
 				B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */,
 				B23E53D51B4BC12B00CB7761 /* openssl.framework in Frameworks */,
 				C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */,
@@ -299,6 +307,15 @@
 			);
 			name = Cryptography;
 			path = Networking/Cryptography;
+			sourceTree = "<group>";
+		};
+		404C18471B53675300F11122 /* Compressor */ = {
+			isa = PBXGroup;
+			children = (
+				404C18481B53675300F11122 /* CompressingLogFileManager.h */,
+				404C18491B53675300F11122 /* CompressingLogFileManager.m */,
+			);
+			path = Compressor;
 			sourceTree = "<group>";
 		};
 		405266311B41279B00B277BE /* OrderList */ = {
@@ -391,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				4053EB3B1B480B09009B0DE1 /* StorageManager.swift */,
+				404C184F1B53A46D00F11122 /* LogManager.swift */,
 				407761871B4905E7009B6FE9 /* RuleEngine.swift */,
 				B2564D821B4C012C0098608F /* JSHStorage.h */,
 				B2564D831B4C012C0098608F /* JSHStorage.m */,
@@ -474,6 +492,7 @@
 				B23E53D41B4BC12B00CB7761 /* openssl.framework */,
 				B2F471671B4B6CB4005122BB /* AliPay */,
 				40641F871B3E79A300CF150D /* Category */,
+				404C18471B53675300F11122 /* Compressor */,
 				40641F8F1B3E79A300CF150D /* Networking */,
 				404C183D1B5359E100F11122 /* Cryptography */,
 				40641F991B3E79A300CF150D /* Singleton.h */,
@@ -730,6 +749,7 @@
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				404C184B1B5368FE00F11122 /* libz.dylib */,
 				B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */,
 				46501E00CF356A221CE759C9 /* libPods-SVIP.a */,
 			);
@@ -913,7 +933,9 @@
 				B23E53811B4BB64C00CB7761 /* openssl_wrapper.m in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
+				404C18501B53A46D00F11122 /* LogManager.swift in Sources */,
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
+				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,
 				4063FEF21B4BBFE900DF6E50 /* MessageModel.xcdatamodeld in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */,
