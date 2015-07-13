@@ -9,6 +9,9 @@
 #import "ZKJSTCPSessionManager.h"
 #import "Networkcfg.h"
 #import "SRWebSocket.h"
+#import "CocoaLumberjack.h"
+
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
 @interface ZKJSTCPSessionManager () <NSStreamDelegate, SRWebSocketDelegate> {
   NSInputStream *_inputStream;
@@ -74,15 +77,15 @@
 #pragma mark - SRWebSocketDelegate
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-  NSLog(@"Websocket Connected");
-  
+  DDLogWarn(@"Websocket Connected");
+    
   if (self.delegate && [self.delegate respondsToSelector:@selector(didOpenTCPSocket)]) {
     [self.delegate didOpenTCPSocket];
   }
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-  NSLog(@"Websocket Failed With Error %@", error);
+  DDLogWarn(@"Websocket Failed With Error %@", error);
   _webSocket = nil;
 }
 
@@ -91,9 +94,9 @@
   NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
-  NSLog(@"Feedback: %@", dictionary);
+  DDLogWarn(@"Feedback: %@", dictionary);
   if ([dictionary[@"type"] integerValue] == MessageIMClientLogin_RSP) {
-    NSLog(@"startHeartbeat");
+    DDLogWarn(@"startHeartbeat");
     [self startHeartbeat];
   }
   
@@ -103,12 +106,12 @@
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-  NSLog(@"WebSocket closed");
+  DDLogWarn(@"WebSocket closed");
   _webSocket = nil;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload {
-  NSLog(@"Websocket received pong");
+  DDLogWarn(@"Websocket received pong");
 }
 
 #pragma mark Public Method
@@ -210,29 +213,29 @@
 //  NSData *packet = [self packet:jsonString];
 //  [_outputStream write:[packet bytes] maxLength:[packet length]];
   
-  NSLog(@"%@", jsonString);
+  DDLogWarn(@"%@", jsonString);
 }
 
 #pragma mark NSStreamDelegate
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode {
   switch (eventCode) {
     case NSStreamEventNone:
-      NSLog(@"NSStreamEventNone");
+      DDLogWarn(@"NSStreamEventNone");
       break;
       
     case NSStreamEventOpenCompleted:
-      NSLog(@"Stream opened");
+      DDLogWarn(@"Stream opened");
       break;
       
     case NSStreamEventHasBytesAvailable:
-      NSLog(@"NSStreamEventHasBytesAvailable");
+      DDLogWarn(@"NSStreamEventHasBytesAvailable");
       if (aStream == _inputStream) {
         if ([_inputStream hasBytesAvailable]) {
           uint8_t inputData[4096];  // 每次最多读4k
           NSUInteger inputDataLength;
           
           inputDataLength = [_inputStream read:inputData maxLength:sizeof(inputData)];
-          NSLog(@"inputDataLength: %tu", inputDataLength);
+          DDLogWarn(@"inputDataLength: %tu", inputDataLength);
           (void)memcpy(_buffer + _bufferLength, inputData, inputDataLength);
           _bufferLength += inputDataLength;
           
@@ -261,7 +264,7 @@
               // 读包体
               while (_bufferLength < (_bodyLength + kPacketHeaderLength)) {
                 inputDataLength = [_inputStream read:inputData maxLength:sizeof(inputData)];
-                NSLog(@"inputDataLength: %tu", inputDataLength);
+                DDLogWarn(@"inputDataLength: %tu", inputDataLength);
                 if (inputDataLength == 0) {
                   // 已无数据可读, 但包体还没读完整
                   return;
@@ -278,9 +281,9 @@
                                                                          options:NSJSONReadingMutableContainers
                                                                            error:nil];
               
-              NSLog(@"Feedback: %@", dictionary);
+              DDLogWarn(@"Feedback: %@", dictionary);
               if ([dictionary[@"type"] integerValue] == MessageIMClientLogin_RSP) {
-                NSLog(@"startHeartbeat");
+                DDLogWarn(@"startHeartbeat");
                 [self startHeartbeat];
               }
               
@@ -308,22 +311,22 @@
       break;
       
     case NSStreamEventHasSpaceAvailable: {
-      NSLog(@"NSStreamEventHasSpaceAvailable");
+      DDLogWarn(@"NSStreamEventHasSpaceAvailable");
       break;
     }
       
     case NSStreamEventErrorOccurred: {
       NSError *error = [aStream streamError];
-      NSLog(@"Stream Error: %@", error);
+      DDLogWarn(@"Stream Error: %@", error);
       break;
     }
       
     case NSStreamEventEndEncountered:
-      NSLog(@"NSStreamEventEndEncountered");
+      DDLogWarn(@"NSStreamEventEndEncountered");
       break;
       
     default:
-      NSLog(@"Unknown event");
+      DDLogWarn(@"Unknown event");
   }
 }
 
@@ -361,7 +364,7 @@
   if (jsonData) {
     jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
   } else {
-    NSLog(@"Got an error: %@", error);
+    DDLogWarn(@"Got an error: %@", error);
   }
   
   return jsonString;

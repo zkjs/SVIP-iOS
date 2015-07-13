@@ -31,3 +31,4 @@
 #import "JSHAccountManager.h"
 #import "JSHInfoEditVC.h"
 #import "JSHAnimator.h"
+#import "CocoaLumberjack.h"

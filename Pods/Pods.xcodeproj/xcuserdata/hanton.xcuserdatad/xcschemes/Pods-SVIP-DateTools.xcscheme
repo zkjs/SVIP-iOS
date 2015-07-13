@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "369C5656B0B5FE8B348072BA"
+               BlueprintIdentifier = "21211A8401DDEAC5C961D466"
                BuildableName = "libPods-SVIP-DateTools.a"
                BlueprintName = "Pods-SVIP-DateTools"
                ReferencedContainer = "container:Pods.xcodeproj">

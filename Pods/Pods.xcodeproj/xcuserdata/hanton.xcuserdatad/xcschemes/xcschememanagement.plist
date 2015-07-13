@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SVIP-CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SVIP-Colours.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,272 +102,97 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0255D89472B914018A529EFE</key>
+		<key>05503291AB24406F2FA6B518</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>07FD61FB5E3A88BBCB60E971</key>
+		<key>08CFC8B4B1736B40A255EAB0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0D95A4DC166982BD1EF0885A</key>
+		<key>0DFFBA198BE073D552CDF493</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>104466BD686523D323CD83A7</key>
+		<key>21211A8401DDEAC5C961D466</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>118850D7654CEA4218DC633B</key>
+		<key>29EDFE45283F9710745055D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1308FDCF47A0C0854822A16A</key>
+		<key>2A3E2A9497729FA79EAC7599</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C63CA6015C320C5A2C09EB9</key>
+		<key>31B2A1BCD1D01CAE1291F17B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D585CC3F7D6F6813F63E194</key>
+		<key>43F5C65F572BA829FD8E8100</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>22DB8C64C794AA3410423C1D</key>
+		<key>78AC60A02DADA199DCED01B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2967787C6878052F68E83DBD</key>
+		<key>807D7A92C749F254C6556DB4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C703CA1EB37769344FDA760</key>
+		<key>95B7EC2A9BDA14591CDB4C4F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>34A94B12F12DC08DEFC2056A</key>
+		<key>9C328BFB89E9C594E847854F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>369C5656B0B5FE8B348072BA</key>
+		<key>A19EF20605B1D6326CA5E7A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38D5B33C49ADE915E90F1D67</key>
+		<key>B711FBE7E10F7975CD2B7146</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3B3360C1E6247CB5CD8FB3C3</key>
+		<key>C87FBEE45C5302C8A892150F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D2D64C4879E9B637D4D8B24</key>
+		<key>C9B6A3A9BB720039EDF05BE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>415C2A3BAA48E688A7868AA4</key>
+		<key>D61542183816E7836C46B568</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4994C9412A706EDB3FAFB289</key>
+		<key>F5708D087F2FFC1E716BFF26</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4EE2E2EC92CEC19448EFAE8B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4F7091350B79036DDEFD52B2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5EDEFCBD0F0E779794776BF3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5F8C1ADB8A205B4FD666F8BB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>66463665B380041FA98EA296</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>66E64915998E1794169225EA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>680B761AB6A4CDC054485457</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6876292E87BC2EE7FE554757</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6CFAFBFED0630A6C5BCBBE8C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6E8A699149878D7D8C8E654E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>70301A521D77377203C1ED3E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7296B2418F752AF250EF83A3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>772A9B0937899F0460C6D936</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7A9571CB39B0F4C3F3D3AE56</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>810AB4CD96567C0A15D14F0E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>84FF6A196855308E4EC6D3E1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>870780D138844964D7822762</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>923F3964347A9FEC86E94FAF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9771B96C368B163D9F2A01B5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9BE98CFFADB5A11C71299DA7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9EA327DFB07474C4C81A4313</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A28472DAEE96DC14D42F6CDB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A597C2468F4148A74D510451</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A74F62EF594292856A8BE7F8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B07A9E2C6B69D54DA9838A76</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B0D924C20F442E95A96CA6D7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B6E6CAEE925C18709FCBA64B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BEE428D1E569556C8CDEAB2B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CD9098F278AD932E55073296</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DE60B33FDBAE8289E571A9D9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E23F1108966BEFF6F1D4FD17</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E9C091D1A68FDA47767AEE91</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EA6E2E84E8B1C27B14E031EB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EDA45EDB1211C4201914EBFB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EFE8ED801FC154E6FA7AB29B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F85727E03BB0C889EB392286</key>
+		<key>FEF0C48D2D08F703465F1C45</key>
 		<dict>
 			<key>primary</key>
 			<true/>

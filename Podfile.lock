@@ -20,6 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CocoaLumberjack (2.0.1):
+    - CocoaLumberjack/Default (= 2.0.1)
+    - CocoaLumberjack/Extensions (= 2.0.1)
+  - CocoaLumberjack/Core (2.0.1)
+  - CocoaLumberjack/Default (2.0.1):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.0.1):
+    - CocoaLumberjack/Default
   - Colours (5.6.2)
   - DateTools (1.6.1)
   - EstimoteSDK (3.2.8)
@@ -43,6 +51,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - CocoaLumberjack
   - Colours
   - DateTools
   - EstimoteSDK
@@ -76,6 +85,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   EstimoteSDK: e370ea3d31ef7373d41df9bd6fd1f6fc63a276cf
@@ -94,4 +104,4 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   YXTMotionView: 6a7d30ecbfe04f3a560d136c7fe211e33825df7e
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.37.1

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "104466BD686523D323CD83A7"
+               BlueprintIdentifier = "29EDFE45283F9710745055D4"
                BuildableName = "libPods-SVIP-MessageDisplayKit.a"
                BlueprintName = "Pods-SVIP-MessageDisplayKit"
                ReferencedContainer = "container:Pods.xcodeproj">

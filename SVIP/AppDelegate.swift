@@ -8,6 +8,12 @@
 
 import UIKit
 
+#if DEBUG
+let ddLogLevel = DDLogLevel.Verbose;
+#else
+let ddLogLevel = DDLogLevel.Warning;
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate {
 
@@ -16,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
+    setupLogger()
     setupWindow()
     setupNotification()
     setupTCPSessionManager()
@@ -117,6 +124,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
   
   // MARK: - Private Method
+  func setupLogger() {
+    DDLog.addLogger(DDASLLogger.sharedInstance())
+    DDLog.addLogger(DDTTYLogger.sharedInstance())
+    let fileLogger = DDFileLogger()
+    fileLogger.rollingFrequency = 60 * 60 * 24
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+    DDLog.addLogger(fileLogger)
+  }
+  
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     let naviController = UINavigationController(rootViewController: BookVC())
