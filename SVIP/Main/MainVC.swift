@@ -54,6 +54,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupBeaconMonitor()
     
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+    
+//    let notification = UILocalNotification()
+//    let alertMessage = "initNetworkCommunicationWithIP: HOST \(HOST) & PORT \(PORT)"
+//    notification.alertBody = alertMessage
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
   override func viewWillAppear(animated: Bool) {

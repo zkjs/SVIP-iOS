@@ -118,7 +118,7 @@
   [_webSocket close];
   _webSocket = nil;
   
-  NSString *websocketURL = [NSString stringWithFormat:@"%@://%@:%@/zkjs", WEBSOCKET_PREFIX, ip, port];
+  NSString *websocketURL = [NSString stringWithFormat:@"%@://%@:%@/zkjs2", WEBSOCKET_PREFIX, ip, port];
   _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:websocketURL]]];
   _webSocket.delegate = self;
   

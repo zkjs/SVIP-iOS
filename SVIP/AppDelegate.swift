@@ -90,6 +90,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       let userID = JSHAccountManager.sharedJSHAccountManager().userid
       let userName = JSHStorage.baseInfo().name
       ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
+    
+//    let notification = UILocalNotification()
+//    let alertMessage = "didOpenTCPSocket"
+//    notification.alertBody = alertMessage
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
 //    }
   }
   
