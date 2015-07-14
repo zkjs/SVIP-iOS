@@ -155,6 +155,32 @@
   [self saveDataSource];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSDictionary *dictionary = @{
+                               @"type": [NSNumber numberWithInteger:MessageServiceChatClientChatOnlineStatus],
+                               @"timestamp": timestamp,
+                               @"userid": self.senderID,
+                               @"status": @0  // 在线
+                               };
+  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSDictionary *dictionary = @{
+                               @"type": [NSNumber numberWithInteger:MessageServiceChatClientChatOnlineStatus],
+                               @"timestamp": timestamp,
+                               @"userid": self.senderID,
+                               @"status": @1  // 不在线
+                               };
+  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+}
+
 - (void)dealloc {
   [[XHAudioPlayerHelper shareInstance] setDelegate:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
