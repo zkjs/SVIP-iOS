@@ -67,7 +67,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSHTTPSessionManager.sharedInstance().getOrderListWithUserID(userID, token: token, page: "1", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let orderArray = responseObject as! NSArray
       if orderArray.count > 0 {
         let lastOrder = orderArray.firstObject as! NSDictionary
