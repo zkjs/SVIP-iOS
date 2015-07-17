@@ -65,11 +65,12 @@ class BookConfirmVC: UIViewController {
       order.room_type = "\(room)\(type)"//有问题的，order与goods字段对不上
       order.room_rate = selectedGoods.pice
       order.rooms = "1"
-      order.shopid = "1"
-      order.guest = "laoliu"
-      order.guesttel = "139758"
-      order.arrival_date = "2015-12-1"
-      order.departure_date = "2015-12-28"
+      order.shopid = goods?.shopid
+      let localBaseInfo = JSHStorage .baseInfo()
+      order.guest = localBaseInfo.name
+      order.guesttel = localBaseInfo.phone
+//      order.arrival_date = "2015-12-1"
+//      order.departure_date = "2015-12-28"
     }
   }
   
