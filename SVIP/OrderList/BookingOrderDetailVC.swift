@@ -20,6 +20,7 @@ class BookingOrderDetailVC: UIViewController {
   @IBOutlet weak var dateDurationLabel: UILabel!
   @IBOutlet weak var remarkLabel: UILabel!
   @IBOutlet weak var chatButton: UIButton!
+  @IBOutlet weak var paymentButton: UIButton!
   
   let order: BookOrder
   
@@ -75,6 +76,7 @@ class BookingOrderDetailVC: UIViewController {
     }
     
     setupChatButton()
+    setupPaymentButton()
   }
   
   // MARK: - Private Method
@@ -116,10 +118,23 @@ class BookingOrderDetailVC: UIViewController {
     chatButton.layer.masksToBounds = true
   }
   
+  func setupPaymentButton() {
+    paymentButton.layer.borderWidth = 0.6
+    paymentButton.layer.borderColor = UIColor.blackColor().CGColor
+    paymentButton.layer.cornerRadius = 6
+    paymentButton.layer.masksToBounds = true
+  }
+  
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
     let chatVC = JSHChatVC(chatType: ChatType.OldSession)
     navigationController?.pushViewController(chatVC, animated: true)
+  }
+  
+  @IBAction func payBookingOrder(sender: AnyObject) {
+    let payVC = BookPayVC()
+    payVC.bkOrder = order
+    self.navigationController? .pushViewController(payVC, animated: true)
   }
 
   @IBAction func cancelOrder(sender: AnyObject) {

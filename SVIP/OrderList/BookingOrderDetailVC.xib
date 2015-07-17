@@ -11,6 +11,7 @@
                 <outlet property="dateLabel" destination="106-SK-AHW" id="yZW-wI-Mwe"/>
                 <outlet property="durationLabel" destination="eTr-ZE-WjX" id="Etb-Su-OSl"/>
                 <outlet property="nameLabel" destination="2sA-wj-zMw" id="XHi-r9-HSp"/>
+                <outlet property="paymentButton" destination="gzb-kt-68u" id="LMn-t5-KPU"/>
                 <outlet property="remarkLabel" destination="dW7-a4-lIt" id="ZOQ-AU-TDu"/>
                 <outlet property="roomTypeLabel" destination="Ubq-3h-3uN" id="Ly8-B4-6Fb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -75,19 +76,19 @@
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNy-kj-BxP">
-                    <rect key="frame" x="194" y="466" width="212" height="36"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzb-kt-68u">
+                    <rect key="frame" x="194" y="411" width="212" height="36"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="GXi-XN-dbV"/>
-                        <constraint firstAttribute="width" constant="212" id="VOO-qb-h7T"/>
+                        <constraint firstAttribute="width" constant="212" id="Rg4-xa-HDF"/>
+                        <constraint firstAttribute="height" constant="36" id="cUN-7V-zoz"/>
                     </constraints>
-                    <state key="normal" title="聊天">
+                    <state key="normal" title="支付">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="showChatView:" destination="-1" eventType="touchUpInside" id="UbC-Nz-IRR"/>
+                        <action selector="payBookingOrder:" destination="-1" eventType="touchUpInside" id="0ON-oh-cjN"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oUZ-sN-6lq" customClass="DotLine" customModule="SVIP" customModuleProvider="target">
@@ -129,6 +130,21 @@
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNy-kj-BxP">
+                    <rect key="frame" x="194" y="466" width="212" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="GXi-XN-dbV"/>
+                        <constraint firstAttribute="width" constant="212" id="VOO-qb-h7T"/>
+                    </constraints>
+                    <state key="normal" title="聊天">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showChatView:" destination="-1" eventType="touchUpInside" id="UbC-Nz-IRR"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -150,11 +166,13 @@
                 <constraint firstItem="J1L-o5-TUb" firstAttribute="top" secondItem="106-SK-AHW" secondAttribute="bottom" constant="21" id="RHg-KU-FFF"/>
                 <constraint firstAttribute="centerX" secondItem="Dlg-SK-qs5" secondAttribute="centerX" id="RPq-Kc-F10"/>
                 <constraint firstItem="Dlg-SK-qs5" firstAttribute="top" secondItem="lNy-kj-BxP" secondAttribute="bottom" constant="19" id="Tln-dU-f8V"/>
+                <constraint firstAttribute="centerX" secondItem="gzb-kt-68u" secondAttribute="centerX" id="V5G-hB-cj0"/>
                 <constraint firstItem="eTr-ZE-WjX" firstAttribute="leading" secondItem="9Fr-99-h6J" secondAttribute="trailing" constant="32" id="faw-Q4-rEq"/>
                 <constraint firstAttribute="trailing" secondItem="106-SK-AHW" secondAttribute="trailing" constant="8" id="ihf-P0-Wid"/>
                 <constraint firstItem="eTr-ZE-WjX" firstAttribute="centerY" secondItem="rrL-3F-FPY" secondAttribute="centerY" id="jC8-BG-se7"/>
                 <constraint firstItem="2sA-wj-zMw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="jsS-1C-wJ2"/>
                 <constraint firstItem="106-SK-AHW" firstAttribute="top" secondItem="2sA-wj-zMw" secondAttribute="bottom" constant="8" id="kyR-3c-erh"/>
+                <constraint firstItem="lNy-kj-BxP" firstAttribute="top" secondItem="gzb-kt-68u" secondAttribute="bottom" constant="19" id="ojb-tG-lcr"/>
                 <constraint firstItem="9Fr-99-h6J" firstAttribute="top" secondItem="J1L-o5-TUb" secondAttribute="bottom" constant="48" id="qRl-bh-vQT"/>
                 <constraint firstItem="un6-gy-vQt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="qfz-KR-Aj1"/>
                 <constraint firstAttribute="trailing" secondItem="J1L-o5-TUb" secondAttribute="trailing" constant="8" id="rT6-EU-Qak"/>
