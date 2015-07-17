@@ -201,7 +201,7 @@
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendImageMessage:photo];
   XHMessage *message = [[XHMessage alloc] initWithPhoto:photo thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:date];
-  message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  message.avatar = [JSHStorage baseInfo].avatarImage;
   
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
@@ -210,7 +210,7 @@
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString *)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendVoiceMessage:voicePath];
   XHMessage *message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voicePath voiceDuration:voiceDuration sender:sender timestamp:date];
-  message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  message.avatar = [JSHStorage baseInfo].avatarImage;
   
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
