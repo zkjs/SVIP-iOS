@@ -19,7 +19,8 @@ static NSString* const kBaseURL = @"http://120.25.241.196/";  // HTTP外网服�
 //#define WEBSOCKET_PREFIX @"ws"
 //#define HOST @"192.168.1.6"
 // TCP外网服务器
-#define HOST @"im.zkjinshi.cn"
+//#define HOST @"im.zkjinshi.cn"
+#define HOST @"112.74.82.82"
 #define WEBSOCKET_PREFIX @"ws"
 #define PORT @"7777"
 #endif

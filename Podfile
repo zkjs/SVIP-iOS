@@ -2,7 +2,7 @@ platform :ios, '8.0'
 
 target 'SVIP' do
   pod 'CocoaLumberjack'
-  pod 'MagicalRecord'
+#  pod 'MagicalRecord'
   pod 'SKTagView'
   pod 'MIBadgeButton', :inhibit_warnings => true
   pod 'SWTableViewCell'

@@ -114,12 +114,6 @@
 #define COCOAPODS_VERSION_MINOR_MJRefresh 0
 #define COCOAPODS_VERSION_PATCH_MJRefresh 4
 
-// MagicalRecord
-#define COCOAPODS_POD_AVAILABLE_MagicalRecord
-#define COCOAPODS_VERSION_MAJOR_MagicalRecord 2
-#define COCOAPODS_VERSION_MINOR_MagicalRecord 3
-#define COCOAPODS_VERSION_PATCH_MagicalRecord 0
-
 // Masonry
 #define COCOAPODS_POD_AVAILABLE_Masonry
 #define COCOAPODS_VERSION_MAJOR_Masonry 0
