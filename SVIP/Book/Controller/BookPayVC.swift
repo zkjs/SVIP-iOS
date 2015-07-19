@@ -76,8 +76,8 @@ class BookPayVC: UIViewController {
     aliOrder.productDescription = "needtoknow"
     if let rooms = AbookOrder.rooms.toInt() {
       let amount = (AbookOrder.room_rate as NSString).doubleValue * Double(rooms)
-//    aliOrder.amount = NSString(format:"%.2f", amount) as String
-      aliOrder.amount = "0.02"
+    aliOrder.amount = NSString(format:"%.2f", amount) as String
+//      aliOrder.amount = "0.02"
     }
     
     aliOrder.notifyURL = "http://api.zkjinshi.com/alipay/notify"
