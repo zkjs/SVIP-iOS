@@ -11,6 +11,8 @@ let partner = PartnerID
 let seller = SellerID
 let privateKey = PartnerPrivKey
 class BookPayVC: UIViewController {
+  @IBOutlet weak var orderLabel: UILabel!
+  @IBOutlet weak var payMoney: UILabel!
   
   var bkOrder: BookOrder!
   
@@ -29,8 +31,12 @@ class BookPayVC: UIViewController {
     self.navigationItem.hidesBackButton = true
     let buttonItem = UIBarButtonItem(title: "取消订单", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("cancelOrder"))
     self.navigationItem.rightBarButtonItem = buttonItem
+    
+    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
+    let rate = (bkOrder.room_rate as NSString).doubleValue
+    let Money = rate * (Double)(bkOrder.dayInt)
+    payMoney.text = "￥   \(Money)"
   }
-  
 
   func cancelOrder() {
     ZKJSTool .showLoading("正在取消订单")
@@ -74,7 +80,7 @@ class BookPayVC: UIViewController {
       aliOrder.amount = "0.02"
     }
     
-    aliOrder.notifyURL = "http:www.baidu.com"
+    aliOrder.notifyURL = "http://api.zkjinshi.com/alipay/notify"
     aliOrder.service = "mobile.securitypay.pay"
     aliOrder.paymentType = "1"
     aliOrder.inputCharset = "utf-8"
