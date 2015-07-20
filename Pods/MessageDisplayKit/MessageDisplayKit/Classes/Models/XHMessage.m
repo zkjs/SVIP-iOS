@@ -16,8 +16,10 @@
     self = [super init];
     if (self) {
         self.text = text;
-        
+        self.textString = text;
+      
         self.sender = sender;
+        self.senderName = sender;
         self.timestamp = timestamp;
         
         self.messageMediaType = XHBubbleMessageMediaTypeText;
@@ -48,6 +50,7 @@
         self.originPhotoUrl = originPhotoUrl;
         
         self.sender = sender;
+        self.senderName = sender;
         self.timestamp = timestamp;
         
         self.messageMediaType = XHBubbleMessageMediaTypePhoto;
@@ -78,6 +81,7 @@
         self.videoUrl = videoUrl;
         
         self.sender = sender;
+        self.senderName = sender;
         self.timestamp = timestamp;
         
         self.messageMediaType = XHBubbleMessageMediaTypeVideo;
@@ -130,6 +134,7 @@
         self.voiceDuration = voiceDuration;
         
         self.sender = sender;
+        self.senderName = sender;
         self.timestamp = timestamp;
         self.isRead = isRead;
         
@@ -146,6 +151,7 @@
         self.emotionPath = emotionPath;
         
         self.sender = sender;
+        self.senderName = sender;
         self.timestamp = timestamp;
         
         self.messageMediaType = XHBubbleMessageMediaTypeEmotion;
@@ -165,6 +171,7 @@
         self.location = location;
         
         self.sender = sender;
+        self.senderName = sender;
         self.timestamp = timestamp;
         
         self.messageMediaType = XHBubbleMessageMediaTypeLocalPosition;
@@ -174,7 +181,8 @@
 
 - (void)dealloc {
     _text = nil;
-    
+    _textString = nil;
+  
     _photo = nil;
     _thumbnailUrl = nil;
     _originPhotoUrl = nil;
@@ -197,11 +205,12 @@
     _avatarUrl = nil;
     
     _sender = nil;
-    
+    _senderName = nil;
+  
     _timestamp = nil;
   
-  _bubbleMessageType = nil;
-  _isRead = nil;
+    _bubbleMessageType = nil;
+    _isRead = nil;
 }
 
 #pragma mark - NSCoding
@@ -210,7 +219,8 @@
     self = [super init];
     if (self) {
         _text = [aDecoder decodeObjectForKey:@"text"];
-        
+        _textString = [aDecoder decodeObjectForKey:@"textString"];
+      
         _photo = [aDecoder decodeObjectForKey:@"photo"];
         _thumbnailUrl = [aDecoder decodeObjectForKey:@"thumbnailUrl"];
         _originPhotoUrl = [aDecoder decodeObjectForKey:@"originPhotoUrl"];
@@ -233,17 +243,19 @@
         _avatarUrl = [aDecoder decodeObjectForKey:@"avatarUrl"];
         
         _sender = [aDecoder decodeObjectForKey:@"sender"];
+        _senderName = [aDecoder decodeObjectForKey:@"senderName"];
         _timestamp = [aDecoder decodeObjectForKey:@"timestamp"];
       
-      _messageMediaType = [[aDecoder decodeObjectForKey:@"messageMediaType"] integerValue];
-      _bubbleMessageType = [[aDecoder decodeObjectForKey:@"bubbleMessageType"] integerValue];
-      _isRead = [[aDecoder decodeObjectForKey:@"isRead"] boolValue];
+        _messageMediaType = [[aDecoder decodeObjectForKey:@"messageMediaType"] integerValue];
+        _bubbleMessageType = [[aDecoder decodeObjectForKey:@"bubbleMessageType"] integerValue];
+        _isRead = [[aDecoder decodeObjectForKey:@"isRead"] boolValue];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.text forKey:@"text"];
+    [aCoder encodeObject:self.text forKey:@"textString"];
     
     [aCoder encodeObject:self.photo forKey:@"photo"];
     [aCoder encodeObject:self.thumbnailUrl forKey:@"thumbnailUrl"];
@@ -268,11 +280,12 @@
     
     
     [aCoder encodeObject:self.sender forKey:@"sender"];
+    [aCoder encodeObject:self.sender forKey:@"senderName"];
     [aCoder encodeObject:self.timestamp forKey:@"timestamp"];
   
-  [aCoder encodeObject:[NSNumber numberWithInteger:self.messageMediaType] forKey:@"messageMediaType"];
-  [aCoder encodeObject:[NSNumber numberWithInteger:self.bubbleMessageType] forKey:@"bubbleMessageType"];
-  [aCoder encodeObject:[NSNumber numberWithBool:self.isRead] forKey:@"isRead"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.messageMediaType] forKey:@"messageMediaType"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.bubbleMessageType] forKey:@"bubbleMessageType"];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.isRead] forKey:@"isRead"];
 }
 
 #pragma mark - NSCopying

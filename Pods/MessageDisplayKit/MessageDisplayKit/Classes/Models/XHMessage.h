@@ -13,6 +13,7 @@
 @interface XHMessage : NSObject <XHMessageModel, NSCoding, NSCopying>
 
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *textString;
 
 @property (nonatomic, strong) UIImage *photo;
 @property (nonatomic, copy) NSString *thumbnailUrl;
@@ -36,6 +37,7 @@
 @property (nonatomic, copy) NSString *avatarUrl;
 
 @property (nonatomic, copy) NSString *sender;
+@property (nonatomic, copy) NSString *senderName;
 
 @property (nonatomic, strong) NSDate *timestamp;
 

@@ -53,9 +53,15 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
   
     cell.name.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
     
-    if let chatMessage = StorageManager.sharedInstance().lastChatMessage("120") {
-      cell.tips.text = chatMessage["message"]
-      cell.date.text = chatMessage["date"]
+//    if let chatMessage = StorageManager.sharedInstance().lastChatMessage("120") {
+//      cell.tips.text = chatMessage["message"]
+//      cell.date.text = chatMessage["date"]
+//    }
+    
+    if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID("120") {
+      let message = formatMessage(chatMessage)
+      cell.tips.text = message["message"]
+      cell.date.text = message["date"]
     }
     
     if let order = StorageManager.sharedInstance().lastOrder() {
@@ -137,6 +143,34 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
         showSendMailErrorAlert()
       }
     }
+  }
+  
+  func formatMessage(message: XHMessage) -> [String: String] {
+    var chatMessage = [String: String]()
+    if message.messageMediaType == .Text {
+      chatMessage["message"] = message.text
+    } else if message.messageMediaType == .Photo {
+      chatMessage["message"] = "图片消息"
+    } else if message.messageMediaType == .Voice {
+      chatMessage["message"] = "语音消息"
+    }
+    
+    let now = NSDate()
+    let duration = NSDate.daysFromDate(message.timestamp, toDate: now)
+    if duration == 0 {
+      let dateFormat = NSDateFormatter()
+      dateFormat.dateFormat = "HH:mm"
+      chatMessage["date"] = "今天\(dateFormat.stringFromDate(message.timestamp))"
+    } else if duration == 1 {
+      let dateFormat = NSDateFormatter()
+      dateFormat.dateFormat = "HH:mm"
+      chatMessage["date"] = "昨天\(dateFormat.stringFromDate(message.timestamp))"
+    } else {
+      let dateFormat = NSDateFormatter()
+      dateFormat.dateFormat = "MM-dd"
+      chatMessage["date"] = "\(dateFormat.stringFromDate(message.timestamp))"
+    }
+    return chatMessage
   }
   
   func showSendMailErrorAlert() {

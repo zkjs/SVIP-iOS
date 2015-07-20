@@ -150,9 +150,14 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
+//  if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+//    // Navigation button was pressed. Do some stuff
+//    [self saveDataSource];
+//    [self.navigationController popViewControllerAnimated:NO];
+//  }
   
-  [self saveDataSource];
+  [super viewWillDisappear:animated];
+//  [self saveDataSource];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -191,8 +196,12 @@
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendTextMessage:text];
   XHMessage *message = [[XHMessage alloc] initWithText:text sender:sender timestamp:date];
+  message.bubbleMessageType = XHBubbleMessageTypeSending;
+  message.messageMediaType = XHBubbleMessageMediaTypeText;
   message.avatar = [JSHStorage baseInfo].avatarImage;
 //  message.avatarUrl = [[NSBundle mainBundle] pathForResource:@"ic_home_nor" ofType:@"png"];
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
@@ -201,7 +210,11 @@
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendImageMessage:photo];
   XHMessage *message = [[XHMessage alloc] initWithPhoto:photo thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:date];
+  message.bubbleMessageType = XHBubbleMessageTypeSending;
+  message.messageMediaType = XHBubbleMessageMediaTypePhoto;
   message.avatar = [JSHStorage baseInfo].avatarImage;
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
@@ -210,7 +223,11 @@
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString *)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendVoiceMessage:voicePath];
   XHMessage *message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voicePath voiceDuration:voiceDuration sender:sender timestamp:date];
+  message.bubbleMessageType = XHBubbleMessageTypeSending;
+  message.messageMediaType = XHBubbleMessageMediaTypeVoice;
   message.avatar = [JSHStorage baseInfo].avatarImage;
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
@@ -307,6 +324,8 @@
   message = [[XHMessage alloc] initWithText:text sender:@"系统" timestamp:timestamp];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self.messages addObject:message];
   [self.messageTableView reloadData];
@@ -516,9 +535,15 @@
       NSString *ruleType = self.data[self.condition][@"actions"][sender.tag][@"ruletype"];
       [self requestWaiterWithRuleType:ruleType andDescription:tag];
       XHMessage *message = [[XHMessage alloc] initWithText:tag sender:self.senderName timestamp:[NSDate date]];
+      message.bubbleMessageType = XHBubbleMessageTypeSending;
+      message.messageMediaType = XHBubbleMessageMediaTypeText;
       message.avatar = [JSHStorage baseInfo].avatarImage;
+      
+      [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+      
       [self addMessage:message];
       [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
+      
       __weak __typeof(self) weakSelf = self;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf showSystemFeedbackWithText:@"您的需求已收到"];
@@ -587,41 +612,64 @@
 }
 
 - (void)loadDataSource {
+  [ZKJSTool showLoading:@"正在加载聊天记录"];
+  
   WEAKSELF
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-//    NSMutableArray *messages = [NSMutableArray arrayWithContentsOfFile:filePath];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    NSMutableArray *messages = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    NSLog(@"Loading Path: %@", filePath);
+    self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID];
     dispatch_async(dispatch_get_main_queue(), ^{
-      weakSelf.messages = messages;
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
-      [self requestOfflineMessages];
+      [weakSelf requestOfflineMessages];
+      [ZKJSTool hideHUD];
     });
   });
+  
+//  WEAKSELF
+//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
+//    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+////    NSMutableArray *messages = [NSMutableArray arrayWithContentsOfFile:filePath];
+//    NSData *data = [NSData dataWithContentsOfFile:filePath];
+//    NSMutableArray *messages = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//    NSLog(@"Loading Path: %@", filePath);
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//      weakSelf.messages = messages;
+//      [weakSelf.messageTableView reloadData];
+//      [weakSelf scrollToBottomAnimated:NO];
+//      [self requestOfflineMessages];
+//    });
+//  });
 }
 
 - (void)saveDataSource {
+  [ZKJSTool showLoading:@"正在保存聊天记录"];
+  
   if (self.messages.count != 0) {
     [self saveLastChatMessage:self.messages.lastObject];
   }
   
 //  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-    NSLog(@"Saving Path: %@", filePath);
-  //  [self.messages writeToFile:filePath atomically:YES];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
-    [data writeToFile:filePath atomically:YES];
+    [Persistence.sharedInstance saveMessages:self.messages shopID:self.shopID];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+      [ZKJSTool hideHUD];
+  
+//    });
 //  });
-  [ZKJSTool hideHUD];
+  
+////  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
+//    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+//    NSLog(@"Saving Path: %@", filePath);
+//  //  [self.messages writeToFile:filePath atomically:YES];
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
+//    [data writeToFile:filePath atomically:YES];
+////  });
+//  [ZKJSTool hideHUD];
 }
 
 - (void)saveLastChatMessage:(XHMessage*)message {
@@ -706,7 +754,7 @@
 }
 
 - (void)dismissSelf {
-  [ZKJSTool showLoading:@"正在保存聊天记录"];
+//  [self saveDataSource];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -755,7 +803,10 @@
   XHMessage *message;
   message = [[XHMessage alloc] initWithText:text sender:sender timestamp:[NSDate date]];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
+  message.messageMediaType = XHBubbleMessageMediaTypeText;
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self.messages addObject:message];
   [self.messageTableView reloadData];
@@ -780,7 +831,10 @@
   NSDate *timestamp = [NSDate date];
   message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:nil voiceDuration:voiceDuration sender:sender timestamp:timestamp isRead:NO];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
+  message.messageMediaType = XHBubbleMessageMediaTypeVoice;
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self.messages addObject:message];
   [self.messageTableView reloadData];
@@ -802,7 +856,10 @@
   NSDate *timestamp = [NSDate date];
   message = [[XHMessage alloc] initWithPhoto:image thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:timestamp];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
+  message.messageMediaType = XHBubbleMessageMediaTypePhoto;
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self.messages addObject:message];
   [self.messageTableView reloadData];
