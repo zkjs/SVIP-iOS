@@ -452,11 +452,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 取消订单
-- (void)cancelOrderWithUserID:(NSString *)userID token:(NSString *)token reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)cancelOrderWithUserID:(NSString *)userID token:(NSString *)token orderID:(NSString *)orderID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-    [formData appendPartWithFormData:[reservation_no dataUsingEncoding:NSUTF8StringEncoding] name:@"reservation_no"];
+    [formData appendPartWithFormData:[orderID dataUsingEncoding:NSUTF8StringEncoding] name:@"id"];
     [formData appendPartWithFormData:[@"0" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
     [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {

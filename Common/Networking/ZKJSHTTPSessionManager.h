@@ -56,7 +56,7 @@
 // 最近一张订单
 - (void)getLatestOrderWithUserID:(NSString *)userID token:(NSString *)token success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // 取消订单
-- (void)cancelOrderWithUserID:(NSString *)userID token:(NSString *)token reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (void)cancelOrderWithUserID:(NSString *)userID token:(NSString *)token orderID:(NSString *)orderID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // 删除订单
 - (void)deleteOrderWithUserID:(NSString *)userID token:(NSString *)token orderID:(NSString *)orderID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
