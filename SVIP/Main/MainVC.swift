@@ -62,7 +62,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   override func viewWillAppear(animated: Bool) {
-    navigationController?.delegate = self;
+    navigationController?.delegate = self
     avatarImage.image = JSHStorage.baseInfo().avatarImage
     
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
@@ -72,7 +72,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if orderArray.count > 0 {
         let lastOrder = orderArray.firstObject as! NSDictionary
         let order = BookOrder()
-        
         order.arrival_date = lastOrder["arrival_date"] as? String
         order.created = lastOrder["created"] as? String
         order.departure_date = lastOrder["departure_date"] as? String
@@ -87,6 +86,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         order.rooms = lastOrder["rooms"] as? String
         order.shopid = lastOrder["shopid"] as? String
         order.status = lastOrder["status"] as? String
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let startDate = dateFormatter.dateFromString(order.arrival_date)
+        let endDate = dateFormatter.dateFromString(order.departure_date)
+        order.dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
         StorageManager.sharedInstance().updateLastOrder(order)
       }
       self.determineCurrentRegionState()

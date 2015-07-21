@@ -173,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
           shopID = info
         }
         if let info = beaconInfo["uuid"] as? String {
-          UUID = info
+          UUID = info.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
         }
         if let info = beaconInfo["major"] as? String {
           major = info

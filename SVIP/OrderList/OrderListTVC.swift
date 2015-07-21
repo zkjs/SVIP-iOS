@@ -73,12 +73,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     let cell: OrderCell = tableView.dequeueReusableCellWithIdentifier(OrderCell.reuseIdentifier()) as! OrderCell
     let order = orders[indexPath.row] as! BookOrder
     cell.logoImageView.image = UIImage(named: "img_hotel_anli01")
-    let startDateString = order.arrival_date
-    let endDateString = order.departure_date
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
-    let startDate = dateFormatter.dateFromString(startDateString)
-    let endDate = dateFormatter.dateFromString(endDateString)
+    let startDate = dateFormatter.dateFromString(order.arrival_date)
+    let endDate = dateFormatter.dateFromString(order.departure_date)
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
     let status = order.status
     var room_rate = 0
@@ -194,12 +192,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           order.rooms = orderInfo["rooms"] as? String
           order.shopid = orderInfo["shopid"] as? String
           order.status = orderInfo["status"] as? String
-          var startDateString = order.arrival_date
-          var endDateString = order.departure_date
           var dateFormatter = NSDateFormatter()
           dateFormatter.dateFormat = "yyyy-MM-dd"
-          let startDate = dateFormatter.dateFromString(startDateString)
-          let endDate = dateFormatter.dateFromString(endDateString)
+          let startDate = dateFormatter.dateFromString(order.arrival_date)
+          let endDate = dateFormatter.dateFromString(order.departure_date)
           order.dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
           self.orders.addObject(order)
         }
