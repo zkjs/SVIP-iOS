@@ -113,6 +113,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceMediaChatNotification", object: self, userInfo: dictionary)
     } else if type.integerValue == MessageServiceChatType.CustomerServiceImgChat.rawValue {
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
+    } else if type.integerValue == MessagePaymentType.UserAccount_S2MC.rawValue {
+      println("Payment is ready...")
+      let alertView = UIAlertController(title: "账单", message: "您有新账单需要支付", preferredStyle: .Alert)
+      alertView.addAction(UIAlertAction(title: "稍候支付", style: UIAlertActionStyle.Cancel, handler: nil))
+      alertView.addAction(UIAlertAction(title: "立即支付", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+        let navController = UINavigationController(rootViewController: BookPayVC())
+        navController.navigationBar.tintColor = UIColor.blackColor()
+        navController.navigationBar.translucent = false
+        self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
+      }))
+      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+    } else if type.integerValue == MessagePaymentType.ShopOrderStatus_IOS.rawValue {
+      println("Booking Order is ready...")
+      let alertView = UIAlertController(title: "订单", message: "您的订单已确认", preferredStyle: .Alert)
+      alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
     }
   }
   

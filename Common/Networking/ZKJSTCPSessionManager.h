@@ -177,17 +177,17 @@ typedef NS_ENUM(NSInteger, MessageServiceChatType) {
 
 
 typedef NS_ENUM(NSInteger, MessagePaymentType) {
-  //结帐请求
-  MessagePaymentUserAccount_C2MS     = 69, //客户发起结帐请求,并将请求转发给商家
-  MessagePaymentUserAccount_C2MS_RSP = 70,
-  
   //商家推送帐单至客户,并转发给客户
   MessagePaymentUserAccount_S2MC     = 72,
   MessagePaymentUserAccount_S2MC_RSP = 73, //商家帐单推送回应
   
   //当客人预订时,发出单号及客人userid至管理端
   MessagePaymentShopResform_C2S     = 203,
-  MessagePaymentShopResform_C2S_RSP = 204
+  MessagePaymentShopResform_C2S_RSP = 204,
+  
+  //当订单状态发生改变时,推送
+  MessagePaymentShopOrderStatus_IOS     = 225,
+  MessagePaymentShopOrderStatus_IOS_RSP = 226
 };
 
 @protocol TCPSessionManagerDelegate;
