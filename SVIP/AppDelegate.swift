@@ -115,6 +115,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
     } else if type.integerValue == MessagePaymentType.UserAccount_S2MC.rawValue {
       println("Payment is ready...")
+      var orderno = ""
+      if let info = dictionary["orderno"] as? String {
+        orderno = info
+      }
+      var createdDate = ""
+      if let info = dictionary["orderdate"] as? NSNumber {
+        let date = NSDate(timeIntervalSince1970: info.doubleValue)
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        var createdDate = dateFormatter.stringFromDate(date)
+      }
+      var paytotal: Float = 0.0
+      if let info = dictionary["paytotal"] as? NSNumber {
+        paytotal = info.floatValue
+      }
+      let alertMessage = "您有新账单需要支付\n订单号: \(orderno)\n创建时间: \(createdDate)\n应付金额: \(paytotal)"
       let alertView = UIAlertController(title: "账单", message: "您有新账单需要支付", preferredStyle: .Alert)
       alertView.addAction(UIAlertAction(title: "稍候支付", style: UIAlertActionStyle.Cancel, handler: nil))
       alertView.addAction(UIAlertAction(title: "立即支付", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
