@@ -141,7 +141,7 @@ class BookingOrderDetailVC: UIViewController {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     ZKJSTool.showLoading("正在取消订单...")
-    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, orderID: order.orderid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       ZKJSTool.hideHUD()
       ZKJSTool.showMsg("已成功取消订单")
       self.delegate?.didCancelOrder(self.order)

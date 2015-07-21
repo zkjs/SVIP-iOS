@@ -153,7 +153,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       
       let userID = JSHAccountManager.sharedJSHAccountManager().userid
       let token = JSHAccountManager.sharedJSHAccountManager().token
-      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, orderID: order.orderid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg("删除失败")

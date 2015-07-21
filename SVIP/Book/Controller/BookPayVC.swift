@@ -41,9 +41,9 @@ class BookPayVC: UIViewController {
   func cancelOrder() {
     ZKJSTool .showLoading("正在取消订单")
     let account = JSHAccountManager .sharedJSHAccountManager()
-    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithUserID(account.userid, token: account.token, orderID: bkOrder.orderid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithUserID(account.userid, token: account.token, reservation_no: bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
           ZKJSTool .showMsg("订单已取消")
-          self .dismissViewControllerAnimated(true, completion: nil)
+        self .dismissViewControllerAnimated(true, completion: nil)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool .showMsg("订单取消失败，请进入订单列表取消订单")
         self .dismissViewControllerAnimated(true, completion: nil)
