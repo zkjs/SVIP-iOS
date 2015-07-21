@@ -194,6 +194,13 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           order.rooms = orderInfo["rooms"] as? String
           order.shopid = orderInfo["shopid"] as? String
           order.status = orderInfo["status"] as? String
+          var startDateString = order.arrival_date
+          var endDateString = order.departure_date
+          var dateFormatter = NSDateFormatter()
+          dateFormatter.dateFormat = "yyyy-MM-dd"
+          let startDate = dateFormatter.dateFromString(startDateString)
+          let endDate = dateFormatter.dateFromString(endDateString)
+          order.dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
           self.orders.addObject(order)
         }
         self.tableView.reloadData()
