@@ -34,7 +34,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     title = "足迹"
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())

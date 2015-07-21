@@ -60,7 +60,7 @@
   
   [self setupDataSource];
   
-  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStylePlain target:self action:@selector(dismissSelf)];
+  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissSelf)];
   self.navigationItem.rightBarButtonItem = rightItem;
 
   self.title = @"聊天";

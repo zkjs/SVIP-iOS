@@ -29,8 +29,8 @@ class BookPayVC: UIViewController {
     
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = true
-    let buttonItem = UIBarButtonItem(title: "取消订单", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("cancelOrder"))
-    self.navigationItem.rightBarButtonItem = buttonItem
+//    let buttonItem = UIBarButtonItem(title: "取消订单", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("cancelOrder"))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     let rate = (bkOrder.room_rate as NSString).doubleValue
@@ -42,19 +42,26 @@ class BookPayVC: UIViewController {
     ZKJSTool .showLoading("正在取消订单")
     let account = JSHAccountManager .sharedJSHAccountManager()
     ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithUserID(account.userid, token: account.token, reservation_no: bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-          ZKJSTool .showMsg("订单已取消")
+        ZKJSTool .showMsg("订单已取消")
         self .dismissViewControllerAnimated(true, completion: nil)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool .showMsg("订单取消失败，请进入订单列表取消订单")
         self .dismissViewControllerAnimated(true, completion: nil)
     }
-
   }
+  
+  func dismissSelf() -> Void {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
+  
   @IBAction private func zhifubao(sender: UIButton) {
     payAliOrder(bkOrder)
   }
+  
   @IBAction private func weixinzhifu(sender: UIButton) {
+    
   }
+  
   @IBAction private func payInHotel(sender: UIButton) {
     // Hanton
     let chatVC = JSHChatVC(chatType: .NewSession)

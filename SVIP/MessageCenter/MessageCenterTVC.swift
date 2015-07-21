@@ -17,7 +17,7 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
     
     title = "消息中心"
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     let cellNib = UINib(nibName: HotelMessageCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: HotelMessageCell.reuseIdentifier())

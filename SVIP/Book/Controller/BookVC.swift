@@ -44,7 +44,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   private func setUI() {
     // Hanton
     title = "预订"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     tableView.contentInset = UIEdgeInsetsMake(0, 0, 135, 0)
     
