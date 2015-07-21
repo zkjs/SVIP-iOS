@@ -14,7 +14,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   @IBOutlet private weak var searchBar: UIView!
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var selectionView: UIView!
-
+  @IBOutlet private weak var selectionViewBottomConstraint: NSLayoutConstraint!
+//  @IBOutlet private weak var tableViewBottomConstraint: NSLayoutConstraint!
   @IBOutlet private var leftSelectButtonArray: [BookItemButton]!
   @IBOutlet private var rightSelectButtonArray: [BookItemButton]!
 //Data
@@ -44,6 +45,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     // Hanton
     title = "预订"
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    
+    tableView.contentInset = UIEdgeInsetsMake(0, 0, 135, 0)
     
     let tap = UITapGestureRecognizer(target: self, action: Selector("searchMap:"))
     searchBar .addGestureRecognizer(tap)
@@ -195,5 +198,27 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     newCell?.selected = true
     self.selectedRow = indexPath.row
   }
+//MARK:- SCROLLVIEW
+  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    selectionViewBottomConstraint.constant = 0
+    constraintAnimation(selectionView)
+  }
 
+  func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    if !decelerate {
+      selectionViewBottomConstraint.constant = 0
+      constraintAnimation(selectionView)
+    }
+  }
+
+  func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    selectionViewBottomConstraint.constant = -135
+    constraintAnimation(selectionView)
+  }
+  
+  private func constraintAnimation(sender: UIView) {
+    UIView .animateWithDuration(0.3, animations: { () -> Void in
+      sender .layoutIfNeeded()
+    })
+  }
 }

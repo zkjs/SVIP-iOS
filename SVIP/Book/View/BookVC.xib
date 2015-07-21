@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="searchBar" destination="nfC-ev-jFa" id="5KS-nf-ifr"/>
                 <outlet property="selectionView" destination="kCd-jM-dE4" id="I82-AC-8KL"/>
+                <outlet property="selectionViewBottomConstraint" destination="fGH-wz-t0D" id="5Ty-VG-XPl"/>
                 <outlet property="tableView" destination="lAp-Va-ite" id="FVm-q2-NFB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="layoutConstaintArray" destination="zp0-SA-gsE" collectionClass="NSMutableArray" id="O59-VM-ghg"/>
@@ -170,7 +171,15 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCd-jM-dE4">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAp-Va-ite">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="6Zy-MM-F8R"/>
+                        <outlet property="delegate" destination="-1" id="OmW-b9-mfb"/>
+                    </connections>
+                </tableView>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCd-jM-dE4">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YT-lI-6Ku" customClass="BookItemButton" customModule="SVIP" customModuleProvider="target">
@@ -457,7 +466,8 @@
                             <exclude reference="IuU-BF-P0Q"/>
                         </mask>
                     </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
+                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                        <rect key="frame" x="0.0" y="375" width="400" height="135"/>
                         <mask key="subviews">
                             <include reference="7YT-lI-6Ku"/>
                             <include reference="LDO-6E-qw6"/>
@@ -490,14 +500,6 @@
                         </mask>
                     </variation>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAp-Va-ite">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="6Zy-MM-F8R"/>
-                        <outlet property="delegate" destination="-1" id="OmW-b9-mfb"/>
-                    </connections>
-                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -510,7 +512,7 @@
                     <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                 </constraint>
                 <constraint firstAttribute="bottom" secondItem="kCd-jM-dE4" secondAttribute="bottom" id="fGH-wz-t0D"/>
-                <constraint firstItem="kCd-jM-dE4" firstAttribute="top" secondItem="lAp-Va-ite" secondAttribute="bottom" id="fSZ-sD-BhP"/>
+                <constraint firstAttribute="bottom" secondItem="lAp-Va-ite" secondAttribute="bottom" id="iFW-1F-S4n"/>
                 <constraint firstAttribute="trailing" secondItem="lAp-Va-ite" secondAttribute="trailing" id="ng4-hE-F0w"/>
                 <constraint firstItem="nfC-ev-jFa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pTT-xu-FxJ"/>
             </constraints>
@@ -518,39 +520,39 @@
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="nfC-ev-jFa"/>
-                    <exclude reference="kCd-jM-dE4"/>
                     <exclude reference="lAp-Va-ite"/>
+                    <exclude reference="kCd-jM-dE4"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="MEZ-6x-mif"/>
-                    <exclude reference="Mi1-vv-Ps6"/>
-                    <exclude reference="fGH-wz-t0D"/>
-                    <exclude reference="fSZ-sD-BhP"/>
                     <exclude reference="PjM-pL-WuX"/>
                     <exclude reference="Wmy-C6-iBF"/>
+                    <exclude reference="iFW-1F-S4n"/>
                     <exclude reference="ng4-hE-F0w"/>
                     <exclude reference="MV7-xd-Hcz"/>
                     <exclude reference="XkV-Ni-whI"/>
                     <exclude reference="pTT-xu-FxJ"/>
+                    <exclude reference="MEZ-6x-mif"/>
+                    <exclude reference="Mi1-vv-Ps6"/>
+                    <exclude reference="fGH-wz-t0D"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="nfC-ev-jFa"/>
-                    <include reference="kCd-jM-dE4"/>
                     <include reference="lAp-Va-ite"/>
+                    <include reference="kCd-jM-dE4"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="MEZ-6x-mif"/>
-                    <include reference="Mi1-vv-Ps6"/>
-                    <include reference="fGH-wz-t0D"/>
-                    <include reference="fSZ-sD-BhP"/>
                     <include reference="PjM-pL-WuX"/>
                     <include reference="Wmy-C6-iBF"/>
+                    <include reference="iFW-1F-S4n"/>
                     <include reference="ng4-hE-F0w"/>
                     <include reference="MV7-xd-Hcz"/>
                     <include reference="XkV-Ni-whI"/>
                     <include reference="pTT-xu-FxJ"/>
+                    <include reference="MEZ-6x-mif"/>
+                    <include reference="Mi1-vv-Ps6"/>
+                    <include reference="fGH-wz-t0D"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="349" y="365"/>
