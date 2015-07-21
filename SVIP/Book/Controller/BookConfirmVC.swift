@@ -86,7 +86,7 @@ class BookConfirmVC: UIViewController {
       roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
     }
     
-    if let preference = order.room_type {
+    if let preference = order.remark {
       self.preference.text = preference
     }
     
@@ -173,13 +173,21 @@ class BookConfirmVC: UIViewController {
   [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
   */
   @IBAction private func commit(sender: UIButton) {
-    var remark: String! = ""
+    var remark: String?
     for optionButton in optionButtonArray {
       if optionButton.selected == true {
-        remark = remark .stringByAppendingString(optionButton.titleLabel?.text as String!)
+        if remark == nil {
+          remark = optionButton.titleLabel?.text as String!
+        }else {
+          remark = remark! .stringByAppendingString(",\(optionButton.titleLabel?.text as String!)")
+        }
       }
     }
-    order.remark = remark
+    if remark == nil {
+      order.remark = ""
+    }else {
+      order.remark = remark
+    }
     order.arrival_date = inDate.dateString
     order.departure_date = outDate.dateString
     let account = JSHAccountManager .sharedJSHAccountManager()

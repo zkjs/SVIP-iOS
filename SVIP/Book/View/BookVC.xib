@@ -466,8 +466,7 @@
                             <exclude reference="IuU-BF-P0Q"/>
                         </mask>
                     </variation>
-                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                        <rect key="frame" x="0.0" y="375" width="400" height="135"/>
+                    <variation key="heightClass=regular-widthClass=compact">
                         <mask key="subviews">
                             <include reference="7YT-lI-6Ku"/>
                             <include reference="LDO-6E-qw6"/>
@@ -524,6 +523,9 @@
                     <exclude reference="kCd-jM-dE4"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="MEZ-6x-mif"/>
+                    <exclude reference="Mi1-vv-Ps6"/>
+                    <exclude reference="fGH-wz-t0D"/>
                     <exclude reference="PjM-pL-WuX"/>
                     <exclude reference="Wmy-C6-iBF"/>
                     <exclude reference="iFW-1F-S4n"/>
@@ -531,9 +533,6 @@
                     <exclude reference="MV7-xd-Hcz"/>
                     <exclude reference="XkV-Ni-whI"/>
                     <exclude reference="pTT-xu-FxJ"/>
-                    <exclude reference="MEZ-6x-mif"/>
-                    <exclude reference="Mi1-vv-Ps6"/>
-                    <exclude reference="fGH-wz-t0D"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -543,6 +542,9 @@
                     <include reference="kCd-jM-dE4"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="MEZ-6x-mif"/>
+                    <include reference="Mi1-vv-Ps6"/>
+                    <include reference="fGH-wz-t0D"/>
                     <include reference="PjM-pL-WuX"/>
                     <include reference="Wmy-C6-iBF"/>
                     <include reference="iFW-1F-S4n"/>
@@ -550,9 +552,6 @@
                     <include reference="MV7-xd-Hcz"/>
                     <include reference="XkV-Ni-whI"/>
                     <include reference="pTT-xu-FxJ"/>
-                    <include reference="MEZ-6x-mif"/>
-                    <include reference="Mi1-vv-Ps6"/>
-                    <include reference="fGH-wz-t0D"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="349" y="365"/>

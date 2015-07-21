@@ -11,8 +11,10 @@ let partner = PartnerID
 let seller = SellerID
 let privateKey = PartnerPrivKey
 class BookPayVC: UIViewController {
-  @IBOutlet weak var orderLabel: UILabel!
-  @IBOutlet weak var payMoney: UILabel!
+  @IBOutlet private weak var name: UILabel!
+  @IBOutlet private weak var price: UILabel!
+  @IBOutlet private weak var preference: UILabel!
+  @IBOutlet weak var roomLook: UIImageView!
   
   var bkOrder: BookOrder!
   
@@ -32,12 +34,15 @@ class BookPayVC: UIViewController {
 //    let buttonItem = UIBarButtonItem(title: "取消订单", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("cancelOrder"))
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
-    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
+    name.text = bkOrder.room_type
+//    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
+    preference.text = bkOrder.remark
     let rate = (bkOrder.room_rate as NSString).doubleValue
     let Money = rate * (Double)(bkOrder.dayInt)
-    payMoney.text = "￥   \(Money)"
-  }
+    price.text = "￥   \(Money)"
 
+    
+  }
   func cancelOrder() {
     ZKJSTool .showLoading("正在取消订单")
     let account = JSHAccountManager .sharedJSHAccountManager()
