@@ -2,18 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "ic_toux_ell.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "ic_toux_ell@2x.png"
+      "filename" : "img_shezhitoux@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "ic_toux_ell@3x.png"
+      "filename" : "img_shezhitoux@3x.png"
     }
   ],
   "info" : {

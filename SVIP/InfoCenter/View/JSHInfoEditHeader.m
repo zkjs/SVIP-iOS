@@ -43,8 +43,9 @@
 //    _avatarButton.backgroundColor = [UIColor colorFromHexString:@"0x1b2024"];
     
     [_avatarButton addTarget:self action:@selector(avatarClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_avatarButton setBackgroundImage:[UIImage imageNamed:@"ic_toux_ell"] forState:UIControlStateNormal];
-//    [_avatarButton setImage:[UIImage imageNamed:@"ic_camera_nor"] forState:UIControlStateNormal];
+//    [_avatarButton setBackgroundImage:[UIImage imageNamed:@"ic_toux_ell"] forState:UIControlStateNormal];
+    [_avatarButton setBackgroundColor:[UIColor whiteColor]];
+    [_avatarButton setImage:[UIImage imageNamed:@"img_shezhitoux"] forState:UIControlStateNormal];
 //    [_avatarButton setImage:[UIImage imageNamed:@"ic_camera_pre"] forState:UIControlStateHighlighted];
     [self addSubview:_avatarButton];
     
@@ -57,6 +58,7 @@
     _nameField = [[UITextField alloc] init];
     _nameField.delegate = self;
     _nameField.font = kTextFont;
+    _nameField.returnKeyType = UIReturnKeyNext;
     _nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"姓名" attributes:@{NSFontAttributeName : kTextFont, NSForegroundColorAttributeName : [UIColor whiteColor]}];
     _nameField.textColor = [UIColor whiteColor];
     [self addSubview:_nameField];
@@ -64,6 +66,7 @@
     _positionField = [[UITextField alloc] init];
     _positionField.delegate = self;
     _positionField.font = kTextFont;
+    _positionField.returnKeyType = UIReturnKeyNext;
     _positionField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"称呼/职位" attributes:@{NSFontAttributeName : kTextFont, NSForegroundColorAttributeName : [UIColor whiteColor]}];
     _positionField.textColor = [UIColor whiteColor];
     [self addSubview:_positionField];
@@ -71,6 +74,7 @@
     _companyField = [[UITextField alloc] init];
     _companyField.delegate = self;
     _companyField.font = kTextFont;
+    _companyField.returnKeyType = UIReturnKeyDone;
     _companyField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"公司/单位" attributes:@{NSFontAttributeName : kTextFont, NSForegroundColorAttributeName : [UIColor whiteColor]}];
     _companyField.textColor = [UIColor whiteColor];
     [self addSubview:_companyField];
@@ -98,7 +102,10 @@
     _bgImageView.frame = _headerFrame.bgImageFrame;
     
     _avatarButton.frame = _headerFrame.avatarButtonFrame;
-    [_avatarButton setImage:baseInfo.avatarImage forState:UIControlStateNormal];
+    if (baseInfo.avatarImage != nil) {
+      [_avatarButton setImage:baseInfo.avatarImage forState:UIControlStateNormal];
+    }
+  
 //    if (baseInfo != nil & _avatarButton.imageView.image == nil) {
 //        NSString *urlStr = [kBaseURL stringByAppendingPathComponent:baseInfo.avatarStr];
 //        NSURL *url = [NSURL URLWithString:urlStr];
@@ -255,6 +262,18 @@
     } else if (textField == _companyField) {
         _headerFrame.baseInfo.company = textField.text;
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  if (textField == _nameField) {
+    [_positionField becomeFirstResponder];
+  }else if (textField == _positionField) {
+    [_companyField becomeFirstResponder];
+  }else if (textField == _companyField) {
+    [_companyField resignFirstResponder];
+  }
+  return YES;
 }
 #pragma mark - UIImagePickerViewController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info

@@ -28,19 +28,19 @@
         CGFloat phoneY = CGRectGetMaxY(_avatarButtonFrame) +  20;
         _phoneLabelFrame = (CGRect){(CGPoint){phoneX, phoneY}, phoneSize};
         
-        CGSize nameSize = CGSizeMake(80, 25);
+        CGSize nameSize = CGSizeMake(kPositionW * 2, 25);
         CGFloat nameX = kScreenSize.width / 2 - kPositionW;
-        CGFloat nameY = CGRectGetMaxY(_phoneLabelFrame) + 10;
+        CGFloat nameY = CGRectGetMaxY(_phoneLabelFrame);
         _nameFieldFrame = (CGRect){CGPointMake(nameX, nameY), nameSize};
         
-        CGSize positionSize = CGSizeMake(80, 25);
-        CGFloat positionX = kScreenSize.width / 2 + 10;
-        CGFloat positionY = nameY;
+        CGSize positionSize = CGSizeMake(kPositionW * 2, 25);
+        CGFloat positionX = nameX;
+        CGFloat positionY = CGRectGetMaxY(_nameFieldFrame) + 8;
         _positionFieldFrame = (CGRect){CGPointMake(positionX, positionY), positionSize};
         
         CGSize companySize = CGSizeMake(kPositionW * 2, 25);
-        CGFloat companyX = nameX;
-        CGFloat companyY = CGRectGetMaxY(_nameFieldFrame) + 8;
+        CGFloat companyX = positionX;
+        CGFloat companyY = CGRectGetMaxY(_positionFieldFrame) + 8;
         _companyFieldFrame = (CGRect){CGPointMake(companyX, companyY), companySize};
         
         CGSize maleButtonSize = CGSizeMake(37, 37);
