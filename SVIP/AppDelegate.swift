@@ -53,6 +53,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     println("applicationDidBecomeActive")
+    
+    println(window?.rootViewController)
+    if let navigationController = window?.rootViewController as? UINavigationController {
+      println(navigationController.visibleViewController)
+      if navigationController.visibleViewController is JSHChatVC {
+        println(navigationController.topViewController)
+        requestOfflineMessages()
+      }
+    }
   }
 
   func applicationWillTerminate(application: UIApplication) {
@@ -156,6 +165,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
   
   // MARK: - Private Method
+  func requestOfflineMessages() {
+    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let dictionary: [String: AnyObject] = [
+      "type": MessageServiceChatType.OfflineMssage.rawValue,
+      "timestamp": NSNumber(longLong: timestamp),
+      "userid": JSHAccountManager.sharedJSHAccountManager().userid
+    ]
+    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+  }
+  
   func setupLogger() {
     DDLog.addLogger(DDASLLogger.sharedInstance())
     DDLog.addLogger(DDTTYLogger.sharedInstance())

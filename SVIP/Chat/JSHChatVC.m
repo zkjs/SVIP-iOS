@@ -146,6 +146,7 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
+  [self requestOfflineMessages];
   [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
@@ -620,7 +621,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
-      [weakSelf requestOfflineMessages];
+//      [weakSelf requestOfflineMessages];
       [ZKJSTool hideHUD];
     });
   });
