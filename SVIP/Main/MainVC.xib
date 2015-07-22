@@ -51,16 +51,16 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_svip" translatesAutoresizingMaskIntoConstraints="NO" id="ZJh-oD-fwH">
-                    <rect key="frame" x="270" y="36" width="60" height="21"/>
+                    <rect key="frame" x="246" y="36" width="108" height="42"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="轨迹2-copy" translatesAutoresizingMaskIntoConstraints="NO" id="vBb-2A-ocr">
-                    <rect key="frame" x="218" y="83" width="165" height="165"/>
+                    <rect key="frame" x="218" y="104" width="165" height="165"/>
                 </imageView>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_logo1" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-PG-wLD">
                     <rect key="frame" x="127" y="140" width="43" height="43"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_touxiang_anli" translatesAutoresizingMaskIntoConstraints="NO" id="bjJ-Dv-GFu">
-                    <rect key="frame" x="257" y="123" width="86" height="86"/>
+                    <rect key="frame" x="257" y="144" width="86" height="86"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="86" id="H0C-Yu-1ge"/>
                         <constraint firstAttribute="width" constant="86" id="d5h-UR-uFv"/>
@@ -94,10 +94,10 @@
                     <gestureRecognizers/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIu-JL-EWR">
-                    <rect key="frame" x="0.0" y="248" width="600" height="284"/>
+                    <rect key="frame" x="0.0" y="269" width="600" height="263"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-9Q-dBR" userLabel="Smart Panel">
-                            <rect key="frame" x="0.0" y="72" width="600" height="140"/>
+                            <rect key="frame" x="0.0" y="62" width="600" height="140"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_dongtai" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-xe-2cv">
                                     <rect key="frame" x="13" y="0.0" width="574" height="140"/>
@@ -170,27 +170,27 @@
                                 </mask>
                             </variation>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMW-xg-Gol" userLabel="Refresh">
-                            <rect key="frame" x="569" y="43" width="27" height="60"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adg-r9-KX5" userLabel="Booking Button">
+                            <rect key="frame" x="550" y="33" width="50" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="0VP-ee-pFP"/>
-                                <constraint firstAttribute="width" constant="27" id="DQ0-Hb-yvX"/>
+                                <constraint firstAttribute="height" constant="60" id="fyn-kh-qcj"/>
+                                <constraint firstAttribute="width" constant="50" id="uns-KC-feI"/>
                             </constraints>
-                            <state key="normal" image="ic_shuaxin">
+                            <state key="normal" image="ic_tianjia">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="RefreshSmartPanel:" destination="-1" eventType="touchUpInside" id="67h-m4-hPY"/>
+                                <action selector="booking:" destination="-1" eventType="touchUpInside" id="Hdm-gW-NAG"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="D5Q-9Q-dBR" secondAttribute="centerY" id="Cjq-0R-GsX"/>
-                        <constraint firstAttribute="trailing" secondItem="zMW-xg-Gol" secondAttribute="trailing" constant="4" id="D1e-E6-3vS"/>
+                        <constraint firstItem="7Np-ol-Cvw" firstAttribute="centerY" secondItem="adg-r9-KX5" secondAttribute="centerY" constant="69" id="Ol2-TF-swW"/>
                         <constraint firstItem="D5Q-9Q-dBR" firstAttribute="leading" secondItem="HIu-JL-EWR" secondAttribute="leading" id="URr-z1-Gcy"/>
                         <constraint firstAttribute="trailing" secondItem="D5Q-9Q-dBR" secondAttribute="trailing" id="XWa-JY-jv0"/>
-                        <constraint firstItem="zMW-xg-Gol" firstAttribute="centerY" secondItem="7Np-ol-Cvw" secondAttribute="centerY" constant="-69" id="qGe-P2-gET"/>
+                        <constraint firstAttribute="trailing" secondItem="adg-r9-KX5" secondAttribute="trailing" id="pGy-v3-Jss"/>
                     </constraints>
                 </view>
             </subviews>
@@ -217,7 +217,7 @@
                 <constraint firstItem="bjJ-Dv-GFu" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="66" id="n4K-Dj-RiI"/>
                 <constraint firstItem="ZJh-oD-fwH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="xP1-pK-Scf"/>
             </constraints>
-            <point key="canvasLocation" x="436" y="614"/>
+            <point key="canvasLocation" x="595" y="708"/>
         </view>
         <tapGestureRecognizer id="4In-aJ-VYO">
             <connections>
@@ -235,13 +235,13 @@
         <image name="ic_home_nor" width="60" height="60"/>
         <image name="ic_mi" width="9" height="8"/>
         <image name="ic_shezhi" width="26" height="26"/>
-        <image name="ic_shuaxin" width="27" height="26"/>
+        <image name="ic_tianjia" width="36" height="36"/>
         <image name="ic_xiaoxi" width="42" height="42"/>
         <image name="ic_zuji" width="42" height="42"/>
         <image name="img_logo1" width="43" height="43"/>
         <image name="img_touxiang_anli" width="86" height="86"/>
         <image name="sl_canting" width="17" height="16"/>
-        <image name="text_svip" width="60" height="21"/>
+        <image name="text_svip" width="108" height="42"/>
         <image name="轨迹2-copy" width="165" height="165"/>
     </resources>
 </document>

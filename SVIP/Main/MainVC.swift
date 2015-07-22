@@ -377,14 +377,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - Button Action
-  @IBAction func RefreshSmartPanel(sender: UIButton) {
-    UIView.animateWithDuration(0.5, animations: { () -> Void in
-      sender.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
-    }) { (finished) -> Void in
-      sender.transform = CGAffineTransformIdentity
-    }
-
-    updateSmartPanel()
+  @IBAction func booking(sender: AnyObject) {
+    let navController = UINavigationController(rootViewController: BookVC())
+    navController.navigationBar.tintColor = UIColor.blackColor()
+    navController.navigationBar.translucent = false
+    presentViewController(navController, animated: true, completion: nil)
   }
   
   @IBAction func showSettings(sender: AnyObject) {
