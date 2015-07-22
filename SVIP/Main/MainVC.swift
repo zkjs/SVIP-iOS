@@ -377,6 +377,16 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - Button Action
+  @IBAction func RefreshSmartPanel(sender: UIButton) {
+    UIView.animateWithDuration(0.5, animations: { () -> Void in
+      sender.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+    }) { (finished) -> Void in
+      sender.transform = CGAffineTransformIdentity
+    }
+
+    updateSmartPanel()
+  }
+  
   @IBAction func showSettings(sender: AnyObject) {
     navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
   }
