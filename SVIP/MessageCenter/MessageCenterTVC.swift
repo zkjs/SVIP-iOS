@@ -46,7 +46,16 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
   let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
     
     if indexPath.row == 0 {
+      var version = ""
+      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+        version = info
+      }
+      var build = ""
+      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
+        build = info
+      }
       cell.name.text = "意见反馈"
+      cell.tips.text = "Version \(version) Build \(build)"
       cell.logo.setImage(UIImage(named: "ic_app"), forState: .Normal)
       return cell
     }
@@ -134,9 +143,17 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
       }
       let logPath = logsDirectory.stringByAppendingPathComponent(sortedFileNames.first as! String)
       println(logPath)
+      var version = ""
+      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+        version = info
+      }
+      var build = ""
+      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
+        build = info
+      }
       let logData = NSData(contentsOfFile: logPath)
       mailComposer.addAttachmentData(logData, mimeType: "text/plain", fileName: "SVIP.log")
-      mailComposer.setMessageBody("来自用户:\(JSHStorage.baseInfo().name)\n账号:\(JSHStorage.baseInfo().phone)", isHTML: false)
+      mailComposer.setMessageBody("来自用户:\(JSHStorage.baseInfo().name)\n账号:\(JSHStorage.baseInfo().phone)\n版本:\(version) (\(build))", isHTML: false)
       if MFMailComposeViewController.canSendMail() {
         presentViewController(mailComposer, animated: true, completion: nil)
       } else {
