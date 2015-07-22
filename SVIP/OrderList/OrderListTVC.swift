@@ -95,16 +95,16 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       cell.bookingImageView.hidden = true
       cell.statusLabel.text = "已取消"
     } else if status.toInt() == 2 {
-      cell.rightUtilityButtons = rightButtons() as [AnyObject]
-      cell.bookingImageView.hidden = true
+      cell.rightUtilityButtons = nil
+      cell.bookingImageView.hidden = false
       cell.statusLabel.text = "已确定"
     } else if status.toInt() == 3 {
       cell.rightUtilityButtons = rightButtons() as [AnyObject]
       cell.bookingImageView.hidden = true
       cell.statusLabel.text = "已完成"
     } else if status.toInt() == 4 {
-      cell.rightUtilityButtons = rightButtons() as [AnyObject]
-      cell.bookingImageView.hidden = true
+      cell.rightUtilityButtons = nil
+      cell.bookingImageView.hidden = false
       cell.statusLabel.text = "已入住"
     }
     
