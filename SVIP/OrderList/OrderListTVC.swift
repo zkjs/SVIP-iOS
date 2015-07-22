@@ -72,7 +72,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     let cell: OrderCell = tableView.dequeueReusableCellWithIdentifier(OrderCell.reuseIdentifier()) as! OrderCell
     let order = orders[indexPath.row] as! BookOrder
-    cell.logoImageView.image = UIImage(named: "img_hotel_anli01")
+    let urlString = "\(kBaseURL)uploads/shops/\(order.shopid).png"
+    let logoURL = NSURL(string: urlString)
+    let placeholderImage = UIImage(named: "img_hotel_anli01")
+    cell.logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: SDWebImageOptions.ProgressiveDownload | SDWebImageOptions.RetryFailed, completed: nil)
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(order.arrival_date)
@@ -85,7 +88,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     }
     let rooms = order.rooms
     
-    // status=订单状态 默认0 未确认可取消订单 1取消订单 2已确认订单 3已经完成的订单 5删除订单
+    // status=订单状态 默认0 未确认可取消订单 1取消订单 2已确认订单 3已经完成的订单 4已经入住的订单 5删除订单
     if status.toInt() == 0 {
       cell.rightUtilityButtons = nil
       cell.bookingImageView.hidden = false

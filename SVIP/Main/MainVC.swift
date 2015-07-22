@@ -369,7 +369,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_NoOrder:
-      statusLabel.setTitle(" 您没有任何预订信息", forState: .Normal)
+      statusLabel.setTitle(" 您没有任何预订信息, 请立即预订", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
       tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
     }
@@ -444,14 +444,16 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
     case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-      let chatVC = JSHChatVC(chatType: .Service)
-      chatVC.condition = String(ruleType.rawValue)
-      let navController = UINavigationController(rootViewController: chatVC)
-      navController.navigationBar.tintColor = UIColor.blackColor()
-      navController.navigationBar.translucent = false
-      presentViewController(navController, animated: true, completion: nil)
+//      let chatVC = JSHChatVC(chatType: .Service)
+//      chatVC.condition = String(ruleType.rawValue)
+//      let navController = UINavigationController(rootViewController: chatVC)
+//      navController.navigationBar.tintColor = UIColor.blackColor()
+//      navController.navigationBar.translucent = false
+//      presentViewController(navController, animated: true, completion: nil)
+      break
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
+      chatVC.shopID = order?.shopid
       chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
@@ -459,6 +461,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       presentViewController(navController, animated: true, completion: nil)
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
+      chatVC.shopID = order?.shopid
       chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
@@ -481,6 +484,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
         let chatVC = JSHChatVC(chatType: .CallingWaiter)
         chatVC.order = order
+        chatVC.shopID = order?.shopid
         chatVC.location = beacon!["locdesc"]
         let navController = UINavigationController(rootViewController: chatVC)
         navController.navigationBar.tintColor = UIColor.blackColor()

@@ -221,9 +221,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 取得指定条件的商家信息
-- (void)getAllShopInfoWithStart:(NSInteger)start page:(NSInteger)page key:(NSString *)key isDesc:(BOOL)isDesc success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)getAllShopInfoWithPage:(NSInteger)page key:(NSString *)key isDesc:(BOOL)isDesc success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *order = isDesc ? @"desc" : @"asc";
-  NSString *urlString = [NSString stringWithFormat:@"user/select?web=0&stat=%ld&page=%ld&key=%@&desc=%@", (long)start, (long)page, key, order];
+  NSString *urlString = [NSString stringWithFormat:@"user/selectshop?web=0&page=%ld&key=%@&desc=%@", (long)page, key, order];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);

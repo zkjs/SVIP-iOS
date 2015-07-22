@@ -90,7 +90,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         alertView.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
         alertView.addAction(UIAlertAction(title: "查看", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
           println("查看")
-          let navController = UINavigationController(rootViewController: JSHChatVC(chatType: ChatType.OldSession))
+          let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+          if let shopID = userInfo["shopID"] as? String {
+            chatVC.shopID = shopID
+          }
+          let navController = UINavigationController(rootViewController: chatVC)
           navController.navigationBar.tintColor = UIColor.blackColor()
           navController.navigationBar.translucent = false
           self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
@@ -140,7 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         paytotal = info.floatValue
       }
       let alertMessage = "您有新账单需要支付\n订单号: \(orderno)\n创建时间: \(createdDate)\n应付金额: \(paytotal)"
-      let alertView = UIAlertController(title: "账单", message: "您有新账单需要支付", preferredStyle: .Alert)
+      let alertView = UIAlertController(title: "账单", message: alertMessage, preferredStyle: .Alert)
       alertView.addAction(UIAlertAction(title: "稍候支付", style: UIAlertActionStyle.Cancel, handler: nil))
       alertView.addAction(UIAlertAction(title: "立即支付", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
         let navController = UINavigationController(rootViewController: BookPayVC())

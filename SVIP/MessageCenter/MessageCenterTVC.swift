@@ -11,6 +11,8 @@ import MessageUI
 
 class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelegate {
   
+  var shops = [NSDictionary]()
+  
   // MARK: - Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,6 +24,8 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
     let cellNib = UINib(nibName: HotelMessageCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: HotelMessageCell.reuseIdentifier())
     tableView.tableFooterView = UIView()
+    
+    fetchShops()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -35,7 +39,7 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 2
+    return shops.count + 1
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -43,7 +47,7 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-  let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
+    let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
     
     if indexPath.row == 0 {
       var version = ""
@@ -60,37 +64,43 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
       return cell
     }
   
-    cell.name.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
+    let shop = shops[indexPath.row - 1]
     
-//    if let chatMessage = StorageManager.sharedInstance().lastChatMessage("120") {
-//      cell.tips.text = chatMessage["message"]
-//      cell.date.text = chatMessage["date"]
-//    }
-    
-    if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID("120") {
-      let message = formatMessage(chatMessage)
-      cell.tips.text = message["message"]
-      cell.date.text = message["date"]
+    if let name = shop["fullname"] as? String {
+      cell.name.text = name
     }
     
-    if let order = StorageManager.sharedInstance().lastOrder() {
-      if let status = order.status {
-        switch status {
-          case "0":
-          cell.status.text = "可取消"
-          case "1":
-          cell.status.text = "已取消"
-          case "2":
-          cell.status.text = "已确定"
-          case "3":
-          cell.status.text = "已完成"
-          case "5":
-          cell.status.text = "已删除"
-        default:
-          break
-        }
+    if let shopID = shop["shopid"] as? String {
+      if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID(shopID) {
+        let message = formatMessage(chatMessage)
+        cell.tips.text = message["message"]
+        cell.date.text = message["date"]
       }
+      
+      let placeholderImage = UIImage(named: "img_hotel_anli01")
+      let urlString = "\(kBaseURL)uploads/shops/\(shopID).png"
+      let logoURL = NSURL(string: urlString)
+      cell.logo.sd_setImageWithURL(logoURL, forState: .Normal, placeholderImage: placeholderImage, options: SDWebImageOptions.ProgressiveDownload | SDWebImageOptions.RetryFailed, completed: nil)
     }
+    
+//    if let order = StorageManager.sharedInstance().lastOrder() {
+//      if let status = order.status {
+//        switch status {
+//          case "0":
+//          cell.status.text = "可取消"
+//          case "1":
+//          cell.status.text = "已取消"
+//          case "2":
+//          cell.status.text = "已确定"
+//          case "3":
+//          cell.status.text = "已完成"
+//          case "5":
+//          cell.status.text = "已删除"
+//        default:
+//          break
+//        }
+//      }
+//    }
     
     if UIApplication.sharedApplication().applicationIconBadgeNumber > 0 {
       cell.logo.badgeString = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
@@ -109,14 +119,32 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
       return
     }
     
-    let chatVC = JSHChatVC(chatType: ChatType.OldSession)
-    chatVC.shopID = "120"
-    navigationController?.pushViewController(chatVC, animated: true)
+    let shop = shops[indexPath.row - 1]
+    if let shopID = shop["shopid"] as? String {
+      let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+      chatVC.shopID = shopID
+      navigationController?.pushViewController(chatVC, animated: true)
+    }
   }
   
   // MARK: - Private Method
+  
   func dismissSelf() -> Void {
     dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  func fetchShops() {
+    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      for shopInfo in responseObject as! [NSDictionary] {
+        var shop = [String: String]()
+        shop["fullname"] = shopInfo["fullname"] as? String
+        shop["shopid"] = shopInfo["shopid"] as? String
+        self.shops.append(shop)
+      }
+      self.tableView.reloadData()
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   func sendLogEmail() {
@@ -196,6 +224,7 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
   }
   
   // MARK: - MFMailComposeViewControllerDelegate Method
+  
   func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
     controller.dismissViewControllerAnimated(true, completion: nil)
   }

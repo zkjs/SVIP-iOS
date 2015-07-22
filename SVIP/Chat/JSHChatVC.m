@@ -73,7 +73,6 @@
   self.messageReceiver = self.receiverName;
   self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
   self.senderName = [JSHStorage baseInfo].name;
-  self.shopID = @"120";
   
   NSMutableArray *shareMenuItems = [NSMutableArray array];
   NSArray *plugIcons = @[@"sharemore_pic", @"sharemore_video"];

@@ -16,7 +16,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="长沙芙蓉国温德姆至尊豪廷大酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="Vfe-Mp-6Mi">
                         <rect key="frame" x="82" y="20" width="180" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="客服已经和您确认订单" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3Y-vX-L4x">
@@ -34,7 +34,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已确认" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1y3-J4-1Uv">
                         <rect key="frame" x="270" y="23" width="42" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eh-bz-dOD" customClass="MIBadgeButton">
@@ -57,11 +57,17 @@
                     <constraint firstItem="G3Y-vX-L4x" firstAttribute="leading" secondItem="8eh-bz-dOD" secondAttribute="trailing" constant="10" id="XKr-d5-MRe"/>
                     <constraint firstItem="mm0-9t-Rkm" firstAttribute="top" secondItem="1y3-J4-1Uv" secondAttribute="bottom" constant="5" id="mIH-ff-eGq"/>
                     <constraint firstItem="8eh-bz-dOD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="msl-hw-pwH"/>
+                    <constraint firstAttribute="bottom" secondItem="mm0-9t-Rkm" secondAttribute="bottom" constant="20" id="nNv-jY-EW6"/>
                     <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="oSM-k9-ak9"/>
                     <constraint firstItem="mm0-9t-Rkm" firstAttribute="leading" secondItem="G3Y-vX-L4x" secondAttribute="trailing" constant="8" id="rRG-gy-MBc"/>
                     <constraint firstItem="1y3-J4-1Uv" firstAttribute="leading" secondItem="Vfe-Mp-6Mi" secondAttribute="trailing" constant="8" id="tcT-05-cy5"/>
                     <constraint firstItem="1y3-J4-1Uv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="vkV-cR-wxA"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="mIH-ff-eGq"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="date" destination="mm0-9t-Rkm" id="bnt-p2-cPb"/>

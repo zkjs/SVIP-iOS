@@ -71,6 +71,7 @@ class BookPayVC: UIViewController {
     // Hanton
     let chatVC = JSHChatVC(chatType: .NewSession)
     chatVC.order = bkOrder
+    chatVC.shopID = bkOrder.shopid
     chatVC.navigationItem.hidesBackButton = true
     self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
     self.navigationController?.navigationBar.translucent = false
@@ -123,6 +124,7 @@ class BookPayVC: UIViewController {
           //支付成功,跳到聊天
           let chatVC = JSHChatVC(chatType: .NewSession)
           chatVC.order = self.bkOrder
+          chatVC.shopID = self.bkOrder.shopid
           chatVC.navigationItem.hidesBackButton = true
           self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
           self.navigationController?.navigationBar.translucent = false

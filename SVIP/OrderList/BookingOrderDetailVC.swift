@@ -128,6 +128,7 @@ class BookingOrderDetailVC: UIViewController {
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
     let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+    chatVC.shopID = order.shopid
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -146,7 +147,6 @@ class BookingOrderDetailVC: UIViewController {
       ZKJSTool.showMsg("已成功取消订单")
       self.delegate?.didCancelOrder(self.order)
       self.navigationController?.popToRootViewControllerAnimated(true)
-      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       ZKJSTool.hideHUD()
       ZKJSTool.showMsg(error.description)
