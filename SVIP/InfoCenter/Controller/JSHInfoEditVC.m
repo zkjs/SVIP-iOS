@@ -24,7 +24,10 @@
 #import "SVIP-swift.h"
 #define kDuration       1.0f
 #define kCellH         60
+
 @interface JSHInfoEditVC () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, InfoEditSelectionDelegate, UINavigationControllerDelegate>
+
+@property (strong, nonatomic) IBOutlet UIButton *doneButton;
 
 @end
 
@@ -183,8 +186,10 @@ static NSString *identifier = @"infoCenterCell";
     button.titleLabel.font = [UIFont systemFontOfSize:16];
   [button sizeToFit];
   button.frame = CGRectMake(self.view.frame.size.width - button.frame.size.width - 20, 20, button.frame.size.width, 44);
-  self.settingsButton = button;
-  [self.view addSubview:self.settingsButton];
+  self.doneButton = button;
+  [self.view addSubview:self.doneButton];
+  self.settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  self.settingsButton.frame = CGRectMake(headerFrame.avatarButtonFrame.origin.x, headerFrame.avatarButtonFrame.origin.y, headerFrame.avatarButtonFrame.size.width, headerFrame.avatarButtonFrame.size.height);
   
   // Hanton, 暂时方案
   UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, 20.0)];

@@ -16,13 +16,11 @@
 
 @implementation JSHAnimator
 
-- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
-{
-  return 0.5;
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+  return 0.6;
 }
 
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
-{
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
   self.transitionContext = transitionContext;
   
   UIView *containerView = [transitionContext containerView];
