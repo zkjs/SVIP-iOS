@@ -6,12 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="SVIP" customModuleProvider="target">
             <connections>
-                <outlet property="avatarImage" destination="bjJ-Dv-GFu" id="AcW-YV-DMv"/>
                 <outlet property="infoLabel" destination="T43-K7-b5R" id="0mt-fO-dRY"/>
                 <outlet property="leftButton" destination="AKo-kU-jaS" id="ban-Bv-e8W"/>
                 <outlet property="mainButton" destination="9qo-35-bbF" id="YIK-qX-j3R"/>
                 <outlet property="rightButton" destination="ZLm-u2-o02" id="z6e-Yh-EHj"/>
-                <outlet property="settingsButton" destination="Rdp-DE-53L" id="twr-6a-XpX"/>
+                <outlet property="settingsButton" destination="KJu-Ul-WIW" id="hCO-l2-1hS"/>
                 <outlet property="statusLabel" destination="xNk-xA-Dnk" id="g2s-uT-AzB"/>
                 <outlet property="tipsLabel" destination="VEv-uX-okC" id="GkA-cg-aL1"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7Uu-iT-sHu"/>
@@ -59,20 +58,7 @@
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_logo1" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-PG-wLD">
                     <rect key="frame" x="127" y="140" width="43" height="43"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_touxiang_anli" translatesAutoresizingMaskIntoConstraints="NO" id="bjJ-Dv-GFu">
-                    <rect key="frame" x="257" y="144" width="86" height="86"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="86" id="H0C-Yu-1ge"/>
-                        <constraint firstAttribute="width" constant="86" id="d5h-UR-uFv"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="43"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdp-DE-53L">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdp-DE-53L">
                     <rect key="frame" x="556" y="26" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="hhz-U3-Igv"/>
@@ -81,9 +67,6 @@
                     <state key="normal" image="ic_shezhi">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="showSettings:" destination="-1" eventType="touchUpInside" id="iAP-5s-pWz"/>
-                    </connections>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yoc-zo-8Kk">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
@@ -193,6 +176,25 @@
                         <constraint firstAttribute="trailing" secondItem="adg-r9-KX5" secondAttribute="trailing" id="pGy-v3-Jss"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJu-Ul-WIW" userLabel="Avatar Button">
+                    <rect key="frame" x="257" y="144" width="86" height="86"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="86" id="1Sx-GI-Kmg"/>
+                        <constraint firstAttribute="height" constant="86" id="ICg-jr-KpD"/>
+                    </constraints>
+                    <state key="normal" image="img_touxiang_anli">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="43"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="showSettings:" destination="-1" eventType="touchUpInside" id="Cyv-iy-neS"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -206,15 +208,15 @@
                 <constraint firstAttribute="centerX" secondItem="AKo-kU-jaS" secondAttribute="centerX" constant="100" id="JTW-9R-fNG"/>
                 <constraint firstAttribute="centerX" secondItem="ZJh-oD-fwH" secondAttribute="centerX" id="MWY-3X-hh2"/>
                 <constraint firstAttribute="centerX" secondItem="ZLm-u2-o02" secondAttribute="centerX" constant="-100" id="NdC-Fv-mn9"/>
+                <constraint firstAttribute="centerX" secondItem="KJu-Ul-WIW" secondAttribute="centerX" id="VeP-vs-drd"/>
                 <constraint firstAttribute="bottom" secondItem="9qo-35-bbF" secondAttribute="bottom" constant="8" id="YhH-jq-Bai"/>
                 <constraint firstAttribute="trailing" secondItem="Rdp-DE-53L" secondAttribute="trailing" id="aCn-vg-5iE"/>
                 <constraint firstItem="X9I-KF-gBo" firstAttribute="top" secondItem="HIu-JL-EWR" secondAttribute="bottom" id="bwh-aa-iZc"/>
                 <constraint firstAttribute="bottom" secondItem="ZLm-u2-o02" secondAttribute="bottom" constant="14" id="eFe-eS-hzj"/>
                 <constraint firstAttribute="centerX" secondItem="vBb-2A-ocr" secondAttribute="centerX" id="gYn-pA-sWz"/>
-                <constraint firstAttribute="centerX" secondItem="bjJ-Dv-GFu" secondAttribute="centerX" id="hdD-tM-3DX"/>
                 <constraint firstItem="HIu-JL-EWR" firstAttribute="top" secondItem="vBb-2A-ocr" secondAttribute="bottom" id="len-XD-pi1"/>
                 <constraint firstAttribute="bottom" secondItem="AKo-kU-jaS" secondAttribute="bottom" constant="14" id="mDj-QC-qkE"/>
-                <constraint firstItem="bjJ-Dv-GFu" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="66" id="n4K-Dj-RiI"/>
+                <constraint firstItem="KJu-Ul-WIW" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="66" id="r6t-qu-Jr6"/>
                 <constraint firstItem="ZJh-oD-fwH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="xP1-pK-Scf"/>
             </constraints>
             <point key="canvasLocation" x="595" y="708"/>

@@ -10,7 +10,6 @@ import UIKit
 
 class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, ESTBeaconManagerDelegate {
   
-  @IBOutlet weak var avatarImage: UIImageView!
   @IBOutlet weak var settingsButton: UIButton!
   
   @IBOutlet weak var mainButton: UIButton!
@@ -63,7 +62,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   override func viewWillAppear(animated: Bool) {
     navigationController?.delegate = self
-    avatarImage.image = JSHStorage.baseInfo().avatarImage
+    settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
     
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
