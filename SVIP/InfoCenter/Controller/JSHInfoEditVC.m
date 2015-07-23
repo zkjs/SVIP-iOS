@@ -136,7 +136,7 @@ static NSString *identifier = @"infoCenterCell";
 //    baseInfo.position = @"IT工程师";
 //    baseInfo.company = @"360公司";
 
-    UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"星空default"]];
+    UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"星空_设置"]];
     bg.frame = self.view.bounds;
     [self.view addSubview:bg];
     JSHInfoEditHeaderFrame *headerFrame = [[JSHInfoEditHeaderFrame alloc] init];
@@ -372,6 +372,7 @@ static NSString *identifier = @"infoCenterCell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
+
 
 #pragma mark - infoEditSelectionDelegate
 - (void)seletButton:(int)itemIndex section:(int)itemSection
