@@ -104,6 +104,12 @@
     _avatarButton.frame = _headerFrame.avatarButtonFrame;
     if (baseInfo.avatarImage != nil) {
       [_avatarButton setImage:baseInfo.avatarImage forState:UIControlStateNormal];
+    }else {
+      NSString *urlStr = [kBaseURL stringByAppendingPathComponent:baseInfo.avatarStr];
+      NSURL *url = [NSURL URLWithString:urlStr];
+      [_avatarButton sd_setImageWithURL:url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"ic_camera_nor"] options:SDWebImageLowPriority | SDWebImageRetryFailed | SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+      }];
     }
   
 //    if (baseInfo != nil & _avatarButton.imageView.image == nil) {
