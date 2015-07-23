@@ -459,6 +459,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.shopID = order?.shopid
+      chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
@@ -467,6 +468,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.shopID = order?.shopid
+      chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
       navController.navigationBar.tintColor = UIColor.blackColor()
