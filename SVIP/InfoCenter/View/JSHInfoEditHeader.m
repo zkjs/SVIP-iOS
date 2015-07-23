@@ -238,6 +238,28 @@
 }
 
 #pragma mark - UITextField Delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+  if (self.frame.origin.y == 0) {
+    CGRect frame = self.frame;
+    frame.origin.y = -110;
+    [UIView animateWithDuration:0.25 animations:^{
+      self.frame = frame;
+    }];
+  }
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    if (self.frame.origin.y == -110) {
+      CGRect frame = self.frame;
+      frame.origin.y = 0;
+
+      [UIView animateWithDuration:0.25 animations:^{
+        self.frame = frame;
+      }];
+    }
+    return YES;
+}
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 //    if (textField.text.length == 0) {
