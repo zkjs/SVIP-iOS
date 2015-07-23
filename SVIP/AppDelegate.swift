@@ -107,9 +107,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   // MARK: - TCPSessionManagerDelegate
   func didOpenTCPSocket() {
 //    if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
-      let userID = JSHAccountManager.sharedJSHAccountManager().userid
-      let userName = JSHStorage.baseInfo().name
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let userName = JSHStorage.baseInfo().name
+    
+    if userID != nil && userName != nil {
       ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
+    }
     
 //    let notification = UILocalNotification()
 //    let alertMessage = "didOpenTCPSocket"
