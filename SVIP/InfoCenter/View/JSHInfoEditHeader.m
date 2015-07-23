@@ -37,8 +37,8 @@
     _bgImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickInView:)];
     [_bgImageView addGestureRecognizer:tap];
-    [self addSubview:_bgImageView];
-    
+//    [self addSubview:_bgImageView];
+  
     _avatarButton = [[JSHRoundRectButton alloc] init];
 //    _avatarButton.backgroundColor = [UIColor colorFromHexString:@"0x1b2024"];
     

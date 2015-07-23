@@ -137,18 +137,18 @@
                         <exclude reference="Ubw-eX-Bx8"/>
                     </mask>
                     <mask key="constraints">
-                        <exclude reference="0ED-Sn-5Wu"/>
-                        <exclude reference="RNS-u9-c6g"/>
-                        <exclude reference="Cok-qW-deg"/>
-                        <exclude reference="oL3-Fh-aWe"/>
-                        <exclude reference="vth-CT-cUB"/>
                         <exclude reference="Fks-6Z-unO"/>
                         <exclude reference="M3U-Sh-zzX"/>
                         <exclude reference="ah2-NA-P1E"/>
-                        <exclude reference="UdM-kt-iTH"/>
-                        <exclude reference="v5t-at-I8O"/>
+                        <exclude reference="Cok-qW-deg"/>
+                        <exclude reference="oL3-Fh-aWe"/>
+                        <exclude reference="vth-CT-cUB"/>
                         <exclude reference="8H3-6y-HwH"/>
                         <exclude reference="rOG-AW-EgQ"/>
+                        <exclude reference="0ED-Sn-5Wu"/>
+                        <exclude reference="RNS-u9-c6g"/>
+                        <exclude reference="UdM-kt-iTH"/>
+                        <exclude reference="v5t-at-I8O"/>
                     </mask>
                 </variation>
                 <variation key="heightClass=regular-widthClass=compact">
@@ -160,18 +160,18 @@
                         <include reference="Ubw-eX-Bx8"/>
                     </mask>
                     <mask key="constraints">
-                        <include reference="0ED-Sn-5Wu"/>
-                        <include reference="RNS-u9-c6g"/>
-                        <include reference="Cok-qW-deg"/>
-                        <include reference="oL3-Fh-aWe"/>
-                        <include reference="vth-CT-cUB"/>
                         <include reference="Fks-6Z-unO"/>
                         <include reference="M3U-Sh-zzX"/>
                         <include reference="ah2-NA-P1E"/>
-                        <include reference="UdM-kt-iTH"/>
-                        <include reference="v5t-at-I8O"/>
+                        <include reference="Cok-qW-deg"/>
+                        <include reference="oL3-Fh-aWe"/>
+                        <include reference="vth-CT-cUB"/>
                         <include reference="8H3-6y-HwH"/>
                         <include reference="rOG-AW-EgQ"/>
+                        <include reference="0ED-Sn-5Wu"/>
+                        <include reference="RNS-u9-c6g"/>
+                        <include reference="UdM-kt-iTH"/>
+                        <include reference="v5t-at-I8O"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
