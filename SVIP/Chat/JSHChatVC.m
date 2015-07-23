@@ -62,8 +62,6 @@
   
   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissSelf)];
   self.navigationItem.rightBarButtonItem = rightItem;
-
-  self.title = @"聊天";
   
   self.messageTableView.backgroundColor = [UIColor colorFromHexString:@"#CBCCCA"];
     
@@ -98,6 +96,8 @@
   
   switch (self.chatType) {
     case ChatNewSession: {
+      self.title = @"联系客服";
+      
       NSString *orderInfo = [NSString stringWithFormat:@"系统消息\n订单号: %@\n姓名: %@\n电话: %@\n到达时间: %@\n离店时间: %@\n房型: %@\n房间价格: %@\n备注: %@", self.order.reservation_no, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate, self.order.remark];
       [self requestWaiterWithRuleType:@"Booking" andDescription:orderInfo];  // 预订部
       // Delay
@@ -108,10 +108,11 @@
       break;
     }
     case ChatOldSession: {
-      
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.order.fullname];
       break;
     }
     case ChatCallingWaiter: {
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.order.fullname];
       NSString *orderStatus = @"";
       if ([self.order.status isEqualToString:@"0"]) {
         orderStatus = @"未确认可取消订单";
@@ -134,6 +135,7 @@
       break;
     }
     case ChatService: {
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.order.fullname];
       [self setupAssistantView];
       break;
     }
@@ -382,13 +384,13 @@
                        @"ruletype": @"CallCenter-FoodandBeverage",
                        @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
-                     @{
-                       @"name": @"其它",
-                       @"icon": @"ic_qita",
-                       @"department": @"前台",
-                       @"ruletype": @"FrontOffice",
-                       @"tags": @[@"专属前台", @"我需要开发票"]
-                       }
+//                     @{
+//                       @"name": @"其它",
+//                       @"icon": @"ic_qita",
+//                       @"department": @"前台",
+//                       @"ruletype": @"FrontOffice",
+//                       @"tags": @[@"专属前台", @"我需要开发票"]
+//                       }
                      ]
        },
    @"2": @{
@@ -407,13 +409,13 @@
                        @"ruletype": @"CallCenter-FoodandBeverage",
                        @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
-                     @{
-                       @"name": @"其它",
-                       @"icon": @"ic_qita",
-                       @"department": @"前台",
-                       @"ruletype": @"FrontOffice",
-                       @"tags": @[@"专属前台", @"我需要开发票"]
-                       }
+//                     @{
+//                       @"name": @"其它",
+//                       @"icon": @"ic_qita",
+//                       @"department": @"前台",
+//                       @"ruletype": @"FrontOffice",
+//                       @"tags": @[@"专属前台", @"我需要开发票"]
+//                       }
                      ]
        },
    @"3": @{
@@ -450,13 +452,13 @@
                        @"ruletype": @"CallCenter-FoodandBeverage",
                        @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
-                     @{
-                       @"name": @"其它",
-                       @"icon": @"ic_qita",
-                       @"department": @"前台",
-                       @"ruletype": @"FrontOffice",
-                       @"tags": @[@"专属前台", @"我需要开发票"]
-                       }
+//                     @{
+//                       @"name": @"其它",
+//                       @"icon": @"ic_qita",
+//                       @"department": @"前台",
+//                       @"ruletype": @"FrontOffice",
+//                       @"tags": @[@"专属前台", @"我需要开发票"]
+//                       }
                      ]
        },
    @"5": @{
@@ -475,13 +477,13 @@
                        @"ruletype": @"CallCenter-FoodandBeverage",
                        @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
                        },
-                     @{
-                       @"name": @"其它",
-                       @"icon": @"ic_qita",
-                       @"department": @"前台",
-                       @"ruletype": @"FrontOffice",
-                       @"tags": @[@"专属前台", @"我需要开发票"]
-                       }
+//                     @{
+//                       @"name": @"其它",
+//                       @"icon": @"ic_qita",
+//                       @"department": @"前台",
+//                       @"ruletype": @"FrontOffice",
+//                       @"tags": @[@"专属前台", @"我需要开发票"]
+//                       }
                      ]
        },
    };

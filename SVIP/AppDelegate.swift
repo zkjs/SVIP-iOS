@@ -172,6 +172,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
           self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
         }))
         window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+      } else if childType.integerValue == MessageUserDefineType.ShopConfirmOrder.rawValue {
+        let content = userInfo["content"] as! String
+        let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
+        let reservation_no = dict["reservation_no"]
+        let alertView = UIAlertController(title: "订单", message: "订单:\(reservation_no!)已确认", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+        window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+      } else if childType.integerValue == MessageUserDefineType.ShopCancelOrder.rawValue {
+        let content = userInfo["content"] as! String
+        let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
+        let reservation_no = dict["reservation_no"]
+        let alertView = UIAlertController(title: "订单", message: "订单:\(reservation_no!)已取消", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+        window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       }
     }
     
@@ -208,10 +224,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         // 
       }
     } else if type.integerValue == MessagePaymentType.ShopOrderStatus_IOS.rawValue {
-      println("Booking Order is ready...")
-      let alertView = UIAlertController(title: "订单", message: "您的订单已确认", preferredStyle: .Alert)
-      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+//      println("Booking Order is ready...")
+//      let alertView = UIAlertController(title: "订单", message: "您的订单已确认", preferredStyle: .Alert)
+//      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+//      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
     }
   }
   

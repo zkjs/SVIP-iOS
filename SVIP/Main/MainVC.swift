@@ -160,10 +160,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     if ESTBeaconManager.authorizationStatus() == .NotDetermined {
       beaconManager.requestAlwaysAuthorization()
     } else if ESTBeaconManager.authorizationStatus() == .Denied {
-      let alert = UIAlertView(title: "Location Access Denied", message: "You have denied access to location services. Change this in app settings.", delegate: nil, cancelButtonTitle: "OK")
+      let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
     } else if ESTBeaconManager.authorizationStatus() == .Restricted {
-      let alert = UIAlertView(title: "Location Not Available", message: "You have no access to location services.", delegate: nil, cancelButtonTitle: "OK")
+      let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
     }
     

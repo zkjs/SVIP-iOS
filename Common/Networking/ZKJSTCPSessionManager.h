@@ -191,7 +191,9 @@ typedef NS_ENUM(NSInteger, MessagePaymentType) {
 };
 
 typedef NS_ENUM(NSInteger, MessageUserDefineType) {
-  MessageUserDefinePayment = 1001
+  MessageUserDefinePayment = 1001,
+  MessageUserDefineShopCancelOrder = 1002,
+  MessageUserDefineShopConfirmOrder = 1003
 };
 
 typedef NS_ENUM(NSInteger, MessageCustomType) {
