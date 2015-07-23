@@ -130,7 +130,10 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     filtedArray = self .filtArray(sender.titleLabel?.text)
     tableView .reloadData()
     self.selectedRow = 0
-    self.tableView .selectRowAtIndexPath(NSIndexPath(forRow: self.selectedRow, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Top)
+    let numberOfRow = self.tableView .numberOfRowsInSection(0)
+    if numberOfRow != 0 {
+      self.tableView .selectRowAtIndexPath(NSIndexPath(forRow: self.selectedRow, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Top)
+    }
   }
   
   func breakfastSelect(sender: UIButton) {

@@ -42,6 +42,11 @@ class BookHotelListTVC: UITableViewController {
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     self.tableView .registerNib(UINib(nibName: "BookHotelListCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
+    
+    // Hanton
+    title = "选择酒店"
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+    
     loadData()
   }
   private func loadData() {
@@ -57,9 +62,10 @@ class BookHotelListTVC: UITableViewController {
       ZKJSTool .showMsg("加载数据失败")
     }
   }
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  //MARK: - Button Action
+  // Hanton
+  func dismissSelf() -> Void {
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
   // MARK: - Table view data source
