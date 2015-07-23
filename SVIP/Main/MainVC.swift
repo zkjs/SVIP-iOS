@@ -377,7 +377,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   // MARK: - Button Action
   @IBAction func booking(sender: AnyObject) {
-    let navController = UINavigationController(rootViewController: BookVC())
+    let navController = UINavigationController(rootViewController: BookHotelListTVC())
     navController.navigationBar.tintColor = UIColor.blackColor()
     navController.navigationBar.translucent = false
     presentViewController(navController, animated: true, completion: nil)
@@ -395,7 +395,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
     case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-      let navController = UINavigationController(rootViewController: BookVC())
+      let navController = UINavigationController(rootViewController: BookHotelListTVC())
       navController.navigationBar.tintColor = UIColor.blackColor()
       navController.navigationBar.translucent = false
       presentViewController(navController, animated: true, completion: nil)

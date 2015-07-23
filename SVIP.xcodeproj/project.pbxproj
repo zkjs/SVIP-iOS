@@ -86,6 +86,9 @@
 		B2564D811B4BFE070098608F /* JSHInfoEditShortHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D701B4BFE070098608F /* JSHInfoEditShortHeaderView.xib */; };
 		B2564D841B4C012C0098608F /* JSHStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D831B4C012C0098608F /* JSHStorage.m */; };
 		B2564D871B4C017F0098608F /* NSString+JSH.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D861B4C017F0098608F /* NSString+JSH.m */; };
+		B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */; };
+		B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */; };
+		B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27004091B608ABF00B1BEA7 /* Hotel.swift */; };
 		B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */; };
 		B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */; };
 		B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */; };
@@ -247,6 +250,9 @@
 		B2564D831B4C012C0098608F /* JSHStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHStorage.m; sourceTree = "<group>"; };
 		B2564D851B4C017F0098608F /* NSString+JSH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSH.h"; sourceTree = "<group>"; };
 		B2564D861B4C017F0098608F /* NSString+JSH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSH.m"; sourceTree = "<group>"; };
+		B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookHotelListTVC.swift; sourceTree = "<group>"; };
+		B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookHotelListCell.xib; sourceTree = "<group>"; };
+		B27004091B608ABF00B1BEA7 /* Hotel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
 		B277F8C11B4A59AA00A9F858 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		B277F8C31B4A59AA00A9F858 /* BlurDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurDatePickerView.h; sourceTree = "<group>"; };
@@ -704,6 +710,7 @@
 				B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */,
 				B2A642121B47C2A700AF0F28 /* BookPayVC.swift */,
 				B2A642131B47C2A700AF0F28 /* BookVC.swift */,
+				B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -713,6 +720,7 @@
 			children = (
 				B2A642151B47C2A700AF0F28 /* RoomGoods.swift */,
 				B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */,
+				B27004091B608ABF00B1BEA7 /* Hotel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -727,6 +735,7 @@
 				B2A6421B1B47C2A700AF0F28 /* BookRoomCell.xib */,
 				B2A6421C1B47C2A700AF0F28 /* BookVC.xib */,
 				B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */,
+				B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -866,6 +875,7 @@
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				B2564D811B4BFE070098608F /* JSHInfoEditShortHeaderView.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
+				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
 				B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */,
 			);
@@ -932,6 +942,7 @@
 				404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */,
 				405BC0FC1B42495F00081C0A /* DotLine.swift in Sources */,
 				B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */,
+				B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */,
 				4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */,
 				404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
@@ -989,6 +1000,7 @@
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
 				B2564D791B4BFE070098608F /* JSHSectionModel.m in Sources */,
+				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,
 				401BBF1B1B5B7F6500774502 /* SVIP.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

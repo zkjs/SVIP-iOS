@@ -19,6 +19,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   @IBOutlet private var leftSelectButtonArray: [BookItemButton]!
   @IBOutlet private var rightSelectButtonArray: [BookItemButton]!
 //Data
+  var shopid: String!
   var dataArray = NSMutableArray()
   private var filtedArray = NSMutableArray()
   private var selectedRow : Int = 0
@@ -61,18 +62,32 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   private func loadData() {
-    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsPage(1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let arr = responseObject as? Array<AnyObject> {
-        for dict in arr {
-          if let myDict = dict as? NSDictionary {
-            let goods = RoomGoods(dic: myDict)
-            self.dataArray.addObject(goods)
+//    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsPage(1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let arr = responseObject as? Array<AnyObject> {
+//        for dict in arr {
+//          if let myDict = dict as? NSDictionary {
+//            let goods = RoomGoods(dic: myDict)
+//            self.dataArray.addObject(goods)
+//          }
+//        }
+//        let button = self.leftSelectButtonArray.last
+//        self.categorySelect(button!)
+//      }
+//    }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//    }
+    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID(shopid, page: 1, categoryID: nil, key: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+          if let arr = responseObject as? NSArray {
+            for dict in arr {
+              if let myDict = dict as? NSDictionary {
+                let goods = RoomGoods(dic: myDict)
+                self.dataArray.addObject(goods)
+              }
+            }
+            let button = self.leftSelectButtonArray.last
+            self.categorySelect(button!)
           }
-        }
-        let button = self.leftSelectButtonArray.last
-        self.categorySelect(button!)
-      }
-    }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      
     }
   }
   

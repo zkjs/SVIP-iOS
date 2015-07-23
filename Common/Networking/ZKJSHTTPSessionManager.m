@@ -220,10 +220,15 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 取得指定条件的商家信息
+// 取得指定条件的商家列表信息
 - (void)getAllShopInfoWithPage:(NSInteger)page key:(NSString *)key isDesc:(BOOL)isDesc success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *order = isDesc ? @"desc" : @"asc";
-  NSString *urlString = [NSString stringWithFormat:@"user/selectshop?web=0&page=%ld&key=%@&desc=%@", (long)page, key, order];
+  NSString *urlString;
+  if (key == nil) {
+    urlString = [NSString stringWithFormat:@"user/selectshop?web=0&page=%ld", (long)page];
+  }else {
+    urlString = [NSString stringWithFormat:@"user/selectshop?web=0&page=%ld&key=%@&desc=%@", (long)page, key, order];
+  }
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -342,8 +347,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 获取商品列表
-/*
+// 获取指定条件商品列表
 - (void)getShopGoodsWithShopID:(NSString *)shopID page:(NSInteger)page categoryID:(NSString *)categoryID key:(NSString *)key success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *category = categoryID ? [NSString stringWithFormat:@"&cat_id=%@", categoryID] : @"";
   NSString *orderBy = key ? [NSString stringWithFormat:@"&by=%@", key] : @"";
@@ -356,7 +360,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     failure(task, error);
   }];
 }
- */
+// 获取所有商品列表
 - (void)getShopGoodsPage:(NSInteger)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
 //    NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&page=%ld", shopID, (long)page];
     NSString *urlString = [NSString stringWithFormat:@"user/goods?page=%ld", (long)page];

@@ -361,8 +361,7 @@
                             <exclude reference="ruR-QO-aAj"/>
                         </mask>
                     </variation>
-                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                        <rect key="frame" x="184" y="108" width="33" height="21"/>
+                    <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
                             <include reference="ruR-QO-aAj"/>
                         </mask>
