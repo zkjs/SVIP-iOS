@@ -50,6 +50,7 @@
 //baseInfo
 + (JSHBaseInfo *)baseInfo;
 + (void)saveBaseInfo:(JSHBaseInfo *)baseInfo;
++ (void)saveBaseInfoAvatar:(UIImage *)avatar;//或者存image，或者存url，此处为存image做该方法
 
 //likeArray
 + (NSArray *)likeArray;

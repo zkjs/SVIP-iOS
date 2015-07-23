@@ -167,6 +167,12 @@
     [NSKeyedArchiver archiveRootObject:baseInfo toFile:path];
 }
 
++ (void)saveBaseInfoAvatar:(UIImage *)avatar{
+    JSHBaseInfo *baseInfo = [self baseInfo];
+    baseInfo.avatarImage = avatar;
+    [self saveBaseInfo:baseInfo];
+}
+
 //likeArray
 + (NSArray *)likeArray {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kLikeArray]];

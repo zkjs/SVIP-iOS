@@ -9,6 +9,7 @@
 #import "JSHBaseInfo.h"
 #import "SDWebImageDownloader.h"
 #import "Networkcfg.h"
+#import "JSHStorage.h"
 @implementation JSHBaseInfo
 /*
  @property (strong, nonatomic) NSString *avatarStr;
@@ -33,6 +34,7 @@
             [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                     if (finished) {
                         _avatarImage = image;
+                        [JSHStorage saveBaseInfoAvatar:image];
                     }
             }];
         }
