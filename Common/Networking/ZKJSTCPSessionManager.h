@@ -190,6 +190,14 @@ typedef NS_ENUM(NSInteger, MessagePaymentType) {
   MessagePaymentShopOrderStatus_IOS_RSP = 226
 };
 
+typedef NS_ENUM(NSInteger, MessageUserDefineType) {
+  MessageUserDefinePayment = 1001
+};
+
+typedef NS_ENUM(NSInteger, MessageCustomType) {
+  MessageCustomUserDefine = 7
+};
+
 @protocol TCPSessionManagerDelegate;
 
 @interface ZKJSTCPSessionManager : NSObject

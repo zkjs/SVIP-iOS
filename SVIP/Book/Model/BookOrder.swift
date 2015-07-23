@@ -46,10 +46,12 @@ class BookOrder: NSObject {
   var orderid: String!  
   var status: String!
   var remark: String!
+  var fullname: String!
   
   override var description: String {
     var output = ""
     output += "shopid: \(shopid)\n"
+    output += "shopid: \(fullname)\n"
     output += "room_typeid: \(room_typeid)\n"
     output += "guest: \(guest)\n"
     output += "guesttel: \(guesttel)\n"
@@ -71,6 +73,7 @@ class BookOrder: NSObject {
   
   init (coder aDecoder: NSCoder!) {
     shopid = aDecoder.decodeObjectForKey("shopid") as! String
+    fullname = aDecoder.decodeObjectForKey("fullname") as! String
     room_typeid = aDecoder.decodeObjectForKey("room_typeid") as! String
     guest = aDecoder.decodeObjectForKey("guest") as! String
     guesttel = aDecoder.decodeObjectForKey("guesttel") as! String
@@ -89,6 +92,7 @@ class BookOrder: NSObject {
   
   func encodeWithCoder(aCoder: NSCoder!) {
     aCoder.encodeObject(shopid, forKey:"shopid")
+    aCoder.encodeObject(fullname, forKey:"fullname")
     aCoder.encodeObject(room_typeid, forKey:"room_typeid")
     aCoder.encodeObject(guest, forKey:"guest")
     aCoder.encodeObject(guesttel, forKey:"guesttel")

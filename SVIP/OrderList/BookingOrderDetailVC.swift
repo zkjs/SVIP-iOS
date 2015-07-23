@@ -60,7 +60,7 @@ class BookingOrderDetailVC: UIViewController {
     let rooms = order.rooms
     let createdDate = order.created
     
-    nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
+    nameLabel.text = order.fullname
     dateLabel.text = "在 \(createdDate) 预订"
     roomTypeLabel.text = order.room_type
     durationLabel.text = "\(days)晚"
@@ -143,10 +143,19 @@ class BookingOrderDetailVC: UIViewController {
     let token = JSHAccountManager.sharedJSHAccountManager().token
     ZKJSTool.showLoading("正在取消订单...")
     ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      ZKJSTool.hideHUD()
+//      ZKJSTool.hideHUD()
       ZKJSTool.showMsg("已成功取消订单")
-      self.delegate?.didCancelOrder(self.order)
-      self.navigationController?.popToRootViewControllerAnimated(true)
+      
+      let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+        Int64(1 * Double(NSEC_PER_SEC)))
+      dispatch_after(delayTime, dispatch_get_main_queue()) {
+        self.delegate?.didCancelOrder(self.order)
+        if self.navigationController?.viewControllers.first is BookingOrderDetailVC {
+          self.dismissSelf()
+        } else {
+          self.navigationController?.popToRootViewControllerAnimated(true)
+        }
+      }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       ZKJSTool.hideHUD()
       ZKJSTool.showMsg(error.description)

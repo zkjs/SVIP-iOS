@@ -25,6 +25,8 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
     tableView.registerNib(cellNib, forCellReuseIdentifier: HotelMessageCell.reuseIdentifier())
     tableView.tableFooterView = UIView()
     
+    UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+    
     fetchShops()
   }
   
@@ -77,10 +79,19 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
         cell.date.text = message["date"]
       }
       
-      let placeholderImage = UIImage(named: "img_hotel_anli01")
+      let placeholderImage = UIImage(named: "img_hotel_zhanwei")
       let urlString = "\(kBaseURL)uploads/shops/\(shopID).png"
       let logoURL = NSURL(string: urlString)
       cell.logo.sd_setImageWithURL(logoURL, forState: .Normal, placeholderImage: placeholderImage, options: SDWebImageOptions.ProgressiveDownload | SDWebImageOptions.RetryFailed, completed: nil)
+      
+      if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+        if let badge = shopMessageBadge[shopID] {
+          if badge != 0 {
+            cell.logo.badgeString = String(badge)
+          }
+        }
+      }
+
     }
     
 //    if let order = StorageManager.sharedInstance().lastOrder() {
@@ -101,10 +112,6 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
 //        }
 //      }
 //    }
-    
-    if UIApplication.sharedApplication().applicationIconBadgeNumber > 0 {
-      cell.logo.badgeString = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
-    }
     
     return cell
   }

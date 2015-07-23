@@ -74,7 +74,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     let order = orders[indexPath.row] as! BookOrder
     let urlString = "\(kBaseURL)uploads/shops/\(order.shopid).png"
     let logoURL = NSURL(string: urlString)
-    let placeholderImage = UIImage(named: "img_hotel_anli01")
+    let placeholderImage = UIImage(named: "img_hotel_zhanwei")
     cell.logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: SDWebImageOptions.ProgressiveDownload | SDWebImageOptions.RetryFailed, completed: nil)
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -99,7 +99,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       cell.statusLabel.text = "已取消"
     } else if status.toInt() == 2 {
       cell.rightUtilityButtons = nil
-      cell.bookingImageView.hidden = false
+      cell.bookingImageView.hidden = true
       cell.statusLabel.text = "已确定"
     } else if status.toInt() == 3 {
       cell.rightUtilityButtons = rightButtons() as [AnyObject]
@@ -107,7 +107,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       cell.statusLabel.text = "已完成"
     } else if status.toInt() == 4 {
       cell.rightUtilityButtons = nil
-      cell.bookingImageView.hidden = false
+      cell.bookingImageView.hidden = true
       cell.statusLabel.text = "已入住"
     }
     
@@ -116,7 +116,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     dateFormatter.dateFormat = "yyyy/MM/dd"
     cell.dateLabel.text = dateFormatter.stringFromDate(startDate!)
-    cell.nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
+    cell.nameLabel.text = order.fullname
     cell.countLabel.text = "\(days)晚"
     cell.delegate = self
     
@@ -194,6 +194,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           order.room_typeid = orderInfo["room_typeid"] as? String
           order.rooms = orderInfo["rooms"] as? String
           order.shopid = orderInfo["shopid"] as? String
+          order.fullname = orderInfo["fullname"] as? String
           order.status = orderInfo["status"] as? String
           var dateFormatter = NSDateFormatter()
           dateFormatter.dateFormat = "yyyy-MM-dd"

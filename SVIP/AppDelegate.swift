@@ -58,8 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     if let navigationController = window?.rootViewController as? UINavigationController {
       println(navigationController.visibleViewController)
       if navigationController.visibleViewController is JSHChatVC {
-        println(navigationController.topViewController)
+        let chatVC = navigationController.visibleViewController as! JSHChatVC
         requestOfflineMessages()
+        
+        if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+          shopMessageBadge[chatVC.shopID] = 0
+          StorageManager.sharedInstance().updateShopMessageBadge(shopMessageBadge)
+        }
       }
     }
   }
@@ -85,16 +90,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     
     if let type = userInfo["type"] as? String {
       if type == "newMessage" {
-        UIApplication.sharedApplication().applicationIconBadgeNumber += 1
-        let alertView = UIAlertController(title: "新消息", message: "您有新消息", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
-        alertView.addAction(UIAlertAction(title: "查看", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
-          println("查看")
-          let chatVC = JSHChatVC(chatType: ChatType.OldSession)
-          if let shopID = userInfo["shopID"] as? String {
+        if let shopID = userInfo["shopID"] as? String {
+          let alertView = UIAlertController(title: "新消息", message: "您有新消息", preferredStyle: .Alert)
+          alertView.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+          alertView.addAction(UIAlertAction(title: "查看", style: .Default, handler: { (alertAction) -> Void in
+            println("查看")
+            let chatVC = JSHChatVC(chatType: .OldSession)
             chatVC.shopID = shopID
+            let navController = UINavigationController(rootViewController: chatVC)
+            navController.navigationBar.tintColor = UIColor.blackColor()
+            navController.navigationBar.translucent = false
+            self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
+          }))
+          window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+          
+          // 存储商家消息角标
+          if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+            if let badge = shopMessageBadge[shopID] {
+              // 找到商家角标纪录
+              shopMessageBadge[shopID] = badge + 1
+              StorageManager.sharedInstance().updateShopMessageBadge(shopMessageBadge)
+            } else {
+              // 第一次存储商家角标纪录
+              shopMessageBadge[shopID] = 1
+              StorageManager.sharedInstance().updateShopMessageBadge(shopMessageBadge)
+            }
+          } else {
+            // 第一次存储该变量
+            var newShopMessageBadge = [shopID: 1]
+            StorageManager.sharedInstance().updateShopMessageBadge(newShopMessageBadge)
           }
-          let navController = UINavigationController(rootViewController: chatVC)
+        }
+      }
+    }
+    
+    if let childType = userInfo["childType"] as? NSNumber {
+      if childType.integerValue == MessageUserDefineType.Payment.rawValue {
+        println("Payment is ready...")
+        let content = userInfo["content"] as! String
+        let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
+        let room_type = dict["room_type"]
+        let remark = dict["remark"]
+        let room_rate = dict["room_rate"]
+        let created = dict["created"]
+        let arrival_date = dict["arrival_date"]
+        let departure_date = dict["departure_date"]
+        let shopid = dict["shopid"]
+        let orderid = dict["orderid"]
+        let reservation_no = dict["reservation_no"]
+        let rooms = dict["rooms"]
+        let status = dict["status"]
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let startDate = dateFormatter.dateFromString(arrival_date!)
+        let endDate = dateFormatter.dateFromString(departure_date!)
+        let dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
+        
+        let alertMessage = "您有新账单需要支付\n订单号: \(reservation_no!)"
+        let alertView = UIAlertController(title: "账单", message: alertMessage, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "稍候支付", style: .Cancel, handler: nil))
+        alertView.addAction(UIAlertAction(title: "查看", style: .Default, handler: { (alertAction) -> Void in
+          let bookPayVC = BookPayVC()
+          let order = BookOrder()
+          order.shopid = shopid
+          order.rooms = rooms
+          order.room_type = room_type
+          order.room_rate = room_rate
+          order.arrival_date = arrival_date
+          order.departure_date = departure_date
+          order.created = created
+          order.dayInt = dayInt
+          order.reservation_no = reservation_no
+          order.orderid = orderid
+          order.status = status
+          order.remark = remark
+          bookPayVC.bkOrder = order
+          let navController = UINavigationController(rootViewController: bookPayVC)
           navController.navigationBar.tintColor = UIColor.blackColor()
           navController.navigationBar.translucent = false
           self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
@@ -102,6 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       }
     }
+    
   }
   
   // MARK: - TCPSessionManagerDelegate
@@ -129,37 +202,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceMediaChatNotification", object: self, userInfo: dictionary)
     } else if type.integerValue == MessageServiceChatType.CustomerServiceImgChat.rawValue {
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
-    } else if type.integerValue == MessagePaymentType.UserAccount_S2MC.rawValue {
-      println("Payment is ready...")
-      var orderno = ""
-      if let info = dictionary["orderno"] as? String {
-        orderno = info
+    } else if type.integerValue == MessageCustomType.UserDefine.rawValue {
+      let childtype = dictionary["childtype"] as! NSNumber
+      if childtype.integerValue == MessageUserDefineType.Payment.rawValue {
+        // 
       }
-      var createdDate = ""
-      if let info = dictionary["orderdate"] as? NSNumber {
-        let date = NSDate(timeIntervalSince1970: info.doubleValue)
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        var createdDate = dateFormatter.stringFromDate(date)
-      }
-      var paytotal: Float = 0.0
-      if let info = dictionary["paytotal"] as? NSNumber {
-        paytotal = info.floatValue
-      }
-      let alertMessage = "您有新账单需要支付\n订单号: \(orderno)\n创建时间: \(createdDate)\n应付金额: \(paytotal)"
-      let alertView = UIAlertController(title: "账单", message: alertMessage, preferredStyle: .Alert)
-      alertView.addAction(UIAlertAction(title: "稍候支付", style: UIAlertActionStyle.Cancel, handler: nil))
-      alertView.addAction(UIAlertAction(title: "立即支付", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
-        let navController = UINavigationController(rootViewController: BookPayVC())
-        navController.navigationBar.tintColor = UIColor.blackColor()
-        navController.navigationBar.translucent = false
-        self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)
-      }))
-      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
     } else if type.integerValue == MessagePaymentType.ShopOrderStatus_IOS.rawValue {
       println("Booking Order is ready...")
       let alertView = UIAlertController(title: "订单", message: "您的订单已确认", preferredStyle: .Alert)
-      alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
       window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
     }
   }

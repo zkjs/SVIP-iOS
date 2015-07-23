@@ -32,7 +32,7 @@ class BookRoomCell: UITableViewCell {
         if myGoods.type != nil {
           type = myGoods.type
         }
-        let tagStr = "  \(room)\(type)   $\(priceStr)"
+        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
         priceTag.text = tagStr
 
         let baseUrl = "http://120.25.241.196/"

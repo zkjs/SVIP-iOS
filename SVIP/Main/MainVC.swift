@@ -84,6 +84,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         order.room_typeid = lastOrder["room_typeid"] as? String
         order.rooms = lastOrder["rooms"] as? String
         order.shopid = lastOrder["shopid"] as? String
+        order.fullname = lastOrder["fullname"] as? String
         order.status = lastOrder["status"] as? String
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -97,8 +98,16 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         
     }
     
-    if UIApplication.sharedApplication().applicationIconBadgeNumber > 0 {
-      rightButton.badgeString = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
+    if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+      var totalBadge = 0
+      for shopID in shopMessageBadge.keys {
+        totalBadge += shopMessageBadge[shopID]!
+      }
+      if totalBadge == 0 {
+        rightButton.badgeString = nil
+      } else {
+        rightButton.badgeString = String(totalBadge)
+      }
     } else {
       rightButton.badgeString = nil
     }
@@ -224,10 +233,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         ]
         ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
         
-        let notification = UILocalNotification()
-        let alertMessage = "Enter region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
-        notification.alertBody = alertMessage
-        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+//        let notification = UILocalNotification()
+//        let alertMessage = "Enter region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
+//        notification.alertBody = alertMessage
+//        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
       }
       StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
     }
@@ -242,10 +251,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let major = beaconRegion["major"]
       let minor = beaconRegion["minor"]
       
-      let notification = UILocalNotification()
-      let alertMessage = "Exit region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
-      notification.alertBody = alertMessage
-      UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+//      let notification = UILocalNotification()
+//      let alertMessage = "Exit region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
+//      notification.alertBody = alertMessage
+//      UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
     StorageManager.sharedInstance().updateLastBeacon(nil)
   }

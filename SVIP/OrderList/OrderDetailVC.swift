@@ -57,7 +57,7 @@ class OrderDetailVC: UIViewController {
     let rooms = order.rooms
     let createdDate = order.created
 
-    nameLabel.text = "长沙芙蓉国温德姆至尊豪廷大酒店"
+    nameLabel.text = order.fullname
     dateLabel.text = "在 \(createdDate) 预订"
     roomTypeLabel.text = order.room_type
     durationLabel.text = "\(days)晚"

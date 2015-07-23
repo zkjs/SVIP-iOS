@@ -71,4 +71,14 @@ class StorageManager: NSObject {
     defaults.synchronize()
   }
   
+  func shopMessageBadge() -> [String: Int]? {
+    return NSUserDefaults.standardUserDefaults().objectForKey("ShopMessageBadge") as? [String: Int]
+  }
+  
+  func updateShopMessageBadge(shopMessageBadge: [String: Int]?) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(shopMessageBadge, forKey: "ShopMessageBadge")
+    defaults.synchronize()
+  }
+  
 }
