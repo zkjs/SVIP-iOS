@@ -20,7 +20,7 @@
         
         CGSize avatarSize = CGSizeMake(86, 86);
         CGFloat avatarX = kScreenSize.width / 2 - avatarSize.width / 2;
-        CGFloat avatarY = 95 + 49;  // Hanton
+        CGFloat avatarY = 80;//95;  // Hanton, 暂时方案
         _avatarButtonFrame = (CGRect){CGPointMake(avatarX, avatarY), avatarSize};
         
         CGSize phoneSize = CGSizeMake(120, 25);
