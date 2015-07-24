@@ -42,6 +42,7 @@ class BookHotelListTVC: UITableViewController {
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     self.tableView .registerNib(UINib(nibName: "BookHotelListCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
+    self.tableView.tableFooterView = UIView()
     
     // Hanton
     title = "选择酒店"
