@@ -251,10 +251,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let major = beaconRegion["major"]
       let minor = beaconRegion["minor"]
       
-      let notification = UILocalNotification()
-      let alertMessage = "Exit region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
-      notification.alertBody = alertMessage
-      UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+//      let notification = UILocalNotification()
+//      let alertMessage = "Exit region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
+//      notification.alertBody = alertMessage
+//      UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
     StorageManager.sharedInstance().updateLastBeacon(nil)
   }
