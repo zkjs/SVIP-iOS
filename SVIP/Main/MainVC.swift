@@ -261,7 +261,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   func updateSmartPanel() {
     let beacon = StorageManager.sharedInstance().lastBeacon()
+    println("Last Beacon: \(beacon)")
     let order = StorageManager.sharedInstance().lastOrder()
+    println("Last Order: \(order)")
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     infoLabel.hidden = true
@@ -284,7 +286,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         // 入住状态
         if let location = beacon!["locdesc"] {
           if location.isEmpty {
-            statusLabel.setTitle(" 您已入住温德姆至尊豪廷，旅途愉快", forState: .Normal)
+            statusLabel.setTitle(" 您已入住\((order?.fullname)!)，旅途愉快", forState: .Normal)
           } else {
             statusLabel.setTitle(" 您已到达\(location)，旅途愉快", forState: .Normal)
           }
@@ -333,11 +335,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_NoOrder:
-      statusLabel.setTitle(" 温德姆至尊豪廷欢迎您，点击查看信息", forState: .Normal)
+      statusLabel.setTitle(" \((order?.fullname)!)欢迎您，点击查看信息", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
       tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:
-      statusLabel.setTitle(" 温德姆至尊豪廷随时为您服务!", forState: .Normal)
+      statusLabel.setTitle(" \((order?.fullname)!)随时为您服务!", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_likai"), forState: .Normal)
       tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:
@@ -360,9 +362,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           // 确定订单
           let days = NSDate.daysFromDate(NSDate(), toDate: startDate!)
           if days == 0 {
-            statusLabel.setTitle(" 今天入住温德姆至尊豪廷", forState: .Normal)
+            statusLabel.setTitle(" 今天入住\((order?.fullname)!)", forState: .Normal)
           } else {
-            statusLabel.setTitle(" 请于\(days)天后入住温德姆至尊豪廷", forState: .Normal)
+            statusLabel.setTitle(" 请于\(days)天后入住\((order?.fullname)!)", forState: .Normal)
           }
           statusLabel.setImage(UIImage(named: "sl_zhuyi"), forState: .Normal)
         }
@@ -459,6 +461,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.shopID = order?.shopid
+      chatVC.shopName = order?.fullname
       chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
@@ -468,6 +471,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.shopID = order?.shopid
+      chatVC.shopName = order?.fullname
       chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
       let navController = UINavigationController(rootViewController: chatVC)
@@ -492,6 +496,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         let chatVC = JSHChatVC(chatType: .CallingWaiter)
         chatVC.order = order
         chatVC.shopID = order?.shopid
+        chatVC.shopName = order?.fullname
         chatVC.location = beacon!["locdesc"]
         let navController = UINavigationController(rootViewController: chatVC)
         navController.navigationBar.tintColor = UIColor.blackColor()

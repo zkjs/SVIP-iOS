@@ -51,7 +51,7 @@ class BookOrder: NSObject {
   override var description: String {
     var output = ""
     output += "shopid: \(shopid)\n"
-    output += "shopid: \(fullname)\n"
+    output += "fullname: \(fullname)\n"
     output += "room_typeid: \(room_typeid)\n"
     output += "guest: \(guest)\n"
     output += "guesttel: \(guesttel)\n"

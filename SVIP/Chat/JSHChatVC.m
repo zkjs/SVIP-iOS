@@ -48,6 +48,7 @@
   self = [super init];
   if (self) {
     self.chatType = chatType;
+    self.shopName = @"";
   }
   return self;
 }
@@ -108,11 +109,11 @@
       break;
     }
     case ChatOldSession: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.order.fullname];
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
       break;
     }
     case ChatCallingWaiter: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.order.fullname];
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
       NSString *orderStatus = @"";
       if ([self.order.status isEqualToString:@"0"]) {
         orderStatus = @"未确认可取消订单";
@@ -135,7 +136,7 @@
       break;
     }
     case ChatService: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.order.fullname];
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
       [self setupAssistantView];
       break;
     }
@@ -607,6 +608,7 @@
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, timestamp];
 //  [JSHStorage saveChatSession:self.sessionID withShopID:self.shopID];
+  NSLog(@"%@", [StorageManager sharedInstance].lastBeacon);
   [[StorageManager sharedInstance] saveChatSession:self.sessionID shopID:self.shopID];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],

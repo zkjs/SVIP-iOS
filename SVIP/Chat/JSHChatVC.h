@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, ChatType) {
 
 @interface JSHChatVC : XHMessageTableViewController
 @property (nonatomic, strong) NSString *shopID;
+@property (nonatomic, strong) NSString *shopName;
 @property (nonatomic, strong) BookOrder *order;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *condition;

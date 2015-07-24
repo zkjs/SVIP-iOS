@@ -129,6 +129,7 @@ class BookingOrderDetailVC: UIViewController {
   @IBAction func showChatView(sender: AnyObject) {
     let chatVC = JSHChatVC(chatType: ChatType.OldSession)
     chatVC.shopID = order.shopid
+    chatVC.shopName = order.fullname
     navigationController?.pushViewController(chatVC, animated: true)
   }
   

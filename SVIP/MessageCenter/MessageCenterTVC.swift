@@ -130,6 +130,9 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
     if let shopID = shop["shopid"] as? String {
       let chatVC = JSHChatVC(chatType: ChatType.OldSession)
       chatVC.shopID = shopID
+      if let shopName = shop["fullname"] as? String {
+        chatVC.shopName = shopName
+      }
       navigationController?.pushViewController(chatVC, animated: true)
     }
   }
