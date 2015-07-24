@@ -78,7 +78,7 @@ class BookConfirmVC: UIViewController {
     inDate.baseTitle = "入住时间"
     outDate.baseTitle = "离开时间"
     
-    let baseUrl = "http://120.25.241.196/"
+    let baseUrl = kBaseURL
     if let goodsImage = goods?.image {
       let urlStr = baseUrl .stringByAppendingString(goodsImage)
       let placeholderImage = UIImage(named: "星空中心")
