@@ -609,6 +609,11 @@
   self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, timestamp];
 //  [JSHStorage saveChatSession:self.sessionID withShopID:self.shopID];
   NSLog(@"%@", [StorageManager sharedInstance].lastBeacon);
+  NSString *locid = @"";
+  NSDictionary *beacon = [StorageManager sharedInstance].lastBeacon;
+  if (beacon) {
+    locid = beacon[@"locid"];
+  }
   [[StorageManager sharedInstance] saveChatSession:self.sessionID shopID:self.shopID];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatRequestWaiter_C2S],
@@ -617,6 +622,7 @@
                                @"clientid": self.senderID,
                                @"clientname": self.senderName,
                                @"shopid": self.shopID,
+                               @"locid": locid,
                                @"desc": desc,
                                @"sessionid": self.sessionID
                                };
