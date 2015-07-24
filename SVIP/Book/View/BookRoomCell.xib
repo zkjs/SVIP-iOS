@@ -29,6 +29,13 @@
                             <constraint firstAttribute="height" constant="160" id="scV-8A-D2o"/>
                         </constraints>
                     </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_xuanzhong_w" translatesAutoresizingMaskIntoConstraints="NO" id="coO-qz-vS5">
+                        <rect key="frame" x="8" y="70" width="359" height="160"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="160" id="xv9-Uc-bOb"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  双人套房 ￥999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K36-kR-ysN">
                         <rect key="frame" x="8" y="103" width="359" height="30"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -39,13 +46,6 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_gouxuan2" translatesAutoresizingMaskIntoConstraints="NO" id="coO-qz-vS5">
-                        <rect key="frame" x="8" y="70" width="359" height="160"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="160" id="xv9-Uc-bOb"/>
-                        </constraints>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-rs-9Nv">
                         <rect key="frame" x="0.0" y="233" width="375" height="1"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,6 +104,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_gouxuan2" width="21" height="21"/>
+        <image name="ic_xuanzhong_w" width="23" height="23"/>
     </resources>
 </document>
