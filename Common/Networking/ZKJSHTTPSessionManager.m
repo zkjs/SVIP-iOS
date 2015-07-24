@@ -145,7 +145,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 // 检查重复手机
 - (void)checkDuplicatePhoneWithPhone:(NSString *)phone success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"user/reg?phone=%@", phone];
+  NSString *urlString = [NSString stringWithFormat:@"user/getphone?phone=%@", phone];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);

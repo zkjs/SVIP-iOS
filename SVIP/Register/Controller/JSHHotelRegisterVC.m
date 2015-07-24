@@ -120,21 +120,41 @@
 #pragma mark - textField Notification
 - (void)textFieldDidChanged:(NSNotification *)aNotification
 {
-    if ((_phoneField.text.length == 11) & [_OKButton.titleLabel.text isEqualToString:@"注册"]) {
+    if ((_phoneField.text.length == 11) & ([_OKButton.titleLabel.text isEqualToString:@"注册"]) & (aNotification.object == _phoneField)) {
         if ([ZKJSTool validateMobile:_phoneField.text]) {
-            [_OKButton setTitle:@"发送验证码" forState:UIControlStateDisabled];
-            [_OKButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-            _OKButton.enabled = YES;
+          [[ZKJSHTTPSessionManager sharedInstance] checkDuplicatePhoneWithPhone:_phoneField.text success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSDictionary *dic = (NSDictionary *)responseObject;
+            if ([dic[@"set"]  isEqual: @"true"]) {
+              [_OKButton setTitle:@"发送验证码" forState:UIControlStateDisabled];
+              [_OKButton setTitle:@"发送验证码" forState:UIControlStateNormal];
+              _OKButton.enabled = YES;
+            }else {
+              [ZKJSTool showMsg:@"当前仅限被邀请客户使用！"];
+              _phoneField.text = nil;
+            }
+          } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [ZKJSTool showMsg:@"当前仅限被邀请客户使用！"];
+          }];
         }else {
             [ZKJSTool showMsg:@"手机号错误"];
+          return;
         }
     }
     
     if ((_phoneField.text.length < 11) & [_OKButton.titleLabel.text isEqualToString:@"发送验证码"]) {
         [_OKButton setTitle:@"注册" forState:UIControlStateDisabled];
         _OKButton.enabled = NO;
+        return;
     }
-    
+  if (aNotification.object == _phoneField & _phoneField.text.length == 11) {
+    [[ZKJSHTTPSessionManager sharedInstance] checkDuplicatePhoneWithPhone:_phoneField.text success:^(NSURLSessionDataTask *task, id responseObject) {
+      
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      
+    }];
+  }
+  
+  
     if (_phoneField.text.length == 11) {
         if ([ZKJSTool validateMobile:_phoneField.text]) {
             if (_codeField.text.length == 6) {
