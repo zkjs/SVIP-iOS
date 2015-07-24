@@ -288,6 +288,9 @@
                             <include reference="Xcw-bQ-TAr"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="payInHotel:" destination="-1" eventType="touchUpInside" id="IAe-4x-ggX"/>
+                    </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R84-QZ-Ium">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -434,7 +437,7 @@
                     <include reference="z8o-tZ-1xs"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="278" y="435"/>
+            <point key="canvasLocation" x="449" y="461"/>
         </view>
     </objects>
     <resources>
