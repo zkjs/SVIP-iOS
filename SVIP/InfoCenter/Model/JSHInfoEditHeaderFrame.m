@@ -14,7 +14,7 @@
 {
     _Edit = Edit;
     if (_Edit) {
-        _viewFrame = CGRectMake(0, 0, kScreenSize.width, 375);
+        _viewFrame = CGRectMake(0, 0, kScreenSize.width, kScreenSize.height);
         
         _bgImageFrame = _viewFrame;
         
