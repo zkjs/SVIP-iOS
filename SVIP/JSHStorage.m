@@ -143,14 +143,14 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (JSHUserInfo *)userInfo
-{
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kUserInfo]];
-}
-+ (void)saveUserInfo:(JSHUserInfo *)userInfo
-{
-    [NSKeyedArchiver archiveRootObject:userInfo toFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kUserInfo]];
-}
+//+ (JSHUserInfo *)userInfo
+//{
+//    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kUserInfo]];
+//}
+//+ (void)saveUserInfo:(JSHUserInfo *)userInfo
+//{
+//    [NSKeyedArchiver archiveRootObject:userInfo toFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kUserInfo]];
+//}
 
 //baseInfo
 + (JSHBaseInfo *)baseInfo{

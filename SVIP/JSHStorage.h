@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
-#import "JSHUserInfo.h"
+//#import "JSHUserInfo.h"
 #import "JSHBaseInfo.h"
 
 @interface JSHStorage : NSObject
