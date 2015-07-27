@@ -23,7 +23,7 @@ class BookRoomCell: UITableViewCell {
         var priceStr = ""
         var room: String! = ""
         var type: String! = ""
-        if let b = myGoods.pice {
+        if let b = myGoods.price {
           priceStr = b
         }
         if myGoods.room != nil {

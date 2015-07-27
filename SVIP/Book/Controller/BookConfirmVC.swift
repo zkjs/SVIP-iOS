@@ -46,7 +46,7 @@ class BookConfirmVC: UIViewController {
   "image": "uploads/rooms/3.jpg",
   "type": "大床",
   "meat": "双早",
-  "pice": "888.00",
+  "price": "888.00",
   "logo": "uploads/shops/120.png",
   "fullname": "长沙芙蓉国温德姆至尊豪廷大酒店"
   */
@@ -63,7 +63,7 @@ class BookConfirmVC: UIViewController {
         type = selectedGoods.type!
       }
       order.room_type = "\(room)\(type)"//有问题的，order与goods字段对不上
-      order.room_rate = selectedGoods.pice
+      order.room_rate = selectedGoods.price
       order.rooms = "1"
       order.shopid = goods?.shopid
       let localBaseInfo = JSHStorage .baseInfo()
