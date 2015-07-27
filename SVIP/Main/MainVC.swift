@@ -54,6 +54,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     
+    statusLabel.hidden = true
+    infoLabel.hidden = true
+    tipsLabel.hidden = true
+    
 //    let notification = UILocalNotification()
 //    let alertMessage = "initNetworkCommunicationWithIP: HOST \(HOST) & PORT \(PORT)"
 //    notification.alertBody = alertMessage
@@ -260,6 +264,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   func updateSmartPanel() {
+    statusLabel.hidden = false
+    infoLabel.hidden = false
+    tipsLabel.hidden = false
+    
     let beacon = StorageManager.sharedInstance().lastBeacon()
     println("Last Beacon: \(beacon)")
     let order = StorageManager.sharedInstance().lastOrder()
