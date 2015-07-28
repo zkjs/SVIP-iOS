@@ -11,7 +11,7 @@
         <attribute name="sended" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shopID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="voiceDuration" optional="YES" attributeType="String" syncable="YES"/>

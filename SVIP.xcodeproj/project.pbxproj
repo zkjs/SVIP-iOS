@@ -14,6 +14,7 @@
 		404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18491B53675300F11122 /* CompressingLogFileManager.m */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
 		404C18501B53A46D00F11122 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C184F1B53A46D00F11122 /* LogManager.swift */; };
+		404CF5D31B6758E900BCFB44 /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CF5D21B6758E900BCFB44 /* EncryptionTransformer.swift */; };
 		404D90DA1B5CD9D900029B6E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404D90D91B5CD9D900029B6E /* Message.swift */; };
 		405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 405065F41B4CC23100DF25C0 /* JSHAnimator.m */; };
 		405266371B41279B00B277BE /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266331B41279B00B277BE /* OrderListTVC.swift */; };
@@ -124,6 +125,7 @@
 		404C18491B53675300F11122 /* CompressingLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompressingLogFileManager.m; sourceTree = "<group>"; };
 		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		404C184F1B53A46D00F11122 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogManager.swift; path = Helper/LogManager.swift; sourceTree = "<group>"; };
+		404CF5D21B6758E900BCFB44 /* EncryptionTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionTransformer.swift; path = Helper/EncryptionTransformer.swift; sourceTree = "<group>"; };
 		404D90D91B5CD9D900029B6E /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		405065F31B4CC23100DF25C0 /* JSHAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimator.h; sourceTree = "<group>"; };
 		405065F41B4CC23100DF25C0 /* JSHAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimator.m; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		4053EB3A1B480AE3009B0DE1 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				404CF5D21B6758E900BCFB44 /* EncryptionTransformer.swift */,
 				401BBF171B5B7C8800774502 /* Persistent.swift */,
 				4053EB3B1B480B09009B0DE1 /* StorageManager.swift */,
 				404C184F1B53A46D00F11122 /* LogManager.swift */,
@@ -956,6 +959,7 @@
 				405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */,
 				4063FEF51B4BC18000DF6E50 /* MessageModel.m in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
+				404CF5D31B6758E900BCFB44 /* EncryptionTransformer.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
 				B23E537F1B4BB64C00CB7761 /* MD5DataSigner.m in Sources */,
