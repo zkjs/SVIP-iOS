@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Message" representedClassName="SVIP.Message" syncable="YES">
-        <attribute name="avatar" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatar" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionBinaryTransformer" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="avatarUrl" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="bubbleMessageType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="messageMediaType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="originPhotoUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="originPhotoUrl" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionBinaryTransformer" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="sended" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="shopID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sender" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
+        <attribute name="shopID" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
-        <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailUrl" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="voiceDuration" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="voicePath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="voiceUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="voiceDuration" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
+        <attribute name="voicePath" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
+        <attribute name="voiceUrl" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
     </entity>
     <elements>
         <element name="Message" positionX="-63" positionY="-18" width="128" height="285"/>
