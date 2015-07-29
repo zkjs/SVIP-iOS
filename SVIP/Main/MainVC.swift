@@ -24,10 +24,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   var beaconRegions = [String: [String: String]]()
   
-  func scrollViewDidScrollToOffset(offset: CGPoint) {
-    println(offset)
-  }
-  
+  // MARK: - View Lifecycle
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MainVC", owner:self, options:nil)
   }
@@ -117,34 +114,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
   }
   
-  func determineCurrentRegionState() {
-    if let beaconInfo = StorageManager.sharedInstance().lastBeacon() {
-      let uuid = beaconInfo["uuid"]
-      let majorString = beaconInfo["major"]
-      let minorString = beaconInfo["minor"]
-      let identifier = "DetermineCurrentRegionState"
-      var major = 0
-      var minor = 0
-      if let majorValue = majorString?.toInt() {
-        major = majorValue
-      }
-      if let minorValue = minorString?.toInt() {
-        minor = minorValue
-      }
-      if minor == 0 && major == 0 {
-        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
-        beaconManager.requestStateForRegion(beaconRegion)
-      } else if minor == 0 {
-        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
-        beaconManager.requestStateForRegion(beaconRegion)
-      } else {
-        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
-        beaconManager.requestStateForRegion(beaconRegion)
-      }
-    }
-    self.updateSmartPanel()
-  }
-  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     
@@ -153,6 +122,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
+  override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    return .LightContent
+  }
+  
+  // MARK: - CRMotionView Delegate
+  func scrollViewDidScrollToOffset(offset: CGPoint) {
+    println(offset)
   }
   
   // MARK: - Private Method
@@ -204,6 +182,34 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         }
       }
     }
+  }
+  
+  func determineCurrentRegionState() {
+    if let beaconInfo = StorageManager.sharedInstance().lastBeacon() {
+      let uuid = beaconInfo["uuid"]
+      let majorString = beaconInfo["major"]
+      let minorString = beaconInfo["minor"]
+      let identifier = "DetermineCurrentRegionState"
+      var major = 0
+      var minor = 0
+      if let majorValue = majorString?.toInt() {
+        major = majorValue
+      }
+      if let minorValue = minorString?.toInt() {
+        minor = minorValue
+      }
+      if minor == 0 && major == 0 {
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
+        beaconManager.requestStateForRegion(beaconRegion)
+      } else if minor == 0 {
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
+        beaconManager.requestStateForRegion(beaconRegion)
+      } else {
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
+        beaconManager.requestStateForRegion(beaconRegion)
+      }
+    }
+    self.updateSmartPanel()
   }
   
   func didEnterBeaconRegion(region: CLBeaconRegion!) {

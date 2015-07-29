@@ -38,6 +38,12 @@
 {
     [super viewDidLoad];
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+  return UIStatusBarStyleLightContent;
+}
+
 //+(void)showInView:(UIView *)view
 //{
 //    JSHRegisterAnimationView *animationView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterAnimationView" owner:nil options:nil] lastObject];
@@ -85,4 +91,5 @@
 //        _welcomeWords.alpha = 1;
 //    }];
 }
+
 @end

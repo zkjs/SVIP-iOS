@@ -15,9 +15,8 @@
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="595.5" y="623.5"/>
+            <point key="canvasLocation" x="610.5" y="653.5"/>
         </view>
     </objects>
     <resources>

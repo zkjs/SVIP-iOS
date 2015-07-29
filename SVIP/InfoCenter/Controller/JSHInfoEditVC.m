@@ -190,11 +190,10 @@ static NSString *identifier = @"infoCenterCell";
   [self.view addSubview:self.doneButton];
   self.settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
   self.settingsButton.frame = CGRectMake(headerFrame.avatarButtonFrame.origin.x, headerFrame.avatarButtonFrame.origin.y, headerFrame.avatarButtonFrame.size.width, headerFrame.avatarButtonFrame.size.height);
-  
-  // Hanton, 暂时方案
-  UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, 20.0)];
-  statusBarView.backgroundColor = [UIColor whiteColor];
-  [self.view addSubview:statusBarView];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  return UIStatusBarStyleLightContent;
 }
 
 - (void)popViewController {

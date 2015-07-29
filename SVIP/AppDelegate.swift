@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   var deviceToken = ""
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+    
     setupLogger()
     setupWindow()
     setupNotification()
@@ -264,12 +264,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//    let naviController = UINavigationController(rootViewController: BookVC())
-//    naviController.navigationBar .setBackgroundImage(UIImage(named: "星空中心"), forBarMetrics: UIBarMetrics.Default)
-//    window?.rootViewController = naviController
     window?.rootViewController = JSHAnimationVC()
-    window?.rootViewController?.view.layer.cornerRadius = 6
-    window?.rootViewController?.view.layer.masksToBounds = true
+//    window?.rootViewController?.view.layer.cornerRadius = 6
+//    window?.rootViewController?.view.layer.masksToBounds = true
     window?.makeKeyAndVisible()
   }
 
