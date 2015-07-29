@@ -14,11 +14,12 @@
         <attribute name="text" optional="YES" attributeType="Transformable" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="thumbnailUrl" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voiceDuration" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="voicePath" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="voiceUrl" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Message" positionX="-63" positionY="-18" width="128" height="285"/>
+        <element name="Message" positionX="-63" positionY="-18" width="128" height="300"/>
     </elements>
 </model>

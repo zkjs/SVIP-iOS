@@ -72,6 +72,7 @@ class Persistence: NSObject {
   func saveMessage(chatMessage: XHMessage, shopID: String) {
     let message = NSEntityDescription.insertNewObjectForEntityForName("Message",
       inManagedObjectContext: self.managedObjectContext!) as! Message
+    message.userID = JSHAccountManager.sharedJSHAccountManager().userid
     message.shopID = shopID
     message.avatar = NSData(data: UIImagePNGRepresentation(chatMessage.avatar))
     message.sender = chatMessage.senderName
@@ -121,9 +122,9 @@ class Persistence: NSObject {
     saveContext()
   }
   
-  func fetchMessagesWithShopID(shopID: String) -> NSMutableArray {
+  func fetchMessagesWithShopID(shopID: String, userID: String) -> NSMutableArray {
     let fetchRequest = NSFetchRequest(entityName: "Message")
-    fetchRequest.predicate = NSPredicate(format: "shopID = %@", argumentArray: [shopID])
+    fetchRequest.predicate = NSPredicate(format: "shopID = %@ && userID = %@", argumentArray: [shopID, userID])
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
     var error : NSError?
     let messages = self.managedObjectContext!.executeFetchRequest(fetchRequest, error: &error)
@@ -134,8 +135,8 @@ class Persistence: NSObject {
     for message in messages as! [Message] {
       let chatMessage = XHMessage()
       chatMessage.avatar = UIImage(data: message.avatar)
-      chatMessage.sender = message.sender
-      chatMessage.senderName = message.sender
+      chatMessage.sender = message.sender as! String
+      chatMessage.senderName = message.sender as! String
       chatMessage.timestamp = message.timestamp
       chatMessage.sended = message.sended.boolValue
       chatMessage.isRead = message.isRead.boolValue
@@ -148,8 +149,8 @@ class Persistence: NSObject {
         chatMessage.voiceDuration = message.voiceDuration
         chatMessage.messageMediaType = .Voice
       case XHBubbleMessageMediaType.Text.rawValue:
-        chatMessage.text = message.text
-        chatMessage.textString = message.text
+        chatMessage.text = message.text as! String
+        chatMessage.textString = message.text as! String
         chatMessage.messageMediaType = .Text
       default:
         break
@@ -167,9 +168,9 @@ class Persistence: NSObject {
     return chatMessages
   }
   
-  func fetchLastMessageWithShopID(shopID: String) -> XHMessage? {
+  func fetchLastMessageWithShopID(shopID: String, userID: String) -> XHMessage? {
     let fetchRequest = NSFetchRequest(entityName: "Message")
-    fetchRequest.predicate = NSPredicate(format: "shopID = %@", argumentArray: [shopID])
+    fetchRequest.predicate = NSPredicate(format: "shopID = %@ && userID = %@", argumentArray: [shopID, userID])
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
     fetchRequest.fetchLimit = 1
     var error : NSError?
@@ -181,8 +182,8 @@ class Persistence: NSObject {
     if let message = messages?.first as? Message {
       let chatMessage = XHMessage()
       chatMessage.avatar = UIImage(data: message.avatar)
-      chatMessage.sender = message.sender
-      chatMessage.senderName = message.sender
+      chatMessage.sender = message.sender as! String
+      chatMessage.senderName = message.sender as! String
       chatMessage.timestamp = message.timestamp
       chatMessage.sended = message.sended.boolValue
       chatMessage.isRead = message.isRead.boolValue
@@ -195,8 +196,8 @@ class Persistence: NSObject {
         chatMessage.voiceDuration = message.voiceDuration
         chatMessage.messageMediaType = .Voice
       case XHBubbleMessageMediaType.Text.rawValue:
-        chatMessage.text = message.text
-        chatMessage.textString = message.text
+        chatMessage.text = message.text as! String
+        chatMessage.textString = message.text as! String
         chatMessage.messageMediaType = .Text
       default:
         break

@@ -545,7 +545,7 @@
       NSString *tag = self.data[self.condition][@"actions"][sender.tag][@"tags"][index];
       NSString *ruleType = self.data[self.condition][@"actions"][sender.tag][@"ruletype"];
       [self requestWaiterWithRuleType:ruleType andDescription:tag];
-      XHMessage *message = [[XHMessage alloc] initWithText:tag sender:self.senderName timestamp:[NSDate date]];
+      XHMessage *message = [[XHMessage alloc] initWithText:tag sender:self.messageSender timestamp:[NSDate date]];
       message.bubbleMessageType = XHBubbleMessageTypeSending;
       message.messageMediaType = XHBubbleMessageMediaTypeText;
       message.avatar = [JSHStorage baseInfo].avatarImage;
@@ -634,7 +634,8 @@
   
   WEAKSELF
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID];
+    NSString *userID = [JSHAccountManager sharedJSHAccountManager].userid;
+    self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:userID];
     dispatch_async(dispatch_get_main_queue(), ^{
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
@@ -725,8 +726,6 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"fromname": self.senderName,
-//                               @"clientid": self.senderID,
-//                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"textmsg": text
@@ -743,8 +742,6 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"fromname": self.senderName,
-//                               @"clientid": self.senderID,
-//                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"body": body
@@ -762,8 +759,6 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"fromname": self.senderName,
-//                               @"clientid": self.senderID,
-//                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"body": body

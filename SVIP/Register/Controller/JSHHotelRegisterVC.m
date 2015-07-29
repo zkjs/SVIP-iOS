@@ -52,6 +52,10 @@
 }
 
 // Hanton 修改
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  return UIStatusBarStyleLightContent;
+}
+
 -(void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

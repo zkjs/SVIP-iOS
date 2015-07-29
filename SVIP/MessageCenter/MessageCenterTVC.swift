@@ -73,7 +73,8 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
     }
     
     if let shopID = shop["shopid"] as? String {
-      if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID(shopID) {
+      let userID = JSHAccountManager.sharedJSHAccountManager().userid
+      if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID(shopID, userID: userID) {
         let message = formatMessage(chatMessage)
         cell.tips.text = message["message"]
         cell.date.text = message["date"]
