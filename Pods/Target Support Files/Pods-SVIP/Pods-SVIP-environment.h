@@ -124,7 +124,7 @@
 #define COCOAPODS_POD_AVAILABLE_MessageDisplayKit
 #define COCOAPODS_VERSION_MAJOR_MessageDisplayKit 3
 #define COCOAPODS_VERSION_MINOR_MessageDisplayKit 0
-#define COCOAPODS_VERSION_PATCH_MessageDisplayKit 3
+#define COCOAPODS_VERSION_PATCH_MessageDisplayKit 6
 
 // PKYStepper
 #define COCOAPODS_POD_AVAILABLE_PKYStepper

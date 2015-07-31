@@ -15,7 +15,7 @@
 
 #define kVoiceMargin 20.0f // 语音间隙
 
-#define kXHArrowMarginWidth 14.0f // 箭头宽度
+#define kXHArrowMarginWidth 3.0f // 箭头宽度
 
 #define kTextHorizontalBubblePadding 16.0f // 文本的水平间隙
 
@@ -49,17 +49,16 @@
     CGSize stringSize;
     NSRange range = [text rangeOfString:@"\n" options:0];
     if (range.length > 0) {
-        NSArray* array = [text componentsSeparatedByString:@"\n"];
+        NSArray *array = [text componentsSeparatedByString:@"\n"];
         stringSize = CGSizeMake(0, 0);
         CGSize temp;
-        for (int i=0; i<array.count; i++) {
+        for (int i = 0; i < array.count; i++) {
             temp = [[array objectAtIndex:i] sizeWithFont:[[XHMessageBubbleView appearance] font] constrainedToSize:CGSizeMake(MAXFLOAT, 20)];
-            if (temp.width>stringSize.width) {
+            if (temp.width > stringSize.width) {
                 stringSize = temp;
             }
         }
-    }
-    else{
+    } else {
         stringSize = [text sizeWithFont:[[XHMessageBubbleView appearance] font]
                       constrainedToSize:CGSizeMake(MAXFLOAT, 20)];
     }
@@ -422,12 +421,12 @@
             CGFloat textX = CGRectGetMinX(bubbleFrame) + kTextHorizontalBubblePadding;
             
             if (self.message.bubbleMessageType == XHBubbleMessageTypeReceiving) {
-                textX += kXHArrowMarginWidth / 2.0;
+                textX += kXHArrowMarginWidth;
             }
             
             CGRect textFrame = CGRectMake(textX,
                                           CGRectGetMinY(bubbleFrame) + kTextMarginTop,
-                                          CGRectGetWidth(bubbleFrame) - kTextHorizontalBubblePadding * 2 - kXHArrowMarginWidth / 2.0,
+                                          CGRectGetWidth(bubbleFrame) - kTextHorizontalBubblePadding * 2 - kXHArrowMarginWidth,
                                           bubbleFrame.size.height - kTextMarginTop - kTextMarginBottom);
             
             self.displayTextView.frame = CGRectIntegral(textFrame);
@@ -437,8 +436,7 @@
             if (self.message.bubbleMessageType == XHBubbleMessageTypeReceiving) {
                 voiceImagePaddingX = CGRectGetMinX(bubbleFrame) + kVoiceMargin;
             }
-            animationVoiceImageViewFrame.origin = CGPointMake(voiceImagePaddingX,
-                                                              CGRectGetHeight(bubbleFrame) / 2.0);
+            animationVoiceImageViewFrame.origin = CGPointMake(voiceImagePaddingX, CGRectGetMidY(textFrame) - CGRectGetHeight(animationVoiceImageViewFrame) / 2);  // 垂直居中
             self.animationVoiceImageView.frame = animationVoiceImageViewFrame;
             
             [self configureVoiceDurationLabelFrameWithBubbleFrame:bubbleFrame];

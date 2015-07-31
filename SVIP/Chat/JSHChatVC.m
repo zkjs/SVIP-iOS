@@ -19,7 +19,6 @@
 @import AVFoundation;
 //#import "JSHStorage.h"
 
-
 @interface JSHChatVC () <XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, strong) NSDictionary *data;
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
@@ -160,17 +159,6 @@
   }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-//  if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-//    // Navigation button was pressed. Do some stuff
-//    [self saveDataSource];
-//    [self.navigationController popViewControllerAnimated:NO];
-//  }
-  
-  [super viewWillDisappear:animated];
-//  [self saveDataSource];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
@@ -202,7 +190,53 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - XHMessageTableViewControllerDelegate
+#pragma mark - XHMessageTableViewController Delegate
+
+- (BOOL)shouldLoadMoreMessagesScrollToTop {
+  return YES;
+}
+
+- (void)loadMoreMessagesScrollTotop {
+  NSLog(@"Load More Messages");
+  if (self.messages.count == 0) {
+    return;
+  } else {
+    if (!self.loadingMoreMessage) {
+      self.loadingMoreMessage = YES;
+      XHMessage *message = self.messages[0];
+      WEAKSELF
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableArray *messages = [NSMutableArray array];
+        messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:message.timestamp];
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [weakSelf insertOldMessages:messages completion:^{
+            weakSelf.loadingMoreMessage = NO;
+          }];
+        });
+      });
+      
+//      WEAKSELF
+//      [self.conversation queryMessagesBeforeId:nil timestamp:[message.timestamp timeIntervalSince1970]*1000 limit:kOnePageSize callback:^(NSArray *typedMessages, NSError *error) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//          NSMutableArray* messages=[NSMutableArray array];
+//          for(AVIMTypedMessage* typedMessage in typedMessages){
+//            if (weakSelf) {
+//              XHMessage *message = [weakSelf displayMessageByAVIMTypedMessage:typedMessage];
+//              if (message) {
+//                [messages addObject:message];
+//              }
+//            }
+//          }
+//          dispatch_async(dispatch_get_main_queue(), ^{
+//            [weakSelf insertOldMessages:messages completion:^{
+//              weakSelf.loadingMoreMessage=NO;
+//            }];
+//          });
+//        });
+//      }];
+    }
+  }
+}
 
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
   [self sendTextMessage:text];
@@ -634,89 +668,13 @@
   
   WEAKSELF
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    NSString *userID = [JSHAccountManager sharedJSHAccountManager].userid;
-    self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:userID];
+    self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:[NSDate date]];
     dispatch_async(dispatch_get_main_queue(), ^{
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
-//      [weakSelf requestOfflineMessages];
       [ZKJSTool hideHUD];
     });
   });
-  
-//  WEAKSELF
-//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
-//    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-////    NSMutableArray *messages = [NSMutableArray arrayWithContentsOfFile:filePath];
-//    NSData *data = [NSData dataWithContentsOfFile:filePath];
-//    NSMutableArray *messages = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//    NSLog(@"Loading Path: %@", filePath);
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//      weakSelf.messages = messages;
-//      [weakSelf.messageTableView reloadData];
-//      [weakSelf scrollToBottomAnimated:NO];
-//      [self requestOfflineMessages];
-//    });
-//  });
-}
-
-- (void)saveDataSource {
-  [ZKJSTool showLoading:@"正在保存聊天记录"];
-  
-  if (self.messages.count != 0) {
-    [self saveLastChatMessage:self.messages.lastObject];
-  }
-  
-//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    [Persistence.sharedInstance saveMessages:self.messages shopID:self.shopID];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-      [ZKJSTool hideHUD];
-  
-//    });
-//  });
-  
-////  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString *fileName = [NSString stringWithFormat:@"%@.chatlog", self.shopID];
-//    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-//    NSLog(@"Saving Path: %@", filePath);
-//  //  [self.messages writeToFile:filePath atomically:YES];
-//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.messages];
-//    [data writeToFile:filePath atomically:YES];
-////  });
-//  [ZKJSTool hideHUD];
-}
-
-- (void)saveLastChatMessage:(XHMessage*)message {
-  NSMutableDictionary *chatMessage = [NSMutableDictionary dictionary];
-  if (message.messageMediaType == XHBubbleMessageMediaTypeText) {
-    chatMessage[@"message"] = message.text;
-  } else if (message.messageMediaType == XHBubbleMessageMediaTypePhoto) {
-    chatMessage[@"message"] = @"图片消息";
-  } else if (message.messageMediaType == XHBubbleMessageMediaTypeVoice) {
-    chatMessage[@"message"] = @"语音消息";
-  }
-  NSDate *now = [NSDate date];
-  NSInteger duration = [NSDate daysFromDate:message.timestamp toDate:now];
-  if (duration == 0) {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"HH:mm"];
-    chatMessage[@"date"] = [NSString stringWithFormat:@"今天%@", [dateFormat stringFromDate:message.timestamp]];
-  } else if (duration == 1) {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"HH:mm"];
-    chatMessage[@"date"] = [NSString stringWithFormat:@"昨天%@", [dateFormat stringFromDate:message.timestamp]];
-  } else {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM-dd"];
-    chatMessage[@"date"] = [dateFormat stringFromDate:message.timestamp];
-  }
-  
-  [[StorageManager sharedInstance] updateLastChatMessage:chatMessage shopID:@"120"];
 }
 
 - (void)sendTextMessage:(NSString *)text {
@@ -767,7 +725,6 @@
 }
 
 - (void)dismissSelf {
-//  [self saveDataSource];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 

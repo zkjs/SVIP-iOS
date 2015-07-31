@@ -261,33 +261,45 @@
 
 static CGPoint  delayOffset = {0.0};
 // http://stackoverflow.com/a/11602040 Keep UITableView static when inserting rows at the top
-- (void)insertOldMessages:(NSArray *)oldMessages {
+- (void)insertOldMessages:(NSArray *)oldMessages completion:(void (^)())completion {
     WEAKSELF
     [self exChangeMessageDataSourceQueue:^{
-        NSMutableArray *messages = [NSMutableArray arrayWithArray:oldMessages];
-        [messages addObjectsFromArray:weakSelf.messages];
+        NSMutableArray *messages = [[NSMutableArray alloc] initWithArray:weakSelf.messages];
         
         delayOffset = weakSelf.messageTableView.contentOffset;
-        NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:oldMessages.count];
+        NSMutableArray *indexPaths = [[NSMutableArray alloc] initWithCapacity:oldMessages.count];
+        NSMutableIndexSet *indexSets = [[NSMutableIndexSet alloc] init];
         [oldMessages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
             [indexPaths addObject:indexPath];
             
             delayOffset.y += [weakSelf calculateCellHeightWithMessage:[messages objectAtIndex:idx] atIndexPath:indexPath];
+            [indexSets addIndex:idx];
         }];
+        [messages insertObjects:oldMessages atIndexes:indexSets];
+        
         
         [weakSelf exMainQueue:^{
             [UIView setAnimationsEnabled:NO];
-            [weakSelf.messageTableView beginUpdates];
+            [self.messageTableView beginUpdates];
+            
             weakSelf.messages = messages;
             [weakSelf.messageTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
             
-            [weakSelf.messageTableView setContentOffset:delayOffset animated:NO];
-            [weakSelf.messageTableView endUpdates];
+            [self.messageTableView endUpdates];
+            
             [UIView setAnimationsEnabled:YES];
             
+            [weakSelf.messageTableView setContentOffset:delayOffset animated:NO];
+            if (completion) {
+                completion();
+            }
         }];
     }];
+}
+
+- (void)insertOldMessages:(NSArray *)oldMessages {
+    [self insertOldMessages:oldMessages completion:nil];
 }
 
 #pragma mark - Propertys
@@ -578,7 +590,7 @@ static CGPoint  delayOffset = {0.0};
     }
     
     // block回调键盘通知
-    self.messageTableView.keyboardWillChange = ^(CGRect keyboardRect, UIViewAnimationOptions options, double duration, BOOL showKeyborad) {
+    self.messageTableView.keyboardWillChange = ^(CGRect keyboardRect, UIViewAnimationOptions options, double duration, BOOL showKeyboard) {
         if (weakSelf.textViewInputViewType == XHInputViewTypeText) {
             [UIView animateWithDuration:duration
                                   delay:0.0
@@ -601,7 +613,7 @@ static CGPoint  delayOffset = {0.0};
                                  
                                  [weakSelf setTableViewInsetsWithBottomValue:weakSelf.view.frame.size.height
                                   - weakSelf.messageInputView.frame.origin.y];
-                                 if (showKeyborad)
+                                 if (showKeyboard)
                                      [weakSelf scrollToBottomAnimated:NO];
                              }
                              completion:nil];
