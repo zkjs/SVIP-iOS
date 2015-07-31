@@ -74,7 +74,8 @@ class Persistence: NSObject {
       inManagedObjectContext: self.managedObjectContext!) as! Message
     message.userID = JSHAccountManager.sharedJSHAccountManager().userid
     message.shopID = shopID
-    message.avatar = NSData(data: UIImagePNGRepresentation(chatMessage.avatar))
+//    message.avatar = NSData(data: UIImagePNGRepresentation(chatMessage.avatar))
+    message.avatar = NSData(data: UIImageJPEGRepresentation(chatMessage.avatar, 1))
     message.sender = chatMessage.senderName
     message.timestamp = Int64(chatMessage.timestamp.timeIntervalSince1970 * 1000)
     message.sended = chatMessage.sended
@@ -83,7 +84,8 @@ class Persistence: NSObject {
     message.isRead = chatMessage.isRead
     switch chatMessage.messageMediaType.rawValue {
     case XHBubbleMessageMediaType.Photo.rawValue:
-      message.photo = NSData(data: UIImagePNGRepresentation(chatMessage.photo))
+//      message.photo = NSData(data: UIImagePNGRepresentation(chatMessage.photo))
+      message.photo = NSData(data: UIImageJPEGRepresentation(chatMessage.photo, 1))
     case XHBubbleMessageMediaType.Voice.rawValue:
       message.voicePath = chatMessage.voicePath
       message.voiceDuration = chatMessage.voiceDuration
@@ -91,33 +93,6 @@ class Persistence: NSObject {
       message.text = chatMessage.textString
     default:
       break
-    }
-    saveContext()
-  }
-  
-  func saveMessages(messages: NSMutableArray, shopID: String) {
-    for chatMessage in NSArray(array: messages) as! [XHMessage] {
-      let message = NSEntityDescription.insertNewObjectForEntityForName("Message",
-        inManagedObjectContext: self.managedObjectContext!) as! Message
-      message.shopID = shopID
-      message.avatar = NSData(data: UIImagePNGRepresentation(chatMessage.avatar))
-      message.sender = chatMessage.senderName
-      message.timestamp = Int64(chatMessage.timestamp.timeIntervalSince1970 * 1000)
-      message.sended = chatMessage.sended
-      message.messageMediaType = Int16(chatMessage.messageMediaType.rawValue)
-      message.bubbleMessageType = Int16(chatMessage.bubbleMessageType.rawValue)
-      message.isRead = chatMessage.isRead
-      switch chatMessage.messageMediaType.rawValue {
-      case XHBubbleMessageMediaType.Photo.rawValue:
-        message.photo = NSData(data: UIImagePNGRepresentation(chatMessage.photo))
-      case XHBubbleMessageMediaType.Voice.rawValue:
-        message.voicePath = chatMessage.voicePath
-        message.voiceDuration = chatMessage.voiceDuration
-      case XHBubbleMessageMediaType.Text.rawValue:
-        message.text = chatMessage.textString
-      default:
-        break
-      }
     }
     saveContext()
   }

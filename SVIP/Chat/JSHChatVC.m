@@ -735,7 +735,7 @@
 }
 
 - (NSString *)newSessionID {
-  return [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, @"Default"];
+  return [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, @"DefaultChatRuleType"];
 }
 
 - (void)requestOfflineMessages {
