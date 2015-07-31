@@ -294,8 +294,8 @@
       JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
                                              initWithImageInfo:imageInfo
                                              mode:JTSImageViewControllerMode_Image
-                                             backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
-      [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+                                             backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+      [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOffscreen];
       break;
     }
       break;
