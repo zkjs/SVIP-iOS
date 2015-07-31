@@ -20,6 +20,7 @@ target 'SVIP' do
   pod 'SSKeychain', '~> 1.2.3'
   pod 'SDWebImage', '~> 3.7'
   pod 'MJExtension'
+  pod 'JTSImageViewController'
 end
 
 target 'SVIPTests' do

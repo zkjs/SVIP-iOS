@@ -31,6 +31,7 @@ PODS:
   - Colours (5.6.2)
   - DateTools (1.6.1)
   - EstimoteSDK (3.2.8)
+  - JTSImageViewController (1.4)
   - Masonry (0.6.1)
   - MBProgressHUD (0.9.1)
   - MessageDisplayKit (3.0.6)
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - Colours
   - DateTools
   - EstimoteSDK
+  - JTSImageViewController
   - MBProgressHUD
   - MessageDisplayKit (from `https://github.com/hanton/MessageDisplayKit.git`, branch
     `ZKJS`)
@@ -89,6 +91,7 @@ SPEC CHECKSUMS:
   Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   EstimoteSDK: e370ea3d31ef7373d41df9bd6fd1f6fc63a276cf
+  JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MessageDisplayKit: 3d9fe2c1c15dfa78f6b6c551e43d1f31d87abd7e

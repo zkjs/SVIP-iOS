@@ -14,10 +14,9 @@
 #import "UIImage+Resize.h"
 #import "ZKJSTool.h"
 #import "SKTagView.h"
-//#import "JSHAccountManager.h"
-//#import "JSHBookOrder.h"
+#import "JTSImageViewController.h"
+
 @import AVFoundation;
-//#import "JSHStorage.h"
 
 @interface JSHChatVC () <XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, strong) NSDictionary *data;
@@ -287,9 +286,16 @@
     case XHBubbleMessageMediaTypePhoto: {
       DLog(@"message : %@", message.photo);
       DLog(@"message : %@", message.videoConverPhoto);
-      XHDisplayMediaViewController *messageDisplayTextView = [[XHDisplayMediaViewController alloc] init];
-      messageDisplayTextView.message = message;
-      disPlayViewController = messageDisplayTextView;
+      
+      JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+      imageInfo.image = message.photo;
+      imageInfo.referenceRect = messageTableViewCell.frame;
+      imageInfo.referenceView = messageTableViewCell.superview;
+      JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                             initWithImageInfo:imageInfo
+                                             mode:JTSImageViewControllerMode_Image
+                                             backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
+      [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
       break;
     }
       break;
@@ -640,7 +646,7 @@
 
 - (void)requestWaiterWithRuleType:(NSString *)ruleType andDescription:(NSString *)desc {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, timestamp];
+  self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, ruleType];
 //  [JSHStorage saveChatSession:self.sessionID withShopID:self.shopID];
   NSLog(@"%@", [StorageManager sharedInstance].lastBeacon);
   NSString *locid = @"";
@@ -729,8 +735,7 @@
 }
 
 - (NSString *)newSessionID {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  return [NSString stringWithFormat:@"%@_%@_%@", timestamp, self.shopID, self.senderID];
+  return [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, @"Default"];
 }
 
 - (void)requestOfflineMessages {
