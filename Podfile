@@ -7,7 +7,7 @@ target 'SVIP' do
   pod 'MIBadgeButton', :inhibit_warnings => true
   pod 'SWTableViewCell'
   pod 'MJRefresh'
-  pod 'YXTMotionView', :git => 'https://github.com/hanton/YXTMotionView.git'
+  pod 'YXTMotionView', :git => 'https://github.com/hanton/YXTMotionView.git', :branch => 'master'
   pod 'SocketRocket', :inhibit_warnings => true
   pod 'PKYStepper'
   pod 'DateTools'

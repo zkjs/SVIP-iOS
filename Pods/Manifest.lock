@@ -68,13 +68,14 @@ DEPENDENCIES:
   - SocketRocket
   - SSKeychain (~> 1.2.3)
   - SWTableViewCell
-  - YXTMotionView (from `https://github.com/hanton/YXTMotionView.git`)
+  - YXTMotionView (from `https://github.com/hanton/YXTMotionView.git`, branch `master`)
 
 EXTERNAL SOURCES:
   MessageDisplayKit:
     :branch: ZKJS
     :git: https://github.com/hanton/MessageDisplayKit.git
   YXTMotionView:
+    :branch: master
     :git: https://github.com/hanton/YXTMotionView.git
 
 CHECKOUT OPTIONS:
@@ -82,7 +83,7 @@ CHECKOUT OPTIONS:
     :commit: e162d806f6ca3dd57fa15d79b9fd7444392855f2
     :git: https://github.com/hanton/MessageDisplayKit.git
   YXTMotionView:
-    :commit: ae716657c67999a9d82da8891646c749e8fdf4be
+    :commit: b40625f643d681844c86cb2dc8199541a53840a0
     :git: https://github.com/hanton/YXTMotionView.git
 
 SPEC CHECKSUMS:
@@ -104,6 +105,6 @@ SPEC CHECKSUMS:
   SocketRocket: 54a4ac2f354c4e8c51ef5dcd4a13bc556d4f2b7c
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
-  YXTMotionView: 6a7d30ecbfe04f3a560d136c7fe211e33825df7e
+  YXTMotionView: cef229d560c50fc8e4fd2897b3715bec208ac95f
 
 COCOAPODS: 0.37.2
