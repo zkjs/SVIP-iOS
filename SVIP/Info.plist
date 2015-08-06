@@ -30,6 +30,16 @@
 				<string>SVIPPAY</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>WX</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxe09e14fcb69825cc</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>34</string>

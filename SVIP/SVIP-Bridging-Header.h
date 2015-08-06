@@ -36,3 +36,5 @@
 #import "CompressingLogFileManager.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"

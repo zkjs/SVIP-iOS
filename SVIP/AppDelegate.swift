@@ -14,6 +14,11 @@ let ddLogLevel = DDLogLevel.Verbose;
 let ddLogLevel = DDLogLevel.Warning;
 #endif
 
+//UM
+let UMAppKey = "55c31431e0f55a65c1002597"
+let WXAppId = "wxe09e14fcb69825cc"
+let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
+let UMURL = ""
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate {
 
@@ -27,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     setupNotification()
     setupTCPSessionManager()
     fetchBeaconRegions()
+    setupUMSocial()//UM
     
     return true
   }
@@ -53,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     println("applicationDidBecomeActive")
+    UMSocialSnsService.applicationDidBecomeActive()//UM
     
     println(window?.rootViewController)
     if let navigationController = window?.rootViewController as? UINavigationController {
@@ -231,11 +238,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     }
   }
   
+    //UM
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-    AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { ([NSObject : AnyObject]!) -> Void in
-      
-    })
-    return true
+    let urlStr = url.absoluteString
+    if urlStr!.hasPrefix("SVIPPAY") {
+        AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { ([NSObject : AnyObject]!) -> Void in
+            
+        })
+    }else if urlStr!.hasPrefix(WXAppId) {
+        return UMSocialSnsService.handleOpenURL(url)
+    }
+        return true
   }
   
   // MARK: - Private Method
@@ -326,5 +339,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     })
   }
 
+  //UM
+  func setupUMSocial() {
+    UMSocialData.openLog(true);
+    UMSocialData.setAppKey(UMAppKey)
+    UMSocialWechatHandler.setWXAppId(WXAppId, appSecret: WXAppSecret, url: UMURL)
+  }
 }
 
