@@ -62,20 +62,19 @@
 //        _welcomeWords.frame = CGRectMake(_welcomeWords.frame.origin.x, CGRectGetMaxY(_logo.frame) + 10, _welcomeWords.bounds.size.width, _welcomeWords.bounds.size.height);
     } completion:^(BOOL finished) {
         if (finished) {
-//            [self removeFromSuperview];
-            if ([JSHAccountManager sharedJSHAccountManager].userid) {
-                //已注册 jump
-                 UINavigationController *navigationController = [UINavigationController new];
-                 navigationController.navigationBarHidden = YES;
-                [navigationController setViewControllers:@[[MainVC new]] animated:NO];
-                [[UIApplication sharedApplication].windows[0] setRootViewController:navigationController];
-              
-            }else {
-                //未注册 jump
-                [self presentViewController:[JSHHotelRegisterVC new] animated:YES completion:^{
-//
-                }];
-            }
+
+//            if ([JSHAccountManager sharedJSHAccountManager].userid) {
+//                //已注册 jump
+//                 UINavigationController *navigationController = [UINavigationController new];
+//                 navigationController.navigationBarHidden = YES;
+//                [navigationController setViewControllers:@[[MainVC new]] animated:NO];
+//                [[UIApplication sharedApplication].windows[0] setRootViewController:navigationController];
+//            }else {
+//                //未注册 jump
+//                [self presentViewController:[JSHHotelRegisterVC new] animated:YES completion:^{
+//                }];
+//            }
+          [[LoginManager sharedInstance] afterAnimation];
           
         }
     }];

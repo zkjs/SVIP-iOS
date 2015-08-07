@@ -55,6 +55,9 @@
 		B201C28A1B65D225004CA10C /* JSHInfoEditLabelLevel1Model.m in Sources */ = {isa = PBXBuildFile; fileRef = B201C2821B65D225004CA10C /* JSHInfoEditLabelLevel1Model.m */; };
 		B201C28B1B65D225004CA10C /* JSHSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B201C2841B65D225004CA10C /* JSHSectionModel.m */; };
 		B201C28C1B65D225004CA10C /* JSHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B201C2861B65D225004CA10C /* JSHUserInfo.m */; };
+		B21250B11B74586F0056835D /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250B01B74586F0056835D /* LoginManager.swift */; };
+		B21250B81B745F040056835D /* LeftMenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250B61B745F040056835D /* LeftMenuTVC.swift */; };
+		B21250B91B745F040056835D /* LeftMenuTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250B71B745F040056835D /* LeftMenuTVC.xib */; };
 		B23E537C1B4BB64C00CB7761 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536C1B4BB64C00CB7761 /* base64.m */; };
 		B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536F1B4BB64C00CB7761 /* DataSigner.m */; };
 		B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53711B4BB64C00CB7761 /* DataVerifier.m */; };
@@ -202,6 +205,9 @@
 		B201C2851B65D225004CA10C /* JSHUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHUserInfo.h; sourceTree = "<group>"; };
 		B201C2861B65D225004CA10C /* JSHUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHUserInfo.m; sourceTree = "<group>"; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
+		B21250B01B74586F0056835D /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		B21250B61B745F040056835D /* LeftMenuTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTVC.swift; sourceTree = "<group>"; };
+		B21250B71B745F040056835D /* LeftMenuTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuTVC.xib; sourceTree = "<group>"; };
 		B23E536B1B4BB64C00CB7761 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		B23E536C1B4BB64C00CB7761 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
 		B23E536D1B4BB64C00CB7761 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -411,6 +417,8 @@
 				405266501B41283900B277BE /* Model */,
 				4052664E1B41283900B277BE /* MainVC.swift */,
 				4052664F1B41283900B277BE /* MainVC.xib */,
+				B21250B61B745F040056835D /* LeftMenuTVC.swift */,
+				B21250B71B745F040056835D /* LeftMenuTVC.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -498,6 +506,7 @@
 				B2564D351B4BFAED0098608F /* Register */,
 				B2A6420F1B47C2A700AF0F28 /* Book */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
+				B21250B01B74586F0056835D /* LoginManager.swift */,
 				4052664D1B41283900B277BE /* Main */,
 				405266421B4127F600B277BE /* MessageCenter */,
 				40DA7A001B463E850097CE3D /* Chat */,
@@ -967,6 +976,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F49EAF1B7347A200556AE2 /* UMSCommentInputController.xib in Resources */,
+				B21250B91B745F040056835D /* LeftMenuTVC.xib in Resources */,
 				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
 				B2F49EB11B7347A200556AE2 /* UMShareEditViewController.xib in Resources */,
@@ -1084,6 +1094,7 @@
 				B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
+				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				401BBF181B5B7C8800774502 /* Persistent.swift in Sources */,
 				B201C2881B65D225004CA10C /* JSHInfoEditCell.m in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
@@ -1100,6 +1111,7 @@
 				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
 				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
 				B2564D721B4BFE070098608F /* JSHInfoEditVC.m in Sources */,
+				B21250B81B745F040056835D /* LeftMenuTVC.swift in Sources */,
 				B201C28C1B65D225004CA10C /* JSHUserInfo.m in Sources */,
 				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,
@@ -1243,7 +1255,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
@@ -1295,7 +1307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen Zhongke Jinshi Technology Co., Ltd (ERF86L9T4U)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
@@ -1333,7 +1345,7 @@
 					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "589ea6b9-2f28-4dba-ae29-fb0c3e3faeaf";
+				PROVISIONING_PROFILE = "330a391c-b4c1-4fd6-8556-8f9616f714c8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";

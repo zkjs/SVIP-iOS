@@ -38,3 +38,5 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+#import "RESideMenu.h"
+#import "JSHHotelRegisterVC.h"

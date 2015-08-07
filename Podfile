@@ -21,6 +21,7 @@ target 'SVIP' do
   pod 'SDWebImage', '~> 3.7'
   pod 'MJExtension'
   pod 'JTSImageViewController'
+  pod 'RESideMenu', '~> 4.0.7'
 end
 
 target 'SVIPTests' do

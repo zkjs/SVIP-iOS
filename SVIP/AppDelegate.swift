@@ -21,7 +21,7 @@ let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
 let UMURL = ""
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate {
-
+  var loginManager: LoginManager?
   var window: UIWindow?
   var deviceToken = ""
 
@@ -262,6 +262,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
   }
   
+  func setupLoginManager() {
+    loginManager = LoginManager.sharedInstance()
+    loginManager?.appWindow = self.window
+  }
+  
   func setupLogger() {
     DDLog.addLogger(DDASLLogger.sharedInstance())
     DDLog.addLogger(DDTTYLogger.sharedInstance())
@@ -277,7 +282,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    window?.rootViewController = JSHAnimationVC()
+    setupLoginManager()
+    loginManager?.showAnimation()
 //    window?.rootViewController?.view.layer.cornerRadius = 6
 //    window?.rootViewController?.view.layer.masksToBounds = true
     window?.makeKeyAndVisible()

@@ -187,12 +187,13 @@
                     //save account data
                     [[JSHAccountManager sharedJSHAccountManager] saveAccountWithDic:responseObject];
                     //jump
-                    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[MainVC new]];
-                    [vc pushViewController:[JSHInfoEditVC new] animated:NO];
-                    vc.navigationBarHidden = YES;
-                    [self presentViewController:vc animated:YES completion:^{
-                      [self removeFromParentViewController];
-                    }];
+                    [[LoginManager sharedInstance] showResideMenuWithHaspushed:[JSHInfoEditVC new]];
+//                    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[MainVC new]];
+//                    [vc pushViewController:[JSHInfoEditVC new] animated:NO];
+//                    vc.navigationBarHidden = YES;
+//                    [self presentViewController:vc animated:YES completion:^{
+//                      [self removeFromParentViewController];
+//                    }];
                   }
                   
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -208,12 +209,13 @@
                                 //save account data
                                 [[JSHAccountManager sharedJSHAccountManager] saveAccountWithDic:responseObject];
                                 //jump
-                                UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[MainVC new]];
-                                [vc pushViewController:[JSHInfoEditVC new] animated:NO];
-                                vc.navigationBarHidden = YES;
-                                [self presentViewController:vc animated:YES completion:^{
-                                    [self removeFromParentViewController];
-                                }];
+                              [[LoginManager sharedInstance] showResideMenuWithHaspushed:[JSHInfoEditVC new]];
+//                                UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[MainVC new]];
+//                                [vc pushViewController:[JSHInfoEditVC new] animated:NO];
+//                                vc.navigationBarHidden = YES;
+//                                [self presentViewController:vc animated:YES completion:^{
+//                                    [self removeFromParentViewController];
+//                                }];
                             }
 
                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
