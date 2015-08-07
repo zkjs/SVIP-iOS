@@ -186,6 +186,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     @"devtoken": deviceToken,
     @"role": @0,  //0: APP用户 1:商家
     @"appid": appid,
+    @"platform": @"I",
     @"timestamp": timestamp
   };
   

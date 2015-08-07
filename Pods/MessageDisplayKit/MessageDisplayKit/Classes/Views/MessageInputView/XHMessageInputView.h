@@ -37,6 +37,12 @@ typedef NS_ENUM(NSInteger, XHMessageInputViewStyle) {
 @optional
 
 /**
+ *  切换到快捷输入栏
+ *
+ */
+- (void)didSelectedSwitchAction;
+
+/**
  *  在发送文本和语音之间发送改变时，会触发这个回调函数
  *
  *  @param changed 是否改为发送语音状态
@@ -102,6 +108,11 @@ typedef NS_ENUM(NSInteger, XHMessageInputViewStyle) {
  *  当前输入工具条的样式
  */
 @property (nonatomic, assign) XHMessageInputViewStyle messageInputViewStyle;  // default is XHMessageInputViewStyleFlat
+
+/**
+ *  是否允许快捷按钮
+ */
+@property (nonatomic, assign) BOOL allowsShortcutView; // default is NO
 
 /**
  *  是否允许发送语音

@@ -1,1 +1,0 @@
-PODS_SVIP_MESSAGEDISPLAYKIT_OTHER_LDFLAGS = -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreText" -framework "Foundation" -framework "MediaPlayer" -framework "MobileCoreServices" -framework "UIKit"

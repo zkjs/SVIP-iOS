@@ -30,17 +30,14 @@
 @property (nonatomic, strong) NSString *sessionID;
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) NSMutableSet *actionButtons;
+@property (nonatomic, strong) UIView *shortcutView;
+@property (nonatomic, strong) NSMutableArray *subButtonViews;
+@property (nonatomic) NSInteger currentSubButtonViewIndex;
 @end
 
 @implementation JSHChatVC
 
-//- (instancetype)initWithBookOrder:(JSHBookOrder *)bookOrder {
-//  self = [super init];
-//  if (self) {
-//    self.bookOrder = bookOrder;
-//  }
-//  return self;
-//}
+#pragma mark - View Lifecycle
 
 - (instancetype)initWithChatType:(ChatType)chatType {
   self = [super init];
@@ -51,111 +48,29 @@
   return self;
 }
 
-
 - (void)viewDidLoad {
   self.allowsSendFace = NO;
+  if (self.chatType == ChatService) {
+    self.allowsShortcutView = YES;
+  }
   
   [super viewDidLoad];
   
-  [self setupDataSource];
-  
-  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissSelf)];
-  self.navigationItem.rightBarButtonItem = rightItem;
-  
-  self.messageTableView.backgroundColor = [UIColor colorFromHexString:@"#CBCCCA"];
-    
-  self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan=NO;
-  
-  self.messageSender = @"我";
-  self.messageReceiver = self.receiverName;
-  self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
-  self.senderName = [JSHStorage baseInfo].name;
-  
-  NSMutableArray *shareMenuItems = [NSMutableArray array];
-  NSArray *plugIcons = @[@"sharemore_pic", @"sharemore_video"];
-  NSArray *plugTitle = @[@"照片", @"拍摄"];
-  for (NSString *plugIcon in plugIcons) {
-    XHShareMenuItem *shareMenuItem = [[XHShareMenuItem alloc] initWithNormalIconImage:[UIImage imageNamed:plugIcon] title:[plugTitle objectAtIndex:[plugIcons indexOfObject:plugIcon]]];
-    [shareMenuItems addObject:shareMenuItem];
-  }
-  self.shareMenuItems = shareMenuItems;
-  [self.shareMenuView reloadData];
-  
-  self.messageInputView.delegate = self;
-  
   [self loadDataSource];
-  
   [self setupNotification];
-  
-  self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
-//  self.sessionID = [JSHStorage chatSessionWithShopID:self.shopID];
-  if (!self.sessionID) {
-    self.sessionID = [self newSessionID];
-  }
-  
-  switch (self.chatType) {
-    case ChatNewSession: {
-      self.title = @"联系客服";
-      
-      NSString *orderInfo = [NSString stringWithFormat:@"系统消息\n订单号: %@\n姓名: %@\n电话: %@\n到达时间: %@\n离店时间: %@\n房型: %@\n房间价格: %@\n备注: %@", self.order.reservation_no, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate, self.order.remark];
-      [self requestWaiterWithRuleType:@"Booking" andDescription:orderInfo];  // 预订部
-      // Delay
-      __weak __typeof(self) weakSelf = self;
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf showSystemFeedbackWithText:@"请问您还有其它需求吗 :)"];
-      });
-      break;
-    }
-    case ChatOldSession: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
-      break;
-    }
-    case ChatCallingWaiter: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
-      NSString *orderStatus = @"";
-      if ([self.order.status isEqualToString:@"0"]) {
-        orderStatus = @"未确认可取消订单";
-      } else if ([self.order.status isEqualToString:@"1"]) {
-        orderStatus = @"取消订单";
-      } else if ([self.order.status isEqualToString:@"2"]) {
-        orderStatus = @"已确认订单";
-      } else if ([self.order.status isEqualToString:@"3"]) {
-        orderStatus = @"已经完成的订单";
-      } else if ([self.order.status isEqualToString:@"5"]) {
-        orderStatus = @"删除订单";
-      }
-      
-      NSString *userInfo = [NSString stringWithFormat:@"客人所在区域: %@\n订单号: %@\n订单状态: %@\n客人名称: %@\n客人手机: %@\n入住时间: %@\n离店时间: %@\n房型: %@\n房价: %@\n", self.location, self.order.reservation_no, orderStatus, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate];
-      [self requestWaiterWithRuleType:@"CallCenter" andDescription:userInfo];  // 总机
-      __weak __typeof(self) weakSelf = self;
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
-      });
-      break;
-    }
-    case ChatService: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
-      [self setupAssistantView];
-      break;
-    }
-    default:
-      break;
-  }
+  [self setupDataSource];
+  [self setupNavigationBar];
+  [self setupMessageTableView];
+  [self setupMessageInputView];
+  [self setupSessionID];
+  [self customizeChatType];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
   [self requestOfflineMessages];
-  
-  NSDictionary *shopMessageBadge = [StorageManager sharedInstance].shopMessageBadge;
-  if (shopMessageBadge) {
-    NSMutableDictionary *newShopMessageBadge = [NSMutableDictionary dictionaryWithDictionary:shopMessageBadge];
-    if (newShopMessageBadge[self.shopID]) {
-      newShopMessageBadge[self.shopID] = @0;
-      [[StorageManager sharedInstance] updateShopMessageBadge:newShopMessageBadge];
-    }
-  }
+  [self updateShopMessageBadge];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -213,26 +128,6 @@
           }];
         });
       });
-      
-//      WEAKSELF
-//      [self.conversation queryMessagesBeforeId:nil timestamp:[message.timestamp timeIntervalSince1970]*1000 limit:kOnePageSize callback:^(NSArray *typedMessages, NSError *error) {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//          NSMutableArray* messages=[NSMutableArray array];
-//          for(AVIMTypedMessage* typedMessage in typedMessages){
-//            if (weakSelf) {
-//              XHMessage *message = [weakSelf displayMessageByAVIMTypedMessage:typedMessage];
-//              if (message) {
-//                [messages addObject:message];
-//              }
-//            }
-//          }
-//          dispatch_async(dispatch_get_main_queue(), ^{
-//            [weakSelf insertOldMessages:messages completion:^{
-//              weakSelf.loadingMoreMessage=NO;
-//            }];
-//          });
-//        });
-//      }];
     }
   }
 }
@@ -243,7 +138,6 @@
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeText;
   message.avatar = [JSHStorage baseInfo].avatarImage;
-//  message.avatarUrl = [[NSBundle mainBundle] pathForResource:@"ic_home_nor" ofType:@"png"];
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -369,6 +263,106 @@
 
 #pragma mark - Private Methods
 
+- (void)setupNavigationBar {
+  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissSelf)];
+  self.navigationItem.rightBarButtonItem = rightItem;
+  self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
+}
+
+- (void)setupMessageTableView {
+  self.messageTableView.backgroundColor = [UIColor colorFromHexString:@"#CBCCCA"];
+  self.messageSender = @"我";
+  self.messageReceiver = self.receiverName;
+  self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
+  self.senderName = [JSHStorage baseInfo].name;
+}
+
+- (void)setupMessageInputView {
+  NSMutableArray *shareMenuItems = [NSMutableArray array];
+  NSArray *plugIcons = @[@"sharemore_pic", @"sharemore_video"];
+  NSArray *plugTitle = @[@"照片", @"拍摄"];
+  for (NSString *plugIcon in plugIcons) {
+    XHShareMenuItem *shareMenuItem = [[XHShareMenuItem alloc] initWithNormalIconImage:[UIImage imageNamed:plugIcon] title:[plugTitle objectAtIndex:[plugIcons indexOfObject:plugIcon]]];
+    [shareMenuItems addObject:shareMenuItem];
+  }
+  self.shareMenuItems = shareMenuItems;
+  [self.shareMenuView reloadData];
+  
+  self.messageInputView.delegate = self;
+}
+
+- (void)customizeChatType {
+  switch (self.chatType) {
+    case ChatNewSession: {
+      self.title = @"联系客服";
+      
+      NSString *orderInfo = [NSString stringWithFormat:@"系统消息\n订单号: %@\n姓名: %@\n电话: %@\n到达时间: %@\n离店时间: %@\n房型: %@\n房间价格: %@\n备注: %@", self.order.reservation_no, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate, self.order.remark];
+      [self requestWaiterWithRuleType:@"Booking" andDescription:orderInfo];  // 预订部
+      // Delay
+      __weak __typeof(self) weakSelf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf showSystemFeedbackWithText:@"请问您还有其它需求吗 :)"];
+      });
+      break;
+    }
+    case ChatOldSession: {
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
+      break;
+    }
+    case ChatCallingWaiter: {
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
+      NSString *orderStatus = @"";
+      if ([self.order.status isEqualToString:@"0"]) {
+        orderStatus = @"未确认可取消订单";
+      } else if ([self.order.status isEqualToString:@"1"]) {
+        orderStatus = @"取消订单";
+      } else if ([self.order.status isEqualToString:@"2"]) {
+        orderStatus = @"已确认订单";
+      } else if ([self.order.status isEqualToString:@"3"]) {
+        orderStatus = @"已经完成的订单";
+      } else if ([self.order.status isEqualToString:@"5"]) {
+        orderStatus = @"删除订单";
+      }
+      
+      NSString *userInfo = [NSString stringWithFormat:@"客人所在区域: %@\n订单号: %@\n订单状态: %@\n客人名称: %@\n客人手机: %@\n入住时间: %@\n离店时间: %@\n房型: %@\n房价: %@\n", self.location, self.order.reservation_no, orderStatus, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate];
+      [self requestWaiterWithRuleType:@"CallCenter" andDescription:userInfo];  // 总机
+      __weak __typeof(self) weakSelf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
+      });
+      break;
+    }
+    case ChatService: {
+      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
+      self.messageInputView.transform = CGAffineTransformTranslate(self.messageInputView.transform, 0.0, CGRectGetHeight(self.messageInputView.frame));
+      self.messageInputView.hidden = YES;
+      self.subButtonViews = [NSMutableArray array];
+      [self setupShortcutView];
+      break;
+    }
+    default:
+      break;
+  }
+}
+
+- (void)setupSessionID {
+  self.sessionID = [[StorageManager sharedInstance] chatSession:self.shopID];
+  if (!self.sessionID) {
+    self.sessionID = [self newSessionID];
+  }
+}
+
+- (void)updateShopMessageBadge {
+  NSDictionary *shopMessageBadge = [StorageManager sharedInstance].shopMessageBadge;
+  if (shopMessageBadge) {
+    NSMutableDictionary *newShopMessageBadge = [NSMutableDictionary dictionaryWithDictionary:shopMessageBadge];
+    if (newShopMessageBadge[self.shopID]) {
+      newShopMessageBadge[self.shopID] = @0;
+      [[StorageManager sharedInstance] updateShopMessageBadge:newShopMessageBadge];
+    }
+  }
+}
+
 - (void)showSystemFeedbackWithText:(NSString *)text {
   XHMessage *message;
   NSDate *timestamp = [NSDate date];
@@ -395,17 +389,15 @@
          @"status": @"店外未预订",
          @"actions": @[@{
                          @"name": @"房间",
-                         @"icon": @"ic_dingfang",
                          @"department": @"预订部/前台",
                          @"ruletype": @"Booking-FrontOffice",
-                         @"tags": @[@"我想要订房", @"订房有什么优惠吗？"]
+                         @"tags": @[@"订房", @"订房优惠"]
                          },
                        @{
                          @"name": @"订餐",
-                         @"icon": @"ic_dingcan",
                          @"department": @"销售部",
                          @"ruletype": @"Sale",
-                         @"tags": @[@"我要包厢", @"我要订餐"]
+                         @"tags": @[@"包厢", @"订餐"]
                          }
                        ]
          },
@@ -413,67 +405,47 @@
        @"status": @"店外已预订",
        @"actions": @[@{
                        @"name": @"房间",
-                       @"icon": @"ic_dingfang",
                        @"department": @"预订部/前台",
                        @"ruletype": @"Booking-FrontOffice",
-                       @"tags": @[@"我想取消订单", @"我想修改订单", @"我要指定房型"]
+                       @"tags": @[@"取消订单", @"修改订单", @"指定房型"]
                        },
                      @{
                        @"name": @"订餐",
-                       @"icon": @"ic_dingcan",
                        @"department": @"总台/餐饮部",
                        @"ruletype": @"CallCenter-FoodandBeverage",
-                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
-                       },
-//                     @{
-//                       @"name": @"其它",
-//                       @"icon": @"ic_qita",
-//                       @"department": @"前台",
-//                       @"ruletype": @"FrontOffice",
-//                       @"tags": @[@"专属前台", @"我需要开发票"]
-//                       }
+                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                      }
                      ]
        },
    @"2": @{
        @"status": @"店外已入住",
        @"actions": @[@{
                        @"name": @"房间",
-                       @"icon": @"ic_dingfang",
                        @"department": @"客房部",
                        @"ruletype": @"Housekeeping",
-                       @"tags": @[@"我要打扫房间", @"我要更换用品", @"我需要洗衣服务	"]
+                       @"tags": @[@"打扫房间", @"更换用品", @"洗衣服务"]
                        },
                      @{
                        @"name": @"订餐",
-                       @"icon": @"ic_dingcan",
                        @"department": @"总台/餐饮部",
                        @"ruletype": @"CallCenter-FoodandBeverage",
-                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
-                       },
-//                     @{
-//                       @"name": @"其它",
-//                       @"icon": @"ic_qita",
-//                       @"department": @"前台",
-//                       @"ruletype": @"FrontOffice",
-//                       @"tags": @[@"专属前台", @"我需要开发票"]
-//                       }
+                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       }
                      ]
        },
    @"3": @{
        @"status": @"大堂未预订",
        @"actions": @[@{
                        @"name": @"房间",
-                       @"icon": @"ic_dingfang",
                        @"department": @"预订部/前台",
                        @"ruletype": @"Booking-FrontOffice",
-                       @"tags": @[@"我想要订房", @"订房有什么优惠吗？"]
+                       @"tags": @[@"订房", @"订房优惠"]
                        },
                      @{
                        @"name": @"订餐",
-                       @"icon": @"ic_dingcan",
                        @"department": @"销售部",
                        @"ruletype": @"Sale",
-                       @"tags": @[@"我要包厢", @"我要订餐"]
+                       @"tags": @[@"包厢", @"订餐"]
                        }
                      ]
        },
@@ -481,174 +453,230 @@
        @"status": @"大堂已预订",
        @"actions": @[@{
                        @"name": @"房间",
-                       @"icon": @"ic_dingfang",
                        @"department": @"预订部/前台",
                        @"ruletype": @"Booking-FrontOffice",
-                       @"tags": @[@"我想取消订单", @"我想修改订单", @"我要指定房型"]
+                       @"tags": @[@"取消订单", @"修改订单", @"指定房型"]
                        },
                      @{
                        @"name": @"订餐",
-                       @"icon": @"ic_dingcan",
                        @"department": @"总台/餐饮部",
                        @"ruletype": @"CallCenter-FoodandBeverage",
-                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
-                       },
-//                     @{
-//                       @"name": @"其它",
-//                       @"icon": @"ic_qita",
-//                       @"department": @"前台",
-//                       @"ruletype": @"FrontOffice",
-//                       @"tags": @[@"专属前台", @"我需要开发票"]
-//                       }
+                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       }
                      ]
        },
    @"5": @{
        @"status": @"大堂已入住",
        @"actions": @[@{
                        @"name": @"房间",
-                       @"icon": @"ic_dingfang",
                        @"department": @"客房部",
                        @"ruletype": @"Housekeeping",
-                       @"tags": @[@"我要打扫房间", @"我要更换用品", @"我需要洗衣服务	"]
+                       @"tags": @[@"打扫房间", @"更换用品", @"洗衣服务"]
                        },
                      @{
                        @"name": @"订餐",
-                       @"icon": @"ic_dingcan",
                        @"department": @"总台/餐饮部",
                        @"ruletype": @"CallCenter-FoodandBeverage",
-                       @"tags": @[@"我要包厢", @"我要订餐", @"我想要房间送餐"]
-                       },
-//                     @{
-//                       @"name": @"其它",
-//                       @"icon": @"ic_qita",
-//                       @"department": @"前台",
-//                       @"ruletype": @"FrontOffice",
-//                       @"tags": @[@"专属前台", @"我需要开发票"]
-//                       }
+                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       }
                      ]
        },
    };
 }
 
-- (void)setupAssistantView {
-  NSDictionary *actions = self.data[self.condition][@"actions"];
-  CGFloat division = self.view.frame.size.width / (actions.count * 2);
-  CGFloat centerX = division - 60.0 / 2.0;
-  self.actionButtons = [NSMutableSet set];
-  NSInteger index = 0;
-  for(NSDictionary* action in actions) {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self
-               action:@selector(showTagView:)
-    forControlEvents:UIControlEventTouchUpInside];
-    [button setImage:[UIImage imageNamed:action[@"icon"]] forState:UIControlStateNormal];
-    button.frame = CGRectMake(0.0, 0.0, 60.0, 60.0);
-    button.tag = index;
-    button.alpha = 0.6;
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-      UIView *superView = self.view;
-      make.bottom.equalTo(superView.mas_bottom).offset(-46);
-      make.leading.equalTo([NSNumber numberWithFloat:centerX]);
-    }];
-    centerX += division * 2;
-    [self.actionButtons addObject:button];
-    index++;
-  }
-}
-
-- (void)showAllActionButtons {
-  for (UIButton *button in self.actionButtons) {
-    button.hidden = NO;
-  }
-}
-
-- (void)hideAllActionButtons {
-  for (UIButton *button in self.actionButtons) {
-    button.hidden = YES;
-  }
-}
-
-- (void)showTagView:(UIButton *)sender {
-  [self hideAllActionButtons];
+- (void)setupShortcutView {
+  CGFloat shortcutViewHeight = 45.0;
+  CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+  CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
   
-  self.tagView = ({
-    SKTagView *view = [SKTagView new];
-    view.backgroundColor = [UIColor whiteColor];
-    view.padding    = UIEdgeInsetsMake(10, 25, 10, 25);
-    view.insets    = 5;
-    view.lineSpace = 10;
-    //Handle tag's click event
-    __weak __typeof(self) weakSelf = self;
-    view.didClickTagAtIndex = ^(NSUInteger index) {
-      [weakSelf hideTagView];
-      NSString *tag = self.data[self.condition][@"actions"][sender.tag][@"tags"][index];
-      NSString *ruleType = self.data[self.condition][@"actions"][sender.tag][@"ruletype"];
-      [self requestWaiterWithRuleType:ruleType andDescription:tag];
-      XHMessage *message = [[XHMessage alloc] initWithText:tag sender:self.messageSender timestamp:[NSDate date]];
-      message.bubbleMessageType = XHBubbleMessageTypeSending;
-      message.messageMediaType = XHBubbleMessageMediaTypeText;
-      message.avatar = [JSHStorage baseInfo].avatarImage;
-      
-      [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-      
-      [self addMessage:message];
-      [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
-      
-      __weak __typeof(self) weakSelf = self;
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf showSystemFeedbackWithText:@"您的需求已收到"];
-      });
-    };
-    view;
-  });
-  [self.view addSubview:self.tagView];
-  [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+  self.shortcutView = [[UIView alloc] initWithFrame:CGRectMake(0.0, screenHeight - shortcutViewHeight, screenWidth, shortcutViewHeight)];
+  self.shortcutView.backgroundColor = [UIColor whiteColor];
+  [self.view addSubview:self.shortcutView];
+  [self.shortcutView mas_makeConstraints:^(MASConstraintMaker *make) {
     UIView *superView = self.view;
     make.bottom.equalTo(superView.mas_bottom);
     make.leading.equalTo(superView.mas_leading);
     make.trailing.equalTo(superView.mas_trailing);
+    make.height.equalTo([NSNumber numberWithFloat:shortcutViewHeight]);
   }];
   
-  //Add Tags
-  NSArray *tags = self.data[self.condition][@"actions"][sender.tag][@"tags"];
-  [tags enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
-   {
-   SKTag *tag = [SKTag tagWithText:obj];
-   tag.textColor = [UIColor blackColor];
-   tag.bgColor = [UIColor whiteColor];
-   tag.cornerRadius = 6;
-   tag.fontSize = 15;
-   tag.padding = UIEdgeInsetsMake(13.5, 12.5, 13.5, 12.5);
-   tag.borderColor = [UIColor grayColor];
-   tag.borderWidth = 0.5;
-   [self.tagView addTag:tag];
-   }];
   
-  self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  [self.cancelButton addTarget:self
-                        action:@selector(hideTagView)
-              forControlEvents:UIControlEventTouchUpInside];
-  [self.cancelButton setImage:[UIImage imageNamed:@"ic_quxiao2"] forState:UIControlStateNormal];
-  self.cancelButton.frame = CGRectMake(0.0, 0.0, 60.0, 60.0);
-  [self.view addSubview:self.cancelButton];
-  [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-    UIView *tagView = self.tagView;
-    make.bottom.equalTo(tagView.mas_top).offset(-8);
-    make.trailing.equalTo(tagView.mas_trailing).offset(-8);
+  CGFloat switchWidth = 45.0;
+  UIButton *switchButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, switchWidth, shortcutViewHeight)];
+  [switchButton setImage:[UIImage imageNamed:@"ic_jianpan"] forState:UIControlStateNormal];
+  [switchButton addTarget:self action:@selector(hideShortcutView) forControlEvents:UIControlEventTouchUpInside];
+  switchButton.layer.borderWidth = 0.3;
+  switchButton.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
+  [self.shortcutView addSubview:switchButton];
+  
+  NSArray *actions = self.data[self.condition][@"actions"];
+  NSInteger buttonNumber = actions.count;
+  CGFloat buttonWidth = ([[UIScreen mainScreen] bounds].size.width - switchWidth) / buttonNumber;
+  NSInteger actionIndex = 0;
+  for (NSDictionary *action in actions) {
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(switchWidth + buttonWidth * actionIndex, 0.0, buttonWidth, shortcutViewHeight)];
+    button.tag = actionIndex;
+    [button setTitle:action[@"name"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"ic_liaotianmore"] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    [button setTitleColor:[UIColor colorWithWhite:0.3 alpha:1.0] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithWhite:0.3 alpha:0.6] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(switchSubButtonView:) forControlEvents:UIControlEventTouchUpInside];
+    button.layer.borderWidth = 0.3;
+    button.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
+    [self.shortcutView addSubview:button];
+    
+    UIImageView *subButtonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_liaotiantankuang"]];
+    subButtonView.userInteractionEnabled = YES;
+    subButtonView.contentMode = UIViewContentModeScaleToFill;
+    subButtonView.tag = actionIndex;
+    NSArray *tags = action[@"tags"];
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat viewWidth = buttonWidth;
+    CGFloat viewHeight = shortcutViewHeight * tags.count + 25.0;
+    CGFloat viewX = switchWidth + buttonWidth * actionIndex;
+    CGFloat viewY = screenHeight - viewHeight - navigationBarHeight - statusBarHeight - shortcutViewHeight;
+    CGRect frame = subButtonView.frame;
+    frame.origin = CGPointMake(viewX, viewY);
+    frame.size = CGSizeMake(viewWidth, viewHeight);
+    subButtonView.frame = frame;
+    NSLog(@"subButtonView frame: %@", NSStringFromCGRect(subButtonView.frame));
+    subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
+    [self.view addSubview:subButtonView];
+    [self.view insertSubview:subButtonView aboveSubview:self.messageTableView];
+    subButtonView.hidden = YES;
+    [self.subButtonViews addObject:subButtonView];
+    NSInteger tagIndex = 0;
+    for (NSString *tag in tags) {
+      NSLog(@"%@", tag);
+      UIButton *subButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, shortcutViewHeight * tagIndex, buttonWidth, shortcutViewHeight)];
+      NSLog(@"%@", NSStringFromCGRect(subButton.frame));
+      subButton.tag = tagIndex;
+      [subButton setTitle:tag forState:UIControlStateNormal];
+      if (tagIndex != (tags.count - 1)) {
+        [subButton setBackgroundImage:[UIImage imageNamed:@"ic_liaotianline"] forState:UIControlStateNormal];
+        [subButton setBackgroundImage:[UIImage imageNamed:@"ic_liaotianline"] forState:UIControlStateHighlighted];
+      }
+      subButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
+      [subButton setTitleColor:[UIColor colorWithWhite:0.3 alpha:1.0] forState:UIControlStateNormal];
+      [subButton setTitleColor:[UIColor colorWithWhite:0.3 alpha:0.6] forState:UIControlStateHighlighted];
+      [subButton addTarget:self action:@selector(didSelectedSubButton:) forControlEvents:UIControlEventTouchUpInside];
+      [subButtonView addSubview:subButton];
+      tagIndex++;
+    }
+    actionIndex++;
+  }
+}
+
+- (void)didSelectedSubButton:(UIButton *)sender {
+  NSString *ruleType = self.data[self.condition][@"actions"][self.currentSubButtonViewIndex][@"ruletype"];
+  NSLog(@"ruleType: %@ text: %@", ruleType, sender.titleLabel.text);
+  [self requestWaiterWithRuleType:ruleType andDescription:sender.titleLabel.text];
+  XHMessage *message = [[XHMessage alloc] initWithText:sender.titleLabel.text sender:self.messageSender timestamp:[NSDate date]];
+  message.bubbleMessageType = XHBubbleMessageTypeSending;
+  message.messageMediaType = XHBubbleMessageMediaTypeText;
+  message.avatar = [JSHStorage baseInfo].avatarImage;
+
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+
+  [self addMessage:message];
+  [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
+
+  __weak __typeof(self) weakSelf = self;
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [weakSelf showSystemFeedbackWithText:@"您的需求已收到"];
+  });
+  
+  UIView *subButtonView = self.subButtonViews[self.currentSubButtonViewIndex];
+  [UIView animateWithDuration:0.1 animations:^{
+    subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
+  } completion:^(BOOL finished) {
+    if (finished) {
+      subButtonView.hidden = YES;
+    }
   }];
 }
 
-- (void)hideTagView {
-  self.cancelButton.hidden = YES;
-  self.tagView.hidden = YES;
+- (void)showShortcutView {
+  [UIView animateWithDuration:0.3 animations:^{
+    self.shortcutView.hidden = NO;
+    self.shortcutView.transform = CGAffineTransformTranslate(self.shortcutView.transform, 0.0, -CGRectGetHeight(self.shortcutView.frame));
+    
+    self.messageInputView.transform = CGAffineTransformTranslate(self.messageInputView.transform, 0.0, CGRectGetHeight(self.messageInputView.frame));
+  } completion:^(BOOL finished) {
+    if (finished) {
+      self.messageInputView.hidden = YES;
+    }
+  }];
+}
+
+- (void)hideShortcutView {
+  [self hideAllSubButtonView];
+  
+  [UIView animateWithDuration:0.3 animations:^{
+    self.messageInputView.hidden = NO;
+    self.messageInputView.transform = CGAffineTransformTranslate(self.messageInputView.transform, 0.0, -CGRectGetHeight(self.messageInputView.frame));
+    
+    self.shortcutView.transform = CGAffineTransformTranslate(self.shortcutView.transform, 0.0, CGRectGetHeight(self.shortcutView.frame));
+  } completion:^(BOOL finished) {
+    if (finished) {
+      self.shortcutView.hidden = YES;
+    }
+  }];
+}
+
+- (void)switchSubButtonView:(UIButton *)sender {
+  self.currentSubButtonViewIndex = sender.tag;
+  UIView *subButtonView = self.subButtonViews[sender.tag];
+  if (subButtonView.hidden) {
+    subButtonView.hidden = NO;
+    [UIView animateWithDuration:0.1 animations:^{
+      subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, -subButtonView.frame.size.height);
+    }];
+  } else {
+    [UIView animateWithDuration:0.1 animations:^{
+      subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
+    } completion:^(BOOL finished) {
+      if (finished) {
+        subButtonView.hidden = YES;
+      }
+    }];
+  }
+  
+  for (UIView *view in self.subButtonViews) {
+    [UIView animateWithDuration:0.1 animations:^{
+      if (view.tag != sender.tag && !view.hidden) {
+        view.transform = CGAffineTransformTranslate(view.transform, 0.0, view.frame.size.height);
+      }
+    } completion:^(BOOL finished) {
+      if (finished) {
+        if (view.tag != sender.tag && !view.hidden) {
+          view.hidden = YES;
+        }
+      }
+    }];
+  }
+}
+
+- (void)hideAllSubButtonView {
+  for (UIView *subButtonView in self.subButtonViews) {
+    if (!subButtonView.hidden) {
+      [UIView animateWithDuration:0.1 animations:^{
+        subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
+      } completion:^(BOOL finished) {
+        if (finished) {
+          subButtonView.hidden = YES;
+        }
+      }];
+    }
+  }
 }
 
 - (void)requestWaiterWithRuleType:(NSString *)ruleType andDescription:(NSString *)desc {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, ruleType];
-//  [JSHStorage saveChatSession:self.sessionID withShopID:self.shopID];
-  NSLog(@"%@", [StorageManager sharedInstance].lastBeacon);
+  NSLog(@"lastBeacon: %@", [StorageManager sharedInstance].lastBeacon);
   NSString *locid = @"";
   NSDictionary *beacon = [StorageManager sharedInstance].lastBeacon;
   if (beacon) {
@@ -690,6 +718,8 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"fromname": self.senderName,
+                               @"clientid": self.senderID,
+                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"textmsg": text
@@ -706,6 +736,8 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"fromname": self.senderName,
+                               @"clientid": self.senderID,
+                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"body": body
@@ -723,6 +755,8 @@
                                @"timestamp": timestamp,
                                @"fromid": self.senderID,
                                @"fromname": self.senderName,
+                               @"clientid": self.senderID,
+                               @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
                                @"body": body
@@ -763,7 +797,6 @@
                                @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceSessionMsgReadAck],
                                @"timestamp": timestamp,
                                @"shopid": userInfo[@"shopid"],
-                               @"sessionid": userInfo[@"seqid"],
                                @"seqid": userInfo[@"seqid"],
                                @"fromid": self.senderID,
                                @"toid": userInfo[@"fromid"]
@@ -862,19 +895,9 @@
 
 #pragma mark - XHMessageInputViewDelegate
 
-- (void)inputTextViewWillBeginEditing:(XHMessageTextView *)messageInputTextView {
-  [super inputTextViewWillBeginEditing:messageInputTextView];
-  [self hideAllActionButtons];
-}
-
-- (void)didSelectedMultipleMediaAction {
-  [super didSelectedMultipleMediaAction];
-  [self hideAllActionButtons];
-}
-
-- (void)prepareRecordingVoiceActionWithCompletion:(BOOL (^)(void))completion {
-  [super prepareRecordingVoiceActionWithCompletion:completion];
-  [self hideAllActionButtons];
+- (void)didSelectedSwitchAction {
+  [super didSelectedSwitchAction];
+  [self showShortcutView];
 }
 
 @end
