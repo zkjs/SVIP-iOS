@@ -18,6 +18,9 @@
 
 @import AVFoundation;
 
+const CGFloat switchWidth = 45.0;
+const CGFloat shortcutViewHeight = 45.0;
+
 @interface JSHChatVC () <XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, strong) NSDictionary *data;
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
@@ -56,7 +59,6 @@
   
   [super viewDidLoad];
   
-  [self loadDataSource];
   [self setupNotification];
   [self setupDataSource];
   [self setupNavigationBar];
@@ -64,6 +66,7 @@
   [self setupMessageInputView];
   [self setupSessionID];
   [self customizeChatType];
+  [self loadDataSource];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -484,12 +487,87 @@
    };
 }
 
-- (void)setupShortcutView {
-  CGFloat shortcutViewHeight = 45.0;
-  CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-  CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+- (void)setupSwitchButton {
+  UIButton *switchButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, switchWidth, shortcutViewHeight)];
+  [switchButton setImage:[UIImage imageNamed:@"ic_jianpan"] forState:UIControlStateNormal];
+  [switchButton addTarget:self action:@selector(hideShortcutView) forControlEvents:UIControlEventTouchUpInside];
+  switchButton.layer.borderWidth = 0.3;
+  switchButton.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
+  [self.shortcutView addSubview:switchButton];
+}
+
+- (void)setupShortcutViewButtonAtIndex:(NSInteger)actionIndex buttonWidth:(CGFloat)buttonWidth buttonTitle:(NSString *)buttonTitle {
+  UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(switchWidth + buttonWidth * actionIndex, 0.0, buttonWidth, shortcutViewHeight)];
+  button.tag = actionIndex;
+  [button setTitle:buttonTitle forState:UIControlStateNormal];
+  [button setImage:[UIImage imageNamed:@"ic_liaotianmore"] forState:UIControlStateNormal];
+  button.titleLabel.font = [UIFont systemFontOfSize:15.0];
+  [button setTitleColor:[UIColor colorWithWhite:0.3 alpha:1.0] forState:UIControlStateNormal];
+  [button setTitleColor:[UIColor colorWithWhite:0.3 alpha:0.6] forState:UIControlStateHighlighted];
+  [button addTarget:self action:@selector(switchSubButtonView:) forControlEvents:UIControlEventTouchUpInside];
+  button.layer.borderWidth = 0.3;
+  button.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
+  [self.shortcutView addSubview:button];
+}
+
+- (void)setupSubButtons:(UIImageView *)subButtonView tags:(NSArray *)tags buttonWidth:(CGFloat)buttonWidth {
+  NSInteger tagIndex = 0;
+  for (NSString *tag in tags) {
+    UIButton *subButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, shortcutViewHeight * tagIndex, buttonWidth, shortcutViewHeight)];
+    subButton.tag = tagIndex;
+    [subButton setTitle:tag forState:UIControlStateNormal];
+    if (tagIndex != (tags.count - 1)) {
+      [subButton setBackgroundImage:[UIImage imageNamed:@"ic_liaotianline"] forState:UIControlStateNormal];
+      [subButton setBackgroundImage:[UIImage imageNamed:@"ic_liaotianline"] forState:UIControlStateHighlighted];
+    }
+    subButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    [subButton setTitleColor:[UIColor colorWithWhite:0.3 alpha:1.0] forState:UIControlStateNormal];
+    [subButton setTitleColor:[UIColor colorWithWhite:0.3 alpha:0.6] forState:UIControlStateHighlighted];
+    [subButton addTarget:self action:@selector(didSelectedSubButton:) forControlEvents:UIControlEventTouchUpInside];
+    [subButtonView addSubview:subButton];
+    tagIndex++;
+  }
+}
+
+- (void)setupSubButtonViewAtIndex:(NSInteger)actionIndex buttonWidth:(CGFloat)buttonWidth tags:(NSArray *)tags {
+  UIImageView *subButtonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_liaotiantankuang"]];
+  subButtonView.userInteractionEnabled = YES;
+  subButtonView.contentMode = UIViewContentModeScaleToFill;
+  subButtonView.tag = actionIndex;
+  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+  CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+  CGFloat viewWidth = buttonWidth;
+  CGFloat viewHeight = shortcutViewHeight * tags.count + 25.0;
+  CGFloat viewX = switchWidth + buttonWidth * actionIndex;
+  CGFloat viewY = self.view.frame.size.height - viewHeight - navigationBarHeight - statusBarHeight - shortcutViewHeight;
+  CGRect frame = subButtonView.frame;
+  frame.origin = CGPointMake(viewX, viewY);
+  frame.size = CGSizeMake(viewWidth, viewHeight);
+  subButtonView.frame = frame;
+  subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
+  subButtonView.hidden = YES;
+  [self.view insertSubview:subButtonView aboveSubview:self.messageTableView];
+  [self.subButtonViews addObject:subButtonView];
   
-  self.shortcutView = [[UIView alloc] initWithFrame:CGRectMake(0.0, screenHeight - shortcutViewHeight, screenWidth, shortcutViewHeight)];
+  [self setupSubButtons:subButtonView tags:tags buttonWidth:buttonWidth];
+}
+
+- (void)setupShortcutViewButtons {
+  NSArray *actions = self.data[self.condition][@"actions"];
+  NSInteger buttonNumber = actions.count;
+  CGFloat buttonWidth = (self.view.frame.size.width - switchWidth) / buttonNumber;
+  NSInteger actionIndex = 0;
+  for (NSDictionary *action in actions) {
+    NSString *buttonTitle = action[@"name"];
+    [self setupShortcutViewButtonAtIndex:buttonWidth buttonWidth:buttonWidth buttonTitle:buttonTitle];
+    NSArray *tags = action[@"tags"];
+    [self setupSubButtonViewAtIndex:actionIndex buttonWidth:buttonWidth tags:tags];
+    actionIndex++;
+  }
+}
+
+- (void)setupShortcutView {
+  self.shortcutView = [UIView new];
   self.shortcutView.backgroundColor = [UIColor whiteColor];
   [self.view addSubview:self.shortcutView];
   [self.shortcutView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -500,72 +578,24 @@
     make.height.equalTo([NSNumber numberWithFloat:shortcutViewHeight]);
   }];
   
-  
-  CGFloat switchWidth = 45.0;
-  UIButton *switchButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, switchWidth, shortcutViewHeight)];
-  [switchButton setImage:[UIImage imageNamed:@"ic_jianpan"] forState:UIControlStateNormal];
-  [switchButton addTarget:self action:@selector(hideShortcutView) forControlEvents:UIControlEventTouchUpInside];
-  switchButton.layer.borderWidth = 0.3;
-  switchButton.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
-  [self.shortcutView addSubview:switchButton];
-  
-  NSArray *actions = self.data[self.condition][@"actions"];
-  NSInteger buttonNumber = actions.count;
-  CGFloat buttonWidth = ([[UIScreen mainScreen] bounds].size.width - switchWidth) / buttonNumber;
-  NSInteger actionIndex = 0;
-  for (NSDictionary *action in actions) {
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(switchWidth + buttonWidth * actionIndex, 0.0, buttonWidth, shortcutViewHeight)];
-    button.tag = actionIndex;
-    [button setTitle:action[@"name"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"ic_liaotianmore"] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    [button setTitleColor:[UIColor colorWithWhite:0.3 alpha:1.0] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithWhite:0.3 alpha:0.6] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(switchSubButtonView:) forControlEvents:UIControlEventTouchUpInside];
-    button.layer.borderWidth = 0.3;
-    button.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
-    [self.shortcutView addSubview:button];
-    
-    UIImageView *subButtonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_liaotiantankuang"]];
-    subButtonView.userInteractionEnabled = YES;
-    subButtonView.contentMode = UIViewContentModeScaleToFill;
-    subButtonView.tag = actionIndex;
-    NSArray *tags = action[@"tags"];
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat viewWidth = buttonWidth;
-    CGFloat viewHeight = shortcutViewHeight * tags.count + 25.0;
-    CGFloat viewX = switchWidth + buttonWidth * actionIndex;
-    CGFloat viewY = screenHeight - viewHeight - navigationBarHeight - statusBarHeight - shortcutViewHeight;
-    CGRect frame = subButtonView.frame;
-    frame.origin = CGPointMake(viewX, viewY);
-    frame.size = CGSizeMake(viewWidth, viewHeight);
-    subButtonView.frame = frame;
-    NSLog(@"subButtonView frame: %@", NSStringFromCGRect(subButtonView.frame));
+  [self setupSwitchButton];
+  [self setupShortcutViewButtons];
+}
+
+- (void)hideSubButtonViewAtIndex:(NSInteger)subButtonViewIndex {
+  UIView *subButtonView = self.subButtonViews[subButtonViewIndex];
+  [UIView animateWithDuration:0.1 animations:^{
     subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
-    [self.view addSubview:subButtonView];
-    [self.view insertSubview:subButtonView aboveSubview:self.messageTableView];
-    subButtonView.hidden = YES;
-    [self.subButtonViews addObject:subButtonView];
-    NSInteger tagIndex = 0;
-    for (NSString *tag in tags) {
-      NSLog(@"%@", tag);
-      UIButton *subButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, shortcutViewHeight * tagIndex, buttonWidth, shortcutViewHeight)];
-      NSLog(@"%@", NSStringFromCGRect(subButton.frame));
-      subButton.tag = tagIndex;
-      [subButton setTitle:tag forState:UIControlStateNormal];
-      if (tagIndex != (tags.count - 1)) {
-        [subButton setBackgroundImage:[UIImage imageNamed:@"ic_liaotianline"] forState:UIControlStateNormal];
-        [subButton setBackgroundImage:[UIImage imageNamed:@"ic_liaotianline"] forState:UIControlStateHighlighted];
-      }
-      subButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
-      [subButton setTitleColor:[UIColor colorWithWhite:0.3 alpha:1.0] forState:UIControlStateNormal];
-      [subButton setTitleColor:[UIColor colorWithWhite:0.3 alpha:0.6] forState:UIControlStateHighlighted];
-      [subButton addTarget:self action:@selector(didSelectedSubButton:) forControlEvents:UIControlEventTouchUpInside];
-      [subButtonView addSubview:subButton];
-      tagIndex++;
+  } completion:^(BOOL finished) {
+    if (finished) {
+      subButtonView.hidden = YES;
     }
-    actionIndex++;
+  }];
+}
+
+- (void)hideAllSubButtonView {
+  for (NSInteger index; index < self.subButtonViews.count; index++) {
+    [self hideSubButtonViewAtIndex:index];
   }
 }
 
@@ -577,25 +607,18 @@
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeText;
   message.avatar = [JSHStorage baseInfo].avatarImage;
-
-  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
-
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+  
   __weak __typeof(self) weakSelf = self;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     [weakSelf showSystemFeedbackWithText:@"您的需求已收到"];
   });
   
-  UIView *subButtonView = self.subButtonViews[self.currentSubButtonViewIndex];
-  [UIView animateWithDuration:0.1 animations:^{
-    subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
-  } completion:^(BOOL finished) {
-    if (finished) {
-      subButtonView.hidden = YES;
-    }
-  }];
+  NSInteger subButtonViewIndex = self.currentSubButtonViewIndex;
+  [self hideSubButtonViewAtIndex:subButtonViewIndex];
 }
 
 - (void)showShortcutView {
@@ -656,20 +679,6 @@
         }
       }
     }];
-  }
-}
-
-- (void)hideAllSubButtonView {
-  for (UIView *subButtonView in self.subButtonViews) {
-    if (!subButtonView.hidden) {
-      [UIView animateWithDuration:0.1 animations:^{
-        subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
-      } completion:^(BOOL finished) {
-        if (finished) {
-          subButtonView.hidden = YES;
-        }
-      }];
-    }
   }
 }
 
