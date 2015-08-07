@@ -59,6 +59,7 @@
 		B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250BA1B7484F80056835D /* LeftMenuVC.swift */; };
 		B21250BD1B7484F80056835D /* LeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250BB1B7484F80056835D /* LeftMenuVC.xib */; };
 		B21250C01B7487B90056835D /* LeftMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21250BF1B7487B90056835D /* LeftMenu.plist */; };
+		B21250C21B7496610056835D /* BookListRightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250C11B7496610056835D /* BookListRightMenuVC.swift */; };
 		B23E537C1B4BB64C00CB7761 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536C1B4BB64C00CB7761 /* base64.m */; };
 		B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536F1B4BB64C00CB7761 /* DataSigner.m */; };
 		B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53711B4BB64C00CB7761 /* DataVerifier.m */; };
@@ -210,6 +211,7 @@
 		B21250BA1B7484F80056835D /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
 		B21250BB1B7484F80056835D /* LeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuVC.xib; sourceTree = "<group>"; };
 		B21250BF1B7487B90056835D /* LeftMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftMenu.plist; sourceTree = "<group>"; };
+		B21250C11B7496610056835D /* BookListRightMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListRightMenuVC.swift; sourceTree = "<group>"; };
 		B23E536B1B4BB64C00CB7761 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		B23E536C1B4BB64C00CB7761 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
 		B23E536D1B4BB64C00CB7761 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 				B2A642121B47C2A700AF0F28 /* BookPayVC.swift */,
 				B2A642131B47C2A700AF0F28 /* BookVC.swift */,
 				B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */,
+				B21250C11B7496610056835D /* BookListRightMenuVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1123,6 +1126,7 @@
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
 				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
 				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
+				B21250C21B7496610056835D /* BookListRightMenuVC.swift in Sources */,
 				B2564D721B4BFE070098608F /* JSHInfoEditVC.m in Sources */,
 				B201C28C1B65D225004CA10C /* JSHUserInfo.m in Sources */,
 				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
