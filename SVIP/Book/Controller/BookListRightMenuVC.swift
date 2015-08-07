@@ -8,7 +8,7 @@
 
 import UIKit
 
-//class BookHotelListCell: UITableViewCell {
+//class BookListRightMenuCell: UITableViewCell {
 //  var hotelData: Hotel? {
 //    didSet {
 //      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
@@ -31,6 +31,24 @@ import UIKit
 //  }
 //}
 
+class BookListRightMenuCell: UITableViewCell {
+  var hotelData: Hotel? {
+    didSet {
+      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+      hotel.text = hotelData!.fullname
+    }
+  }
+  @IBOutlet weak var avatar: UIImageView!
+  @IBOutlet weak var hotel: UILabel!
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+//    avatar.layer.cornerRadius = 40
+//    avatar.clipsToBounds = true
+  }
+}
+
 let RightMenuProportion = 0.75
 class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   var dataArray = NSMutableArray()
@@ -40,10 +58,11 @@ class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDat
     tableView = UITableView(frame: CGRectMake(self.view.bounds.width * CGFloat(1 - RightMenuProportion), 0, self.view.bounds.width * CGFloat(RightMenuProportion), self.view.bounds.height))
     tableView.delegate = self
     tableView.dataSource = self
-    tableView .registerNib(UINib(nibName: "BookHotelListCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
+    tableView .registerNib(UINib(nibName: "BookListRightMenuCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
+//    tableView.registerClass(UITableViewCell.self, forHeaderFooterViewReuseIdentifier: "reuseIdentifier")
+    tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, 100))
     tableView.tableFooterView = UIView()
     self.view.addSubview(tableView)
-
     loadData()
   }
   private func loadData() {
@@ -74,15 +93,13 @@ class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 100
+    return 60
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! BookHotelListCell
-    
+    var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! BookListRightMenuCell
     // Configure the cell...
     cell.hotelData = dataArray[indexPath.row] as? Hotel
-    
     return cell
   }
   
@@ -90,7 +107,11 @@ class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDat
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     let vc = BookVC()
     vc.shopid = (dataArray[indexPath.row] as? Hotel)!.shopid
-    self.navigationController?.pushViewController(vc, animated: true)
+    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+      self.sideMenuViewController.hideMenuViewController()
+      navi.pushViewController(vc, animated: true)
+    }
+    
   }
   
 }

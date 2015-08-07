@@ -76,6 +76,12 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
+//    let vc = BookVC()
+//    vc.shopid = (dataArray[indexPath.row] as? Hotel)!.shopid
+//    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+//      self.sideMenuViewController.hideMenuViewController()
+//      navi.pushViewController(vc, animated: true)
+//    }
 
   }
 

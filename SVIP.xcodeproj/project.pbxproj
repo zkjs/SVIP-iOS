@@ -60,6 +60,7 @@
 		B21250BD1B7484F80056835D /* LeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250BB1B7484F80056835D /* LeftMenuVC.xib */; };
 		B21250C01B7487B90056835D /* LeftMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21250BF1B7487B90056835D /* LeftMenu.plist */; };
 		B21250C21B7496610056835D /* BookListRightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250C11B7496610056835D /* BookListRightMenuVC.swift */; };
+		B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */; };
 		B23E537C1B4BB64C00CB7761 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536C1B4BB64C00CB7761 /* base64.m */; };
 		B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536F1B4BB64C00CB7761 /* DataSigner.m */; };
 		B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53711B4BB64C00CB7761 /* DataVerifier.m */; };
@@ -212,6 +213,7 @@
 		B21250BB1B7484F80056835D /* LeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuVC.xib; sourceTree = "<group>"; };
 		B21250BF1B7487B90056835D /* LeftMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftMenu.plist; sourceTree = "<group>"; };
 		B21250C11B7496610056835D /* BookListRightMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListRightMenuVC.swift; sourceTree = "<group>"; };
+		B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListRightMenuCell.xib; sourceTree = "<group>"; };
 		B23E536B1B4BB64C00CB7761 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		B23E536C1B4BB64C00CB7761 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
 		B23E536D1B4BB64C00CB7761 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 				B2A6421C1B47C2A700AF0F28 /* BookVC.xib */,
 				B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */,
 				B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */,
+				B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -994,6 +997,7 @@
 				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
 				B2F49EB11B7347A200556AE2 /* UMShareEditViewController.xib in Resources */,
+				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
 				B2F49EB61B7347A200556AE2 /* UMSocialSDKResourcesNew.bundle in Resources */,
