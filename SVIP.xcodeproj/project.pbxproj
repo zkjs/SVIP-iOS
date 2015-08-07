@@ -56,8 +56,9 @@
 		B201C28B1B65D225004CA10C /* JSHSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B201C2841B65D225004CA10C /* JSHSectionModel.m */; };
 		B201C28C1B65D225004CA10C /* JSHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B201C2861B65D225004CA10C /* JSHUserInfo.m */; };
 		B21250B11B74586F0056835D /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250B01B74586F0056835D /* LoginManager.swift */; };
-		B21250B81B745F040056835D /* LeftMenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250B61B745F040056835D /* LeftMenuTVC.swift */; };
-		B21250B91B745F040056835D /* LeftMenuTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250B71B745F040056835D /* LeftMenuTVC.xib */; };
+		B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250BA1B7484F80056835D /* LeftMenuVC.swift */; };
+		B21250BD1B7484F80056835D /* LeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250BB1B7484F80056835D /* LeftMenuVC.xib */; };
+		B21250C01B7487B90056835D /* LeftMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21250BF1B7487B90056835D /* LeftMenu.plist */; };
 		B23E537C1B4BB64C00CB7761 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536C1B4BB64C00CB7761 /* base64.m */; };
 		B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536F1B4BB64C00CB7761 /* DataSigner.m */; };
 		B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53711B4BB64C00CB7761 /* DataVerifier.m */; };
@@ -206,8 +207,9 @@
 		B201C2861B65D225004CA10C /* JSHUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHUserInfo.m; sourceTree = "<group>"; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
 		B21250B01B74586F0056835D /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		B21250B61B745F040056835D /* LeftMenuTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTVC.swift; sourceTree = "<group>"; };
-		B21250B71B745F040056835D /* LeftMenuTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuTVC.xib; sourceTree = "<group>"; };
+		B21250BA1B7484F80056835D /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
+		B21250BB1B7484F80056835D /* LeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuVC.xib; sourceTree = "<group>"; };
+		B21250BF1B7487B90056835D /* LeftMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftMenu.plist; sourceTree = "<group>"; };
 		B23E536B1B4BB64C00CB7761 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		B23E536C1B4BB64C00CB7761 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
 		B23E536D1B4BB64C00CB7761 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -414,11 +416,12 @@
 		4052664D1B41283900B277BE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B21250BE1B7487A70056835D /* Source */,
 				405266501B41283900B277BE /* Model */,
 				4052664E1B41283900B277BE /* MainVC.swift */,
 				4052664F1B41283900B277BE /* MainVC.xib */,
-				B21250B61B745F040056835D /* LeftMenuTVC.swift */,
-				B21250B71B745F040056835D /* LeftMenuTVC.xib */,
+				B21250BA1B7484F80056835D /* LeftMenuVC.swift */,
+				B21250BB1B7484F80056835D /* LeftMenuVC.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -621,6 +624,14 @@
 				B201C2861B65D225004CA10C /* JSHUserInfo.m */,
 			);
 			path = NotUsed;
+			sourceTree = "<group>";
+		};
+		B21250BE1B7487A70056835D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B21250BF1B7487B90056835D /* LeftMenu.plist */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		B23E536A1B4BB64C00CB7761 /* Util */ = {
@@ -975,8 +986,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21250BD1B7484F80056835D /* LeftMenuVC.xib in Resources */,
 				B2F49EAF1B7347A200556AE2 /* UMSCommentInputController.xib in Resources */,
-				B21250B91B745F040056835D /* LeftMenuTVC.xib in Resources */,
 				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
 				B2F49EB11B7347A200556AE2 /* UMShareEditViewController.xib in Resources */,
@@ -985,6 +996,7 @@
 				B2F49EB61B7347A200556AE2 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
+				B21250C01B7487B90056835D /* LeftMenu.plist in Resources */,
 				B2564D781B4BFE070098608F /* JSHInfoEditSelection.plist in Resources */,
 				B2F49EAE1B7347A200556AE2 /* UMSCommentDetailController.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
@@ -1098,6 +1110,7 @@
 				401BBF181B5B7C8800774502 /* Persistent.swift in Sources */,
 				B201C2881B65D225004CA10C /* JSHInfoEditCell.m in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
+				B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
 				405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
@@ -1111,7 +1124,6 @@
 				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
 				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
 				B2564D721B4BFE070098608F /* JSHInfoEditVC.m in Sources */,
-				B21250B81B745F040056835D /* LeftMenuTVC.swift in Sources */,
 				B201C28C1B65D225004CA10C /* JSHUserInfo.m in Sources */,
 				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,

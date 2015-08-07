@@ -36,7 +36,7 @@ class LoginManager: NSObject {
       nc.pushViewController(pushedVC!, animated: false)
     }
     nc.navigationBarHidden = true
-    let menu = RESideMenu(contentViewController: nc, leftMenuViewController: LeftMenuTVC(), rightMenuViewController: BookHotelListTVC())
+    let menu = RESideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: BookHotelListTVC())
     menu.contentViewScaleValue = 1
     menu.contentViewInPortraitOffsetCenterX = appWindow.bounds.size.width * (0.75 - 0.5)
     appWindow.rootViewController = menu
