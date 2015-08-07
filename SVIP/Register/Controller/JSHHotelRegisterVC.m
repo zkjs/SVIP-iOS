@@ -99,11 +99,21 @@
 }
 - (IBAction)loginWithUMSocial:(id)sender {
 //    [UMSocialControllerService defaultControllerService].socialUIDelegate = self;
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-      NSLog(@"response is %@",response);
-        //need to fetch info from wechat
-    });
+    switch (((UIView *)sender).tag) {
+        case 1:
+        {
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
+            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+                NSLog(@"response is %@",response);
+                //need to fetch info from wechat
+            });
+        }
+            break;
+        case 2:
+        case 3:
+        default:
+            break;
+    }
 }
 
 #pragma mark - 空白点击

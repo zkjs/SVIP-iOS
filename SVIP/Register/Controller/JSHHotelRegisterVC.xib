@@ -91,16 +91,47 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fop-iv-8gh">
-                    <rect key="frame" x="165" y="461" width="46" height="30"/>
+                <view contentMode="scaleToFill" id="8DP-Vn-cuu">
+                    <rect key="frame" x="92" y="581" width="192" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="loginWithUMSocial:" destination="-1" eventType="touchUpInside" id="jhy-VA-w7K"/>
-                    </connections>
-                </button>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fop-iv-8gh">
+                            <rect key="frame" x="20" y="0.0" width="44" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="ic_weixin">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" image="ic_weixin_pre"/>
+                            <connections>
+                                <action selector="loginWithUMSocial:" destination="-1" eventType="touchUpInside" id="jhy-VA-w7K"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lFA-1P-WmC">
+                            <rect key="frame" x="74" y="0.0" width="44" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="ic_qq">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" image="ic_qq_pre"/>
+                            <connections>
+                                <action selector="loginWithUMSocial:" destination="-1" eventType="touchUpInside" id="a6V-2A-7wG"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tbI-uI-kTt">
+                            <rect key="frame" x="128" y="0.0" width="44" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="ic_weibo">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" image="ic_weibo_pre"/>
+                            <connections>
+                                <action selector="loginWithUMSocial:" destination="-1" eventType="touchUpInside" id="7r9-P5-epU"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -108,6 +139,12 @@
         </view>
     </objects>
     <resources>
+        <image name="ic_qq" width="22" height="23"/>
+        <image name="ic_qq_pre" width="22" height="23"/>
+        <image name="ic_weibo" width="26" height="21"/>
+        <image name="ic_weibo_pre" width="26" height="21"/>
+        <image name="ic_weixin" width="27" height="22"/>
+        <image name="ic_weixin_pre" width="27" height="22"/>
         <image name="星空_设置" width="375" height="667"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
