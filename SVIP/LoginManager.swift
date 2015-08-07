@@ -35,7 +35,7 @@ class LoginManager: NSObject {
     if pushedVC != nil {
       nc.pushViewController(pushedVC!, animated: false)
     }
-    nc.navigationBarHidden = true
+//    nc.navigationBarHidden = true
     let menu = RESideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: BookListRightMenuVC())
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false

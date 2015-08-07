@@ -62,6 +62,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   override func viewWillAppear(animated: Bool) {
+    self.navigationController?.setNavigationBarHidden(true, animated: true)
     navigationController?.delegate = self
     settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
     
@@ -116,7 +117,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
+    self.navigationController?.setNavigationBarHidden(true, animated: true)
     navigationController?.delegate = nil
   }
   
