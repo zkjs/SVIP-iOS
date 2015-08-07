@@ -4,33 +4,33 @@
 <array>
 	<dict>
 		<key>logo</key>
-		<string></string>
+		<string>ic_home</string>
 		<key>text</key>
-		<string>abc</string>
+		<string>首页</string>
 	</dict>
 	<dict>
 		<key>logo</key>
-		<string></string>
+		<string>ic_shezhi</string>
 		<key>text</key>
-		<string>fdfd</string>
+		<string>设置</string>
 	</dict>
 	<dict>
 		<key>logo</key>
-		<string></string>
+		<string>ic_mianqiantai</string>
 		<key>text</key>
-		<string>fdfd</string>
+		<string>免前台</string>
 	</dict>
 	<dict>
 		<key>logo</key>
-		<string></string>
+		<string>ic_dingdan</string>
 		<key>text</key>
-		<string>fdfsa</string>
+		<string>订单</string>
 	</dict>
 	<dict>
 		<key>logo</key>
-		<string></string>
+		<string>ic_zuji</string>
 		<key>text</key>
-		<string>sas</string>
+		<string>足迹</string>
 	</dict>
 </array>
 </plist>

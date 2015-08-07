@@ -32,14 +32,20 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let path = NSBundle.mainBundle().pathForResource("LeftMenu", ofType: "plist")
     dataArray = NSArray(contentsOfFile:path!)
   }
-  
+
   func setUI() {
+    if let baseInfo = JSHStorage .baseInfo() {
+      if baseInfo.avatarImage != nil {
+        avatar .setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
+      }else {
+        let urlStr = kBaseURL.stringByAppendingPathComponent(baseInfo.avatarStr)
+        let url = NSURL(string: urlStr)
+        avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RefreshCached | SDWebImageOptions.RetryFailed)
+      }
+    }
+    
     tableView .registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     widthConstraint.constant = UIScreen.mainScreen().bounds.width * 0.75
-  }
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    setUI()
   }
   
   // MARK: - Table view data source
@@ -68,6 +74,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     cell?.backgroundColor = UIColor.clearColor()
     if let dic = dataArray![indexPath.row] as? Dictionary<String, String> {
       cell!.textLabel?.text = dic["text"]
+      cell?.imageView?.image = UIImage(named:dic["logo"]!)
       cell?.textLabel?.textColor = UIColor.whiteColor()
     }
     

@@ -44,27 +44,27 @@ class BookListRightMenuCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-//    avatar.layer.cornerRadius = 40
-//    avatar.clipsToBounds = true
   }
 }
 
 let RightMenuProportion = 0.75
 class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   var dataArray = NSMutableArray()
-  var tableView: UITableView!
+  @IBOutlet weak var info: UILabel!
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var widthConstraint: NSLayoutConstraint!
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("BookListRightMenuVC", owner:self, options:nil)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView = UITableView(frame: CGRectMake(self.view.bounds.width * CGFloat(1 - RightMenuProportion), 0, self.view.bounds.width * CGFloat(RightMenuProportion), self.view.bounds.height))
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView .registerNib(UINib(nibName: "BookListRightMenuCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
-//    tableView.registerClass(UITableViewCell.self, forHeaderFooterViewReuseIdentifier: "reuseIdentifier")
-    tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, 100))
-    tableView.tableFooterView = UIView()
-    self.view.addSubview(tableView)
+    widthConstraint.constant = UIScreen.mainScreen().bounds.width * CGFloat(RightMenuProportion)
+    tableView .registerNib(UINib(nibName: "BookListRightMenuCell", bundle: nil), forCellReuseIdentifier: "RightMenuCell")
     loadData()
   }
+  
   private func loadData() {
     ZKJSHTTPSessionManager .sharedInstance() .getAllShopInfoWithPage(1, key: nil, isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
@@ -79,10 +79,10 @@ class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
   }
   //MARK: - Button Action
-  // Hanton
-  func dismissSelf() -> Void {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
+//  // Hanton
+//  func dismissSelf() -> Void {
+//    dismissViewControllerAnimated(true, completion: nil)
+//  }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
@@ -97,7 +97,7 @@ class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! BookListRightMenuCell
+    var cell = tableView.dequeueReusableCellWithIdentifier("RightMenuCell", forIndexPath: indexPath) as! BookListRightMenuCell
     // Configure the cell...
     cell.hotelData = dataArray[indexPath.row] as? Hotel
     return cell
