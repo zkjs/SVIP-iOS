@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMapSearch (2.6.0)
   - CocoaLumberjack (2.0.1):
     - CocoaLumberjack/Default (= 2.0.1)
     - CocoaLumberjack/Extensions (= 2.0.1)
@@ -52,6 +53,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AMapSearch
   - CocoaLumberjack
   - Colours
   - DateTools
@@ -90,6 +92,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65

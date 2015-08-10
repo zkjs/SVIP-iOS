@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 
 target 'SVIP' do
+  pod 'AMapSearch'
   pod 'CocoaLumberjack'
 #  pod 'MagicalRecord'
   pod 'SKTagView'

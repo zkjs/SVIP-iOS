@@ -40,3 +40,4 @@
 #import "UMSocialWechatHandler.h"
 #import "RESideMenu.h"
 #import "JSHHotelRegisterVC.h"
+#import "AMapSearchAPI.h"

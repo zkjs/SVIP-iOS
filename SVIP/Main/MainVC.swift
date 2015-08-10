@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, ESTBeaconManagerDelegate {
+class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, ESTBeaconManagerDelegate, CLLocationManagerDelegate, AMapSearchDelegate {
   
   @IBOutlet weak var settingsButton: UIButton!
   
@@ -21,8 +22,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   @IBOutlet weak var tipsLabel: UIButton!
   
   let beaconManager = ESTBeaconManager()
+  let locationManager = CLLocationManager()
   
   var beaconRegions = [String: [String: String]]()
+  var locationSearch = AMapSearchAPI()
   
   // MARK: - View Lifecycle
   override func loadView() {
@@ -50,6 +53,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupBeaconMonitor()
     
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+    
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.requestAlwaysAuthorization()
+    locationManager.startUpdatingLocation()
+    
+    locationSearch = AMapSearchAPI(searchKey: "f68921b7786a4a4044330b06d7b76908", delegate: self)
     
     statusLabel.hidden = true
     infoLabel.hidden = true
@@ -542,6 +552,56 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     navController.navigationBar.tintColor = UIColor.blackColor()
     navController.navigationBar.translucent = false
     presentViewController(navController, animated: true, completion: nil)
+  }
+  
+  // MARK: - CLLocationManagerDelegate
+  func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    println("Error while updating location " + error.localizedDescription)
+  }
+  
+  func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+//    CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error) ->Void in
+//      if error != nil {
+//        println("Reverse geocoder failed with error" + error.localizedDescription)
+//        return
+//      }
+//      
+//      if placemarks.count > 0 {
+//        let pm = placemarks.first as! CLPlacemark
+//        println(pm.name)
+//      } else {
+//        println("Problem with the data received from geocoder")
+//      }
+//    })
+    
+    let coordinate = manager.location.coordinate
+    let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
+    regeoRequest.searchType = AMapSearchType.ReGeocode
+    regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
+    regeoRequest.radius = 10000
+    regeoRequest.requireExtension = true
+
+    println("regeoRequest :\(regeoRequest)")
+    locationSearch.AMapReGoecodeSearch(regeoRequest)
+  }
+  
+  // MARK: - AMapSearchDelegate
+  func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
+    
+    if (response.regeocode != nil) {
+      
+      var title = response.regeocode.addressComponent.city
+      
+      var length: Int{
+        return count(title)
+      }
+      
+      if (length == 0){
+        title = response.regeocode.addressComponent.province
+      }
+      println(response.regeocode.formattedAddress)
+    }
+    
   }
   
   // MARK: - ESTBeaconManagerDelegate
