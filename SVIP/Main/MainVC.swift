@@ -589,9 +589,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
     
     if (response.regeocode != nil) {
-      
       var title = response.regeocode.addressComponent.city
-      
       var length: Int{
         return count(title)
       }
@@ -602,6 +600,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       println(response.regeocode.formattedAddress)
     }
     
+    locationManager.stopUpdatingLocation()
   }
   
   // MARK: - ESTBeaconManagerDelegate
@@ -626,7 +625,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   // MARK: - UINavigationControllerDelegate
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-    if operation == UINavigationControllerOperation.Push {
+    if operation == UINavigationControllerOperation.Push && toVC is JSHInfoEditVC {
       return JSHAnimator()
     }
     return nil
