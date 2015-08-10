@@ -559,7 +559,7 @@ const CGFloat shortcutViewHeight = 45.0;
   NSInteger actionIndex = 0;
   for (NSDictionary *action in actions) {
     NSString *buttonTitle = action[@"name"];
-    [self setupShortcutViewButtonAtIndex:buttonWidth buttonWidth:buttonWidth buttonTitle:buttonTitle];
+    [self setupShortcutViewButtonAtIndex:actionIndex buttonWidth:buttonWidth buttonTitle:buttonTitle];
     NSArray *tags = action[@"tags"];
     [self setupSubButtonViewAtIndex:actionIndex buttonWidth:buttonWidth tags:tags];
     actionIndex++;
