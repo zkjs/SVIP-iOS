@@ -216,6 +216,11 @@
 @property (nonatomic, assign) BOOL allowsPanToDismissKeyboard; // default is YES
 
 /**
+ *  是否允许快捷按钮
+ */
+@property (nonatomic, assign) BOOL allowsShortcutView; // default is NO
+
+/**
  *  是否允许发送语音
  */
 @property (nonatomic, assign) BOOL allowsSendVoice; // default is YES

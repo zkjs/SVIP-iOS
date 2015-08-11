@@ -30,21 +30,21 @@ PODS:
     - CocoaLumberjack/Default
   - Colours (5.6.2)
   - DateTools (1.6.1)
-  - EstimoteSDK (3.2.8)
+  - EstimoteSDK (3.3.3)
   - JTSImageViewController (1.4)
-  - Masonry (0.6.1)
+  - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
-  - MessageDisplayKit (3.0.6)
+  - MessageDisplayKit (3.1.0)
   - MIBadgeButton (0.0.6)
-  - MJExtension (2.3.6)
-  - MJRefresh (2.0.4)
+  - MJExtension (2.5.6)
+  - MJRefresh (2.4.3)
   - PKYStepper (0.0.1)
-  - SDWebImage (3.7.2):
-    - SDWebImage/Core (= 3.7.2)
-  - SDWebImage/Core (3.7.2)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - SKTagView (0.7):
     - Masonry
-  - SocketRocket (0.2.0)
+  - SocketRocket (0.4)
   - SSKeychain (1.2.3)
   - SWTableViewCell (0.3.7)
   - YXTMotionView (0.1)
@@ -80,7 +80,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MessageDisplayKit:
-    :commit: e162d806f6ca3dd57fa15d79b9fd7444392855f2
+    :commit: 12d19c4a9d03b1efe6c57fcce0629b926724ad43
     :git: https://github.com/hanton/MessageDisplayKit.git
   YXTMotionView:
     :commit: b40625f643d681844c86cb2dc8199541a53840a0
@@ -91,20 +91,20 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
-  EstimoteSDK: e370ea3d31ef7373d41df9bd6fd1f6fc63a276cf
+  EstimoteSDK: 081e0653a747a6fc275eb26e6cb3b3fe5a87984f
   JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b
-  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MessageDisplayKit: 3d9fe2c1c15dfa78f6b6c551e43d1f31d87abd7e
+  MessageDisplayKit: 2a8b32e53d9ab8955d3591312ca9bd1fc343d6b5
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
-  MJExtension: eb9d381740563b520fbabdfa6caf92d666314467
-  MJRefresh: ea153717001d3c02444bd22b75c111d2937d2104
+  MJExtension: 5ea3e326162ccc07c60afe8cc36c936bba20d0d5
+  MJRefresh: d652e909f7182e306d445ec39868ff03a1ae36ce
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
-  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SKTagView: 1e89c1ce2292cf890610901d3621c55d1ed82379
-  SocketRocket: 54a4ac2f354c4e8c51ef5dcd4a13bc556d4f2b7c
+  SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   YXTMotionView: cef229d560c50fc8e4fd2897b3715bec208ac95f
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

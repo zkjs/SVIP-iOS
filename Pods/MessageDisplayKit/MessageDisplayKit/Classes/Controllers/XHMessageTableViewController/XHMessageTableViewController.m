@@ -497,6 +497,7 @@ static CGPoint  delayOffset = {0.0};
     // iPhone or iPad keyboard view height set here.
     self.keyboardViewHeight = (kIsiPad ? 264 : 216);
     _allowsPanToDismissKeyboard = NO;
+  _allowsShortcutView = NO;
     _allowsSendVoice = YES;
     _allowsSendMultiMedia = YES;
     _allowsSendFace = YES;
@@ -637,6 +638,7 @@ static CGPoint  delayOffset = {0.0};
     
     // 初始化输入工具条
     XHMessageInputView *inputView = [[XHMessageInputView alloc] initWithFrame:inputFrame];
+  inputView.allowsShortcutView = self.allowsShortcutView;
     inputView.allowsSendFace = self.allowsSendFace;
     inputView.allowsSendVoice = self.allowsSendVoice;
     inputView.allowsSendMultiMedia = self.allowsSendMultiMedia;
@@ -1020,6 +1022,10 @@ static CGPoint  delayOffset = {0.0};
         // 在这之前，textViewInputViewType已经不是XHTextViewTextInputType
         [self layoutOtherMenuViewHiden:YES];
     }
+}
+
+- (void)didSelectedSwitchAction {
+  [self layoutOtherMenuViewHiden:YES];
 }
 
 - (void)didSendTextAction:(NSString *)text {

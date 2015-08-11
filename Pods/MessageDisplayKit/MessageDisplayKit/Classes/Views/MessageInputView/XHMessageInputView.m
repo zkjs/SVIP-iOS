@@ -168,6 +168,12 @@
             }
             break;
         }
+        case 3: {
+          if ([self.delegate respondsToSelector:@selector(didSelectedSwitchAction)]) {
+            [self.delegate didSelectedSwitchAction];
+          }
+          break;
+        }
         default:
             break;
     }
@@ -275,7 +281,21 @@
     
     // 按钮对象消息
     UIButton *button;
-    
+  
+    CGFloat switchSize = 45.0;
+    // 切换快捷命令按钮
+    if (self.allowsShortcutView) {
+      button = [self createButtonWithImage:[UIImage imageNamed:@"ic_jianpan2"] HLImage:[UIImage imageNamed:@"ic_jianpan2"]];
+      [button addTarget:self action:@selector(messageStyleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+      button.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
+      button.layer.borderWidth = 0.3;
+      button.tag = 3;
+      buttonFrame = button.frame;
+      buttonFrame.size = CGSizeMake(switchSize, switchSize);
+      button.frame = buttonFrame;
+      [self addSubview:button];
+    }
+  
     // 允许发送语音
     if (self.allowsSendVoice) {
         button = [self createButtonWithImage:[UIImage imageNamed:@"voice"] HLImage:[UIImage imageNamed:@"voice_HL"]];
@@ -283,7 +303,11 @@
         button.tag = 0;
         [button setBackgroundImage:[UIImage imageNamed:@"keyboard"] forState:UIControlStateSelected];
         buttonFrame = button.frame;
-        buttonFrame.origin = CGPointMake(horizontalPadding, verticalPadding);
+        if (self.allowsShortcutView) {
+          buttonFrame.origin = CGPointMake(horizontalPadding + switchSize, verticalPadding);
+        } else {
+          buttonFrame.origin = CGPointMake(horizontalPadding, verticalPadding);
+        }
         button.frame = buttonFrame;
         [self addSubview:button];
         allButtonWidth += CGRectGetMaxX(buttonFrame);
@@ -409,6 +433,7 @@
     self.userInteractionEnabled = YES;
     
     // 默认设置
+    _allowsShortcutView = NO;
     _allowsSendVoice = YES;
     _allowsSendFace = YES;
     _allowsSendMultiMedia = YES;

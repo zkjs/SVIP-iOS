@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, ChatType) {
   ChatNewSession,
   ChatOldSession,
   ChatCallingWaiter,
-  ChatService
+  ChatService,
+  ChatOrder
 };
 
 @interface JSHChatVC : XHMessageTableViewController

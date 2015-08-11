@@ -4,92 +4,62 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-SVIP-AFNetworking.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-CocoaLumberjack.xcscheme</key>
+		<key>CocoaLumberjack.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-Colours.xcscheme</key>
+		<key>Colours.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-DateTools.xcscheme</key>
+		<key>DateTools.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-JTSImageViewController.xcscheme</key>
+		<key>JTSImageViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-MBProgressHUD.xcscheme</key>
+		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-MIBadgeButton.xcscheme</key>
+		<key>MIBadgeButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-MJExtension.xcscheme</key>
+		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-MJRefresh.xcscheme</key>
+		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-Masonry.xcscheme</key>
+		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-MessageDisplayKit.xcscheme</key>
+		<key>MessageDisplayKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVIP-PKYStepper.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SVIP-SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SVIP-SKTagView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SVIP-SSKeychain.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SVIP-SWTableViewCell.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SVIP-SocketRocket.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SVIP-YXTMotionView.xcscheme</key>
+		<key>PKYStepper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -99,100 +69,130 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SKTagView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SSKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SWTableViewCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SocketRocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>YXTMotionView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0829800212A83FF2C092F61D</key>
+		<key>0502626382D3F75A7274E1DC73767247</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0B54C5316282B5EE9E4EFB12</key>
+		<key>30D6FD7C1689EA22EAE6F25C10A6635E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>19318719817D92645F25756F</key>
+		<key>4939DC300AE0A660932C2D999C431F96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1A9C4E19AA7C2642D46F31D9</key>
+		<key>5352D432641F0656C90741034E32F31E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>33B11AD198D5245FA665C4D4</key>
+		<key>6CCA5744AC9D5FBDCF4E36D1F59F2830</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3ADEA3ED08427AD150127087</key>
+		<key>77F1C2C7F13B7343F17BAB273DBA9D74</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4DBBF1CFC970547080F75AEE</key>
+		<key>7B765AC4B0543AC0BA30C10AAD273B83</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E4E62E9C3CDB7AC63E399B6</key>
+		<key>8C1F62B38EFF7F4771C7B36A79BB5599</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>652A1C72874D9FD13FF2CF9B</key>
+		<key>8EC707D83398C8849CF733C24188ED27</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>66DA60EABD3A79B70AB17689</key>
+		<key>90653A449983BB5A4A9742128B302305</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>68772F2E026DDF87C7E2438E</key>
+		<key>94F7F189F3302603E3064AD0A6552133</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>81AEAA3322956C8229ACFC76</key>
+		<key>AA2802F97B98E52882C14337FD7561A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E5F66ABD4930F9925642C0E</key>
+		<key>BB7C5E7177AA8D9A881A3EFF33D53496</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AF2C66273F5D164AE131749</key>
+		<key>C615BDFB716303429B194E48B6479619</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF8D875610F2F6BC1D282BC5</key>
+		<key>CA1812A8B70D6FB849FC5225BC01B854</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C1C9743FAD7FFC13B4B3D925</key>
+		<key>CDE0B7668B6EC1B2BF166A65E070AF5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C3614505DFA06FEE8F43432F</key>
+		<key>DD39109AD27B9C903B7FB04275A718CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C448C5103995169CEC44FDF7</key>
+		<key>E005915D9598976470BC9CE12853AE8F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D886772D8EBFA91A788A8300</key>
+		<key>EA3931D121EE165685E6E6C251F033C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

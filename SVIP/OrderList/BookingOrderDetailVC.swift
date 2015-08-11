@@ -127,7 +127,7 @@ class BookingOrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-    let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+    let chatVC = JSHChatVC(chatType: ChatType.Order)
     chatVC.shopID = order.shopid
     chatVC.shopName = order.fullname
     navigationController?.pushViewController(chatVC, animated: true)

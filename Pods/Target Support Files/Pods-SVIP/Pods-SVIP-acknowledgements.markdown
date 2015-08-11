@@ -94,7 +94,7 @@ SOFTWARE.
 
 ## EstimoteSDK
 
-Copyright 2014 Estimote, Inc. All rights reserved.
+Copyright 2013-2015 Estimote, Inc. All rights reserved.
 
 
 ## JTSImageViewController

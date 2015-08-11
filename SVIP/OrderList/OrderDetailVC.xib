@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="amountFormulaLabel" destination="Ga6-Az-fdB" id="Lw6-UU-lfI"/>
                 <outlet property="amountLabel" destination="0r4-Rr-gVQ" id="xc6-NL-Ybp"/>
+                <outlet property="chatButton" destination="QNs-7F-9qV" id="39H-mL-48a"/>
                 <outlet property="dateDurationLabel" destination="4p8-k3-dQ7" id="lCr-fP-DYu"/>
                 <outlet property="dateLabel" destination="Hoz-TT-l2I" id="dmE-D1-Pf0"/>
                 <outlet property="durationLabel" destination="hys-ji-mRM" id="lFW-9x-Zb4"/>
@@ -99,6 +100,21 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNs-7F-9qV">
+                    <rect key="frame" x="194" y="336" width="212" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="EiM-zx-wu0"/>
+                        <constraint firstAttribute="width" constant="212" id="w9H-aT-vUz"/>
+                    </constraints>
+                    <state key="normal" title="快捷入住">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showChatView:" destination="-1" eventType="touchUpInside" id="z6o-Wg-4sW"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -108,6 +124,7 @@
                 <constraint firstItem="9gr-Kv-5pa" firstAttribute="top" secondItem="Hoz-TT-l2I" secondAttribute="bottom" constant="27" id="43Y-05-CBj"/>
                 <constraint firstItem="424-7t-6pJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="5SV-zY-iSM"/>
                 <constraint firstAttribute="trailing" secondItem="I2s-ce-v7j" secondAttribute="trailing" constant="8" id="5lT-oz-et8"/>
+                <constraint firstAttribute="centerX" secondItem="QNs-7F-9qV" secondAttribute="centerX" id="6ir-iE-GfN"/>
                 <constraint firstItem="r8q-Gf-pTl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="AzF-Yk-wUC"/>
                 <constraint firstItem="Ga6-Az-fdB" firstAttribute="leading" secondItem="424-7t-6pJ" secondAttribute="trailing" constant="32" id="EZP-9B-AUj"/>
                 <constraint firstItem="fb8-a4-8s1" firstAttribute="leading" secondItem="cFD-PC-07w" secondAttribute="trailing" constant="32" id="FVj-Mg-odj"/>
@@ -127,6 +144,7 @@
                 <constraint firstItem="hys-ji-mRM" firstAttribute="centerY" secondItem="Reo-3E-7Bd" secondAttribute="centerY" constant="2.5" id="i0n-Qh-zfe"/>
                 <constraint firstItem="I2s-ce-v7j" firstAttribute="top" secondItem="4p8-k3-dQ7" secondAttribute="bottom" constant="25" id="jnY-w6-jSl"/>
                 <constraint firstItem="9gr-Kv-5pa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="mMx-lL-iKQ"/>
+                <constraint firstItem="QNs-7F-9qV" firstAttribute="top" secondItem="I2s-ce-v7j" secondAttribute="bottom" constant="113" id="qwN-aS-W6N"/>
                 <constraint firstItem="424-7t-6pJ" firstAttribute="top" secondItem="I2s-ce-v7j" secondAttribute="bottom" constant="18" id="r7B-W1-utI"/>
                 <constraint firstAttribute="trailing" secondItem="Hoz-TT-l2I" secondAttribute="trailing" constant="8" id="sdP-OM-Xia"/>
                 <constraint firstAttribute="trailing" secondItem="fb8-a4-8s1" secondAttribute="trailing" constant="8" id="tAS-CK-wz5"/>
