@@ -38,9 +38,11 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
       if baseInfo.avatarImage != nil {
         avatar .setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
       }else {
-        let urlStr = kBaseURL.stringByAppendingPathComponent(baseInfo.avatarStr)
-        let url = NSURL(string: urlStr)
-        avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RefreshCached | SDWebImageOptions.RetryFailed)
+        if let avatarStr = baseInfo.avatarStr {
+            let urlStr = kBaseURL.stringByAppendingPathComponent(baseInfo.avatarStr)
+            let url = NSURL(string: urlStr)
+            avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RefreshCached | SDWebImageOptions.RetryFailed)
+        }
       }
     }
     
