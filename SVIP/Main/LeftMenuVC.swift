@@ -91,6 +91,11 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 //      self.sideMenuViewController.hideMenuViewController()
 //      navi.pushViewController(vc, animated: true)
 //    }
+    let vc = InfoEditVC()
+    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+      self.sideMenuViewController.hideMenuViewController()
+      navi.pushViewController(vc, animated: true)
+    }
 
   }
 

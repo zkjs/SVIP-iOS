@@ -109,7 +109,7 @@ class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDat
     vc.shopid = (dataArray[indexPath.row] as? Hotel)!.shopid
     if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
       self.sideMenuViewController.hideMenuViewController()
-      navi.pushViewController(vc, animated: true)
+      navi.pushViewController(vc, animated: false)
     }
     
   }

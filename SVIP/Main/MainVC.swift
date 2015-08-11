@@ -72,7 +72,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   override func viewWillAppear(animated: Bool) {
-    self.navigationController?.setNavigationBarHidden(true, animated: true)
+    self.navigationController?.setNavigationBarHidden(true, animated: true)//为了保证每次进入首页无navigationbar页面效果
     navigationController?.delegate = self
     settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
     
@@ -127,7 +127,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    self.navigationController?.setNavigationBarHidden(true, animated: true)
+    self.navigationController?.setNavigationBarHidden(false, animated: true)//必须为false，否则进栈视图无navigationbar
     navigationController?.delegate = nil
   }
   
