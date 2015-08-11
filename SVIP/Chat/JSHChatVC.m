@@ -145,7 +145,7 @@
       // Delay
       __weak __typeof(self) weakSelf = self;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf showSystemFeedbackWithText:@"需求已收到"];
+        [weakSelf showSystemFeedbackWithText:@"您的需求已发送"];
       });
       break;
     }
@@ -608,7 +608,7 @@
       
       __weak __typeof(self) weakSelf = self;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf showSystemFeedbackWithText:@"您的需求已收到"];
+        [weakSelf showSystemFeedbackWithText:@"您的需求已发送"];
       });
     };
     view;
@@ -673,7 +673,7 @@
                                @"clientid": self.senderID,
                                @"clientname": self.senderName,
                                @"shopid": self.shopID,
-                               @"locid": locid,
+//                               @"locid": locid,
                                @"desc": desc,
                                @"sessionid": self.sessionID
                                };
