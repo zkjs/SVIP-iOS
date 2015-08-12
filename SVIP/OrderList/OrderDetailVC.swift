@@ -17,6 +17,7 @@ class OrderDetailVC: UIViewController {
   @IBOutlet weak var dateDurationLabel: UILabel!
   @IBOutlet weak var amountFormulaLabel: UILabel!
   @IBOutlet weak var amountLabel: UILabel!
+  @IBOutlet weak var chatButton: UIButton!
   
   let order: BookOrder
   
@@ -41,6 +42,8 @@ class OrderDetailVC: UIViewController {
     title = "订单详情"
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+    
+    setupChatButton()
     
     var startDateString = order.arrival_date
     var endDateString = order.departure_date
@@ -69,8 +72,23 @@ class OrderDetailVC: UIViewController {
     amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
   }
   
+  // MARK: - Button Action
+  @IBAction func showChatView(sender: AnyObject) {
+    let chatVC = JSHChatVC(chatType: ChatType.Order)
+    chatVC.shopID = order.shopid
+    chatVC.shopName = order.fullname
+    navigationController?.pushViewController(chatVC, animated: true)
+  }
+  
   // MARK: - Private Method
   func dismissSelf() -> Void {
     dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  func setupChatButton() {
+    chatButton.layer.borderWidth = 0.6
+    chatButton.layer.borderColor = UIColor.blackColor().CGColor
+    chatButton.layer.cornerRadius = 6
+    chatButton.layer.masksToBounds = true
   }
 }

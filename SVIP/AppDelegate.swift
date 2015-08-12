@@ -184,20 +184,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
         let reservation_no = dict["reservation_no"]
-        let alertView = UIAlertController(title: "订单", message: "订单:\(reservation_no!)已确认", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+        let shop_name = dict["shop_name"]
+        let arrival_date = dict["arrival_date"]
+        let room_type = dict["room_type"]
+        let alertView = UIAlertController(title: "订单已确定", message: "订单号:\(reservation_no!)\n您在\(shop_name!)\(arrival_date!)入住的\(room_type!)已确定", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: { (action: UIAlertAction!) -> Void in
+          UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+          }))
         window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       } else if childType.integerValue == MessageUserDefineType.ShopCancelOrder.rawValue {
         let content = userInfo["content"] as! String
         let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
         let reservation_no = dict["reservation_no"]
-        let alertView = UIAlertController(title: "订单", message: "订单:\(reservation_no!)已取消", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+        let shop_name = dict["shop_name"]
+        let arrival_date = dict["arrival_date"]
+        let room_type = dict["room_type"]
+        let alertView = UIAlertController(title: "订单已取消", message: "订单号:\(reservation_no!)\n您在\(shop_name!)\(arrival_date!)入住的\(room_type!)已取消", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: { (action: UIAlertAction!) -> Void in
+          UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        }))
         window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       }
     }
-    
   }
   
   // MARK: - TCPSessionManagerDelegate

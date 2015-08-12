@@ -137,7 +137,7 @@
                         <constraint firstAttribute="height" constant="36" id="GXi-XN-dbV"/>
                         <constraint firstAttribute="width" constant="212" id="VOO-qb-h7T"/>
                     </constraints>
-                    <state key="normal" title="聊天">
+                    <state key="normal" title="快捷入住">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
