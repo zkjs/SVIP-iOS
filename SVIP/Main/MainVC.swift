@@ -625,9 +625,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   // MARK: - UINavigationControllerDelegate
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-    if operation == UINavigationControllerOperation.Push && toVC is JSHInfoEditVC {
-      return JSHAnimator()
-    }
+//    if operation == UINavigationControllerOperation.Push && toVC is JSHInfoEditVC {
+//      return JSHAnimator()
+//    }
     return nil
   }
   

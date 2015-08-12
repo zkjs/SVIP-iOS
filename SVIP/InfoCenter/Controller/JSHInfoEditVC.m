@@ -441,9 +441,9 @@ static NSString *identifier = @"infoCenterCell";
 #pragma mark - UINavigationControllerDelegate
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
   
-  if (operation == UINavigationControllerOperationPop) {
-    return [JSHAnimator new];
-  }
+//  if (operation == UINavigationControllerOperationPop) {
+//    return [JSHAnimator new];
+//  }
   return nil;
 }
 
