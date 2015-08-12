@@ -584,17 +584,19 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)hideSubButtonViewAtIndex:(NSInteger)subButtonViewIndex {
   UIView *subButtonView = self.subButtonViews[subButtonViewIndex];
-  [UIView animateWithDuration:0.1 animations:^{
-    subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
-  } completion:^(BOOL finished) {
-    if (finished) {
-      subButtonView.hidden = YES;
-    }
-  }];
+  if (!subButtonView.hidden) {
+    [UIView animateWithDuration:0.1 animations:^{
+      subButtonView.transform = CGAffineTransformTranslate(subButtonView.transform, 0.0, subButtonView.frame.size.height);
+    } completion:^(BOOL finished) {
+      if (finished) {
+        subButtonView.hidden = YES;
+      }
+    }];
+  }
 }
 
 - (void)hideAllSubButtonView {
-  for (NSInteger index; index < self.subButtonViews.count; index++) {
+  for (NSInteger index = 0; index < self.subButtonViews.count; index++) {
     [self hideSubButtonViewAtIndex:index];
   }
 }
