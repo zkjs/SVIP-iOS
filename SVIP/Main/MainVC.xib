@@ -34,13 +34,17 @@
                         <outletCollection property="gestureRecognizers" destination="4In-aJ-VYO" appends="YES" id="O8B-yU-OET"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKo-kU-jaS" userLabel="Left Button">
-                    <rect key="frame" x="189" y="560" width="23" height="26"/>
-                    <state key="normal" image="ic_zuji">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-u2-o02" userLabel="Right Button" customClass="MIBadgeButton">
+                    <rect key="frame" x="550" y="26" width="50" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Rc5-5e-2b6"/>
+                        <constraint firstAttribute="width" constant="50" id="dOq-0x-4vx"/>
+                    </constraints>
+                    <state key="normal" image="ic_xiaoxi">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="didSelectLeftButton:" destination="-1" eventType="touchUpInside" id="shK-qU-nQk"/>
+                        <action selector="didSelectRightButton:" destination="-1" eventType="touchUpInside" id="RkF-Yj-WI6"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_svip" translatesAutoresizingMaskIntoConstraints="NO" id="ZJh-oD-fwH">
@@ -260,17 +264,17 @@
                         <action selector="showSettings:" destination="-1" eventType="touchUpInside" id="Cyv-iy-neS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-u2-o02" userLabel="Message Center Button" customClass="MIBadgeButton">
-                    <rect key="frame" x="556" y="26" width="44" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKo-kU-jaS" userLabel="Left Button">
+                    <rect key="frame" x="0.0" y="26" width="50" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="Rc5-5e-2b6"/>
-                        <constraint firstAttribute="width" constant="44" id="dOq-0x-4vx"/>
+                        <constraint firstAttribute="width" constant="50" id="dgc-hz-aej"/>
+                        <constraint firstAttribute="height" constant="44" id="jtC-mN-S0D"/>
                     </constraints>
-                    <state key="normal" image="ic_xiaoxi">
+                    <state key="normal" image="ic_caidan">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="didSelectRightButton:" destination="-1" eventType="touchUpInside" id="RkF-Yj-WI6"/>
+                        <action selector="didSelectLeftButton:" destination="-1" eventType="touchUpInside" id="shK-qU-nQk"/>
                     </connections>
                 </button>
             </subviews>
@@ -284,6 +288,7 @@
                 <constraint firstItem="HIu-JL-EWR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8NB-3W-kUN"/>
                 <constraint firstAttribute="trailing" secondItem="ZLm-u2-o02" secondAttribute="trailing" id="D4y-4L-Cwk"/>
                 <constraint firstItem="Rdp-DE-53L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="D6e-ak-WRI"/>
+                <constraint firstItem="AKo-kU-jaS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EXL-cd-7Pj"/>
                 <constraint firstAttribute="trailing" secondItem="HIu-JL-EWR" secondAttribute="trailing" id="FgA-uc-yda"/>
                 <constraint firstAttribute="centerX" secondItem="AKo-kU-jaS" secondAttribute="centerX" constant="100" id="JTW-9R-fNG"/>
                 <constraint firstAttribute="centerX" secondItem="ZJh-oD-fwH" secondAttribute="centerX" id="MWY-3X-hh2"/>
@@ -292,6 +297,7 @@
                 <constraint firstAttribute="bottom" secondItem="9qo-35-bbF" secondAttribute="bottom" constant="8" id="YhH-jq-Bai"/>
                 <constraint firstAttribute="trailing" secondItem="Rdp-DE-53L" secondAttribute="trailing" id="aCn-vg-5iE"/>
                 <constraint firstItem="X9I-KF-gBo" firstAttribute="top" secondItem="HIu-JL-EWR" secondAttribute="bottom" id="bwh-aa-iZc"/>
+                <constraint firstItem="AKo-kU-jaS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="cdI-71-aY3"/>
                 <constraint firstAttribute="bottom" secondItem="ZLm-u2-o02" secondAttribute="bottom" constant="14" id="eFe-eS-hzj"/>
                 <constraint firstAttribute="centerX" secondItem="vBb-2A-ocr" secondAttribute="centerX" id="gYn-pA-sWz"/>
                 <constraint firstItem="HIu-JL-EWR" firstAttribute="top" secondItem="vBb-2A-ocr" secondAttribute="bottom" id="len-XD-pi1"/>
@@ -301,6 +307,8 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="JTW-9R-fNG"/>
+                    <exclude reference="mDj-QC-qkE"/>
                     <exclude reference="NdC-Fv-mn9"/>
                     <exclude reference="eFe-eS-hzj"/>
                 </mask>
@@ -319,6 +327,7 @@
         </pongPressGestureRecognizer>
     </objects>
     <resources>
+        <image name="ic_caidan" width="17" height="13"/>
         <image name="ic_home_nor" width="60" height="60"/>
         <image name="ic_mi" width="9" height="8"/>
         <image name="ic_mianqiantai2" width="20" height="16"/>
@@ -326,7 +335,6 @@
         <image name="ic_shezhi" width="26" height="26"/>
         <image name="ic_tianjia" width="20" height="20"/>
         <image name="ic_xiaoxi" width="21" height="16"/>
-        <image name="ic_zuji" width="23" height="26"/>
         <image name="iconfont-huitudangqianweizhi" width="10" height="16"/>
         <image name="img_logo1" width="43" height="43"/>
         <image name="img_touxiang_anli" width="86" height="86"/>

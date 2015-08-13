@@ -577,17 +577,19 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   @IBAction func didSelectLeftButton(sender: AnyObject) {
-    let navController = UINavigationController(rootViewController: OrderListTVC())
-    navController.navigationBar.tintColor = UIColor.blackColor()
-    navController.navigationBar.translucent = false
-    presentViewController(navController, animated: true, completion: nil)
+//    let navController = UINavigationController(rootViewController: OrderListTVC())
+//    navController.navigationBar.tintColor = UIColor.blackColor()
+//    navController.navigationBar.translucent = false
+//    presentViewController(navController, animated: true, completion: nil)
+    sideMenuViewController.presentLeftMenuViewController()
   }
   
   @IBAction func didSelectRightButton(sender: AnyObject) {
-    let navController = UINavigationController(rootViewController: MessageCenterTVC())
-    navController.navigationBar.tintColor = UIColor.blackColor()
-    navController.navigationBar.translucent = false
-    presentViewController(navController, animated: true, completion: nil)
+//    let navController = UINavigationController(rootViewController: MessageCenterTVC())
+//    navController.navigationBar.tintColor = UIColor.blackColor()
+//    navController.navigationBar.translucent = false
+//    presentViewController(navController, animated: true, completion: nil)
+    sideMenuViewController.presentRightMenuViewController()
   }
   
   // MARK: - CLLocationManagerDelegate
