@@ -27,6 +27,7 @@ class BookOrder: NSObject {
   room_rate=*房价在上诉商品列表获取
   
   status 订单状态
+  nologin 免前台状态
 */
   var shopid: String!
   var room_typeid: String!
@@ -47,6 +48,7 @@ class BookOrder: NSObject {
   var status: String!
   var remark: String!
   var fullname: String!
+  var nologin: String!
   
   override var description: String {
     var output = ""
@@ -66,6 +68,7 @@ class BookOrder: NSObject {
     output += "orderid: \(orderid)\n"
     output += "status: \(status)\n"
     output += "remark: \(remark)\n"
+    output += "nologin: \(nologin)\n"
     return output
   }
   
@@ -88,6 +91,7 @@ class BookOrder: NSObject {
     orderid = aDecoder.decodeObjectForKey("orderid") as! String
     status = aDecoder.decodeObjectForKey("status") as! String
     remark = aDecoder.decodeObjectForKey("remark") as! String
+    nologin = aDecoder.decodeObjectForKey("nologin") as! String
   }
   
   func encodeWithCoder(aCoder: NSCoder!) {
@@ -107,6 +111,7 @@ class BookOrder: NSObject {
     aCoder.encodeObject(orderid, forKey:"orderid")
     aCoder.encodeObject(status, forKey:"status")
     aCoder.encodeObject(remark, forKey:"remark")
+    aCoder.encodeObject(nologin, forKey:"nologin")
   }
   
 }

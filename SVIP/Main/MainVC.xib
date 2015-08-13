@@ -6,9 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="checkinLabel" destination="3GH-pC-ScZ" id="4Db-1p-6SO"/>
+                <outlet property="checkinSubLabel" destination="DUo-9m-bYr" id="wnb-b9-UJD"/>
                 <outlet property="infoLabel" destination="T43-K7-b5R" id="0mt-fO-dRY"/>
                 <outlet property="leftButton" destination="AKo-kU-jaS" id="ban-Bv-e8W"/>
                 <outlet property="mainButton" destination="9qo-35-bbF" id="YIK-qX-j3R"/>
+                <outlet property="regionLabel" destination="dim-4e-hvh" id="Xk7-2E-prf"/>
                 <outlet property="rightButton" destination="ZLm-u2-o02" id="z6e-Yh-EHj"/>
                 <outlet property="settingsButton" destination="KJu-Ul-WIW" id="hCO-l2-1hS"/>
                 <outlet property="statusLabel" destination="xNk-xA-Dnk" id="g2s-uT-AzB"/>
@@ -31,22 +34,13 @@
                         <outletCollection property="gestureRecognizers" destination="4In-aJ-VYO" appends="YES" id="O8B-yU-OET"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKo-kU-jaS" userLabel="Left Button">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKo-kU-jaS" userLabel="Left Button">
                     <rect key="frame" x="189" y="560" width="23" height="26"/>
                     <state key="normal" image="ic_zuji">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="didSelectLeftButton:" destination="-1" eventType="touchUpInside" id="shK-qU-nQk"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-u2-o02" userLabel="Right Button" customClass="MIBadgeButton">
-                    <rect key="frame" x="379" y="544" width="42" height="42"/>
-                    <state key="normal" image="ic_xiaoxi">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="didSelectRightButton:" destination="-1" eventType="touchUpInside" id="RkF-Yj-WI6"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_svip" translatesAutoresizingMaskIntoConstraints="NO" id="ZJh-oD-fwH">
@@ -76,63 +70,161 @@
                     <rect key="frame" x="0.0" y="269" width="600" height="263"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-9Q-dBR" userLabel="Smart Panel">
-                            <rect key="frame" x="0.0" y="62" width="600" height="140"/>
+                            <rect key="frame" x="13" y="40" width="574" height="183"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_dongtai" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-xe-2cv">
-                                    <rect key="frame" x="13" y="0.0" width="574" height="140"/>
-                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJW-CB-nCk" userLabel="1st View">
+                                    <rect key="frame" x="0.0" y="0.0" width="574" height="34"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconfont-huitudangqianweizhi" translatesAutoresizingMaskIntoConstraints="NO" id="DX8-3R-zZd">
+                                            <rect key="frame" x="15" y="9" width="10" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="10" id="5H7-DO-87e"/>
+                                                <constraint firstAttribute="height" constant="16" id="hnS-vN-Gge"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不在酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dim-4e-hvh" userLabel="Region Label">
+                                            <rect key="frame" x="36" y="8" width="56" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="iFl-uk-riU"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华大床房 | 6/30入住 | 2晚" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T43-K7-b5R" userLabel="Info Label">
+                                            <rect key="frame" x="387" y="8" width="172" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.79215686269999996" green="0.79215686269999996" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="DX8-3R-zZd" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="top" constant="9" id="5cJ-2j-yIu"/>
+                                        <constraint firstAttribute="trailing" secondItem="T43-K7-b5R" secondAttribute="trailing" constant="15" id="LDD-df-Zid"/>
+                                        <constraint firstItem="dim-4e-hvh" firstAttribute="leading" secondItem="DX8-3R-zZd" secondAttribute="trailing" constant="11" id="brN-li-sWb"/>
+                                        <constraint firstItem="T43-K7-b5R" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="top" constant="8" id="kMM-6S-Fmx"/>
+                                        <constraint firstAttribute="height" constant="34" id="pzy-83-XV3"/>
+                                        <constraint firstItem="dim-4e-hvh" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="top" constant="8" id="rCu-jo-Zg9"/>
+                                        <constraint firstItem="DX8-3R-zZd" firstAttribute="leading" secondItem="kJW-CB-nCk" secondAttribute="leading" constant="15" id="rhg-Yg-0tg"/>
+                                    </constraints>
+                                </view>
                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNk-xA-Dnk" userLabel="Status Label">
-                                    <rect key="frame" x="180" y="30" width="241" height="20"/>
+                                    <rect key="frame" x="15" y="49" width="246" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="TBe-hP-kUm"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <state key="normal" title="您没有任何预订信息，立即预订" image="sl_canting">
+                                    <state key="normal" title=" 您没有任何预订信息，立即预订" image="sl_canting">
                                         <color key="titleColor" red="0.92941176469999998" green="0.81176470590000005" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华大床房 | 6/30入住 | 2晚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T43-K7-b5R" userLabel="Info Label">
-                                    <rect key="frame" x="214" y="66" width="172" height="17"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_qianwang" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-X4-65T">
+                                    <rect key="frame" x="551" y="51" width="8" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="8" id="3qU-Is-DAe"/>
+                                        <constraint firstAttribute="height" constant="15" id="Mc5-e4-2j8"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Np-ol-Cvw" userLabel="Status Button">
+                                    <rect key="frame" x="0.0" y="34" width="574" height="50"/>
+                                    <color key="backgroundColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="wKi-87-fe3"/>
+                                    </constraints>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="tappedStatusButton:" destination="-1" eventType="touchUpInside" id="7KU-YL-rVc"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3GH-pC-ScZ" userLabel="Checkin Label">
+                                    <rect key="frame" x="15" y="100" width="169" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="cwG-bj-Cpu"/>
+                                        <constraint firstAttribute="height" constant="20" id="hq6-xR-9IH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title=" 您具有免前台的特权" image="ic_mianqiantai2">
+                                        <color key="titleColor" red="0.92941176469999998" green="0.81176470590000005" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立即查看" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUo-9m-bYr" userLabel="Checkin SubLabel">
+                                    <rect key="frame" x="487" y="101" width="56" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="17" id="4ui-Uf-2IC"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.79215686269999996" green="0.79215686269999996" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEv-uX-okC" userLabel="Tips Label">
-                                    <rect key="frame" x="181" y="113" width="238" height="17"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_qianwang" translatesAutoresizingMaskIntoConstraints="NO" id="JxP-kg-Bgx">
+                                    <rect key="frame" x="551" y="102" width="8" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="8" id="Qc6-AH-0FR"/>
+                                        <constraint firstAttribute="height" constant="15" id="gJv-GN-HWR"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5y-Rc-BJ9" userLabel="Checkin Button">
+                                    <rect key="frame" x="0.0" y="85" width="574" height="50"/>
+                                    <color key="backgroundColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="Yio-J5-6gg"/>
+                                    </constraints>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="tappedCheckinButton:" destination="-1" eventType="touchUpInside" id="511-hg-JOh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adg-r9-KX5" userLabel="Booking Button">
+                                    <rect key="frame" x="0.0" y="136" width="574" height="47"/>
+                                    <color key="backgroundColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                    <state key="normal" image="ic_tianjia">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="booking:" destination="-1" eventType="touchUpInside" id="Hdm-gW-NAG"/>
+                                    </connections>
+                                </button>
+                                <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEv-uX-okC" userLabel="Tips Label">
+                                    <rect key="frame" x="168" y="113" width="238" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title=" 长按智键呼叫服务员，单击发送消息" image="ic_mi">
                                         <color key="titleColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Np-ol-Cvw">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="140"/>
-                                    <state key="normal">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="tappedSmartPanel:" destination="-1" eventType="touchUpInside" id="hUR-it-Mvo"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="centerX" secondItem="VEv-uX-okC" secondAttribute="centerX" id="1gk-6S-mPV"/>
-                                <constraint firstAttribute="trailing" secondItem="yRA-xe-2cv" secondAttribute="trailing" constant="13" id="2bJ-Xx-Cdy"/>
-                                <constraint firstItem="yRA-xe-2cv" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" constant="13" id="5le-aY-aIJ"/>
-                                <constraint firstAttribute="trailing" secondItem="yRA-xe-2cv" secondAttribute="trailing" id="7v0-cx-ctH"/>
-                                <constraint firstAttribute="centerX" secondItem="xNk-xA-Dnk" secondAttribute="centerX" id="AIJ-Vc-s5q"/>
-                                <constraint firstItem="7Np-ol-Cvw" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="E6T-LS-X2T"/>
-                                <constraint firstAttribute="trailing" secondItem="7Np-ol-Cvw" secondAttribute="trailing" id="N5O-Mu-AaN"/>
-                                <constraint firstItem="xNk-xA-Dnk" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="top" constant="30" id="P37-R9-J45"/>
-                                <constraint firstAttribute="centerX" secondItem="T43-K7-b5R" secondAttribute="centerX" id="PNR-EY-IJo"/>
-                                <constraint firstItem="T43-K7-b5R" firstAttribute="leading" secondItem="7Np-ol-Cvw" secondAttribute="trailing" id="Rxq-bg-8xZ"/>
-                                <constraint firstItem="yRA-xe-2cv" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="SPN-cp-nTK"/>
-                                <constraint firstAttribute="height" constant="140" id="Tr1-4t-2tv"/>
-                                <constraint firstAttribute="bottom" secondItem="7Np-ol-Cvw" secondAttribute="bottom" id="UOE-zw-jI5"/>
-                                <constraint firstItem="T43-K7-b5R" firstAttribute="top" secondItem="xNk-xA-Dnk" secondAttribute="bottom" constant="16" id="gCz-bD-cZa"/>
-                                <constraint firstItem="7Np-ol-Cvw" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="top" id="hBx-E0-lQz"/>
-                                <constraint firstItem="VEv-uX-okC" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" constant="31" id="l36-lV-f8M"/>
-                                <constraint firstItem="yRA-xe-2cv" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="top" id="mcr-TV-mL6"/>
-                                <constraint firstItem="VEv-uX-okC" firstAttribute="top" secondItem="T43-K7-b5R" secondAttribute="bottom" constant="30" id="oCA-RN-2dD"/>
-                                <constraint firstAttribute="bottom" secondItem="yRA-xe-2cv" secondAttribute="bottom" id="zh4-yq-X6E"/>
+                                <constraint firstItem="x5y-Rc-BJ9" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="0Ow-sV-mK0"/>
+                                <constraint firstAttribute="trailing" secondItem="7Np-ol-Cvw" secondAttribute="trailing" id="53Q-vx-rJQ"/>
+                                <constraint firstAttribute="trailing" secondItem="x5y-Rc-BJ9" secondAttribute="trailing" id="6Cl-gl-fPh"/>
+                                <constraint firstItem="JxP-kg-Bgx" firstAttribute="leading" secondItem="DUo-9m-bYr" secondAttribute="trailing" constant="8" id="6x6-pk-DMP"/>
+                                <constraint firstAttribute="trailing" secondItem="kJW-CB-nCk" secondAttribute="trailing" id="7op-Nl-i0L"/>
+                                <constraint firstAttribute="bottom" secondItem="adg-r9-KX5" secondAttribute="bottom" id="8C5-3a-Dcn"/>
+                                <constraint firstItem="7Np-ol-Cvw" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="bottom" id="9Y0-uV-kfj"/>
+                                <constraint firstItem="3GH-pC-ScZ" firstAttribute="top" secondItem="7Np-ol-Cvw" secondAttribute="bottom" constant="16" id="ASx-km-eI8"/>
+                                <constraint firstItem="adg-r9-KX5" firstAttribute="top" secondItem="x5y-Rc-BJ9" secondAttribute="bottom" constant="1" id="C2K-21-1w0"/>
+                                <constraint firstAttribute="trailing" secondItem="adg-r9-KX5" secondAttribute="trailing" id="DaV-aR-zPc"/>
+                                <constraint firstAttribute="trailing" secondItem="JxP-kg-Bgx" secondAttribute="trailing" constant="15" id="F4f-q0-uiq"/>
+                                <constraint firstItem="kJW-CB-nCk" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="FEy-Wa-Caz"/>
+                                <constraint firstItem="xNk-xA-Dnk" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" constant="15" id="KTx-Ne-3mF"/>
+                                <constraint firstItem="3GH-pC-ScZ" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" constant="15" id="MI1-FD-XG4"/>
+                                <constraint firstAttribute="trailing" secondItem="0L3-X4-65T" secondAttribute="trailing" constant="15" id="MNV-Qk-DQB"/>
+                                <constraint firstItem="DUo-9m-bYr" firstAttribute="top" secondItem="7Np-ol-Cvw" secondAttribute="bottom" constant="17" id="Q3d-KG-riK"/>
+                                <constraint firstAttribute="height" constant="183" id="Tr1-4t-2tv"/>
+                                <constraint firstItem="JxP-kg-Bgx" firstAttribute="top" secondItem="7Np-ol-Cvw" secondAttribute="bottom" constant="18" id="VlP-LY-PK8"/>
+                                <constraint firstItem="0L3-X4-65T" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="bottom" constant="17" id="Ycn-uO-JT6"/>
+                                <constraint firstItem="x5y-Rc-BJ9" firstAttribute="top" secondItem="7Np-ol-Cvw" secondAttribute="bottom" constant="1" id="eaM-JQ-i8d"/>
+                                <constraint firstItem="kJW-CB-nCk" firstAttribute="top" secondItem="D5Q-9Q-dBR" secondAttribute="top" id="fuL-Iu-UMy"/>
+                                <constraint firstItem="xNk-xA-Dnk" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="bottom" constant="15" id="mdP-xa-m4Q"/>
+                                <constraint firstItem="adg-r9-KX5" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="shZ-fa-9aC"/>
+                                <constraint firstItem="7Np-ol-Cvw" firstAttribute="leading" secondItem="D5Q-9Q-dBR" secondAttribute="leading" id="xlv-OA-Jqr"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -140,36 +232,13 @@
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="7v0-cx-ctH"/>
-                                    <exclude reference="SPN-cp-nTK"/>
-                                    <exclude reference="l36-lV-f8M"/>
-                                    <exclude reference="Rxq-bg-8xZ"/>
-                                </mask>
-                            </variation>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adg-r9-KX5" userLabel="Booking Button">
-                            <rect key="frame" x="550" y="33" width="50" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="fyn-kh-qcj"/>
-                                <constraint firstAttribute="width" constant="50" id="uns-KC-feI"/>
-                            </constraints>
-                            <state key="normal" image="ic_tianjia">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="booking:" destination="-1" eventType="touchUpInside" id="Hdm-gW-NAG"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="D5Q-9Q-dBR" secondAttribute="centerY" id="Cjq-0R-GsX"/>
-                        <constraint firstItem="7Np-ol-Cvw" firstAttribute="centerY" secondItem="adg-r9-KX5" secondAttribute="centerY" constant="69" id="Ol2-TF-swW"/>
-                        <constraint firstItem="D5Q-9Q-dBR" firstAttribute="leading" secondItem="HIu-JL-EWR" secondAttribute="leading" id="URr-z1-Gcy"/>
-                        <constraint firstAttribute="trailing" secondItem="D5Q-9Q-dBR" secondAttribute="trailing" id="XWa-JY-jv0"/>
-                        <constraint firstAttribute="trailing" secondItem="adg-r9-KX5" secondAttribute="trailing" id="pGy-v3-Jss"/>
+                        <constraint firstItem="D5Q-9Q-dBR" firstAttribute="leading" secondItem="HIu-JL-EWR" secondAttribute="leading" constant="13" id="URr-z1-Gcy"/>
+                        <constraint firstAttribute="trailing" secondItem="D5Q-9Q-dBR" secondAttribute="trailing" constant="13" id="XWa-JY-jv0"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJu-Ul-WIW" userLabel="Avatar Button">
@@ -191,6 +260,19 @@
                         <action selector="showSettings:" destination="-1" eventType="touchUpInside" id="Cyv-iy-neS"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-u2-o02" userLabel="Message Center Button" customClass="MIBadgeButton">
+                    <rect key="frame" x="556" y="26" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Rc5-5e-2b6"/>
+                        <constraint firstAttribute="width" constant="44" id="dOq-0x-4vx"/>
+                    </constraints>
+                    <state key="normal" image="ic_xiaoxi">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didSelectRightButton:" destination="-1" eventType="touchUpInside" id="RkF-Yj-WI6"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -198,7 +280,9 @@
                 <constraint firstAttribute="centerX" secondItem="9qo-35-bbF" secondAttribute="centerX" id="5dP-XA-QCA"/>
                 <constraint firstAttribute="centerX" secondItem="X9I-KF-gBo" secondAttribute="centerX" id="5wC-gE-jH9"/>
                 <constraint firstItem="vBb-2A-ocr" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="26" id="81I-4M-JaZ"/>
+                <constraint firstItem="ZLm-u2-o02" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="84B-jQ-PyP"/>
                 <constraint firstItem="HIu-JL-EWR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8NB-3W-kUN"/>
+                <constraint firstAttribute="trailing" secondItem="ZLm-u2-o02" secondAttribute="trailing" id="D4y-4L-Cwk"/>
                 <constraint firstItem="Rdp-DE-53L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="D6e-ak-WRI"/>
                 <constraint firstAttribute="trailing" secondItem="HIu-JL-EWR" secondAttribute="trailing" id="FgA-uc-yda"/>
                 <constraint firstAttribute="centerX" secondItem="AKo-kU-jaS" secondAttribute="centerX" constant="100" id="JTW-9R-fNG"/>
@@ -215,6 +299,12 @@
                 <constraint firstItem="KJu-Ul-WIW" firstAttribute="top" secondItem="ZJh-oD-fwH" secondAttribute="bottom" constant="66" id="r6t-qu-Jr6"/>
                 <constraint firstItem="ZJh-oD-fwH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="xP1-pK-Scf"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="NdC-Fv-mn9"/>
+                    <exclude reference="eFe-eS-hzj"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="571" y="653"/>
         </view>
         <tapGestureRecognizer id="4In-aJ-VYO">
@@ -229,13 +319,15 @@
         </pongPressGestureRecognizer>
     </objects>
     <resources>
-        <image name="bg_dongtai" width="350" height="178"/>
         <image name="ic_home_nor" width="60" height="60"/>
         <image name="ic_mi" width="9" height="8"/>
+        <image name="ic_mianqiantai2" width="20" height="16"/>
+        <image name="ic_qianwang" width="8" height="15"/>
         <image name="ic_shezhi" width="26" height="26"/>
-        <image name="ic_tianjia" width="36" height="36"/>
-        <image name="ic_xiaoxi" width="42" height="42"/>
+        <image name="ic_tianjia" width="20" height="20"/>
+        <image name="ic_xiaoxi" width="21" height="16"/>
         <image name="ic_zuji" width="23" height="26"/>
+        <image name="iconfont-huitudangqianweizhi" width="10" height="16"/>
         <image name="img_logo1" width="43" height="43"/>
         <image name="img_touxiang_anli" width="86" height="86"/>
         <image name="sl_canting" width="17" height="16"/>

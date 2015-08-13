@@ -21,6 +21,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   @IBOutlet weak var infoLabel: UILabel!
   @IBOutlet weak var tipsLabel: UIButton!
   
+  @IBOutlet weak var regionLabel: UILabel!
+  @IBOutlet weak var checkinLabel: UIButton!
+  @IBOutlet weak var checkinSubLabel: UILabel!
+  
   let beaconManager = ESTBeaconManager()
   let locationManager = CLLocationManager()
   
@@ -43,8 +47,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     motionView.zoomEnabled = false
     motionView.scrollDragEnabled = false
     motionView.scrollBounceEnabled = false
-    self.view.addSubview(motionView)
-    self.view.sendSubviewToBack(motionView)
+    view.addSubview(motionView)
+    view.sendSubviewToBack(motionView)
     
     rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
     rightButton.badgeBackgroundColor = UIColor.redColor()
@@ -63,7 +67,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
     statusLabel.hidden = true
     infoLabel.hidden = true
-    tipsLabel.hidden = true
+//    tipsLabel.hidden = true
+    regionLabel.hidden = true
+    checkinLabel.hidden = true
+    checkinSubLabel.hidden = true
     
 //    let notification = UILocalNotification()
 //    let alertMessage = "initNetworkCommunicationWithIP: HOST \(HOST) & PORT \(PORT)"
@@ -72,13 +79,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   override func viewWillAppear(animated: Bool) {
-    self.navigationController?.setNavigationBarHidden(true, animated: true)//为了保证每次进入首页无navigationbar页面效果
+    navigationController?.setNavigationBarHidden(true, animated: true)//为了保证每次进入首页无navigationbar页面效果
     navigationController?.delegate = self
     settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
     
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let orderArray = responseObject as! NSArray
       if orderArray.count > 0 {
         let lastOrder = orderArray.firstObject as! NSDictionary
@@ -98,6 +105,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         order.shopid = lastOrder["shopid"] as? String
         order.fullname = lastOrder["fullname"] as? String
         order.status = lastOrder["status"] as? String
+        order.nologin = lastOrder["nologin"] as? String
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let startDate = dateFormatter.dateFromString(order.arrival_date)
@@ -127,7 +135,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: true)//必须为false，否则进栈视图无navigationbar
+    navigationController?.setNavigationBarHidden(false, animated: true)//必须为false，否则进栈视图无navigationbar
     navigationController?.delegate = nil
   }
   
@@ -220,7 +228,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         beaconManager.requestStateForRegion(beaconRegion)
       }
     }
-    self.updateSmartPanel()
+    updateSmartPanel()
   }
   
   func didEnterBeaconRegion(region: CLBeaconRegion!) {
@@ -283,12 +291,29 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func updateSmartPanel() {
     statusLabel.hidden = false
     infoLabel.hidden = false
-    tipsLabel.hidden = false
+//    tipsLabel.hidden = false
+    regionLabel.hidden = false
+    checkinLabel.hidden = false
+    checkinSubLabel.hidden = false
     
     let beacon = StorageManager.sharedInstance().lastBeacon()
     println("Last Beacon: \(beacon)")
     let order = StorageManager.sharedInstance().lastOrder()
     println("Last Order: \(order)")
+    
+    if beacon != nil {
+      regionLabel.text = beacon!["locdesc"]
+    } else {
+      regionLabel.text = "不在酒店"
+    }
+    
+    if order?.nologin.toInt() == 0 {
+      checkinLabel.setTitle(" 免前台服务已经推出", forState: .Normal)
+      checkinSubLabel.text = "立即了解"
+    } else {
+      checkinLabel.setTitle(" 您具有申请免前台的特权", forState: .Normal)
+      checkinSubLabel.text = "立即查看"
+    }
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     infoLabel.hidden = true
@@ -346,7 +371,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
-          statusLabel.setTitle(" 您的订单已确定，请按时到达酒店", forState: .Normal)
+          statusLabel.setTitle(" 订单已确定，请按时到达酒店", forState: .Normal)
           statusLabel.setImage(UIImage(named: "sl_yuding"), forState: .Normal)
         }
       }
@@ -423,7 +448,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
   }
   
-  @IBAction func tappedSmartPanel(sender: AnyObject) {
+  @IBAction func tappedStatusButton(sender: AnyObject) {
     println("Tap Smart Panel")
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
@@ -465,6 +490,17 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         }
       }
       break
+    }
+  }
+  
+  @IBAction func tappedCheckinButton(sender: AnyObject) {
+    let order = StorageManager.sharedInstance().lastOrder()
+    println("Last Order: \(order)")
+    
+    if order?.nologin.toInt() == 0 {
+      println("立即了解免前台服务")
+    } else {
+      println("查看免前台特权")
     }
   }
   
@@ -610,7 +646,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if state != CLRegionState.Inside {
         StorageManager.sharedInstance().updateLastBeacon(nil)
       }
-      self.updateSmartPanel()
+      updateSmartPanel()
     }
   }
   
