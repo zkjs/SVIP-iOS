@@ -59,7 +59,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     locationManager.requestAlwaysAuthorization()
     locationManager.startUpdatingLocation()
     
-    locationSearch = AMapSearchAPI(searchKey: "f68921b7786a4a4044330b06d7b76908", delegate: self)
+    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
     
     statusLabel.hidden = true
     infoLabel.hidden = true
@@ -597,7 +597,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if (length == 0){
         title = response.regeocode.addressComponent.province
       }
-      println(response.regeocode.formattedAddress)
+      println("Location: \(response.regeocode.formattedAddress)")
     }
     
     locationManager.stopUpdatingLocation()
