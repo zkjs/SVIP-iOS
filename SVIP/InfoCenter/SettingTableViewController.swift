@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingTableViewController: UITableViewController {
+class SettingTableViewController: UITableViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   var localBaseInfo :JSHBaseInfo?
   let Identifier = "reuseIdentifier"
   let textArray: Array<Array<String>>
@@ -113,61 +113,74 @@ class SettingTableViewController: UITableViewController {
     }
   // Configure the cell...
     cell!.textLabel?.text = textArray[indexPath.section][indexPath.row]
-    if (indexPath.section == 0) && (indexPath.row == 0) {
-      let imageView = UIImageView(frame: CGRectMake(0, 0, 78, 78))
-      imageView.image = UIImage(named: "img_hotel_zhanwei")
-      cell?.accessoryView = imageView
+    if indexPath.section == 0 {
+      switch indexPath.row {
+      case 0:
+        let imageView = UIImageView(frame: CGRectMake(0, 0, 78, 78))
+        imageView.image = UIImage(named: "img_hotel_zhanwei")
+        cell?.accessoryView = imageView
+      case 1:
+        cell?.detailTextLabel?.text = localBaseInfo?.name
+      case 2:
+        cell?.detailTextLabel?.text = localBaseInfo?.name
+      case 3:
+        cell?.detailTextLabel?.text = localBaseInfo?.sex
+      case 4:
+        cell?.detailTextLabel?.text = localBaseInfo?.company
+      case 5:
+        cell?.detailTextLabel?.text = localBaseInfo?.company
+      default:
+        break;
+      }
     }
+    
     return cell!
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
+    switch indexPath {
+    case NSIndexPath(forRow: 0, inSection: 0):
+      UIActionSheet(title:"选择照片来源", delegate:self, cancelButtonTitle:"取消", destructiveButtonTitle:"照相", otherButtonTitles:"照片库") .showInView(self.view)
+    case NSIndexPath(forRow: 1, inSection: 0):
+      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.name), animated: true)
+    case NSIndexPath(forRow: 2, inSection: 0):
+      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.nickname), animated: true)
+    case NSIndexPath(forRow: 3, inSection: 0):
+      //sex
+      println()
+    case NSIndexPath(forRow: 4, inSection: 0):
+      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.company), animated: true)
+    case NSIndexPath(forRow: 5, inSection: 0):
+      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.email), animated: true)
+    default:
+      break
+    }
   }
   
-  /*
-  // Override to support conditional editing of the table view.
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-  // Return NO if you do not want the specified item to be editable.
-  return true
+  //MARK:- ACTIONSHEET
+  func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+    switch buttonIndex {//莫名其妙的buttonIndex：照相0，取消1，照片库2
+    case 0:
+      let picker = UIImagePickerController()
+      picker.sourceType = UIImagePickerControllerSourceType.Camera
+      picker.delegate = self
+      picker.allowsEditing = true
+      self.presentViewController(picker, animated: true, completion: { () -> Void in
+        
+      })
+    case 2:
+      let picker = UIImagePickerController()
+      picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+      picker.delegate = self
+      picker.allowsEditing = true
+      self.presentViewController(picker, animated: true, completion: { () -> Void in
+        
+      })
+    default:
+      break
+    }
   }
-  */
-  
-  /*
-  // Override to support editing the table view.
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-  if editingStyle == .Delete {
-  // Delete the row from the data source
-  tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-  } else if editingStyle == .Insert {
-  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-  }
-  }
-  */
-  
-  /*
-  // Override to support rearranging the table view.
-  override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-  
-  }
-  */
-  
-  /*
-  // Override to support conditional rearranging of the table view.
-  override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-  // Return NO if you do not want the item to be re-orderable.
-  return true
-  }
-  */
-  
-  /*
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using [segue destinationViewController].
-  // Pass the selected object to the new view controller.
-  }
-  */
-  
+
+
 }

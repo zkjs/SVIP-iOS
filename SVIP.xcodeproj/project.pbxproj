@@ -108,6 +108,9 @@
 		B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */; };
 		B2C2EB361B7D8B2300FF8B23 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EB351B7D8B2300FF8B23 /* SettingTableViewController.swift */; };
 		B2C2EB381B7D8B4100FF8B23 /* SettingTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB371B7D8B4100FF8B23 /* SettingTable.plist */; };
+		B2C2EB3B1B7DD83200FF8B23 /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */; };
+		B2C2EB3C1B7DD83200FF8B23 /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */; };
+		B2C2EB3E1B7E06FE00FF8B23 /* SettingEdit.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */; };
 		B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */; };
 		B2F4716B1B4B6CF0005122BB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F471691B4B6CF0005122BB /* AlipaySDK.framework */; };
 		B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F471701B4B7B21005122BB /* AlipayOrder.m */; };
@@ -288,6 +291,9 @@
 		B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		B2C2EB351B7D8B2300FF8B23 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		B2C2EB371B7D8B4100FF8B23 /* SettingTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingTable.plist; sourceTree = "<group>"; };
+		B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingEditViewController.swift; sourceTree = "<group>"; };
+		B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingEditViewController.xib; sourceTree = "<group>"; };
+		B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingEdit.plist; sourceTree = "<group>"; };
 		B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		B2F471691B4B6CF0005122BB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		B2F4716F1B4B7B21005122BB /* AlipayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipayOrder.h; sourceTree = "<group>"; };
@@ -724,6 +730,9 @@
 				B2564D641B4BFE070098608F /* View */,
 				B2C2EB351B7D8B2300FF8B23 /* SettingTableViewController.swift */,
 				B2C2EB371B7D8B4100FF8B23 /* SettingTable.plist */,
+				B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */,
+				B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */,
+				B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */,
 			);
 			path = InfoCenter;
 			sourceTree = "<group>";
@@ -1015,6 +1024,7 @@
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
 				B21250C01B7487B90056835D /* LeftMenu.plist in Resources */,
+				B2C2EB3C1B7DD83200FF8B23 /* SettingEditViewController.xib in Resources */,
 				B2564D781B4BFE070098608F /* JSHInfoEditSelection.plist in Resources */,
 				B2F49EAE1B7347A200556AE2 /* UMSCommentDetailController.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
@@ -1031,6 +1041,7 @@
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				B21250CE1B74AFF00056835D /* LeftMenuVC.xib in Resources */,
 				B2F49EB31B7347A200556AE2 /* UMSLoginViewController.xib in Resources */,
+				B2C2EB3E1B7E06FE00FF8B23 /* SettingEdit.plist in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
@@ -1128,6 +1139,7 @@
 				407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */,
 				B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
+				B2C2EB3B1B7DD83200FF8B23 /* SettingEditViewController.swift in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				401BBF181B5B7C8800774502 /* Persistent.swift in Sources */,
