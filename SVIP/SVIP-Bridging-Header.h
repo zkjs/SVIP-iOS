@@ -41,3 +41,4 @@
 #import "RESideMenu.h"
 #import "JSHHotelRegisterVC.h"
 #import "AMapSearchAPI.h"
+#import "NSString+JSH.h"

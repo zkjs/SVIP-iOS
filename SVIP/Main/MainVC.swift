@@ -445,7 +445,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   @IBAction func showSettings(sender: AnyObject) {
-    navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
+//    navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
   }
   
   @IBAction func tappedStatusButton(sender: AnyObject) {

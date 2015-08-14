@@ -73,10 +73,6 @@
 		B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */; };
 		B23E53D51B4BC12B00CB7761 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53D41B4BC12B00CB7761 /* openssl.framework */; };
 		B249673F1B79A50A00C6E286 /* InfoEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249673D1B79A50A00C6E286 /* InfoEditVC.swift */; };
-		B24967401B79A50A00C6E286 /* InfoEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B249673E1B79A50A00C6E286 /* InfoEditVC.xib */; };
-		B24967421B79D1B100C6E286 /* InfoEditFirstPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24967411B79D1B100C6E286 /* InfoEditFirstPage.xib */; };
-		B24967441B79D1BE00C6E286 /* InfoEditSecondPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24967431B79D1BE00C6E286 /* InfoEditSecondPage.xib */; };
-		B24967461B79D1CB00C6E286 /* InfoEditThirdPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24967451B79D1CB00C6E286 /* InfoEditThirdPage.xib */; };
 		B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D381B4BFAED0098608F /* JSHAnimationVC.m */; };
 		B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D3A1B4BFAED0098608F /* JSHHotelRegisterVC.m */; };
 		B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D3B1B4BFAED0098608F /* JSHHotelRegisterVC.xib */; };
@@ -110,6 +106,8 @@
 		B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A6421C1B47C2A700AF0F28 /* BookVC.xib */; };
 		B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3C1B73493D00CA5158 /* libc++.dylib */; };
 		B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */; };
+		B2C2EB361B7D8B2300FF8B23 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EB351B7D8B2300FF8B23 /* SettingTableViewController.swift */; };
+		B2C2EB381B7D8B4100FF8B23 /* SettingTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB371B7D8B4100FF8B23 /* SettingTable.plist */; };
 		B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */; };
 		B2F4716B1B4B6CF0005122BB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F471691B4B6CF0005122BB /* AlipaySDK.framework */; };
 		B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F471701B4B7B21005122BB /* AlipayOrder.m */; };
@@ -241,10 +239,6 @@
 		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B23E53D41B4BC12B00CB7761 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
 		B249673D1B79A50A00C6E286 /* InfoEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditVC.swift; sourceTree = "<group>"; };
-		B249673E1B79A50A00C6E286 /* InfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditVC.xib; sourceTree = "<group>"; };
-		B24967411B79D1B100C6E286 /* InfoEditFirstPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditFirstPage.xib; sourceTree = "<group>"; };
-		B24967431B79D1BE00C6E286 /* InfoEditSecondPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditSecondPage.xib; sourceTree = "<group>"; };
-		B24967451B79D1CB00C6E286 /* InfoEditThirdPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditThirdPage.xib; sourceTree = "<group>"; };
 		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
 		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimationVC.m; sourceTree = "<group>"; };
 		B2564D391B4BFAED0098608F /* JSHHotelRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHHotelRegisterVC.h; sourceTree = "<group>"; };
@@ -292,6 +286,8 @@
 		B2A6421C1B47C2A700AF0F28 /* BookVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookVC.xib; sourceTree = "<group>"; };
 		B2B2EC3C1B73493D00CA5158 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		B2C2EB351B7D8B2300FF8B23 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		B2C2EB371B7D8B4100FF8B23 /* SettingTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingTable.plist; sourceTree = "<group>"; };
 		B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		B2F471691B4B6CF0005122BB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		B2F4716F1B4B7B21005122BB /* AlipayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipayOrder.h; sourceTree = "<group>"; };
@@ -726,6 +722,8 @@
 				B2564D501B4BFE070098608F /* Controller */,
 				B2564D561B4BFE070098608F /* Model */,
 				B2564D641B4BFE070098608F /* View */,
+				B2C2EB351B7D8B2300FF8B23 /* SettingTableViewController.swift */,
+				B2C2EB371B7D8B4100FF8B23 /* SettingTable.plist */,
 			);
 			path = InfoCenter;
 			sourceTree = "<group>";
@@ -736,7 +734,6 @@
 				B2564D531B4BFE070098608F /* JSHInfoEditVC.h */,
 				B2564D541B4BFE070098608F /* JSHInfoEditVC.m */,
 				B249673D1B79A50A00C6E286 /* InfoEditVC.swift */,
-				B249673E1B79A50A00C6E286 /* InfoEditVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -758,9 +755,6 @@
 			children = (
 				B2564D6A1B4BFE070098608F /* JSHInfoEditHeader.h */,
 				B2564D6B1B4BFE070098608F /* JSHInfoEditHeader.m */,
-				B24967411B79D1B100C6E286 /* InfoEditFirstPage.xib */,
-				B24967431B79D1BE00C6E286 /* InfoEditSecondPage.xib */,
-				B24967451B79D1CB00C6E286 /* InfoEditThirdPage.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1017,24 +1011,21 @@
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
-				B24967421B79D1B100C6E286 /* InfoEditFirstPage.xib in Resources */,
 				B2F49EB61B7347A200556AE2 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
 				B21250C01B7487B90056835D /* LeftMenu.plist in Resources */,
 				B2564D781B4BFE070098608F /* JSHInfoEditSelection.plist in Resources */,
-				B24967441B79D1BE00C6E286 /* InfoEditSecondPage.xib in Resources */,
 				B2F49EAE1B7347A200556AE2 /* UMSCommentDetailController.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2F49EB01B7347A200556AE2 /* UMSCommentInputControlleriPad.xib in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
+				B2C2EB381B7D8B4100FF8B23 /* SettingTable.plist in Resources */,
 				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				B2F49EB21B7347A200556AE2 /* UMShareEditViewControlleriPad.xib in Resources */,
 				405266521B41283900B277BE /* MainVC.xib in Resources */,
 				B2F49EB51B7347A200556AE2 /* UMSShareListController.xib in Resources */,
-				B24967401B79A50A00C6E286 /* InfoEditVC.xib in Resources */,
-				B24967461B79D1CB00C6E286 /* InfoEditThirdPage.xib in Resources */,
 				B201C2891B65D225004CA10C /* JSHInfoEditCell.xib in Resources */,
 				B2F49EAC1B7347A200556AE2 /* UMSocialLocalizable.strings in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
@@ -1105,6 +1096,7 @@
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
+				B2C2EB361B7D8B2300FF8B23 /* SettingTableViewController.swift in Sources */,
 				4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */,
 				404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */,
 				405BC0FC1B42495F00081C0A /* DotLine.swift in Sources */,
