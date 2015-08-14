@@ -196,6 +196,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           order.shopid = orderInfo["shopid"] as? String
           order.fullname = orderInfo["fullname"] as? String
           order.status = orderInfo["status"] as? String
+          order.nologin = orderInfo["nologin"] as? String
           var dateFormatter = NSDateFormatter()
           dateFormatter.dateFormat = "yyyy-MM-dd"
           let startDate = dateFormatter.dateFromString(order.arrival_date)
