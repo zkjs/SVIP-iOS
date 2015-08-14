@@ -60,4 +60,6 @@
 - (void)cancelOrderWithUserID:(NSString *)userID token:(NSString *)token reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // 删除订单
 - (void)deleteOrderWithUserID:(NSString *)userID token:(NSString *)token reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+// 提交轨迹
+- (void)postGPSWithUserID:(NSString *)userID token:(NSString *)token longitude:(NSString *)longitude latitude:(NSString *)latitude traceTime:(NSString *)traceTime success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
