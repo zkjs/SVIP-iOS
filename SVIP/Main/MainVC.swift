@@ -39,98 +39,22 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
-    println("Bounds: \(UIScreen.mainScreen().bounds)")
-    motionView.delegate = self
-    motionView.motionEnabled = true
-    motionView.scrollIndicatorEnabled = false
-    motionView.zoomEnabled = false
-    motionView.scrollDragEnabled = false
-    motionView.scrollBounceEnabled = false
-    view.addSubview(motionView)
-    view.sendSubviewToBack(motionView)
-    
-    rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
-    rightButton.badgeBackgroundColor = UIColor.redColor()
-    rightButton.badgeString = nil
-    
+    setupMotionView()
+    setupRightButton()
     setupBeaconMonitor()
-    
-    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-    
-    locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    locationManager.requestAlwaysAuthorization()
-    locationManager.startUpdatingLocation()
-    
-    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
-    
-    statusLabel.hidden = true
-    infoLabel.hidden = true
-//    tipsLabel.hidden = true
-    regionLabel.hidden = true
-    checkinLabel.hidden = true
-    checkinSubLabel.hidden = true
-    
-//    let notification = UILocalNotification()
-//    let alertMessage = "initNetworkCommunicationWithIP: HOST \(HOST) & PORT \(PORT)"
-//    notification.alertBody = alertMessage
-//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    initTCPSessionManager()
+    setupLocationService()
+    initSmartPanelUI()
   }
   
   override func viewWillAppear(animated: Bool) {
     navigationController?.setNavigationBarHidden(true, animated: true)//为了保证每次进入首页无navigationbar页面效果
     navigationController?.delegate = self
+    
     settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
     
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      let orderArray = responseObject as! NSArray
-      if orderArray.count > 0 {
-        let lastOrder = orderArray.firstObject as! NSDictionary
-        let order = BookOrder()
-        order.arrival_date = lastOrder["arrival_date"] as? String
-        order.created = lastOrder["created"] as? String
-        order.departure_date = lastOrder["departure_date"] as? String
-        order.guest = lastOrder["guest"] as? String
-        order.guesttel = lastOrder["guesttel"] as? String
-        order.orderid = lastOrder["id"] as? String
-        order.remark = lastOrder["remark"] as? String
-        order.reservation_no = lastOrder["reservation_no"] as? String
-        order.room_rate = lastOrder["room_rate"] as? String
-        order.room_type = lastOrder["room_type"] as? String
-        order.room_typeid = lastOrder["room_typeid"] as? String
-        order.rooms = lastOrder["rooms"] as? String
-        order.shopid = lastOrder["shopid"] as? String
-        order.fullname = lastOrder["fullname"] as? String
-        order.status = lastOrder["status"] as? String
-        order.nologin = lastOrder["nologin"] as? String
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let startDate = dateFormatter.dateFromString(order.arrival_date)
-        let endDate = dateFormatter.dateFromString(order.departure_date)
-        order.dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
-        StorageManager.sharedInstance().updateLastOrder(order)
-      }
-      self.determineCurrentRegionState()
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
-    
-    if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
-      var totalBadge = 0
-      for shopID in shopMessageBadge.keys {
-        totalBadge += shopMessageBadge[shopID]!
-      }
-      if totalBadge == 0 {
-        rightButton.badgeString = nil
-      } else {
-        rightButton.badgeString = String(totalBadge)
-      }
-    } else {
-      rightButton.badgeString = nil
-    }
+    updateSmartPanel()
+    updateMessageBadge()
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -153,6 +77,46 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - Private Method
+  func initSmartPanelUI() {
+    statusLabel.hidden = true
+    infoLabel.hidden = true
+    //    tipsLabel.hidden = true
+    regionLabel.hidden = true
+    checkinLabel.hidden = true
+    checkinSubLabel.hidden = true
+  }
+  
+  func setupLocationService() {
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.requestAlwaysAuthorization()
+    locationManager.startUpdatingLocation()
+    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
+  }
+  
+  func initTCPSessionManager() {
+    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+  }
+  
+  func setupRightButton() {
+    rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
+    rightButton.badgeBackgroundColor = UIColor.redColor()
+    rightButton.badgeString = nil
+  }
+  
+  func setupMotionView() {
+    let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
+    println("Bounds: \(UIScreen.mainScreen().bounds)")
+    motionView.delegate = self
+    motionView.motionEnabled = true
+    motionView.scrollIndicatorEnabled = false
+    motionView.zoomEnabled = false
+    motionView.scrollDragEnabled = false
+    motionView.scrollBounceEnabled = false
+    view.addSubview(motionView)
+    view.sendSubviewToBack(motionView)
+  }
+  
   func setupBeaconMonitor() {
     beaconManager.delegate = self
     
@@ -228,7 +192,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         beaconManager.requestStateForRegion(beaconRegion)
       }
     }
-    updateSmartPanel()
+    updateSmartPanelUI()
   }
   
   func didEnterBeaconRegion(region: CLBeaconRegion!) {
@@ -288,7 +252,60 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     StorageManager.sharedInstance().updateLastBeacon(nil)
   }
   
+  func updateMessageBadge() {
+    if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+      var totalBadge = 0
+      for shopID in shopMessageBadge.keys {
+        totalBadge += shopMessageBadge[shopID]!
+      }
+      if totalBadge == 0 {
+        rightButton.badgeString = nil
+      } else {
+        rightButton.badgeString = String(totalBadge)
+      }
+    } else {
+      rightButton.badgeString = nil
+    }
+  }
+  
   func updateSmartPanel() {
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
+    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      let orderArray = responseObject as! NSArray
+      if orderArray.count > 0 {
+        let lastOrder = orderArray.firstObject as! NSDictionary
+        let order = BookOrder()
+        order.arrival_date = lastOrder["arrival_date"] as? String
+        order.created = lastOrder["created"] as? String
+        order.departure_date = lastOrder["departure_date"] as? String
+        order.guest = lastOrder["guest"] as? String
+        order.guesttel = lastOrder["guesttel"] as? String
+        order.orderid = lastOrder["id"] as? String
+        order.remark = lastOrder["remark"] as? String
+        order.reservation_no = lastOrder["reservation_no"] as? String
+        order.room_rate = lastOrder["room_rate"] as? String
+        order.room_type = lastOrder["room_type"] as? String
+        order.room_typeid = lastOrder["room_typeid"] as? String
+        order.rooms = lastOrder["rooms"] as? String
+        order.shopid = lastOrder["shopid"] as? String
+        order.fullname = lastOrder["fullname"] as? String
+        order.status = lastOrder["status"] as? String
+        order.nologin = lastOrder["nologin"] as? String
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let startDate = dateFormatter.dateFromString(order.arrival_date)
+        let endDate = dateFormatter.dateFromString(order.departure_date)
+        order.dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
+        StorageManager.sharedInstance().updateLastOrder(order)
+      }
+      self.determineCurrentRegionState()
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+  }
+  
+  func updateSmartPanelUI() {
     statusLabel.hidden = false
     infoLabel.hidden = false
 //    tipsLabel.hidden = false
@@ -612,15 +629,31 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //      }
 //    })
     
+    locationManager.stopUpdatingLocation()
+    
     let coordinate = manager.location.coordinate
     let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
     regeoRequest.searchType = AMapSearchType.ReGeocode
     regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
     regeoRequest.radius = 10000
     regeoRequest.requireExtension = true
-
     println("regeoRequest :\(regeoRequest)")
     locationSearch.AMapReGoecodeSearch(regeoRequest)
+    
+    postGPSLocation(coordinate)
+  }
+  
+  func postGPSLocation(coordinate: CLLocationCoordinate2D) {
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
+    var dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    let traceTime = dateFormatter.stringFromDate(NSDate())
+    ZKJSHTTPSessionManager.sharedInstance().postGPSWithUserID(userID, token: token, longitude: "\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   // MARK: - AMapSearchDelegate
@@ -637,8 +670,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       }
       println("Location: \(response.regeocode.formattedAddress)")
     }
-    
-    locationManager.stopUpdatingLocation()
   }
   
   // MARK: - ESTBeaconManagerDelegate
@@ -648,7 +679,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if state != CLRegionState.Inside {
         StorageManager.sharedInstance().updateLastBeacon(nil)
       }
-      updateSmartPanel()
+      updateSmartPanelUI()
     }
   }
   

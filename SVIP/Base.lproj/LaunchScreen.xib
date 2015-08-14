@@ -10,11 +10,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="星空中心大一圈" translatesAutoresizingMaskIntoConstraints="NO" id="Kq4-RO-h5r">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星空中心大一圈" translatesAutoresizingMaskIntoConstraints="NO" id="Kq4-RO-h5r">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Kq4-RO-h5r" secondAttribute="trailing" id="Oct-AR-7z1"/>
+                <constraint firstItem="Kq4-RO-h5r" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aMh-vg-Zja"/>
+                <constraint firstAttribute="bottom" secondItem="Kq4-RO-h5r" secondAttribute="bottom" id="iSF-OP-0ym"/>
+                <constraint firstItem="Kq4-RO-h5r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rHl-WZ-y2B"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="610.5" y="653.5"/>
         </view>

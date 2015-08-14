@@ -489,4 +489,21 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
+// 提交轨迹
+- (void)postGPSWithUserID:(NSString *)userID token:(NSString *)token longitude:(NSString *)longitude latitude:(NSString *)latitude traceTime:(NSString *)traceTime success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"user/gpsadd" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[longitude dataUsingEncoding:NSUTF8StringEncoding] name:@"longitude"];
+    [formData appendPartWithFormData:[latitude dataUsingEncoding:NSUTF8StringEncoding] name:@"latitude"];
+    [formData appendPartWithFormData:[traceTime dataUsingEncoding:NSUTF8StringEncoding] name:@"traceTime"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
 @end
