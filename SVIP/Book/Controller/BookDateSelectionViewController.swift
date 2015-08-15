@@ -7,8 +7,9 @@
 //
 
 import UIKit
-
+typealias SelectionBlock = (NSDate, NSDate) -> ()
 class BookDateSelectionViewController: UIViewController, TSQCalendarViewDelegate {
+  var selection: SelectionBlock?
   var startDate: NSDate?
   var endDate: NSDate?
   override func viewDidLoad() {
@@ -30,6 +31,9 @@ class BookDateSelectionViewController: UIViewController, TSQCalendarViewDelegate
   func calendarView(calendarView: TSQCalendarView!, didSelectDate date: NSDate!) {
     if (calendarView.startDate != nil && calendarView.endDate != nil) {
       println("selection is over")
+      if selection != nil {
+        selection!(calendarView.startDate, calendarView.endDate)
+      }
       self.navigationController?.popViewControllerAnimated(true)
     }
   }
