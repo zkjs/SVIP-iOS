@@ -142,7 +142,7 @@ class BookConfirmVC: UIViewController {
   }
 //MARK:- BUTTON ACTION
   @IBAction private func dateSelect(sender: BookDateButton) {
-
+/*
     BlurDatePickerView .showInView(self.view, startDate:sender == inDate ? NSDate() : (inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)), success: { (date: NSDate!) -> Void in
       var calender = NSCalendar .currentCalendar()
       var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: date)
@@ -152,6 +152,9 @@ class BookConfirmVC: UIViewController {
       }
       self.updateSubviews()
     })
+*/
+    let vc = BookDateSelectionViewController()
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   func optionSelect(sender: UIButton) {

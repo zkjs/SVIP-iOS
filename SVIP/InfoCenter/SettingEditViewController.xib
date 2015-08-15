@@ -29,8 +29,7 @@
                             <exclude reference="Q6o-2c-jZ3"/>
                         </mask>
                     </variation>
-                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                        <rect key="frame" x="20" y="122" width="384" height="21"/>
+                    <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
                             <include reference="Q6o-2c-jZ3"/>
                         </mask>
@@ -107,12 +106,12 @@
                     <exclude reference="xrL-BB-Ozv"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="HUf-5v-o5f"/>
-                    <exclude reference="apk-9x-jQ4"/>
-                    <exclude reference="hbu-HD-awa"/>
                     <exclude reference="8S0-fA-bK9"/>
                     <exclude reference="WEt-w3-qWm"/>
                     <exclude reference="vvq-7o-ffa"/>
+                    <exclude reference="HUf-5v-o5f"/>
+                    <exclude reference="apk-9x-jQ4"/>
+                    <exclude reference="hbu-HD-awa"/>
                     <exclude reference="2RQ-iF-LQX"/>
                     <exclude reference="S4F-78-e7I"/>
                     <exclude reference="qPw-b3-NOW"/>
@@ -125,12 +124,12 @@
                     <include reference="xrL-BB-Ozv"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="HUf-5v-o5f"/>
-                    <include reference="apk-9x-jQ4"/>
-                    <include reference="hbu-HD-awa"/>
                     <include reference="8S0-fA-bK9"/>
                     <include reference="WEt-w3-qWm"/>
                     <include reference="vvq-7o-ffa"/>
+                    <include reference="HUf-5v-o5f"/>
+                    <include reference="apk-9x-jQ4"/>
+                    <include reference="hbu-HD-awa"/>
                     <include reference="2RQ-iF-LQX"/>
                     <include reference="S4F-78-e7I"/>
                     <include reference="qPw-b3-NOW"/>
