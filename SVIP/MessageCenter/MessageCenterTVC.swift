@@ -11,7 +11,9 @@ import MessageUI
 
 private let kRightViewRatio: Double = 1.0 - 0.75
 
-class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelegate {
+class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
+  
+  let tableView = UITableView()
   
   var shops = [NSDictionary]()
   
@@ -23,7 +25,12 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
     
 //    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
-    tableView.contentInset = UIEdgeInsetsMake(0.0, 320.0 * 0.25, 0.0, 0.0)
+    let screeWidth = UIScreen.mainScreen().bounds.width
+    tableView.frame = CGRectMake(screeWidth * 0.25, 0.0, screeWidth * 0.75, UIScreen.mainScreen().bounds.height)
+    tableView.bounces = false
+    tableView.delegate = self
+    tableView.dataSource = self
+    view.addSubview(tableView)
     
     let cellNib = UINib(nibName: HotelMessageCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: HotelMessageCell.reuseIdentifier())
@@ -40,33 +47,47 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return shops.count + 1
   }
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 82
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    if (self.tableView.respondsToSelector(Selector("setSeparatorInset:"))) {
+      self.tableView.separatorInset = UIEdgeInsetsZero
+    }
+    
+    if (self.tableView.respondsToSelector(Selector("setLayoutMargins:"))) {
+      self.tableView.layoutMargins = UIEdgeInsetsZero
+    }
+    
+    if (cell.respondsToSelector(Selector("setLayoutMargins:"))) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
     
     if indexPath.row == 0 {
-      var version = ""
-      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
-        version = info
-      }
-      var build = ""
-      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
-        build = info
-      }
-      cell.name.text = "意见反馈"
-      cell.tips.text = "Version \(version) Build \(build)"
-      cell.logo.setImage(UIImage(named: "ic_app"), forState: .Normal)
+//      var version = ""
+//      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+//        version = info
+//      }
+//      var build = ""
+//      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
+//        build = info
+//      }
+//      cell.tips.text = "Version \(version) Build \(build)"
+      cell.name.text = "软件反馈"
+      cell.logo.setImage(UIImage(named: "img_hotel_zhanwei"), forState: .Normal)
       return cell
     }
   
@@ -102,21 +123,37 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
     return cell
   }
   
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 60.0
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 150.0
   }
   
-//  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//    return UIView()
-//  }
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let screeWidth = UIScreen.mainScreen().bounds.width
+    let headerView = UIView(frame: CGRectMake(0.0, 0.0, screeWidth * 0.75, 150.0))
+    let imageView = UIImageView(image: UIImage(named: "bg_cebian"))
+    imageView.frame = CGRectMake(0.0, 0.0, screeWidth * 0.75, 150.0)
+    headerView.addSubview(imageView)
+    let title = UILabel(frame: CGRectMake(30.0, 30.0, 120.0, 30.0))
+    title.textColor = UIColor.whiteColor()
+    title.text = "消息中心"
+    headerView.addSubview(title)
+    return headerView
+  }
   
   // MARK: - Table view delegate
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
     if indexPath.row == 0 {
-      sendLogEmail()
+//      sendLogEmail()
+      let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+      chatVC.shopID = "31415"
+      chatVC.shopName = "软件反馈"
+      if let navigationController = self.sideMenuViewController.contentViewController as? UINavigationController {
+        self.sideMenuViewController.hideMenuViewController()
+        navigationController.pushViewController(chatVC, animated: false)
+      }
       return
     }
     

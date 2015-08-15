@@ -32,6 +32,7 @@ class LoginManager: NSObject {
   
   func showResideMenu(haspushed pushedVC: UIViewController?) {
     let nc = UINavigationController(rootViewController: MainVC())
+    nc.navigationBar.tintColor = UIColor.blackColor()
     if pushedVC != nil {
       nc.pushViewController(pushedVC!, animated: false)
     }

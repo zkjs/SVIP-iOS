@@ -37,17 +37,9 @@ class HotelMessageCell: UITableViewCell {
     logo.badgeEdgeInsets = UIEdgeInsetsMake(15.0, 0.0, 0.0, 10.0)
     logo.badgeBackgroundColor = UIColor.redColor()
     logo.badgeString = nil
+    
+//    layoutMargins = UIEdgeInsetsZero
+//    preservesSuperviewLayoutMargins = false
   }
-  
-//  func setCity(city: YALCity) {
-//    self.nameLable?.text = city.name
-//    self.pictureImageView?.alpha = 0.0
-//    self.pictureImageView?.image = city.image
-//    
-//    UIView.animateWithDuration(0.3, animations: { () -> Void in
-//      self.pictureImageView?.alpha = 1.0
-//      return
-//    })
-//  }
   
 }

@@ -61,7 +61,7 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [self setupNotification];
   [self setupDataSource];
-  [self setupNavigationBar];
+//  [self setupNavigationBar];
   [self setupMessageTableView];
   [self setupMessageInputView];
   [self setupSessionID];
@@ -309,11 +309,11 @@ const CGFloat shortcutViewHeight = 45.0;
       break;
     }
     case ChatOldSession: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
+      self.title = [NSString stringWithFormat:@"%@", self.shopName];
       break;
     }
     case ChatCallingWaiter: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
+      self.title = [NSString stringWithFormat:@"%@", self.shopName];
       NSString *orderStatus = @"";
       if ([self.order.status isEqualToString:@"0"]) {
         orderStatus = @"未确认可取消订单";
@@ -336,7 +336,7 @@ const CGFloat shortcutViewHeight = 45.0;
       break;
     }
     case ChatService: {
-      self.title = [NSString stringWithFormat:@"%@欢迎您!", self.shopName];
+      self.title = [NSString stringWithFormat:@"%@", self.shopName];
       self.messageInputView.transform = CGAffineTransformTranslate(self.messageInputView.transform, 0.0, CGRectGetHeight(self.messageInputView.frame));
       self.messageInputView.hidden = YES;
       self.subButtonViews = [NSMutableArray array];
