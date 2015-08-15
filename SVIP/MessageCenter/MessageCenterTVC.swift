@@ -9,6 +9,8 @@
 import UIKit
 import MessageUI
 
+private let kRightViewRatio: Double = 1.0 - 0.75
+
 class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelegate {
   
   var shops = [NSDictionary]()
@@ -17,9 +19,11 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = "消息中心"
+//    title = "消息中心"
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+    
+    tableView.contentInset = UIEdgeInsetsMake(0.0, 320.0 * 0.25, 0.0, 0.0)
     
     let cellNib = UINib(nibName: HotelMessageCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: HotelMessageCell.reuseIdentifier())
@@ -95,27 +99,16 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
 
     }
     
-//    if let order = StorageManager.sharedInstance().lastOrder() {
-//      if let status = order.status {
-//        switch status {
-//          case "0":
-//          cell.status.text = "可取消"
-//          case "1":
-//          cell.status.text = "已取消"
-//          case "2":
-//          cell.status.text = "已确定"
-//          case "3":
-//          cell.status.text = "已完成"
-//          case "5":
-//          cell.status.text = "已删除"
-//        default:
-//          break
-//        }
-//      }
-//    }
-    
     return cell
   }
+  
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 60.0
+  }
+  
+//  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    return UIView()
+//  }
   
   // MARK: - Table view delegate
   
@@ -134,7 +127,11 @@ class MessageCenterTVC: UITableViewController, MFMailComposeViewControllerDelega
       if let shopName = shop["fullname"] as? String {
         chatVC.shopName = shopName
       }
-      navigationController?.pushViewController(chatVC, animated: true)
+//      navigationController?.pushViewController(chatVC, animated: true)
+      if let navigationController = self.sideMenuViewController.contentViewController as? UINavigationController {
+        self.sideMenuViewController.hideMenuViewController()
+        navigationController.pushViewController(chatVC, animated: false)
+      }
     }
   }
   

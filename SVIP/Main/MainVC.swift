@@ -311,7 +311,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //    tipsLabel.hidden = false
     regionLabel.hidden = false
     checkinLabel.hidden = false
-    checkinSubLabel.hidden = false
+//    checkinSubLabel.hidden = false
     
     let beacon = StorageManager.sharedInstance().lastBeacon()
     println("Last Beacon: \(beacon)")
@@ -402,7 +402,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_NoOrder:
-      statusLabel.setTitle(" \((order?.fullname)!)欢迎您，点击查看信息", forState: .Normal)
+      statusLabel.setTitle(" 欢迎您，点击查看信息", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
       tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:
@@ -446,7 +446,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_NoOrder:
-      statusLabel.setTitle(" 您没有任何预订信息, 请立即预订", forState: .Normal)
+      statusLabel.setTitle(" 您还没有预订信息, 请立即预订", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
       tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
     }
