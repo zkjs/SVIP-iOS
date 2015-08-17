@@ -25,7 +25,7 @@
 // 修改帐号密码
 - (void)changeAccountPasswordWithPhone:(NSString *)phone newPassword:(NSString *)newPassword success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // 修改用户信息
-- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token userName:(NSString *)userName imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // 取得用户头像
 - (UIImage *)getUserProfileWithUserID:(NSString *)userID;
 // 取得用户信息

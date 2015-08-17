@@ -67,7 +67,7 @@ class BookConfirmVC: UIViewController {
       order.rooms = "1"
       order.shopid = goods?.shopid
       let localBaseInfo = JSHStorage .baseInfo()
-      order.guest = localBaseInfo.name
+      order.guest = localBaseInfo.username
       order.guesttel = localBaseInfo.phone
 //      order.arrival_date = "2015-12-1"
 //      order.departure_date = "2015-12-28"

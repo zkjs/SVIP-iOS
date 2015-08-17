@@ -8,7 +8,7 @@
 
 import UIKit
 enum VCType {
-  case name
+  case realname
   case nickname
   case company
   case email
@@ -36,7 +36,7 @@ class SettingEditViewController: UIViewController {
   
   func setUI() {
     switch type {
-    case VCType.name:
+    case VCType.realname:
       if let dic = editDic["name"] as? NSDictionary {
         if let placeholder = dic["placeholder"] as? String {
           textField.placeholder = placeholder
@@ -84,7 +84,7 @@ class SettingEditViewController: UIViewController {
     var company:String?
     var email:String?
     switch type {
-    case VCType.name:
+    case VCType.realname:
       if !textField.text.isEmpty {
         username = textField.text
       }
@@ -104,8 +104,32 @@ class SettingEditViewController: UIViewController {
     default: break
     }
     
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, userName: username, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let dic = responseObject as? NSDictionary {
+        let set = dic["set"]!.boolValue!
+//        if set {
+//          let baseInfo = JSHStorage.baseInfo()
+//          switch type {
+//          case VCType.realname:
+//            baseInfo.real_name = 
+//          case VCType.nickname:
+//            if !textField.text.isEmpty {
+//              nickname = textField.text
+//            }
+//            
+//          case VCType.company:
+//            if !textField.text.isEmpty {
+//              company = textField.text
+//            }
+//          case VCType.email:
+//            if !textField.text.isEmpty {
+//              email = textField.text
+//            }
+//          default: break
+//          }
+//          
+//        }
+      }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
       
     }

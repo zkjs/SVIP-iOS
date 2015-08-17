@@ -125,7 +125,7 @@
     _phoneLabel.text = baseInfo.phone;
     
     _nameField.frame = _headerFrame.nameFieldFrame;
-    _nameField.text = baseInfo.name;
+    _nameField.text = baseInfo.username;
     
     _positionField.frame = _headerFrame.positionFieldFrame;
     _positionField.text = baseInfo.position;
@@ -272,7 +272,7 @@
 //        return;
 //    }
     if (textField == _nameField) {
-        _headerFrame.baseInfo.name = textField.text;
+        _headerFrame.baseInfo.username = textField.text;
     }else if (textField == _positionField) {
         _headerFrame.baseInfo.position = textField.text;
     } else if (textField == _companyField) {
@@ -284,7 +284,7 @@
 {
     UITextField *textField = [aNotification object];
     if (textField == _nameField) {
-        _headerFrame.baseInfo.name = textField.text;
+        _headerFrame.baseInfo.username = textField.text;
     }else if (textField == _positionField) {
         _headerFrame.baseInfo.position = textField.text;
     } else if (textField == _companyField) {

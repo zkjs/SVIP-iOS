@@ -226,7 +226,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
       }
       let logData = NSData(contentsOfFile: logPath)
       mailComposer.addAttachmentData(logData, mimeType: "text/plain", fileName: "SVIP.log")
-      mailComposer.setMessageBody("来自用户:\(JSHStorage.baseInfo().name)\n账号:\(JSHStorage.baseInfo().phone)\n版本:\(version) (\(build))", isHTML: false)
+      mailComposer.setMessageBody("来自用户:\(JSHStorage.baseInfo().username)\n账号:\(JSHStorage.baseInfo().phone)\n版本:\(version) (\(build))", isHTML: false)
       if MFMailComposeViewController.canSendMail() {
         presentViewController(mailComposer, animated: true, completion: nil)
       } else {

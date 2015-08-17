@@ -214,7 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func didOpenTCPSocket() {
 //    if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHStorage.baseInfo().name
+    let userName = JSHStorage.baseInfo().username
     
     if userID != nil && userName != nil {
       ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)

@@ -120,12 +120,12 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
         imageView.image = UIImage(named: "img_hotel_zhanwei")
         cell?.accessoryView = imageView
       case 1:
-        if localBaseInfo?.name != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.name
+        if localBaseInfo?.username != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.username
         }
       case 2:
-        if localBaseInfo?.nickname != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.nickname
+        if localBaseInfo?.username != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.username
         }
       case 3:
         println()
@@ -154,7 +154,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     case NSIndexPath(forRow: 0, inSection: 0):
       UIActionSheet(title:"选择照片来源", delegate:self, cancelButtonTitle:"取消", destructiveButtonTitle:"照相", otherButtonTitles:"照片库") .showInView(self.view)
     case NSIndexPath(forRow: 1, inSection: 0):
-      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.name), animated: true)
+      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.realname), animated: true)
     case NSIndexPath(forRow: 2, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.nickname), animated: true)
     case NSIndexPath(forRow: 3, inSection: 0):

@@ -124,14 +124,16 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 修改用户信息
-- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token userName:(NSString *)userName imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     if (imageData) {
       [formData appendPartWithFileData:imageData name:@"file" fileName:imageName mimeType:@"image/jpeg"];
     }
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-    [formData appendPartWithFormData:[userName dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
+    if (username) {
+      [formData appendPartWithFormData:[username dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
+    }
     if (sex) {
       [formData appendPartWithFormData:[sex dataUsingEncoding:NSUTF8StringEncoding] name:@"sex"];
     }

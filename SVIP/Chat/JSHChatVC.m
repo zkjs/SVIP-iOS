@@ -277,7 +277,7 @@ const CGFloat shortcutViewHeight = 45.0;
   self.messageSender = @"我";
   self.messageReceiver = self.receiverName;
   self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
-  self.senderName = [JSHStorage baseInfo].name;
+  self.senderName = [JSHStorage baseInfo].username;
 }
 
 - (void)setupMessageInputView {

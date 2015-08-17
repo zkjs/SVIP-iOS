@@ -221,7 +221,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           "userid": JSHAccountManager.sharedJSHAccountManager().userid,
           "shopid": shopID!,
           "locid": locid!,
-          "username": JSHStorage.baseInfo().name,
+          "username": JSHStorage.baseInfo().username,
           "timestamp": NSNumber(longLong: timestamp)
         ]
         ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
