@@ -8,6 +8,7 @@ target 'SVIP' do
   pod 'MIBadgeButton', :inhibit_warnings => true
   pod 'SWTableViewCell'
   pod 'MJRefresh'
+  pod 'MJExtension', '~> 2.5.7'
   pod 'YXTMotionView', :git => 'https://github.com/hanton/YXTMotionView.git', :branch => 'master'
   pod 'SocketRocket', :inhibit_warnings => true
   pod 'PKYStepper'
@@ -20,7 +21,6 @@ target 'SVIP' do
   pod 'AFNetworking'
   pod 'SSKeychain', '~> 1.2.3'
   pod 'SDWebImage', '~> 3.7'
-  pod 'MJExtension'
   pod 'JTSImageViewController'
   pod 'RESideMenu', '~> 4.0.7'
 end

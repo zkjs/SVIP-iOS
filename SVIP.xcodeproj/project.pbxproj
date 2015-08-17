@@ -62,6 +62,8 @@
 		B21250CA1B74AFD50056835D /* BookListRightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250C91B74AFD50056835D /* BookListRightMenuVC.swift */; };
 		B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250CB1B74AFDF0056835D /* BookListRightMenuVC.xib */; };
 		B21250CE1B74AFF00056835D /* LeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250CD1B74AFF00056835D /* LeftMenuVC.xib */; };
+		B22AF2351B8192F500E49BFF /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22AF2331B8192F500E49BFF /* TicketTableViewCell.swift */; };
+		B22AF2361B8192F500E49BFF /* TicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B22AF2341B8192F500E49BFF /* TicketTableViewCell.xib */; };
 		B23E537C1B4BB64C00CB7761 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536C1B4BB64C00CB7761 /* base64.m */; };
 		B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E536F1B4BB64C00CB7761 /* DataSigner.m */; };
 		B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E53711B4BB64C00CB7761 /* DataVerifier.m */; };
@@ -227,6 +229,8 @@
 		B21250C91B74AFD50056835D /* BookListRightMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListRightMenuVC.swift; sourceTree = "<group>"; };
 		B21250CB1B74AFDF0056835D /* BookListRightMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListRightMenuVC.xib; sourceTree = "<group>"; };
 		B21250CD1B74AFF00056835D /* LeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuVC.xib; sourceTree = "<group>"; };
+		B22AF2331B8192F500E49BFF /* TicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
+		B22AF2341B8192F500E49BFF /* TicketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketTableViewCell.xib; sourceTree = "<group>"; };
 		B23E536B1B4BB64C00CB7761 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		B23E536C1B4BB64C00CB7761 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
 		B23E536D1B4BB64C00CB7761 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -750,6 +754,8 @@
 				B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */,
 				B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */,
 				B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */,
+				B22AF2331B8192F500E49BFF /* TicketTableViewCell.swift */,
+				B22AF2341B8192F500E49BFF /* TicketTableViewCell.xib */,
 			);
 			path = InfoCenter;
 			sourceTree = "<group>";
@@ -1063,6 +1069,7 @@
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
+				B22AF2361B8192F500E49BFF /* TicketTableViewCell.xib in Resources */,
 				B2F49EB61B7347A200556AE2 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
@@ -1204,6 +1211,7 @@
 				404CF5D51B676CC900BCFB44 /* EncryptionBinaryTransformer.swift in Sources */,
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
 				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
+				B22AF2351B8192F500E49BFF /* TicketTableViewCell.swift in Sources */,
 				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
 				B2564D721B4BFE070098608F /* JSHInfoEditVC.m in Sources */,
 				B201C28C1B65D225004CA10C /* JSHUserInfo.m in Sources */,
