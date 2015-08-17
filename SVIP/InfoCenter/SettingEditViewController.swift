@@ -9,7 +9,7 @@
 import UIKit
 enum VCType {
   case realname
-  case nickname
+  case username
   case company
   case email
 }
@@ -37,7 +37,7 @@ class SettingEditViewController: UIViewController {
   func setUI() {
     switch type {
     case VCType.realname:
-      if let dic = editDic["name"] as? NSDictionary {
+      if let dic = editDic["realname"] as? NSDictionary {
         if let placeholder = dic["placeholder"] as? String {
           textField.placeholder = placeholder
         }
@@ -45,8 +45,8 @@ class SettingEditViewController: UIViewController {
           promptLabel.text = prompt
         }
       }
-    case VCType.nickname:
-      if let dic = editDic["nickname"] as? NSDictionary {
+    case VCType.username:
+      if let dic = editDic["username"] as? NSDictionary {
         if let placeholder = dic["placeholder"] as? String {
           textField.placeholder = placeholder
         }
@@ -80,17 +80,17 @@ class SettingEditViewController: UIViewController {
   
   @IBAction func save(sender: UIButton) {
     var username:String?
-    var nickname:String?
+    var realname:String?
     var company:String?
     var email:String?
     switch type {
     case VCType.realname:
       if !textField.text.isEmpty {
-        username = textField.text
+        realname = textField.text
       }
-    case VCType.nickname:
+    case VCType.username:
       if !textField.text.isEmpty {
-        nickname = textField.text
+        username = textField.text
       }
       
     case VCType.company:
@@ -104,32 +104,26 @@ class SettingEditViewController: UIViewController {
     default: break
     }
     
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username, realname:realname, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, email:email, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
-//        if set {
-//          let baseInfo = JSHStorage.baseInfo()
-//          switch type {
-//          case VCType.realname:
-//            baseInfo.real_name = 
-//          case VCType.nickname:
-//            if !textField.text.isEmpty {
-//              nickname = textField.text
-//            }
-//            
-//          case VCType.company:
-//            if !textField.text.isEmpty {
-//              company = textField.text
-//            }
-//          case VCType.email:
-//            if !textField.text.isEmpty {
-//              email = textField.text
-//            }
-//          default: break
-//          }
-//          
-//        }
+        if set {
+          let baseInfo = JSHStorage.baseInfo()
+          switch self.type {
+          case VCType.realname:
+            baseInfo.real_name = realname
+          case VCType.username:
+            baseInfo.username = username
+          case VCType.company:
+            baseInfo.company = company
+          case VCType.email:
+            baseInfo.email = email
+          default: break
+          }
+          JSHStorage.saveBaseInfo(baseInfo)
+        }
       }
+      self.navigationController?.popViewControllerAnimated(true)
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
       
     }

@@ -214,7 +214,7 @@ static NSString *identifier = @"infoCenterCell";
     UIImage *image = _header.avatarButton.imageView.image;
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     JSHBaseInfo *baseInfo = _header.headerFrame.baseInfo;
-    [[ZKJSHTTPSessionManager sharedInstance] updateUserInfoWithUserID:userId token:token username:baseInfo.username imageData:imageData imageName:@"abc" sex:baseInfo.sex company:baseInfo.company occupation:baseInfo.position success:^(NSURLSessionDataTask *task, id responseObject) {
+  [[ZKJSHTTPSessionManager sharedInstance] updateUserInfoWithUserID:userId token:token username:baseInfo.username realname:nil imageData:imageData imageName:@"abc" sex:baseInfo.sex company:baseInfo.company occupation:baseInfo.position email:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"set"] boolValue]) {
             
             [ZKJSTool hideHUD];

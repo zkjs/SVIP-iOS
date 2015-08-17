@@ -124,7 +124,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 修改用户信息
-- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username realname:(NSString *)realname imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation email:(NSString *)email success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     if (imageData) {
       [formData appendPartWithFileData:imageData name:@"file" fileName:imageName mimeType:@"image/jpeg"];
@@ -134,6 +134,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     if (username) {
       [formData appendPartWithFormData:[username dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
     }
+    if (realname) {
+      [formData appendPartWithFormData:[realname dataUsingEncoding:NSUTF8StringEncoding] name:@"real_name"];
+    }
     if (sex) {
       [formData appendPartWithFormData:[sex dataUsingEncoding:NSUTF8StringEncoding] name:@"sex"];
     }
@@ -142,6 +145,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     }
     if (occupation) {
       [formData appendPartWithFormData:[occupation dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
+    }
+    if (email) {
+      [formData appendPartWithFormData:[email dataUsingEncoding:NSUTF8StringEncoding] name:@"email"];
     }
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);

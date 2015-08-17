@@ -59,33 +59,33 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     let userId = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     localBaseInfo = JSHStorage.baseInfo()
-    if localBaseInfo!.phone == "请编辑个人信息" {
-      ZKJSHTTPSessionManager.sharedInstance().getUserInfo(userId, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        if let dic = responseObject as? [NSObject : AnyObject] {
-          let baseInfo = JSHBaseInfo(dic: dic)
-          //本地存储
-          JSHStorage.saveBaseInfo(baseInfo)
-          if let tagsid = dic["tagsid"] as? String {
-            let arr = NSString.arrayWithSortedString(tagsid, dividedByString: ",")
-            JSHStorage.saveLikeArray(arr)
-          }
-        }
-        
-        }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-          
-      })
-    }
+//    if localBaseInfo!.phone == "请编辑个人信息" {
+//      ZKJSHTTPSessionManager.sharedInstance().getUserInfo(userId, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//        if let dic = responseObject as? [NSObject : AnyObject] {
+//          let baseInfo = JSHBaseInfo(dic: dic)
+//          //本地存储
+//          JSHStorage.saveBaseInfo(baseInfo)
+//          if let tagsid = dic["tagsid"] as? String {
+//            let arr = NSString.arrayWithSortedString(tagsid, dividedByString: ",")
+//            JSHStorage.saveLikeArray(arr)
+//          }
+//        }
+//        
+//        }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+//          
+//      })
+//    }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//    loadData()
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     loadData()
+    tableView.reloadData()
   }
   
   // MARK: - Table view data source
@@ -120,8 +120,8 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
         imageView.image = UIImage(named: "img_hotel_zhanwei")
         cell?.accessoryView = imageView
       case 1:
-        if localBaseInfo?.username != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.username
+        if localBaseInfo?.real_name != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.real_name
         }
       case 2:
         if localBaseInfo?.username != nil {
@@ -156,7 +156,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     case NSIndexPath(forRow: 1, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.realname), animated: true)
     case NSIndexPath(forRow: 2, inSection: 0):
-      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.nickname), animated: true)
+      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.username), animated: true)
     case NSIndexPath(forRow: 3, inSection: 0):
       //sex
       println()

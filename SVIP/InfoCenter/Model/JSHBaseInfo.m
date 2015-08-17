@@ -43,6 +43,7 @@
         _username = dic[@"username"];
         _real_name = dic[@"real_name"];
         _position = dic[@"remark"];
+        _email = dic[@"email"];
         if ([_position isKindOfClass:[NSNull class]]) {
             _position = nil;
         }
@@ -61,10 +62,12 @@
     [coder encodeObject:self.avatarStr forKey:@"avatarStr"];
     [coder encodeObject:self.avatarImage forKey:@"avatarImage"];
     [coder encodeObject:self.phone forKey:@"phone"];
-    [coder encodeObject:self.username forKey:@"name"];
+    [coder encodeObject:self.username forKey:@"username"];
+    [coder encodeObject:self.real_name forKey:@"real_name"];
     [coder encodeObject:self.position forKey:@"position"];
     [coder encodeObject:self.company forKey:@"company"];
     [coder encodeObject:self.sex forKey:@"sex"];
+    [coder encodeObject:self.email forKey:@"email"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -74,10 +77,12 @@
         self.avatarStr = [aDecoder decodeObjectForKey:@"avatarStr"];
         self.avatarImage = [aDecoder decodeObjectForKey:@"avatarImage"];
         self.phone = [aDecoder decodeObjectForKey:@"phone"];
-        self.username = [aDecoder decodeObjectForKey:@"name"];
+        self.username = [aDecoder decodeObjectForKey:@"username"];
+        self.real_name = [aDecoder decodeObjectForKey:@"real_name"];
         self.position = [aDecoder decodeObjectForKey:@"position"];
         self.company = [aDecoder decodeObjectForKey:@"company"];
         self.sex = [aDecoder decodeObjectForKey:@"sex"];
+        self.email = [aDecoder decodeObjectForKey:@"email"];
     }
     return self;
 }
