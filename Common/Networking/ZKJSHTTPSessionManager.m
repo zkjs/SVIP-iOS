@@ -73,8 +73,8 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 登录
-- (void)userLoginWithID:(NSString *)__id success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+// 判断用户手机和微信第三方id是否已经注册过
+- (void)verifyIsRegisteredWithID:(NSString *)__id success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/getuser?id=%@", __id];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
