@@ -49,7 +49,7 @@
         if ([_company isKindOfClass:[NSNull class]]) {
             _company = nil;
         }
-        _sex = dic[@"sex"];
+      _sex = dic[@"sex"]? @"男" : @"女";
     }
     return self;
 }

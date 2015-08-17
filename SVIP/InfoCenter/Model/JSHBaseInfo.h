@@ -14,8 +14,10 @@
 @property (strong, nonatomic) NSString *phone;
 //
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *position;
 @property (strong, nonatomic) NSString *company;
+@property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *sex;//@"0"男     @"1"女
 - (id)initWithDic:(NSDictionary *)dic;
 
