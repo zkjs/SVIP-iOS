@@ -142,7 +142,7 @@ class BookConfirmVC: UIViewController {
   }
 //MARK:- BUTTON ACTION
   @IBAction private func dateSelect(sender: BookDateButton) {
-/*
+/*最初的actionSheet的滚轮date选择
     BlurDatePickerView .showInView(self.view, startDate:sender == inDate ? NSDate() : (inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)), success: { (date: NSDate!) -> Void in
       var calender = NSCalendar .currentCalendar()
       var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: date)
@@ -153,7 +153,12 @@ class BookConfirmVC: UIViewController {
       self.updateSubviews()
     })
 */
+    //new date calendar picker
     let vc = BookDateSelectionViewController()
+    vc.selection = { (startDate: NSDate, endDate: NSDate) ->() in
+      self.inDate.date = startDate
+      self.outDate.date = endDate
+    }
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
