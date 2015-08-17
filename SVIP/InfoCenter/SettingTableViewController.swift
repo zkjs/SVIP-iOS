@@ -120,15 +120,26 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
         imageView.image = UIImage(named: "img_hotel_zhanwei")
         cell?.accessoryView = imageView
       case 1:
-        cell?.detailTextLabel?.text = localBaseInfo?.name
+        if localBaseInfo?.name != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.name
+        }
       case 2:
-        cell?.detailTextLabel?.text = localBaseInfo?.name
+        if localBaseInfo?.nickname != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.nickname
+        }
       case 3:
-        cell?.detailTextLabel?.text = localBaseInfo?.sex
+        println()
+//        if localBaseInfo?.sex != nil {
+//          cell?.detailTextLabel?.text = localBaseInfo?.sex
+//        }
       case 4:
-        cell?.detailTextLabel?.text = localBaseInfo?.company
+        if localBaseInfo?.company != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.company
+        }
       case 5:
-        cell?.detailTextLabel?.text = localBaseInfo?.company
+        if localBaseInfo?.email != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.email
+        }
       default:
         break;
       }
