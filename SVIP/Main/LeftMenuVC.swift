@@ -91,11 +91,17 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 //      self.sideMenuViewController.hideMenuViewController()
 //      navi.pushViewController(vc, animated: true)
 //    }
-    let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
-    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-      self.sideMenuViewController.hideMenuViewController()
-      navi.pushViewController(vc, animated: true)
+    switch indexPath.row {
+    case 1:
+      let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
+      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+        self.sideMenuViewController.hideMenuViewController()
+        navi.pushViewController(vc, animated: true)
+      }
+    default:
+      break;
     }
+
 
   }
 
