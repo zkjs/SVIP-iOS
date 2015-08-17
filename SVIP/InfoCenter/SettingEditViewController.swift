@@ -79,6 +79,35 @@ class SettingEditViewController: UIViewController {
   }
   
   @IBAction func save(sender: UIButton) {
+    var username:String?
+    var nickname:String?
+    var company:String?
+    var email:String?
+    switch type {
+    case VCType.name:
+      if !textField.text.isEmpty {
+        username = textField.text
+      }
+    case VCType.nickname:
+      if !textField.text.isEmpty {
+        nickname = textField.text
+      }
+      
+    case VCType.company:
+      if !textField.text.isEmpty {
+        company = textField.text
+      }
+    case VCType.email:
+      if !textField.text.isEmpty {
+        email = textField.text
+      }
+    default: break
+    }
     
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, userName: username, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      
+      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+      
+    }
   }
 }
