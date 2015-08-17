@@ -49,27 +49,22 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 注册
-- (void)userSignUpWithPhone:(NSString *)phone success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)userSignUpWithPhone:(NSString *)phone openID:(NSString *)openID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *phoneOS = [[UIDevice currentDevice] systemVersion];  // 系统版本
-  NSString *latitude = @"23.12";  // 经度
-  NSString *longitude = @"108.23";  // 纬度
   NSString *os = @"3";  // WEB'1' 安卓'2' 苹果'3' 其他'4'
   NSString *userStatus = @"2";  // 用户状态 注册用户为 '2', 快捷匿名用户为 '3'
   NSString *deviceUUID = [[UIDevice currentDevice] identifierForVendor].UUIDString;  // 手机唯一标示
   
-  NSDictionary *RegForm = @{
-                            @"phone": phone,
-                            @"phone_os": phoneOS,
-                            @"map_latitude": latitude,
-                            @"map_longitude": longitude,
-                            @"os": os,
-                            @"userstatus": userStatus,
-                            @"bluetooth_key": deviceUUID
-                            };
-  NSDictionary *parameters = @{
-                               @"RegForm": RegForm
-                               };
-  [self POST:@"user/reg" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self POST:@"user/reg" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[phone dataUsingEncoding:NSUTF8StringEncoding] name:@"phone"];
+    if (openID) {
+      [formData appendPartWithFormData:[openID dataUsingEncoding:NSUTF8StringEncoding] name:@"openID"];
+    }
+    [formData appendPartWithFormData:[phoneOS dataUsingEncoding:NSUTF8StringEncoding] name:@"phone_os"];
+    [formData appendPartWithFormData:[os dataUsingEncoding:NSUTF8StringEncoding] name:@"os"];
+    [formData appendPartWithFormData:[userStatus dataUsingEncoding:NSUTF8StringEncoding] name:@"userstatus"];
+    [formData appendPartWithFormData:[deviceUUID dataUsingEncoding:NSUTF8StringEncoding] name:@"bluetooth_key"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -79,50 +74,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 登录
-- (void)userLoginWithPhone:(NSString *)phone password:(NSString *)password rememberMe:(NSString *)rememberMe success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *passwordMD5 = [password MD5String];  // MD5密码
-  NSString *phoneOS = [[UIDevice currentDevice] systemVersion];  // 系统版本
-  NSString *latitude = @"23.12";  // 经度
-  NSString *longitude = @"108.23";  // 纬度
-  NSString *loginType = @"1";  // 登录类型 手机 默认1
-  
-  NSDictionary *LoginForm = @{
-                            @"phone": phone,
-                            @"password": passwordMD5,
-                            @"rememberMe": rememberMe,
-                            @"login_type": loginType,
-                            @"phone_info": phoneOS,
-                            @"map_latitude": latitude,
-                            @"map_longitude": longitude
-                            };
-  NSDictionary *parameters = @{
-                               @"LoginForm": LoginForm
-                               };
-  [self POST:@"user/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-    DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    DDLogInfo(@"%@", error.description);
-    failure(task, error);
-  }];
-}
-
-// 匿名登录
-- (void)visitorSignUpWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *os = @"3";  // WEB'1' 安卓'2' 苹果'3' 其他'4'
-  NSString *userStatus = @"3";  // 用户状态 注册用户为 '2', 快捷匿名用户为 '3'
-  NSString *deviceUUID = [[UIDevice currentDevice] identifierForVendor].UUIDString;  // 手机唯一标示
-  
-  NSDictionary *RegForm = @{
-                           @"os": os,
-                           @"userstatus": userStatus,
-                           @"bluetooth_key": deviceUUID,
-                           @"password": @""
-                           };
-  NSDictionary *parameters = @{
-                              @"RegForm": RegForm
-                              };
-  [self POST:@"user/reg" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+- (void)userLoginWithID:(NSString *)__id success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *urlString = [NSString stringWithFormat:@"user/getuser?id=%@", __id];
+  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -157,14 +111,10 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 // 修改帐号密码
 - (void)changeAccountPasswordWithPhone:(NSString *)phone newPassword:(NSString *)newPassword success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSDictionary *UploadForm = @{
-                              @"phone": phone,
-                              @"password": [newPassword MD5String]
-                              };
-  NSDictionary *parameters = @{
-                               @"UploadForm": UploadForm
-                               };
-  [self POST:@"user/chg" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self POST:@"user/chg" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[phone dataUsingEncoding:NSUTF8StringEncoding] name:@"phone"];
+    [formData appendPartWithFormData:[[newPassword MD5String] dataUsingEncoding:NSUTF8StringEncoding] name:@"password"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -177,19 +127,19 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 - (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token userName:(NSString *)userName imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     if (imageData) {
-      [formData appendPartWithFileData:imageData name:@"UploadForm[file]" fileName:imageName mimeType:@"image/jpeg"];
+      [formData appendPartWithFileData:imageData name:@"file" fileName:imageName mimeType:@"image/jpeg"];
     }
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"UploadForm[userid]"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"UploadForm[token]"];
-    [formData appendPartWithFormData:[userName dataUsingEncoding:NSUTF8StringEncoding] name:@"UploadForm[username]"];
+    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[userName dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
     if (sex) {
-      [formData appendPartWithFormData:[sex dataUsingEncoding:NSUTF8StringEncoding] name:@"UploadForm[sex]"];
+      [formData appendPartWithFormData:[sex dataUsingEncoding:NSUTF8StringEncoding] name:@"sex"];
     }
     if (company) {
-      [formData appendPartWithFormData:[company dataUsingEncoding:NSUTF8StringEncoding] name:@"UploadForm[preference]"];
+      [formData appendPartWithFormData:[company dataUsingEncoding:NSUTF8StringEncoding] name:@"preference"];
     }
     if (occupation) {
-      [formData appendPartWithFormData:[occupation dataUsingEncoding:NSUTF8StringEncoding] name:@"UploadForm[remark]"];
+      [formData appendPartWithFormData:[occupation dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
     }
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
