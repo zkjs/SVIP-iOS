@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-private let kRightViewRatio: Double = 1.0 - 0.75
+private let kHeaderViewHeight: CGFloat = 105.0
 
 class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
   
@@ -21,15 +21,12 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    title = "消息中心"
-    
-//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
-    
     let screeWidth = UIScreen.mainScreen().bounds.width
     tableView.frame = CGRectMake(screeWidth * 0.25, 0.0, screeWidth * 0.75, UIScreen.mainScreen().bounds.height)
     tableView.bounces = false
     tableView.delegate = self
     tableView.dataSource = self
+    tableView.separatorStyle = .None
     view.addSubview(tableView)
     
     let cellNib = UINib(nibName: HotelMessageCell.nibName(), bundle: nil)
@@ -56,21 +53,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 82
-  }
-  
-  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    if (self.tableView.respondsToSelector(Selector("setSeparatorInset:"))) {
-      self.tableView.separatorInset = UIEdgeInsetsZero
-    }
-    
-    if (self.tableView.respondsToSelector(Selector("setLayoutMargins:"))) {
-      self.tableView.layoutMargins = UIEdgeInsetsZero
-    }
-    
-    if (cell.respondsToSelector(Selector("setLayoutMargins:"))) {
-      cell.layoutMargins = UIEdgeInsetsZero
-    }
+    return 90
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -124,16 +107,16 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 150.0
+    return kHeaderViewHeight
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let screeWidth = UIScreen.mainScreen().bounds.width
-    let headerView = UIView(frame: CGRectMake(0.0, 0.0, screeWidth * 0.75, 150.0))
-    let imageView = UIImageView(image: UIImage(named: "bg_cebian"))
-    imageView.frame = CGRectMake(0.0, 0.0, screeWidth * 0.75, 150.0)
+    let headerView = UIView(frame: CGRectMake(0.0, 0.0, screeWidth * 0.75, kHeaderViewHeight))
+    let imageView = UIImageView(image: UIImage(named: "bg_cebian2"))
+    imageView.frame = CGRectMake(0.0, 0.0, screeWidth * 0.75, kHeaderViewHeight)
     headerView.addSubview(imageView)
-    let title = UILabel(frame: CGRectMake(30.0, 30.0, 120.0, 30.0))
+    let title = UILabel(frame: CGRectMake(20.0, 50.0, 120.0, 30.0))
     title.textColor = UIColor.whiteColor()
     title.text = "消息中心"
     headerView.addSubview(title)

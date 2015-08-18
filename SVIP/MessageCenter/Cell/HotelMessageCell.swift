@@ -37,9 +37,6 @@ class HotelMessageCell: UITableViewCell {
     logo.badgeEdgeInsets = UIEdgeInsetsMake(15.0, 0.0, 0.0, 10.0)
     logo.badgeBackgroundColor = UIColor.redColor()
     logo.badgeString = nil
-    
-//    layoutMargins = UIEdgeInsetsZero
-//    preservesSuperviewLayoutMargins = false
   }
   
 }

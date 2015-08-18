@@ -24,7 +24,7 @@
 */
 import UIKit
 
-class LoginManager: NSObject {
+class LoginManager: NSObject, RESideMenuDelegate {
   var appWindow: UIWindow!
   class func sharedInstance() -> LoginManager {
     struct Singleton {
@@ -57,6 +57,7 @@ class LoginManager: NSObject {
     }
 //    nc.navigationBarHidden = true
     let menu = RESideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: MessageCenterTVC())
+    menu.delegate = self
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false
     menu.contentViewInPortraitOffsetCenterX = appWindow.bounds.size.width * (0.75 - 0.5)
@@ -149,7 +150,12 @@ class LoginManager: NSObject {
     }
   }
   
-  
+  // MARK: - RESideMenuDelegate
+  func sideMenu(sideMenu: RESideMenu!, willShowMenuViewController menuViewController: UIViewController!) {
+    if let rightVC = menuViewController as? MessageCenterTVC {
+      rightVC.tableView.reloadData()
+    }
+  }
   
   
 }
