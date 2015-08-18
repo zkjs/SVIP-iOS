@@ -409,14 +409,22 @@ const CGFloat shortcutViewHeight = 45.0;
          @"actions": @[@{
                          @"name": @"房间",
                          @"department": @"预订部/前台",
-                         @"ruletype": @"Booking-FrontOffice",
+//                         @"ruletype": @"Booking-FrontOffice",
+                         @"ruletype": @"DefaultChatRuleType",
                          @"tags": @[@"订房", @"订房优惠"]
                          },
                        @{
                          @"name": @"订餐",
                          @"department": @"销售部",
-                         @"ruletype": @"Sale",
+//                         @"ruletype": @"Sale",
+                         @"ruletype": @"DefaultChatRuleType",
                          @"tags": @[@"包厢", @"订餐"]
+                         },
+                       @{
+                         @"name": @"其它",
+                         @"department": @"有关部门",
+                         @"ruletype": @"DefaultChatRuleType",
+                         @"tags": @[@"发票", @"唱K", @"健身"]
                          }
                        ]
          },
@@ -425,14 +433,22 @@ const CGFloat shortcutViewHeight = 45.0;
        @"actions": @[@{
                        @"name": @"房间",
                        @"department": @"预订部/前台",
-                       @"ruletype": @"Booking-FrontOffice",
+//                       @"ruletype": @"Booking-FrontOffice",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"取消订单", @"修改订单", @"指定房型"]
                        },
                      @{
                        @"name": @"订餐",
                        @"department": @"总台/餐饮部",
-                       @"ruletype": @"CallCenter-FoodandBeverage",
+//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                      },
+                     @{
+                       @"name": @"其它",
+                       @"department": @"有关部门",
+                       @"ruletype": @"DefaultChatRuleType",
+                       @"tags": @[@"发票", @"唱K", @"健身"]
                       }
                      ]
        },
@@ -441,14 +457,22 @@ const CGFloat shortcutViewHeight = 45.0;
        @"actions": @[@{
                        @"name": @"房间",
                        @"department": @"客房部",
-                       @"ruletype": @"Housekeeping",
+//                       @"ruletype": @"Housekeeping",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"打扫房间", @"更换用品", @"洗衣服务"]
                        },
                      @{
                        @"name": @"订餐",
                        @"department": @"总台/餐饮部",
-                       @"ruletype": @"CallCenter-FoodandBeverage",
+//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"department": @"有关部门",
+                       @"ruletype": @"DefaultChatRuleType",
+                       @"tags": @[@"发票", @"唱K", @"健身"]
                        }
                      ]
        },
@@ -457,14 +481,22 @@ const CGFloat shortcutViewHeight = 45.0;
        @"actions": @[@{
                        @"name": @"房间",
                        @"department": @"预订部/前台",
-                       @"ruletype": @"Booking-FrontOffice",
+//                       @"ruletype": @"Booking-FrontOffice",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"订房", @"订房优惠"]
                        },
                      @{
                        @"name": @"订餐",
                        @"department": @"销售部",
-                       @"ruletype": @"Sale",
+//                       @"ruletype": @"Sale",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"包厢", @"订餐"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"department": @"有关部门",
+                       @"ruletype": @"DefaultChatRuleType",
+                       @"tags": @[@"发票", @"唱K", @"健身"]
                        }
                      ]
        },
@@ -473,14 +505,22 @@ const CGFloat shortcutViewHeight = 45.0;
        @"actions": @[@{
                        @"name": @"房间",
                        @"department": @"预订部/前台",
-                       @"ruletype": @"Booking-FrontOffice",
+//                       @"ruletype": @"Booking-FrontOffice",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"取消订单", @"修改订单", @"指定房型"]
                        },
                      @{
                        @"name": @"订餐",
                        @"department": @"总台/餐饮部",
-                       @"ruletype": @"CallCenter-FoodandBeverage",
+//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"department": @"有关部门",
+                       @"ruletype": @"DefaultChatRuleType",
+                       @"tags": @[@"发票", @"唱K", @"健身"]
                        }
                      ]
        },
@@ -489,14 +529,22 @@ const CGFloat shortcutViewHeight = 45.0;
        @"actions": @[@{
                        @"name": @"房间",
                        @"department": @"客房部",
-                       @"ruletype": @"Housekeeping",
+//                       @"ruletype": @"Housekeeping",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"打扫房间", @"更换用品", @"洗衣服务"]
                        },
                      @{
                        @"name": @"订餐",
                        @"department": @"总台/餐饮部",
-                       @"ruletype": @"CallCenter-FoodandBeverage",
+//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"ruletype": @"DefaultChatRuleType",
                        @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       },
+                     @{
+                       @"name": @"其它",
+                       @"department": @"有关部门",
+                       @"ruletype": @"DefaultChatRuleType",
+                       @"tags": @[@"发票", @"唱K", @"健身"]
                        }
                      ]
        },
@@ -624,7 +672,11 @@ const CGFloat shortcutViewHeight = 45.0;
   XHMessage *message = [[XHMessage alloc] initWithText:sender.titleLabel.text sender:self.messageSender timestamp:[NSDate date]];
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeText;
-  message.avatar = [JSHStorage baseInfo].avatarImage;
+  if ([JSHStorage baseInfo].avatarImage) {
+    message.avatar = [JSHStorage baseInfo].avatarImage;
+  } else {
+    message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  }
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
   

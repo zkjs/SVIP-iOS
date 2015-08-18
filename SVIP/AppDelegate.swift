@@ -239,6 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         ]
         ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
       }
+      NSUserDefaults.standardUserDefaults().setBool(false, forKey: "ShouldSendEnterBeaconRegionPacket")
       return
     }
 

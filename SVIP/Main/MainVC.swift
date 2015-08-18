@@ -39,12 +39,17 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     super.viewDidLoad()
     
 //    locationManager.startMonitoringVisits()
+    setupNotification()
     setupCoreLocationService()
     setupMotionView()
     setupRightButton()
     setupBeaconMonitor()
     initTCPSessionManager()
     initSmartPanelUI()
+  }
+  
+  func setupNotification() {
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSmartPanel", name: "UIApplicationDidBecomeActiveNotification", object: nil)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -173,9 +178,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   func setupGPSMonitor() {
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    locationManager.startUpdatingLocation()
-    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
+    locationManager.startMonitoringVisits()
+//    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//    locationManager.startUpdatingLocation()
+//    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
   }
   
   func determineCurrentRegionState() {
@@ -628,6 +634,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - CLLocationManagerDelegate
+  func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+    
+  }
+  
   func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status == CLAuthorizationStatus.AuthorizedAlways {
       setupBeaconMonitor()
