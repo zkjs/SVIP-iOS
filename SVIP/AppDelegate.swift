@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     ZKJSTCPSessionManager.sharedInstance().deinitNetworkCommunication()
-    NSUserDefaults.standardUserDefaults().setBool(false, forKey: "DidOpenTCPSocket")
+    NSUserDefaults.standardUserDefaults().setBool(false, forKey: "DidLoginTCPSocket")
     println("applicationDidEnterBackground")
   }
 
@@ -245,9 +245,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let userName = JSHStorage.baseInfo().username ?? ""
-    
-    ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
-    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "DidOpenTCPSocket")
+    if userID != nil {
+      ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey: "DidLoginTCPSocket")
+    }
   }
   
   func didReceivePacket(dictionary: [NSObject : AnyObject]!) {
