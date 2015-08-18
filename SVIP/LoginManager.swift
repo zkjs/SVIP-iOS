@@ -73,9 +73,13 @@ class LoginManager: NSObject, RESideMenuDelegate {
   func fetchUserInfo(afterFetch: () -> ()) {
     let userId = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
+    let oldImage = JSHStorage.baseInfo().avatarImage//单独将本地头像提出来，为了从服务器取头像数据滞后于显示的问题
     ZKJSHTTPSessionManager.sharedInstance().getUserInfo(userId, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? [NSObject : AnyObject] {
         let baseInfo = JSHBaseInfo(dic: dic)
+        if baseInfo.avatarImage == nil {
+          baseInfo.avatarImage = oldImage
+        }
         //本地存储
         JSHStorage.saveBaseInfo(baseInfo)
         afterFetch()

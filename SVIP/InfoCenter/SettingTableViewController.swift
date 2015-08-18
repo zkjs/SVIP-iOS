@@ -135,9 +135,9 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
         }
       case 3:
         println()
-//        if localBaseInfo?.sex != nil {
-//          cell?.detailTextLabel?.text = localBaseInfo?.sex
-//        }
+        if localBaseInfo?.sex != nil {
+          cell?.detailTextLabel?.text = localBaseInfo?.sex
+        }
       case 4:
         if localBaseInfo?.company != nil {
           cell?.detailTextLabel?.text = localBaseInfo?.company
