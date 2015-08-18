@@ -182,80 +182,21 @@
   
     if (_phoneField.text.length == 11) {
         if ([ZKJSTool validateMobile:_phoneField.text]) {
+          if ([_phoneField.text isEqual:@"18503027465"]) {
+            //跳过验证，直接注册
+            [[LoginManager sharedInstance] signup:_phoneField.text openID:nil];
+            return;
+          }
             if (_codeField.text.length == 6) {
-              if ([_codeField.text isEqual:@"586878"] & [_phoneField.text isEqual:@"18503027465"]) {
-                //注册
-//                [[ZKJSHTTPSessionManager sharedInstance] userSignUpWithPhone:_phoneField.text success:^(NSURLSessionDataTask *task, id responseObject) {
-//                  if ([[responseObject objectForKey:@"set"] boolValue]) {
-//                    //save account data
-//                    [[JSHAccountManager sharedJSHAccountManager] saveAccountWithDic:responseObject];
-//                    //jump
-//                    [[LoginManager sharedInstance] showResideMenuWithHaspushed:[JSHInfoEditVC new]];
-//                  }
-//                  
-//                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                  [ZKJSTool showMsg:@"请输入受邀请的手机号码"];
-//                }];
-                
-                
-                [[ZKJSHTTPSessionManager sharedInstance] userSignUpWithPhone:_phoneField.text openID:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                  if ([[responseObject objectForKey:@"set"] boolValue]) {
-                    //save account data
-                    [[JSHAccountManager sharedJSHAccountManager] saveAccountWithDic:responseObject];
-                    //获取用户信息
-                    [[LoginManager sharedInstance] fetchUserInfo:^{
-                      //jump
-                      [[LoginManager sharedInstance] showResideMenuWithHaspushed:nil];
-                    }];
-                    
-                  }
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                    [ZKJSTool showMsg:@"请输入受邀请的手机号码"];
-                }];
-                return;
-              }
                 [[ZKJSHTTPSMSSessionManager sharedInstance] verifySmsCode:_codeField.text mobilePhoneNumber:_phoneField.text callback:^(BOOL succeeded, NSError *error) {
                     if (!succeeded) {
-//                        //注册
-//                      [[ZKJSHTTPSessionManager sharedInstance] userSignUpWithPhone:_phoneField.text openID:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//                        if ([[responseObject objectForKey:@"set"] boolValue]) {
-//                          //save account data
-//                          [[JSHAccountManager sharedJSHAccountManager] saveAccountWithDic:responseObject];
-//                          //获取用户信息
-//                          [[LoginManager sharedInstance] fetchUserInfo:^{
-//                            //jump
-//                            [[LoginManager sharedInstance] showResideMenuWithHaspushed:nil];
-//                          }];
-//                        }
-//                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                        [ZKJSTool showMsg:@"请输入受邀请的手机号码"];
-//                      }];
+                      //注册
                       [[LoginManager sharedInstance] signup:_phoneField.text openID:nil];
                     }else{
                         _codeField.text = @"";
                         [ZKJSTool showMsg:@"验证码错误"];
                     }
                 }];
-              
-                //test
-//                [[ZKJSHTTPSessionManager sharedInstance] userSignUpWithPhone:_phoneField.text success:^(NSURLSessionDataTask *task, id responseObject) {
-//                    if ([[responseObject objectForKey:@"set"] boolValue]) {
-//                        //save account data
-//                        [[JSHAccountManager sharedJSHAccountManager] saveAccountWithDic:responseObject];
-//                        //jump
-////                        UINavigationController *navigationController = [UINavigationController new];
-////                        navigationController.navigationBarHidden = YES;
-////                        [navigationController setViewControllers:@[[JSHInfoEditVC new]] animated:NO];
-//                        UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[JSHInfoEditVC alloc] init]];
-//                        vc.navigationBarHidden = YES;
-//                        [self presentViewController:vc animated:YES completion:^{
-//                            [self removeFromParentViewController];
-//                        }];
-//                    }
-//                    
-//                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                    [ZKJSTool showMsg:@"注册失败，请重试"];
-//                }];
 
             }
         }
