@@ -1396,6 +1396,7 @@
 					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "985c2331-f32e-47ba-a8d9-6ae4a9cf0c8f";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";
@@ -1448,6 +1449,7 @@
 					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "330a391c-b4c1-4fd6-8556-8f9616f714c8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";

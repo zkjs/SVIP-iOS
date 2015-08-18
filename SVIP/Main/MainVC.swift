@@ -39,6 +39,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   override func viewDidLoad() {
     super.viewDidLoad()
     
+//    locationManager.startMonitoringVisits()
+    setupCoreLocationService()
     setupMotionView()
     setupRightButton()
     setupBeaconMonitor()
@@ -86,14 +88,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     checkinSubLabel.hidden = true
   }
   
-  func setupLocationService() {
-    locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    locationManager.requestAlwaysAuthorization()
-    locationManager.startUpdatingLocation()
-    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
-  }
-  
   func initTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
   }
@@ -117,20 +111,31 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     view.sendSubviewToBack(motionView)
   }
   
-  func setupBeaconMonitor() {
-    beaconManager.delegate = self
-    
-    beaconRegions = StorageManager.sharedInstance().beaconRegions()
-    
-    if ESTBeaconManager.authorizationStatus() == .NotDetermined {
-      beaconManager.requestAlwaysAuthorization()
-    } else if ESTBeaconManager.authorizationStatus() == .Denied {
+  func setupCoreLocationService() {
+    if CLLocationManager.authorizationStatus() == .Denied {
       let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
-    } else if ESTBeaconManager.authorizationStatus() == .Restricted {
+      return
+    } else if CLLocationManager.authorizationStatus() == .Restricted {
       let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
+      return
     }
+    
+//    beaconManager.delegate = self
+    locationManager.delegate = self
+    if CLLocationManager.authorizationStatus() == .NotDetermined {
+      locationManager.requestAlwaysAuthorization()
+      return
+    }
+    
+    setupBeaconMonitor()
+    setupGPSMonitor()
+    println("setupCoreLocationService")
+  }
+  
+  func setupBeaconMonitor() {
+    beaconRegions = StorageManager.sharedInstance().beaconRegions()
     
     for key in beaconRegions.keys {
       if let beaconInfo = beaconRegions[key] {
@@ -151,20 +156,29 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
-          beaconManager.startMonitoringForRegion(beaconRegion)
+          beaconRegion.notifyEntryStateOnDisplay = true
+          locationManager.startMonitoringForRegion(beaconRegion)
         } else if minor == 0 {
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
-          beaconManager.startMonitoringForRegion(beaconRegion)
+          beaconRegion.notifyEntryStateOnDisplay = true
+          locationManager.startMonitoringForRegion(beaconRegion)
         } else {
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
-          beaconManager.startMonitoringForRegion(beaconRegion)
+          beaconRegion.notifyEntryStateOnDisplay = true
+          locationManager.startMonitoringForRegion(beaconRegion)
         }
       }
     }
+  }
+  
+  func setupGPSMonitor() {
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.startUpdatingLocation()
+    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
   }
   
   func determineCurrentRegionState() {
@@ -183,13 +197,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       }
       if minor == 0 && major == 0 {
         let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
-        beaconManager.requestStateForRegion(beaconRegion)
+        locationManager.requestStateForRegion(beaconRegion)
       } else if minor == 0 {
         let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
-        beaconManager.requestStateForRegion(beaconRegion)
+        locationManager.requestStateForRegion(beaconRegion)
       } else {
         let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
-        beaconManager.requestStateForRegion(beaconRegion)
+        locationManager.requestStateForRegion(beaconRegion)
       }
     }
     updateSmartPanelUI()
@@ -198,21 +212,17 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
-      ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-      let shopID = beaconRegion["shopid"]
-      let locid = beaconRegion["locid"]
-      let uuid = beaconRegion["uuid"]
-      let major = beaconRegion["major"]
-      let minor = beaconRegion["minor"]
-      
-      let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-        Int64(1 * Double(NSEC_PER_SEC)))
-      dispatch_after(delayTime, dispatch_get_main_queue()) {
-#if DEBUG
-          let appid = "HOTELVIP_DEBUG";
-#else
-          let appid = "HOTELVIP";
-#endif
+      if NSUserDefaults.standardUserDefaults().boolForKey("DidOpenTCPSocket") {
+        let shopID = beaconRegion["shopid"]
+        let locid = beaconRegion["locid"]
+        let uuid = beaconRegion["uuid"]
+        let major = beaconRegion["major"]
+        let minor = beaconRegion["minor"]
+        #if DEBUG
+          let appid = "HOTELVIP_DEBUG"
+          #else
+          let appid = "HOTELVIP"
+        #endif
         let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
         let dictionary: [String: AnyObject] = [
           "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
@@ -221,15 +231,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           "userid": JSHAccountManager.sharedJSHAccountManager().userid,
           "shopid": shopID!,
           "locid": locid!,
-          "username": JSHStorage.baseInfo().username,
+          "username": JSHStorage.baseInfo().username ?? "",
           "timestamp": NSNumber(longLong: timestamp)
         ]
         ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-        
-//        let notification = UILocalNotification()
-//        let alertMessage = "Enter region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
-//        notification.alertBody = alertMessage
-//        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+      } else {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
+        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
       }
       StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
     }
@@ -300,6 +308,19 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         StorageManager.sharedInstance().updateLastOrder(order)
       }
       self.determineCurrentRegionState()
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+  }
+  
+  func postGPSLocation(coordinate: CLLocationCoordinate2D) {
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
+    var dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    let traceTime = dateFormatter.stringFromDate(NSDate())
+    ZKJSHTTPSessionManager.sharedInstance().postGPSWithUserID(userID, token: token, longitude: "\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -610,25 +631,19 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - CLLocationManagerDelegate
+  func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    if status == CLAuthorizationStatus.AuthorizedAlways {
+      setupBeaconMonitor()
+      setupGPSMonitor()
+    }
+    println("didChangeAuthorizationStatus: \(status.rawValue)")
+  }
+  
   func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
     println("Error while updating location " + error.localizedDescription)
   }
   
   func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-//    CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error) ->Void in
-//      if error != nil {
-//        println("Reverse geocoder failed with error" + error.localizedDescription)
-//        return
-//      }
-//      
-//      if placemarks.count > 0 {
-//        let pm = placemarks.first as! CLPlacemark
-//        println(pm.name)
-//      } else {
-//        println("Problem with the data received from geocoder")
-//      }
-//    })
-    
     locationManager.stopUpdatingLocation()
     
     let coordinate = manager.location.coordinate
@@ -643,17 +658,28 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     postGPSLocation(coordinate)
   }
   
-  func postGPSLocation(coordinate: CLLocationCoordinate2D) {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
-    var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    let traceTime = dateFormatter.stringFromDate(NSDate())
-    ZKJSHTTPSessionManager.sharedInstance().postGPSWithUserID(userID, token: token, longitude: "\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+  func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
+    if region.identifier == "DetermineCurrentRegionState" {
+      println(state.rawValue)
+      if state != CLRegionState.Inside {
+        StorageManager.sharedInstance().updateLastBeacon(nil)
+      }
+      updateSmartPanelUI()
     }
+  }
+  
+  func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+    if region is CLBeaconRegion {
+      didEnterBeaconRegion(region as! CLBeaconRegion)
+    }
+    println("didEnterRegion: \(region)")
+  }
+  
+  func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+    if region is CLBeaconRegion {
+      didExitBeaconRegion(region as! CLBeaconRegion)
+    }
+    println("didExitRegion: \(region)")
   }
   
   // MARK: - AMapSearchDelegate
@@ -672,24 +698,24 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
   }
   
-  // MARK: - ESTBeaconManagerDelegate
-  func beaconManager(manager: AnyObject!, didDetermineState state: CLRegionState, forRegion region: CLBeaconRegion!) {
-    if region.identifier == "DetermineCurrentRegionState" {
-      println(state.rawValue)
-      if state != CLRegionState.Inside {
-        StorageManager.sharedInstance().updateLastBeacon(nil)
-      }
-      updateSmartPanelUI()
-    }
-  }
-  
-  func beaconManager(manager: AnyObject!, didEnterRegion region: CLBeaconRegion!) {
-    didEnterBeaconRegion(region)
-  }
-  
-  func beaconManager(manager: AnyObject!, didExitRegion region: CLBeaconRegion!) {
-    didExitBeaconRegion(region)
-  }
+//  // MARK: - ESTBeaconManagerDelegate
+//  func beaconManager(manager: AnyObject!, didDetermineState state: CLRegionState, forRegion region: CLBeaconRegion!) {
+//    if region.identifier == "DetermineCurrentRegionState" {
+//      println(state.rawValue)
+//      if state != CLRegionState.Inside {
+//        StorageManager.sharedInstance().updateLastBeacon(nil)
+//      }
+//      updateSmartPanelUI()
+//    }
+//  }
+//  
+//  func beaconManager(manager: AnyObject!, didEnterRegion region: CLBeaconRegion!) {
+//    didEnterBeaconRegion(region)
+//  }
+//  
+//  func beaconManager(manager: AnyObject!, didExitRegion region: CLBeaconRegion!) {
+//    didExitBeaconRegion(region)
+//  }
   
   // MARK: - UINavigationControllerDelegate
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {

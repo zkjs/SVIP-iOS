@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     ZKJSTCPSessionManager.sharedInstance().deinitNetworkCommunication()
+    NSUserDefaults.standardUserDefaults().setBool(false, forKey: "DidOpenTCPSocket")
     println("applicationDidEnterBackground")
   }
 
@@ -212,19 +213,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   // MARK: - TCPSessionManagerDelegate
   func didOpenTCPSocket() {
-//    if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHStorage.baseInfo().username
-    
-    if userID != nil && userName != nil {
-      ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
+    // App在后台，只需要发一个进入区域的包
+    if NSUserDefaults.standardUserDefaults().boolForKey("ShouldSendEnterBeaconRegionPacket") {
+      if let beaconRegion = StorageManager.sharedInstance().lastBeacon() {
+        let shopID = beaconRegion["shopid"]
+        let locid = beaconRegion["locid"]
+        let uuid = beaconRegion["uuid"]
+        let major = beaconRegion["major"]
+        let minor = beaconRegion["minor"]
+        #if DEBUG
+          let appid = "HOTELVIP_DEBUG"
+          #else
+          let appid = "HOTELVIP"
+        #endif
+        let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+        let dictionary: [String: AnyObject] = [
+          "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
+          "devtoken": JSHStorage.deviceToken(),
+          "appid": appid,
+          "userid": JSHAccountManager.sharedJSHAccountManager().userid,
+          "shopid": shopID!,
+          "locid": locid!,
+          "username": JSHStorage.baseInfo().name ?? "",
+          "timestamp": NSNumber(longLong: timestamp)
+        ]
+        ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+      }
+      return
     }
+
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let userName = JSHStorage.baseInfo().username ?? ""
     
-//    let notification = UILocalNotification()
-//    let alertMessage = "didOpenTCPSocket"
-//    notification.alertBody = alertMessage
-//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-//    }
+    ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "DidOpenTCPSocket")
   }
   
   func didReceivePacket(dictionary: [NSObject : AnyObject]!) {

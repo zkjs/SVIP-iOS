@@ -140,7 +140,11 @@ const CGFloat shortcutViewHeight = 45.0;
   XHMessage *message = [[XHMessage alloc] initWithText:text sender:sender timestamp:date];
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeText;
-  message.avatar = [JSHStorage baseInfo].avatarImage;
+  if ([JSHStorage baseInfo].avatarImage) {
+    message.avatar = [JSHStorage baseInfo].avatarImage;
+  } else {
+    message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  }
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -153,7 +157,11 @@ const CGFloat shortcutViewHeight = 45.0;
   XHMessage *message = [[XHMessage alloc] initWithPhoto:photo thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:date];
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypePhoto;
-  message.avatar = [JSHStorage baseInfo].avatarImage;
+  if ([JSHStorage baseInfo].avatarImage) {
+    message.avatar = [JSHStorage baseInfo].avatarImage;
+  } else {
+    message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  }
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -166,7 +174,11 @@ const CGFloat shortcutViewHeight = 45.0;
   XHMessage *message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voicePath voiceDuration:voiceDuration sender:sender timestamp:date];
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeVoice;
-  message.avatar = [JSHStorage baseInfo].avatarImage;
+  if ([JSHStorage baseInfo].avatarImage) {
+    message.avatar = [JSHStorage baseInfo].avatarImage;
+  } else {
+    message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  }
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -277,7 +289,11 @@ const CGFloat shortcutViewHeight = 45.0;
   self.messageSender = @"我";
   self.messageReceiver = self.receiverName;
   self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
-  self.senderName = [JSHStorage baseInfo].username;
+  if ([JSHStorage baseInfo].name) {
+    self.senderName = [JSHStorage baseInfo].username;
+  } else {
+    self.senderName = @"";
+  }
 }
 
 - (void)setupMessageInputView {
