@@ -24,23 +24,35 @@
 {
     self = [super init];
     if (self) {
-        _avatarStr = dic[@"user_avatar"];
-        if ([_avatarStr isKindOfClass:[NSNull class]]) {
-            _avatarStr = nil;
-        }
-        if (_avatarStr != nil) {
-            NSString *urlStr = [kBaseURL stringByAppendingPathComponent:_avatarStr];
-            NSURL *url = [NSURL URLWithString:urlStr];
-            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                    if (finished) {
-                        _avatarImage = image;
-                        [JSHStorage saveBaseInfoAvatar:image];
-                    }
-            }];
-        }
-        
+//        _avatarStr = dic[@"user_avatar"];
+//        if ([_avatarStr isKindOfClass:[NSNull class]]) {
+//            _avatarStr = nil;
+//        }
+//        if (_avatarStr != nil) {
+//            NSString *urlStr = [kBaseURL stringByAppendingPathComponent:_avatarStr];
+//            NSURL *url = [NSURL URLWithString:urlStr];
+//            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+//                    if (finished) {
+//                        _avatarImage = image;
+//                        [JSHStorage saveBaseInfoAvatar:image];
+//                    }
+//            }];
+//        }
+      
         _phone = dic[@"phone"];
         _username = dic[@"username"];
+        //用户头像  uploads/users/userid.jpg
+        NSString *urlStr = [kBaseURL stringByAppendingPathComponent:[NSString stringWithFormat:@"uploads/users/%@.jpg",dic[@"userid"]]];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+          if (finished) {
+            if (image) {
+              _avatarImage = image;
+              [JSHStorage saveBaseInfoAvatar:image];
+            }
+          }
+        }];
+      
         _real_name = dic[@"real_name"];
         _position = dic[@"remark"];
         _email = dic[@"email"];

@@ -117,7 +117,13 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
       switch indexPath.row {
       case 0:
         let imageView = UIImageView(frame: CGRectMake(0, 0, 78, 78))
-        imageView.image = UIImage(named: "img_hotel_zhanwei")
+        imageView.layer.cornerRadius = 78 / 2
+        imageView.layer.masksToBounds = true
+        if let image = localBaseInfo?.avatarImage {
+          imageView.image = image
+        }else {
+          imageView.image = UIImage(named: "img_hotel_zhanwei")
+        }
         cell?.accessoryView = imageView
       case 1:
         if localBaseInfo?.real_name != nil {
@@ -193,5 +199,44 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     }
   }
 
-
+  //MARK:- UIImagePickerControllerDelegate
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    let dic = editingInfo
+    /*
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    int i = 1;
+    while (imageData.length / 1024 > 80) {
+    float persent = (100 - i++) / 100;
+    imageData = UIImageJPEGRepresentation(image, persent);
+    }
+    
+    image = [UIImage imageWithData:imageData];
+    [_avatarButton setImage:image forState:UIControlStateNormal];
+    _headerFrame.baseInfo.avatarImage = image;
+    [picker dismissViewControllerAnimated:YES completion:^{
+    
+    }];
+    */
+    var imageData = UIImageJPEGRepresentation(image, 1.0)
+    var i = 0
+    while imageData.length / 1024 > 80 {
+      var persent = CGFloat(100 - i++) / 100.0
+      imageData = UIImageJPEGRepresentation(image, persent)
+    }
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      if let dic = responseObject as? NSDictionary {
+        if dic["set"]?.boolValue == true {
+          var baseInfo = JSHStorage.baseInfo()
+          baseInfo.avatarImage = UIImage(data: imageData)
+          JSHStorage.saveBaseInfo(baseInfo)
+          picker .dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+          })
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      
+    }
+  }
 }

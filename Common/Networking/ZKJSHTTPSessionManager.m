@@ -127,7 +127,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 - (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username realname:(NSString *)realname imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation email:(NSString *)email success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     if (imageData) {
-      [formData appendPartWithFileData:imageData name:@"file" fileName:imageName mimeType:@"image/jpeg"];
+      [formData appendPartWithFileData:imageData name:@"UploadForm[file]" fileName:imageName mimeType:@"image/jpeg"];
     }
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
