@@ -61,7 +61,6 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [self setupNotification];
   [self setupDataSource];
-//  [self setupNavigationBar];
   [self setupMessageTableView];
   [self setupMessageInputView];
   [self setupSessionID];
@@ -349,6 +348,7 @@ const CGFloat shortcutViewHeight = 45.0;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
       });
+      [self setupNavigationBar];
       break;
     }
     case ChatService: {
@@ -357,6 +357,7 @@ const CGFloat shortcutViewHeight = 45.0;
       self.messageInputView.hidden = YES;
       self.subButtonViews = [NSMutableArray array];
       [self setupShortcutView];
+      [self setupNavigationBar];
       break;
     }
     default:

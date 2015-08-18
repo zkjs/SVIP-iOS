@@ -178,7 +178,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   func setupGPSMonitor() {
-    locationManager.startMonitoringVisits()
+//    locationManager.startMonitoringVisits()
+    locationManager.startMonitoringSignificantLocationChanges()
 //    locationManager.desiredAccuracy = kCLLocationAccuracyBest
 //    locationManager.startUpdatingLocation()
 //    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
@@ -327,6 +328,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
+    let notification = UILocalNotification()
+    let alertMessage = "\(coordinate.latitude), \(coordinate.longitude), \(traceTime)"
+    notification.alertBody = alertMessage
+    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
   func updateSmartPanelUI() {
@@ -408,7 +413,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let orderInfo = order {
         if orderInfo.status == "0" {
           // 预订状态
-          statusLabel.setTitle(" 您已经提交订单，请等待酒店确定", forState: .Normal)
+          statusLabel.setTitle(" 已经提交订单，请等待酒店确定", forState: .Normal)
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
@@ -447,7 +452,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let orderInfo = order {
         if orderInfo.status == "0" {
           // 预订状态
-          statusLabel.setTitle(" 您已经提交订单，请等待酒店确定", forState: .Normal)
+          statusLabel.setTitle(" 已经提交订单，请等待酒店确定", forState: .Normal)
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
@@ -634,10 +639,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - CLLocationManagerDelegate
-  func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
-    
-  }
-  
   func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status == CLAuthorizationStatus.AuthorizedAlways {
       setupBeaconMonitor()
@@ -651,8 +652,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-    locationManager.stopUpdatingLocation()
-    
+    locationManager.stopMonitoringSignificantLocationChanges()
     let coordinate = manager.location.coordinate
     let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
     regeoRequest.searchType = AMapSearchType.ReGeocode
