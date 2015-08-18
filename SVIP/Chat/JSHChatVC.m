@@ -289,7 +289,7 @@ const CGFloat shortcutViewHeight = 45.0;
   self.messageSender = @"我";
   self.messageReceiver = self.receiverName;
   self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
-  if ([JSHStorage baseInfo].name) {
+  if ([JSHStorage baseInfo].username) {
     self.senderName = [JSHStorage baseInfo].username;
   } else {
     self.senderName = @"";

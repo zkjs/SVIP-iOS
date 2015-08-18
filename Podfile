@@ -15,7 +15,7 @@ target 'SVIP' do
   pod 'DateTools'
   pod 'MessageDisplayKit', :inhibit_warnings => true, :git => 'https://github.com/hanton/MessageDisplayKit.git', :branch => 'ZKJS'
 #  pod 'FXBlurView'
-  pod 'EstimoteSDK'
+#  pod 'EstimoteSDK'
   pod 'MBProgressHUD'
   pod 'Colours'
   pod 'AFNetworking'

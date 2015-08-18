@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, ESTBeaconManagerDelegate, CLLocationManagerDelegate, AMapSearchDelegate {
+class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, CLLocationManagerDelegate, AMapSearchDelegate {
   
   @IBOutlet weak var settingsButton: UIButton!
   
@@ -25,7 +25,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   @IBOutlet weak var checkinLabel: UIButton!
   @IBOutlet weak var checkinSubLabel: UILabel!
   
-  let beaconManager = ESTBeaconManager()
   let locationManager = CLLocationManager()
   
   var beaconRegions = [String: [String: String]]()
@@ -45,7 +44,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupRightButton()
     setupBeaconMonitor()
     initTCPSessionManager()
-    setupLocationService()
     initSmartPanelUI()
   }
   
@@ -122,7 +120,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       return
     }
     
-//    beaconManager.delegate = self
     locationManager.delegate = self
     if CLLocationManager.authorizationStatus() == .NotDetermined {
       locationManager.requestAlwaysAuthorization()
@@ -697,25 +694,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       println("Location: \(response.regeocode.formattedAddress)")
     }
   }
-  
-//  // MARK: - ESTBeaconManagerDelegate
-//  func beaconManager(manager: AnyObject!, didDetermineState state: CLRegionState, forRegion region: CLBeaconRegion!) {
-//    if region.identifier == "DetermineCurrentRegionState" {
-//      println(state.rawValue)
-//      if state != CLRegionState.Inside {
-//        StorageManager.sharedInstance().updateLastBeacon(nil)
-//      }
-//      updateSmartPanelUI()
-//    }
-//  }
-//  
-//  func beaconManager(manager: AnyObject!, didEnterRegion region: CLBeaconRegion!) {
-//    didEnterBeaconRegion(region)
-//  }
-//  
-//  func beaconManager(manager: AnyObject!, didExitRegion region: CLBeaconRegion!) {
-//    didExitBeaconRegion(region)
-//  }
   
   // MARK: - UINavigationControllerDelegate
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {

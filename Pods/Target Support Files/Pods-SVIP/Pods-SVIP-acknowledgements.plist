@@ -130,15 +130,6 @@ SOFTWARE.</string>
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright 2013-2015 Estimote, Inc. All rights reserved.
-</string>
-			<key>Title</key>
-			<string>EstimoteSDK</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
 			<string>The MIT License (MIT)
 
 Copyright (c) 2014 Jared Sinclair

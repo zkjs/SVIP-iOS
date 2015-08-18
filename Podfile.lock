@@ -31,7 +31,6 @@ PODS:
     - CocoaLumberjack/Default
   - Colours (5.6.2)
   - DateTools (1.6.1)
-  - EstimoteSDK (3.3.3)
   - JTSImageViewController (1.4)
   - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
@@ -57,7 +56,6 @@ DEPENDENCIES:
   - CocoaLumberjack
   - Colours
   - DateTools
-  - EstimoteSDK
   - JTSImageViewController
   - MBProgressHUD
   - MessageDisplayKit (from `https://github.com/hanton/MessageDisplayKit.git`, branch
@@ -96,11 +94,10 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
-  EstimoteSDK: 081e0653a747a6fc275eb26e6cb3b3fe5a87984f
   JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MessageDisplayKit: 5d9ee09b863c13a6a825c810b57512d3b5e96cb8
+  MessageDisplayKit: 2a8b32e53d9ab8955d3591312ca9bd1fc343d6b5
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
   MJExtension: 2650b64a34ace8d2aa9410d1d17244917032f37a
   MJRefresh: 6eb2f61338f89f64fd628fd43debcf479381ff59
@@ -113,4 +110,4 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   YXTMotionView: cef229d560c50fc8e4fd2897b3715bec208ac95f
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2
