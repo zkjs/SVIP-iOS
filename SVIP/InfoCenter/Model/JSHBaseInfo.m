@@ -54,8 +54,11 @@
         }];
       
         _real_name = dic[@"real_name"];
-        _position = dic[@"remark"];
         _email = dic[@"email"];
+        if ([_email isKindOfClass:[NSNull class]]) {
+          _email = nil;
+        }
+        _position = dic[@"remark"];
         if ([_position isKindOfClass:[NSNull class]]) {
             _position = nil;
         }

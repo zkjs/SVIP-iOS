@@ -113,6 +113,8 @@
 		B2C2EB3B1B7DD83200FF8B23 /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */; };
 		B2C2EB3C1B7DD83200FF8B23 /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */; };
 		B2C2EB3E1B7E06FE00FF8B23 /* SettingEdit.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */; };
+		B2F39EBD1B831F3200CBEE1E /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F39EBB1B831F3200CBEE1E /* InfoEditViewController.swift */; };
+		B2F39EBE1B831F3200CBEE1E /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F39EBC1B831F3200CBEE1E /* InfoEditViewController.xib */; };
 		B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */; };
 		B2F4716B1B4B6CF0005122BB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F471691B4B6CF0005122BB /* AlipaySDK.framework */; };
 		B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F471701B4B7B21005122BB /* AlipayOrder.m */; };
@@ -303,6 +305,8 @@
 		B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingEditViewController.swift; sourceTree = "<group>"; };
 		B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingEditViewController.xib; sourceTree = "<group>"; };
 		B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingEdit.plist; sourceTree = "<group>"; };
+		B2F39EBB1B831F3200CBEE1E /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
+		B2F39EBC1B831F3200CBEE1E /* InfoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditViewController.xib; sourceTree = "<group>"; };
 		B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		B2F471691B4B6CF0005122BB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		B2F4716F1B4B7B21005122BB /* AlipayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipayOrder.h; sourceTree = "<group>"; };
@@ -756,6 +760,8 @@
 				B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */,
 				B22AF2331B8192F500E49BFF /* TicketTableViewCell.swift */,
 				B22AF2341B8192F500E49BFF /* TicketTableViewCell.xib */,
+				B2F39EBB1B831F3200CBEE1E /* InfoEditViewController.swift */,
+				B2F39EBC1B831F3200CBEE1E /* InfoEditViewController.xib */,
 			);
 			path = InfoCenter;
 			sourceTree = "<group>";
@@ -1079,6 +1085,7 @@
 				B2F49EAE1B7347A200556AE2 /* UMSCommentDetailController.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
+				B2F39EBE1B831F3200CBEE1E /* InfoEditViewController.xib in Resources */,
 				B2F49EB01B7347A200556AE2 /* UMSCommentInputControlleriPad.xib in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				B2C2EB381B7D8B4100FF8B23 /* SettingTable.plist in Resources */,
@@ -1220,6 +1227,7 @@
 				B201C28A1B65D225004CA10C /* JSHInfoEditLabelLevel1Model.m in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
+				B2F39EBD1B831F3200CBEE1E /* InfoEditViewController.swift in Sources */,
 				4053EB3C1B480B09009B0DE1 /* StorageManager.swift in Sources */,
 				40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */,
 				B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */,

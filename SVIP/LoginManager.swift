@@ -41,6 +41,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
   func afterAnimation() {
     if JSHAccountManager.sharedJSHAccountManager().userid != nil {//已注册
       fetchUserInfo({ () -> () in
+        ZKJSTool.hideHUD()
         self.showResideMenu(haspushed: nil)
       })
       
@@ -123,8 +124,10 @@ class LoginManager: NSObject, RESideMenuDelegate {
                 if set {//注册成功
                   //save account data
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
-                  //获取用户信息
+                  //编辑个人信息
                   println("here goes to edit info ")
+                  self.appWindow.rootViewController = UINavigationController(rootViewController: InfoEditViewController())
+                  
                 }
               }
               }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

@@ -318,8 +318,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     setupLoginManager()
     loginManager?.showAnimation()
-//    window?.rootViewController?.view.layer.cornerRadius = 6
-//    window?.rootViewController?.view.layer.masksToBounds = true
+//    window?.rootViewController = UINavigationController(rootViewController: InfoEditViewController())
     window?.makeKeyAndVisible()
   }
 
