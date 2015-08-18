@@ -216,7 +216,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
-      if NSUserDefaults.standardUserDefaults().boolForKey("DidOpenTCPSocket") {
+      if NSUserDefaults.standardUserDefaults().boolForKey("DidLoginTCPSocket") {
         let shopID = beaconRegion["shopid"]
         let locid = beaconRegion["locid"]
         let uuid = beaconRegion["uuid"]
@@ -328,10 +328,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
-    let notification = UILocalNotification()
-    let alertMessage = "\(coordinate.latitude), \(coordinate.longitude), \(traceTime)"
-    notification.alertBody = alertMessage
-    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+//    let notification = UILocalNotification()
+//    let alertMessage = "\(coordinate.latitude), \(coordinate.longitude), \(traceTime)"
+//    notification.alertBody = alertMessage
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
   func updateSmartPanelUI() {
@@ -667,7 +667,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
     if region.identifier == "DetermineCurrentRegionState" {
-      println(state.rawValue)
+      println("didDetermineState: \(state.rawValue)")
       if state != CLRegionState.Inside {
         StorageManager.sharedInstance().updateLastBeacon(nil)
       }

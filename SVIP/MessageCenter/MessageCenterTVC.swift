@@ -60,17 +60,23 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
     let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
     
     if indexPath.row == 0 {
-//      var version = ""
-//      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
-//        version = info
-//      }
-//      var build = ""
-//      if let info = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
-//        build = info
-//      }
-//      cell.tips.text = "Version \(version) Build \(build)"
       cell.name.text = "软件反馈"
       cell.logo.setImage(UIImage(named: "img_hotel_zhanwei"), forState: .Normal)
+      let userID = JSHAccountManager.sharedJSHAccountManager().userid
+      let shopID = "808"  // 我们自己用shopID 808
+      if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID(shopID, userID: userID) {
+        let message = formatMessage(chatMessage)
+        cell.tips.text = message["message"]
+        cell.date.text = message["date"]
+      }
+      
+      if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+        if let badge = shopMessageBadge[shopID] {
+          if badge != 0 {
+            cell.logo.badgeString = String(badge)
+          }
+        }
+      }
       return cell
     }
   
@@ -100,7 +106,6 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
           }
         }
       }
-
     }
     
     return cell
@@ -131,7 +136,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
     if indexPath.row == 0 {
 //      sendLogEmail()
       let chatVC = JSHChatVC(chatType: ChatType.OldSession)
-      chatVC.shopID = "31415"
+      chatVC.shopID = "808"
       chatVC.shopName = "软件反馈"
       if let navigationController = self.sideMenuViewController.contentViewController as? UINavigationController {
         self.sideMenuViewController.hideMenuViewController()
