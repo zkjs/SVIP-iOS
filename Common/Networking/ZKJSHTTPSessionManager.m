@@ -452,9 +452,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [self POST:@"user/gpsadd" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-    [formData appendPartWithFormData:[longitude dataUsingEncoding:NSUTF8StringEncoding] name:@"longitude"];
-    [formData appendPartWithFormData:[latitude dataUsingEncoding:NSUTF8StringEncoding] name:@"latitude"];
-    [formData appendPartWithFormData:[traceTime dataUsingEncoding:NSUTF8StringEncoding] name:@"traceTime"];
+    [formData appendPartWithFormData:[longitude dataUsingEncoding:NSUTF8StringEncoding] name:@"map_longitude"];
+    [formData appendPartWithFormData:[latitude dataUsingEncoding:NSUTF8StringEncoding] name:@"map_latitude"];
+    [formData appendPartWithFormData:[traceTime dataUsingEncoding:NSUTF8StringEncoding] name:@"trace_time"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
