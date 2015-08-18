@@ -1,6 +1,4 @@
-# README #
-
-欢迎来到SVIP.
+# 欢迎来到SVIP #
 
 ### What is this repository for? ###
 
