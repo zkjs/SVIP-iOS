@@ -48,16 +48,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     initSmartPanelUI()
   }
   
-  func setupNotification() {
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSmartPanel", name: "UIApplicationDidBecomeActiveNotification", object: nil)
-  }
-  
   override func viewWillAppear(animated: Bool) {
     navigationController?.setNavigationBarHidden(true, animated: true)//为了保证每次进入首页无navigationbar页面效果
     navigationController?.delegate = self
     
     settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
     
+    setupLeftRightButtons()
     updateSmartPanel()
     updateMessageBadge()
   }
@@ -93,6 +90,21 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   func initTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+  }
+  
+  func setupNotification() {
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSmartPanel", name: "UIApplicationDidBecomeActiveNotification", object: nil)
+  }
+  
+  func setupLeftRightButtons() {
+    if NSUserDefaults.standardUserDefaults().boolForKey("isFirstRun") {
+      leftButton.hidden = false
+      rightButton.hidden = false
+      NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isFirstRun")
+    } else {
+      leftButton.hidden = true
+      rightButton.hidden = true
+    }
   }
   
   func setupRightButton() {

@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     fetchBeaconRegions()
     setupUMSocial()//UM
     
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isFirstRun")
+    
     return true
   }
 
