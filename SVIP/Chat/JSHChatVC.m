@@ -425,7 +425,7 @@ const CGFloat shortcutViewHeight = 45.0;
                          @"name": @"其它",
                          @"department": @"有关部门",
                          @"ruletype": @"DefaultChatRuleType",
-                         @"tags": @[@"发票", @"唱K", @"健身"]
+                         @"tags": @[@"免前台", @"特权"]
                          }
                        ]
          },
@@ -449,7 +449,7 @@ const CGFloat shortcutViewHeight = 45.0;
                        @"name": @"其它",
                        @"department": @"有关部门",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"发票", @"唱K", @"健身"]
+                       @"tags": @[@"免前台", @"特权"]
                       }
                      ]
        },
@@ -473,7 +473,7 @@ const CGFloat shortcutViewHeight = 45.0;
                        @"name": @"其它",
                        @"department": @"有关部门",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"发票", @"唱K", @"健身"]
+                       @"tags": @[@"免前台", @"特权"]
                        }
                      ]
        },
@@ -497,7 +497,7 @@ const CGFloat shortcutViewHeight = 45.0;
                        @"name": @"其它",
                        @"department": @"有关部门",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"发票", @"唱K", @"健身"]
+                       @"tags": @[@"免前台", @"特权"]
                        }
                      ]
        },
@@ -521,7 +521,7 @@ const CGFloat shortcutViewHeight = 45.0;
                        @"name": @"其它",
                        @"department": @"有关部门",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"发票", @"唱K", @"健身"]
+                       @"tags": @[@"免前台", @"特权"]
                        }
                      ]
        },
@@ -545,10 +545,10 @@ const CGFloat shortcutViewHeight = 45.0;
                        @"name": @"其它",
                        @"department": @"有关部门",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"发票", @"唱K", @"健身"]
+                       @"tags": @[@"免前台", @"特权"]
                        }
                      ]
-       },
+       }
    };
 }
 
