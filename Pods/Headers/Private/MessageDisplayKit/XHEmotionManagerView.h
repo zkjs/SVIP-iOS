@@ -1,1 +1,0 @@
-../../../MessageDisplayKit/MessageDisplayKit/Classes/Views/MessageMenuViews/XHEmotionManagerView.h

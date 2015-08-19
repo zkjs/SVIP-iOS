@@ -1,1 +1,0 @@
-../../../MessageDisplayKit/MessageDisplayKit/Classes/Vendor/SECoreTextView/SETextEditingCaret.h

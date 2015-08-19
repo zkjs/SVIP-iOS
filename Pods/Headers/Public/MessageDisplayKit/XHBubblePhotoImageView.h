@@ -1,1 +1,0 @@
-../../../MessageDisplayKit/MessageDisplayKit/Classes/Views/MessageContentViews/XHBubblePhotoImageView.h

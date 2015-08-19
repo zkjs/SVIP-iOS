@@ -1,1 +1,0 @@
-../../../MessageDisplayKit/MessageDisplayKit/Classes/Categorys/NSString/NSString+MessageInputView.h

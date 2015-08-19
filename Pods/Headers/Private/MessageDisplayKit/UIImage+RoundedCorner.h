@@ -1,1 +1,0 @@
-../../../MessageDisplayKit/MessageDisplayKit/Classes/Categorys/UIImage/UIImage+RoundedCorner.h

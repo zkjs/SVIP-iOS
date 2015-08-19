@@ -1,1 +1,0 @@
-../../../MessageDisplayKit/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHDisplayEmotionViewController/XHDisplayEmotionViewController.h

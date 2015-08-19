@@ -1,1 +1,0 @@
-../../../MessageDisplayKit/MessageDisplayKit/Classes/Views/MessageContentViews/XHMessageTableView.h
