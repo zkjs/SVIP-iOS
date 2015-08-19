@@ -500,6 +500,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     navController.navigationBar.tintColor = UIColor.blackColor()
     navController.navigationBar.translucent = false
     presentViewController(navController, animated: true, completion: nil)
+//    navigationController?.pushViewController(BookHotelListTVC(), animated: true)
   }
   
   @IBAction func showSettings(sender: AnyObject) {
@@ -507,44 +508,29 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   @IBAction func tappedStatusButton(sender: AnyObject) {
-    println("Tap Smart Panel")
+    println("Tap Status Button")
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
     case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-      let navController = UINavigationController(rootViewController: BookHotelListTVC())
-      navController.navigationBar.tintColor = UIColor.blackColor()
-      navController.navigationBar.translucent = false
-      presentViewController(navController, animated: true, completion: nil)
+      navigationController?.pushViewController(BookHotelListTVC(), animated: true)
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       if let orderInfo = order {
         if orderInfo.status == "0" {  // 0 未确认可取消订单
-          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
-          navController.navigationBar.tintColor = UIColor.blackColor()
-          navController.navigationBar.translucent = false
-          presentViewController(navController, animated: true, completion: nil)
+          navigationController?.pushViewController(BookingOrderDetailVC(order: order), animated: true)
         } else {
-          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
-          navController.navigationBar.tintColor = UIColor.blackColor()
-          navController.navigationBar.translucent = false
-          presentViewController(navController, animated: true, completion: nil)
+          navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
         }
       }
       break
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       if let orderInfo = order {
         if orderInfo.status == "0" {  // 0 未确认可取消订单
-          let navController = UINavigationController(rootViewController: BookingOrderDetailVC(order: order))
-          navController.navigationBar.tintColor = UIColor.blackColor()
-          navController.navigationBar.translucent = false
-          presentViewController(navController, animated: true, completion: nil)
+          navigationController?.pushViewController(BookingOrderDetailVC(order: order), animated: true)
         } else {
-          let navController = UINavigationController(rootViewController: OrderDetailVC(order: order))
-          navController.navigationBar.tintColor = UIColor.blackColor()
-          navController.navigationBar.translucent = false
-          presentViewController(navController, animated: true, completion: nil)
+          navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
         }
       }
       break
@@ -635,18 +621,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   @IBAction func didSelectLeftButton(sender: AnyObject) {
-//    let navController = UINavigationController(rootViewController: OrderListTVC())
-//    navController.navigationBar.tintColor = UIColor.blackColor()
-//    navController.navigationBar.translucent = false
-//    presentViewController(navController, animated: true, completion: nil)
     sideMenuViewController.presentLeftMenuViewController()
   }
   
   @IBAction func didSelectRightButton(sender: AnyObject) {
-//    let navController = UINavigationController(rootViewController: MessageCenterTVC())
-//    navController.navigationBar.tintColor = UIColor.blackColor()
-//    navController.navigationBar.translucent = false
-//    presentViewController(navController, animated: true, completion: nil)
     sideMenuViewController.presentRightMenuViewController()
   }
   
