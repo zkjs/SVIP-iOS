@@ -1,5 +1,7 @@
 # 欢迎来到SVIP #
 
+### [Xcode Keyboard Shortcuts](http://swifteducation.github.io/assets/pdfs/XcodeKeyboardShortcuts.pdf) ###
+
 ### What is this repository for? ###
 
 * Quick summary
