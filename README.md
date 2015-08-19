@@ -1,6 +1,7 @@
 # 欢迎来到SVIP #
 
 ### [Xcode Keyboard Shortcuts](http://swifteducation.github.io/assets/pdfs/XcodeKeyboardShortcuts.pdf) ###
+### [The Swift Programming Language](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/) ###
 
 ### What is this repository for? ###
 
