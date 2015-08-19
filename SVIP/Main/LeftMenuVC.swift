@@ -7,7 +7,17 @@
 //
 
 import UIKit
+
+enum LeftButton: Int {
+  case Main = 0
+  case Setting
+  case InRoomCheckin
+  case BookingOrder
+  case HistoryOrder
+}
+
 let LeftMenuProportion = 0.75
+
 class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   let Identifier = "LeftMenuCell"
   var dataArray: NSArray?
@@ -91,16 +101,47 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 //      self.sideMenuViewController.hideMenuViewController()
 //      navi.pushViewController(vc, animated: true)
 //    }
-    switch indexPath.row {
-    case 1:
-      let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
-      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-        self.sideMenuViewController.hideMenuViewController()
-        navi.pushViewController(vc, animated: true)
+    // Hanton
+    if let buttonIndex = LeftButton(rawValue: indexPath.row) {
+      switch buttonIndex {
+      case .Main:
+        println(".Main")
+      case .Setting:
+        let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
+        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+          self.sideMenuViewController.hideMenuViewController()
+          navi.pushViewController(vc, animated: true)
+        }
+      case .InRoomCheckin:
+        println(".InRoomCheckin")
+      case .BookingOrder:
+        let vc = OrderListTVC()
+        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+          self.sideMenuViewController.hideMenuViewController()
+          navi.pushViewController(vc, animated: true)
+        }
+      case .HistoryOrder:
+        let vc = OrderListTVC()
+        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+          self.sideMenuViewController.hideMenuViewController()
+          navi.pushViewController(vc, animated: true)
+        }
+      default:
+        break
       }
-    default:
-      break;
+    } else {
+      println("在枚举LeftButton中未找到\(indexPath.row)")
     }
+//    switch indexPath.row {
+//    case 1:
+//      let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
+//      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+//        self.sideMenuViewController.hideMenuViewController()
+//        navi.pushViewController(vc, animated: true)
+//      }
+//    default:
+//      break;
+//    }
 
 
   }

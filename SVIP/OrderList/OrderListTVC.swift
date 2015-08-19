@@ -34,7 +34,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     title = "足迹"
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
@@ -167,9 +167,9 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
 
   // MARK: - Private Method
-  func dismissSelf() -> Void {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
+//  func dismissSelf() -> Void {
+//    dismissViewControllerAnimated(true, completion: nil)
+//  }
   
   func loadMoreData() -> Void {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid

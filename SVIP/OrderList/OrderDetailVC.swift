@@ -41,7 +41,7 @@ class OrderDetailVC: UIViewController {
     
     title = "订单详情"
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     setupChatButton()
     
@@ -81,9 +81,9 @@ class OrderDetailVC: UIViewController {
   }
   
   // MARK: - Private Method
-  func dismissSelf() -> Void {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
+//  func dismissSelf() -> Void {
+//    dismissViewControllerAnimated(true, completion: nil)
+//  }
   
   func setupChatButton() {
     chatButton.layer.borderWidth = 0.6

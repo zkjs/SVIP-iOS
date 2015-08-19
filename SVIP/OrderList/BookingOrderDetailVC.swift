@@ -47,7 +47,7 @@ class BookingOrderDetailVC: UIViewController {
     
     title = "预定中的订单"
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     var startDateString = order.arrival_date
     var endDateString = order.departure_date
@@ -80,9 +80,9 @@ class BookingOrderDetailVC: UIViewController {
   }
   
   // MARK: - Private Method
-  func dismissSelf() -> Void {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
+//  func dismissSelf() -> Void {
+//    dismissViewControllerAnimated(true, completion: nil)
+//  }
   
   func setupTagView(tags: [String]) {
     tagView.backgroundColor = UIColor(fromHexString: "F4F4F3")
@@ -143,7 +143,7 @@ class BookingOrderDetailVC: UIViewController {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     ZKJSTool.showLoading("正在取消订单...")
-    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
 //      ZKJSTool.hideHUD()
       ZKJSTool.showMsg("已成功取消订单")
       
@@ -151,11 +151,11 @@ class BookingOrderDetailVC: UIViewController {
         Int64(1 * Double(NSEC_PER_SEC)))
       dispatch_after(delayTime, dispatch_get_main_queue()) {
         self.delegate?.didCancelOrder(self.order)
-        if self.navigationController?.viewControllers.first is BookingOrderDetailVC {
-          self.dismissSelf()
-        } else {
-          self.navigationController?.popToRootViewControllerAnimated(true)
-        }
+//        if self.navigationController?.viewControllers.first is BookingOrderDetailVC {
+//          self.dismissSelf()
+//        } else {
+          self.navigationController?.popViewControllerAnimated(true)
+//        }
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       ZKJSTool.hideHUD()
