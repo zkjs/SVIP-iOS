@@ -17,6 +17,7 @@
 		404C36D31B6B4AE200E8C227 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C36D21B6B4AE200E8C227 /* Message.swift */; };
 		404CF5D31B6758E900BCFB44 /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CF5D21B6758E900BCFB44 /* EncryptionTransformer.swift */; };
 		404CF5D51B676CC900BCFB44 /* EncryptionBinaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CF5D41B676CC900BCFB44 /* EncryptionBinaryTransformer.swift */; };
+		404FACD31B84792700352023 /* NSDate+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404FACD21B84792700352023 /* NSDate+Days.swift */; };
 		405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 405065F41B4CC23100DF25C0 /* JSHAnimator.m */; };
 		405266371B41279B00B277BE /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266331B41279B00B277BE /* OrderListTVC.swift */; };
 		4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052663A1B4127B400B277BE /* OrderDetailVC.swift */; };
@@ -164,6 +165,7 @@
 		404C36D21B6B4AE200E8C227 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		404CF5D21B6758E900BCFB44 /* EncryptionTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionTransformer.swift; path = Helper/EncryptionTransformer.swift; sourceTree = "<group>"; };
 		404CF5D41B676CC900BCFB44 /* EncryptionBinaryTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionBinaryTransformer.swift; path = Helper/EncryptionBinaryTransformer.swift; sourceTree = "<group>"; };
+		404FACD21B84792700352023 /* NSDate+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Days.swift"; sourceTree = "<group>"; };
 		405065F31B4CC23100DF25C0 /* JSHAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimator.h; sourceTree = "<group>"; };
 		405065F41B4CC23100DF25C0 /* JSHAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimator.m; sourceTree = "<group>"; };
 		405266331B41279B00B277BE /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTVC.swift; sourceTree = "<group>"; };
@@ -413,6 +415,14 @@
 			path = Compressor;
 			sourceTree = "<group>";
 		};
+		404FACD11B84790300352023 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				404FACD21B84792700352023 /* NSDate+Days.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		405266311B41279B00B277BE /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +556,7 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
+				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
 				4053EB3A1B480AE3009B0DE1 /* Helper */,
 				B2564D4F1B4BFE070098608F /* InfoCenter */,
@@ -1198,6 +1209,7 @@
 				407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */,
 				B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
+				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
 				B2C2EB3B1B7DD83200FF8B23 /* SettingEditViewController.swift in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
