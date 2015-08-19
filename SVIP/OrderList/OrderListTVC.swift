@@ -72,52 +72,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     let cell: OrderCell = tableView.dequeueReusableCellWithIdentifier(OrderCell.reuseIdentifier()) as! OrderCell
     let order = orders[indexPath.row] as! BookOrder
-    let urlString = "\(kBaseURL)uploads/shops/\(order.shopid).png"
-    let logoURL = NSURL(string: urlString)
-    let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    cell.logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: SDWebImageOptions.ProgressiveDownload | SDWebImageOptions.RetryFailed, completed: nil)
-    var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    let startDate = dateFormatter.dateFromString(order.arrival_date)
-    let endDate = dateFormatter.dateFromString(order.departure_date)
-    let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
-    let status = order.status
-    var room_rate = 0
-    if let roomRate = order.room_rate.toInt() {
-      room_rate = roomRate
-    }
-    let rooms = order.rooms
-    
-    // status=订单状态 默认0 未确认可取消订单 1取消订单 2已确认订单 3已经完成的订单 4已经入住的订单 5删除订单
-    if status.toInt() == 0 {
-      cell.rightUtilityButtons = nil
-      cell.bookingImageView.hidden = false
-      cell.statusLabel.text = "未确定"
-    } else if status.toInt() == 1 {
-      cell.rightUtilityButtons = rightButtons() as [AnyObject]
-      cell.bookingImageView.hidden = true
-      cell.statusLabel.text = "已取消"
-    } else if status.toInt() == 2 {
-      cell.rightUtilityButtons = nil
-      cell.bookingImageView.hidden = true
-      cell.statusLabel.text = "已确定"
-    } else if status.toInt() == 3 {
-      cell.rightUtilityButtons = rightButtons() as [AnyObject]
-      cell.bookingImageView.hidden = true
-      cell.statusLabel.text = "已完成"
-    } else if status.toInt() == 4 {
-      cell.rightUtilityButtons = nil
-      cell.bookingImageView.hidden = true
-      cell.statusLabel.text = "已入住"
-    }
-    
-    cell.amountLabel.hidden = false
-    cell.amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
-    
-    dateFormatter.dateFormat = "yyyy/MM/dd"
-    cell.dateLabel.text = dateFormatter.stringFromDate(startDate!)
-    cell.nameLabel.text = order.fullname
-    cell.countLabel.text = "\(days)晚"
+    cell.setOrder(order)
     cell.delegate = self
     
     return cell
@@ -159,7 +114,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        ZKJSTool.showMsg("删除失败")
+          ZKJSTool.showMsg("删除失败")
       })
     default:
       break
@@ -213,12 +168,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       
     }
-  }
-  
-  func rightButtons() -> NSArray {
-    let rightUtilityButtons: NSMutableArray = []
-    rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.redColor(), title: "删除")
-    return rightUtilityButtons
   }
   
 }
