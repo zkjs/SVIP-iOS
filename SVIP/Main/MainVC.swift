@@ -228,15 +228,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
+      let shopID = beaconRegion["shopid"]
+      let locid = beaconRegion["locid"]
+      let uuid = beaconRegion["uuid"]
+      let major = beaconRegion["major"]
+      let minor = beaconRegion["minor"]
       if NSUserDefaults.standardUserDefaults().boolForKey("DidLoginTCPSocket") {
-        let shopID = beaconRegion["shopid"]
-        let locid = beaconRegion["locid"]
-        let uuid = beaconRegion["uuid"]
-        let major = beaconRegion["major"]
-        let minor = beaconRegion["minor"]
         #if DEBUG
           let appid = "HOTELVIP_DEBUG"
-          #else
+        #else
           let appid = "HOTELVIP"
         #endif
         let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
@@ -251,11 +251,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           "timestamp": NSNumber(longLong: timestamp)
         ]
         ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+        StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
       } else {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
         ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
       }
-      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
     }
   }
   
@@ -267,13 +267,30 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let uuid = beaconRegion["uuid"]
       let major = beaconRegion["major"]
       let minor = beaconRegion["minor"]
-      
-//      let notification = UILocalNotification()
-//      let alertMessage = "Exit region notification ShopID: \(shopID!) LocationID: \(locid!) UUID: \(uuid!) Major: \(major!) Minor: \(minor!)"
-//      notification.alertBody = alertMessage
-//      UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+      if NSUserDefaults.standardUserDefaults().boolForKey("DidLoginTCPSocket") {
+        #if DEBUG
+          let appid = "HOTELVIP_DEBUG"
+        #else
+          let appid = "HOTELVIP"
+        #endif
+        let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+        let dictionary: [String: AnyObject] = [
+          "type": MessagePushType.PushLeaveLoc.rawValue,
+          "devtoken": JSHStorage.deviceToken(),
+          "appid": appid,
+          "userid": JSHAccountManager.sharedJSHAccountManager().userid,
+          "shopid": shopID!,
+          "locid": locid!,
+          "username": JSHStorage.baseInfo().username ?? "",
+          "timestamp": NSNumber(longLong: timestamp)
+        ]
+        ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+        StorageManager.sharedInstance().updateLastBeacon(nil)
+      } else {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendExitBeaconRegionPacket")
+        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+      }
     }
-    StorageManager.sharedInstance().updateLastBeacon(nil)
   }
   
   func updateMessageBadge() {

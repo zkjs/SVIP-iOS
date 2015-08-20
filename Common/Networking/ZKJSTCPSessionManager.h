@@ -45,6 +45,10 @@ typedef NS_ENUM(NSInteger, MessagePushType) {
   MessagePushPushLoc_A2M_RSP = 107,
   MessagePushPushLoc_IOS_A2M = 108, //ios触发
   
+  //客人离店推送
+  MessagePushPushLeaveLoc     = 231,
+  MessagePushPushLeaveLoc_RSP = 232,
+  
   //当客户端触发推消息时,发回反馈信息给服务端
   MessagePushPushTrack     = 109,
   MessagePushPushTrack_RSP = 110,
