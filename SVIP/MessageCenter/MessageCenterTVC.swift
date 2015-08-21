@@ -167,16 +167,16 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   }
   
   func fetchShops() {
-    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      for shopInfo in responseObject as! [NSDictionary] {
-        var shop = [String: String]()
-        shop["fullname"] = shopInfo["fullname"] as? String
-        shop["shopid"] = shopInfo["shopid"] as? String
-        self.shops.append(shop)
+    if let shopsInfo = StorageManager.sharedInstance().shopsInfo() {
+      self.shops = shopsInfo as! [(NSDictionary)]
+    } else {
+      ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        self.shops = responseObject as! [(NSDictionary)]
+        StorageManager.sharedInstance().saveShopsInfo(self.shops)
+        self.tableView.reloadData()
+        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+          
       }
-      self.tableView.reloadData()
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
   }
   

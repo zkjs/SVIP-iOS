@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     setupTCPSessionManager()
     fetchBeaconRegions()
     setupUMSocial()//UM
+    setupBackgroundFetch()
     
     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isFirstRun")
     
@@ -221,6 +222,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         }))
         window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       }
+    }
+  }
+  
+  // MARK: - Background Fetch
+  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
+    
+    let fetchStart = NSDate()
+    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      println("Background Fetch: \(responseObject)")
+      let shops = responseObject as! [(NSDictionary)]
+      StorageManager.sharedInstance().saveShopsInfo(shops)
+      completionHandler(.NewData)
+      
+      let fetchEnd = NSDate()
+      println("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        completionHandler(.Failed)
+        let fetchEnd = NSDate()
+        println("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
     }
   }
   
@@ -437,6 +458,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     UMSocialData.openLog(true);
     UMSocialData.setAppKey(UMAppKey)
     UMSocialWechatHandler.setWXAppId(WXAppId, appSecret: WXAppSecret, url: UMURL)
+  }
+  
+  func setupBackgroundFetch() {
+    UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
   }
 }
 

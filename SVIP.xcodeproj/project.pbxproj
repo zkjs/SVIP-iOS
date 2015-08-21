@@ -1067,6 +1067,11 @@
 					40641EF71B3E569700CF150D = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = ERF86L9T4U;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					40641F0C1B3E569800CF150D = {
 						CreatedOnToolsVersion = 6.3.2;
