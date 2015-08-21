@@ -104,7 +104,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
   [ZKJSTool showMsg:@"请输入受邀请的手机号码"];
   }];
   */
-  func signup(phone: String?, openID: String?) {
+  func signup(phone: String?, openID: String?, success:() ->()) {
     var idstr :String?
     if phone == nil && openID != nil {
       idstr = openID
@@ -121,6 +121,8 @@ class LoginManager: NSObject, RESideMenuDelegate {
               if let dic = responseObject as? [NSObject : AnyObject] {
                 let set = dic["set"]!.boolValue!
                 if set {//注册成功
+                  //回调
+                  success()
                   //save account data
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
                   //编辑个人信息
