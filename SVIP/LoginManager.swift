@@ -8,7 +8,7 @@
 /*
                       进场动画
                   动画结束判断本地已存在
-  已注册                                未注册
+  本地已登陆过                         本地未登陆过
   登录获取用户信息                      跳注册页面
   获取信息写本地                 手机注册        微信授权登录注册
 （读取后台用户信息）              判断是否为老用户GET user/getuser
@@ -133,20 +133,26 @@ class LoginManager: NSObject, RESideMenuDelegate {
                 
             })
           }else {//已注册
-            ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: openID, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
-              if let dic = responseObject as? [NSObject : AnyObject] {
-                let set = dic["set"]!.boolValue!
-                if set {//注册成功
-                  //save account data
-                  JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
-                  //获取用户信息
-                  LoginManager.sharedInstance().fetchUserInfo({ () -> () in
-                    LoginManager.sharedInstance().showResideMenu(haspushed: nil)
-                  })
-                }
-              }
-              }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-                
+//            ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: openID, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
+//              if let dic = responseObject as? [NSObject : AnyObject] {
+//                let set = dic["set"]!.boolValue!
+//                if set {//注册成功
+//                  //save account data
+//                  JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
+//                  //获取用户信息
+//                  LoginManager.sharedInstance().fetchUserInfo({ () -> () in
+//                    LoginManager.sharedInstance().showResideMenu(haspushed: nil)
+//                  })
+//                }
+//              }
+//              }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//                
+//            })
+            //save account data
+            JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic as [NSObject : AnyObject])
+            //获取用户信息
+            LoginManager.sharedInstance().fetchUserInfo({ () -> () in
+              LoginManager.sharedInstance().showResideMenu(haspushed: nil)
             })
           }
           
