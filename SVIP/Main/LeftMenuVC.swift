@@ -116,6 +116,11 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
       case .InRoomCheckin:
         println(".InRoomCheckin")
+        let vc = SkipCheckInSettingViewController()
+        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+          self.sideMenuViewController.hideMenuViewController()
+          navi.pushViewController(vc, animated: true)
+        }
       case .BookingOrder:
         let vc = OrderListTVC()
         if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
