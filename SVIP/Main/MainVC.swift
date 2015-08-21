@@ -52,7 +52,16 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     navigationController?.setNavigationBarHidden(true, animated: true)//为了保证每次进入首页无navigationbar页面效果
     navigationController?.delegate = self
     
-    settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
+    //daifengyi
+    //应用于已注册用户在新客户端登陆情况
+    if let image = JSHStorage.baseInfo().avatarImage {
+      settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
+    }else {
+      let userid = JSHStorage.baseInfo().userid
+      let urlStr = kBaseURL.stringByAppendingPathComponent("uploads/users/\(userid).jpg")
+      let url = NSURL(string: urlStr)
+      settingsButton .sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: nil, options: SDWebImageOptions.RetryFailed | SDWebImageOptions.LowPriority)
+    }
     
     setupLeftRightButtons()
     updateSmartPanel()

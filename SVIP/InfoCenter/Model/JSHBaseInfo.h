@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UIImage *avatarImage;
 @property (strong, nonatomic) NSString *phone;
 //
+@property (strong, nonatomic) NSString *userid;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *real_name;
 @property (strong, nonatomic) NSString *position;

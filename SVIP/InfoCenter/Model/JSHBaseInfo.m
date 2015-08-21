@@ -41,8 +41,9 @@
       
         _phone = dic[@"phone"];
         _username = dic[@"username"];
+        _userid = dic[@"userid"];
         //用户头像  uploads/users/userid.jpg
-        NSString *urlStr = [kBaseURL stringByAppendingPathComponent:[NSString stringWithFormat:@"uploads/users/%@.jpg",dic[@"userid"]]];
+        NSString *urlStr = [kBaseURL stringByAppendingPathComponent:[NSString stringWithFormat:@"uploads/users/%@.jpg",_userid]];
         NSURL *url = [NSURL URLWithString:urlStr];
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
           if (finished) {
@@ -54,6 +55,9 @@
         }];
       
         _real_name = dic[@"real_name"];
+        if ([_real_name isKindOfClass:[NSNull class]]) {
+          _real_name = nil;
+        }
         _email = dic[@"email"];
         if ([_email isKindOfClass:[NSNull class]]) {
           _email = nil;
@@ -74,6 +78,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
+    [coder encodeObject:self.userid forKey:@"userid"];
     [coder encodeObject:self.avatarStr forKey:@"avatarStr"];
     [coder encodeObject:self.avatarImage forKey:@"avatarImage"];
     [coder encodeObject:self.phone forKey:@"phone"];
@@ -89,6 +94,7 @@
 {
     self = [super init];
     if (self) {
+        self.userid = [aDecoder decodeObjectForKey:@"userid"];
         self.avatarStr = [aDecoder decodeObjectForKey:@"avatarStr"];
         self.avatarImage = [aDecoder decodeObjectForKey:@"avatarImage"];
         self.phone = [aDecoder decodeObjectForKey:@"phone"];
