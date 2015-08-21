@@ -54,6 +54,8 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RefreshCached | SDWebImageOptions.RetryFailed)
         }
       }
+      
+      name.text = baseInfo.username
     }
     
     tableView .registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
