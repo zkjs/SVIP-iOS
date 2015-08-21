@@ -14,7 +14,9 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   @IBOutlet weak var username: UITextField!
   @IBOutlet weak var realname: UITextField!
   @IBOutlet weak var company: UITextField!
-  @IBOutlet var sexButtons: [UIButton]!
+//  @IBOutlet var sexButtons: [UIButton]!
+  @IBOutlet weak var maleButton: UIButton!
+  @IBOutlet weak var femaleButton: UIButton!
   var avatarData: NSData! = nil
   var sexstr = "男"
   
@@ -57,6 +59,16 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     username.attributedPlaceholder = attString1
     realname.attributedPlaceholder = attString2
     company.attributedPlaceholder = attString3
+    
+    if let baseInfo = JSHStorage.baseInfo() {
+      avatarButton.setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
+      username.text = baseInfo.username
+      sexstr = baseInfo.sex
+      if sexstr == "男" {
+        selectSex(maleButton)
+      }
+      
+    }
   }
   
   
@@ -83,14 +95,14 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   }
   
   @IBAction func selectSex(sender: UIButton) {
-    for btn in sexButtons {
-      if sender != btn {
-        btn.selected = false
-      }else {
-        btn.selected = true
-        sexstr = btn.tag == 1 ? "男" : "女"
-      }
+    if sender == maleButton {
+      femaleButton.selected = false
+      sexstr = "男"
+    }else {
+      maleButton.selected = false
+      sexstr = "女"
     }
+    sender.selected = true
   }
 
   func touchBlank() {

@@ -53,7 +53,11 @@
             }
           }
         }];
-      
+
+        _openid = dic[@"openid"];
+        if ([_openid isKindOfClass:[NSNull class]]) {
+          _openid = nil;
+        }
         _real_name = dic[@"real_name"];
         if ([_real_name isKindOfClass:[NSNull class]]) {
           _real_name = nil;
@@ -78,6 +82,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
+    [coder encodeObject:self.openid forKey:@"openid"];
     [coder encodeObject:self.userid forKey:@"userid"];
     [coder encodeObject:self.avatarStr forKey:@"avatarStr"];
     [coder encodeObject:self.avatarImage forKey:@"avatarImage"];
@@ -94,6 +99,7 @@
 {
     self = [super init];
     if (self) {
+        self.openid = [aDecoder decodeObjectForKey:@"openid"];
         self.userid = [aDecoder decodeObjectForKey:@"userid"];
         self.avatarStr = [aDecoder decodeObjectForKey:@"avatarStr"];
         self.avatarImage = [aDecoder decodeObjectForKey:@"avatarImage"];
