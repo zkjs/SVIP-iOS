@@ -277,6 +277,16 @@ const CGFloat shortcutViewHeight = 45.0;
 
 #pragma mark - Private Methods
 
+- (void)setupNavigationBackButton {
+  UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_fanhui"] style:UIBarButtonItemStylePlain target:self action:@selector(popToRootVC:)];
+  newBackButton.tintColor = [UIColor blackColor];
+  self.navigationItem.leftBarButtonItem = newBackButton;
+}
+
+- (void)popToRootVC:(UIBarButtonItem *)sender {
+  [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)setupNavigationBar {
   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissSelf)];
   self.navigationItem.rightBarButtonItem = rightItem;
@@ -321,10 +331,12 @@ const CGFloat shortcutViewHeight = 45.0;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf showSystemFeedbackWithText:@"请问您还有其它需求吗 :)"];
       });
+      [self setupNavigationBackButton];
       break;
     }
     case ChatOldSession: {
       self.title = [NSString stringWithFormat:@"%@", self.shopName];
+      [self setupNavigationBackButton];
       break;
     }
     case ChatCallingWaiter: {
@@ -358,6 +370,11 @@ const CGFloat shortcutViewHeight = 45.0;
       self.subButtonViews = [NSMutableArray array];
       [self setupShortcutView];
       [self setupNavigationBar];
+      break;
+    }
+    case ChatOrder: {
+      self.title = [NSString stringWithFormat:@"%@", self.shopName];
+      [self setupNavigationBackButton];
       break;
     }
     default:

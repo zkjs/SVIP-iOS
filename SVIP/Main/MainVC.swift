@@ -38,7 +38,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    locationManager.startMonitoringVisits()
     setupNotification()
     setupCoreLocationService()
     setupMotionView()
@@ -207,7 +206,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   func setupGPSMonitor() {
-//    locationManager.startMonitoringVisits()
     locationManager.startMonitoringSignificantLocationChanges()
 //    locationManager.desiredAccuracy = kCLLocationAccuracyBest
 //    locationManager.startUpdatingLocation()
