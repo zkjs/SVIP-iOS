@@ -46,6 +46,14 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupBeaconMonitor()
     initTCPSessionManager()
     initSmartPanelUI()
+    
+    // 测试基于经纬度的位置提醒
+    let localNotification = UILocalNotification()
+    localNotification.alertBody = "欢迎来到中科院先进所.."
+    localNotification.regionTriggersOnce = false
+    let coordinate = CLLocationCoordinate2D(latitude: 22.599119, longitude: 113.985428)
+    localNotification.region = CLCircularRegion(center: coordinate, radius: 1000, identifier: "Test_Location_Notification")
+    UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
   }
   
   override func viewWillAppear(animated: Bool) {

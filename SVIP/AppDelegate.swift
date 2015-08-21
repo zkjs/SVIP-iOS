@@ -85,6 +85,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     println("applicationWillTerminate")
   }
   
+  // MARK: - Local Notification
+  func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    // 测试基于经纬度的位置提醒
+    let region = notification.region
+    if (region != nil) {
+      let alertView = UIAlertController(title: "位置提醒", message: "\(region)", preferredStyle: .Alert)
+      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+    }
+  }
+  
   // MARK: - Push Notification
   func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
     self.deviceToken = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
