@@ -221,81 +221,37 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 取得标签格式1
-/*
-[
-    {
-        "id": "1",
-        "fid": "0",
-        "tag": "地点信息",
-        "choes": "1"
-    },
-    {
-        "id": "2",
-        "fid": "1",
-        "tag": "中国",
-        "choes": null
-    },....
-]
-*/
-- (void)getTagsShowTreeWithCallback:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  
-  [self GET:@"tags/showtree" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    DDLogInfo(@"%@", error.description);
-    failure(task, error);
-  }];
+//取得已有标签
+- (void)getSelectedTagsWithID:(NSString *)userID token:(NSString *)token success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"tags/user?userid=%@&token=%@", userID, token];
+    [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+      DDLogInfo(@"%@", [responseObject description]);
+      success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      DDLogInfo(@"%@", error.description);
+      failure(task, error);
+    }];
 }
 
-// 取得标签格式2
-/*
-[
-    {
-        "id": "1",
-        "fid": "0",
-        "tag": "地点信息",
-        "choes": "1",
-        "children": [
-            {
-                "id": "2",
-                "fid": "1",
-                "tag": "中国",
-                "choes": null,
-                "children": [
-                    {
-                        "id": "4",
-                        "fid": "2",
-                        "tag": "大东北",
-                        "choes": null,
-                        "children": []
-                    },...
-            },
-        父亲1
-        父亲2
-        children{
-            }
-        ....
-]
-*/
-- (void)getTagsShowWithCallback:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  
-  [self GET:@"tags/show" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    DDLogInfo(@"%@", error.description);
-    failure(task, error);
-  }];
+// 获取随机标签池
+- (void)getRandomTagsWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    [self GET:@"tags/show" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+      DDLogInfo(@"%@", [responseObject description]);
+      success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      DDLogInfo(@"%@", error.description);
+      failure(task, error);
+    }];
 }
 
 // 上传用户标签
 - (void)updateTagsWithUserID:(NSString *)userID token:(NSString *)token tags:(NSString *)tags success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"user/puttags" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  [self POST:@"tags/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-    [formData appendPartWithFormData:[tags dataUsingEncoding:NSUTF8StringEncoding] name:@"tags"];
+    [formData appendPartWithFormData:[tags dataUsingEncoding:NSUTF8StringEncoding] name:@"tagid"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);

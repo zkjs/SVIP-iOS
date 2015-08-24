@@ -170,6 +170,9 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.company), animated: true)
     case NSIndexPath(forRow: 5, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.email), animated: true)
+    //section == 1
+    case NSIndexPath(forRow: 2, inSection: 1):
+      self.navigationController?.pushViewController(PersonalLabelViewController(), animated: true)
     default:
       break
     }
