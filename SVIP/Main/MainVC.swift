@@ -51,7 +51,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     localNotification.alertBody = "欢迎来到中科院先进所.."
     localNotification.regionTriggersOnce = false
     let coordinate = CLLocationCoordinate2D(latitude: 22.599119, longitude: 113.985428)
-    localNotification.region = CLCircularRegion(center: coordinate, radius: 1000, identifier: "Test_Location_Notification")
+    localNotification.region = CLCircularRegion(center: coordinate, radius: 100, identifier: "Test_Location_Notification")
     UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
   }
   
@@ -243,67 +243,29 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
-      let shopID = beaconRegion["shopid"]
-      let locid = beaconRegion["locid"]
-      let uuid = beaconRegion["uuid"]
-      let major = beaconRegion["major"]
-      let minor = beaconRegion["minor"]
-      if NSUserDefaults.standardUserDefaults().boolForKey("DidLoginTCPSocket") {
-        #if DEBUG
-          let appid = "HOTELVIP_DEBUG"
-        #else
-          let appid = "HOTELVIP"
-        #endif
-        let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-        let dictionary: [String: AnyObject] = [
-          "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-          "devtoken": JSHStorage.deviceToken(),
-          "appid": appid,
-          "userid": JSHAccountManager.sharedJSHAccountManager().userid,
-          "shopid": shopID!,
-          "locid": locid!,
-          "username": JSHStorage.baseInfo().username ?? "",
-          "timestamp": NSNumber(longLong: timestamp)
-        ]
-        ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-        StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
-      } else {
+      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
+      if UIApplication.sharedApplication().applicationState == .Background {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
         ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+      } else {
+        sendEnterRegionPacketWithBeacon(beaconRegion)
       }
     }
   }
   
   func didExitBeaconRegion(region: CLBeaconRegion!) {
+//    let notification = UILocalNotification()
+//    notification.alertBody = "didExitBeaconRegion"
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
-      let shopID = beaconRegion["shopid"]
-      let locid = beaconRegion["locid"]
-      let uuid = beaconRegion["uuid"]
-      let major = beaconRegion["major"]
-      let minor = beaconRegion["minor"]
-      if NSUserDefaults.standardUserDefaults().boolForKey("DidLoginTCPSocket") {
-        #if DEBUG
-          let appid = "HOTELVIP_DEBUG"
-        #else
-          let appid = "HOTELVIP"
-        #endif
-        let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-        let dictionary: [String: AnyObject] = [
-          "type": MessagePushType.PushLeaveLoc.rawValue,
-          "devtoken": JSHStorage.deviceToken(),
-          "appid": appid,
-          "userid": JSHAccountManager.sharedJSHAccountManager().userid,
-          "shopid": shopID!,
-          "locid": locid!,
-          "username": JSHStorage.baseInfo().username ?? "",
-          "timestamp": NSNumber(longLong: timestamp)
-        ]
-        ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-        StorageManager.sharedInstance().updateLastBeacon(nil)
-      } else {
+      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
+      if UIApplication.sharedApplication().applicationState == .Background {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendExitBeaconRegionPacket")
         ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+      } else {
+        sendExitRegionPacketWithBeacon(beaconRegion)
       }
     }
   }
@@ -524,6 +486,66 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
     }
     println("Update Smart Panel")
+  }
+  
+  func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
+    let shopID = beacon["shopid"]
+    let locid = beacon["locid"]
+    let uuid = beacon["uuid"]
+    let major = beacon["major"]
+    let minor = beacon["minor"]
+    #if DEBUG
+      let appid = "HOTELVIP_DEBUG"
+      #else
+      let appid = "HOTELVIP"
+    #endif
+    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let dictionary: [String: AnyObject] = [
+      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
+      "devtoken": JSHStorage.deviceToken(),
+      "appid": appid,
+      "userid": JSHAccountManager.sharedJSHAccountManager().userid,
+      "shopid": shopID!,
+      "locid": locid!,
+      "username": JSHStorage.baseInfo().username ?? "",
+      "timestamp": NSNumber(longLong: timestamp)
+    ]
+    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+    
+//    let notification = UILocalNotification()
+//    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
+//    notification.alertBody = alertMessage
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+  }
+  
+  func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
+    let shopID = beacon["shopid"]
+    let locid = beacon["locid"]
+    let uuid = beacon["uuid"]
+    let major = beacon["major"]
+    let minor = beacon["minor"]
+    #if DEBUG
+      let appid = "HOTELVIP_DEBUG"
+      #else
+      let appid = "HOTELVIP"
+    #endif
+    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let dictionary: [String: AnyObject] = [
+      "type": MessagePushType.PushLeaveLoc.rawValue,
+      "devtoken": JSHStorage.deviceToken(),
+      "appid": appid,
+      "userid": JSHAccountManager.sharedJSHAccountManager().userid,
+      "shopid": shopID!,
+      "locid": locid!,
+      "username": JSHStorage.baseInfo().username ?? "",
+      "timestamp": NSNumber(longLong: timestamp)
+    ]
+    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+    
+//    let notification = UILocalNotification()
+//    let alertMessage = "Exit \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
+//    notification.alertBody = alertMessage
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
   // MARK: - Button Action
