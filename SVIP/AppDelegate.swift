@@ -408,9 +408,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
     let shopID = beacon["shopid"]
     let locid = beacon["locid"]
-    let uuid = beacon["uuid"]
-    let major = beacon["major"]
-    let minor = beacon["minor"]
+//    let uuid = beacon["uuid"]
+//    let major = beacon["major"]
+//    let minor = beacon["minor"]
     #if DEBUG
       let appid = "HOTELVIP_DEBUG"
       #else
@@ -438,9 +438,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
     let shopID = beacon["shopid"]
     let locid = beacon["locid"]
-    let uuid = beacon["uuid"]
-    let major = beacon["major"]
-    let minor = beacon["minor"]
+//    let uuid = beacon["uuid"]
+//    let major = beacon["major"]
+//    let minor = beacon["minor"]
     #if DEBUG
       let appid = "HOTELVIP_DEBUG"
       #else

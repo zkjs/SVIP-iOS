@@ -49,6 +49,10 @@
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
 		407761881B4905E7009B6FE9 /* RuleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407761871B4905E7009B6FE9 /* RuleEngine.swift */; };
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
+		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
+		40DAA0851B8B1109005D56CA /* BookingOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */; };
+		40DAA0881B8B1148005D56CA /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA0861B8B1148005D56CA /* TestTableViewController.swift */; };
+		40DAA0891B8B1148005D56CA /* TestTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAA0871B8B1148005D56CA /* TestTableViewController.xib */; };
 		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
 		B201C2871B65D225004CA10C /* JSHCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B201C27D1B65D225004CA10C /* JSHCellModel.m */; };
 		B201C2881B65D225004CA10C /* JSHInfoEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B201C27F1B65D225004CA10C /* JSHInfoEditCell.m */; };
@@ -216,6 +220,10 @@
 		407761871B4905E7009B6FE9 /* RuleEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleEngine.swift; path = Helper/RuleEngine.swift; sourceTree = "<group>"; };
 		40DA7A011B463E850097CE3D /* JSHChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHChatVC.h; sourceTree = "<group>"; };
 		40DA7A021B463E850097CE3D /* JSHChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHChatVC.m; sourceTree = "<group>"; };
+		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
+		40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrder.storyboard; sourceTree = "<group>"; };
+		40DAA0861B8B1148005D56CA /* TestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
+		40DAA0871B8B1148005D56CA /* TestTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestTableViewController.xib; sourceTree = "<group>"; };
 		40E686F71B45297400C9725B /* BookingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrder.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B201C27C1B65D225004CA10C /* JSHCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHCellModel.h; sourceTree = "<group>"; };
@@ -849,6 +857,10 @@
 				B21250C91B74AFD50056835D /* BookListRightMenuVC.swift */,
 				B21250CB1B74AFDF0056835D /* BookListRightMenuVC.xib */,
 				B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */,
+				40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */,
+				40DAA0861B8B1148005D56CA /* TestTableViewController.swift */,
+				40DAA0871B8B1148005D56CA /* TestTableViewController.xib */,
+				40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1113,6 +1125,7 @@
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
 				B22AF2361B8192F500E49BFF /* TicketTableViewCell.xib in Resources */,
+				40DAA0851B8B1109005D56CA /* BookingOrder.storyboard in Resources */,
 				B2F49EB61B7347A200556AE2 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
@@ -1140,6 +1153,7 @@
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
+				40DAA0891B8B1148005D56CA /* TestTableViewController.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
 				B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */,
@@ -1230,6 +1244,7 @@
 				B24BDAEE1B86FC84009864C6 /* SkipCheckInSettingListCell.swift in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */,
+				40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
 				B2564D761B4BFE070098608F /* JSHInfoEditHeaderFrame.m in Sources */,
 				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
@@ -1247,6 +1262,7 @@
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
+				40DAA0881B8B1148005D56CA /* TestTableViewController.swift in Sources */,
 				B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */,
 				405065F51B4CC23100DF25C0 /* JSHAnimator.m in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,

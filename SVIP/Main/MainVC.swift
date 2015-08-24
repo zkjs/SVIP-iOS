@@ -550,11 +550,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   // MARK: - Button Action
   @IBAction func booking(sender: AnyObject) {
-    let navController = UINavigationController(rootViewController: BookHotelListTVC())
-    navController.navigationBar.tintColor = UIColor.blackColor()
-    navController.navigationBar.translucent = false
-    presentViewController(navController, animated: true, completion: nil)
-//    navigationController?.pushViewController(BookHotelListTVC(), animated: true)
+    navigationController?.pushViewController(BookHotelListTVC(), animated: true)
   }
   
   @IBAction func showSettings(sender: AnyObject) {
