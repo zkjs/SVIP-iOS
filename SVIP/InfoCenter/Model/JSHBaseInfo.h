@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSString *company;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *sex;//@"0"男     @"1"女
+@property (assign, nonatomic) int tagopen;
 - (id)initWithDic:(NSDictionary *)dic;
 
 //- (void)encodeWithCoder:(NSCoder *)coder;

@@ -79,7 +79,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       return
     }
     ZKJSTool.showLoading()
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username.text, realname: realname.text, imageData: avatarData, imageName: " ", sex: sexstr, company: company.text, occupation: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username.text, realname: realname.text, imageData: avatarData, imageName: " ", sex: sexstr, company: company.text, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       if dic["set"]!.boolValue! {
         LoginManager.sharedInstance().afterAnimation()

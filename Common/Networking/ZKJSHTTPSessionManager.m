@@ -124,31 +124,61 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 修改用户信息
-- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username realname:(NSString *)realname imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation email:(NSString *)email success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"user/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username realname:(NSString *)realname imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation email:(NSString *)email tagopen:(NSNumber *)tagopen success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+  [dic setObject:userID forKey:@"userid"];
+  [dic setObject:token forKey:@"token"];
+  if (username) {
+    [dic setObject:username forKey:@"username"];
+  }
+  if (realname) {
+    [dic setObject:realname forKey:@"realname"];
+  }
+  if (sex) {
+    [dic setObject:sex forKey:@"sex"];
+  }
+  if (company) {
+    [dic setObject:company forKey:@"company"];
+  }
+  if (occupation) {
+    [dic setObject:occupation forKey:@"occupation"];
+  }
+  if (email) {
+    [dic setObject:email forKey:@"email"];
+  }
+  if (tagopen) {
+    [dic setObject:tagopen forKey:@"tagopen"];
+  }
+  [self POST:@"user/upload" parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     if (imageData) {
       [formData appendPartWithFileData:imageData name:@"UploadForm[file]" fileName:imageName mimeType:@"image/jpeg"];
     }
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-    if (username) {
-      [formData appendPartWithFormData:[username dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
-    }
-    if (realname) {
-      [formData appendPartWithFormData:[realname dataUsingEncoding:NSUTF8StringEncoding] name:@"real_name"];
-    }
-    if (sex) {
-      [formData appendPartWithFormData:[sex dataUsingEncoding:NSUTF8StringEncoding] name:@"sex"];
-    }
-    if (company) {
-      [formData appendPartWithFormData:[company dataUsingEncoding:NSUTF8StringEncoding] name:@"preference"];
-    }
-    if (occupation) {
-      [formData appendPartWithFormData:[occupation dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
-    }
-    if (email) {
-      [formData appendPartWithFormData:[email dataUsingEncoding:NSUTF8StringEncoding] name:@"email"];
-    }
+
+//    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+//    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+//    if (username) {
+//      [formData appendPartWithFormData:[username dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
+//    }
+//    if (realname) {
+//      [formData appendPartWithFormData:[realname dataUsingEncoding:NSUTF8StringEncoding] name:@"real_name"];
+//    }
+//    if (sex) {
+//      [formData appendPartWithFormData:[sex dataUsingEncoding:NSUTF8StringEncoding] name:@"sex"];
+//    }
+//    if (company) {
+//      [formData appendPartWithFormData:[company dataUsingEncoding:NSUTF8StringEncoding] name:@"preference"];
+//    }
+//    if (occupation) {
+//      [formData appendPartWithFormData:[occupation dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
+//    }
+//    if (email) {
+//      [formData appendPartWithFormData:[email dataUsingEncoding:NSUTF8StringEncoding] name:@"email"];
+//    }
+    
+    
+//    if (tagopen) {
+//      [formData appendPartWithFormData:[tagopen by] name:@"tagopen"];
+//    }
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);

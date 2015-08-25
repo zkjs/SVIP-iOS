@@ -44,12 +44,12 @@ class LabelButton: UIButton {
     layer.cornerRadius = self.frame.height
     
     titleLabel?.font = UIFont.systemFontOfSize(14)
+    setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
     
     delLogo.frame = CGRect(origin: CGPointZero, size: CGSizeMake(12, 12))
     delLogo.center = CGPointMake(self.frame.size.width - 2, 2)
     addSubview(delLogo)
     
-    backgroundColor = UIColor.pinkColor()
   }
   
     /*

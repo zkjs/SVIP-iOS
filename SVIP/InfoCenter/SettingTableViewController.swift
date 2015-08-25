@@ -227,7 +227,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
       var persent = CGFloat(100 - i++) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)
     }
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         if dic["set"]?.boolValue == true {
           var baseInfo = JSHStorage.baseInfo()

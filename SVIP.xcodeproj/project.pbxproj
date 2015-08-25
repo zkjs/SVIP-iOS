@@ -88,7 +88,6 @@
 		B253689D1B8ABB11006E8B07 /* LabelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253689C1B8ABB11006E8B07 /* LabelSelectView.swift */; };
 		B253689F1B8ABB28006E8B07 /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253689E1B8ABB28006E8B07 /* LabelButton.swift */; };
 		B25368A21B8AD8FB006E8B07 /* PersonalLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25368A01B8AD8FB006E8B07 /* PersonalLabelViewController.swift */; };
-		B25368A31B8AD8FB006E8B07 /* PersonalLabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25368A11B8AD8FB006E8B07 /* PersonalLabelViewController.xib */; };
 		B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D381B4BFAED0098608F /* JSHAnimationVC.m */; };
 		B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D3A1B4BFAED0098608F /* JSHHotelRegisterVC.m */; };
 		B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D3B1B4BFAED0098608F /* JSHHotelRegisterVC.xib */; };
@@ -127,6 +126,8 @@
 		B2C2EB3B1B7DD83200FF8B23 /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */; };
 		B2C2EB3C1B7DD83200FF8B23 /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */; };
 		B2C2EB3E1B7E06FE00FF8B23 /* SettingEdit.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */; };
+		B2E717971B8C5DB9004EF733 /* PersonalLabelHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E717961B8C5DB9004EF733 /* PersonalLabelHeader.xib */; };
+		B2E717991B8C6014004EF733 /* PersonalLabelFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E717981B8C6014004EF733 /* PersonalLabelFooter.xib */; };
 		B2F39EBD1B831F3200CBEE1E /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F39EBB1B831F3200CBEE1E /* InfoEditViewController.swift */; };
 		B2F39EBE1B831F3200CBEE1E /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F39EBC1B831F3200CBEE1E /* InfoEditViewController.xib */; };
 		B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */; };
@@ -280,7 +281,6 @@
 		B253689C1B8ABB11006E8B07 /* LabelSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelSelectView.swift; sourceTree = "<group>"; };
 		B253689E1B8ABB28006E8B07 /* LabelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
 		B25368A01B8AD8FB006E8B07 /* PersonalLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalLabelViewController.swift; sourceTree = "<group>"; };
-		B25368A11B8AD8FB006E8B07 /* PersonalLabelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelViewController.xib; sourceTree = "<group>"; };
 		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
 		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimationVC.m; sourceTree = "<group>"; };
 		B2564D391B4BFAED0098608F /* JSHHotelRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHHotelRegisterVC.h; sourceTree = "<group>"; };
@@ -333,6 +333,8 @@
 		B2C2EB391B7DD83200FF8B23 /* SettingEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingEditViewController.swift; sourceTree = "<group>"; };
 		B2C2EB3A1B7DD83200FF8B23 /* SettingEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingEditViewController.xib; sourceTree = "<group>"; };
 		B2C2EB3D1B7E06FE00FF8B23 /* SettingEdit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingEdit.plist; sourceTree = "<group>"; };
+		B2E717961B8C5DB9004EF733 /* PersonalLabelHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelHeader.xib; sourceTree = "<group>"; };
+		B2E717981B8C6014004EF733 /* PersonalLabelFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelFooter.xib; sourceTree = "<group>"; };
 		B2F39EBB1B831F3200CBEE1E /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
 		B2F39EBC1B831F3200CBEE1E /* InfoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditViewController.xib; sourceTree = "<group>"; };
 		B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
@@ -757,7 +759,8 @@
 				B253689C1B8ABB11006E8B07 /* LabelSelectView.swift */,
 				B253689E1B8ABB28006E8B07 /* LabelButton.swift */,
 				B25368A01B8AD8FB006E8B07 /* PersonalLabelViewController.swift */,
-				B25368A11B8AD8FB006E8B07 /* PersonalLabelViewController.xib */,
+				B2E717981B8C6014004EF733 /* PersonalLabelFooter.xib */,
+				B2E717961B8C5DB9004EF733 /* PersonalLabelHeader.xib */,
 			);
 			path = InfoLabel;
 			sourceTree = "<group>";
@@ -1158,6 +1161,7 @@
 				B2564D781B4BFE070098608F /* JSHInfoEditSelection.plist in Resources */,
 				B2F49EAE1B7347A200556AE2 /* UMSCommentDetailController.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
+				B2E717991B8C6014004EF733 /* PersonalLabelFooter.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2F39EBE1B831F3200CBEE1E /* InfoEditViewController.xib in Resources */,
 				B2F49EB01B7347A200556AE2 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -1167,7 +1171,6 @@
 				B2F49EB21B7347A200556AE2 /* UMShareEditViewControlleriPad.xib in Resources */,
 				405266521B41283900B277BE /* MainVC.xib in Resources */,
 				B2F49EB51B7347A200556AE2 /* UMSShareListController.xib in Resources */,
-				B25368A31B8AD8FB006E8B07 /* PersonalLabelViewController.xib in Resources */,
 				B201C2891B65D225004CA10C /* JSHInfoEditCell.xib in Resources */,
 				B2F49EAC1B7347A200556AE2 /* UMSocialLocalizable.strings in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
@@ -1176,6 +1179,7 @@
 				B2C2EB3E1B7E06FE00FF8B23 /* SettingEdit.plist in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */,
+				B2E717971B8C5DB9004EF733 /* PersonalLabelHeader.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				40DAA0891B8B1148005D56CA /* TestTableViewController.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,

@@ -74,6 +74,7 @@
         if ([_company isKindOfClass:[NSNull class]]) {
             _company = nil;
         }
+      _tagopen = [dic[@"tagopen"] intValue];
       _sex = dic[@"sex"]? @"男" : @"女";
     }
     return self;
@@ -93,6 +94,7 @@
     [coder encodeObject:self.company forKey:@"company"];
     [coder encodeObject:self.sex forKey:@"sex"];
     [coder encodeObject:self.email forKey:@"email"];
+    [coder encodeObject:[NSNumber numberWithInt:self.tagopen] forKey:@"tagopen"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -110,6 +112,7 @@
         self.company = [aDecoder decodeObjectForKey:@"company"];
         self.sex = [aDecoder decodeObjectForKey:@"sex"];
         self.email = [aDecoder decodeObjectForKey:@"email"];
+        self.tagopen = [[aDecoder decodeObjectForKey:@"tagopen"] intValue];
     }
     return self;
 }
