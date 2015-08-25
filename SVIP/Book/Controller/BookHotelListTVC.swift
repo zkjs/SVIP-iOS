@@ -90,8 +90,10 @@ class BookHotelListTVC: UITableViewController {
 //    let vc = BookVC()
 //    vc.shopid = (dataArray[indexPath.row] as? Hotel)!.shopid
 //    let vc = BookingOrderTVC()
+    
     let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+    vc.shopID = (dataArray[indexPath.row] as? Hotel)!.shopid
     self.navigationController?.pushViewController(vc, animated: true)
   }
 }

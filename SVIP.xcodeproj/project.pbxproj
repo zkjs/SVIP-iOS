@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		401BBF181B5B7C8800774502 /* Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBF171B5B7C8800774502 /* Persistent.swift */; };
 		401BBF1B1B5B7F6500774502 /* SVIP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 401BBF191B5B7F6500774502 /* SVIP.xcdatamodeld */; };
+		404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */; };
 		404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */; };
 		404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18451B535A5F00F11122 /* NSData+AES256.m */; };
 		404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18491B53675300F11122 /* CompressingLogFileManager.m */; };
@@ -166,6 +167,7 @@
 /* Begin PBXFileReference section */
 		401BBF171B5B7C8800774502 /* Persistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistent.swift; sourceTree = "<group>"; };
 		401BBF1A1B5B7F6500774502 /* SVIP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SVIP.xcdatamodel; sourceTree = "<group>"; };
+		404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderDetailTVC.swift; sourceTree = "<group>"; };
 		404C183E1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKJSDiffie-HellmanProtocol.h"; sourceTree = "<group>"; };
 		404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKJSDiffie-HellmanProtocol.m"; sourceTree = "<group>"; };
 		404C18441B535A5F00F11122 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
@@ -878,6 +880,7 @@
 				B21250CB1B74AFDF0056835D /* BookListRightMenuVC.xib */,
 				B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */,
 				40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */,
+				404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */,
 				40DAA0861B8B1148005D56CA /* TestTableViewController.swift */,
 				40DAA0871B8B1148005D56CA /* TestTableViewController.xib */,
 				40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */,
@@ -1316,6 +1319,7 @@
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
+				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
 				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,
 				401BBF1B1B5B7F6500774502 /* SVIP.xcdatamodeld in Sources */,
 				B21250CA1B74AFD50056835D /* BookListRightMenuVC.swift in Sources */,

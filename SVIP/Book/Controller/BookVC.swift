@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias RoomSelectionBlock = (RoomGoods) -> ()
+
 class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 
   @IBOutlet private var layoutConstaintArray: [NSLayoutConstraint]!
@@ -21,6 +23,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 //Data
   var shopid: String!
   var dataArray = NSMutableArray()
+  var selection: RoomSelectionBlock?  // Hanton
   private var filtedArray = NSMutableArray()
   private var selectedRow : Int = 0
   
@@ -44,8 +47,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   
   private func setUI() {
     // Hanton
-    title = "预订"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
+    title = "选择房型"
     
     tableView.contentInset = UIEdgeInsetsMake(0, 0, 135, 0)
     
@@ -114,11 +116,6 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     }
     super.updateViewConstraints()
   }
-  
-  // Hanton
-  func dismissSelf() -> Void {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
 
 //MARK:- BUTTON ACTION
   func categorySelect(sender: UIButton) {
@@ -176,9 +173,13 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         goods.meat = button.titleLabel?.text
       }
     }
-    let bookConfirmVC = BookConfirmVC.new()
-    bookConfirmVC.goods = goods
-    self.navigationController! .pushViewController(bookConfirmVC, animated: true)
+//    let bookConfirmVC = BookConfirmVC.new()
+//    bookConfirmVC.goods = goods
+//    self.navigationController! .pushViewController(bookConfirmVC, animated: true)
+    if selection != nil {
+      selection!(goods)
+    }
+    self.navigationController?.popViewControllerAnimated(true)
   }
   
   func searchMap(sender: UIView) {

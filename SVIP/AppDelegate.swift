@@ -331,7 +331,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    window?.tintColor = UIColor.blackColor()
+//    window?.tintColor = UIColor.blackColor()
     setupLoginManager()
     loginManager?.showAnimation()
 //    window?.rootViewController = UINavigationController(rootViewController: InfoEditViewController())

@@ -468,7 +468,9 @@
                 <constraint firstAttribute="trailing" secondItem="nfC-ev-jFa" secondAttribute="trailing" id="MV7-xd-Hcz"/>
                 <constraint firstItem="kCd-jM-dE4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mi1-vv-Ps6"/>
                 <constraint firstItem="lAp-Va-ite" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PjM-pL-WuX"/>
-                <constraint firstItem="lAp-Va-ite" firstAttribute="top" secondItem="nfC-ev-jFa" secondAttribute="bottom" id="Wmy-C6-iBF"/>
+                <constraint firstItem="lAp-Va-ite" firstAttribute="top" secondItem="nfC-ev-jFa" secondAttribute="bottom" id="Wmy-C6-iBF">
+                    <variation key="heightClass=regular-widthClass=compact" constant="64"/>
+                </constraint>
                 <constraint firstItem="nfC-ev-jFa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XkV-Ni-whI">
                     <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                 </constraint>
@@ -477,7 +479,7 @@
                 <constraint firstAttribute="trailing" secondItem="lAp-Va-ite" secondAttribute="trailing" id="ng4-hE-F0w"/>
                 <constraint firstItem="nfC-ev-jFa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pTT-xu-FxJ"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="nfC-ev-jFa"/>

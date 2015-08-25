@@ -51,7 +51,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     localNotification.alertBody = "欢迎来到中科院先进所.."
     localNotification.regionTriggersOnce = false
     let coordinate = CLLocationCoordinate2D(latitude: 22.599119, longitude: 113.985428)
-    localNotification.region = CLCircularRegion(center: coordinate, radius: 100, identifier: "Test_Location_Notification")
+    let region = CLCircularRegion(center: coordinate, radius: 100, identifier: "Test_Location_Notification")
+    region.notifyOnEntry = true
+    region.notifyOnExit = false
+    localNotification.region = region
     UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
   }
   
@@ -300,7 +303,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         order.guest = lastOrder["guest"] as? String
         order.guesttel = lastOrder["guesttel"] as? String
         order.orderid = lastOrder["id"] as? String
-        order.remark = lastOrder["remark"] as? String
+        order.remark = lastOrder["remark"] as? String ?? ""
         order.reservation_no = lastOrder["reservation_no"] as? String
         order.room_rate = lastOrder["room_rate"] as? String
         order.room_type = lastOrder["room_type"] as? String
