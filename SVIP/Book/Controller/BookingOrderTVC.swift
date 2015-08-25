@@ -15,9 +15,11 @@ class BookingOrderTVC: UITableViewController {
   @IBOutlet weak var startDate: UILabel!
   @IBOutlet weak var endDate: UILabel!
   @IBOutlet weak var dateTips: UILabel!
+  @IBOutlet weak var roomCountLabel: UILabel!
   
   var shopID = ""
   var dateFormatter = NSDateFormatter()
+  var roomCount = 1
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,29 +32,67 @@ class BookingOrderTVC: UITableViewController {
     dateTips.text = "共1晚，在\(endDate.text!)13点前退房"
   }
   
+  // MARK: - Action
+  
+  @IBAction func roomCountChanged(sender: UIStepper) {
+    roomCountLabel.text = Int(sender.value).description + "间"
+    roomCount = Int(sender.value)
+    
+//    var indexPaths = []
+//    let indexPath1 = NSIndexPath(forRow: 1, inSection: 2)
+//    let indexPath2 = NSIndexPath(forRow: 2, inSection: 2)
+//    indexPaths.add
+    
+//    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+//    for (int i=0; i<3; i++) {
+//      NSString *s = [[NSString alloc] initWithFormat:@”hello %d”,i];
+//      [datas addObject:s];
+//      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//      [indexPaths addObject: indexPath];
+//    }
+//    [self.tableView beginUpdates];
+//    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewScrollPositionNone];
+//    [self.tableView endUpdates];
+    
+    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: UITableViewRowAnimation.Fade)
+  }
+  
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 3
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    var rows = 0
+    switch section {
+    case 0:
+      rows = 2
+    case 1:
+      rows = 2
+    case 2:
+      rows = roomCount
+    default:
+      break
+    }
+    return rows
   }
+  
+//  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//    return 3
+//  }
   
 //  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //    var rows = 0
-//    switch section {
-//    case 0:
-//      rows = 2
-//    case 1:
-//      rows = 2
-//    case 2:
-//      rows = 2
-//    default:
-//      break
+//    if section == 2 {
+//      rows = 3
 //    }
 //    return rows
 //  }
-  
+//  
 //  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//    return UITableViewCell()
+//    let cell = tableView.cellForRowAtIndexPath(indexPath)
+//    
+//    if indexPath.section == 2 {
+//      return UITableViewCell()
+//    }
+//    return cell!
 //  }
   
   // MARK: - Table view delegate

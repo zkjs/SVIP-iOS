@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -80,19 +80,19 @@
                                                     <rect key="frame" x="108" y="24" width="158" height="158"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华大床" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiZ-YW-Ou4">
-                                                    <rect key="frame" x="154" y="94" width="68" height="21"/>
+                                                    <rect key="frame" x="154" y="94" width="68" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已确定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foH-dP-YaO">
-                                                    <rect key="frame" x="162" y="119" width="51" height="21"/>
+                                                    <rect key="frame" x="162" y="119" width="51" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-Wx-xih">
-                                                    <rect key="frame" x="151" y="59" width="73" height="30"/>
+                                                    <rect key="frame" x="151" y="60" width="73" height="29.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="￥">
                                                             <attributes>
@@ -617,19 +617,19 @@
                                                     <rect key="frame" x="108" y="24" width="158" height="158"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华大床" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swF-2I-5yI">
-                                                    <rect key="frame" x="154" y="94" width="68" height="21"/>
+                                                    <rect key="frame" x="154" y="94" width="68" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击修改房型" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ev-Un-kJZ">
-                                                    <rect key="frame" x="137" y="119" width="102" height="21"/>
+                                                    <rect key="frame" x="137" y="119" width="102" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFX-zJ-bqv">
-                                                    <rect key="frame" x="150" y="59" width="76" height="30"/>
+                                                    <rect key="frame" x="150.5" y="60" width="75.5" height="29.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="￥">
                                                             <attributes>
@@ -668,19 +668,26 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="A30-jn-es7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="A30-jn-es7">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A30-jn-es7" id="xH9-0g-jOU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房间数量" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSI-wg-3hF">
-                                                    <rect key="frame" x="15" y="12" width="68" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="68" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.23137254900000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2间" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gff-xh-ybZ">
-                                                    <rect key="frame" x="313" y="12" width="27" height="21"/>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="oLr-b0-9up">
+                                                    <rect key="frame" x="266" y="8" width="94" height="29"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="roomCountChanged:" destination="ilo-Oz-hcb" eventType="valueChanged" id="9ad-eL-Si0"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1间" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gff-xh-ybZ">
+                                                    <rect key="frame" x="231" y="12" width="27" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Eod-87-nfC"/>
                                                     </constraints>
@@ -696,18 +703,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gff-xh-ybZ" firstAttribute="baseline" secondItem="qSI-wg-3hF" secondAttribute="baseline" id="4ZU-cn-gTf"/>
-                                                <constraint firstAttribute="trailing" secondItem="gff-xh-ybZ" secondAttribute="trailing" constant="2" id="GLF-6C-TQf"/>
+                                                <constraint firstAttribute="trailing" secondItem="oLr-b0-9up" secondAttribute="trailing" constant="15" id="DXp-aD-WkG"/>
+                                                <constraint firstItem="oLr-b0-9up" firstAttribute="top" secondItem="xH9-0g-jOU" secondAttribute="top" constant="8" id="PQu-Wx-p3h"/>
                                                 <constraint firstItem="qSI-wg-3hF" firstAttribute="top" secondItem="xH9-0g-jOU" secondAttribute="top" constant="12" id="Rhe-o2-KjZ"/>
-                                                <constraint firstItem="gff-xh-ybZ" firstAttribute="top" secondItem="xH9-0g-jOU" secondAttribute="top" constant="12" id="S2z-vX-PWz"/>
-                                                <constraint firstItem="gff-xh-ybZ" firstAttribute="leading" secondItem="qSI-wg-3hF" secondAttribute="trailing" constant="70" id="cjU-bB-imc"/>
+                                                <constraint firstItem="oLr-b0-9up" firstAttribute="leading" secondItem="gff-xh-ybZ" secondAttribute="trailing" constant="8" id="hGS-EQ-rie"/>
                                                 <constraint firstItem="qSI-wg-3hF" firstAttribute="leading" secondItem="xH9-0g-jOU" secondAttribute="leading" constant="15" id="oYp-9s-GGj"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="cjU-bB-imc"/>
-                                                    <exclude reference="S2z-vX-PWz"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -749,7 +750,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="共2晚，在7月17日13点前退房" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mqo-y2-fFm">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="共2晚，在7月17日13点前退房" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mqo-y2-fFm">
                                                     <rect key="frame" x="93" y="34" width="249" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.71372549019607845" green="0.71372549019607845" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
@@ -821,6 +822,31 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="R72-F6-WKb">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R72-F6-WKb" id="5sG-6q-TCf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入住人3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3H-eG-PAt">
+                                                    <rect key="frame" x="15" y="11" width="61" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vhv-W8-VXa">
+                                                    <rect key="frame" x="227" y="11" width="133" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Vhv-W8-VXa" secondAttribute="trailing" constant="15" id="BIc-uo-b7m"/>
+                                                <constraint firstItem="s3H-eG-PAt" firstAttribute="top" secondItem="5sG-6q-TCf" secondAttribute="top" constant="11" id="Db8-Lt-6Wb"/>
+                                                <constraint firstItem="s3H-eG-PAt" firstAttribute="leading" secondItem="5sG-6q-TCf" secondAttribute="leading" constant="15" id="Um3-BV-63t"/>
+                                                <constraint firstItem="Vhv-W8-VXa" firstAttribute="top" secondItem="5sG-6q-TCf" secondAttribute="top" constant="11" id="igh-mt-Jqc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -834,6 +860,7 @@
                     <connections>
                         <outlet property="dateTips" destination="Mqo-y2-fFm" id="dWR-Dg-olg"/>
                         <outlet property="endDate" destination="Hmh-nK-ejR" id="usk-P5-pb0"/>
+                        <outlet property="roomCountLabel" destination="gff-xh-ybZ" id="ZmD-DF-n7U"/>
                         <outlet property="roomImage" destination="l9N-hT-03f" id="sTk-BJ-kkh"/>
                         <outlet property="roomType" destination="swF-2I-5yI" id="ZQA-Yf-3eO"/>
                         <outlet property="startDate" destination="eEe-Y9-3Ur" id="DKt-6A-2FI"/>
