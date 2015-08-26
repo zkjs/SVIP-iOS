@@ -19,7 +19,6 @@
 #import "ZKJSHTTPSessionManager.h"
 #import "JSHAccountManager.h"
 #import "ZKJSHTTPSMSSessionManager.h"
-#import "JSHInfoEditVC.h"
 #import "SVIP-swift.h"
 #define kCountTime 30
 @interface JSHHotelRegisterVC () <UIAlertViewDelegate, UITextFieldDelegate>

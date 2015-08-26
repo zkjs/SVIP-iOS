@@ -29,7 +29,6 @@
 #import "JSHAnimationVC.h"
 #import "JSHStorage.h"
 #import "JSHAccountManager.h"
-#import "JSHInfoEditVC.h"
 #import "JSHAnimator.h"
 #import "CocoaLumberjack.h"
 #import "CompressingLogFileManager.h"
