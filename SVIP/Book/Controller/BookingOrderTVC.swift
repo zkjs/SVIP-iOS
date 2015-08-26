@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let kNameSection = 2
+
 class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   @IBOutlet weak var roomImage: UIImageView!
@@ -21,6 +23,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   var shopID = ""
   var dateFormatter = NSDateFormatter()
   var roomCount = 1
+  
+  // MARK: - View Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -62,7 +66,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Table view datasource
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.section == 2 {
+    if indexPath.section == kNameSection {
       if indexPath.row > roomCount {
         return 0.0
       }
@@ -72,7 +76,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     var count = super.tableView(tableView, numberOfRowsInSection: section)
-    if section == 2 {
+    if section == kNameSection {
       count = roomCount
     }
     return count

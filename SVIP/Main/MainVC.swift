@@ -257,10 +257,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   func didExitBeaconRegion(region: CLBeaconRegion!) {
-//    let notification = UILocalNotification()
-//    notification.alertBody = "didExitBeaconRegion"
-//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-    
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
       StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
@@ -599,6 +595,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     } else {
       println("查看免前台特权")
     }
+    
+    let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   @IBAction func tappedMainButton(sender: AnyObject) {

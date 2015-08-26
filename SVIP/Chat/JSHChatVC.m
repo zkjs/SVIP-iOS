@@ -13,7 +13,6 @@
 #import "ZKJSTCPSessionManager.h"
 #import "UIImage+Resize.h"
 #import "ZKJSTool.h"
-#import "SKTagView.h"
 #import "JTSImageViewController.h"
 
 @import AVFoundation;
@@ -24,7 +23,6 @@ const CGFloat shortcutViewHeight = 45.0;
 @interface JSHChatVC () <XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, strong) NSDictionary *data;
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
-@property (nonatomic, strong) SKTagView *tagView;
 @property (nonatomic, strong) NSString *messageReceiver;
 @property (nonatomic, strong) NSString *receiverName;
 @property (nonatomic, strong) NSString *senderID;

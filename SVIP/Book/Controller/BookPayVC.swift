@@ -7,9 +7,9 @@
 //
 
 import UIKit
-let partner = PartnerID
-let seller = SellerID
-let privateKey = PartnerPrivKey
+private let partner = PartnerID
+private let seller = SellerID
+private let privateKey = PartnerPrivKey
 class BookPayVC: UIViewController {
   @IBOutlet private weak var name: UILabel!
   @IBOutlet private weak var price: UILabel!

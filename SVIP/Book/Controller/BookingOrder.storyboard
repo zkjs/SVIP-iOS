@@ -35,6 +35,9 @@
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="cancelOrder:" destination="k6n-tJ-AjW" eventType="touchUpInside" id="hmb-Ob-uPf"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcr-88-LwB">
                                     <rect key="frame" x="15" y="11" width="344" height="44"/>
@@ -52,6 +55,9 @@
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="confirmOrder:" destination="k6n-tJ-AjW" eventType="touchUpInside" id="fj0-4L-YHD"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -241,6 +247,9 @@
                                                     <rect key="frame" x="227" y="15" width="133" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="k6n-tJ-AjW" id="GwL-1b-Awy"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -266,6 +275,9 @@
                                                     <rect key="frame" x="227" y="11" width="133" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="k6n-tJ-AjW" id="A9x-oj-hdM"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -273,6 +285,34 @@
                                                 <constraint firstItem="byL-5f-BQR" firstAttribute="top" secondItem="OUg-ug-J9t" secondAttribute="top" constant="11" id="LXY-a0-Xq1"/>
                                                 <constraint firstItem="aMo-wo-4e3" firstAttribute="top" secondItem="OUg-ug-J9t" secondAttribute="top" constant="11" id="er8-U1-RNb"/>
                                                 <constraint firstAttribute="trailing" secondItem="byL-5f-BQR" secondAttribute="trailing" constant="15" id="i75-cS-GP1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ltQ-wU-FlW">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ltQ-wU-FlW" id="dRw-dy-BbO">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入住人3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTh-DZ-dU1">
+                                                    <rect key="frame" x="15" y="11" width="61" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qPf-0P-Cmk">
+                                                    <rect key="frame" x="227" y="11" width="133" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="k6n-tJ-AjW" id="LhT-aS-ER6"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="qPf-0P-Cmk" secondAttribute="trailing" constant="15" id="Pnr-sy-4Kh"/>
+                                                <constraint firstItem="oTh-DZ-dU1" firstAttribute="leading" secondItem="dRw-dy-BbO" secondAttribute="leading" constant="15" id="bhI-8R-0Ez"/>
+                                                <constraint firstItem="qPf-0P-Cmk" firstAttribute="top" secondItem="dRw-dy-BbO" secondAttribute="top" constant="11" id="iqm-2I-0pl"/>
+                                                <constraint firstItem="oTh-DZ-dU1" firstAttribute="top" secondItem="dRw-dy-BbO" secondAttribute="top" constant="11" id="q1T-c3-PST"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -285,13 +325,17 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bzp-XH-FbJ" id="N1M-dh-Lhl">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="支付方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwy-vf-j9F">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwy-vf-j9F">
                                                     <rect key="frame" x="15" y="11" width="68" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.23137254901960785" green="0.2196078431372549" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wwy-vf-j9F" firstAttribute="top" secondItem="N1M-dh-Lhl" secondAttribute="top" constant="11" id="mfd-Vk-lmI"/>
+                                                <constraint firstItem="wwy-vf-j9F" firstAttribute="leading" secondItem="N1M-dh-Lhl" secondAttribute="leading" constant="15" id="w9F-od-lHD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="88" id="crW-Df-Jgn">
@@ -304,9 +348,12 @@
                                                     <state key="normal" title="立即支付">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="payOrder:" destination="k6n-tJ-AjW" eventType="touchUpInside" id="JUI-me-esT"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应该支付**元, 还要支付**元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9w-EC-D2L">
-                                                    <rect key="frame" x="15" y="20" width="204" height="21"/>
+                                                    <rect key="frame" x="15" y="18" width="204" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -315,7 +362,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="UVC-cU-Jxr" secondAttribute="trailing" constant="15" id="8PE-el-1dQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="UVC-cU-Jxr" secondAttribute="bottom" constant="8" id="Jey-5P-1W3"/>
-                                                <constraint firstItem="f9w-EC-D2L" firstAttribute="top" secondItem="jIS-Du-jTK" secondAttribute="top" constant="20" id="fug-TC-r2V"/>
+                                                <constraint firstItem="f9w-EC-D2L" firstAttribute="top" secondItem="jIS-Du-jTK" secondAttribute="top" constant="18" id="fug-TC-r2V"/>
                                                 <constraint firstItem="f9w-EC-D2L" firstAttribute="leading" secondItem="jIS-Du-jTK" secondAttribute="leading" constant="15" id="nrt-ox-OPY"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -471,7 +518,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqd-S5-MbX">
-                                                    <rect key="frame" x="32" y="0.0" width="74" height="44"/>
+                                                    <rect key="frame" x="34" y="5" width="51" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="免前台">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -555,6 +602,18 @@
                     </tableView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1451"/>
+                    <connections>
+                        <outlet property="endDateLabel" destination="WZV-ct-CAt" id="ySz-S3-txH"/>
+                        <outlet property="paymentButton" destination="UVC-cU-Jxr" id="tKU-2D-arL"/>
+                        <outlet property="paymentLabel" destination="f9w-EC-D2L" id="M8j-sO-sas"/>
+                        <outlet property="receiptLabel" destination="Ew0-ZV-p2k" id="yp4-TT-AN1"/>
+                        <outlet property="remarkTextView" destination="flI-Ic-CUA" id="VhP-Eq-1MA"/>
+                        <outlet property="roomCountLabel" destination="5NG-6M-eyj" id="6eD-fe-XRG"/>
+                        <outlet property="startDateLabel" destination="slA-eS-ALz" id="9AP-lV-qbB"/>
+                        <outletCollection property="nameTextFields" destination="2RH-IG-jaZ" collectionClass="NSMutableArray" id="Dit-Zz-Utq"/>
+                        <outletCollection property="nameTextFields" destination="byL-5f-BQR" collectionClass="NSMutableArray" id="s1b-QK-xnk"/>
+                        <outletCollection property="nameTextFields" destination="qPf-0P-Cmk" collectionClass="NSMutableArray" id="zAk-49-RVp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12b-jf-z0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -883,7 +942,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UeC-7G-Tjx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127.5" y="-33"/>
+            <point key="canvasLocation" x="-183.5" y="-33"/>
         </scene>
     </scenes>
     <resources>
