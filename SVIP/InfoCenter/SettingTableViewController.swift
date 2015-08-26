@@ -12,39 +12,13 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   var localBaseInfo :JSHBaseInfo?
   let Identifier = "reuseIdentifier"
   let textArray: Array<Array<String>>
+  //MARK:- Init
   required override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
     let path = NSBundle.mainBundle() .pathForResource("SettingTable", ofType: "plist")
     textArray = NSArray(contentsOfFile: path!) as! Array
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
-  /*
-  NSString *userId = [JSHAccountManager sharedJSHAccountManager].userid;
-  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
-  JSHBaseInfo *localBaseInfo = [JSHStorage baseInfo];
-  if ([localBaseInfo.phone isEqualToString:@"请编辑个人信息"]) {
-  //获取个人信息
-  [[ZKJSHTTPSessionManager sharedInstance] getUserInfo:userId token:token success:^(NSURLSessionDataTask *task, id responseObject) {
-  JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] initWithDic:responseObject];
-  //本地存储
-  [JSHStorage saveBaseInfo:baseInfo];
-  if (![responseObject[@"tagsid"] isKindOfClass:[NSNull class]]) {
-  NSArray *abc = [NSString arrayWithSortedString:responseObject[@"tagsid"] dividedByString:@","];
-  [JSHStorage saveLikeArray:abc];
-  }
-  //刷新frame
-  _header.headerFrame.baseInfo = baseInfo;
-  _header.headerFrame.Edit = YES;
-  _header.headerFrame = _header.headerFrame;//类似于tableview reloadData，刷新界面
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-  
-  }];
-  }else {
-  //取本地数据
-  _header.headerFrame.baseInfo = [JSHStorage baseInfo];
-  _header.headerFrame.Edit = YES;
-  _header.headerFrame = _header.headerFrame;
-  }
-  */
+
   override init(style: UITableViewStyle) {
     let path = NSBundle.mainBundle() .pathForResource("SettingTable", ofType: "plist")
     textArray = NSArray(contentsOfFile: path!) as! Array
@@ -54,42 +28,28 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   required init!(coder aDecoder: NSCoder!) {
       fatalError("init(coder:) has not been implemented")
   }
-  
+  //MARK:- Life Cycle
   func loadData() {
     let userId = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     localBaseInfo = JSHStorage.baseInfo()
-//    if localBaseInfo!.phone == "请编辑个人信息" {
-//      ZKJSHTTPSessionManager.sharedInstance().getUserInfo(userId, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//        if let dic = responseObject as? [NSObject : AnyObject] {
-//          let baseInfo = JSHBaseInfo(dic: dic)
-//          //本地存储
-//          JSHStorage.saveBaseInfo(baseInfo)
-//          if let tagsid = dic["tagsid"] as? String {
-//            let arr = NSString.arrayWithSortedString(tagsid, dividedByString: ",")
-//            JSHStorage.saveLikeArray(arr)
-//          }
-//        }
-//        
-//        }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-//          
-//      })
-//    }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-//    loadData()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    refreshDataAndUI()//每次出现都加在一次数据，并且刷新tableview
+  }
+  
+  private func refreshDataAndUI() {
     loadData()
     tableView.reloadData()
   }
   
   // MARK: - Table view data source
-  
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return textArray.count
   }
@@ -166,6 +126,9 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     case NSIndexPath(forRow: 3, inSection: 0):
       //sex
       println()
+      let sheet = UIActionSheet(title: "性别", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "男", otherButtonTitles: "女")
+      sheet.tag = 888
+      sheet.showInView(self.view)
     case NSIndexPath(forRow: 4, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.company), animated: true)
     case NSIndexPath(forRow: 5, inSection: 0):
@@ -179,7 +142,38 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   }
   
   //MARK:- ACTIONSHEET
-  func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+  func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {//两个actionSheet，通过tag区分
+    if actionSheet.tag == 888 {//选择性别
+      var set = false
+      var sex = JSHStorage.baseInfo().sex
+      switch buttonIndex {
+      case 0:
+        sex = "男"
+        set = true
+      case 2:
+        sex = "女"
+        set = true
+      default:
+        break
+      }
+      if set {
+        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: nil, imageName: nil, sex: sex, company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+          if let dic = responseObject as? NSDictionary {
+            let set = dic["set"]!.boolValue!
+            if set {
+              ZKJSTool.showMsg("保存成功")
+              let baseInfo = JSHStorage.baseInfo()
+              baseInfo.sex = sex
+              JSHStorage.saveBaseInfo(baseInfo)
+              self.refreshDataAndUI()
+            }
+          }
+          }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+            
+        }
+      }
+      return
+    }
     switch buttonIndex {//莫名其妙的buttonIndex：照相0，取消1，照片库2
     case 0:
       let picker = UIImagePickerController()
@@ -205,22 +199,6 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   //MARK:- UIImagePickerControllerDelegate
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
     let dic = editingInfo
-    /*
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    int i = 1;
-    while (imageData.length / 1024 > 80) {
-    float persent = (100 - i++) / 100;
-    imageData = UIImageJPEGRepresentation(image, persent);
-    }
-    
-    image = [UIImage imageWithData:imageData];
-    [_avatarButton setImage:image forState:UIControlStateNormal];
-    _headerFrame.baseInfo.avatarImage = image;
-    [picker dismissViewControllerAnimated:YES completion:^{
-    
-    }];
-    */
     var imageData = UIImageJPEGRepresentation(image, 1.0)
     var i = 0
     while imageData.length / 1024 > 80 {
