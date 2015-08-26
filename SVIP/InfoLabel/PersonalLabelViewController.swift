@@ -30,6 +30,7 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
 
   func setUI() {
     self.title = "偏好标签"
+    self.view.backgroundColor = UIColor.blackColor()
     let right = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("save"))
     self.navigationItem.rightBarButtonItem = right
 
