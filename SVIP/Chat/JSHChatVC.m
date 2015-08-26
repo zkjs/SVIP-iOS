@@ -324,13 +324,15 @@ const CGFloat shortcutViewHeight = 45.0;
     case ChatNewSession: {
       self.title = @"联系客服";
       
-      NSString *orderInfo = [NSString stringWithFormat:@"系统消息\n订单号: %@\n姓名: %@\n电话: %@\n到达时间: %@\n离店时间: %@\n房型: %@\n房间价格: %@\n备注: %@", self.order.reservation_no, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate, self.order.remark];
-      [self requestWaiterWithRuleType:@"Booking" andDescription:orderInfo];  // 预订部
-      // Delay
-      __weak __typeof(self) weakSelf = self;
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf showSystemFeedbackWithText:@"请问您还有其它需求吗 :)"];
-      });
+//      NSString *orderInfo = [NSString stringWithFormat:@"系统消息\n订单号: %@\n姓名: %@\n电话: %@\n到达时间: %@\n离店时间: %@\n房型: %@\n房间价格: %@\n备注: %@", self.order.reservation_no, self.order.guest, self.order.guesttel, self.order.arrival_date, self.order.departure_date, self.order.room_type, self.order.room_rate, self.order.remark];
+//      [self requestWaiterWithRuleType:@"Booking" andDescription:orderInfo];  // 预订部
+//      // Delay
+//      __weak __typeof(self) weakSelf = self;
+//      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [weakSelf showSystemFeedbackWithText:@"请问您还有其它需求吗 :)"];
+//      });
+      
+      [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
       [self setupNavigationBackButton];
       break;
     }

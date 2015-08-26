@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookingOrderTVC: UITableViewController {
+class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   @IBOutlet weak var roomImage: UIImageView!
   @IBOutlet weak var roomType: UILabel!
@@ -16,6 +16,7 @@ class BookingOrderTVC: UITableViewController {
   @IBOutlet weak var endDate: UILabel!
   @IBOutlet weak var dateTips: UILabel!
   @IBOutlet weak var roomCountLabel: UILabel!
+  @IBOutlet var nameTextFields: [UITextField]!
   
   var shopID = ""
   var dateFormatter = NSDateFormatter()
@@ -25,6 +26,7 @@ class BookingOrderTVC: UITableViewController {
     super.viewDidLoad()
 
     title = "填写订单"
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoChatVC")
     
     dateFormatter.dateFormat = "M月dd日"
     startDate.text = dateFormatter.stringFromDate(NSDate())
@@ -32,68 +34,49 @@ class BookingOrderTVC: UITableViewController {
     dateTips.text = "共1晚，在\(endDate.text!)13点前退房"
   }
   
+  // MARK: - Private
+  
+  func gotoChatVC() {
+    let chatVC = JSHChatVC(chatType: .NewSession)
+    chatVC.shopID = shopID
+    navigationController?.pushViewController(chatVC, animated: true)
+  }
+  
   // MARK: - Action
   
   @IBAction func roomCountChanged(sender: UIStepper) {
     roomCountLabel.text = Int(sender.value).description + "间"
-    roomCount = Int(sender.value)
-    
-//    var indexPaths = []
-//    let indexPath1 = NSIndexPath(forRow: 1, inSection: 2)
-//    let indexPath2 = NSIndexPath(forRow: 2, inSection: 2)
-//    indexPaths.add
-    
-//    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-//    for (int i=0; i<3; i++) {
-//      NSString *s = [[NSString alloc] initWithFormat:@”hello %d”,i];
-//      [datas addObject:s];
-//      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//      [indexPaths addObject: indexPath];
-//    }
-//    [self.tableView beginUpdates];
-//    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewScrollPositionNone];
-//    [self.tableView endUpdates];
-    
-    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: UITableViewRowAnimation.Fade)
+    let count = Int(sender.value)
+    roomCount = count
+    tableView.reloadData()
   }
   
-  // MARK: - Table view data source
+  @IBAction func sendBookingOrder(sender: AnyObject) {
+    // 还差后台接口发个消息给商家端
+    for index in 0..<roomCount {
+      println(nameTextFields[index].text)
+    }
+    gotoChatVC()
+  }
+  
+  // MARK: - Table view datasource
+  
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    if indexPath.section == 2 {
+      if indexPath.row > roomCount {
+        return 0.0
+      }
+    }
+    return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+  }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    var rows = 0
-    switch section {
-    case 0:
-      rows = 2
-    case 1:
-      rows = 2
-    case 2:
-      rows = roomCount
-    default:
-      break
+    var count = super.tableView(tableView, numberOfRowsInSection: section)
+    if section == 2 {
+      count = roomCount
     }
-    return rows
+    return count
   }
-  
-//  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//    return 3
-//  }
-  
-//  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    var rows = 0
-//    if section == 2 {
-//      rows = 3
-//    }
-//    return rows
-//  }
-//  
-//  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//    let cell = tableView.cellForRowAtIndexPath(indexPath)
-//    
-//    if indexPath.section == 2 {
-//      return UITableViewCell()
-//    }
-//    return cell!
-//  }
   
   // MARK: - Table view delegate
   
@@ -105,19 +88,15 @@ class BookingOrderTVC: UITableViewController {
       vc.shopid = shopID
       vc.selection = { [unowned self] (goods: RoomGoods) -> () in
         self.roomType.text = goods.room! + goods.type!
-//        self.roomImage = goods.image
-        let baseUrl = kBaseURL// "http://120.25.241.196/"
+        let baseUrl = kBaseURL
         if let goodsImage = goods.image {
           let urlStr = baseUrl .stringByAppendingString(goodsImage)
           let placeholderImage = UIImage(named: "bg_dingdan")
           let url = NSURL(string: urlStr)
           self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
         }
-
       }
       navigationController?.pushViewController(vc, animated: true)
-    } else if indexPath.section == 0 && indexPath.row == 1 {  // 房间数量
-      
     } else if indexPath.section == 1 && indexPath.row == 1 {  // 入住/离店时间
       let vc = BookDateSelectionViewController()
       vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
@@ -128,6 +107,12 @@ class BookingOrderTVC: UITableViewController {
       }
       navigationController?.pushViewController(vc, animated: true)
     }
+  }
+  
+  // MARK: - UITextFieldDelegate
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return false
   }
   
 }
