@@ -124,8 +124,6 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     case NSIndexPath(forRow: 2, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.username), animated: true)
     case NSIndexPath(forRow: 3, inSection: 0):
-      //sex
-      println()
       let sheet = UIActionSheet(title: "性别", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "男", otherButtonTitles: "女")
       sheet.tag = 888
       sheet.showInView(self.view)
@@ -134,6 +132,8 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     case NSIndexPath(forRow: 5, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.email), animated: true)
     //section == 1
+    case NSIndexPath(forRow: 1, inSection: 1):
+      self.navigationController?.pushViewController(PhoneSettingFirstViewController(), animated: true)
     case NSIndexPath(forRow: 2, inSection: 1):
       self.navigationController?.pushViewController(PersonalLabelViewController(), animated: true)
     default:
