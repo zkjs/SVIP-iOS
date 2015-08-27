@@ -9,6 +9,8 @@
 import UIKit
 
 private let kNameSection = 2
+private let kReceiptSection = 4
+private let kReceiptRow = 1
 private let partner = PartnerID
 private let seller = SellerID
 private let privateKey = PartnerPrivKey
@@ -162,6 +164,20 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       count = roomCount
     }
     return count
+  }
+  
+  // MARK: - Table view delegate
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    println(indexPath)
+    
+    if indexPath.section == kReceiptSection && indexPath.row == kReceiptRow {  // 房型
+      let vc = ReceiptTVC()
+      vc.selection = { [unowned self] (receiptTitle: String) -> () in
+        self.receiptLabel.text = receiptTitle
+      }
+      navigationController?.pushViewController(vc, animated: true)
+    }
   }
   
   // MARK: - UITextFieldDelegate

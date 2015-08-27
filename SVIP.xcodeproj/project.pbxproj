@@ -41,11 +41,16 @@
 		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
 		40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
+		40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D031B8EAB2300EF188F /* ReceiptTVC.swift */; };
+		40817D071B8EAB8800EF188F /* ReceiptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D051B8EAB8800EF188F /* ReceiptCell.swift */; };
+		40817D081B8EAB8800EF188F /* ReceiptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D061B8EAB8800EF188F /* ReceiptCell.xib */; };
+		40817D181B8ED97500EF188F /* ReceiptHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D171B8ED97500EF188F /* ReceiptHeaderView.xib */; };
+		40817D1A1B8EDA7300EF188F /* ReceiptFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D191B8EDA7300EF188F /* ReceiptFooterView.xib */; };
+		40817D1C1B8EDCED00EF188F /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1B1B8EDCED00EF188F /* ReceiptHeaderView.swift */; };
+		40817D1E1B8EDD4B00EF188F /* ReceiptFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1D1B8EDD4B00EF188F /* ReceiptFooterView.swift */; };
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
 		40DAA0851B8B1109005D56CA /* BookingOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */; };
-		40DAA0881B8B1148005D56CA /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA0861B8B1148005D56CA /* TestTableViewController.swift */; };
-		40DAA0891B8B1148005D56CA /* TestTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAA0871B8B1148005D56CA /* TestTableViewController.xib */; };
 		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
 		B20812971B8DD7950070D96F /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812671B8DD7950070D96F /* InfoEditViewController.swift */; };
 		B20812981B8DD7950070D96F /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812681B8DD7950070D96F /* InfoEditViewController.xib */; };
@@ -209,12 +214,17 @@
 		40641F991B3E79A300CF150D /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
+		40817D031B8EAB2300EF188F /* ReceiptTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptTVC.swift; sourceTree = "<group>"; };
+		40817D051B8EAB8800EF188F /* ReceiptCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptCell.swift; sourceTree = "<group>"; };
+		40817D061B8EAB8800EF188F /* ReceiptCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReceiptCell.xib; sourceTree = "<group>"; };
+		40817D171B8ED97500EF188F /* ReceiptHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReceiptHeaderView.xib; sourceTree = "<group>"; };
+		40817D191B8EDA7300EF188F /* ReceiptFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReceiptFooterView.xib; sourceTree = "<group>"; };
+		40817D1B1B8EDCED00EF188F /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
+		40817D1D1B8EDD4B00EF188F /* ReceiptFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptFooterView.swift; sourceTree = "<group>"; };
 		40DA7A011B463E850097CE3D /* JSHChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHChatVC.h; sourceTree = "<group>"; };
 		40DA7A021B463E850097CE3D /* JSHChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHChatVC.m; sourceTree = "<group>"; };
 		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
 		40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrder.storyboard; sourceTree = "<group>"; };
-		40DAA0861B8B1148005D56CA /* TestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
-		40DAA0871B8B1148005D56CA /* TestTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestTableViewController.xib; sourceTree = "<group>"; };
 		40E686F71B45297400C9725B /* BookingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrder.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20812671B8DD7950070D96F /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
@@ -839,8 +849,7 @@
 				B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */,
 				40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */,
 				404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */,
-				40DAA0861B8B1148005D56CA /* TestTableViewController.swift */,
-				40DAA0871B8B1148005D56CA /* TestTableViewController.xib */,
+				40817D031B8EAB2300EF188F /* ReceiptTVC.swift */,
 				40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */,
 			);
 			path = Controller;
@@ -868,6 +877,12 @@
 				B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */,
 				B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */,
 				B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */,
+				40817D051B8EAB8800EF188F /* ReceiptCell.swift */,
+				40817D061B8EAB8800EF188F /* ReceiptCell.xib */,
+				40817D1B1B8EDCED00EF188F /* ReceiptHeaderView.swift */,
+				40817D171B8ED97500EF188F /* ReceiptHeaderView.xib */,
+				40817D1D1B8EDD4B00EF188F /* ReceiptFooterView.swift */,
+				40817D191B8EDA7300EF188F /* ReceiptFooterView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1100,12 +1115,14 @@
 				B2F49EAF1B7347A200556AE2 /* UMSCommentInputController.xib in Resources */,
 				B20812A81B8DD7950070D96F /* TicketTableViewCell.xib in Resources */,
 				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
+				40817D1A1B8EDA7300EF188F /* ReceiptFooterView.xib in Resources */,
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
 				B20812A21B8DD7950070D96F /* SettingEdit.plist in Resources */,
 				B20812A51B8DD7950070D96F /* SettingTable.plist in Resources */,
 				B2F49EB11B7347A200556AE2 /* UMShareEditViewController.xib in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
+				40817D181B8ED97500EF188F /* ReceiptHeaderView.xib in Resources */,
 				B20812B61B8DD7950070D96F /* SkipCheckInSettingViewController.xib in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
 				40DAA0851B8B1109005D56CA /* BookingOrder.storyboard in Resources */,
@@ -1129,13 +1146,13 @@
 				B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				B21250CE1B74AFF00056835D /* LeftMenuVC.xib in Resources */,
+				40817D081B8EAB8800EF188F /* ReceiptCell.xib in Resources */,
 				B2F49EB31B7347A200556AE2 /* UMSLoginViewController.xib in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				B20812B21B8DD7950070D96F /* PhoneSettingSecondViewController.xib in Resources */,
 				B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */,
 				B20812B41B8DD7950070D96F /* SkipCheckInSettingListCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
-				40DAA0891B8B1148005D56CA /* TestTableViewController.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
@@ -1233,17 +1250,18 @@
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
+				40817D1C1B8EDCED00EF188F /* ReceiptHeaderView.swift in Sources */,
 				B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
-				40DAA0881B8B1148005D56CA /* TestTableViewController.swift in Sources */,
 				B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */,
+				40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */,
 				B20812B31B8DD7950070D96F /* SkipCheckInSettingListCell.swift in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
@@ -1252,6 +1270,7 @@
 				B20812CD1B8DD8650070D96F /* RuleEngine.swift in Sources */,
 				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,
 				B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */,
+				40817D071B8EAB8800EF188F /* ReceiptCell.swift in Sources */,
 				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
@@ -1268,6 +1287,7 @@
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
 				B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */,
 				B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */,
+				40817D1E1B8EDD4B00EF188F /* ReceiptFooterView.swift in Sources */,
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
