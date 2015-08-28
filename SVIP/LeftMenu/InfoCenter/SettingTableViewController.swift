@@ -132,8 +132,10 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     case NSIndexPath(forRow: 5, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.email), animated: true)
     //section == 1
-    case NSIndexPath(forRow: 1, inSection: 1):
+    case NSIndexPath(forRow: 0, inSection: 1):
       self.navigationController?.pushViewController(PhoneSettingFirstViewController(), animated: true)
+    case NSIndexPath(forRow: 1, inSection: 1):
+      self.navigationController?.pushViewController(InvoiceTableViewController(), animated: true)
     case NSIndexPath(forRow: 2, inSection: 1):
       self.navigationController?.pushViewController(PersonalLabelViewController(), animated: true)
     default:

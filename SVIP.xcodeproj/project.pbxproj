@@ -52,16 +52,12 @@
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
 		40DAA0851B8B1109005D56CA /* BookingOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */; };
 		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
-		B20812971B8DD7950070D96F /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812671B8DD7950070D96F /* InfoEditViewController.swift */; };
-		B20812981B8DD7950070D96F /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812681B8DD7950070D96F /* InfoEditViewController.xib */; };
 		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
 		B20812A21B8DD7950070D96F /* SettingEdit.plist in Resources */ = {isa = PBXBuildFile; fileRef = B208127B1B8DD7950070D96F /* SettingEdit.plist */; };
 		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
 		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
 		B20812A51B8DD7950070D96F /* SettingTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = B208127E1B8DD7950070D96F /* SettingTable.plist */; };
 		B20812A61B8DD7950070D96F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127F1B8DD7950070D96F /* SettingTableViewController.swift */; };
-		B20812A71B8DD7950070D96F /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812801B8DD7950070D96F /* TicketTableViewCell.swift */; };
-		B20812A81B8DD7950070D96F /* TicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812811B8DD7950070D96F /* TicketTableViewCell.xib */; };
 		B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812861B8DD7950070D96F /* LabelButton.swift */; };
 		B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812871B8DD7950070D96F /* LabelSelectView.swift */; };
 		B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */; };
@@ -149,6 +145,15 @@
 		B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E81B7EE229000DBD81 /* TSQCalendarRowCell.m */; };
 		B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */; };
 		B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */; };
+		B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */; };
+		B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */; };
+		B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */; };
+		B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */; };
+		B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */; };
+		B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB433C1B8F101400C9BEBB /* InvoiceEditViewController.swift */; };
+		B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */; };
+		B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */; };
+		B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
@@ -227,8 +232,6 @@
 		40DAA0841B8B1109005D56CA /* BookingOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrder.storyboard; sourceTree = "<group>"; };
 		40E686F71B45297400C9725B /* BookingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrder.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B20812671B8DD7950070D96F /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
-		B20812681B8DD7950070D96F /* InfoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditViewController.xib; sourceTree = "<group>"; };
 		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
 		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
 		B208127B1B8DD7950070D96F /* SettingEdit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingEdit.plist; sourceTree = "<group>"; };
@@ -236,8 +239,6 @@
 		B208127D1B8DD7950070D96F /* SettingEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingEditViewController.xib; sourceTree = "<group>"; };
 		B208127E1B8DD7950070D96F /* SettingTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingTable.plist; sourceTree = "<group>"; };
 		B208127F1B8DD7950070D96F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
-		B20812801B8DD7950070D96F /* TicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
-		B20812811B8DD7950070D96F /* TicketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketTableViewCell.xib; sourceTree = "<group>"; };
 		B20812861B8DD7950070D96F /* LabelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
 		B20812871B8DD7950070D96F /* LabelSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelSelectView.swift; sourceTree = "<group>"; };
 		B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelFooter.xib; sourceTree = "<group>"; };
@@ -369,6 +370,15 @@
 		B2F4A9E91B7EE229000DBD81 /* TSQCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQCalendarView.h; sourceTree = "<group>"; };
 		B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQCalendarView.m; sourceTree = "<group>"; };
 		B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateSelectionViewController.swift; sourceTree = "<group>"; };
+		B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
+		B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditViewController.xib; sourceTree = "<group>"; };
+		B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
+		B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
+		B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewController.swift; sourceTree = "<group>"; };
+		B2FB433C1B8F101400C9BEBB /* InvoiceEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceEditViewController.swift; sourceTree = "<group>"; };
+		B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceEditViewController.xib; sourceTree = "<group>"; };
+		B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceAddCell.xib; sourceTree = "<group>"; };
+		B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAddCell.swift; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -661,6 +671,7 @@
 		B20812611B8DD7950070D96F /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
+				B2FB43321B8EF75700C9BEBB /* Invoice */,
 				B20812621B8DD7950070D96F /* InfoCenter */,
 				B20812851B8DD7950070D96F /* InfoLabel */,
 				B208128B1B8DD7950070D96F /* Photo */,
@@ -672,16 +683,13 @@
 		B20812621B8DD7950070D96F /* InfoCenter */ = {
 			isa = PBXGroup;
 			children = (
+				B2FB432B1B8EB49600C9BEBB /* ForFirstLogin */,
 				B20812691B8DD7950070D96F /* Model */,
-				B20812671B8DD7950070D96F /* InfoEditViewController.swift */,
-				B20812681B8DD7950070D96F /* InfoEditViewController.xib */,
 				B208127B1B8DD7950070D96F /* SettingEdit.plist */,
 				B208127C1B8DD7950070D96F /* SettingEditViewController.swift */,
 				B208127D1B8DD7950070D96F /* SettingEditViewController.xib */,
 				B208127E1B8DD7950070D96F /* SettingTable.plist */,
 				B208127F1B8DD7950070D96F /* SettingTableViewController.swift */,
-				B20812801B8DD7950070D96F /* TicketTableViewCell.swift */,
-				B20812811B8DD7950070D96F /* TicketTableViewCell.xib */,
 			);
 			path = InfoCenter;
 			sourceTree = "<group>";
@@ -1010,6 +1018,37 @@
 			path = TimesSquare;
 			sourceTree = "<group>";
 		};
+		B2FB432B1B8EB49600C9BEBB /* ForFirstLogin */ = {
+			isa = PBXGroup;
+			children = (
+				B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */,
+				B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */,
+			);
+			path = ForFirstLogin;
+			sourceTree = "<group>";
+		};
+		B2FB43321B8EF75700C9BEBB /* Invoice */ = {
+			isa = PBXGroup;
+			children = (
+				B2FB43391B8EF86C00C9BEBB /* Model */,
+				B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */,
+				B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */,
+				B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */,
+				B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */,
+				B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */,
+				B2FB433C1B8F101400C9BEBB /* InvoiceEditViewController.swift */,
+				B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */,
+			);
+			path = Invoice;
+			sourceTree = "<group>";
+		};
+		B2FB43391B8EF86C00C9BEBB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1113,7 +1152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F49EAF1B7347A200556AE2 /* UMSCommentInputController.xib in Resources */,
-				B20812A81B8DD7950070D96F /* TicketTableViewCell.xib in Resources */,
 				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
 				40817D1A1B8EDA7300EF188F /* ReceiptFooterView.xib in Resources */,
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
@@ -1123,21 +1161,24 @@
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				40817D181B8ED97500EF188F /* ReceiptHeaderView.xib in Resources */,
+				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
 				B20812B61B8DD7950070D96F /* SkipCheckInSettingViewController.xib in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
 				40DAA0851B8B1109005D56CA /* BookingOrder.storyboard in Resources */,
+				B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */,
 				B2F49EB61B7347A200556AE2 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				B20812B01B8DD7950070D96F /* PhoneSettingFirstViewController.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
-				B20812981B8DD7950070D96F /* InfoEditViewController.xib in Resources */,
 				B21250C01B7487B90056835D /* LeftMenu.plist in Resources */,
+				B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */,
 				B2F49EAE1B7347A200556AE2 /* UMSCommentDetailController.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2F49EB01B7347A200556AE2 /* UMSCommentInputControlleriPad.xib in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
+				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
 				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				B2F49EB21B7347A200556AE2 /* UMShareEditViewControlleriPad.xib in Resources */,
 				405266521B41283900B277BE /* MainVC.xib in Resources */,
@@ -1207,12 +1248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20812971B8DD7950070D96F /* InfoEditViewController.swift in Sources */,
 				B23E53831B4BB64C00CB7761 /* RSADataVerifier.m in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
 				B23E53801B4BB64C00CB7761 /* NSDataEx.m in Sources */,
 				B23E53821B4BB64C00CB7761 /* RSADataSigner.m in Sources */,
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
+				B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
 				4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */,
@@ -1227,11 +1268,11 @@
 				404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				40E686F81B45297400C9725B /* BookingOrder.swift in Sources */,
+				B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */,
 				B20812CC1B8DD8650070D96F /* Persistent.swift in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
 				B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
-				B20812A71B8DD7950070D96F /* TicketTableViewCell.swift in Sources */,
 				B23E53811B4BB64C00CB7761 /* openssl_wrapper.m in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
@@ -1249,11 +1290,13 @@
 				B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */,
+				B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
 				40817D1C1B8EDCED00EF188F /* ReceiptHeaderView.swift in Sources */,
 				B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
+				B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */,
 				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
@@ -1288,6 +1331,7 @@
 				B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */,
 				B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */,
 				40817D1E1B8EDD4B00EF188F /* ReceiptFooterView.swift in Sources */,
+				B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */,
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,

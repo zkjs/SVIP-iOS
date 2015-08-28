@@ -10,6 +10,7 @@
 #import "NSString+ZKJS.h"
 #import "Networkcfg.h"
 #import "CocoaLumberjack.h"
+#import "JSHAccountManager.h"
 
 static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
@@ -153,33 +154,97 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     if (imageData) {
       [formData appendPartWithFileData:imageData name:@"UploadForm[file]" fileName:imageName mimeType:@"image/jpeg"];
     }
-
-//    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-//    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-//    if (username) {
-//      [formData appendPartWithFormData:[username dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
-//    }
-//    if (realname) {
-//      [formData appendPartWithFormData:[realname dataUsingEncoding:NSUTF8StringEncoding] name:@"real_name"];
-//    }
-//    if (sex) {
-//      [formData appendPartWithFormData:[sex dataUsingEncoding:NSUTF8StringEncoding] name:@"sex"];
-//    }
-//    if (company) {
-//      [formData appendPartWithFormData:[company dataUsingEncoding:NSUTF8StringEncoding] name:@"preference"];
-//    }
-//    if (occupation) {
-//      [formData appendPartWithFormData:[occupation dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
-//    }
-//    if (email) {
-//      [formData appendPartWithFormData:[email dataUsingEncoding:NSUTF8StringEncoding] name:@"email"];
-//    }
-    
-    
-//    if (tagopen) {
-//      [formData appendPartWithFormData:[tagopen by] name:@"tagopen"];
-//    }
   } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
+// 获取默认发票
+- (void)getDefaultInvoiceSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
+  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
+  NSDictionary *dic = @{@"userid" : userid,
+                        @"token" : token,
+                        @"set" : @1
+                        };
+    [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+      DDLogInfo(@"%@", [responseObject description]);
+      success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      DDLogInfo(@"%@", error.description);
+      failure(task, error);
+    }];
+}
+
+// 获取发票列表
+- (void)getInvoiceListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
+  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
+  NSDictionary *dic = @{@"userid" : userid,
+                        @"token" : token,
+                        @"set" : @0
+                        };
+  [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
+// 添加发票
+- (void)addInvoiceWithTitle:(NSString *)title isDefault:(BOOL)isDefault Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
+  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
+  NSDictionary *dic = @{@"userid" : userid,
+                        @"token" : token,
+                        @"invoice_title" : title,
+                        @"is_default" : [NSNumber numberWithBool:isDefault]
+                        };
+  [self POST:@"user/fpadd" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
+// 修改发票
+- (void)modifyInvoiceWithInvoiceid:(NSString *)invoiceid title:(NSString *)title isDefault:(BOOL)isDefault Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
+  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
+  NSDictionary *dic = @{@"userid" : userid,
+                        @"token" : token,
+                        @"id" : invoiceid,
+                        @"set" : @2,
+                        @"invoice_title" : title,
+                        @"is_default" : [NSNumber numberWithBool:isDefault]
+                        };
+  [self POST:@"user/fpupdate" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
+// 删除发票
+- (void)deleteInvoiceWithInvoiceid:(NSString *)invoiceid Success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
+  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
+  NSDictionary *dic = @{@"userid" : userid,
+                        @"token" : token,
+                        @"id" : invoiceid,
+                        @"set" : @3
+                        };
+  [self POST:@"user/fpupdate" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {

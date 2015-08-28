@@ -53,9 +53,9 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     let tap = UITapGestureRecognizer(target: self, action: "touchBlank")
     bgImgeView.addGestureRecognizer(tap)
     
-    let attString1 = NSAttributedString(string: "昵称(必填)", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "0x8d8d8d")])
-    let attString2 = NSAttributedString(string: "姓名(必填)", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "0x8d8d8d")])
-    let attString3 = NSAttributedString(string: "公司/单位", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "0x8d8d8d")])
+    let attString1 = NSAttributedString(string: "昵称(必填)", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
+    let attString2 = NSAttributedString(string: "姓名(必填)", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
+    let attString3 = NSAttributedString(string: "公司/单位", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
     username.attributedPlaceholder = attString1
     realname.attributedPlaceholder = attString2
     company.attributedPlaceholder = attString3
