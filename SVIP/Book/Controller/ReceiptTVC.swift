@@ -19,7 +19,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.backgroundColor = UIColor(fromHexString: "EFEFF4")
+    tableView.backgroundColor = UIColor(hexString: "EFEFF4")
     tableView.separatorStyle = .None
     
     // Cell

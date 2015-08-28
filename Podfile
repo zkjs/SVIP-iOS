@@ -1,6 +1,8 @@
 platform :ios, '8.0'
 
 target 'SVIP' do
+  pod 'HexColors'
+  pod 'JCTagListView'
   pod 'AMapSearch'
   pod 'CocoaLumberjack'
 #  pod 'MagicalRecord'
@@ -17,7 +19,7 @@ target 'SVIP' do
 #  pod 'FXBlurView'
 #  pod 'EstimoteSDK'
   pod 'MBProgressHUD'
-  pod 'Colours'
+#  pod 'Colours'
   pod 'AFNetworking'
   pod 'SSKeychain', '~> 1.2.3'
   pod 'SDWebImage', '~> 3.7'

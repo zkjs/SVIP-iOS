@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.4):
-    - AFNetworking/NSURLConnection (= 2.5.4)
-    - AFNetworking/NSURLSession (= 2.5.4)
-    - AFNetworking/Reachability (= 2.5.4)
-    - AFNetworking/Security (= 2.5.4)
-    - AFNetworking/Serialization (= 2.5.4)
-    - AFNetworking/UIKit (= 2.5.4)
-  - AFNetworking/NSURLConnection (2.5.4):
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.4):
+  - AFNetworking/NSURLSession (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.4)
-  - AFNetworking/Security (2.5.4)
-  - AFNetworking/Serialization (2.5.4)
-  - AFNetworking/UIKit (2.5.4):
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AMapSearch (2.6.0)
@@ -29,14 +29,15 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
-  - Colours (5.6.2)
   - DateTools (1.6.1)
+  - HexColors (2.3.0)
+  - JCTagListView (0.0.4)
   - JTSImageViewController (1.4)
   - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
   - MessageDisplayKit (3.1.0)
   - MIBadgeButton (0.0.6)
-  - MJExtension (2.5.7)
+  - MJExtension (2.5.9)
   - MJRefresh (2.4.7)
   - PKYStepper (0.0.1)
   - RESideMenu (4.0.7)
@@ -54,8 +55,9 @@ DEPENDENCIES:
   - AFNetworking
   - AMapSearch
   - CocoaLumberjack
-  - Colours
   - DateTools
+  - HexColors
+  - JCTagListView
   - JTSImageViewController
   - MBProgressHUD
   - MessageDisplayKit (from `https://github.com/hanton/MessageDisplayKit.git`, branch
@@ -89,17 +91,18 @@ CHECKOUT OPTIONS:
     :git: https://github.com/hanton/YXTMotionView.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
-  Colours: 0afd4c3429656880fd4cff350ca3bf0ab86ca348
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
+  HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
+  JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
   JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MessageDisplayKit: 2a8b32e53d9ab8955d3591312ca9bd1fc343d6b5
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
-  MJExtension: 2650b64a34ace8d2aa9410d1d17244917032f37a
+  MJExtension: 2330aeb6c83428c820749290bf766e81827cda65
   MJRefresh: 6eb2f61338f89f64fd628fd43debcf479381ff59
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
   RESideMenu: f24c508404b49c667344c54aba7e590883533958

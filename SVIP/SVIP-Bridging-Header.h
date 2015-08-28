@@ -17,7 +17,7 @@
 #import "MIBadgeButton.h"
 #import "SKTagView.h"
 #import "Masonry.h"
-#import "Colours.h"
+//#import "Colours.h"
 #import "Networkcfg.h"
 #import "UIImageView+WebCache.h"
 #import "uiButton+WebCache.h"
@@ -41,3 +41,4 @@
 #import "AMapSearchAPI.h"
 #import "NSString+JSH.h"
 #import "TimesSquare.h"//日历选择
+#import "HexColors.h"

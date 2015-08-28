@@ -155,9 +155,9 @@ class HTTPSessionManager: AFHTTPSessionManager {
   func updateUserInfo(#userID: String, token: String, userName: String, imageData: NSData, imageName: String, success: (NSURLSessionDataTask!, AnyObject!) -> Void, failure: (NSURLSessionDataTask!, NSError!) -> Void) -> Void {
     POST("index.php?r=user/upload", parameters: nil, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
       formData.appendPartWithFileData(imageData, name: "UploadForm[file]", fileName: imageName, mimeType: "image/jpeg")
-      formData.appendPartWithFormData(userID.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), name: "UploadForm[userid]")
-      formData.appendPartWithFormData(token.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), name: "UploadForm[token]")
-      formData.appendPartWithFormData(userName.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), name: "UploadForm[username]")
+      formData.appendPartWithFormData(userID.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "UploadForm[userid]")
+      formData.appendPartWithFormData(token.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "UploadForm[token]")
+      formData.appendPartWithFormData(userName.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "UploadForm[username]")
       }, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         println(responseObject.description)
         success(task, responseObject)

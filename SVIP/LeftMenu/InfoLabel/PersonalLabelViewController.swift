@@ -40,7 +40,7 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
     header.frame = CGRectMake(0, 0, scrollView.frame.width, header.frame.height)
     footer.frame = CGRectMake(0, header.frame.height, scrollView.frame.width, 180)
     footer.clipsToBounds = false;
-    footer.backgroundColor = UIColor.pinkColor()
+    footer.backgroundColor = UIColor(red: 255.0/255.0, green: 95.0/255.0, blue: 154.0/255.0, alpha: 1.0)//UIColor.pinkColor()
     scrollView.addSubview(header)
     scrollView.addSubview(footer)
 

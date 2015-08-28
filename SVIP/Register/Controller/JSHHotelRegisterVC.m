@@ -14,7 +14,8 @@
 #import "JSHTextField.h"
 #import "JSHRoundRectButton.h"
 #import "UIImage+ZKJS.h"
-#import "Colours.h"
+//#import "Colours.h"
+#import "HexColors.h"
 #import "ZKJSTool.h"
 #import "ZKJSHTTPSessionManager.h"
 #import "JSHAccountManager.h"
@@ -74,9 +75,9 @@
     [_phoneField addLeftImageView:@"use_img"];
     [_codeField addLeftImageView:@"pasw_img"];
     
-    NSAttributedString *attString1 = [[NSAttributedString alloc] initWithString:@"130-0000-0000" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorFromHexString:@"0x8d8d8d"]}];
+    NSAttributedString *attString1 = [[NSAttributedString alloc] initWithString:@"130-0000-0000" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x8d8d8d"]}];
     _phoneField.attributedPlaceholder = attString1;
-    NSAttributedString *attString2 = [[NSAttributedString alloc] initWithString:@"验证码" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorFromHexString:@"0x8d8d8d"]}];
+    NSAttributedString *attString2 = [[NSAttributedString alloc] initWithString:@"验证码" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x8d8d8d"]}];
     _codeField.attributedPlaceholder = attString2;
 }
 #pragma mark - timer action

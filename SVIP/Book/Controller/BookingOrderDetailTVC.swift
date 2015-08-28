@@ -65,6 +65,9 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     bkOrder.room_type = "商务大床"
     bkOrder.rooms = "2"
     bkOrder.room_rate = "1200"
+    
+    setupRoomTagView()
+    setupServiceTagView()
   }
   
   // MARK: - Public
@@ -76,6 +79,85 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   // MARK: - Private
+  
+  private func setupRoomTagView() {
+    roomTagView.backgroundColor = UIColor.whiteColor()
+    roomTagView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    roomTagView.padding = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
+    roomTagView.insets = 12.0
+    roomTagView.lineSpace = 12
+    roomTagView.didClickTagAtIndex = { [unowned self] (indexU: UInt) -> () in
+      let index = Int(indexU)
+      let clickedTag = self.roomTags[index]
+      if let chosenIndex = find(self.chosenRoomTags, clickedTag) {
+        let tagButton = self.roomTagView.tags[index] as! SKTag
+        tagButton.textColor = UIColor.blackColor()
+        tagButton.bgColor = UIColor.whiteColor()
+        self.roomTagView.removeTagAtIndex(indexU)
+        self.roomTagView.insertTag(tagButton, atIndex: indexU)
+        self.chosenRoomTags.removeAtIndex(chosenIndex)
+      }  else {
+        let tagButton = self.roomTagView.tags[index] as! SKTag
+        tagButton.textColor = UIColor.whiteColor()
+        tagButton.bgColor = UIColor.blackColor()
+        self.roomTagView.removeTagAtIndex(indexU)
+        self.roomTagView.insertTag(tagButton, atIndex: indexU)
+        self.chosenRoomTags.append(self.roomTags[index])
+      }
+      println(self.chosenRoomTags)
+    }
+    
+    for tag in roomTags {
+      let tagButton = SKTag(text: tag)
+      tagButton.textColor = UIColor.blackColor()
+      tagButton.fontSize = 17
+      tagButton.padding = UIEdgeInsetsMake(5.0, 12.0, 5.0, 12.0)
+      tagButton.bgColor = UIColor.whiteColor()
+      tagButton.borderColor = UIColor.grayColor()
+      tagButton.borderWidth = 0.5
+      tagButton.cornerRadius = 12.0
+      roomTagView.addTag(tagButton)
+    }
+  }
+  
+  private func setupServiceTagView() {
+    serviceTagView.backgroundColor = UIColor.whiteColor()
+    serviceTagView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    serviceTagView.padding = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
+    serviceTagView.insets = 12.0
+//      serviceTagView.lineSpace = 10
+    serviceTagView.didClickTagAtIndex = { [unowned self] (indexU: UInt) -> () in
+      let index = Int(indexU)
+      let clickedTag = self.serviceTags[index]
+      if let chosenIndex = find(self.chosenServiceTags, clickedTag) {
+        let tagButton = self.serviceTagView.tags[index] as! SKTag
+        tagButton.textColor = UIColor.blackColor()
+        tagButton.bgColor = UIColor.whiteColor()
+        self.serviceTagView.removeTagAtIndex(indexU)
+        self.serviceTagView.insertTag(tagButton, atIndex: indexU)
+        self.chosenServiceTags.removeAtIndex(chosenIndex)
+      }  else {
+        let tagButton = self.serviceTagView.tags[index] as! SKTag
+        tagButton.textColor = UIColor.whiteColor()
+        tagButton.bgColor = UIColor.blackColor()
+        self.serviceTagView.removeTagAtIndex(indexU)
+        self.serviceTagView.insertTag(tagButton, atIndex: indexU)
+        self.chosenServiceTags.append(self.serviceTags[index])
+      }
+      println(self.chosenServiceTags)
+    }
+    for tag in serviceTags {
+      let tagButton = SKTag(text: tag)
+      tagButton.textColor = UIColor.blackColor()
+      tagButton.fontSize = 17
+      tagButton.padding = UIEdgeInsetsMake(5.0, 12.0, 5.0, 12.0)
+      tagButton.bgColor = UIColor.whiteColor()
+      tagButton.borderColor = UIColor.grayColor()
+      tagButton.borderWidth = 0.5
+      tagButton.cornerRadius = 12.0
+      serviceTagView.addTag(tagButton)
+    }
+  }
   
   private func payAliOrder(AbookOrder: BookOrder) {
     let aliOrder = AlipayOrder()
@@ -181,28 +263,6 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
     
     if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
-//      let roomTagView = SKTagView()
-      roomTagView.backgroundColor = UIColor.whiteColor()
-      roomTagView.setTranslatesAutoresizingMaskIntoConstraints(false)
-      roomTagView.padding = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
-      roomTagView.insets = 12.0
-      roomTagView.lineSpace = 12
-      roomTagView.didClickTagAtIndex = { [unowned self] (indexU: UInt) -> () in
-        let index = Int(indexU)
-        let clickedTag = self.roomTags[index]
-        if let chosenIndex = find(self.chosenRoomTags, clickedTag) {
-          let tagButton = self.roomTagView.tags[index] as! SKTag
-          tagButton.textColor = UIColor.blackColor()
-          tagButton.bgColor = UIColor.whiteColor()
-          self.chosenRoomTags.removeAtIndex(chosenIndex)
-        }  else {
-          let tagButton = self.roomTagView.tags[index] as! SKTag
-          tagButton.textColor = UIColor.whiteColor()
-          tagButton.bgColor = UIColor.blackColor()
-          self.chosenRoomTags.append(self.roomTags[index])
-        }
-        println(self.chosenRoomTags)
-      }
       cell.contentView.addSubview(roomTagView)
       roomTagView.mas_makeConstraints { (make: MASConstraintMaker!) -> Void in
         let superView = cell.contentView
@@ -211,41 +271,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         make.leading.equalTo()(superView.mas_leading)
         make.trailing.equalTo()(superView.mas_trailing)
       }
-      
-      for tag in roomTags {
-        let tagButton = SKTag(text: tag)
-        tagButton.textColor = UIColor.blackColor()
-        tagButton.fontSize = 17
-        tagButton.padding = UIEdgeInsetsMake(5.0, 12.0, 5.0, 12.0)
-        tagButton.bgColor = UIColor.whiteColor()
-        tagButton.borderColor = UIColor.grayColor()
-        tagButton.borderWidth = 0.5
-        tagButton.cornerRadius = 12.0
-        roomTagView.addTag(tagButton)
-      }
     } else if indexPath.section == kServiceSection && indexPath.row == kServiceRow {
-//      let serviceTagView = SKTagView()
-      serviceTagView.backgroundColor = UIColor.whiteColor()
-      serviceTagView.setTranslatesAutoresizingMaskIntoConstraints(false)
-      serviceTagView.padding = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
-      serviceTagView.insets = 12.0
-//      serviceTagView.lineSpace = 10
-      serviceTagView.didClickTagAtIndex = { [unowned self] (indexU: UInt) -> () in
-        let index = Int(indexU)
-        let clickedTag = self.serviceTags[index]
-        if let chosenIndex = find(self.chosenServiceTags, clickedTag) {
-          let tagButton = self.serviceTagView.tags[index] as! SKTag
-          tagButton.textColor = UIColor.blackColor()
-          tagButton.bgColor = UIColor.whiteColor()
-          self.chosenServiceTags.removeAtIndex(chosenIndex)
-        }  else {
-          let tagButton = self.serviceTagView.tags[index] as! SKTag
-          tagButton.textColor = UIColor.whiteColor()
-          tagButton.bgColor = UIColor.blackColor()
-          self.chosenServiceTags.append(self.serviceTags[index])
-        }
-        println(self.chosenServiceTags)
-      }
       cell.contentView.addSubview(serviceTagView)
       serviceTagView.mas_makeConstraints { (make: MASConstraintMaker!) -> Void in
         let superView = cell.contentView
@@ -254,18 +280,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         make.leading.equalTo()(superView.mas_leading)
         make.trailing.equalTo()(superView.mas_trailing)
       }
-      
-      for tag in serviceTags {
-        let tagButton = SKTag(text: tag)
-        tagButton.textColor = UIColor.blackColor()
-        tagButton.fontSize = 17
-        tagButton.padding = UIEdgeInsetsMake(12.0, 12.0, 12.0, 12.0)
-        tagButton.bgColor = UIColor.whiteColor()
-        tagButton.borderColor = UIColor.grayColor()
-        tagButton.borderWidth = 0.5
-        tagButton.cornerRadius = 12.0
-        serviceTagView.addTag(tagButton)
-      }
+
     }
     
     return cell

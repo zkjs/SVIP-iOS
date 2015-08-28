@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
+@import UIKit;
+
 @interface ZKJSHTTPSessionManager : AFHTTPSessionManager
 // 单例
 + (instancetype)sharedInstance;

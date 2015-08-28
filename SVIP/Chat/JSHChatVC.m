@@ -292,7 +292,7 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)setupMessageTableView {
-  self.messageTableView.backgroundColor = [UIColor colorFromHexString:@"#CBCCCA"];
+  self.messageTableView.backgroundColor = [UIColor colorWithHexString:@"#CBCCCA"];
   self.messageSender = @"我";
   self.messageReceiver = self.receiverName;
   self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;

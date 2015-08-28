@@ -85,7 +85,7 @@ class BookingOrderDetailVC: UIViewController {
 //  }
   
   func setupTagView(tags: [String]) {
-    tagView.backgroundColor = UIColor(fromHexString: "F4F4F3")
+    tagView.backgroundColor = UIColor(hexString: "F4F4F3")
     tagView.setTranslatesAutoresizingMaskIntoConstraints(false)
     tagView.padding = UIEdgeInsetsMake(8.0, 30.0, 8.0, 30.0)
     tagView.insets = 25
@@ -103,7 +103,7 @@ class BookingOrderDetailVC: UIViewController {
       tagButton.textColor = UIColor.blackColor()
       tagButton.fontSize = 15
       tagButton.padding = UIEdgeInsetsMake(8, 8, 8, 8)
-      tagButton.bgColor = UIColor(fromHexString: "F4F4F3")
+      tagButton.bgColor = UIColor(hexString: "F4F4F3")
       tagButton.borderColor = UIColor.grayColor()
       tagButton.borderWidth = 0.5
       tagButton.cornerRadius = 6
