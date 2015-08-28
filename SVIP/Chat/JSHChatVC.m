@@ -365,9 +365,6 @@ const CGFloat shortcutViewHeight = 45.0;
     }
     case ChatService: {
       self.title = [NSString stringWithFormat:@"%@", self.shopName];
-      self.messageInputView.transform = CGAffineTransformTranslate(self.messageInputView.transform, 0.0, CGRectGetHeight(self.messageInputView.frame));
-      self.messageInputView.hidden = YES;
-      self.subButtonViews = [NSMutableArray array];
       [self setupShortcutView];
       [self setupNavigationBar];
       break;
@@ -380,6 +377,7 @@ const CGFloat shortcutViewHeight = 45.0;
     default:
       break;
   }
+//  [self setupShortcutView];
 }
 
 - (void)setupSessionID {
@@ -559,6 +557,7 @@ const CGFloat shortcutViewHeight = 45.0;
   [button addTarget:self action:@selector(switchSubButtonView:) forControlEvents:UIControlEventTouchUpInside];
   button.layer.borderWidth = 0.3;
   button.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.3].CGColor;
+  button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 0.0);
   [self.shortcutView addSubview:button];
 }
 
@@ -619,6 +618,10 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)setupShortcutView {
+  self.messageInputView.transform = CGAffineTransformTranslate(self.messageInputView.transform, 0.0, CGRectGetHeight(self.messageInputView.frame));
+  self.messageInputView.hidden = YES;
+  self.subButtonViews = [NSMutableArray array];
+  
   self.shortcutView = [UIView new];
   self.shortcutView.backgroundColor = [UIColor whiteColor];
   [self.view addSubview:self.shortcutView];

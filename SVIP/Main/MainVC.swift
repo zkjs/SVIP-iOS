@@ -101,7 +101,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func initSmartPanelUI() {
     statusLabel.hidden = true
     infoLabel.hidden = true
-    //    tipsLabel.hidden = true
+//    tipsLabel.hidden = true
     regionLabel.hidden = true
     checkinLabel.hidden = true
     checkinSubLabel.hidden = true
