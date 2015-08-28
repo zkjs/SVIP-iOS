@@ -58,7 +58,7 @@ const CGFloat shortcutViewHeight = 45.0;
   [super viewDidLoad];
   
   [self setupNotification];
-  [self setupDataSource];
+  [self setupShortcutViewDataSource];
   [self setupMessageTableView];
   [self setupMessageInputView];
   [self setupSessionID];
@@ -414,7 +414,7 @@ const CGFloat shortcutViewHeight = 45.0;
   [self scrollToBottomAnimated:NO];
 }
 
-- (void)setupDataSource {
+- (void)setupShortcutViewDataSource {
 //0 OutOfRegion_NoOrder
 //1 OutOfRegion_HasOrder_UnCheckin
 //2 OutOfRegion_HasOrder_Checkin
@@ -423,146 +423,116 @@ const CGFloat shortcutViewHeight = 45.0;
 //5 InRegion_HasOrder_Checkin
    self.data = @{
    @"0": @{
-         @"status": @"店外未预订",
+         @"status": @"店外-无订单",
          @"actions": @[@{
-                         @"name": @"房间",
-                         @"department": @"预订部/前台",
-//                         @"ruletype": @"Booking-FrontOffice",
+                         @"name": @"订房",
                          @"ruletype": @"DefaultChatRuleType",
-                         @"tags": @[@"订房", @"订房优惠"]
+                         @"tags": @[@"大床房", @"双床房", @"高层房", @"无烟房", @"角落房", @"我要加床"]
                          },
                        @{
                          @"name": @"订餐",
-                         @"department": @"销售部",
-//                         @"ruletype": @"Sale",
                          @"ruletype": @"DefaultChatRuleType",
-                         @"tags": @[@"包厢", @"订餐"]
+                         @"tags": @[@"中餐厅", @"西餐厅"]
                          },
                        @{
-                         @"name": @"其它",
-                         @"department": @"有关部门",
+                         @"name": @"我的特权",
                          @"ruletype": @"DefaultChatRuleType",
-                         @"tags": @[@"免前台", @"特权"]
+                         @"tags": @[@"免前台", @"接送", @"客房定制"]
                          }
                        ]
          },
    @"1": @{
-       @"status": @"店外已预订",
+       @"status": @"店外-已发送/已确认",
        @"actions": @[@{
-                       @"name": @"房间",
-                       @"department": @"预订部/前台",
-//                       @"ruletype": @"Booking-FrontOffice",
+                       @"name": @"我的预订",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"取消订单", @"修改订单", @"指定房型"]
+                       @"tags": @[@"订单状态", @"修改订单", @"发票要求"]
                        },
                      @{
-                       @"name": @"订餐",
-                       @"department": @"总台/餐饮部",
-//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"name": @"我的特权",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       @"tags": @[@"免前台", @"接送", @"客房定制"]
                       },
                      @{
-                       @"name": @"其它",
-                       @"department": @"有关部门",
+                       @"name": @"我的推荐",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"免前台", @"特权"]
+                       @"tags": @[@"出行信息", @"旅游信息", @"娱乐信息"]
                       }
                      ]
        },
    @"2": @{
-       @"status": @"店外已入住",
+       @"status": @"店外-已入住",
        @"actions": @[@{
-                       @"name": @"房间",
-                       @"department": @"客房部",
-//                       @"ruletype": @"Housekeeping",
+                       @"name": @"我的预订",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"打扫房间", @"更换用品", @"洗衣服务"]
+                       @"tags": @[@"订单状态", @"修改订单", @"发票要求"]
                        },
                      @{
-                       @"name": @"订餐",
-                       @"department": @"总台/餐饮部",
-//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"name": @"我的客房",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       @"tags": @[@"打扫", @"洗衣", @"订餐", @"加床", @"更换床品", @"添加物品"]
                        },
                      @{
-                       @"name": @"其它",
-                       @"department": @"有关部门",
+                       @"name": @"我的推荐",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"免前台", @"特权"]
+                       @"tags": @[@"出行信息", @"旅游信息", @"娱乐信息"]
                        }
                      ]
        },
    @"3": @{
-       @"status": @"大堂未预订",
-       @"actions": @[@{
-                       @"name": @"房间",
-                       @"department": @"预订部/前台",
-//                       @"ruletype": @"Booking-FrontOffice",
-                       @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"订房", @"订房优惠"]
-                       },
-                     @{
-                       @"name": @"订餐",
-                       @"department": @"销售部",
-//                       @"ruletype": @"Sale",
-                       @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"包厢", @"订餐"]
-                       },
-                     @{
-                       @"name": @"其它",
-                       @"department": @"有关部门",
-                       @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"免前台", @"特权"]
-                       }
-                     ]
-       },
+       @"status": @"店外-无订单",
+         @"actions": @[@{
+                         @"name": @"订房",
+                         @"ruletype": @"DefaultChatRuleType",
+                         @"tags": @[@"大床房", @"双床房", @"高层房", @"无烟房", @"角落房", @"我要加床"]
+                         },
+                       @{
+                         @"name": @"订餐",
+                         @"ruletype": @"DefaultChatRuleType",
+                         @"tags": @[@"中餐厅", @"西餐厅"]
+                         },
+                       @{
+                         @"name": @"我的特权",
+                         @"ruletype": @"DefaultChatRuleType",
+                         @"tags": @[@"免前台", @"接送", @"客房定制"]
+                         }
+                       ]
+         },
    @"4": @{
-       @"status": @"大堂已预订",
+       @"status": @"店外-已发送/已确认",
        @"actions": @[@{
-                       @"name": @"房间",
-                       @"department": @"预订部/前台",
-//                       @"ruletype": @"Booking-FrontOffice",
+                       @"name": @"我的预订",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"取消订单", @"修改订单", @"指定房型"]
+                       @"tags": @[@"订单状态", @"修改订单", @"发票要求"]
                        },
                      @{
-                       @"name": @"订餐",
-                       @"department": @"总台/餐饮部",
-//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"name": @"我的特权",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
-                       },
+                       @"tags": @[@"免前台", @"接送", @"客房定制"]
+                      },
                      @{
-                       @"name": @"其它",
-                       @"department": @"有关部门",
+                       @"name": @"我的推荐",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"免前台", @"特权"]
-                       }
+                       @"tags": @[@"出行信息", @"旅游信息", @"娱乐信息"]
+                      }
                      ]
        },
    @"5": @{
-       @"status": @"大堂已入住",
+       @"status": @"大堂-已入住",
        @"actions": @[@{
-                       @"name": @"房间",
-                       @"department": @"客房部",
-//                       @"ruletype": @"Housekeeping",
+                       @"name": @"我的客房",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"打扫房间", @"更换用品", @"洗衣服务"]
+                       @"tags": @[@"打扫", @"洗衣", @"订餐", @"加床", @"更换床品", @"添加物品"]
                        },
                      @{
-                       @"name": @"订餐",
-                       @"department": @"总台/餐饮部",
-//                       @"ruletype": @"CallCenter-FoodandBeverage",
+                       @"name": @"我的消费",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"包厢", @"订餐", @"房间送餐"]
+                       @"tags": @[@"我的账单", @"发票要求", @"预约退房"]
                        },
                      @{
-                       @"name": @"其它",
-                       @"department": @"有关部门",
+                       @"name": @"我的推荐",
                        @"ruletype": @"DefaultChatRuleType",
-                       @"tags": @[@"免前台", @"特权"]
+                       @"tags": @[@"出行信息", @"旅游信息", @"娱乐信息"]
                        }
                      ]
        }
