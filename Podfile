@@ -6,7 +6,7 @@ target 'SVIP' do
   pod 'AMapSearch'
   pod 'CocoaLumberjack'
 #  pod 'MagicalRecord'
-  pod 'SKTagView'
+  pod 'SKTagView', :git => 'https://github.com/hanton/SKTagView', :branch => 'master'
   pod 'MIBadgeButton', :inhibit_warnings => true
   pod 'SWTableViewCell'
   pod 'MJRefresh'

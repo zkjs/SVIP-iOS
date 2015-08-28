@@ -68,7 +68,7 @@ DEPENDENCIES:
   - PKYStepper
   - RESideMenu (~> 4.0.7)
   - SDWebImage (~> 3.7)
-  - SKTagView
+  - SKTagView (from `https://github.com/hanton/SKTagView`, branch `master`)
   - SocketRocket
   - SSKeychain (~> 1.2.3)
   - SWTableViewCell
@@ -78,6 +78,9 @@ EXTERNAL SOURCES:
   MessageDisplayKit:
     :branch: ZKJS
     :git: https://github.com/hanton/MessageDisplayKit.git
+  SKTagView:
+    :branch: master
+    :git: https://github.com/hanton/SKTagView
   YXTMotionView:
     :branch: master
     :git: https://github.com/hanton/YXTMotionView.git
@@ -86,6 +89,9 @@ CHECKOUT OPTIONS:
   MessageDisplayKit:
     :commit: 12d19c4a9d03b1efe6c57fcce0629b926724ad43
     :git: https://github.com/hanton/MessageDisplayKit.git
+  SKTagView:
+    :commit: 29e0bcdbb112d80a84630de367b713c543c56e58
+    :git: https://github.com/hanton/SKTagView
   YXTMotionView:
     :commit: b40625f643d681844c86cb2dc8199541a53840a0
     :git: https://github.com/hanton/YXTMotionView.git
@@ -107,7 +113,7 @@ SPEC CHECKSUMS:
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SKTagView: 1e89c1ce2292cf890610901d3621c55d1ed82379
+  SKTagView: 33378cfeb717df04f77489605b013506e91d1da5
   SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
