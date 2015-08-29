@@ -451,6 +451,18 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rBI-Xe-DUd" id="Klj-mX-HmK">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETd-II-ewh" customClass="SKTagView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ETd-II-ewh" secondAttribute="bottom" id="PqO-Mh-IDf"/>
+                                                <constraint firstItem="ETd-II-ewh" firstAttribute="top" secondItem="Klj-mX-HmK" secondAttribute="top" id="fpw-c4-maQ"/>
+                                                <constraint firstItem="ETd-II-ewh" firstAttribute="leading" secondItem="Klj-mX-HmK" secondAttribute="leading" id="p7R-hT-7V6"/>
+                                                <constraint firstAttribute="trailing" secondItem="ETd-II-ewh" secondAttribute="trailing" id="rn8-Tk-0K4"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="g0W-pM-rao">
@@ -493,6 +505,18 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HR2-7d-65E" id="gix-jB-uPX">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoo-rv-MIB" customClass="SKTagView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Eoo-rv-MIB" secondAttribute="bottom" id="Cfn-Fz-60A"/>
+                                                <constraint firstItem="Eoo-rv-MIB" firstAttribute="leading" secondItem="gix-jB-uPX" secondAttribute="leading" id="GJl-lC-ZWm"/>
+                                                <constraint firstItem="Eoo-rv-MIB" firstAttribute="top" secondItem="gix-jB-uPX" secondAttribute="top" id="Oha-q1-hOr"/>
+                                                <constraint firstAttribute="trailing" secondItem="Eoo-rv-MIB" secondAttribute="trailing" id="TT7-i8-YGl"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Sdh-Pb-BvP">
@@ -577,6 +601,8 @@
                         <outlet property="receiptLabel" destination="U9y-th-Efq" id="ETv-n7-wl0"/>
                         <outlet property="remarkTextView" destination="QiW-fI-1go" id="Z29-zj-dRw"/>
                         <outlet property="roomCountLabel" destination="sPj-Ct-cJD" id="gaz-B6-1FS"/>
+                        <outlet property="roomTagView" destination="ETd-II-ewh" id="HKn-Zf-o5h"/>
+                        <outlet property="serviceTagView" destination="Eoo-rv-MIB" id="2Ii-Xa-AGT"/>
                         <outlet property="startDateLabel" destination="SXX-nV-8It" id="0LF-04-7Ji"/>
                         <outletCollection property="nameTextFields" destination="3Yp-JX-VxI" collectionClass="NSMutableArray" id="wD1-cv-sLH"/>
                         <outletCollection property="nameTextFields" destination="Za0-Yc-l6e" collectionClass="NSMutableArray" id="AUg-xs-IWo"/>
