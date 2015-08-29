@@ -35,8 +35,10 @@ class SettingEditViewController: UIViewController {
   }
   
   func setUI() {
+    let baseInfo = JSHStorage.baseInfo()
     switch type {
     case VCType.realname:
+      textField.text = baseInfo.real_name;
       if let dic = editDic["realname"] as? NSDictionary {
         if let placeholder = dic["placeholder"] as? String {
           textField.placeholder = placeholder
@@ -46,6 +48,7 @@ class SettingEditViewController: UIViewController {
         }
       }
     case VCType.username:
+      textField.text = baseInfo.username
       if let dic = editDic["username"] as? NSDictionary {
         if let placeholder = dic["placeholder"] as? String {
           textField.placeholder = placeholder
@@ -56,6 +59,7 @@ class SettingEditViewController: UIViewController {
       }
       
     case VCType.company:
+      textField.text = baseInfo.company
       if let dic = editDic["company"] as? NSDictionary {
         if let placeholder = dic["placeholder"] as? String {
           textField.placeholder = placeholder
@@ -66,6 +70,7 @@ class SettingEditViewController: UIViewController {
       }
     
     case VCType.email:
+      textField.text = baseInfo.email
       if let dic = editDic["email"] as? NSDictionary {
         if let placeholder = dic["placeholder"] as? String {
           textField.placeholder = placeholder

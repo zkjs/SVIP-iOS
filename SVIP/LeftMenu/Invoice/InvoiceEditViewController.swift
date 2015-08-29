@@ -41,6 +41,7 @@ class InvoiceEditViewController: UIViewController {
   
   @IBAction func save(sender: UIButton) {
     if invoice.text.isEmpty {
+      ZKJSTool.showMsg("请填写内容")
       return
     }
     let is_default = isDefaultButton.selected
