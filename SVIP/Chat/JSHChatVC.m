@@ -360,13 +360,14 @@ const CGFloat shortcutViewHeight = 45.0;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
       });
-      [self setupNavigationBar];
+//      [self setupNavigationBar];
       break;
     }
     case ChatService: {
       self.title = [NSString stringWithFormat:@"%@", self.shopName];
       [self setupShortcutView];
-      [self setupNavigationBar];
+//      [self setupNavigationBar];
+      [self setupNavigationBackButton];
       break;
     }
     case ChatOrder: {
