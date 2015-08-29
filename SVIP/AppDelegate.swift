@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     setupWindow()
     setupNotification()
     setupTCPSessionManager()
+    fetchShops()
     fetchBeaconRegions()
     setupUMSocial()//UM
     setupBackgroundFetch()
@@ -346,6 +347,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func setupTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().delegate = self
     println("setupTCPSessionManager")
+  }
+  
+  func fetchShops() {
+    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      let shops = responseObject as! [(NSDictionary)]
+      StorageManager.sharedInstance().saveShopsInfo(shops)
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   func fetchBeaconRegions() {

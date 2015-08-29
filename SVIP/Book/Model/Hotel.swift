@@ -19,10 +19,12 @@ class Hotel: NSObject {
     }
   }
   var fullname: String!
+  var phone: String!
   
   init(dic: NSDictionary) {
     shopid = dic["shopid"] as! String
     logo = dic["logo"] as! String
     fullname = dic["fullname"] as? String
+    phone = dic["phone"] as? String
   }
 }

@@ -568,7 +568,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
-    case .InRegion_NoOrder, .OutOfRegion_NoOrder:
+    case .InRegion_NoOrder:
+      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+      vc.shopID = beacon!["shopid"]!
+      self.navigationController?.pushViewController(vc, animated: true)
+      break
+    case .OutOfRegion_NoOrder:
       navigationController?.pushViewController(BookHotelListTVC(), animated: true)
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       if let orderInfo = order {
@@ -578,7 +584,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
         }
       }
-      break
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       if let orderInfo = order {
         if orderInfo.status == "0" {  // 0 未确认可取消订单
@@ -587,7 +592,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
         }
       }
-      break
     }
   }
   
@@ -611,12 +615,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
-    let ruleType = RuleType.OutOfRegion_NoOrder//RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+    let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
     case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-      let bookHotelList = BookHotelListTVC()
-      navigationController?.pushViewController(bookHotelList, animated: true)
-      break
+      sideMenuViewController.presentRightMenuViewController()
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.shopID = order?.shopid
@@ -640,21 +642,32 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       
       let beacon = StorageManager.sharedInstance().lastBeacon()
       let order = StorageManager.sharedInstance().lastOrder()
-      
+
       let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
       switch ruleType {
       case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-        return
+        let bookHotelList = BookHotelListTVC()
+        bookHotelList.style = .PhoneCall
+        navigationController?.pushViewController(bookHotelList, animated: true)
       case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
-        let chatVC = JSHChatVC(chatType: .CallingWaiter)
-        chatVC.order = order
-        chatVC.shopID = order?.shopid
-        chatVC.shopName = order?.fullname
-        chatVC.location = beacon!["locdesc"]
-        let navController = UINavigationController(rootViewController: chatVC)
-        navController.navigationBar.tintColor = UIColor.blackColor()
-        navController.navigationBar.translucent = false
-        presentViewController(navController, animated: true, completion: nil)
+//        let chatVC = JSHChatVC(chatType: .CallingWaiter)
+//        chatVC.order = order
+//        chatVC.shopID = order?.shopid
+//        chatVC.shopName = order?.fullname
+//        chatVC.location = beacon!["locdesc"]
+//        let navController = UINavigationController(rootViewController: chatVC)
+//        navController.navigationBar.tintColor = UIColor.blackColor()
+//        navController.navigationBar.translucent = false
+//        presentViewController(navController, animated: true, completion: nil)
+        // 拨打酒店电话
+        if let shopID = order?.shopid {
+          let shopsInfo = StorageManager.sharedInstance().shopsInfo()
+          let predicate = NSPredicate(format: "shopid = %@", shopID)
+          let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+          if let shopPhone = shopInfo["phone"] as? String {
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
+          }
+        }
       case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
 //        let chatVC = JSHChatVC(chatType: .CallingWaiter)
 //        chatVC.order = order
@@ -663,7 +676,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //        navController.navigationBar.tintColor = UIColor.blackColor()
 //        navController.navigationBar.translucent = false
 //        presentViewController(navController, animated: true, completion: nil)
-        break
+        // 拨打酒店电话
+        if let shopID = order?.shopid {
+          let shopsInfo = StorageManager.sharedInstance().shopsInfo()
+          let predicate = NSPredicate(format: "shopid = %@", shopID)
+          let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+          if let shopPhone = shopInfo["phone"] as? String {
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
+          }
+        }
       }
     }
   }

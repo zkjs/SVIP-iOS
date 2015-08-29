@@ -34,9 +34,25 @@ class BookHotelListCell: UITableViewCell {
   }
 }
 
-class BookHotelListTVC: UITableViewController {
+enum HotelListStyle: Int, Printable {
+  case Booking
+  case PhoneCall
   
+  var description: String {
+    switch self {
+    case Booking:
+      return "Booking"
+    case PhoneCall:
+      return "PhoneCall"
+    }
+  }
+}
+
+class BookHotelListTVC: UITableViewController {
+
   var dataArray = NSMutableArray()
+  var style = HotelListStyle.Booking
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -91,9 +107,15 @@ class BookHotelListTVC: UITableViewController {
 //    vc.shopid = (dataArray[indexPath.row] as? Hotel)!.shopid
 //    let vc = BookingOrderTVC()
     
-    let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-    vc.shopID = (dataArray[indexPath.row] as? Hotel)!.shopid
-    self.navigationController?.pushViewController(vc, animated: true)
+    switch style {
+    case .Booking:
+      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+      vc.shopID = (dataArray[indexPath.row] as? Hotel)!.shopid
+      self.navigationController?.pushViewController(vc, animated: true)
+    case .PhoneCall:
+      let hotel = dataArray[indexPath.row] as? Hotel
+      UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(hotel!.phone)")!)
+    }
   }
 }
