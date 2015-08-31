@@ -64,10 +64,6 @@
 		B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */; };
 		B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */; };
 		B20812AE1B8DD7950070D96F /* PersonalLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */; };
-		B20812AF1B8DD7950070D96F /* PhoneSettingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208128C1B8DD7950070D96F /* PhoneSettingFirstViewController.swift */; };
-		B20812B01B8DD7950070D96F /* PhoneSettingFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208128D1B8DD7950070D96F /* PhoneSettingFirstViewController.xib */; };
-		B20812B11B8DD7950070D96F /* PhoneSettingSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208128E1B8DD7950070D96F /* PhoneSettingSecondViewController.swift */; };
-		B20812B21B8DD7950070D96F /* PhoneSettingSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208128F1B8DD7950070D96F /* PhoneSettingSecondViewController.xib */; };
 		B20812B31B8DD7950070D96F /* SkipCheckInSettingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812911B8DD7950070D96F /* SkipCheckInSettingListCell.swift */; };
 		B20812B41B8DD7950070D96F /* SkipCheckInSettingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812921B8DD7950070D96F /* SkipCheckInSettingListCell.xib */; };
 		B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */; };
@@ -125,6 +121,10 @@
 		B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A6421C1B47C2A700AF0F28 /* BookVC.xib */; };
 		B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3C1B73493D00CA5158 /* libc++.dylib */; };
 		B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */; };
+		B2F0377A1B93F3D4006FF396 /* PhoneSettingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F037761B93F3D4006FF396 /* PhoneSettingFirstViewController.swift */; };
+		B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F037771B93F3D4006FF396 /* PhoneSettingFirstViewController.xib */; };
+		B2F0377C1B93F3D4006FF396 /* PhoneSettingSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F037781B93F3D4006FF396 /* PhoneSettingSecondViewController.swift */; };
+		B2F0377D1B93F3D4006FF396 /* PhoneSettingSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F037791B93F3D4006FF396 /* PhoneSettingSecondViewController.xib */; };
 		B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */; };
 		B2F4716B1B4B6CF0005122BB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F471691B4B6CF0005122BB /* AlipaySDK.framework */; };
 		B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F471701B4B7B21005122BB /* AlipayOrder.m */; };
@@ -246,10 +246,6 @@
 		B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelFooter.xib; sourceTree = "<group>"; };
 		B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelHeader.xib; sourceTree = "<group>"; };
 		B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalLabelViewController.swift; sourceTree = "<group>"; };
-		B208128C1B8DD7950070D96F /* PhoneSettingFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSettingFirstViewController.swift; sourceTree = "<group>"; };
-		B208128D1B8DD7950070D96F /* PhoneSettingFirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSettingFirstViewController.xib; sourceTree = "<group>"; };
-		B208128E1B8DD7950070D96F /* PhoneSettingSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSettingSecondViewController.swift; sourceTree = "<group>"; };
-		B208128F1B8DD7950070D96F /* PhoneSettingSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSettingSecondViewController.xib; sourceTree = "<group>"; };
 		B20812911B8DD7950070D96F /* SkipCheckInSettingListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingListCell.swift; sourceTree = "<group>"; };
 		B20812921B8DD7950070D96F /* SkipCheckInSettingListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkipCheckInSettingListCell.xib; sourceTree = "<group>"; };
 		B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +324,10 @@
 		B2A6421C1B47C2A700AF0F28 /* BookVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookVC.xib; sourceTree = "<group>"; };
 		B2B2EC3C1B73493D00CA5158 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		B2F037761B93F3D4006FF396 /* PhoneSettingFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSettingFirstViewController.swift; sourceTree = "<group>"; };
+		B2F037771B93F3D4006FF396 /* PhoneSettingFirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSettingFirstViewController.xib; sourceTree = "<group>"; };
+		B2F037781B93F3D4006FF396 /* PhoneSettingSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSettingSecondViewController.swift; sourceTree = "<group>"; };
+		B2F037791B93F3D4006FF396 /* PhoneSettingSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSettingSecondViewController.xib; sourceTree = "<group>"; };
 		B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		B2F471691B4B6CF0005122BB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		B2F4716F1B4B7B21005122BB /* AlipayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipayOrder.h; sourceTree = "<group>"; };
@@ -673,10 +673,10 @@
 		B20812611B8DD7950070D96F /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
+				B2F037751B93F3D4006FF396 /* Phone */,
 				B2FB43321B8EF75700C9BEBB /* Invoice */,
 				B20812621B8DD7950070D96F /* InfoCenter */,
 				B20812851B8DD7950070D96F /* InfoLabel */,
-				B208128B1B8DD7950070D96F /* Photo */,
 				B20812901B8DD7950070D96F /* SkipCheckIn */,
 			);
 			path = LeftMenu;
@@ -715,17 +715,6 @@
 				B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */,
 			);
 			path = InfoLabel;
-			sourceTree = "<group>";
-		};
-		B208128B1B8DD7950070D96F /* Photo */ = {
-			isa = PBXGroup;
-			children = (
-				B208128C1B8DD7950070D96F /* PhoneSettingFirstViewController.swift */,
-				B208128D1B8DD7950070D96F /* PhoneSettingFirstViewController.xib */,
-				B208128E1B8DD7950070D96F /* PhoneSettingSecondViewController.swift */,
-				B208128F1B8DD7950070D96F /* PhoneSettingSecondViewController.xib */,
-			);
-			path = Photo;
 			sourceTree = "<group>";
 		};
 		B20812901B8DD7950070D96F /* SkipCheckIn */ = {
@@ -907,6 +896,17 @@
 				B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */,
 			);
 			path = Widget;
+			sourceTree = "<group>";
+		};
+		B2F037751B93F3D4006FF396 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				B2F037761B93F3D4006FF396 /* PhoneSettingFirstViewController.swift */,
+				B2F037771B93F3D4006FF396 /* PhoneSettingFirstViewController.xib */,
+				B2F037781B93F3D4006FF396 /* PhoneSettingSecondViewController.swift */,
+				B2F037791B93F3D4006FF396 /* PhoneSettingSecondViewController.xib */,
+			);
+			path = Phone;
 			sourceTree = "<group>";
 		};
 		B2F471671B4B6CB4005122BB /* AliPay */ = {
@@ -1166,11 +1166,11 @@
 				40817D181B8ED97500EF188F /* ReceiptHeaderView.xib in Resources */,
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
 				B20812B61B8DD7950070D96F /* SkipCheckInSettingViewController.xib in Resources */,
+				B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
 				B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */,
 				B2F49EB61B7347A200556AE2 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
-				B20812B01B8DD7950070D96F /* PhoneSettingFirstViewController.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
@@ -1178,6 +1178,7 @@
 				B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */,
 				B2F49EAE1B7347A200556AE2 /* UMSCommentDetailController.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
+				B2F0377D1B93F3D4006FF396 /* PhoneSettingSecondViewController.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2F49EB01B7347A200556AE2 /* UMSCommentInputControlleriPad.xib in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
@@ -1193,7 +1194,6 @@
 				40817D081B8EAB8800EF188F /* ReceiptCell.xib in Resources */,
 				B2F49EB31B7347A200556AE2 /* UMSLoginViewController.xib in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
-				B20812B21B8DD7950070D96F /* PhoneSettingSecondViewController.xib in Resources */,
 				B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */,
 				B20812B41B8DD7950070D96F /* SkipCheckInSettingListCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
@@ -1280,9 +1280,7 @@
 				B23E53811B4BB64C00CB7761 /* openssl_wrapper.m in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
-				B20812B11B8DD7950070D96F /* PhoneSettingSecondViewController.swift in Sources */,
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
-				B20812AF1B8DD7950070D96F /* PhoneSettingFirstViewController.swift in Sources */,
 				404C36D31B6B4AE200E8C227 /* Message.swift in Sources */,
 				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
@@ -1295,6 +1293,7 @@
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */,
 				B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */,
+				B2F0377A1B93F3D4006FF396 /* PhoneSettingFirstViewController.swift in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
 				40817D1C1B8EDCED00EF188F /* ReceiptHeaderView.swift in Sources */,
 				B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */,
@@ -1319,6 +1318,7 @@
 				B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */,
 				40817D071B8EAB8800EF188F /* ReceiptCell.swift in Sources */,
 				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,
+				B2F0377C1B93F3D4006FF396 /* PhoneSettingSecondViewController.swift in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
 				B20812A61B8DD7950070D96F /* SettingTableViewController.swift in Sources */,
