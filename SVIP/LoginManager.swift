@@ -57,7 +57,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
       nc.pushViewController(pushedVC!, animated: false)
     }
 //    nc.navigationBarHidden = true
-    let menu = RESideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: MessageCenterTVC())
+    let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: MessageCenterTVC())
     menu.delegate = self
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false
