@@ -29,9 +29,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var paymentButton: UIButton!
   @IBOutlet weak var receiptLabel: UILabel!
   @IBOutlet weak var remarkTextView: UITextView!
-  
-  let roomTagView = SKTagView()
-  let serviceTagView = SKTagView()
+  @IBOutlet weak var roomTagView: SKTagView!
+  @IBOutlet weak var serviceTagView: SKTagView!
   
   var roomCount = 1
   var shopID = ""
@@ -248,6 +247,11 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         return 0.0
       }
     }
+    
+//    if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
+//      return roomTagView.frame.height
+//    }
+    
     return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
   }
   
@@ -264,23 +268,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     
     if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
       cell.contentView.addSubview(roomTagView)
-      roomTagView.mas_makeConstraints { (make: MASConstraintMaker!) -> Void in
-        let superView = cell.contentView
-        make.top.equalTo()(superView.mas_top)
-        make.bottom.equalTo()(superView.mas_bottom)
-        make.leading.equalTo()(superView.mas_leading)
-        make.trailing.equalTo()(superView.mas_trailing)
-      }
     } else if indexPath.section == kServiceSection && indexPath.row == kServiceRow {
       cell.contentView.addSubview(serviceTagView)
-      serviceTagView.mas_makeConstraints { (make: MASConstraintMaker!) -> Void in
-        let superView = cell.contentView
-        make.top.equalTo()(superView.mas_top)
-        make.bottom.equalTo()(superView.mas_bottom)
-        make.leading.equalTo()(superView.mas_leading)
-        make.trailing.equalTo()(superView.mas_trailing)
-      }
-
     }
     
     return cell

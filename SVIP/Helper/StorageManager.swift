@@ -8,9 +8,9 @@
 
 import UIKit
 
-private let kBeaconRegions = "kBeaconRegions.archive"
-private let kLastOrder = "kLastOrder.archive"
-private let kShopsInfo = "Shops.plist"
+private let kBeaconRegions = "BeaconRegions.archive"
+private let kLastOrder = "LastOrder.archive"
+private let kShopsInfo = "Shops.archive"
 
 class StorageManager: NSObject {
   
@@ -84,16 +84,12 @@ class StorageManager: NSObject {
   
   func shopsInfo() -> NSArray? {
     let path = documentDirectory().stringByAppendingPathComponent(kShopsInfo)
-    var shopsInfo: NSArray?
-    let fileManager = NSFileManager()
-    if fileManager.fileExistsAtPath(path) {
-      shopsInfo = NSArray(contentsOfFile: path)
-    }
+    let shopsInfo = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? NSArray
     return shopsInfo
   }
   
   func saveShopsInfo(shopsInfo: NSArray) {
     let path = documentDirectory().stringByAppendingPathComponent(kShopsInfo)
-    shopsInfo.writeToFile(path, atomically: true)
+    NSKeyedArchiver.archiveRootObject(shopsInfo, toFile: path)
   }
 }

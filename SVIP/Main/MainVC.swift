@@ -358,6 +358,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       regionLabel.text = "不在酒店"
     }
     
+    // 免前台
     if order?.nologin.toInt() == 0 {
       checkinLabel.setTitle(" 免前台服务已经推出", forState: .Normal)
       checkinSubLabel.text = "立即了解"
@@ -369,7 +370,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     infoLabel.hidden = true
     switch ruleType {
-    case .InRegion_HasOrder_Checkin:
+    case .InRegion_HasOrder_Checkin:  //在酒店-已入住
       var startDateString = order?.arrival_date
       var endDateString = order?.departure_date
       var dateFormatter = NSDateFormatter()
@@ -381,17 +382,17 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       startDateString = dateFormatter.stringFromDate(startDate!)
       if NSDate.daysFromDate(NSDate(), toDate: endDate!) == 0 {
         // 退房状态
-        statusLabel.setTitle(" 您的订单今天需要退房，旅途愉快", forState: .Normal)
+        statusLabel.setTitle(" 您今天需要退房，旅途愉快", forState: .Normal)
         statusLabel.setImage(UIImage(named: "sl_tuifang"), forState: .Normal)
       } else {
         // 入住状态
-        if let location = beacon!["locdesc"] {
-          if location.isEmpty {
-            statusLabel.setTitle(" 您已入住\((order?.fullname)!)，旅途愉快", forState: .Normal)
-          } else {
-            statusLabel.setTitle(" 您已到达\(location)，旅途愉快", forState: .Normal)
-          }
-        }
+//        if let location = beacon!["locdesc"] {
+//          if location.isEmpty {
+            statusLabel.setTitle(" \((order?.fullname)!)随时为您服务", forState: .Normal)
+//          } else {
+//            statusLabel.setTitle(" 您已到达\(location)，旅途愉快", forState: .Normal)
+//          }
+//        }
         statusLabel.setImage(UIImage(named: "sl_ruzhu"), forState: .Normal)
       }
       
@@ -404,7 +405,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
-    case .InRegion_HasOrder_UnCheckin:
+    case .InRegion_HasOrder_UnCheckin:  //在酒店-未入住
       var startDateString = order?.arrival_date
       var endDateString = order?.departure_date
       var dateFormatter = NSDateFormatter()
@@ -418,11 +419,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let orderInfo = order {
         if orderInfo.status == "0" {
           // 预订状态
-          statusLabel.setTitle(" 已经提交订单，请等待酒店确定", forState: .Normal)
+          statusLabel.setTitle(" 请等待酒店确定订单", forState: .Normal)
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
-          statusLabel.setTitle(" 订单已确定，请按时到达酒店", forState: .Normal)
+          if order?.nologin.toInt() == 0 {
+            statusLabel.setTitle(" 酒店将为您办理入住手续", forState: .Normal)
+          } else {
+            statusLabel.setTitle(" 已到达酒店，请办理入住手续", forState: .Normal)
+          }
           statusLabel.setImage(UIImage(named: "sl_yuding"), forState: .Normal)
         }
       }
@@ -435,15 +440,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
-    case .InRegion_NoOrder:
-      statusLabel.setTitle(" 欢迎您，点击查看信息", forState: .Normal)
+    case .InRegion_NoOrder:  // 在酒店-无订单
+      statusLabel.setTitle(" \((order?.fullname)!)欢迎您", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
       tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
-    case .OutOfRegion_HasOrder_Checkin:
+    case .OutOfRegion_HasOrder_Checkin:  // 不在酒店-已入住
       statusLabel.setTitle(" \((order?.fullname)!)随时为您服务!", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_likai"), forState: .Normal)
       tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
-    case .OutOfRegion_HasOrder_UnCheckin:
+    case .OutOfRegion_HasOrder_UnCheckin:  // 不在酒店-未入住
       var startDateString = order?.arrival_date
       var endDateString = order?.departure_date
       var dateFormatter = NSDateFormatter()
@@ -457,7 +462,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let orderInfo = order {
         if orderInfo.status == "0" {
           // 预订状态
-          statusLabel.setTitle(" 已经提交订单，请等待酒店确定", forState: .Normal)
+          statusLabel.setTitle(" 请等待酒店确定订单", forState: .Normal)
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
@@ -479,7 +484,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
-    case .OutOfRegion_NoOrder:
+    case .OutOfRegion_NoOrder:  // 不在酒店-无订单
       statusLabel.setTitle(" 您还没有预订信息, 请立即预订", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
       tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
@@ -563,7 +568,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
-    case .InRegion_NoOrder, .OutOfRegion_NoOrder:
+    case .InRegion_NoOrder:
+      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+      vc.shopID = beacon!["shopid"]!
+      self.navigationController?.pushViewController(vc, animated: true)
+      break
+    case .OutOfRegion_NoOrder:
       navigationController?.pushViewController(BookHotelListTVC(), animated: true)
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       if let orderInfo = order {
@@ -573,7 +584,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
         }
       }
-      break
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       if let orderInfo = order {
         if orderInfo.status == "0" {  // 0 未确认可取消订单
@@ -582,7 +592,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
         }
       }
-      break
     }
   }
   
@@ -609,33 +618,21 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
     switch ruleType {
     case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-//      let chatVC = JSHChatVC(chatType: .Service)
-//      chatVC.condition = String(ruleType.rawValue)
-//      let navController = UINavigationController(rootViewController: chatVC)
-//      navController.navigationBar.tintColor = UIColor.blackColor()
-//      navController.navigationBar.translucent = false
-//      presentViewController(navController, animated: true, completion: nil)
-      break
+      sideMenuViewController.presentRightMenuViewController()
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.shopID = order?.shopid
       chatVC.shopName = order?.fullname
       chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
-      let navController = UINavigationController(rootViewController: chatVC)
-      navController.navigationBar.tintColor = UIColor.blackColor()
-      navController.navigationBar.translucent = false
-      presentViewController(navController, animated: true, completion: nil)
+      navigationController?.pushViewController(chatVC, animated: true)
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
       chatVC.shopID = order?.shopid
       chatVC.shopName = order?.fullname
       chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
-      let navController = UINavigationController(rootViewController: chatVC)
-      navController.navigationBar.tintColor = UIColor.blackColor()
-      navController.navigationBar.translucent = false
-      presentViewController(navController, animated: true, completion: nil)
+      navigationController?.pushViewController(chatVC, animated: true)
     }
   }
   
@@ -645,21 +642,32 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       
       let beacon = StorageManager.sharedInstance().lastBeacon()
       let order = StorageManager.sharedInstance().lastOrder()
-      
+
       let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
       switch ruleType {
       case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-        return
+        let bookHotelList = BookHotelListTVC()
+        bookHotelList.style = .PhoneCall
+        navigationController?.pushViewController(bookHotelList, animated: true)
       case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
-        let chatVC = JSHChatVC(chatType: .CallingWaiter)
-        chatVC.order = order
-        chatVC.shopID = order?.shopid
-        chatVC.shopName = order?.fullname
-        chatVC.location = beacon!["locdesc"]
-        let navController = UINavigationController(rootViewController: chatVC)
-        navController.navigationBar.tintColor = UIColor.blackColor()
-        navController.navigationBar.translucent = false
-        presentViewController(navController, animated: true, completion: nil)
+//        let chatVC = JSHChatVC(chatType: .CallingWaiter)
+//        chatVC.order = order
+//        chatVC.shopID = order?.shopid
+//        chatVC.shopName = order?.fullname
+//        chatVC.location = beacon!["locdesc"]
+//        let navController = UINavigationController(rootViewController: chatVC)
+//        navController.navigationBar.tintColor = UIColor.blackColor()
+//        navController.navigationBar.translucent = false
+//        presentViewController(navController, animated: true, completion: nil)
+        // 拨打酒店电话
+        if let shopID = order?.shopid {
+          let shopsInfo = StorageManager.sharedInstance().shopsInfo()
+          let predicate = NSPredicate(format: "shopid = %@", shopID)
+          let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+          if let shopPhone = shopInfo["phone"] as? String {
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
+          }
+        }
       case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
 //        let chatVC = JSHChatVC(chatType: .CallingWaiter)
 //        chatVC.order = order
@@ -668,7 +676,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //        navController.navigationBar.tintColor = UIColor.blackColor()
 //        navController.navigationBar.translucent = false
 //        presentViewController(navController, animated: true, completion: nil)
-        break
+        // 拨打酒店电话
+        if let shopID = order?.shopid {
+          let shopsInfo = StorageManager.sharedInstance().shopsInfo()
+          let predicate = NSPredicate(format: "shopid = %@", shopID)
+          let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+          if let shopPhone = shopInfo["phone"] as? String {
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
+          }
+        }
       }
     }
   }
