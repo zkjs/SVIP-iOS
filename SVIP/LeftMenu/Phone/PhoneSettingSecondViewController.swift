@@ -9,10 +9,90 @@
 import UIKit
 
 class PhoneSettingSecondViewController: UIViewController {
-
+  @IBOutlet weak var phoneTextField: UITextField!
+  @IBOutlet weak var codeTextField: UITextField!
+  @IBOutlet weak var okButton: UIButton!
+  
+  var countTimer: NSTimer?
+  let kCountTime = 30
+  var count: Int = 30
+  
+  convenience init() {
+    self.init(nibName:"PhoneSettingSecondViewController", bundle: nil)
+  }
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChanged:", name: UITextFieldTextDidChangeNotification, object: nil)
+  }
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    self.title = "修改手机"
   }
+  
+  func refreshCount() {
+    if --count == 0 {
+      countTimer?.invalidate()
+      okButton.enabled = true
+      okButton.setTitle("发送验证码", forState: UIControlState.Disabled)
+    }else {
+      okButton.setTitle("\(count)S", forState: UIControlState.Disabled)
+    }
+  }
+  @IBAction func buttonClick(sender: UIButton) {
+    ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phoneTextField.text, callback: { (successed: Bool, error: NSError!) -> Void in
+      if successed {
+        ZKJSTool.showMsg("验证码已发送")
+      }
+    })
+    okButton.enabled = false
+    count = kCountTime
+    countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+  }
+  
+  //MARK:- UITextField Delegate
+  func textFieldDidChanged(aNotification: NSNotification) {
+    let phoneText = phoneTextField.text as NSString
+    let codeText = codeTextField.text as NSString
+    let textfield = aNotification.object as! UITextField
+    
+    if phoneText.length == 11 && textfield == phoneTextField { //phoneTextField输入11位
+      if ZKJSTool.validateMobile(phoneText as String) {
+        okButton.enabled = true
+      }else {
+        ZKJSTool.showMsg("手机号错误")
+      }
+    }
+    if phoneText.length < 11 && okButton.titleLabel?.text == "发送验证码" {
+      okButton.enabled = false
+      return
+    }
+    
+    if phoneText.length == 11 && codeText.length == 6 {
+      ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(codeText as String, mobilePhoneNumber: phoneText as String , callback: { (successed: Bool, error: NSError!) -> Void in
+        if successed {
+          ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithParaDic(["phone" : phoneText],success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+            let dic = responseObject as! NSDictionary
+            if dic["set"]!.boolValue! {
+              ZKJSTool.showMsg("电话修改成功")
+              let controllers = self.navigationController!.viewControllers!
+              let count = controllers.count
+              if let vc = controllers[count - 3] as? UIViewController {
+                self.navigationController?.popToViewController(vc, animated: true)
+              }
+            }
+            }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+              
+          }
 
+          
+        }else {
+          ZKJSTool.showMsg("验证码错误")
+        }
+      })
+    }
+  }
 }

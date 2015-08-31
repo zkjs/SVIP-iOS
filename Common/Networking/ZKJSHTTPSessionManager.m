@@ -163,6 +163,19 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
+- (void)updateUserInfoWithParaDic:(NSDictionary *)paraDic success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:paraDic];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [self POST:@"user/upload" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
 // 获取默认发票
 - (void)getDefaultInvoiceSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;

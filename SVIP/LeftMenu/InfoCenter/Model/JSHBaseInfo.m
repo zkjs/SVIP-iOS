@@ -40,6 +40,9 @@
 //        }
       
         _phone = dic[@"phone"];
+        if ([_phone isKindOfClass:[NSNull class]]) {
+          _phone = nil;
+        }
         _username = dic[@"username"];
         _userid = dic[@"userid"];
         //用户头像  uploads/users/userid.jpg
@@ -53,7 +56,6 @@
             }
           }
         }];
-
         _openid = dic[@"openid"];
         if ([_openid isKindOfClass:[NSNull class]]) {
           _openid = nil;

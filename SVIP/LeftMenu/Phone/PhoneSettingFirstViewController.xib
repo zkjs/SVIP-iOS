@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhoneSettingFirstViewController" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="phone" destination="dDK-9Z-YdM" id="7be-mZ-T9P"/>
+                <outlet property="smsButton" destination="gHY-AE-I9X" id="xE1-6D-Z0o"/>
+                <outlet property="textField" destination="gZS-ip-Zi9" id="k7D-0i-zed"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,8 +41,8 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="tdi-0U-roI"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -58,7 +61,7 @@
                         <constraint firstAttribute="height" constant="44" id="4vJ-OD-r2V"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="4vJ-OD-r2V"/>
@@ -69,6 +72,9 @@
                             <include reference="4vJ-OD-r2V"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="yf8-xy-WyN"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHY-AE-I9X">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -95,6 +101,9 @@
                             <include reference="9ob-bh-k15"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="buttonClick:" destination="-1" eventType="touchUpInside" id="BEf-xm-abi"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

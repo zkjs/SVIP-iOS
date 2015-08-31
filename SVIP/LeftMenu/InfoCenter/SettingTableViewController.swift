@@ -107,7 +107,14 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
           cell?.detailTextLabel?.text = localBaseInfo?.email
         }
       default:
-        break;
+        break
+      }
+    }else if indexPath.section == 1 {
+      switch indexPath.row {
+      case 0:
+        cell?.detailTextLabel?.text = localBaseInfo?.phone
+      default:
+        break
       }
     }
     

@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhoneSettingSecondViewController" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="codeTextField" destination="5qb-8J-SgA" id="s3a-Iy-qQ6"/>
+                <outlet property="okButton" destination="Ow7-Ih-8s1" id="qwH-5f-VcP"/>
+                <outlet property="phoneTextField" destination="E4X-yp-q13" id="TaD-i3-VmP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -39,14 +42,17 @@
                             <include reference="maE-f7-27o"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="buttonClick:" destination="-1" eventType="touchUpInside" id="TVO-Gu-ovd"/>
+                    </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="验证码" placeholder="验证码" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="5qb-8J-SgA">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="5qb-8J-SgA">
                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="aDm-Op-KQz"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="aDm-Op-KQz"/>
@@ -58,13 +64,13 @@
                         </mask>
                     </variation>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="输入新的手机号" placeholder="验证码" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="E4X-yp-q13">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入新的手机号" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="E4X-yp-q13">
                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="OfJ-ck-nT8"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="OfJ-ck-nT8"/>
@@ -97,12 +103,12 @@
                     <exclude reference="E4X-yp-q13"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="AJJ-cA-u5W"/>
-                    <exclude reference="NIY-d0-2ld"/>
-                    <exclude reference="NQg-Nd-BuE"/>
                     <exclude reference="iGF-zz-SMQ"/>
                     <exclude reference="iLy-jP-eWr"/>
                     <exclude reference="uaw-dR-EJ8"/>
+                    <exclude reference="AJJ-cA-u5W"/>
+                    <exclude reference="NIY-d0-2ld"/>
+                    <exclude reference="NQg-Nd-BuE"/>
                     <exclude reference="Aua-PA-2rE"/>
                     <exclude reference="E4N-8l-RWF"/>
                     <exclude reference="dzV-sE-aiR"/>
@@ -115,12 +121,12 @@
                     <include reference="E4X-yp-q13"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="AJJ-cA-u5W"/>
-                    <include reference="NIY-d0-2ld"/>
-                    <include reference="NQg-Nd-BuE"/>
                     <include reference="iGF-zz-SMQ"/>
                     <include reference="iLy-jP-eWr"/>
                     <include reference="uaw-dR-EJ8"/>
+                    <include reference="AJJ-cA-u5W"/>
+                    <include reference="NIY-d0-2ld"/>
+                    <include reference="NQg-Nd-BuE"/>
                     <include reference="Aua-PA-2rE"/>
                     <include reference="E4N-8l-RWF"/>
                     <include reference="dzV-sE-aiR"/>
