@@ -441,7 +441,14 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       infoLabel.sizeToFit()
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_NoOrder:  // 在酒店-无订单
-      statusLabel.setTitle(" \((order?.fullname)!)欢迎您", forState: .Normal)
+      if let shopID = beacon!["shopid"] {
+        let shopsInfo = StorageManager.sharedInstance().shopsInfo()
+        let predicate = NSPredicate(format: "shopid = %@", shopID)
+        let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+        if let shopName = shopInfo["fullname"] as? String {
+          statusLabel.setTitle(" \(shopName)欢迎您", forState: .Normal)
+        }
+      }
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
       tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:  // 不在酒店-已入住
