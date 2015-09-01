@@ -23,6 +23,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   var shopID = ""
   var dateFormatter = NSDateFormatter()
   var roomCount = 1
+  var duration = 1
   
   // MARK: - View Lifecycle
   
@@ -35,13 +36,27 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     dateFormatter.dateFormat = "M月dd日"
     startDate.text = dateFormatter.stringFromDate(NSDate())
     endDate.text = dateFormatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24*1))
-    dateTips.text = "共1晚，在\(endDate.text!)13点前退房"
+    dateTips.text = "共\(duration)晚，在\(endDate.text!)13点前退房"
   }
   
   // MARK: - Private
   
   func gotoChatVC() {
+    let order = BookOrder()
+    order.shopid = shopID
+    order.rooms = roomCountLabel.text
+    order.room_type = roomType.text
+    order.arrival_date = startDate.text
+    order.departure_date = endDate.text
+    order.dayInt = String(duration)
+    var guests = [String]()
+    for index in 0..<roomCount {
+      guests.append(nameTextFields[index].text)
+    }
+    order.guest = ",".join(guests)
+    order.room_image = roomImage.image
     let chatVC = JSHChatVC(chatType: .NewSession)
+    chatVC.order = order
     chatVC.shopID = shopID
     navigationController?.pushViewController(chatVC, animated: true)
   }
@@ -106,8 +121,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
       vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
         self.startDate.text = self.dateFormatter.stringFromDate(startDate)
         self.endDate.text = self.dateFormatter.stringFromDate(endDate)
-        let duration = NSDate.daysFromDate(startDate, toDate: endDate)
-        self.dateTips.text = "共\(duration)晚，在\(self.endDate.text!)13点前退房"
+        self.duration = NSDate.daysFromDate(startDate, toDate: endDate)
+        self.dateTips.text = "共\(self.duration)晚，在\(self.endDate.text!)13点前退房"
       }
       navigationController?.pushViewController(vc, animated: true)
     }

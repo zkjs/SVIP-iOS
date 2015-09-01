@@ -38,7 +38,7 @@ class BookOrder: NSObject {
   var room_rate: String!
   var arrival_date: String!
   var departure_date: String!
-  var dayInt: Int!
+  var dayInt: String!
   //for alipay
   var reservation_no: String!
 
@@ -49,6 +49,7 @@ class BookOrder: NSObject {
   var remark: String!
   var fullname: String!
   var nologin: String!
+  var room_image: UIImage!
   
   override var description: String {
     var output = ""
@@ -85,7 +86,7 @@ class BookOrder: NSObject {
     room_rate = aDecoder.decodeObjectForKey("room_rate") as! String
     arrival_date = aDecoder.decodeObjectForKey("arrival_date") as! String
     departure_date = aDecoder.decodeObjectForKey("departure_date") as! String
-    dayInt = aDecoder.decodeObjectForKey("dayInt") as! Int
+    dayInt = aDecoder.decodeObjectForKey("dayInt") as! String
     reservation_no = aDecoder.decodeObjectForKey("reservation_no") as! String
     created = aDecoder.decodeObjectForKey("created") as! String
     orderid = aDecoder.decodeObjectForKey("orderid") as! String

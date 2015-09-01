@@ -38,7 +38,7 @@ class BookPayVC: UIViewController {
 //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
     let rate = (bkOrder.room_rate as NSString).doubleValue
-    let Money = rate * (Double)(bkOrder.dayInt)
+    let Money = rate * (Double)(bkOrder.dayInt.toInt()!)
     price.text = "￥   \(Money)"
 
     

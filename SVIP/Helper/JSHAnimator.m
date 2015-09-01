@@ -19,7 +19,7 @@
   return 0.6;
 }
 
-//- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
 //  self.transitionContext = transitionContext;
 //  
 //  UIView *containerView = [transitionContext containerView];
@@ -44,7 +44,7 @@
 //  maskLayerAnimation.duration = [self transitionDuration:transitionContext];
 //  maskLayerAnimation.delegate = self;
 //  [maskLayer addAnimation:maskLayerAnimation forKey:@"path"];
-//}
+}
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
   [self.transitionContext completeTransition:![self.transitionContext transitionWasCancelled]];

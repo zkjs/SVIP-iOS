@@ -142,7 +142,7 @@ const CGFloat shortcutViewHeight = 45.0;
   } else {
     message.avatar = [UIImage imageNamed:@"ic_home_nor"];
   }
-  
+
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
   [self addMessage:message];
@@ -231,6 +231,16 @@ const CGFloat shortcutViewHeight = 45.0;
       break;
     case XHBubbleMessageMediaTypeLocalPosition: {
       DLog(@"facePath : %@", message.localPositionPhoto);
+      break;
+    }
+    case XHBubbleMessageMediaTypeCard: {
+      disPlayViewController = [UIViewController new];
+      disPlayViewController.view.backgroundColor = [UIColor whiteColor];
+      UILabel *label = [[UILabel alloc] initWithFrame:disPlayViewController.view.bounds];
+      label.textAlignment = NSTextAlignmentCenter;
+      label.textColor = [UIColor blackColor];
+      label.text = @"呵呵";
+      [disPlayViewController.view addSubview:label];
       break;
     }
     default:
@@ -332,6 +342,12 @@ const CGFloat shortcutViewHeight = 45.0;
       
       [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
       [self setupNavigationBackButton];
+//      __weak __typeof(self) weakSelf = self;
+//      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+//        [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+//      });
+
       break;
     }
     case ChatOldSession: {
@@ -411,6 +427,22 @@ const CGFloat shortcutViewHeight = 45.0;
   [self.messages addObject:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
+}
+
+- (void)sendCardWithTitle:(NSString *)title image:(UIImage *)image content:(NSString *)content {
+  XHMessage *message = [[XHMessage alloc] initWithCardTitle:title image:image content:content sender:self.messageSender timestamp:[NSDate date]];
+  message.bubbleMessageType = XHBubbleMessageTypeSending;
+  message.messageMediaType = XHBubbleMessageMediaTypeCard;
+  if ([JSHStorage baseInfo].avatarImage) {
+    message.avatar = [JSHStorage baseInfo].avatarImage;
+  } else {
+    message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  }
+  
+  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+  
+  [self addMessage:message];
+  [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeCard];
 }
 
 - (void)setupShortcutViewDataSource {
@@ -674,11 +706,6 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
-  __weak __typeof(self) weakSelf = self;
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [weakSelf showSystemFeedbackWithText:@"您的需求已收到"];
-  });
-  
   NSInteger subButtonViewIndex = self.currentSubButtonViewIndex;
   [self hideSubButtonViewAtIndex:subButtonViewIndex];
 }
@@ -778,6 +805,11 @@ const CGFloat shortcutViewHeight = 45.0;
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
       [ZKJSTool hideHUD];
+      
+      if (self.chatType == ChatNewSession) {
+        NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+        [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+      }
     });
   });
 }

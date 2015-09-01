@@ -182,7 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
           order.arrival_date = arrival_date
           order.departure_date = departure_date
           order.created = created
-          order.dayInt = dayInt
+          order.dayInt = String(dayInt)
           order.reservation_no = reservation_no
           order.orderid = orderid
           order.status = status

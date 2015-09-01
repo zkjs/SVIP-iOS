@@ -91,6 +91,10 @@ class Persistence: NSObject {
       message.voiceDuration = chatMessage.voiceDuration
     case XHBubbleMessageMediaType.Text.rawValue:
       message.text = chatMessage.textString
+    case XHBubbleMessageMediaType.Card.rawValue:
+      message.cardTitle = chatMessage.cardTitle
+      message.cardImage = NSData(data: UIImageJPEGRepresentation(chatMessage.cardImage, 0.8))
+      message.cardContent = chatMessage.cardContent
     default:
       break
     }
@@ -128,6 +132,11 @@ class Persistence: NSObject {
         chatMessage.text = message.text as! String
         chatMessage.textString = message.text as! String
         chatMessage.messageMediaType = .Text
+      case XHBubbleMessageMediaType.Card.rawValue:
+        chatMessage.cardTitle = message.cardTitle as String
+        chatMessage.cardImage = UIImage(data: message.cardImage)
+        chatMessage.cardContent = message.cardContent as String
+        chatMessage.messageMediaType = .Card
       default:
         break
       }
@@ -177,6 +186,11 @@ class Persistence: NSObject {
         chatMessage.text = message.text as! String
         chatMessage.textString = message.text as! String
         chatMessage.messageMediaType = .Text
+      case XHBubbleMessageMediaType.Card.rawValue:
+        chatMessage.cardTitle = message.cardTitle as String
+        chatMessage.cardImage = UIImage(data: message.cardImage)
+        chatMessage.cardContent = message.cardContent as String
+        chatMessage.messageMediaType = .Card
       default:
         break
       }

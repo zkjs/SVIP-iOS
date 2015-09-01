@@ -4,6 +4,9 @@
         <attribute name="avatar" optional="YES" attributeType="Binary" valueTransformerName="EncryptionBinaryTransformer" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="avatarUrl" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
         <attribute name="bubbleMessageType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="cardContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="cardTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="messageMediaType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="originPhotoUrl" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
@@ -20,6 +23,6 @@
         <attribute name="voiceUrl" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Message" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="Message" positionX="-63" positionY="-18" width="128" height="345"/>
     </elements>
 </model>

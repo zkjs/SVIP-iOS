@@ -120,7 +120,7 @@ class BookConfirmVC: UIViewController {
     let duration = outDate.date!.timeIntervalSinceDate(inDate.date!)
     let day = duration / 24 / 60 / 60
     let dayInt = Int(day)
-    order.dayInt = dayInt
+    order.dayInt = String(dayInt)
     if let roomType = order.room_type {
       name.text = "\(roomType)    共\(dayInt)晚"
     }

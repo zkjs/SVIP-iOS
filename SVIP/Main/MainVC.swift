@@ -313,7 +313,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let startDate = dateFormatter.dateFromString(order.arrival_date)
         let endDate = dateFormatter.dateFromString(order.departure_date)
-        order.dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
+        order.dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
         StorageManager.sharedInstance().updateLastOrder(order)
       }
       self.determineCurrentRegionState()

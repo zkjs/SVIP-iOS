@@ -12,7 +12,6 @@
 		404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18451B535A5F00F11122 /* NSData+AES256.m */; };
 		404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18491B53675300F11122 /* CompressingLogFileManager.m */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
-		404C36D31B6B4AE200E8C227 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C36D21B6B4AE200E8C227 /* Message.swift */; };
 		404FACD31B84792700352023 /* NSDate+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404FACD21B84792700352023 /* NSDate+Days.swift */; };
 		405266371B41279B00B277BE /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266331B41279B00B277BE /* OrderListTVC.swift */; };
 		4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052663A1B4127B400B277BE /* OrderDetailVC.swift */; };
@@ -43,6 +42,7 @@
 		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
 		40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
+		406A27FE1B9596370069C369 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406A27FD1B9596370069C369 /* Message.swift */; };
 		40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D031B8EAB2300EF188F /* ReceiptTVC.swift */; };
 		40817D071B8EAB8800EF188F /* ReceiptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D051B8EAB8800EF188F /* ReceiptCell.swift */; };
 		40817D081B8EAB8800EF188F /* ReceiptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D061B8EAB8800EF188F /* ReceiptCell.xib */; };
@@ -180,7 +180,6 @@
 		404C18481B53675300F11122 /* CompressingLogFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompressingLogFileManager.h; sourceTree = "<group>"; };
 		404C18491B53675300F11122 /* CompressingLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompressingLogFileManager.m; sourceTree = "<group>"; };
 		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		404C36D21B6B4AE200E8C227 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		404FACD21B84792700352023 /* NSDate+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Days.swift"; sourceTree = "<group>"; };
 		405266331B41279B00B277BE /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTVC.swift; sourceTree = "<group>"; };
 		4052663A1B4127B400B277BE /* OrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailVC.swift; sourceTree = "<group>"; };
@@ -224,6 +223,7 @@
 		40641F991B3E79A300CF150D /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
+		406A27FD1B9596370069C369 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		40817D031B8EAB2300EF188F /* ReceiptTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptTVC.swift; sourceTree = "<group>"; };
 		40817D051B8EAB8800EF188F /* ReceiptCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptCell.swift; sourceTree = "<group>"; };
 		40817D061B8EAB8800EF188F /* ReceiptCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReceiptCell.xib; sourceTree = "<group>"; };
@@ -669,7 +669,7 @@
 		40DA7A001B463E850097CE3D /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				404C36D21B6B4AE200E8C227 /* Message.swift */,
+				406A27FD1B9596370069C369 /* Message.swift */,
 				40DA7A011B463E850097CE3D /* JSHChatVC.h */,
 				40DA7A021B463E850097CE3D /* JSHChatVC.m */,
 			);
@@ -1275,6 +1275,7 @@
 				B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */,
 				B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */,
 				4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */,
+				406A27FE1B9596370069C369 /* Message.swift in Sources */,
 				404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				40E686F81B45297400C9725B /* BookingOrder.swift in Sources */,
@@ -1287,7 +1288,6 @@
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
-				404C36D31B6B4AE200E8C227 /* Message.swift in Sources */,
 				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
 				B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */,
