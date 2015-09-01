@@ -77,20 +77,24 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 //      }
 //    }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 //    }
-    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID(shopid, page: 1, categoryID: nil, key: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-          if let arr = responseObject as? NSArray {
-            for dict in arr {
-              if let myDict = dict as? NSDictionary {
-                let goods = RoomGoods(dic: myDict)
-                self.dataArray.addObject(goods)
-              }
-            }
-            let button = self.leftSelectButtonArray.last
-            self.categorySelect(button!)
-          }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      
-    }
+    
+    // Hanton
+    let button = self.leftSelectButtonArray.last
+    self.categorySelect(button!)
+//    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID(shopid, page: 1, categoryID: nil, key: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//          if let arr = responseObject as? NSArray {
+//            for dict in arr {
+//              if let myDict = dict as? NSDictionary {
+//                let goods = RoomGoods(dic: myDict)
+//                self.dataArray.addObject(goods)
+//              }
+//            }
+//            let button = self.leftSelectButtonArray.last
+//            self.categorySelect(button!)
+//          }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//      
+//    }
   }
   
   private func filtArray(keyString: String?)->NSMutableArray {

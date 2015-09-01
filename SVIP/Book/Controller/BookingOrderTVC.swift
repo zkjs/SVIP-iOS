@@ -24,6 +24,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   var dateFormatter = NSDateFormatter()
   var roomCount = 1
   var duration = 1
+  var roomTypes = NSMutableArray()
   
   // MARK: - View Lifecycle
   
@@ -37,9 +38,37 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     startDate.text = dateFormatter.stringFromDate(NSDate())
     endDate.text = dateFormatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24*1))
     dateTips.text = "共\(duration)晚，在\(endDate.text!)13点前退房"
+    
+    loadRoomTypes()
   }
   
   // MARK: - Private
+  
+  func loadRoomTypes() {
+    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID(shopID, page: 1, categoryID: nil, key: nil, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let arr = responseObject as? NSArray {
+        for dict in arr {
+          if let myDict = dict as? NSDictionary {
+            let goods = RoomGoods(dic: myDict)
+            self.roomTypes.addObject(goods)
+          }
+        }
+        // 默认房型, 图片
+        if let defaultGoods = self.roomTypes.firstObject as? RoomGoods {
+          self.roomType.text = defaultGoods.room! + defaultGoods.type!
+          let baseUrl = kBaseURL
+          if let goodsImage = defaultGoods.image {
+            let urlStr = baseUrl .stringByAppendingString(goodsImage)
+            let placeholderImage = UIImage(named: "bg_dingdan")
+            let url = NSURL(string: urlStr)
+            self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+          }
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+  }
   
   func gotoChatVC() {
     let order = BookOrder()
@@ -105,6 +134,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     if indexPath.section == 0 && indexPath.row == 0 {  // 房型
       let vc = BookVC()
       vc.shopid = shopID
+      vc.dataArray = roomTypes
       vc.selection = { [unowned self] (goods: RoomGoods) -> () in
         self.roomType.text = goods.room! + goods.type!
         let baseUrl = kBaseURL
