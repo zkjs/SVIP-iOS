@@ -58,6 +58,7 @@ const CGFloat shortcutViewHeight = 45.0;
   [super viewDidLoad];
   
   [self setupNotification];
+  [self setupNavigationBar];
   [self setupShortcutViewDataSource];
   [self setupMessageTableView];
   [self setupMessageInputView];
@@ -296,9 +297,9 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)setupNavigationBar {
-  UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissSelf)];
-  self.navigationItem.rightBarButtonItem = rightItem;
-  self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
+  // 把Navigation Bar设置为不透明的
+  self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+  self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)setupMessageTableView {
@@ -376,13 +377,11 @@ const CGFloat shortcutViewHeight = 45.0;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf showSystemFeedbackWithText:@"已在为您分配服务员,请稍候 :)"];
       });
-//      [self setupNavigationBar];
       break;
     }
     case ChatService: {
       self.title = [NSString stringWithFormat:@"%@", self.shopName];
       [self setupShortcutView];
-//      [self setupNavigationBar];
       [self setupNavigationBackButton];
       break;
     }
