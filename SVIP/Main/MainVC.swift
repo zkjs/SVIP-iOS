@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreLocation
+import CoreBluetooth
 
-class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, CLLocationManagerDelegate, AMapSearchDelegate {
+class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, CLLocationManagerDelegate, AMapSearchDelegate, CBCentralManagerDelegate {
   
   @IBOutlet weak var settingsButton: UIButton!
   
@@ -26,11 +27,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   @IBOutlet weak var checkinSubLabel: UILabel!
   
   let locationManager = CLLocationManager()
-  
+
   var beaconRegions = [String: [String: String]]()
   var locationSearch = AMapSearchAPI()
+  var bluetoothManager = CBCentralManager()
   
   // MARK: - View Lifecycle
+  
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MainVC", owner:self, options:nil)
   }
@@ -44,17 +47,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupRightButton()
     initTCPSessionManager()
     initSmartPanelUI()
+    setupBluetoothManager()
     
-    // 测试基于经纬度的位置提醒
-    let localNotification = UILocalNotification()
-    localNotification.alertBody = "欢迎来到中科院先进所.."
-    localNotification.regionTriggersOnce = false
-    let coordinate = CLLocationCoordinate2D(latitude: 22.599119, longitude: 113.985428)
-    let region = CLCircularRegion(center: coordinate, radius: 100, identifier: "Test_Location_Notification")
-    region.notifyOnEntry = true
-    region.notifyOnExit = false
-    localNotification.region = region
-    UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+//    testGPSBasedNotification()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -92,12 +87,14 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - CRMotionView Delegate
+  
   func scrollViewDidScrollToOffset(offset: CGPoint) {
     println(offset)
   }
   
   // MARK: - Private Method
-  func initSmartPanelUI() {
+  
+  private func initSmartPanelUI() {
     statusLabel.hidden = true
     infoLabel.hidden = true
 //    tipsLabel.hidden = true
@@ -106,15 +103,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     checkinSubLabel.hidden = true
   }
   
-  func initTCPSessionManager() {
+  private func initTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
   }
   
-  func setupNotification() {
+  private func setupNotification() {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSmartPanel", name: "UIApplicationDidBecomeActiveNotification", object: nil)
   }
   
-  func setupLeftRightButtons() {
+  private func setupLeftRightButtons() {
     if NSUserDefaults.standardUserDefaults().boolForKey("isFirstRun") {
       leftButton.hidden = false
       rightButton.hidden = false
@@ -125,13 +122,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
   }
   
-  func setupRightButton() {
+  private func setupRightButton() {
     rightButton.badgeEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 0.0, 3.0)
     rightButton.badgeBackgroundColor = UIColor.redColor()
     rightButton.badgeString = nil
   }
   
-  func setupMotionView() {
+  private func setupMotionView() {
     let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
     println("Bounds: \(UIScreen.mainScreen().bounds)")
     motionView.delegate = self
@@ -144,7 +141,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     view.sendSubviewToBack(motionView)
   }
   
-  func setupCoreLocationService() {
+  private func setupCoreLocationService() {
     if CLLocationManager.authorizationStatus() == .Denied {
       let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
@@ -166,14 +163,14 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     println("setupCoreLocationService")
   }
   
-  func removeAllMonitoredRegions() {
+  private func removeAllMonitoredRegions() {
     for monitoredRegion in locationManager.monitoredRegions {
       let region = monitoredRegion as! CLBeaconRegion
       locationManager.stopMonitoringForRegion(region)
     }
   }
   
-  func setupBeaconMonitor() {
+  private func setupBeaconMonitor() {
     removeAllMonitoredRegions()
     
     beaconRegions = StorageManager.sharedInstance().beaconRegions()
@@ -197,34 +194,34 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
-          beaconRegion.notifyEntryStateOnDisplay = true
           locationManager.startMonitoringForRegion(beaconRegion)
         } else if minor == 0 {
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
-          beaconRegion.notifyEntryStateOnDisplay = true
           locationManager.startMonitoringForRegion(beaconRegion)
         } else {
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
-          beaconRegion.notifyEntryStateOnDisplay = true
           locationManager.startMonitoringForRegion(beaconRegion)
         }
       }
     }
-    println("已检控的Beacon区域:\(locationManager.monitoredRegions)")
+    println("已监控的Beacon区域:\(locationManager.monitoredRegions)")
   }
   
-  func setupGPSMonitor() {
+  private func setupGPSMonitor() {
     locationManager.startMonitoringSignificantLocationChanges()
 //    locationManager.desiredAccuracy = kCLLocationAccuracyBest
 //    locationManager.startUpdatingLocation()
 //    locationSearch = AMapSearchAPI(searchKey: "7945ba33067bb07845e8a60d12135885", delegate: self)
+    
+//    let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "57CD9454-6261-4838-8A48-B01A2DE08A42"), identifier: "TestRanging")
+//    locationManager.startRangingBeaconsInRegion(beaconRegion)
   }
   
-  func determineCurrentRegionState() {
+  private func determineCurrentRegionState() {
     if let beaconInfo = StorageManager.sharedInstance().lastBeacon() {
       let uuid = beaconInfo["uuid"]
       let majorString = beaconInfo["major"]
@@ -252,7 +249,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     updateSmartPanelUI()
   }
   
-  func didEnterBeaconRegion(region: CLBeaconRegion!) {
+  private func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
       StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
@@ -265,7 +262,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
   }
   
-  func didExitBeaconRegion(region: CLBeaconRegion!) {
+  private func didExitBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
       StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
@@ -278,7 +275,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
   }
   
-  func updateMessageBadge() {
+  private func updateMessageBadge() {
     if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
       var totalBadge = 0
       for shopID in shopMessageBadge.keys {
@@ -294,44 +291,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
   }
   
-  func updateSmartPanel() {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      let orderArray = responseObject as! NSArray
-      if orderArray.count > 0 {
-        let lastOrder = orderArray.firstObject as! NSDictionary
-        let order = BookOrder()
-        order.arrival_date = lastOrder["arrival_date"] as? String
-        order.created = lastOrder["created"] as? String
-        order.departure_date = lastOrder["departure_date"] as? String
-        order.guest = lastOrder["guest"] as? String
-        order.guesttel = lastOrder["guesttel"] as? String
-        order.orderid = lastOrder["id"] as? String
-        order.remark = lastOrder["remark"] as? String ?? ""
-        order.reservation_no = lastOrder["reservation_no"] as? String
-        order.room_rate = lastOrder["room_rate"] as? String
-        order.room_type = lastOrder["room_type"] as? String
-        order.room_typeid = lastOrder["room_typeid"] as? String
-        order.rooms = lastOrder["rooms"] as? String
-        order.shopid = lastOrder["shopid"] as? String
-        order.fullname = lastOrder["fullname"] as? String
-        order.status = lastOrder["status"] as? String
-        order.nologin = lastOrder["nologin"] as? String
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let startDate = dateFormatter.dateFromString(order.arrival_date)
-        let endDate = dateFormatter.dateFromString(order.departure_date)
-        order.dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
-        StorageManager.sharedInstance().updateLastOrder(order)
-      }
-      self.determineCurrentRegionState()
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
-  }
-  
-  func postGPSLocation(coordinate: CLLocationCoordinate2D) {
+  private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     var dateFormatter = NSDateFormatter()
@@ -348,7 +308,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
-  func updateSmartPanelUI() {
+  private func updateSmartPanelUI() {
     statusLabel.hidden = false
     infoLabel.hidden = false
 //    tipsLabel.hidden = false
@@ -508,7 +468,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     println("Update Smart Panel")
   }
   
-  func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
+  private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
     let shopID = beacon["shopid"]
     let locid = beacon["locid"]
     let uuid = beacon["uuid"]
@@ -538,7 +498,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
-  func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
+  private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
     let shopID = beacon["shopid"]
     let locid = beacon["locid"]
     let uuid = beacon["uuid"]
@@ -568,7 +528,64 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
+  private func setupBluetoothManager() {
+    bluetoothManager = CBCentralManager(delegate: self, queue: nil)
+  }
+  
+  private func testGPSBasedNotification() {
+    // 测试基于经纬度的位置提醒
+    let localNotification = UILocalNotification()
+    localNotification.alertBody = "欢迎来到中科院先进所.."
+    localNotification.regionTriggersOnce = false
+    let coordinate = CLLocationCoordinate2D(latitude: 22.599119, longitude: 113.985428)
+    let region = CLCircularRegion(center: coordinate, radius: 100, identifier: "Test_Location_Notification")
+    region.notifyOnEntry = true
+    region.notifyOnExit = false
+    localNotification.region = region
+    UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+  }
+  
+  // MARK: - Public 
+  
+  func updateSmartPanel() {
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
+    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      let orderArray = responseObject as! NSArray
+      if orderArray.count > 0 {
+        let lastOrder = orderArray.firstObject as! NSDictionary
+        let order = BookOrder()
+        order.arrival_date = lastOrder["arrival_date"] as? String
+        order.created = lastOrder["created"] as? String
+        order.departure_date = lastOrder["departure_date"] as? String
+        order.guest = lastOrder["guest"] as? String
+        order.guesttel = lastOrder["guesttel"] as? String
+        order.orderid = lastOrder["id"] as? String
+        order.remark = lastOrder["remark"] as? String ?? ""
+        order.reservation_no = lastOrder["reservation_no"] as? String
+        order.room_rate = lastOrder["room_rate"] as? String
+        order.room_type = lastOrder["room_type"] as? String
+        order.room_typeid = lastOrder["room_typeid"] as? String
+        order.rooms = lastOrder["rooms"] as? String
+        order.shopid = lastOrder["shopid"] as? String
+        order.fullname = lastOrder["fullname"] as? String
+        order.status = lastOrder["status"] as? String
+        order.nologin = lastOrder["nologin"] as? String
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let startDate = dateFormatter.dateFromString(order.arrival_date)
+        let endDate = dateFormatter.dateFromString(order.departure_date)
+        order.dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
+        StorageManager.sharedInstance().updateLastOrder(order)
+      }
+      self.determineCurrentRegionState()
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+  }
+  
   // MARK: - Button Action
+  
   @IBAction func booking(sender: AnyObject) {
     navigationController?.pushViewController(BookHotelListTVC(), animated: true)
   }
@@ -714,10 +731,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - CLLocationManagerDelegate
+  
   func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-    if status == CLAuthorizationStatus.AuthorizedAlways {
-      setupBeaconMonitor()
-    } else {
+    if status != CLAuthorizationStatus.AuthorizedAlways {
       let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
       alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
       presentViewController(alertView, animated: true, completion: nil)
@@ -767,7 +783,35 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     println("didExitRegion: \(region)")
   }
   
+//  func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+//    println(beacons.first)
+//  }
+//  
+  
+  // MARK: - CBCentralManagerDelegate
+  
+  func centralManagerDidUpdateState(central: CBCentralManager!) {
+    switch central.state {
+    case .PoweredOn:
+      println(".PoweredOn")
+    case .PoweredOff:
+      println(".PoweredOff")
+      let alertView = UIAlertController(title: "请打开蓝牙", message: "我们将为您提供免登记办理入住手续等贴心服务需要使用蓝牙功能", preferredStyle: .Alert)
+      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+      presentViewController(alertView, animated: true, completion: nil)
+    case .Resetting:
+      println(".Resetting")
+    case .Unauthorized:
+      println(".Unauthorized")
+    case .Unknown:
+      println(".Unknown")
+    case .Unsupported:
+      println(".Unsupported")
+    }
+  }
+  
   // MARK: - AMapSearchDelegate
+  
   func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
     
     if (response.regeocode != nil) {
@@ -784,6 +828,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   // MARK: - UINavigationControllerDelegate
+  
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
 //    if operation == UINavigationControllerOperation.Push && toVC is JSHInfoEditVC {
