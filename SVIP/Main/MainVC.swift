@@ -42,7 +42,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupCoreLocationService()
     setupMotionView()
     setupRightButton()
-    setupBeaconMonitor()
     initTCPSessionManager()
     initSmartPanelUI()
     
@@ -167,9 +166,17 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     println("setupCoreLocationService")
   }
   
+  func removeAllMonitoredRegions() {
+    for monitoredRegion in locationManager.monitoredRegions {
+      let region = monitoredRegion as! CLBeaconRegion
+      locationManager.stopMonitoringForRegion(region)
+    }
+  }
+  
   func setupBeaconMonitor() {
-    beaconRegions = StorageManager.sharedInstance().beaconRegions()
+    removeAllMonitoredRegions()
     
+    beaconRegions = StorageManager.sharedInstance().beaconRegions()
     for key in beaconRegions.keys {
       if let beaconInfo = beaconRegions[key] {
         let shopID = beaconInfo["shopid"]
@@ -185,6 +192,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         if let minorValue = minorString?.toInt() {
           minor = minorValue
         }
+        
         if minor == 0 && major == 0 {
           let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
           beaconRegion.notifyOnExit = true
@@ -206,6 +214,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         }
       }
     }
+    println("已检控的Beacon区域:\(locationManager.monitoredRegions)")
   }
   
   func setupGPSMonitor() {
@@ -708,7 +717,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status == CLAuthorizationStatus.AuthorizedAlways {
       setupBeaconMonitor()
-      setupGPSMonitor()
+    } else {
+      let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
+      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+      presentViewController(alertView, animated: true, completion: nil)
     }
     println("didChangeAuthorizationStatus: \(status.rawValue)")
   }
