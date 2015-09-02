@@ -24,6 +24,8 @@
 #pragma mark - 
 //检测手机号码是否合法
 + (BOOL)validateMobile:(NSString *)mobileNum;
+//检测邮箱格式
++ (BOOL)validateEmail:(NSString *)email;
 #pragma mark - 动画
 
 

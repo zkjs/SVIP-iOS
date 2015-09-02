@@ -88,23 +88,23 @@ class SettingEditViewController: UIViewController {
     var realname:String?
     var company:String?
     var email:String?
+    if textField.text.isEmpty {
+      ZKJSTool.showMsg("请填写信息")
+      return
+    }
     switch type {
     case VCType.realname:
-      if !textField.text.isEmpty {
-        realname = textField.text
-      }
+      realname = textField.text
     case VCType.username:
-      if !textField.text.isEmpty {
-        username = textField.text
-      }
-      
+      username = textField.text
     case VCType.company:
-      if !textField.text.isEmpty {
-        company = textField.text
-      }
+      company = textField.text
     case VCType.email:
-      if !textField.text.isEmpty {
+      if ZKJSTool.validateEmail(textField.text) {
         email = textField.text
+      }else {
+        ZKJSTool.showMsg("邮箱格式不正确")
+        return
       }
     default: break
     }
