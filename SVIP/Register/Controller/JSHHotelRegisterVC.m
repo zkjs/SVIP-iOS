@@ -149,7 +149,7 @@
         [[ZKJSHTTPSMSSessionManager sharedInstance] requestSmsCodeWithPhoneNumber:_phoneField.text callback:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [ZKJSTool showMsg:@"验证码已发送"];
-//                _codeField
+                [_codeField becomeFirstResponder];
             }
         }];
         //按钮置灰
@@ -210,7 +210,7 @@
           }
             if (_codeField.text.length == 6) {
                 [[ZKJSHTTPSMSSessionManager sharedInstance] verifySmsCode:_codeField.text mobilePhoneNumber:_phoneField.text callback:^(BOOL succeeded, NSError *error) {
-                    if (!succeeded) {
+                    if (succeeded) {
                       //注册
                       [[LoginManager sharedInstance] signup:_phoneField.text openID:nil success:^{
                         JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] init];
