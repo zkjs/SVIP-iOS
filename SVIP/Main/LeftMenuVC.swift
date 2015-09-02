@@ -44,12 +44,12 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
 
   func setUI() {
-    if let baseInfo = JSHStorage .baseInfo() {
+    if let baseInfo = JSHStorage.baseInfo() {
       if baseInfo.avatarImage != nil {
         avatar .setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
       }else {
-        if let avatarStr = baseInfo.avatarStr {
-            let urlStr = kBaseURL.stringByAppendingPathComponent(baseInfo.avatarStr)
+        if let userid = JSHStorage.baseInfo().userid {
+            let urlStr = kBaseURL.stringByAppendingPathComponent("uploads/users/\(userid).jpg")
             let url = NSURL(string: urlStr)
             avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RefreshCached | SDWebImageOptions.RetryFailed)
         }
