@@ -315,11 +315,11 @@
                     <size key="freeformSize" width="375" height="640"/>
                     <connections>
                         <outlet property="dateTips" destination="Mqo-y2-fFm" id="dWR-Dg-olg"/>
-                        <outlet property="endDate" destination="Hmh-nK-ejR" id="usk-P5-pb0"/>
+                        <outlet property="endDateLabel" destination="Hmh-nK-ejR" id="82C-qE-OxY"/>
                         <outlet property="roomCountLabel" destination="gff-xh-ybZ" id="ZmD-DF-n7U"/>
                         <outlet property="roomImage" destination="l9N-hT-03f" id="sTk-BJ-kkh"/>
                         <outlet property="roomType" destination="swF-2I-5yI" id="ZQA-Yf-3eO"/>
-                        <outlet property="startDate" destination="eEe-Y9-3Ur" id="DKt-6A-2FI"/>
+                        <outlet property="startDateLabel" destination="eEe-Y9-3Ur" id="KMR-tk-M9j"/>
                         <outletCollection property="nameTextFields" destination="z7E-7J-bhc" collectionClass="NSMutableArray" id="Ypy-1q-esg"/>
                         <outletCollection property="nameTextFields" destination="ZqT-Aa-ag3" collectionClass="NSMutableArray" id="lSs-pg-84c"/>
                         <outletCollection property="nameTextFields" destination="Vhv-W8-VXa" collectionClass="NSMutableArray" id="ucE-e2-8OS"/>

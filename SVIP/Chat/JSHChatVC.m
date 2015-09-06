@@ -429,6 +429,7 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)sendCardWithTitle:(NSString *)title image:(UIImage *)image content:(NSString *)content {
+  [self sendCardMessage];
   XHMessage *message = [[XHMessage alloc] initWithCardTitle:title image:image content:content sender:self.messageSender timestamp:[NSDate date]];
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeCard;
@@ -813,6 +814,61 @@ const CGFloat shortcutViewHeight = 45.0;
   });
 }
 
+//let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+//    let dictionary: [String: AnyObject] = [
+//      "type": MessageIMType.UserDefine.rawValue,
+//      "timestamp": NSNumber(longLong: timestamp),
+//      "fromid": JSHAccountManager.sharedJSHAccountManager().userid,
+//      "toid": shopID,
+//      "pushofflinemsg": 1,  // 用户不在线的处理 0:不处理离线 1:ios发送apns推送,android保存为离线消息
+//      "pushalert": "请查看新的预定单",
+//      "childtype": 1004,
+//      "content": ""
+//    ]
+//ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+
+//// 用户发送预定单给商家
+//int childtype = 1004
+//String room_typeid;//房型ID
+//String room_type;//房型
+//String rooms;//房数
+//String arrival_date;//入住日期
+//String departure_date;//离店日期
+//String manInStay;//预定人，多个预定人以‘，’隔开
+- (void)sendCardMessage {
+  NSMutableDictionary *content = [NSMutableDictionary dictionary];
+  content[@"room_typeid"] = self.order.room_typeid;
+  content[@"room_type"] = self.order.room_type;
+  content[@"rooms"] = self.order.rooms;
+  content[@"arrival_date"] = self.order.arrival_date;
+  content[@"departure_date"] = self.order.departure_date;
+  content[@"manInStay"] = self.order.guest;
+  NSError *error;
+  NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
+                                                     options:NSJSONWritingPrettyPrinted
+                                                       error:&error];
+  if (!jsonData) {
+    NSLog(@"Got an error: %@", error);
+  } else {
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+    NSDictionary *dictionary = @{
+                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceTextChat],
+                                 @"timestamp": timestamp,
+                                 @"fromid": self.senderID,
+                                 @"fromname": self.senderName,
+                                 @"clientid": self.senderID,
+                                 @"clientname": self.senderName,
+                                 @"shopid": self.shopID,
+                                 @"sessionid": self.sessionID,
+                                 @"childtype": @1,
+                                 @"textmsg": jsonString
+                                 };
+    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    NSLog(@"Send Card Message: %@", jsonString);
+  }
+}
+
 - (void)sendTextMessage:(NSString *)text {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   NSDictionary *dictionary = @{
@@ -824,6 +880,7 @@ const CGFloat shortcutViewHeight = 45.0;
                                @"clientname": self.senderName,
                                @"shopid": self.shopID,
                                @"sessionid": self.sessionID,
+                               @"childtype": @0,
                                @"textmsg": text
                                };
   [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];

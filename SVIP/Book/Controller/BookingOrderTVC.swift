@@ -14,8 +14,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   @IBOutlet weak var roomImage: UIImageView!
   @IBOutlet weak var roomType: UILabel!
-  @IBOutlet weak var startDate: UILabel!
-  @IBOutlet weak var endDate: UILabel!
+  @IBOutlet weak var startDateLabel: UILabel!
+  @IBOutlet weak var endDateLabel: UILabel!
   @IBOutlet weak var dateTips: UILabel!
   @IBOutlet weak var roomCountLabel: UILabel!
   @IBOutlet var nameTextFields: [UITextField]!
@@ -25,6 +25,11 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   var roomCount = 1
   var duration = 1
   var roomTypes = NSMutableArray()
+  var roomTypeID = ""
+  var rooms = ""
+  var breakfast = ""
+  var startDate = NSDate()
+  var endDate = NSDate()
   
   // MARK: - View Lifecycle
   
@@ -35,9 +40,10 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoChatVC")
     
     dateFormatter.dateFormat = "M月dd日"
-    startDate.text = dateFormatter.stringFromDate(NSDate())
-    endDate.text = dateFormatter.stringFromDate(NSDate().dateByAddingTimeInterval(60*60*24*1))
-    dateTips.text = "共\(duration)晚，在\(endDate.text!)13点前退房"
+    startDateLabel.text = dateFormatter.stringFromDate(startDate)
+    endDateLabel.text = dateFormatter.stringFromDate(endDate.dateByAddingTimeInterval(60*60*24*1))
+    dateTips.text = "共\(duration)晚，在\(endDateLabel.text!)13点前退房"
+    rooms = "1"
     
     loadRoomTypes()
   }
@@ -56,6 +62,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         // 默认房型, 图片
         if let defaultGoods = self.roomTypes.firstObject as? RoomGoods {
           self.roomType.text = defaultGoods.room! + defaultGoods.type!
+          self.roomTypeID = defaultGoods.goodsid!
+          self.breakfast = defaultGoods.meat!
           let baseUrl = kBaseURL
           if let goodsImage = defaultGoods.image {
             let urlStr = baseUrl .stringByAppendingString(goodsImage)
@@ -73,10 +81,13 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   func gotoChatVC() {
     let order = BookOrder()
     order.shopid = shopID
-    order.rooms = roomCountLabel.text
-    order.room_type = roomType.text
-    order.arrival_date = startDate.text
-    order.departure_date = endDate.text
+    order.rooms = rooms
+    order.room_typeid = roomTypeID
+    order.room_type = roomType.text! + breakfast
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    order.arrival_date = dateFormatter.stringFromDate(startDate)
+    order.departure_date = dateFormatter.stringFromDate(endDate)
     order.dayInt = String(duration)
     var guests = [String]()
     for index in 0..<roomCount {
@@ -84,6 +95,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     }
     order.guest = ",".join(guests)
     order.room_image = roomImage.image
+    
     let chatVC = JSHChatVC(chatType: .NewSession)
     chatVC.order = order
     chatVC.shopID = shopID
@@ -93,7 +105,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Action
   
   @IBAction func roomCountChanged(sender: UIStepper) {
-    roomCountLabel.text = Int(sender.value).description + "间"
+    rooms = Int(sender.value).description
+    roomCountLabel.text = rooms + "间"
     let count = Int(sender.value)
     roomCount = count
     tableView.reloadData()
@@ -137,6 +150,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
       vc.dataArray = roomTypes
       vc.selection = { [unowned self] (goods: RoomGoods) -> () in
         self.roomType.text = goods.room! + goods.type!
+        self.roomTypeID = goods.goodsid!
+        self.breakfast = goods.meat!
         let baseUrl = kBaseURL
         if let goodsImage = goods.image {
           let urlStr = baseUrl .stringByAppendingString(goodsImage)
@@ -149,10 +164,12 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     } else if indexPath.section == 1 && indexPath.row == 1 {  // 入住/离店时间
       let vc = BookDateSelectionViewController()
       vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
-        self.startDate.text = self.dateFormatter.stringFromDate(startDate)
-        self.endDate.text = self.dateFormatter.stringFromDate(endDate)
+        self.startDateLabel.text = self.dateFormatter.stringFromDate(startDate)
+        self.endDateLabel.text = self.dateFormatter.stringFromDate(endDate)
+        self.startDate = startDate
+        self.endDate = endDate
         self.duration = NSDate.daysFromDate(startDate, toDate: endDate)
-        self.dateTips.text = "共\(self.duration)晚，在\(self.endDate.text!)13点前退房"
+        self.dateTips.text = "共\(self.duration)晚，在\(self.endDateLabel.text!)13点前退房"
       }
       navigationController?.pushViewController(vc, animated: true)
     }

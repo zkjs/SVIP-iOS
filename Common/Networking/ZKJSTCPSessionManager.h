@@ -25,6 +25,10 @@ typedef NS_ENUM(NSInteger, MessageIMType) {
   
   //user重复连接时,踢走前,给旧连接发条消息
   MessageIMServerRepeatLogin = 6,
+  
+  //自定义用户协议
+  MessageIMUserDefine = 7,
+  MessageIMUserDefine_RSP = 8
 };
 
 typedef NS_ENUM(NSInteger, MessagePushType) {
