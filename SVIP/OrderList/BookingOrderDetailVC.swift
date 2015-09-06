@@ -49,6 +49,10 @@ class BookingOrderDetailVC: UIViewController {
     
 //    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
+    // 把Navigation Bar设置为不透明的
+    navigationController?.navigationBar.barStyle = .Default
+    navigationController?.navigationBar.translucent = false
+    
     var startDateString = order.arrival_date
     var endDateString = order.departure_date
     var dateFormatter = NSDateFormatter()
