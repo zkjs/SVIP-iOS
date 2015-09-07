@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -595,6 +595,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
+                        <outlet property="amountLabel" destination="DUI-U4-M4V" id="2bf-QR-W0r"/>
                         <outlet property="endDateLabel" destination="DMh-yu-5dB" id="u0b-zF-VWf"/>
                         <outlet property="paymentButton" destination="4c1-Dd-dTk" id="XYi-KN-kjc"/>
                         <outlet property="paymentLabel" destination="AVg-0t-PF3" id="t8H-Kn-olJ"/>
@@ -602,8 +603,10 @@
                         <outlet property="remarkTextView" destination="QiW-fI-1go" id="Z29-zj-dRw"/>
                         <outlet property="roomCountLabel" destination="sPj-Ct-cJD" id="gaz-B6-1FS"/>
                         <outlet property="roomTagView" destination="ETd-II-ewh" id="HKn-Zf-o5h"/>
+                        <outlet property="roomTypeLabel" destination="6fH-DF-mOd" id="BY6-a4-TxJ"/>
                         <outlet property="serviceTagView" destination="Eoo-rv-MIB" id="2Ii-Xa-AGT"/>
                         <outlet property="startDateLabel" destination="SXX-nV-8It" id="0LF-04-7Ji"/>
+                        <outlet property="statusLabel" destination="9I1-rp-0kQ" id="3at-ly-AXI"/>
                         <outletCollection property="nameTextFields" destination="3Yp-JX-VxI" collectionClass="NSMutableArray" id="wD1-cv-sLH"/>
                         <outletCollection property="nameTextFields" destination="Za0-Yc-l6e" collectionClass="NSMutableArray" id="AUg-xs-IWo"/>
                         <outletCollection property="nameTextFields" destination="zhA-OB-Drn" collectionClass="NSMutableArray" id="6zM-wt-4mX"/>

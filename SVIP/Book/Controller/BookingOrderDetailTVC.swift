@@ -19,7 +19,12 @@ private let partner = PartnerID
 private let seller = SellerID
 private let privateKey = PartnerPrivKey
 
+
 class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
+  
+  @IBOutlet weak var amountLabel: UILabel!
+  @IBOutlet weak var roomTypeLabel: UILabel!
+  @IBOutlet weak var statusLabel: UILabel!
   
   @IBOutlet weak var roomCountLabel: UILabel!
   @IBOutlet weak var startDateLabel: UILabel!
@@ -32,52 +37,133 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var roomTagView: SKTagView!
   @IBOutlet weak var serviceTagView: SKTagView!
   
+  let status = ["可取消", "已取消", "已确认", "已完成", "入住中", "已删除"]
   var roomCount = 1
-  var shopID = ""
+  var shopID: Int = 0
   var bkOrder: BookOrder!
   var roomTags = ["无烟房", "加床", "开夜床", "高楼层", "角落房", "安静", "离电梯近", "视野好", "数字敏感"]
   var chosenRoomTags = [String]()
   var serviceTags = ["免前台"]
   var chosenServiceTags = [String]()
-  
+  var invoiceDic: [String: String]!
+  var privilegeArr: [[String: String]]!
+//  var roomDic: [String: String]!
+  var roomDic: NSDictionary!
+  var roomTagArr: [[String: String]]!
+  var userArr: [[String: String]]!
+  var arrivalDate: NSDate!
+  var arrivalDateStr: String!{
+    get {
+      let fmt = NSDateFormatter()
+      fmt.dateFormat = "MM月dd日"
+      return fmt.stringFromDate(arrivalDate)
+    }
+  }
+  var departureDate: NSDate!
+  var departureDateStr: String!{
+    get {
+      let fmt = NSDateFormatter()
+      fmt.dateFormat = "MM月dd日"
+      return fmt.stringFromDate(departureDate)
+    }
+  }
   // MARK: - View Lifecycle
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
     title = "确定订单"
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoChatVC")
     
-    roomCount = 1
-    shopID = "120"
-    
-    let totoal = 1890
-    let payed = 314
-    let remain = totoal - payed
-    paymentLabel.text = "应该支付\(totoal)元，还要支付\(remain)元"
-    
-    paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
-//    paymentButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-    
+//    roomCount = 1
+    shopID = 120
+//
+//    let totoal = 1890
+//    let payed = 314
+//    let remain = totoal - payed
+//    paymentLabel.text = "应该支付\(totoal)元，还要支付\(remain)元"
+//    
+//    paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
+////    paymentButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+//    
     bkOrder = BookOrder()
-    bkOrder.reservation_no = "HXXXXXXXXX"
-    bkOrder.room_type = "商务大床"
-    bkOrder.rooms = "2"
-    bkOrder.room_rate = "1200"
-    
-    setupRoomTagView()
-    setupServiceTagView()
+    bkOrder.reservation_no = "H20150806051741"
+//    bkOrder.room_type = "商务大床"
+//    bkOrder.rooms = "2"
+//    bkOrder.room_rate = "1200"
+    loadData()
   }
-  
   // MARK: - Public
   
   func gotoChatVC() {
     let chatVC = JSHChatVC(chatType: .NewSession)
-    chatVC.shopID = shopID
+    chatVC.shopID = "\(shopID)"
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
   // MARK: - Private
+  private func loadData() {
+    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no("H20150806051741", shopid: 120, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let dic = responseObject as? NSDictionary {
+        self.invoiceDic = dic["invoice"] as? [String: String]
+        self.privilegeArr = dic["privilege"] as? [[String: String]]
+        self.roomDic = dic["room"] as? NSDictionary
+        self.roomTagArr = dic["room_tag"] as? [[String: String]]
+        self.userArr = dic["users"] as? [[String: String]]
+      }
+      self.setupData()
+      self.setupUI()
+      self.setupRoomTagView()
+      self.setupServiceTagView()
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    })
+  }
+  private func setupData() {
+    roomCount = self.roomDic["rooms"]!.integerValue;
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    arrivalDate = formatter.dateFromString(self.roomDic["arrival_date"] as! String)
+    departureDate = formatter.dateFromString(self.roomDic["departure_date"] as! String)
+
+  }
+  private func setupUI() {
+    let rate = self.roomDic["room_rate"]!.floatValue
+    let timeInterval = departureDate!.timeIntervalSinceDate(arrivalDate!)
+    let durationCount = Float(timeInterval / (60*60*24))
+    let total = rate * durationCount
+    let payed: Float = 0
+    let remain = total - payed
+    paymentLabel.text = "应该支付\(total)元，还要支付\(remain)元"
+
+    paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
+//    paymentButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+
+    bkOrder = BookOrder()
+//    bkOrder.reservation_no = "H00120180203"
+    bkOrder.room_type = self.roomDic["room_type"] as? String
+    bkOrder.rooms = self.roomDic["rooms"]! as! String
+    bkOrder.room_rate = self.roomDic["room_rate"] as! String
+    
+    
+    //设置amountLabel
+    let dic = NSDictionary(objectsAndKeys: UIFont .systemFontOfSize(18) , NSFontAttributeName, UIColor.orangeColor(), NSForegroundColorAttributeName)
+    let attriStr = NSAttributedString(string: "\(total)", attributes: dic as [NSObject : AnyObject])
+    let dic1 = NSDictionary(objectsAndKeys: UIFont .systemFontOfSize(13) , NSFontAttributeName)
+    var mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1 as [NSObject : AnyObject])
+    mutAttriStr .appendAttributedString(attriStr)
+    amountLabel.attributedText = mutAttriStr
+    //设置roomTypeLabel
+    roomTypeLabel.text = self.roomDic["room_type"] as? String
+    //设置statusLabel
+    statusLabel.text = status[self.roomDic["status"]!.integerValue]
+    //设置roomCountLabel
+    roomCountLabel.text = self.roomDic["rooms"] as? String
+    //设置startDateLabel
+    startDateLabel.text = arrivalDateStr
+    //设置endDateLabel
+    endDateLabel.text = departureDateStr
+  }
   
   private func setupRoomTagView() {
     roomTagView.backgroundColor = UIColor.whiteColor()
@@ -235,7 +321,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   
   @IBAction func cancelOrder(sender: AnyObject) {
     let chatVC = JSHChatVC(chatType: .NewSession)
-    chatVC.shopID = shopID
+    chatVC.shopID = "\(shopID)"
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -266,7 +352,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
     
-    if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
+    if indexPath.section == kRoomSection && indexPath.row == kRoomRow {      
       cell.contentView.addSubview(roomTagView)
     } else if indexPath.section == kServiceSection && indexPath.row == kServiceRow {
       cell.contentView.addSubview(serviceTagView)
@@ -284,6 +370,14 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       let vc = ReceiptTVC()
       vc.selection = { [unowned self] (receiptTitle: String) -> () in
         self.receiptLabel.text = receiptTitle
+      }
+      navigationController?.pushViewController(vc, animated: true)
+    }else if indexPath.section == 1 {
+      let vc = BookDateSelectionViewController()
+      vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
+        self.arrivalDate = startDate
+        self.departureDate = endDate
+        self.setupUI()
       }
       navigationController?.pushViewController(vc, animated: true)
     }
