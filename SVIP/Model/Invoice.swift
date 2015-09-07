@@ -10,7 +10,7 @@
 import UIKit
 
 class Invoice: NSObject {
-    var invoiceid: Int
-    var invoiceTitle: String
-    var isDefault: Bool
+//    var invoiceid: Int
+//    var invoiceTitle: String
+//    var isDefault: Bool
 }
