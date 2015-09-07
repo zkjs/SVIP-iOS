@@ -157,6 +157,11 @@
 		B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */; };
 		B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */; };
 		B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */; };
+		B2FDCF111B9C330A00FD5714 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FDCF101B9C330A00FD5714 /* Invoice.swift */; };
+		B2FDCF131B9C340700FD5714 /* Privilege.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FDCF121B9C340700FD5714 /* Privilege.swift */; };
+		B2FDCF151B9C349F00FD5714 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FDCF141B9C349F00FD5714 /* Room.swift */; };
+		B2FDCF171B9C34EA00FD5714 /* RoomTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FDCF161B9C34EA00FD5714 /* RoomTag.swift */; };
+		B2FDCF191B9C351300FD5714 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FDCF181B9C351300FD5714 /* User.swift */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 /* End PBXBuildFile section */
@@ -385,6 +390,11 @@
 		B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceEditViewController.xib; sourceTree = "<group>"; };
 		B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceAddCell.xib; sourceTree = "<group>"; };
 		B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAddCell.swift; sourceTree = "<group>"; };
+		B2FDCF101B9C330A00FD5714 /* Invoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
+		B2FDCF121B9C340700FD5714 /* Privilege.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Privilege.swift; sourceTree = "<group>"; };
+		B2FDCF141B9C349F00FD5714 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		B2FDCF161B9C34EA00FD5714 /* RoomTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTag.swift; sourceTree = "<group>"; };
+		B2FDCF181B9C351300FD5714 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -569,6 +579,7 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
+				B2FDCF0F1B9C32CF00FD5714 /* Model */,
 				B20812B71B8DD8650070D96F /* Helper */,
 				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
@@ -1058,6 +1069,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B2FDCF0F1B9C32CF00FD5714 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B2FDCF101B9C330A00FD5714 /* Invoice.swift */,
+				B2FDCF121B9C340700FD5714 /* Privilege.swift */,
+				B2FDCF141B9C349F00FD5714 /* Room.swift */,
+				B2FDCF161B9C34EA00FD5714 /* RoomTag.swift */,
+				B2FDCF181B9C351300FD5714 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1260,6 +1283,7 @@
 			files = (
 				B23E53831B4BB64C00CB7761 /* RSADataVerifier.m in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
+				B2FDCF151B9C349F00FD5714 /* Room.swift in Sources */,
 				B23E53801B4BB64C00CB7761 /* NSDataEx.m in Sources */,
 				B23E53821B4BB64C00CB7761 /* RSADataSigner.m in Sources */,
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
@@ -1279,8 +1303,10 @@
 				404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				40E686F81B45297400C9725B /* BookingOrder.swift in Sources */,
+				B2FDCF111B9C330A00FD5714 /* Invoice.swift in Sources */,
 				B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */,
 				B20812CC1B8DD8650070D96F /* Persistent.swift in Sources */,
+				B2FDCF131B9C340700FD5714 /* Privilege.swift in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
 				B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
@@ -1344,6 +1370,8 @@
 				B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */,
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
+				B2FDCF171B9C34EA00FD5714 /* RoomTag.swift in Sources */,
+				B2FDCF191B9C351300FD5714 /* User.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
 				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
