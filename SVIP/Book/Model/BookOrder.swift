@@ -50,6 +50,7 @@ class BookOrder: NSObject {
   var fullname: String!
   var nologin: String!
   var room_image: UIImage!
+  var room_image_URL: String!
   
   override var description: String {
     var output = ""
@@ -70,6 +71,7 @@ class BookOrder: NSObject {
     output += "status: \(status)\n"
     output += "remark: \(remark)\n"
     output += "nologin: \(nologin)\n"
+    output += "room_image_URL: \(room_image_URL)\n"
     return output
   }
   
@@ -93,6 +95,7 @@ class BookOrder: NSObject {
     status = aDecoder.decodeObjectForKey("status") as! String
     remark = aDecoder.decodeObjectForKey("remark") as! String
     nologin = aDecoder.decodeObjectForKey("nologin") as! String
+    room_image_URL = aDecoder.decodeObjectForKey("room_image_URL") as! String
   }
   
   func encodeWithCoder(aCoder: NSCoder!) {
@@ -113,6 +116,7 @@ class BookOrder: NSObject {
     aCoder.encodeObject(status, forKey:"status")
     aCoder.encodeObject(remark, forKey:"remark")
     aCoder.encodeObject(nologin, forKey:"nologin")
+    aCoder.encodeObject(nologin, forKey:"room_image_URL")
   }
   
 }

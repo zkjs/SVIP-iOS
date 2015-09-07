@@ -29,7 +29,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
-  - DateTools (1.6.1)
+  - DateTools (1.7.0)
   - HexColors (2.3.0)
   - JCTagListView (0.0.4)
   - JTSImageViewController (1.4)
@@ -87,7 +87,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MessageDisplayKit:
-    :commit: f77ef1f3b55ed082781e61af6499f5e2caa36b82
+    :commit: e8728e6465ea9f20f2312675a9fa0d292d1494f4
     :git: https://github.com/hanton/MessageDisplayKit.git
   SKTagView:
     :commit: 29e0bcdbb112d80a84630de367b713c543c56e58
@@ -100,7 +100,7 @@ SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
-  DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
   JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b

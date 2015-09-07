@@ -14,6 +14,7 @@
 #import "UIImage+Resize.h"
 #import "ZKJSTool.h"
 #import "JTSImageViewController.h"
+#import "ZKJSHTTPChatSessionManager.h"
 
 @import AVFoundation;
 
@@ -34,6 +35,7 @@ const CGFloat shortcutViewHeight = 45.0;
 @property (nonatomic, strong) UIView *shortcutView;
 @property (nonatomic, strong) NSMutableArray *subButtonViews;
 @property (nonatomic) NSInteger currentSubButtonViewIndex;
+@property (nonatomic, strong) NSArray *emotionManagers;
 @end
 
 @implementation JSHChatVC
@@ -184,6 +186,23 @@ const CGFloat shortcutViewHeight = 45.0;
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
 }
 
+- (void)didSendEmotion:(NSString *)emotionPath fromSender:(NSString *)sender onDate:(NSDate *)date {
+//  [self sendVoiceMessage:voicePath];
+  XHMessage *message = [[XHMessage alloc] initWithEmotionPath:emotionPath sender:sender timestamp:date];
+  message.bubbleMessageType = XHBubbleMessageTypeSending;
+  message.messageMediaType = XHBubbleMessageMediaTypeEmotion;
+  if ([JSHStorage baseInfo].avatarImage) {
+    message.avatar = [JSHStorage baseInfo].avatarImage;
+  } else {
+    message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+  }
+  
+//  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+  
+  [self addMessage:message];
+  [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeEmotion];
+}
+
 #pragma mark - XHMessageTableViewCell delegate
 
 - (void)multiMediaMessageDidSelectedOnMessage:(id<XHMessageModel>)message atIndexPath:(NSIndexPath *)indexPath onMessageTableViewCell:(XHMessageTableViewCell *)messageTableViewCell {
@@ -262,6 +281,20 @@ const CGFloat shortcutViewHeight = 45.0;
   self.currentSelectedCell = nil;
 }
 
+#pragma mark - XHEmotionManagerView DataSource
+
+- (NSInteger)numberOfEmotionManagers {
+  return self.emotionManagers.count;
+}
+
+- (XHEmotionManager *)emotionManagerForColumn:(NSInteger)column {
+  return [self.emotionManagers objectAtIndex:column];
+}
+
+- (NSArray *)emotionManagersAtManager {
+  return self.emotionManagers;
+}
+
 #pragma mark - RecorderPath Helper Method
 
 - (NSString *)getRecorderPath {
@@ -325,7 +358,29 @@ const CGFloat shortcutViewHeight = 45.0;
   self.shareMenuItems = shareMenuItems;
   [self.shareMenuView reloadData];
   
+  self.messageInputView.inputTextView.placeHolder = @"";
   self.messageInputView.delegate = self;
+  
+  NSMutableArray *emotionManagers = [NSMutableArray array];
+  for (NSInteger i = 0; i < 1; i ++) {
+    XHEmotionManager *emotionManager = [[XHEmotionManager alloc] init];
+    emotionManager.emotionName = @"";//[NSString stringWithFormat:@"表情%ld", (long)i];
+    NSMutableArray *emotions = [NSMutableArray array];
+    for (NSInteger j = 0; j < 18; j ++) {
+      XHEmotion *emotion = [[XHEmotion alloc] init];
+      NSString *imageName = [NSString stringWithFormat:@"section%ld_emotion%ld", (long)i , (long)j % 16];
+      emotion.emotionPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"emotion%ld.gif", (long)j] ofType:@""];
+      emotion.emotionConverPhoto = [UIImage imageNamed:imageName];
+      [emotions addObject:emotion];
+    }
+    emotionManager.emotions = emotions;
+    
+    [emotionManagers addObject:emotionManager];
+  }
+  
+//  self.emotionManagerView.isShowEmotionStoreButton = NO;
+  self.emotionManagers = emotionManagers;
+  [self.emotionManagerView reloadData];
 }
 
 - (void)customizeChatType {
@@ -843,9 +898,15 @@ const CGFloat shortcutViewHeight = 45.0;
   content[@"arrival_date"] = self.order.arrival_date;
   content[@"departure_date"] = self.order.departure_date;
   content[@"manInStay"] = self.order.guest;
+  content[@"company"] = self.order.fullname;
+  content[@"content"] = @"您好，帮我预定这间房";
+  content[@"userid"] = self.senderID;
+  content[@"image"] = self.order.room_image_URL;
+  content[@"shopid"] = self.shopID;
+  content[@"dayNum"] = self.order.dayInt;
   NSError *error;
   NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
-                                                     options:NSJSONWritingPrettyPrinted
+                                                     options:0
                                                        error:&error];
   if (!jsonData) {
     NSLog(@"Got an error: %@", error);
@@ -890,18 +951,37 @@ const CGFloat shortcutViewHeight = 45.0;
   NSData *audioData = [[NSData alloc] initWithContentsOfFile:voicePath];
   NSString *body = [audioData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSDictionary *dictionary = @{
-                               @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
-                               @"timestamp": timestamp,
-                               @"fromid": self.senderID,
-                               @"fromname": self.senderName,
-                               @"clientid": self.senderID,
-                               @"clientname": self.senderName,
-                               @"shopid": self.shopID,
-                               @"sessionid": self.sessionID,
-                               @"body": body
-                               };
-  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+  NSString *format = @".aac";
+  
+  [[ZKJSHTTPChatSessionManager sharedInstance] uploadAudioWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"aac" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSDictionary *dictionary = @{
+                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
+                                 @"timestamp": timestamp,
+                                 @"fromid": self.senderID,
+                                 @"fromname": self.senderName,
+                                 @"clientid": self.senderID,
+                                 @"clientname": self.senderName,
+                                 @"shopid": self.shopID,
+                                 @"sessionid": self.sessionID,
+                                 @"format": format,
+                                 @"url": body
+                                 };
+    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSDictionary *dictionary = @{
+                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
+                                 @"timestamp": timestamp,
+                                 @"fromid": self.senderID,
+                                 @"fromname": self.senderName,
+                                 @"clientid": self.senderID,
+                                 @"clientname": self.senderName,
+                                 @"shopid": self.shopID,
+                                 @"sessionid": self.sessionID,
+                                 @"format": format,
+                                 @"body": body
+                                 };
+    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+  }];
 }
 
 - (void)sendImageMessage:(UIImage *)image {

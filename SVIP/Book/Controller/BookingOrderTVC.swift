@@ -30,6 +30,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   var breakfast = ""
   var startDate = NSDate()
   var endDate = NSDate()
+  var roomImageURL = ""
   
   // MARK: - View Lifecycle
   
@@ -64,6 +65,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
           self.roomType.text = defaultGoods.room! + defaultGoods.type!
           self.roomTypeID = defaultGoods.goodsid!
           self.breakfast = defaultGoods.meat!
+          self.roomImageURL = defaultGoods.image!
           let baseUrl = kBaseURL
           if let goodsImage = defaultGoods.image {
             let urlStr = baseUrl .stringByAppendingString(goodsImage)
@@ -84,6 +86,13 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     order.rooms = rooms
     order.room_typeid = roomTypeID
     order.room_type = roomType.text! + breakfast
+    let shopsInfo = StorageManager.sharedInstance().shopsInfo()
+    let predicate = NSPredicate(format: "shopid = %@", shopID)
+    let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+    if let shopName = shopInfo["fullname"] as? String {
+      order.fullname = shopName
+    }
+    order.room_image_URL = roomImageURL
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     order.arrival_date = dateFormatter.stringFromDate(startDate)
@@ -113,10 +122,6 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   }
   
   @IBAction func sendBookingOrder(sender: AnyObject) {
-    // 还差后台接口发个消息给商家端
-    for index in 0..<roomCount {
-      println(nameTextFields[index].text)
-    }
     gotoChatVC()
   }
   
@@ -152,6 +157,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         self.roomType.text = goods.room! + goods.type!
         self.roomTypeID = goods.goodsid!
         self.breakfast = goods.meat!
+        self.roomImageURL = goods.image!
         let baseUrl = kBaseURL
         if let goodsImage = goods.image {
           let urlStr = baseUrl .stringByAppendingString(goodsImage)
