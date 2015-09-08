@@ -41,9 +41,11 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   var roomCount = 1
   var shopID: Int = 0
   var bkOrder: BookOrder!
-  var roomTags = ["无烟房", "加床", "开夜床", "高楼层", "角落房", "安静", "离电梯近", "视野好", "数字敏感"]
+//  var roomTags = ["无烟房", "加床", "开夜床", "高楼层", "角落房", "安静", "离电梯近", "视野好", "数字敏感"]
+  var roomTags = [String]()
   var chosenRoomTags = [String]()
-  var serviceTags = ["免前台"]
+//  var serviceTags = ["免前台", "免后台", "免吃饭", "免穿衣", "免睡觉"]
+  var serviceTags = [String]()
   var chosenServiceTags = [String]()
   var invoiceDic: [String: String]!
   var privilegeArr: [[String: String]]!
@@ -74,23 +76,9 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     
     title = "确定订单"
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoChatVC")
-    
-//    roomCount = 1
     shopID = 120
-//
-//    let totoal = 1890
-//    let payed = 314
-//    let remain = totoal - payed
-//    paymentLabel.text = "应该支付\(totoal)元，还要支付\(remain)元"
-//    
-//    paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
-////    paymentButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-//    
     bkOrder = BookOrder()
     bkOrder.reservation_no = "H20150806051741"
-//    bkOrder.room_type = "商务大床"
-//    bkOrder.rooms = "2"
-//    bkOrder.room_rate = "1200"
     loadData()
   }
   // MARK: - Public
@@ -125,6 +113,14 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     formatter.dateFormat = "yyyy-MM-dd"
     arrivalDate = formatter.dateFromString(self.roomDic["arrival_date"] as! String)
     departureDate = formatter.dateFromString(self.roomDic["departure_date"] as! String)
+    
+    for dic: [String: String] in self.roomTagArr {
+      roomTags.append(dic["content"]!)
+    }
+    
+    for dic: [String: String] in self.privilegeArr {
+      serviceTags.append(dic["privilege_name"]!)
+    }
 
   }
   private func setupUI() {
@@ -316,6 +312,18 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   @IBAction func confirmOrder(sender: AnyObject) {
+    let mutDic = NSMutableDictionary()
+    mutDic.setObject(self.roomDic["reservation_no"] as! String, forKey: "reservation_no")
+    mutDic.setObject([2], forKey: "status")
+//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "users")
+//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "invoice[invoice_title]")
+//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "invoice[invoice_get_id]")
+//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "privilege")
+//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "room_tags")
+//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "remark")
+//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "pay_status")
+    
+    
     gotoChatVC()
   }
   
@@ -372,14 +380,14 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         self.receiptLabel.text = receiptTitle
       }
       navigationController?.pushViewController(vc, animated: true)
-    }else if indexPath.section == 1 {
-      let vc = BookDateSelectionViewController()
-      vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
-        self.arrivalDate = startDate
-        self.departureDate = endDate
-        self.setupUI()
-      }
-      navigationController?.pushViewController(vc, animated: true)
+//    }else if indexPath.section == 1 {
+//      let vc = BookDateSelectionViewController()
+//      vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
+//        self.arrivalDate = startDate
+//        self.departureDate = endDate
+//        self.setupUI()
+//      }
+//      navigationController?.pushViewController(vc, animated: true)
     }
   }
   
