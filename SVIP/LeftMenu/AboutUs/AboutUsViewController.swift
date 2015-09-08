@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutUsViewController: UIViewController {
+class AboutUsViewController: UIViewController, UIWebViewDelegate {
   @IBOutlet weak var switchStatus: UILabel!
   @IBOutlet weak var switchButton: UISwitch!
   var webView: UIWebView!
@@ -16,7 +16,10 @@ class AboutUsViewController: UIViewController {
     super.viewDidLoad()
     initSubviews()
   }
-  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    ZKJSTool.hideHUD()
+  }
   func initSubviews() {
     let v = NSBundle.mainBundle().loadNibNamed("SwitchView", owner: self, options: nil).last as! UIView
     let right = UIBarButtonItem(customView:v)
@@ -28,6 +31,7 @@ class AboutUsViewController: UIViewController {
     let url = NSURL(string: "http://iwxy.cc/mqt")
     webView.loadRequest(NSURLRequest(URL: url!))
     webView.scrollView.bounces = false
+    webView.delegate = self
     view.addSubview(webView)
   }
   
@@ -37,5 +41,12 @@ class AboutUsViewController: UIViewController {
     }else {
       switchStatus.text = "关闭"
     }
+  }
+  
+  func webViewDidStartLoad(webView: UIWebView) {
+    ZKJSTool.showLoading()
+  }
+  func webViewDidFinishLoad(webView: UIWebView) {
+    ZKJSTool.hideHUD()
   }
 }
