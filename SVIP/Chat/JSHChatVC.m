@@ -989,18 +989,34 @@ const CGFloat shortcutViewHeight = 45.0;
   NSData *imageData = UIImageJPEGRepresentation(compressedImage, 1.0);
   NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSDictionary *dictionary = @{
-                               @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
-                               @"timestamp": timestamp,
-                               @"fromid": self.senderID,
-                               @"fromname": self.senderName,
-                               @"clientid": self.senderID,
-                               @"clientname": self.senderName,
-                               @"shopid": self.shopID,
-                               @"sessionid": self.sessionID,
-                               @"body": body
-                               };
-  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+  
+  [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSDictionary *dictionary = @{
+                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+                                 @"timestamp": timestamp,
+                                 @"fromid": self.senderID,
+                                 @"fromname": self.senderName,
+                                 @"clientid": self.senderID,
+                                 @"clientname": self.senderName,
+                                 @"shopid": self.shopID,
+                                 @"sessionid": self.sessionID,
+                                 @"body": body
+                                 };
+    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSDictionary *dictionary = @{
+                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+                                 @"timestamp": timestamp,
+                                 @"fromid": self.senderID,
+                                 @"fromname": self.senderName,
+                                 @"clientid": self.senderID,
+                                 @"clientname": self.senderName,
+                                 @"shopid": self.shopID,
+                                 @"sessionid": self.sessionID,
+                                 @"body": body
+                                 };
+    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+  }];
 }
 
 - (void)dismissSelf {

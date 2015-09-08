@@ -49,19 +49,23 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
-//  NSDictionary *dictionary = @{  @"FromID": fromID,
-//                                 @"SessionID": sessionID,
-//                                 @"ShopID": shopID,
-//                                 @"Format": format,
-//                                 @"Body": body,
-//                                 };
-//  [self POST:@"media/upload" parameters:dictionary success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
-//    success(task, responseObject);
-//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//    DDLogInfo(@"%@", error.description);
-//    failure(task, error);
-//  }];
+}
+
+// 上传图片文件
+- (void)uploadPictureWithFromID:(NSString *)fromID sessionID:(NSString *)sessionID shopID:(NSString *)shopID format:(NSString *)format body:(NSString *)body success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"img/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[fromID dataUsingEncoding:NSUTF8StringEncoding] name:@"FromID"];
+    [formData appendPartWithFormData:[sessionID dataUsingEncoding:NSUTF8StringEncoding] name:@"SessionID"];
+    [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"ShopID"];
+    [formData appendPartWithFormData:[format dataUsingEncoding:NSUTF8StringEncoding] name:@"Format"];
+    [formData appendPartWithFormData:[body dataUsingEncoding:NSUTF8StringEncoding] name:@"Body"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
 }
 
 @end
