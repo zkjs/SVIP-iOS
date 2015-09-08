@@ -898,12 +898,13 @@ const CGFloat shortcutViewHeight = 45.0;
   content[@"arrival_date"] = self.order.arrival_date;
   content[@"departure_date"] = self.order.departure_date;
   content[@"manInStay"] = self.order.guest;
-  content[@"company"] = self.order.fullname;
   content[@"content"] = @"您好，帮我预定这间房";
   content[@"userid"] = self.senderID;
   content[@"image"] = self.order.room_image_URL;
   content[@"shopid"] = self.shopID;
+  content[@"fullname"] = self.order.fullname;
   content[@"dayNum"] = self.order.dayInt;
+  content[@"guesttel"] = self.order.guesttel;
   NSError *error;
   NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
                                                      options:0
@@ -949,73 +950,89 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)sendVoiceMessage:(NSString *)voicePath {
   NSData *audioData = [[NSData alloc] initWithContentsOfFile:voicePath];
+  NSString *voiceDuration = [self getVoiceDuration:voicePath];
   NSString *body = [audioData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSString *format = @".aac";
+  NSString *format = @"aac";
   
-  [[ZKJSHTTPChatSessionManager sharedInstance] uploadAudioWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"aac" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSDictionary *dictionary = @{
-                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
-                                 @"timestamp": timestamp,
-                                 @"fromid": self.senderID,
-                                 @"fromname": self.senderName,
-                                 @"clientid": self.senderID,
-                                 @"clientname": self.senderName,
-                                 @"shopid": self.shopID,
-                                 @"sessionid": self.sessionID,
-                                 @"format": format,
-                                 @"url": body
-                                 };
-    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+  [[ZKJSHTTPChatSessionManager sharedInstance] uploadAudioWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:format body:body success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSNumber *result = responseObject[@"result"];
+    NSString *url = responseObject[@"url"];
+    if ([result  isEqual: @1]) {
+      NSDictionary *dictionary = @{
+                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
+                                   @"timestamp": timestamp,
+                                   @"fromid": self.senderID,
+                                   @"fromname": self.senderName,
+                                   @"clientid": self.senderID,
+                                   @"clientname": self.senderName,
+                                   @"shopid": self.shopID,
+                                   @"sessionid": self.sessionID,
+                                   @"durnum": voiceDuration,
+                                   @"url": url
+                                   };
+      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    } else {
+      NSDictionary *dictionary = @{
+                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
+                                   @"timestamp": timestamp,
+                                   @"fromid": self.senderID,
+                                   @"fromname": self.senderName,
+                                   @"clientid": self.senderID,
+                                   @"clientname": self.senderName,
+                                   @"shopid": self.shopID,
+                                   @"sessionid": self.sessionID,
+                                   @"format": format,
+                                   @"body": body
+                                   };
+      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSDictionary *dictionary = @{
-                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
-                                 @"timestamp": timestamp,
-                                 @"fromid": self.senderID,
-                                 @"fromname": self.senderName,
-                                 @"clientid": self.senderID,
-                                 @"clientname": self.senderName,
-                                 @"shopid": self.shopID,
-                                 @"sessionid": self.sessionID,
-                                 @"format": format,
-                                 @"body": body
-                                 };
-    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    
   }];
 }
 
 - (void)sendImageMessage:(UIImage *)image {
-  UIImage *compressedImage = [image resizedImage:CGSizeMake(100.0, 100.0) interpolationQuality:kCGInterpolationDefault];
-  NSData *imageData = UIImageJPEGRepresentation(compressedImage, 1.0);
+  NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
   NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSString *format = @"jpg";
   
   [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSDictionary *dictionary = @{
-                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
-                                 @"timestamp": timestamp,
-                                 @"fromid": self.senderID,
-                                 @"fromname": self.senderName,
-                                 @"clientid": self.senderID,
-                                 @"clientname": self.senderName,
-                                 @"shopid": self.shopID,
-                                 @"sessionid": self.sessionID,
-                                 @"body": body
-                                 };
-    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    NSNumber *result = responseObject[@"result"];
+    NSString *url = responseObject[@"url"];
+    NSString *s_url = responseObject[@"s_url"];
+    if ([result isEqual:@1]) {
+      NSDictionary *dictionary = @{
+                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+                                   @"timestamp": timestamp,
+                                   @"fromid": self.senderID,
+                                   @"fromname": self.senderName,
+                                   @"clientid": self.senderID,
+                                   @"clientname": self.senderName,
+                                   @"shopid": self.shopID,
+                                   @"sessionid": self.sessionID,
+                                   @"url": url,
+                                   @"scaleurl": s_url
+                                   };
+      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    } else {
+      NSDictionary *dictionary = @{
+                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+                                   @"timestamp": timestamp,
+                                   @"fromid": self.senderID,
+                                   @"fromname": self.senderName,
+                                   @"clientid": self.senderID,
+                                   @"clientname": self.senderName,
+                                   @"shopid": self.shopID,
+                                   @"sessionid": self.sessionID,
+                                   @"format": format,
+                                   @"body": body
+                                   };
+      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSDictionary *dictionary = @{
-                                 @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
-                                 @"timestamp": timestamp,
-                                 @"fromid": self.senderID,
-                                 @"fromname": self.senderName,
-                                 @"clientid": self.senderID,
-                                 @"clientname": self.senderName,
-                                 @"shopid": self.shopID,
-                                 @"sessionid": self.sessionID,
-                                 @"body": body
-                                 };
-    [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+
   }];
 }
 
@@ -1082,17 +1099,28 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)showVoiceMessage:(NSNotification *)notification {
-  NSString *sender = notification.userInfo[@"fromname"];
-  NSString *body = notification.userInfo[@"body"];
-  NSData *voiceData = [[NSData alloc] initWithBase64EncodedString:body options:NSDataBase64DecodingIgnoreUnknownCharacters];
-  NSString *voicePath = [self getPlayPath];
+  NSString *body = nil;
+  NSString *voicePath = nil;
+  NSString *voiceURL = nil;
+  NSString *voiceDuration = nil;
   
-  [voiceData writeToFile:voicePath atomically:NO];
-  NSString *voiceDuration = [self getVoiceDuration:voicePath];
+  NSString *sender = notification.userInfo[@"fromname"];
+  if ([notification.userInfo[@"body"] length] == 0) {
+    // 直接传语音文件URL
+    voiceURL = notification.userInfo[@"url"];
+    voiceDuration = notification.userInfo[@"durnum"];
+  } else {
+    // 直接传语音文件
+    body = notification.userInfo[@"body"];
+    NSData *voiceData = [[NSData alloc] initWithBase64EncodedString:body options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    voicePath = [self getPlayPath];
+    [voiceData writeToFile:voicePath atomically:NO];
+    voiceDuration = [self getVoiceDuration:voicePath];
+  }
   
   XHMessage *message;
   NSDate *timestamp = [NSDate date];
-  message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:nil voiceDuration:voiceDuration sender:sender timestamp:timestamp isRead:NO];
+  message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voiceURL voiceDuration:voiceDuration sender:sender timestamp:timestamp isRead:NO];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.messageMediaType = XHBubbleMessageMediaTypeVoice;
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
@@ -1110,14 +1138,26 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)showImageMessage:(NSNotification *)notification {
+  NSString *body = nil;
+  UIImage *image = nil;
+  NSString *thumbnailURL = nil;
+  NSString *originPhotoURL = nil;
+  
   NSString *sender = notification.userInfo[@"fromname"];
-  NSString *body = notification.userInfo[@"body"];
-  NSData *imageData = [[NSData alloc] initWithBase64EncodedString:body options:NSDataBase64DecodingIgnoreUnknownCharacters];
-  UIImage *image = [UIImage imageWithData:imageData];
+  if ([notification.userInfo[@"body"] length] == 0) {
+    // 直接传图片文件URL
+    thumbnailURL = notification.userInfo[@"scaleurl"];
+    originPhotoURL = notification.userInfo[@"url"];
+  } else {
+    // 直接传图片文件
+    body = notification.userInfo[@"body"];
+    NSData *imageData = [[NSData alloc] initWithBase64EncodedString:body options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    image = [UIImage imageWithData:imageData];
+  }
   
   XHMessage *message;
   NSDate *timestamp = [NSDate date];
-  message = [[XHMessage alloc] initWithPhoto:image thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:timestamp];
+  message = [[XHMessage alloc] initWithPhoto:image thumbnailUrl:thumbnailURL originPhotoUrl:originPhotoURL sender:sender timestamp:timestamp];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.messageMediaType = XHBubbleMessageMediaTypePhoto;
   message.avatar = [UIImage imageNamed:@"ic_home_nor"];
