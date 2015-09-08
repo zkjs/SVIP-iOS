@@ -11,6 +11,7 @@ import UIKit
 typealias ReceiptSelectionBlock = (String) -> ()
 
 class ReceiptTVC: UITableViewController, UITextFieldDelegate {
+  var dataArray: NSMutableArray!
   
   var headerView: NewItemHeaderView!
   var footerView: NewItemFooterView!
@@ -40,6 +41,8 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard")
     tap.cancelsTouchesInView = false
     tableView.addGestureRecognizer(tap)
+    
+//    loadData()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -49,6 +52,26 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     tableView.tableFooterView = footerView
   }
   
+//  func loadData() {
+//    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let arr = responseObject as? [AnyObject] {
+//        self.dataArray.removeAllObjects()
+//        for dic in arr {
+//          if let d = dic as? NSDictionary {
+//            let is_default = d["is_default"]!.boolValue!
+//            if is_default {//默认
+//              self.dataArray.insertObject(d, atIndex: 0)
+//            }else {//未默认
+//              self.dataArray.addObject(d)
+//            }
+//          }
+//        }
+//        self.tableView.reloadData()
+//      }
+//      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    })
+//  }
   // MARK: - Public
   
   func done() {
@@ -74,7 +97,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    return self.dataArray.count
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -87,8 +110,9 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(NewItemCell.reuseIdentifier()) as! NewItemCell
-    cell.receiptNO.text = "发票一"
-    cell.title.text = "深圳中科金石科技有限公司"
+    let dic = self.dataArray[indexPath.row] as! [String: String]
+    cell.receiptNO.text = "发票\(indexPath.row)"
+    cell.title.text = dic["invoice_title"]
     return cell
   }
   
