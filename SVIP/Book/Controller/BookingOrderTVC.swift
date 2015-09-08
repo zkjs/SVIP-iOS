@@ -103,6 +103,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
       guests.append(nameTextFields[index].text)
     }
     order.guest = ",".join(guests)
+    order.guesttel = JSHStorage.baseInfo().phone
     order.room_image = roomImage.image
     
     let chatVC = JSHChatVC(chatType: .NewSession)

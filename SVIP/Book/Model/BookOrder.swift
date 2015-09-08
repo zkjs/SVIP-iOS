@@ -80,9 +80,9 @@ class BookOrder: NSObject {
   init (coder aDecoder: NSCoder!) {
     shopid = aDecoder.decodeObjectForKey("shopid") as! String
     fullname = aDecoder.decodeObjectForKey("fullname") as! String
-    room_typeid = aDecoder.decodeObjectForKey("room_typeid") as! String
+    room_typeid = aDecoder.decodeObjectForKey("room_typeid") as? String ?? ""
     guest = aDecoder.decodeObjectForKey("guest") as! String
-    guesttel = aDecoder.decodeObjectForKey("guesttel") as! String
+    guesttel = aDecoder.decodeObjectForKey("guesttel") as? String ?? ""
     rooms = aDecoder.decodeObjectForKey("rooms") as! String
     room_type = aDecoder.decodeObjectForKey("room_type") as! String
     room_rate = aDecoder.decodeObjectForKey("room_rate") as! String
