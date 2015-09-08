@@ -1,5 +1,5 @@
 //
-//  ReceiptHeaderView.swift
+//  ReceiptFooterView.swift
 //  SVIP
 //
 //  Created by Hanton on 8/27/15.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ReceiptHeaderView: UIView {
-  
-  @IBOutlet weak var textField: UITextField!
+class NewItemFooterView: UIView {
+
+  @IBOutlet weak var doneButton: UIButton!
 
   class func nibName() -> String {
-    return "ReceiptHeaderView"
+    return "NewItemFooterView"
   }
   
 }

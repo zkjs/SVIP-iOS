@@ -8,6 +8,10 @@
 
 import UIKit
 
+private let kRoomSection = 0
+private let kRoomRow = 0
+private let kDateSection = 1
+private let kDateRow = 1
 private let kNameSection = 2
 
 class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
@@ -150,7 +154,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     println(indexPath)
     
-    if indexPath.section == 0 && indexPath.row == 0 {  // 房型
+    if indexPath.section == kRoomSection && indexPath.row == kRoomRow {  // 房型
       let vc = BookVC()
       vc.shopid = shopID
       vc.dataArray = roomTypes
@@ -168,7 +172,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         }
       }
       navigationController?.pushViewController(vc, animated: true)
-    } else if indexPath.section == 1 && indexPath.row == 1 {  // 入住/离店时间
+    } else if indexPath.section == kDateSection && indexPath.row == kDateRow {  // 入住/离店时间
       let vc = BookDateSelectionViewController()
       vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
         self.startDateLabel.text = self.dateFormatter.stringFromDate(startDate)
@@ -177,6 +181,12 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         self.endDate = endDate
         self.duration = NSDate.daysFromDate(startDate, toDate: endDate)
         self.dateTips.text = "共\(self.duration)晚，在\(self.endDateLabel.text!)13点前退房"
+      }
+      navigationController?.pushViewController(vc, animated: true)
+    } else if indexPath.section == kNameSection {  // 入住人
+      let vc = NameTVC()
+      vc.selection = { [unowned self] (name: String) ->() in
+        self.nameTextFields[indexPath.row].text = name
       }
       navigationController?.pushViewController(vc, animated: true)
     }

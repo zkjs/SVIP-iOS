@@ -1,5 +1,5 @@
 //
-//  ReceiptCell.swift
+//  NewItemCell.swift
 //  SVIP
 //
 //  Created by Hanton on 8/27/15.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class ReceiptCell: UITableViewCell {
+class NewItemCell: UITableViewCell {
 
   @IBOutlet weak var receiptNO: UILabel!
   @IBOutlet weak var title: UILabel!
   
   class func reuseIdentifier() -> String {
-    return "ReceiptCellReuseId"
+    return "NewItemCellReuseId"
   }
   
   class func nibName() -> String {
-    return "ReceiptCell"
+    return "NewItemCell"
   }
   
   class func height() -> CGFloat {

@@ -1,20 +1,20 @@
 //
-//  ReceiptTVC.swift
+//  NameTVC.swift
 //  SVIP
 //
-//  Created by Hanton on 8/27/15.
+//  Created by Hanton on 9/8/15.
 //  Copyright (c) 2015 zkjinshi. All rights reserved.
 //
 
 import UIKit
 
-typealias ReceiptSelectionBlock = (String) -> ()
+typealias NameSelectionBlock = (String) -> ()
 
-class ReceiptTVC: UITableViewController, UITextFieldDelegate {
-  
+class NameTVC: UITableViewController, UITextFieldDelegate {
+
   var headerView: NewItemHeaderView!
   var footerView: NewItemFooterView!
-  var selection: ReceiptSelectionBlock!
+  var selection: NameSelectionBlock!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,12 +29,12 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     // Header View
     headerView = NSBundle.mainBundle().loadNibNamed(NewItemHeaderView.nibName(), owner:self, options:nil).first as! NewItemHeaderView
     headerView.textField.delegate = self
-//    tableView.tableHeaderView = headerView
+    //    tableView.tableHeaderView = headerView
     
     // Footer View
     footerView = NSBundle.mainBundle().loadNibNamed(NewItemFooterView.nibName(), owner:self, options:nil).first as! NewItemFooterView
     footerView.doneButton.addTarget(self, action: "done", forControlEvents: .TouchUpInside)
-//    tableView.tableFooterView = footerView
+    //    tableView.tableFooterView = footerView
     
     // Tap background to dimiss keyboard
     let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard")
@@ -80,15 +80,15 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return NewItemCell.height()
   }
-
+  
   override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 8.0
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(NewItemCell.reuseIdentifier()) as! NewItemCell
-    cell.receiptNO.text = "发票一"
-    cell.title.text = "深圳中科金石科技有限公司"
+    cell.receiptNO.text = ""
+    cell.title.text = "入住人姓名一"
     return cell
   }
   
@@ -99,5 +99,5 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewItemCell
     headerView.textField.text = cell.title.text
   }
-  
+
 }

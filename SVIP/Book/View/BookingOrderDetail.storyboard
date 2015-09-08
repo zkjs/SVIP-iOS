@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -232,7 +232,7 @@
                             </tableViewSection>
                             <tableViewSection id="moF-i2-40B">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="pwk-TF-OhK">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="pwk-TF-OhK">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pwk-TF-OhK" id="J7J-XF-5AZ">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -243,8 +243,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-JX-VxI">
-                                                    <rect key="frame" x="227" y="15" width="133" height="21"/>
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-JX-VxI">
+                                                    <rect key="frame" x="209" y="15" width="133" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     <connections>
@@ -256,11 +256,11 @@
                                                 <constraint firstItem="tlO-R7-Hnr" firstAttribute="leading" secondItem="J7J-XF-5AZ" secondAttribute="leading" constant="15" id="0kE-kl-u3Y"/>
                                                 <constraint firstItem="tlO-R7-Hnr" firstAttribute="top" secondItem="J7J-XF-5AZ" secondAttribute="top" constant="15" id="SDo-vQ-zUs"/>
                                                 <constraint firstItem="3Yp-JX-VxI" firstAttribute="top" secondItem="J7J-XF-5AZ" secondAttribute="top" constant="15" id="c5i-wQ-4By"/>
-                                                <constraint firstAttribute="trailing" secondItem="3Yp-JX-VxI" secondAttribute="trailing" constant="15" id="kXT-Tv-sKV"/>
+                                                <constraint firstAttribute="trailing" secondItem="3Yp-JX-VxI" secondAttribute="trailing" id="kXT-Tv-sKV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="gIB-Fg-FT5">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="gIB-Fg-FT5">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gIB-Fg-FT5" id="lIh-DV-mj8">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -271,8 +271,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Za0-Yc-l6e">
-                                                    <rect key="frame" x="227" y="11" width="133" height="21"/>
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Za0-Yc-l6e">
+                                                    <rect key="frame" x="209" y="11" width="133" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
@@ -283,12 +283,12 @@
                                             <constraints>
                                                 <constraint firstItem="13x-bv-vWk" firstAttribute="top" secondItem="lIh-DV-mj8" secondAttribute="top" constant="11" id="B3X-ok-pGv"/>
                                                 <constraint firstItem="Za0-Yc-l6e" firstAttribute="top" secondItem="lIh-DV-mj8" secondAttribute="top" constant="11" id="KpH-k5-DkT"/>
-                                                <constraint firstAttribute="trailing" secondItem="Za0-Yc-l6e" secondAttribute="trailing" constant="15" id="O6n-gI-wRM"/>
+                                                <constraint firstAttribute="trailing" secondItem="Za0-Yc-l6e" secondAttribute="trailing" id="O6n-gI-wRM"/>
                                                 <constraint firstItem="13x-bv-vWk" firstAttribute="leading" secondItem="lIh-DV-mj8" secondAttribute="leading" constant="15" id="h8d-cf-Zm7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="fiy-zh-uJT">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="fiy-zh-uJT">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fiy-zh-uJT" id="T7p-7J-y8H">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -299,8 +299,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhA-OB-Drn">
-                                                    <rect key="frame" x="227" y="11" width="133" height="21"/>
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名，每间填1人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhA-OB-Drn">
+                                                    <rect key="frame" x="209" y="11" width="133" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
@@ -309,7 +309,7 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="zhA-OB-Drn" secondAttribute="trailing" constant="15" id="HMY-mf-i99"/>
+                                                <constraint firstAttribute="trailing" secondItem="zhA-OB-Drn" secondAttribute="trailing" id="HMY-mf-i99"/>
                                                 <constraint firstItem="cha-Sv-h3f" firstAttribute="top" secondItem="T7p-7J-y8H" secondAttribute="top" constant="11" id="IRk-fl-LsA"/>
                                                 <constraint firstItem="zhA-OB-Drn" firstAttribute="top" secondItem="T7p-7J-y8H" secondAttribute="top" constant="11" id="Ml8-7H-atp"/>
                                                 <constraint firstItem="cha-Sv-h3f" firstAttribute="leading" secondItem="T7p-7J-y8H" secondAttribute="leading" constant="15" id="dQj-ii-M9n"/>
