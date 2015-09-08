@@ -145,6 +145,8 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
       self.navigationController?.pushViewController(InvoiceTableViewController(), animated: true)
     case NSIndexPath(forRow: 2, inSection: 1):
       self.navigationController?.pushViewController(PersonalLabelViewController(), animated: true)
+    case NSIndexPath(forRow: 3, inSection: 1):
+      self.navigationController?.pushViewController(AboutUsViewController(), animated: true)
     default:
       break
     }

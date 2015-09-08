@@ -112,6 +112,8 @@
 		B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */; };
 		B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */; };
 		B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */; };
+		B28967BD1B9E796300DF5D79 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */; };
+		B28967BF1B9E828D00DF5D79 /* SwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B28967BE1B9E828D00DF5D79 /* SwitchView.xib */; };
 		B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */; };
 		B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642121B47C2A700AF0F28 /* BookPayVC.swift */; };
 		B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642131B47C2A700AF0F28 /* BookVC.swift */; };
@@ -319,6 +321,8 @@
 		B277F8C31B4A59AA00A9F858 /* BlurDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurDatePickerView.h; sourceTree = "<group>"; };
 		B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurDatePickerView.m; sourceTree = "<group>"; };
 		B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateButton.swift; sourceTree = "<group>"; };
+		B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		B28967BE1B9E828D00DF5D79 /* SwitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchView.xib; sourceTree = "<group>"; };
 		B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookConfirmVC.swift; sourceTree = "<group>"; };
 		B2A642121B47C2A700AF0F28 /* BookPayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPayVC.swift; sourceTree = "<group>"; };
 		B2A642131B47C2A700AF0F28 /* BookVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookVC.swift; sourceTree = "<group>"; };
@@ -684,6 +688,7 @@
 		B20812611B8DD7950070D96F /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
+				B28967B81B9E78C900DF5D79 /* AboutUs */,
 				B2F037751B93F3D4006FF396 /* Phone */,
 				B2FB43321B8EF75700C9BEBB /* Invoice */,
 				B20812621B8DD7950070D96F /* InfoCenter */,
@@ -834,6 +839,15 @@
 				B2564D4D1B4BFC470098608F /* JSHRoundRectButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B28967B81B9E78C900DF5D79 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */,
+				B28967BE1B9E828D00DF5D79 /* SwitchView.xib */,
+			);
+			path = AboutUs;
 			sourceTree = "<group>";
 		};
 		B2A6420F1B47C2A700AF0F28 /* Book */ = {
@@ -1209,6 +1223,7 @@
 				B20812B41B8DD7950070D96F /* SkipCheckInSettingListCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
+				B28967BF1B9E828D00DF5D79 /* SwitchView.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
 				B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
@@ -1343,6 +1358,7 @@
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */,
+				B28967BD1B9E796300DF5D79 /* AboutUsViewController.swift in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
 				B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */,
 				B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */,
