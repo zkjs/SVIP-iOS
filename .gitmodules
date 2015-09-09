@@ -1,0 +1,3 @@
+[submodule "MessageDisplayKit"]
+	path = MessageDisplayKit
+	url = git@github.com:hanton/MessageDisplayKit.git

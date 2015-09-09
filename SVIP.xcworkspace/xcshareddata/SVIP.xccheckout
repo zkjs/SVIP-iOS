@@ -12,6 +12,8 @@
 	<dict>
 		<key>5182BD4EFCAD6F2E09605DF7963B9AD06208194B</key>
 		<string>172.21.7.107:iOS/SVIP.git</string>
+		<key>540C078B09F8D734E0BD5BDB85E99F8F0BDEB46D</key>
+		<string>github.com:hanton/MessageDisplayKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SVIP.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>5182BD4EFCAD6F2E09605DF7963B9AD06208194B</key>
 		<string>..</string>
+		<key>540C078B09F8D734E0BD5BDB85E99F8F0BDEB46D</key>
+		<string>../Common/MessageDisplayKit</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>172.21.7.107:iOS/SVIP.git</string>
@@ -28,6 +32,14 @@
 	<string>5182BD4EFCAD6F2E09605DF7963B9AD06208194B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>540C078B09F8D734E0BD5BDB85E99F8F0BDEB46D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MessageDisplayKit</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

@@ -1,5 +1,5 @@
 //
-//  ReceiptHeaderView.swift
+//  NewItemHeaderView.swift
 //  SVIP
 //
 //  Created by Hanton on 8/27/15.

@@ -153,20 +153,71 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
-  [self sendImageMessage:photo];
-  XHMessage *message = [[XHMessage alloc] initWithPhoto:photo thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:date];
-  message.bubbleMessageType = XHBubbleMessageTypeSending;
-  message.messageMediaType = XHBubbleMessageMediaTypePhoto;
-  if ([JSHStorage baseInfo].avatarImage) {
-    message.avatar = [JSHStorage baseInfo].avatarImage;
-  } else {
-    message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+//  [self sendImageMessage:photo];
+  CGFloat compression = 0.9f;
+  CGFloat maxCompression = 0.1f;
+  int maxFileSize = 700*1024;//1024*1024;  //整个消息包最大1M,图片大约最大700K
+  NSData *imageData = UIImageJPEGRepresentation(photo, compression);
+  
+  while ([imageData length] > maxFileSize && compression > maxCompression) {
+    compression -= 0.1;
+    imageData = UIImageJPEGRepresentation(photo, compression);
   }
+  NSLog(@"Image Size: %f", [imageData length]/1024.0);
+//  NSData *imageData = UIImageJPEGRepresentation(photo, 0.8);
+  NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSString *format = @"jpg";
   
-  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-  
-  [self addMessage:message];
-  [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
+  [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSNumber *result = responseObject[@"result"];
+    NSString *url = responseObject[@"url"];
+    NSString *s_url = responseObject[@"s_url"];
+    if ([result isEqual:@1]) {
+      NSDictionary *dictionary = @{
+                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+                                   @"timestamp": timestamp,
+                                   @"fromid": self.senderID,
+                                   @"fromname": self.senderName,
+                                   @"clientid": self.senderID,
+                                   @"clientname": self.senderName,
+                                   @"shopid": self.shopID,
+                                   @"sessionid": self.sessionID,
+                                   @"url": url,
+                                   @"scaleurl": s_url
+                                   };
+      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    } else {
+      NSDictionary *dictionary = @{
+                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+                                   @"timestamp": timestamp,
+                                   @"fromid": self.senderID,
+                                   @"fromname": self.senderName,
+                                   @"clientid": self.senderID,
+                                   @"clientname": self.senderName,
+                                   @"shopid": self.shopID,
+                                   @"sessionid": self.sessionID,
+                                   @"format": format,
+                                   @"body": body
+                                   };
+      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+    }
+    XHMessage *message = [[XHMessage alloc] initWithPhoto:photo thumbnailUrl:s_url originPhotoUrl:url sender:sender timestamp:date];
+    message.bubbleMessageType = XHBubbleMessageTypeSending;
+    message.messageMediaType = XHBubbleMessageMediaTypePhoto;
+    if ([JSHStorage baseInfo].avatarImage) {
+      message.avatar = [JSHStorage baseInfo].avatarImage;
+    } else {
+      message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+    }
+    
+    [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+    
+    [self addMessage:message];
+    [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSLog(@"%@", error.localizedDescription);
+  }];
 }
 
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString *)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
@@ -869,19 +920,6 @@ const CGFloat shortcutViewHeight = 45.0;
   });
 }
 
-//let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-//    let dictionary: [String: AnyObject] = [
-//      "type": MessageIMType.UserDefine.rawValue,
-//      "timestamp": NSNumber(longLong: timestamp),
-//      "fromid": JSHAccountManager.sharedJSHAccountManager().userid,
-//      "toid": shopID,
-//      "pushofflinemsg": 1,  // 用户不在线的处理 0:不处理离线 1:ios发送apns推送,android保存为离线消息
-//      "pushalert": "请查看新的预定单",
-//      "childtype": 1004,
-//      "content": ""
-//    ]
-//ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-
 //// 用户发送预定单给商家
 //int childtype = 1004
 //String room_typeid;//房型ID
@@ -993,47 +1031,47 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)sendImageMessage:(UIImage *)image {
-  NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
-  NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSString *format = @"jpg";
-  
-  [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSNumber *result = responseObject[@"result"];
-    NSString *url = responseObject[@"url"];
-    NSString *s_url = responseObject[@"s_url"];
-    if ([result isEqual:@1]) {
-      NSDictionary *dictionary = @{
-                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
-                                   @"timestamp": timestamp,
-                                   @"fromid": self.senderID,
-                                   @"fromname": self.senderName,
-                                   @"clientid": self.senderID,
-                                   @"clientname": self.senderName,
-                                   @"shopid": self.shopID,
-                                   @"sessionid": self.sessionID,
-                                   @"url": url,
-                                   @"scaleurl": s_url
-                                   };
-      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
-    } else {
-      NSDictionary *dictionary = @{
-                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
-                                   @"timestamp": timestamp,
-                                   @"fromid": self.senderID,
-                                   @"fromname": self.senderName,
-                                   @"clientid": self.senderID,
-                                   @"clientname": self.senderName,
-                                   @"shopid": self.shopID,
-                                   @"sessionid": self.sessionID,
-                                   @"format": format,
-                                   @"body": body
-                                   };
-      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
-    }
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-  }];
+//  NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
+//  NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+//  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+//  NSString *format = @"jpg";
+//  
+//  [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
+//    NSNumber *result = responseObject[@"result"];
+//    NSString *url = responseObject[@"url"];
+//    NSString *s_url = responseObject[@"s_url"];
+//    if ([result isEqual:@1]) {
+//      NSDictionary *dictionary = @{
+//                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+//                                   @"timestamp": timestamp,
+//                                   @"fromid": self.senderID,
+//                                   @"fromname": self.senderName,
+//                                   @"clientid": self.senderID,
+//                                   @"clientname": self.senderName,
+//                                   @"shopid": self.shopID,
+//                                   @"sessionid": self.sessionID,
+//                                   @"url": url,
+//                                   @"scaleurl": s_url
+//                                   };
+//      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+//    } else {
+//      NSDictionary *dictionary = @{
+//                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
+//                                   @"timestamp": timestamp,
+//                                   @"fromid": self.senderID,
+//                                   @"fromname": self.senderName,
+//                                   @"clientid": self.senderID,
+//                                   @"clientname": self.senderName,
+//                                   @"shopid": self.shopID,
+//                                   @"sessionid": self.sessionID,
+//                                   @"format": format,
+//                                   @"body": body
+//                                   };
+//      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+//    }
+//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//  }];
 }
 
 - (void)dismissSelf {

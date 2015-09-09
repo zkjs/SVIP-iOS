@@ -15,7 +15,7 @@ target 'SVIP' do
   pod 'SocketRocket', :inhibit_warnings => true
   pod 'PKYStepper'
   pod 'DateTools'
-  pod 'MessageDisplayKit', :inhibit_warnings => true, :git => 'https://github.com/hanton/MessageDisplayKit.git', :branch => 'ZKJS'
+#  pod 'MessageDisplayKit', :inhibit_warnings => true, :git => 'https://github.com/hanton/MessageDisplayKit.git', :branch => 'ZKJS'
 #  pod 'FXBlurView'
 #  pod 'EstimoteSDK'
   pod 'MBProgressHUD'

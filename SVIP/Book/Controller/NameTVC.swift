@@ -29,12 +29,12 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     // Header View
     headerView = NSBundle.mainBundle().loadNibNamed(NewItemHeaderView.nibName(), owner:self, options:nil).first as! NewItemHeaderView
     headerView.textField.delegate = self
-    //    tableView.tableHeaderView = headerView
+//    tableView.tableHeaderView = headerView
     
     // Footer View
     footerView = NSBundle.mainBundle().loadNibNamed(NewItemFooterView.nibName(), owner:self, options:nil).first as! NewItemFooterView
     footerView.doneButton.addTarget(self, action: "done", forControlEvents: .TouchUpInside)
-    //    tableView.tableFooterView = footerView
+//    tableView.tableFooterView = footerView
     
     // Tap background to dimiss keyboard
     let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard")
