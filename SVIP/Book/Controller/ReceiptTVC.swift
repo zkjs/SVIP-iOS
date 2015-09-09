@@ -42,7 +42,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     tap.cancelsTouchesInView = false
     tableView.addGestureRecognizer(tap)
     
-//    loadData()
+    loadData()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -52,31 +52,49 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     tableView.tableFooterView = footerView
   }
   
-//  func loadData() {
-//    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      if let arr = responseObject as? [AnyObject] {
-//        self.dataArray.removeAllObjects()
-//        for dic in arr {
-//          if let d = dic as? NSDictionary {
-//            let is_default = d["is_default"]!.boolValue!
-//            if is_default {//默认
-//              self.dataArray.insertObject(d, atIndex: 0)
-//            }else {//未默认
-//              self.dataArray.addObject(d)
-//            }
-//          }
-//        }
-//        self.tableView.reloadData()
-//      }
-//      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    })
-//  }
+  func loadData() {
+    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let arr = responseObject as? [AnyObject] {
+        self.dataArray.removeAllObjects()
+        for dic in arr {
+          if let d = dic as? NSDictionary {
+            let is_default = d["is_default"]!.boolValue!
+            if is_default {//默认
+              self.dataArray.insertObject(d, atIndex: 0)
+            }else {//未默认
+              self.dataArray.addObject(d)
+            }
+          }
+        }
+        self.tableView.reloadData()
+      }
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    })
+  }
   // MARK: - Public
   
   func done() {
     selection(headerView.textField.text)
     navigationController?.popViewControllerAnimated(true)
+    
+    for dic in self.dataArray {
+      if let d = dic as? [String: String] {
+        if d["invoice_title"] == headerView.textField.text {
+          return
+        }
+      }
+    }
+    ZKJSHTTPSessionManager.sharedInstance().addInvoiceWithTitle(headerView.textField.text, isDefault:false, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let dic = responseObject as? NSDictionary {
+        let set = dic["set"]!.boolValue!
+        if set {
+          
+        }
+      }
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    })
   }
   
   func hideKeyboard() {

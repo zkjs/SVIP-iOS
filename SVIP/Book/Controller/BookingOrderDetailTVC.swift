@@ -93,7 +93,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Private
   private func loadData() {
     //获取订单
-    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no("H20150806051741", shopid: 120, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no("H20150806051741", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         self.invoiceDic = dic["invoice"] as? [String: String]
         self.privilegeArr = dic["privilege"] as? [[String: String]]
@@ -109,27 +109,27 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         
     })
     
-    //获取发票列表
-    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let arr = responseObject as? [AnyObject] {
-        self.receiptArray.removeAllObjects()
-        for dic in arr {
-          if let d = dic as? NSDictionary {
-            let is_default = d["is_default"]!.boolValue!
-            if is_default {//默认
-              self.receiptArray.insertObject(d, atIndex: 0)
-              self.receiptLabel.text = d["invoice_title"] as! String
-            }else {//未默认
-              self.receiptArray.addObject(d)
-            }
-          }
-        }
-
-//        self.tableView.reloadSections(NSIndexSet(index: 4), withRowAnimation: UITableViewRowAnimation.None)
-      }
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    })
+//    //获取发票列表
+//    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let arr = responseObject as? [AnyObject] {
+//        self.receiptArray.removeAllObjects()
+//        for dic in arr {
+//          if let d = dic as? NSDictionary {
+//            let is_default = d["is_default"]!.boolValue!
+//            if is_default {//默认
+//              self.receiptArray.insertObject(d, atIndex: 0)
+//              self.receiptLabel.text = d["invoice_title"] as! String
+//            }else {//未默认
+//              self.receiptArray.addObject(d)
+//            }
+//          }
+//        }
+//
+////        self.tableView.reloadSections(NSIndexSet(index: 4), withRowAnimation: UITableViewRowAnimation.None)
+//      }
+//      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    })
   }
   private func setupData() {
     roomCount = self.roomDic["rooms"]!.integerValue;
@@ -352,9 +352,14 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   @IBAction func cancelOrder(sender: AnyObject) {
-    let chatVC = JSHChatVC(chatType: .NewSession)
-    chatVC.shopID = "\(shopID)"
-    navigationController?.pushViewController(chatVC, animated: true)
+    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      let chatVC = JSHChatVC(chatType: .NewSession)
+      chatVC.shopID = "\(self.shopID)"
+      self.navigationController?.pushViewController(chatVC, animated: true)
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    })
+
   }
   
   // MARK: - Table view datasource
