@@ -370,7 +370,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 获取订单详情
-- (void)getOrderWithReservation_no:(NSString *)reservation_no shopid:(int)shopid success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)getOrderWithReservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
     [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
@@ -387,6 +387,40 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     }];
 }
 
+// 修改订单
+- (void)modifyOrderWithReservation_no:(NSString *)reservation_no param:(NSDictionary *)param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
+    [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
+    [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+    //    [dic setObject: forKey:@"userid"];
+    //    [dic setObject:@"I1Ae4us4ssrwsWIg" forKey:@"token"];
+    [dic setObject:@1 forKey:@"status"];
+    [dic setObject:reservation_no forKey:@"reservation_no"];
+    //    [dic setObject:[NSNumber numberWithInt:shopid] forKey:@"shopid"];
+    [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+      DDLogInfo(@"%@", [responseObject description]);
+      success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      DDLogInfo(@"%@", error.description);
+      failure(task, error);
+    }];
+}
+// 取消订单
+- (void)cancelOrderWithReservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
+    [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+    [dic setObject:@0 forKey:@"status"];
+    [dic setObject:reservation_no forKey:@"reservation_no"];
+    //    [dic setObject:[NSNumber numberWithInt:shopid] forKey:@"shopid"];
+    [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+      DDLogInfo(@"%@", [responseObject description]);
+      success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      DDLogInfo(@"%@", error.description);
+      failure(task, error);
+    }];
+}
 // 获取指定条件商品列表
 - (void)getShopGoodsWithShopID:(NSString *)shopID page:(NSInteger)page categoryID:(NSString *)categoryID key:(NSString *)key success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *category = categoryID ? [NSString stringWithFormat:@"&cat_id=%@", categoryID] : @"";
