@@ -125,11 +125,15 @@ const CGFloat shortcutViewHeight = 45.0;
       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableArray *messages = [NSMutableArray array];
         messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:message.timestamp];
-        dispatch_async(dispatch_get_main_queue(), ^{
-          [weakSelf insertOldMessages:messages completion:^{
-            weakSelf.loadingMoreMessage = NO;
-          }];
-        });
+          dispatch_async(dispatch_get_main_queue(), ^{
+            if (messages.count != 0) {
+              [weakSelf insertOldMessages:messages completion:^{
+                weakSelf.loadingMoreMessage = NO;
+              }];
+            } else {
+              weakSelf.loadingMoreMessage = NO;
+            }
+          });
       });
     }
   }
@@ -164,7 +168,6 @@ const CGFloat shortcutViewHeight = 45.0;
     imageData = UIImageJPEGRepresentation(photo, compression);
   }
   NSLog(@"Image Size: %f", [imageData length]/1024.0);
-//  NSData *imageData = UIImageJPEGRepresentation(photo, 0.8);
   NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   NSString *format = @"jpg";
@@ -202,7 +205,8 @@ const CGFloat shortcutViewHeight = 45.0;
                                    };
       [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
     }
-    XHMessage *message = [[XHMessage alloc] initWithPhoto:photo thumbnailUrl:s_url originPhotoUrl:url sender:sender timestamp:date];
+    UIImage *thumbnail = [photo resizedImage:CGSizeMake(140.0, 140.0) interpolationQuality:kCGInterpolationDefault];
+    XHMessage *message = [[XHMessage alloc] initWithPhoto:thumbnail thumbnailUrl:s_url originPhotoUrl:url sender:sender timestamp:date];
     message.bubbleMessageType = XHBubbleMessageTypeSending;
     message.messageMediaType = XHBubbleMessageMediaTypePhoto;
     if ([JSHStorage baseInfo].avatarImage) {
@@ -265,7 +269,8 @@ const CGFloat shortcutViewHeight = 45.0;
       DLog(@"message : %@", message.videoConverPhoto);
       
       JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-      imageInfo.image = message.photo;
+//      imageInfo.image = message.photo;
+      imageInfo.imageURL = [NSURL URLWithString:message.originPhotoUrl];
       imageInfo.referenceRect = messageTableViewCell.frame;
       imageInfo.referenceView = messageTableViewCell.superview;
       JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
