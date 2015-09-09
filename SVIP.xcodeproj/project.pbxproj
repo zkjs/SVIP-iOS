@@ -178,10 +178,7 @@
 		B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */; };
 		B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */; };
 		B20812AE1B8DD7950070D96F /* PersonalLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */; };
-		B20812B31B8DD7950070D96F /* SkipCheckInSettingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812911B8DD7950070D96F /* SkipCheckInSettingListCell.swift */; };
-		B20812B41B8DD7950070D96F /* SkipCheckInSettingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812921B8DD7950070D96F /* SkipCheckInSettingListCell.xib */; };
 		B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */; };
-		B20812B61B8DD7950070D96F /* SkipCheckInSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812941B8DD7950070D96F /* SkipCheckInSettingViewController.xib */; };
 		B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */; };
 		B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */; };
 		B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B20812BB1B8DD8650070D96F /* JSHAnimator.m */; };
@@ -225,7 +222,6 @@
 		B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */; };
 		B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */; };
 		B28967BD1B9E796300DF5D79 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */; };
-		B28967BF1B9E828D00DF5D79 /* SwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B28967BE1B9E828D00DF5D79 /* SwitchView.xib */; };
 		B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */; };
 		B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642121B47C2A700AF0F28 /* BookPayVC.swift */; };
 		B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642131B47C2A700AF0F28 /* BookVC.swift */; };
@@ -263,6 +259,7 @@
 		B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E81B7EE229000DBD81 /* TSQCalendarRowCell.m */; };
 		B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */; };
 		B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */; };
+		B2F916171BA0670000381FFB /* SwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F916161BA0670000381FFB /* SwitchView.xib */; };
 		B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */; };
 		B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */; };
 		B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */; };
@@ -551,10 +548,7 @@
 		B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelFooter.xib; sourceTree = "<group>"; };
 		B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelHeader.xib; sourceTree = "<group>"; };
 		B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalLabelViewController.swift; sourceTree = "<group>"; };
-		B20812911B8DD7950070D96F /* SkipCheckInSettingListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingListCell.swift; sourceTree = "<group>"; };
-		B20812921B8DD7950070D96F /* SkipCheckInSettingListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkipCheckInSettingListCell.xib; sourceTree = "<group>"; };
 		B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingViewController.swift; sourceTree = "<group>"; };
-		B20812941B8DD7950070D96F /* SkipCheckInSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkipCheckInSettingViewController.xib; sourceTree = "<group>"; };
 		B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionBinaryTransformer.swift; sourceTree = "<group>"; };
 		B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionTransformer.swift; sourceTree = "<group>"; };
 		B20812BA1B8DD8650070D96F /* JSHAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimator.h; sourceTree = "<group>"; };
@@ -619,7 +613,6 @@
 		B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurDatePickerView.m; sourceTree = "<group>"; };
 		B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateButton.swift; sourceTree = "<group>"; };
 		B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
-		B28967BE1B9E828D00DF5D79 /* SwitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchView.xib; sourceTree = "<group>"; };
 		B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookConfirmVC.swift; sourceTree = "<group>"; };
 		B2A642121B47C2A700AF0F28 /* BookPayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPayVC.swift; sourceTree = "<group>"; };
 		B2A642131B47C2A700AF0F28 /* BookVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookVC.swift; sourceTree = "<group>"; };
@@ -680,6 +673,7 @@
 		B2F4A9E91B7EE229000DBD81 /* TSQCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQCalendarView.h; sourceTree = "<group>"; };
 		B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQCalendarView.m; sourceTree = "<group>"; };
 		B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateSelectionViewController.swift; sourceTree = "<group>"; };
+		B2F916161BA0670000381FFB /* SwitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchView.xib; sourceTree = "<group>"; };
 		B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
 		B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditViewController.xib; sourceTree = "<group>"; };
 		B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
@@ -1457,10 +1451,8 @@
 		B20812901B8DD7950070D96F /* SkipCheckIn */ = {
 			isa = PBXGroup;
 			children = (
-				B20812911B8DD7950070D96F /* SkipCheckInSettingListCell.swift */,
-				B20812921B8DD7950070D96F /* SkipCheckInSettingListCell.xib */,
+				B2F916161BA0670000381FFB /* SwitchView.xib */,
 				B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */,
-				B20812941B8DD7950070D96F /* SkipCheckInSettingViewController.xib */,
 			);
 			path = SkipCheckIn;
 			sourceTree = "<group>";
@@ -1566,7 +1558,6 @@
 			isa = PBXGroup;
 			children = (
 				B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */,
-				B28967BE1B9E828D00DF5D79 /* SwitchView.xib */,
 			);
 			path = AboutUs;
 			sourceTree = "<group>";
@@ -1918,7 +1909,6 @@
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
-				B20812B61B8DD7950070D96F /* SkipCheckInSettingViewController.xib in Resources */,
 				4058E4E31BA0211B00EF6D76 /* ic_jianpan2@2x.png in Resources */,
 				B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */,
 				4058E4FF1BA0211B00EF6D76 /* RecordingSignal003@2x.png in Resources */,
@@ -1934,6 +1924,7 @@
 				4058E4E81BA0211B00EF6D76 /* input-bar-flat@2x.png in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				4058E4FE1BA0211B00EF6D76 /* RecordingSignal002@2x.png in Resources */,
+				B2F916171BA0670000381FFB /* SwitchView.xib in Resources */,
 				B2F49EB41B7347A200556AE2 /* UMSnsAccountViewController.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
 				4058E5001BA0211B00EF6D76 /* RecordingSignal004@2x.png in Resources */,
@@ -1976,7 +1967,6 @@
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				4058E4F81BA0211B00EF6D76 /* ReceiverVoiceNodePlaying002@2x.png in Resources */,
 				B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */,
-				B20812B41B8DD7950070D96F /* SkipCheckInSettingListCell.xib in Resources */,
 				4058E5261BA0211B00EF6D76 /* voice@2x.png in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				4058E4E01BA0211B00EF6D76 /* face@2x.png in Resources */,
@@ -1984,7 +1974,6 @@
 				4058E52D1BA0211B00EF6D76 /* weChatBubble_Sending_Solid@2x.png in Resources */,
 				4058E4ED1BA0211B00EF6D76 /* MessageVideoPlay@2x.png in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
-				B28967BF1B9E828D00DF5D79 /* SwitchView.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
 				4058E4F71BA0211B00EF6D76 /* ReceiverVoiceNodePlaying001@2x.png in Resources */,
 				B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */,
@@ -2141,7 +2130,6 @@
 				4058E4A21BA0211B00EF6D76 /* XHDisplayMediaViewController.m in Sources */,
 				4058E4CA1BA0211B00EF6D76 /* XHMessageInputView.m in Sources */,
 				4058E4B21BA0211B00EF6D76 /* XHShareMenuItem.m in Sources */,
-				B20812B31B8DD7950070D96F /* SkipCheckInSettingListCell.swift in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
 				4058E4BB1BA0211B00EF6D76 /* SETextAttachment.m in Sources */,

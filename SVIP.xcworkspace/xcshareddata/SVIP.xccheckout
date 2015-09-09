@@ -22,7 +22,7 @@
 		<key>5182BD4EFCAD6F2E09605DF7963B9AD06208194B</key>
 		<string>..</string>
 		<key>540C078B09F8D734E0BD5BDB85E99F8F0BDEB46D</key>
-		<string>../Common/MessageDisplayKit</string>
+		<string>..-iOS/MessageDisplayKit/</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>172.21.7.107:iOS/SVIP.git</string>

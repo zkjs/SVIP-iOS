@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutUsViewController" customModule="SVIP" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SkipCheckInSettingViewController" customModule="SVIP" customModuleProvider="target">
             <connections>
                 <outlet property="switchButton" destination="aW6-IK-4ha" id="qG1-U2-62F"/>
                 <outlet property="switchStatus" destination="mV9-2L-EVb" id="3Bc-Wn-HWW"/>
