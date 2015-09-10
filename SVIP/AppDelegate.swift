@@ -65,19 +65,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     println("applicationDidBecomeActive")
     UMSocialSnsService.applicationDidBecomeActive()//UM
     
-    println(window?.rootViewController)
-    if let navigationController = window?.rootViewController as? UINavigationController {
-      println(navigationController.visibleViewController)
-      if navigationController.visibleViewController is JSHChatVC {
-        let chatVC = navigationController.visibleViewController as! JSHChatVC
-        requestOfflineMessages()
-        
-        if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
-          shopMessageBadge[chatVC.shopID] = 0
-          StorageManager.sharedInstance().updateShopMessageBadge(shopMessageBadge)
-        }
-      }
-    }
+//    println(window?.rootViewController)
+//    if let navigationController = window?.rootViewController as? UINavigationController {
+//      println(navigationController.visibleViewController)
+//      if navigationController.visibleViewController is JSHChatVC {
+//        let chatVC = navigationController.visibleViewController as! JSHChatVC
+//        requestOfflineMessages()
+//        
+//        if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+//          shopMessageBadge[chatVC.shopID] = 0
+//          StorageManager.sharedInstance().updateShopMessageBadge(shopMessageBadge)
+//        }
+//      }
+//    }
   }
 
   func applicationWillTerminate(application: UIApplication) {
@@ -198,28 +198,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         let content = userInfo["content"] as! String
         let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
-        let reservation_no = dict["reservation_no"]
-        let shop_name = dict["shop_name"]
-        let arrival_date = dict["arrival_date"]
-        let room_type = dict["room_type"]
-        let alertView = UIAlertController(title: "订单已确定", message: "订单号:\(reservation_no!)\n您在\(shop_name!)\(arrival_date!)入住的\(room_type!)已确定", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: { (action: UIAlertAction!) -> Void in
-          UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        let reservation_no = dict["orderId"]
+        let shopid = dict["shopId"]
+        let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopid!)
+        let alertView = UIAlertController(title: "订单确认", message: "您在\(shopName!)的订单\(reservation_no!)需要确认", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "稍候", style: .Cancel, handler: nil))
+        alertView.addAction(UIAlertAction(title: "查看", style: .Default, handler: { [unowned self] (action: UIAlertAction!) -> Void in
+          let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+          vc.shopID = shopid!.toInt()!
+          vc.reservation_no = reservation_no!
+          if let rootVC = self.window?.rootViewController as? JSSideMenu {
+            if let nv = rootVC.contentViewController as? UINavigationController {
+              nv.popToRootViewControllerAnimated(false)
+              nv.pushViewController(vc, animated: true)
+            }
+          }
+//          UIApplication.sharedApplication().applicationIconBadgeNumber = 0
           }))
         window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       } else if childType.integerValue == MessageUserDefineType.ShopCancelOrder.rawValue {
-        let content = userInfo["content"] as! String
-        let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
-        let reservation_no = dict["reservation_no"]
-        let shop_name = dict["shop_name"]
-        let arrival_date = dict["arrival_date"]
-        let room_type = dict["room_type"]
-        let alertView = UIAlertController(title: "订单已取消", message: "订单号:\(reservation_no!)\n您在\(shop_name!)\(arrival_date!)入住的\(room_type!)已取消", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: { (action: UIAlertAction!) -> Void in
-          UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        }))
-        window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+//        let content = userInfo["content"] as! String
+//        let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+//        let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
+//        let reservation_no = dict["reservation_no"]
+//        let shop_name = dict["shop_name"]
+//        let arrival_date = dict["arrival_date"]
+//        let room_type = dict["room_type"]
+//        let alertView = UIAlertController(title: "订单已取消", message: "订单号:\(reservation_no!)\n您在\(shop_name!)\(arrival_date!)入住的\(room_type!)已取消", preferredStyle: .Alert)
+//        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: { (action: UIAlertAction!) -> Void in
+//          UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+//        }))
+//        window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       }
     }
   }
