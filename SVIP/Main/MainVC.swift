@@ -411,10 +411,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_NoOrder:  // 在酒店-无订单
       if let shopID = beacon!["shopid"] {
-        let shopsInfo = StorageManager.sharedInstance().shopsInfo()
-        let predicate = NSPredicate(format: "shopid = %@", shopID)
-        let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
-        if let shopName = shopInfo["fullname"] as? String {
+        if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID) {
           statusLabel.setTitle(" \(shopName)欢迎您", forState: .Normal)
         }
       }
@@ -694,10 +691,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //        presentViewController(navController, animated: true, completion: nil)
         // 拨打酒店电话
         if let shopID = order?.shopid {
-          let shopsInfo = StorageManager.sharedInstance().shopsInfo()
-          let predicate = NSPredicate(format: "shopid = %@", shopID)
-          let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
-          if let shopPhone = shopInfo["phone"] as? String {
+          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID) {
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
           }
         }
@@ -711,10 +705,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //        presentViewController(navController, animated: true, completion: nil)
         // 拨打酒店电话
         if let shopID = order?.shopid {
-          let shopsInfo = StorageManager.sharedInstance().shopsInfo()
-          let predicate = NSPredicate(format: "shopid = %@", shopID)
-          let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
-          if let shopPhone = shopInfo["phone"] as? String {
+          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID) {
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
           }
         }

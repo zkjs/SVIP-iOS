@@ -90,10 +90,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     order.rooms = rooms
     order.room_typeid = roomTypeID
     order.room_type = roomType.text! + breakfast
-    let shopsInfo = StorageManager.sharedInstance().shopsInfo()
-    let predicate = NSPredicate(format: "shopid = %@", shopID)
-    let shopInfo = shopsInfo?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
-    if let shopName = shopInfo["fullname"] as? String {
+    if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID) {
       order.fullname = shopName
     }
     order.room_image_URL = roomImageURL

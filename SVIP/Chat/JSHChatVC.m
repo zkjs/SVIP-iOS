@@ -72,34 +72,8 @@ const CGFloat shortcutViewHeight = 45.0;
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
-  [self requestOfflineMessages];
+//  [self requestOfflineMessages];
   [self updateShopMessageBadge];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSDictionary *dictionary = @{
-                               @"type": [NSNumber numberWithInteger:MessageServiceChatClientChatOnlineStatus],
-                               @"timestamp": timestamp,
-                               @"userid": self.senderID,
-                               @"status": @0  // 在线
-                               };
-  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-  [super viewDidDisappear:animated];
-  
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSDictionary *dictionary = @{
-                               @"type": [NSNumber numberWithInteger:MessageServiceChatClientChatOnlineStatus],
-                               @"timestamp": timestamp,
-                               @"userid": self.senderID,
-                               @"status": @1  // 不在线
-                               };
-  [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
 }
 
 - (void)dealloc {
@@ -913,6 +887,13 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)loadDataSource {
   [ZKJSTool showLoading:@"正在加载聊天记录"];
+  
+//  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+//  [[ZKJSHTTPChatSessionManager sharedInstance] getChatLogWithUserID:self.senderID shopID:self.shopID fromTime:timestamp count:10 success:^(NSURLSessionDataTask *task, id responseObject) {
+//
+//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//  }];
   
   WEAKSELF
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

@@ -34,17 +34,16 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var paymentButton: UIButton!
   @IBOutlet weak var receiptLabel: UILabel!
   @IBOutlet weak var remarkTextView: UITextView!
-  @IBOutlet weak var roomTagView: SKTagView!
-  @IBOutlet weak var serviceTagView: SKTagView!
+  @IBOutlet weak var roomTagView: JCTagListView!
+  @IBOutlet weak var serviceTagView: JCTagListView!
   
   let status = ["可取消", "已取消", "已确认", "已完成", "入住中", "已删除"]
   var roomCount = 1
   var shopID: Int = 0
+  var reservation_no = ""
   var bkOrder: BookOrder!
-//  var roomTags = ["无烟房", "加床", "开夜床", "高楼层", "角落房", "安静", "离电梯近", "视野好", "数字敏感"]
   var roomTags = [String]()
   var chosenRoomTags = [String]()
-//  var serviceTags = ["免前台", "免后台", "免吃饭", "免穿衣", "免睡觉"]
   var serviceTags = [String]()
   var chosenServiceTags = [String]()
   var invoiceDic: [String: String]!
@@ -77,9 +76,12 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     
     title = "确定订单"
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoChatVC")
-    shopID = 120
+    shopID = 808
+    reservation_no = "H20150910032400"
+//    shopID = 120
     bkOrder = BookOrder()
-    bkOrder.reservation_no = "H20150806051741"
+//    bkOrder.reservation_no = "H20150806051741"
+    bkOrder.reservation_no = reservation_no
     loadData()
   }
   // MARK: - Public
@@ -93,7 +95,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Private
   private func loadData() {
     //获取订单
-    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no("H20150806051741", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         self.invoiceDic = dic["invoice"] as? [String: String]
         self.privilegeArr = dic["privilege"] as? [[String: String]]
@@ -149,9 +151,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   private func setupUI() {
     let rate = self.roomDic["room_rate"]!.floatValue
-    let timeInterval = departureDate!.timeIntervalSinceDate(arrivalDate!)
-    let durationCount = Float(timeInterval / (60*60*24))
-    let total = rate * durationCount
+    let total = rate
     let payed: Float = 0
     let remain = total - payed
     paymentLabel.text = "应该支付\(total)元，还要支付\(remain)元"
@@ -186,81 +186,22 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   private func setupRoomTagView() {
-    roomTagView.backgroundColor = UIColor.whiteColor()
-    roomTagView.setTranslatesAutoresizingMaskIntoConstraints(false)
-    roomTagView.padding = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
-    roomTagView.insets = 12.0
-    roomTagView.lineSpace = 12
-    roomTagView.didClickTagAtIndex = { [unowned self] (indexU: UInt) -> () in
-      let index = Int(indexU)
-      let clickedTag = self.roomTags[index]
-      if let chosenIndex = find(self.chosenRoomTags, clickedTag) {
-        let tagButton = self.roomTagView.tags[index] as! SKTag
-        tagButton.textColor = UIColor.blackColor()
-        tagButton.bgColor = UIColor.whiteColor()
-        self.roomTagView.removeTagAtIndex(indexU)
-        self.roomTagView.insertTag(tagButton, atIndex: indexU)
-        self.chosenRoomTags.removeAtIndex(chosenIndex)
-      }  else {
-        let tagButton = self.roomTagView.tags[index] as! SKTag
-        tagButton.textColor = UIColor.whiteColor()
-        tagButton.bgColor = UIColor.blackColor()
-        self.roomTagView.removeTagAtIndex(indexU)
-        self.roomTagView.insertTag(tagButton, atIndex: indexU)
-        self.chosenRoomTags.append(self.roomTags[index])
-      }
-      println(self.chosenRoomTags)
-    }
-    
-    for tag in roomTags {
-      let tagButton = SKTag(text: tag)
-      tagButton.textColor = UIColor.blackColor()
-      tagButton.fontSize = 17
-      tagButton.padding = UIEdgeInsetsMake(5.0, 12.0, 5.0, 12.0)
-      tagButton.bgColor = UIColor.whiteColor()
-      tagButton.borderColor = UIColor.grayColor()
-      tagButton.borderWidth = 0.5
-      tagButton.cornerRadius = 12.0
-      roomTagView.addTag(tagButton)
+    roomTagView.canSeletedTags = true
+    roomTagView.tagColor = UIColor.blackColor()
+    roomTagView.tagCornerRadius = 12.0
+    roomTagView.tags.addObjectsFromArray(roomTags)
+    roomTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
+      println(self.roomTagView.seletedTags)
     }
   }
   
   private func setupServiceTagView() {
-    serviceTagView.backgroundColor = UIColor.whiteColor()
-    serviceTagView.setTranslatesAutoresizingMaskIntoConstraints(false)
-    serviceTagView.padding = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
-    serviceTagView.insets = 12.0
-//      serviceTagView.lineSpace = 10
-    serviceTagView.didClickTagAtIndex = { [unowned self] (indexU: UInt) -> () in
-      let index = Int(indexU)
-      let clickedTag = self.serviceTags[index]
-      if let chosenIndex = find(self.chosenServiceTags, clickedTag) {
-        let tagButton = self.serviceTagView.tags[index] as! SKTag
-        tagButton.textColor = UIColor.blackColor()
-        tagButton.bgColor = UIColor.whiteColor()
-        self.serviceTagView.removeTagAtIndex(indexU)
-        self.serviceTagView.insertTag(tagButton, atIndex: indexU)
-        self.chosenServiceTags.removeAtIndex(chosenIndex)
-      }  else {
-        let tagButton = self.serviceTagView.tags[index] as! SKTag
-        tagButton.textColor = UIColor.whiteColor()
-        tagButton.bgColor = UIColor.blackColor()
-        self.serviceTagView.removeTagAtIndex(indexU)
-        self.serviceTagView.insertTag(tagButton, atIndex: indexU)
-        self.chosenServiceTags.append(self.serviceTags[index])
-      }
-      println(self.chosenServiceTags)
-    }
-    for tag in serviceTags {
-      let tagButton = SKTag(text: tag)
-      tagButton.textColor = UIColor.blackColor()
-      tagButton.fontSize = 17
-      tagButton.padding = UIEdgeInsetsMake(5.0, 12.0, 5.0, 12.0)
-      tagButton.bgColor = UIColor.whiteColor()
-      tagButton.borderColor = UIColor.grayColor()
-      tagButton.borderWidth = 0.5
-      tagButton.cornerRadius = 12.0
-      serviceTagView.addTag(tagButton)
+    serviceTagView.canSeletedTags = true
+    serviceTagView.tagColor = UIColor.blackColor()
+    serviceTagView.tagCornerRadius = 12.0
+    serviceTagView.tags.addObjectsFromArray(serviceTags)
+    serviceTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
+      println(self.serviceTagView.seletedTags)
     }
   }
   

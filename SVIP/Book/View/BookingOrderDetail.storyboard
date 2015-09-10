@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -352,7 +352,7 @@
                                                         <action selector="payOrder:" destination="BwC-8R-pXn" eventType="touchUpInside" id="fXJ-aF-gEC"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应该支付**元, 还要支付**元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVg-0t-PF3">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="需要支付**元, 还要支付**元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVg-0t-PF3">
                                                     <rect key="frame" x="15" y="18" width="204" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -394,8 +394,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nXt-cD-0eW" id="ryp-Cc-tQD">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深圳中科金石科技有限公司" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9y-th-Efq">
-                                                    <rect key="frame" x="15" y="13" width="204" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[请选择发票]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9y-th-Efq">
+                                                    <rect key="frame" x="15" y="13" width="94" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -447,22 +447,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="120" id="rBI-Xe-DUd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="88" id="rBI-Xe-DUd">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rBI-Xe-DUd" id="Klj-mX-HmK">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETd-II-ewh" customClass="SKTagView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ETd-II-ewh" customClass="JCTagListView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="ETd-II-ewh" secondAttribute="bottom" id="PqO-Mh-IDf"/>
-                                                <constraint firstItem="ETd-II-ewh" firstAttribute="top" secondItem="Klj-mX-HmK" secondAttribute="top" id="fpw-c4-maQ"/>
-                                                <constraint firstItem="ETd-II-ewh" firstAttribute="leading" secondItem="Klj-mX-HmK" secondAttribute="leading" id="p7R-hT-7V6"/>
-                                                <constraint firstAttribute="trailing" secondItem="ETd-II-ewh" secondAttribute="trailing" id="rn8-Tk-0K4"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="g0W-pM-rao">
@@ -501,22 +495,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="HR2-7d-65E">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="88" id="HR2-7d-65E">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HR2-7d-65E" id="gix-jB-uPX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoo-rv-MIB" customClass="SKTagView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eoo-rv-MIB" customClass="JCTagListView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Eoo-rv-MIB" secondAttribute="bottom" id="Cfn-Fz-60A"/>
-                                                <constraint firstItem="Eoo-rv-MIB" firstAttribute="leading" secondItem="gix-jB-uPX" secondAttribute="leading" id="GJl-lC-ZWm"/>
-                                                <constraint firstItem="Eoo-rv-MIB" firstAttribute="top" secondItem="gix-jB-uPX" secondAttribute="top" id="Oha-q1-hOr"/>
-                                                <constraint firstAttribute="trailing" secondItem="Eoo-rv-MIB" secondAttribute="trailing" id="TT7-i8-YGl"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Sdh-Pb-BvP">
@@ -604,7 +592,7 @@
                         <outlet property="roomCountLabel" destination="sPj-Ct-cJD" id="gaz-B6-1FS"/>
                         <outlet property="roomTagView" destination="ETd-II-ewh" id="HKn-Zf-o5h"/>
                         <outlet property="roomTypeLabel" destination="6fH-DF-mOd" id="BY6-a4-TxJ"/>
-                        <outlet property="serviceTagView" destination="Eoo-rv-MIB" id="2Ii-Xa-AGT"/>
+                        <outlet property="serviceTagView" destination="Eoo-rv-MIB" id="hQN-NL-qMF"/>
                         <outlet property="startDateLabel" destination="SXX-nV-8It" id="0LF-04-7Ji"/>
                         <outlet property="statusLabel" destination="9I1-rp-0kQ" id="3at-ly-AXI"/>
                         <outletCollection property="nameTextFields" destination="3Yp-JX-VxI" collectionClass="NSMutableArray" id="wD1-cv-sLH"/>
