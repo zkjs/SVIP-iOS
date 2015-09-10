@@ -66,4 +66,21 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
+// 查看消息记录
+- (void)getChatLogWithUserID:(NSString *)userID shopID:(NSString *)shopID fromTime:(NSNumber *)fromTime count:(NSInteger)count success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSDictionary *dictionary = @{@"ClientID" : userID,
+                               @"ShopID" : shopID,
+                               @"UserID" : userID,
+                               @"FromTime": fromTime,
+                               @"Count": [NSNumber numberWithInteger:count]
+                               };
+  [self POST:@"msg/find/clientid" parameters:dictionary success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
 @end
