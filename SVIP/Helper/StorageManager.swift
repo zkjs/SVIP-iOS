@@ -92,4 +92,17 @@ class StorageManager: NSObject {
     let path = documentDirectory().stringByAppendingPathComponent(kShopsInfo)
     NSKeyedArchiver.archiveRootObject(shopsInfo, toFile: path)
   }
+  
+  func shopNameWithShopID(shopID: String) -> String? {
+    let predicate = NSPredicate(format: "shopid = %@", shopID)
+    let shopInfo = shopsInfo()?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+    return shopInfo["fullname"] as? String
+  }
+  
+  func shopPhoneWithShopID(shopID: String) -> String? {
+    let predicate = NSPredicate(format: "shopid = %@", shopID)
+    let shopInfo = shopsInfo()?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
+    return shopInfo["phone"] as? String
+  }
+  
 }
