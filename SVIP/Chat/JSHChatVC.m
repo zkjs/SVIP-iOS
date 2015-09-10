@@ -158,11 +158,11 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
 //  [self sendImageMessage:photo];
+  [ZKJSTool showLoading:@"正在发送图片，请稍候..."];
   CGFloat compression = 0.9f;
   CGFloat maxCompression = 0.1f;
   int maxFileSize = 700*1024;//1024*1024;  //整个消息包最大1M,图片大约最大700K
   NSData *imageData = UIImageJPEGRepresentation(photo, compression);
-  
   while ([imageData length] > maxFileSize && compression > maxCompression) {
     compression -= 0.1;
     imageData = UIImageJPEGRepresentation(photo, compression);
@@ -172,6 +172,9 @@ const CGFloat shortcutViewHeight = 45.0;
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
   NSString *format = @"jpg";
   
+  UIImage *thumbnail = [photo resizedImage:CGSizeMake(140.0, 140.0) interpolationQuality:kCGInterpolationDefault];
+  NSData *thumbnailData = UIImageJPEGRepresentation(thumbnail, 1.0);
+  NSString *thumbnailBody = [thumbnailData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
     NSNumber *result = responseObject[@"result"];
     NSString *url = responseObject[@"url"];
@@ -201,11 +204,10 @@ const CGFloat shortcutViewHeight = 45.0;
                                    @"shopid": self.shopID,
                                    @"sessionid": self.sessionID,
                                    @"format": format,
-                                   @"body": body
+                                   @"body": thumbnailBody
                                    };
       [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
     }
-    UIImage *thumbnail = [photo resizedImage:CGSizeMake(140.0, 140.0) interpolationQuality:kCGInterpolationDefault];
     XHMessage *message = [[XHMessage alloc] initWithPhoto:thumbnail thumbnailUrl:s_url originPhotoUrl:url sender:sender timestamp:date];
     message.bubbleMessageType = XHBubbleMessageTypeSending;
     message.messageMediaType = XHBubbleMessageMediaTypePhoto;
@@ -219,8 +221,11 @@ const CGFloat shortcutViewHeight = 45.0;
     
     [self addMessage:message];
     [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
+    
+    [ZKJSTool hideHUD];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.localizedDescription);
+    [ZKJSTool hideHUD];
+    [ZKJSTool showMsg:error.localizedDescription];
   }];
 }
 

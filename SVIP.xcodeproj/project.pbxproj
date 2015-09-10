@@ -313,6 +313,7 @@
 		405266651B41470F00B277BE /* OrderListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListHeaderView.xib; sourceTree = "<group>"; };
 		4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrder.storyboard; sourceTree = "<group>"; };
 		4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrderDetail.storyboard; sourceTree = "<group>"; };
+		405826481BA11CC5005A2C8E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4058E38D1BA0211B00EF6D76 /* NSString+MessageInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MessageInputView.h"; sourceTree = "<group>"; };
 		4058E38E1BA0211B00EF6D76 /* NSString+MessageInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MessageInputView.m"; sourceTree = "<group>"; };
 		4058E38F1BA0211B00EF6D76 /* NSString+XHMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XHMD5.h"; sourceTree = "<group>"; };
@@ -496,7 +497,6 @@
 		4058E48B1BA0211B00EF6D76 /* weChatBubble_Receiving_Solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatBubble_Receiving_Solid@2x.png"; sourceTree = "<group>"; };
 		4058E48D1BA0211B00EF6D76 /* weChatBubble_Sending_Solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatBubble_Sending_Solid@2x.png"; sourceTree = "<group>"; };
 		4058E48E1BA0211B00EF6D76 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MessageDisplayKitString.strings"; sourceTree = "<group>"; };
-		4058E52E1BA022CE00EF6D76 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		405B78231B9D3F1D009AD0E2 /* ZKJSHTTPChatSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPChatSessionManager.h; sourceTree = "<group>"; };
 		405B78241B9D3F1D009AD0E2 /* ZKJSHTTPChatSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPChatSessionManager.m; sourceTree = "<group>"; };
 		405BC0FB1B42495F00081C0A /* DotLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLine.swift; sourceTree = "<group>"; };
@@ -1309,7 +1309,7 @@
 				40DA7A001B463E850097CE3D /* Chat */,
 				405266311B41279B00B277BE /* OrderList */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
-				4058E52E1BA022CE00EF6D76 /* PrefixHeader.pch */,
+				405826481BA11CC5005A2C8E /* PrefixHeader.pch */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
 			);
 			path = SVIP;
