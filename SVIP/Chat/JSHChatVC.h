@@ -15,7 +15,9 @@ typedef NS_ENUM(NSInteger, ChatType) {
   ChatOldSession,
   ChatCallingWaiter,
   ChatService,
-  ChatOrder
+  ChatOrder,
+  ChatConfirmOrder,
+  ChatCancelOrder
 };
 
 @interface JSHChatVC : XHMessageTableViewController
@@ -24,6 +26,7 @@ typedef NS_ENUM(NSInteger, ChatType) {
 @property (nonatomic, strong) BookOrder *order;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *condition;
+@property (nonatomic, strong) NSString *firtMessage;
 
 - (instancetype)initWithChatType:(ChatType)chatType;
 @end

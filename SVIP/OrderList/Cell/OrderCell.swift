@@ -67,7 +67,7 @@ class OrderCell: SWTableViewCell {
       statusLabel.text = "已取消"
     } else if status.toInt() == 2 {
       rightUtilityButtons = nil
-      bookingImageView.hidden = true
+      bookingImageView.hidden = false
       statusLabel.text = "已确定"
     } else if status.toInt() == 3 {
       rightUtilityButtons = rightButtons() as [AnyObject]
@@ -75,7 +75,7 @@ class OrderCell: SWTableViewCell {
       statusLabel.text = "已完成"
     } else if status.toInt() == 4 {
       rightUtilityButtons = nil
-      bookingImageView.hidden = true
+      bookingImageView.hidden = false
       statusLabel.text = "已入住"
     }
     

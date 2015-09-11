@@ -75,7 +75,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     super.viewDidLoad()
     
     title = "确定订单"
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoChatVC")
+    tableView.estimatedRowHeight = UITableViewAutomaticDimension
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "sendConfirmMessageToChatVC")
     shopID = 808
     reservation_no = "H20150910032400"
 //    shopID = 120
@@ -86,9 +87,10 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   // MARK: - Public
   
-  func gotoChatVC() {
-    let chatVC = JSHChatVC(chatType: .NewSession)
+  func sendConfirmMessageToChatVC() {
+    let chatVC = JSHChatVC(chatType: .ConfirmOrder)
     chatVC.shopID = "\(shopID)"
+    chatVC.firtMessage = "我已经确认订单"
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -268,7 +270,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   @IBAction func payOrder(sender: AnyObject) {
     let alertView = UIAlertController(title: "请选择支付方式", message: "", preferredStyle: .ActionSheet)
     alertView.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-    let wechatAction = UIAlertAction(title: "微信支付", style: .Default, handler: { [unowned self] (alertAction) -> Void in
+    let wechatAction = UIAlertAction(title: "支付宝支付", style: .Default, handler: { [unowned self] (alertAction) -> Void in
       self.payAliOrder(self.bkOrder)
       })
 //    wechatAction.setValue(UIImage(named: "ic_weixinzhifu"), forKey: "image")
@@ -289,16 +291,17 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
 //    mutDic.setObject(<#anObject: AnyObject#>, forKey: "pay_status")
     
     
-    gotoChatVC()
+    sendConfirmMessageToChatVC()
   }
   
   @IBAction func cancelOrder(sender: AnyObject) {
     ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      let chatVC = JSHChatVC(chatType: .NewSession)
+      let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
       chatVC.shopID = "\(self.shopID)"
+      chatVC.firtMessage = "你好，我想取消订单"
       self.navigationController?.pushViewController(chatVC, animated: true)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        ZKJSTool.showMsg(error.localizedDescription)
     })
 
   }

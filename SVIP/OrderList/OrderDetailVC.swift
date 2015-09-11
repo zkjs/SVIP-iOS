@@ -41,8 +41,6 @@ class OrderDetailVC: UIViewController {
     
     title = "订单详情"
     
-//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
-    
     setupChatButton()
     
     // 把Navigation Bar设置为不透明的
@@ -78,16 +76,14 @@ class OrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-    let chatVC = JSHChatVC(chatType: ChatType.Order)
+    let chatVC = JSHChatVC(chatType: .OldSession)
     chatVC.shopID = order.shopid
     chatVC.shopName = order.fullname
+    chatVC.firtMessage = "你好，我想选择快捷入住"
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
   // MARK: - Private Method
-//  func dismissSelf() -> Void {
-//    dismissViewControllerAnimated(true, completion: nil)
-//  }
   
   func setupChatButton() {
     chatButton.layer.borderWidth = 0.6

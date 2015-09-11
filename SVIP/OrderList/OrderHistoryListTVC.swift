@@ -9,18 +9,18 @@
 import UIKit
 import Foundation
 
-class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrderDetailVCDelegate {
+class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrderDetailVCDelegate {
   
   var orders: NSMutableArray = []
   var orderPage = 1
-
+  
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
     loadMoreData()
     
-    title = "订单列表"
+    title = "足迹"
     
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
@@ -114,14 +114,14 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       break
     }
   }
-
+  
   // MARK: - Private Method
   
   func loadMoreData() -> Void {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     let page = String(orderPage)
-    ZKJSHTTPSessionManager.sharedInstance().getOrderListWithUserID(userID, token: token, page: page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithUserID(userID, token: token, page: page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.tableView.footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
@@ -157,7 +157,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
         self.tableView.footer.noticeNoMoreData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      
+        
     }
   }
   

@@ -61,6 +61,7 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [self setupNotification];
   [self setupNavigationBar];
+  [self setupNavigationBackButton];
   [self setupShortcutViewDataSource];
   [self setupMessageTableView];
   [self setupMessageInputView];
@@ -432,7 +433,6 @@ const CGFloat shortcutViewHeight = 45.0;
 //      });
       
       [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
-      [self setupNavigationBackButton];
 //      __weak __typeof(self) weakSelf = self;
 //      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
@@ -441,9 +441,11 @@ const CGFloat shortcutViewHeight = 45.0;
 
       break;
     }
+    case ChatConfirmOrder:
+    case ChatCancelOrder:
+    case ChatOrder:
     case ChatOldSession: {
       self.title = [NSString stringWithFormat:@"%@", self.shopName];
-      [self setupNavigationBackButton];
       break;
     }
     case ChatCallingWaiter: {
@@ -472,12 +474,6 @@ const CGFloat shortcutViewHeight = 45.0;
     case ChatService: {
       self.title = [NSString stringWithFormat:@"%@", self.shopName];
       [self setupShortcutView];
-      [self setupNavigationBackButton];
-      break;
-    }
-    case ChatOrder: {
-      self.title = [NSString stringWithFormat:@"%@", self.shopName];
-      [self setupNavigationBackButton];
       break;
     }
     default:
@@ -903,9 +899,33 @@ const CGFloat shortcutViewHeight = 45.0;
       [weakSelf scrollToBottomAnimated:NO];
       [ZKJSTool hideHUD];
       
-      if (self.chatType == ChatNewSession) {
-        NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
-        [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+      switch (self.chatType) {
+        case ChatNewSession: {
+          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+          break;
+        }
+        case ChatOldSession:
+        case ChatConfirmOrder:
+        case ChatCancelOrder: {
+          [weakSelf sendTextMessage:self.firtMessage];
+          XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
+          message.bubbleMessageType = XHBubbleMessageTypeSending;
+          message.messageMediaType = XHBubbleMessageMediaTypeText;
+          if ([JSHStorage baseInfo].avatarImage) {
+            message.avatar = [JSHStorage baseInfo].avatarImage;
+          } else {
+            message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+          }
+          
+          [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+          
+          [weakSelf addMessage:message];
+          [weakSelf finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
+          break;
+        }
+        default:
+          break;
       }
     });
   });

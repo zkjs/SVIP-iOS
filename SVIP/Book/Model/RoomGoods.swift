@@ -47,12 +47,10 @@ import UIKit
 "id": "3",
 "shopid": "120",
 "room": "豪华",
-"image": "uploads/rooms/3.jpg",
+"imgurl": "uploads/rooms/3.jpg",
 "type": "大床",
 "meat": "双早",
 "price": "888.00",
-"logo": "uploads/shops/120.png",
-"fullname": "长沙芙蓉国温德姆至尊豪廷大酒店"
 */
 class RoomGoods: NSObject {
   var goodsid: String?
@@ -67,13 +65,10 @@ class RoomGoods: NSObject {
 
   init(dic: NSDictionary) {
       goodsid = dic["id"] as? String
-      shopid = dic["shopid"] as? String
       room = dic["room"] as? String
-      image = dic["image"] as? String
+      image = dic["imgurl"] as? String
       type = dic["type"] as? String
-      meat = dic["meat"] as? String
+      meat = dic["meat"] as? String ?? "无早"  //避免服务器返回空值
       price = dic["price"] as? String
-      logo = dic["logo"] as? String
-      fullname = dic["fullname"] as? String
   }
 }

@@ -29,20 +29,14 @@ class BookPayVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
-    self.navigationItem.hidesBackButton = true
-//    let buttonItem = UIBarButtonItem(title: "取消订单", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("cancelOrder"))
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
-    
     name.text = bkOrder.room_type
 //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
     let rate = (bkOrder.room_rate as NSString).doubleValue
     let Money = rate * (Double)(bkOrder.dayInt.toInt()!)
     price.text = "￥   \(Money)"
-
-    
   }
+  
   func cancelOrder() {
     ZKJSTool .showLoading("正在取消订单")
     let account = JSHAccountManager .sharedJSHAccountManager()
@@ -69,13 +63,11 @@ class BookPayVC: UIViewController {
   
   @IBAction private func payInHotel(sender: UIButton) {
     // Hanton
-    let chatVC = JSHChatVC(chatType: .NewSession)
+    let chatVC = JSHChatVC(chatType: .OldSession)
     chatVC.order = bkOrder
     chatVC.shopID = bkOrder.shopid
-    chatVC.navigationItem.hidesBackButton = true
-    self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-    self.navigationController?.navigationBar.translucent = false
-    self.navigationController?.pushViewController(chatVC, animated: true)
+    chatVC.firtMessage = "你好，我想到店支付"
+    navigationController?.pushViewController(chatVC, animated: true)
   }
 
 //MARK:- ALIPAY
@@ -122,16 +114,14 @@ class BookPayVC: UIViewController {
         let result = aDictionary["result"] as! NSString
         if self.validateResult(result) && resultStatus == "9000" {
           //支付成功,跳到聊天
-          let chatVC = JSHChatVC(chatType: .NewSession)
+          let chatVC = JSHChatVC(chatType: .OldSession)
           chatVC.order = self.bkOrder
           chatVC.shopID = self.bkOrder.shopid
+          chatVC.firtMessage = "你好，订单已经支付"
           chatVC.navigationItem.hidesBackButton = true
-          self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-          self.navigationController?.navigationBar.translucent = false
           self.navigationController?.pushViewController(chatVC, animated: true)
         }else {
           ZKJSTool .showMsg("支付失败")
-          self .dismissViewControllerAnimated(true, completion: nil)
         }
       })
     }

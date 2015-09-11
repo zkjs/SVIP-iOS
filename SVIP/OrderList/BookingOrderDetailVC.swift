@@ -47,8 +47,6 @@ class BookingOrderDetailVC: UIViewController {
     
     title = "预定中的订单"
     
-//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
-    
     // 把Navigation Bar设置为不透明的
     navigationController?.navigationBar.barStyle = .Default
     navigationController?.navigationBar.translucent = false
@@ -73,7 +71,7 @@ class BookingOrderDetailVC: UIViewController {
     endDateString = dateFormatter.stringFromDate(endDate!)
     dateDurationLabel.text = "\(startDateString)-\(endDateString)"
     
-    let remark = order.remark
+    let remark = order.remark ?? ""
     if !remark.isEmpty {
       let tags = remark.componentsSeparatedByString(",")
       setupTagView(tags)
@@ -84,9 +82,6 @@ class BookingOrderDetailVC: UIViewController {
   }
   
   // MARK: - Private Method
-//  func dismissSelf() -> Void {
-//    dismissViewControllerAnimated(true, completion: nil)
-//  }
   
   func setupTagView(tags: [String]) {
     tagView.backgroundColor = UIColor(hexString: "F4F4F3")
@@ -131,9 +126,10 @@ class BookingOrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-    let chatVC = JSHChatVC(chatType: ChatType.Order)
+    let chatVC = JSHChatVC(chatType: .OldSession)
     chatVC.shopID = order.shopid
     chatVC.shopName = order.fullname
+    chatVC.firtMessage = "你好，我想选择快捷入住"
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -144,27 +140,33 @@ class BookingOrderDetailVC: UIViewController {
   }
 
   @IBAction func cancelOrder(sender: AnyObject) {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSTool.showLoading("正在取消订单...")
-    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    let chatVC = JSHChatVC(chatType: .CancelOrder)
+    chatVC.shopID = order.shopid
+    chatVC.shopName = order.fullname
+    chatVC.firtMessage = "你好，我想取消订单"
+    navigationController?.pushViewController(chatVC, animated: true)
+    
+//    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+//    let token = JSHAccountManager.sharedJSHAccountManager().token
+//    ZKJSTool.showLoading("正在取消订单...")
+//    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+////      ZKJSTool.hideHUD()
+//      ZKJSTool.showMsg("已成功取消订单")
+//      
+//      let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+//        Int64(1 * Double(NSEC_PER_SEC)))
+//      dispatch_after(delayTime, dispatch_get_main_queue()) {
+//        self.delegate?.didCancelOrder(self.order)
+////        if self.navigationController?.viewControllers.first is BookingOrderDetailVC {
+////          self.dismissSelf()
+////        } else {
+//          self.navigationController?.popViewControllerAnimated(true)
+////        }
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 //      ZKJSTool.hideHUD()
-      ZKJSTool.showMsg("已成功取消订单")
-      
-      let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-        Int64(1 * Double(NSEC_PER_SEC)))
-      dispatch_after(delayTime, dispatch_get_main_queue()) {
-        self.delegate?.didCancelOrder(self.order)
-//        if self.navigationController?.viewControllers.first is BookingOrderDetailVC {
-//          self.dismissSelf()
-//        } else {
-          self.navigationController?.popViewControllerAnimated(true)
-//        }
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      ZKJSTool.hideHUD()
-      ZKJSTool.showMsg(error.description)
-    }
+//      ZKJSTool.showMsg(error.description)
+//    }
   }
   
 }

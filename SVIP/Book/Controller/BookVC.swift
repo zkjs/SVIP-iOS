@@ -200,7 +200,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 235
+    return 160+8*2
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

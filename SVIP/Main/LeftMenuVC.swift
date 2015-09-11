@@ -84,7 +84,6 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     if cell == nil {
       cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: Identifier)
     }
-    // Configure the cell...
     cell?.backgroundColor = UIColor.clearColor()
     if let dic = dataArray![indexPath.row] as? Dictionary<String, String> {
       cell!.textLabel?.text = dic["text"]
@@ -97,13 +96,6 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
-//    let vc = BookVC()
-//    vc.shopid = (dataArray[indexPath.row] as? Hotel)!.shopid
-//    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-//      self.sideMenuViewController.hideMenuViewController()
-//      navi.pushViewController(vc, animated: true)
-//    }
-    // Hanton
     if let buttonIndex = LeftButton(rawValue: indexPath.row) {
       switch buttonIndex {
       case .Main:
@@ -128,7 +120,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
           navi.pushViewController(vc, animated: true)
         }
       case .HistoryOrder:
-        let vc = OrderListTVC()
+        let vc = OrderHistoryListTVC()
         if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
           self.sideMenuViewController.hideMenuViewController()
           navi.pushViewController(vc, animated: true)
@@ -139,19 +131,6 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     } else {
       println("在枚举LeftButton中未找到\(indexPath.row)")
     }
-//    switch indexPath.row {
-//    case 1:
-//      let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
-//      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-//        self.sideMenuViewController.hideMenuViewController()
-//        navi.pushViewController(vc, animated: true)
-//      }
-//    default:
-//      break;
-//    }
-
-
   }
-
 
 }
