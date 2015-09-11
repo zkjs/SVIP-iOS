@@ -905,6 +905,7 @@ const CGFloat shortcutViewHeight = 45.0;
           [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
           break;
         }
+        case ChatOldSession:
         case ChatConfirmOrder:
         case ChatCancelOrder: {
           [weakSelf sendTextMessage:self.firtMessage];

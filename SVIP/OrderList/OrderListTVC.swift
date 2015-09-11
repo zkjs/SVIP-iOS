@@ -22,16 +22,24 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     title = "足迹"
     
-    navigationController?.hidesBarsOnSwipe = true
-    
-//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
-    
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.footer.hidden = true
     tableView.separatorStyle = .None
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = true
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = false
   }
   
   // MARK: - Table view data source

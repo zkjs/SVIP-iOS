@@ -295,14 +295,14 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   @IBAction func cancelOrder(sender: AnyObject) {
-//    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
       chatVC.shopID = "\(self.shopID)"
       chatVC.firtMessage = "你好，我想取消订单"
       self.navigationController?.pushViewController(chatVC, animated: true)
-//      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    })
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        ZKJSTool.showMsg(error.localizedDescription)
+    })
 
   }
   
