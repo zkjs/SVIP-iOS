@@ -22,6 +22,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     title = "足迹"
     
+    navigationController?.hidesBarsOnSwipe = true
+    
 //    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: NSSelectorFromString("dismissSelf"))
     
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
