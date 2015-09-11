@@ -16,6 +16,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   var footerView: NewItemFooterView!
   var selection: NameSelectionBlock!
   
+  let dataArray = NSMutableArray()
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -29,6 +30,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     // Header View
     headerView = NSBundle.mainBundle().loadNibNamed(NewItemHeaderView.nibName(), owner:self, options:nil).first as! NewItemHeaderView
     headerView.textField.delegate = self
+    headerView.textField.placeholder = "入住人"
 //    tableView.tableHeaderView = headerView
     
     // Footer View
@@ -40,6 +42,8 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard")
     tap.cancelsTouchesInView = false
     tableView.addGestureRecognizer(tap)
+    
+    loadData()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -50,10 +54,45 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   }
   
   // MARK: - Public
-  
+  func loadData() {
+    ZKJSHTTPSessionManager.sharedInstance().getGuestListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let arr = responseObject as? NSArray {
+        self.dataArray.addObjectsFromArray(arr as [AnyObject])
+        self.tableView.reloadData()
+      }
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      ZKJSTool.showMsg("加载失败")
+    })
+  }
   func done() {
+    if headerView.textField.text.isEmpty {
+      ZKJSTool.showMsg("请填写内容")
+      return
+    }
+    
     selection(headerView.textField.text)
     navigationController?.popViewControllerAnimated(true)
+    
+    for dic in self.dataArray {
+      if let d = dic as? [String: String] {
+        if d["realname"] == headerView.textField.text {
+          return
+        }
+      }
+    }
+    
+    let param = ["realname" : headerView.textField.text]
+    ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(param as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let dic = responseObject as? NSDictionary {
+        let set = dic["set"]!.boolValue!
+        if set {
+          
+        }
+      }
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    })
+
   }
   
   func hideKeyboard() {
@@ -74,7 +113,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    return self.dataArray.count
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -87,8 +126,12 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(NewItemCell.reuseIdentifier()) as! NewItemCell
-    cell.receiptNO.text = ""
-    cell.title.text = "入住人姓名一"
+    if let dic = dataArray[indexPath.row] as? NSDictionary {
+      cell.receiptNO.text = "入住人 \(indexPath.row + 1)"
+      cell.title.text = dic["realname"] as? String
+    }
+//    cell.receiptNO.text = ""
+//    cell.title.text = "入住人姓名一"
     return cell
   }
   

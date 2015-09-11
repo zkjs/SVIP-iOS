@@ -40,7 +40,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   let status = ["可取消", "已取消", "已确认", "已完成", "入住中", "已删除"]
   var roomCount = 1
   var shopID: Int = 0
-  var reservation_no = ""
+  var reservation_no: String!
   var bkOrder: BookOrder!
   var roomTags = [String]()
   var chosenRoomTags = [String]()
@@ -78,7 +78,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     tableView.estimatedRowHeight = UITableViewAutomaticDimension
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "sendConfirmMessageToChatVC")
     shopID = 808
-    reservation_no = "H20150910032400"
+//    reservation_no = "H20150910032400"
 //    shopID = 120
     bkOrder = BookOrder()
 //    bkOrder.reservation_no = "H20150806051741"
@@ -159,10 +159,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     paymentLabel.text = "应该支付\(total)元，还要支付\(remain)元"
 
     paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
-//    paymentButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
 
     bkOrder = BookOrder()
-//    bkOrder.reservation_no = "H00120180203"
     bkOrder.room_type = self.roomDic["room_type"] as? String
     bkOrder.rooms = self.roomDic["rooms"]! as! String
     bkOrder.room_rate = self.roomDic["room_rate"] as! String
@@ -247,8 +245,9 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
           let payed = 314
           let remain = totoal - payed
           self.paymentLabel.text = "应该支付\(totoal)元，还要支付\(remain)元"
-          self.paymentButton.setTitle("您已支付", forState: UIControlState.Normal)
-          self.paymentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+          self.paymentButton.setTitle("您已支付", forState: UIControlState.Disabled)
+          self.paymentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
+          self.paymentButton.enabled = false
         }else {
           ZKJSTool.showMsg("支付失败")
         }
