@@ -9,8 +9,6 @@
 import UIKit
 
 class BookRoomCell: UITableViewCell {
-  @IBOutlet private weak var Avatar: UIImageView!
-  @IBOutlet private weak var name: UILabel!
   @IBOutlet private weak var roomLook: UIImageView!
   @IBOutlet private weak var priceTag: UILabel!
   @IBOutlet private weak var selectedView: UIImageView!
@@ -19,7 +17,6 @@ class BookRoomCell: UITableViewCell {
   var goods: RoomGoods? {
     didSet {
       if let myGoods = goods {
-        name.text = myGoods.fullname
         var priceStr = ""
         var room: String! = ""
         var type: String! = ""
@@ -42,21 +39,13 @@ class BookRoomCell: UITableViewCell {
           let url = NSURL(string: urlStr)
           roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
         }
-        if let logo = myGoods.logo {
-          let urlStr = baseUrl .stringByAppendingString(logo)
-          let placeholderImage = UIImage(named: "星空中心")
-          let url = NSURL(string: urlStr)
-          Avatar.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
-        }
       }
     }
   }
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
-    Avatar.layer.cornerRadius = Avatar.bounds.size.height / 2
-    Avatar.clipsToBounds = true
+
   }
 
   override func setSelected(selected: Bool, animated: Bool) {

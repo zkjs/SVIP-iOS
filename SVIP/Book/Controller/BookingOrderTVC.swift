@@ -56,7 +56,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Private
   
   func loadRoomTypes() {
-    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID(shopID, page: 1, categoryID: nil, key: nil, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(shopID, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? NSArray {
         for dict in arr {
           if let myDict = dict as? NSDictionary {
