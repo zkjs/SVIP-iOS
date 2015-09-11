@@ -126,28 +126,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
         for orderInfo in orderArray {
-          let order = BookOrder()
-          order.arrival_date = orderInfo["arrival_date"] as? String
-          order.created = orderInfo["created"] as? String
-          order.departure_date = orderInfo["departure_date"] as? String
-          order.guest = orderInfo["guest"] as? String
-          order.guesttel = orderInfo["guesttel"] as? String
-          order.orderid = orderInfo["id"] as? String
-          order.remark = orderInfo["remark"] as? String
-          order.reservation_no = orderInfo["reservation_no"] as? String
-          order.room_rate = orderInfo["room_rate"] as? String
-          order.room_type = orderInfo["room_type"] as? String
-          order.room_typeid = orderInfo["room_typeid"] as? String
-          order.rooms = orderInfo["rooms"] as? String
-          order.shopid = orderInfo["shopid"] as? String
-          order.fullname = orderInfo["fullname"] as? String
-          order.status = orderInfo["status"] as? String
-          order.nologin = orderInfo["nologin"] as? String
-          var dateFormatter = NSDateFormatter()
-          dateFormatter.dateFormat = "yyyy-MM-dd"
-          let startDate = dateFormatter.dateFromString(order.arrival_date)
-          let endDate = dateFormatter.dateFromString(order.departure_date)
-          order.dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
+          let order = BookOrder(dictionary: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
         self.tableView.reloadData()

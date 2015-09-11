@@ -159,7 +159,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         let arrival_date = dict["arrival_date"]
         let departure_date = dict["departure_date"]
         let shopid = dict["shopid"]
-        let orderid = dict["orderid"]
         let reservation_no = dict["reservation_no"]
         let rooms = dict["rooms"]
         let status = dict["status"]
@@ -184,7 +183,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
           order.created = created
           order.dayInt = String(dayInt)
           order.reservation_no = reservation_no
-          order.orderid = orderid
           order.status = status
           order.remark = remark
           bookPayVC.bkOrder = order

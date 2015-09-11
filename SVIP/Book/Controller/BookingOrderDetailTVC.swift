@@ -40,7 +40,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   let status = ["可取消", "已取消", "已确认", "已完成", "入住中", "已删除"]
   var roomCount = 1
   var shopID: Int = 0
-  var reservation_no: String!
+  var reservation_no = ""
   var bkOrder: BookOrder!
   var roomTags = [String]()
   var chosenRoomTags = [String]()
@@ -78,10 +78,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     tableView.estimatedRowHeight = UITableViewAutomaticDimension
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "sendConfirmMessageToChatVC")
     shopID = 808
-//    reservation_no = "H20150910032400"
-//    shopID = 120
+    reservation_no = "H20150911042959"
     bkOrder = BookOrder()
-//    bkOrder.reservation_no = "H20150806051741"
     bkOrder.reservation_no = reservation_no
     loadData()
   }

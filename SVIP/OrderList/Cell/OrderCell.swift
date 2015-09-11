@@ -51,8 +51,8 @@ class OrderCell: SWTableViewCell {
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
     let status = order.status
     var room_rate = 0
-    if let roomRate = order.room_rate.toInt() {
-      room_rate = roomRate
+    if let roomRate = order.room_rate {
+      room_rate = Int((roomRate as NSString).floatValue)
     }
     let rooms = order.rooms
     
@@ -80,7 +80,7 @@ class OrderCell: SWTableViewCell {
     }
     
     amountLabel.hidden = false
-    amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
+    amountLabel.text = "¥\(room_rate)"
     
     dateFormatter.dateFormat = "yyyy/MM/dd"
     dateLabel.text = dateFormatter.stringFromDate(startDate!)

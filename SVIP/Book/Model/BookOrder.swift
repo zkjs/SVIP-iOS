@@ -44,7 +44,6 @@ class BookOrder: NSObject {
 
   // Hanton
   var created: String!
-  var orderid: String!  
   var status: String!
   var remark: String!
   var fullname: String!
@@ -67,7 +66,6 @@ class BookOrder: NSObject {
     output += "dayInt: \(dayInt)\n"
     output += "reservation_no: \(reservation_no)\n"
     output += "created: \(created)\n"
-    output += "orderid: \(orderid)\n"
     output += "status: \(status)\n"
     output += "remark: \(remark)\n"
     output += "nologin: \(nologin)\n"
@@ -76,6 +74,30 @@ class BookOrder: NSObject {
   }
   
   override init() {}
+  
+  init(dictionary: NSDictionary) {
+    arrival_date = dictionary["arrival_date"] as? String
+    created = dictionary["created"] as? String
+    departure_date = dictionary["departure_date"] as? String
+    guest = dictionary["guest"] as? String
+    guesttel = dictionary["guesttel"] as? String
+    remark = dictionary["remark"] as? String ?? ""
+    reservation_no = dictionary["reservation_no"] as? String
+    room_rate = dictionary["room_rate"] as? String
+    room_type = dictionary["room_type"] as? String
+    room_typeid = dictionary["room_typeid"] as? String
+    rooms = dictionary["rooms"] as? String
+    shopid = dictionary["shopid"] as? String
+    fullname = dictionary["fullname"] as? String
+    status = dictionary["status"] as? String
+    nologin = dictionary["nologin"] as? String
+    var dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let startDate = dateFormatter.dateFromString(arrival_date)
+    let endDate = dateFormatter.dateFromString(departure_date)
+    dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
+    room_image_URL = dictionary["room_image_URL"] as? String ?? ""
+  }
   
   init (coder aDecoder: NSCoder!) {
     shopid = aDecoder.decodeObjectForKey("shopid") as! String
@@ -91,7 +113,6 @@ class BookOrder: NSObject {
     dayInt = aDecoder.decodeObjectForKey("dayInt") as! String
     reservation_no = aDecoder.decodeObjectForKey("reservation_no") as! String
     created = aDecoder.decodeObjectForKey("created") as! String
-    orderid = aDecoder.decodeObjectForKey("orderid") as! String
     status = aDecoder.decodeObjectForKey("status") as! String
     remark = aDecoder.decodeObjectForKey("remark") as! String
     nologin = aDecoder.decodeObjectForKey("nologin") as! String
@@ -112,11 +133,10 @@ class BookOrder: NSObject {
     aCoder.encodeObject(dayInt, forKey:"dayInt")
     aCoder.encodeObject(reservation_no, forKey:"reservation_no")
     aCoder.encodeObject(created, forKey:"created")
-    aCoder.encodeObject(orderid, forKey:"orderid")
     aCoder.encodeObject(status, forKey:"status")
     aCoder.encodeObject(remark, forKey:"remark")
     aCoder.encodeObject(nologin, forKey:"nologin")
-    aCoder.encodeObject(nologin, forKey:"room_image_URL")
+    aCoder.encodeObject(room_image_URL, forKey:"room_image_URL")
   }
   
 }

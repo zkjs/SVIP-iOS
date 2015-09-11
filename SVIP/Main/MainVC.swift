@@ -547,35 +547,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   func updateSmartPanel() {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      let orderArray = responseObject as! NSArray
-      if orderArray.count > 0 {
-        let lastOrder = orderArray.firstObject as! NSDictionary
-        let order = BookOrder()
-        order.arrival_date = lastOrder["arrival_date"] as? String
-        order.created = lastOrder["created"] as? String
-        order.departure_date = lastOrder["departure_date"] as? String
-        order.guest = lastOrder["guest"] as? String
-        order.guesttel = lastOrder["guesttel"] as? String
-        order.orderid = lastOrder["id"] as? String
-        order.remark = lastOrder["remark"] as? String ?? ""
-        order.reservation_no = lastOrder["reservation_no"] as? String
-        order.room_rate = lastOrder["room_rate"] as? String
-        order.room_type = lastOrder["room_type"] as? String
-        order.room_typeid = lastOrder["room_typeid"] as? String
-        order.rooms = lastOrder["rooms"] as? String
-        order.shopid = lastOrder["shopid"] as? String
-        order.fullname = lastOrder["fullname"] as? String
-        order.status = lastOrder["status"] as? String
-        order.nologin = lastOrder["nologin"] as? String
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let startDate = dateFormatter.dateFromString(order.arrival_date)
-        let endDate = dateFormatter.dateFromString(order.departure_date)
-        order.dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
+    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token,
+      success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        let order = BookOrder(dictionary: responseObject as! NSDictionary)
         StorageManager.sharedInstance().updateLastOrder(order)
-      }
-      self.determineCurrentRegionState()
+        self.determineCurrentRegionState()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
