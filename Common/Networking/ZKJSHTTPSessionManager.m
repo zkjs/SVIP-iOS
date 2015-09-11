@@ -580,4 +580,30 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
+// 获取入住人列表
+- (void)getGuestListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [self POST:@"order/createlist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+// 新增入住人
+- (void)addGuestWithParam:(NSDictionary *)param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [self POST:@"order/useradd" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
 @end
