@@ -283,11 +283,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceMediaChatNotification", object: self, userInfo: dictionary)
     } else if type.integerValue == MessageServiceChatType.CustomerServiceImgChat.rawValue {
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
-    } else if type.integerValue == MessageCustomType.UserDefine.rawValue {
-      let childtype = dictionary["childtype"] as! NSNumber
-      if childtype.integerValue == MessageUserDefineType.Payment.rawValue {
-        // 
-      }
+    } else if type.integerValue == MessageServiceChatType.CustomerServiceTextChat_RSP.rawValue ||
+              type.integerValue == MessageServiceChatType.CustomerServiceTextChat_RSP.rawValue ||
+              type.integerValue == MessageServiceChatType.CustomerServiceTextChat_RSP.rawValue {
+        NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceTextMediaImgChatRSPNotification", object: self, userInfo: dictionary)
     } else if type.integerValue == MessagePaymentType.ShopOrderStatus_IOS.rawValue {
 //      println("Booking Order is ready...")
 //      let alertView = UIAlertController(title: "订单", message: "您的订单已确认", preferredStyle: .Alert)

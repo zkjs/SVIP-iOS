@@ -1112,6 +1112,7 @@ const CGFloat shortcutViewHeight = 45.0;
   [center addObserver:self selector:@selector(showTextMessage:) name:@"MessageServiceChatCustomerServiceTextChatNotification" object:nil];
   [center addObserver:self selector:@selector(showImageMessage:) name:@"MessageServiceChatCustomerServiceImgChatNotification" object:nil];
   [center addObserver:self selector:@selector(showVoiceMessage:) name:@"MessageServiceChatCustomerServiceMediaChatNotification" object:nil];
+  [center addObserver:self selector:@selector(handleMessageResponse:) name:@"MessageServiceChatCustomerServiceTextMediaImgChatRSPNotification" object:nil];
 }
 
 - (void)sendReadAcknowledge:(NSDictionary *)userInfo {
@@ -1222,6 +1223,15 @@ const CGFloat shortcutViewHeight = 45.0;
   if ([notification.userInfo[@"isreadack"] isEqual: @1]) {
     // 发送回执
     [self sendReadAcknowledge:notification.userInfo];
+  }
+}
+
+- (void)handleMessageResponse:(NSNotification *)notification {
+  NSString *result = notification.userInfo[@"result"];
+  if ([result isEqualToString:@"2"]) {
+    // 当前会话成员中只有客户自己在线
+    [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
+    [ZKJSTool showMsg:@"消息发送失败，请重新发送"];
   }
 }
 
