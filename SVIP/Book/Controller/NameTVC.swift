@@ -130,8 +130,6 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
       cell.receiptNO.text = "入住人 \(indexPath.row + 1)"
       cell.title.text = dic["realname"] as? String
     }
-//    cell.receiptNO.text = ""
-//    cell.title.text = "入住人姓名一"
     return cell
   }
   

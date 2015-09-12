@@ -908,20 +908,22 @@ const CGFloat shortcutViewHeight = 45.0;
         case ChatOldSession:
         case ChatConfirmOrder:
         case ChatCancelOrder: {
-          [weakSelf sendTextMessage:self.firtMessage];
-          XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
-          message.bubbleMessageType = XHBubbleMessageTypeSending;
-          message.messageMediaType = XHBubbleMessageMediaTypeText;
-          if ([JSHStorage baseInfo].avatarImage) {
-            message.avatar = [JSHStorage baseInfo].avatarImage;
-          } else {
-            message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+          if (self.firtMessage) {
+            [weakSelf sendTextMessage:self.firtMessage];
+            XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
+            message.bubbleMessageType = XHBubbleMessageTypeSending;
+            message.messageMediaType = XHBubbleMessageMediaTypeText;
+            if ([JSHStorage baseInfo].avatarImage) {
+              message.avatar = [JSHStorage baseInfo].avatarImage;
+            } else {
+              message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+            }
+            
+            [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+            
+            [weakSelf addMessage:message];
+            [weakSelf finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
           }
-          
-          [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-          
-          [weakSelf addMessage:message];
-          [weakSelf finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
           break;
         }
         default:

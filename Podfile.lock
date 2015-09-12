@@ -36,7 +36,7 @@ PODS:
   - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
   - MIBadgeButton (0.0.6)
-  - MJExtension (2.5.9)
+  - MJExtension (2.5.10)
   - MJRefresh (2.4.9)
   - PKYStepper (0.0.1)
   - RESideMenu (4.0.7)
@@ -45,7 +45,7 @@ PODS:
   - SDWebImage/Core (3.7.3)
   - SKTagView (0.7):
     - Masonry
-  - SocketRocket (0.4)
+  - SocketRocket (0.4.1)
   - SSKeychain (1.2.3)
   - SWTableViewCell (0.3.7)
   - YXTMotionView (0.1)
@@ -98,13 +98,13 @@ SPEC CHECKSUMS:
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
-  MJExtension: 2330aeb6c83428c820749290bf766e81827cda65
+  MJExtension: 944fb5a12bceb9b866914527f66101566e66292b
   MJRefresh: be84acb912d0a66364f76a75426698a39528e2ed
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SKTagView: 33378cfeb717df04f77489605b013506e91d1da5
-  SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
+  SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   YXTMotionView: cef229d560c50fc8e4fd2897b3715bec208ac95f
