@@ -38,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     
     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isFirstRun")
     
+    // fir.im BugHD
+    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
+    
     return true
   }
 

@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 
 target 'SVIP' do
+  pod 'FIR.im'
   pod 'HexColors'
   pod 'JCTagListView'
   pod 'AMapSearch'
