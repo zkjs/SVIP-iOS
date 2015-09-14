@@ -1228,7 +1228,7 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)handleMessageResponse:(NSNotification *)notification {
   NSString *result = notification.userInfo[@"result"];
-  if ([result isEqualToString:@"2"]) {
+  if ([result isEqual:@"2"]) {
     // 当前会话成员中只有客户自己在线
     [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
     [ZKJSTool showMsg:@"消息发送失败，请重新发送"];

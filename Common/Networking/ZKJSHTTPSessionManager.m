@@ -559,13 +559,12 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 // 删除订单
 - (void)deleteOrderWithUserID:(NSString *)userID token:(NSString *)token reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"user/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-    [formData appendPartWithFormData:[reservation_no dataUsingEncoding:NSUTF8StringEncoding] name:@"reservation_no"];
-    [formData appendPartWithFormData:[@"0" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
-    [formData appendPartWithFormData:[@"5" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
-  } success:^(NSURLSessionDataTask *task, id responseObject) {
+  NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
+  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [dic setObject:@5 forKey:@"status"];
+  [dic setObject:reservation_no forKey:@"reservation_no"];
+  [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {

@@ -34,11 +34,21 @@ class StorageManager: NSObject {
   }
   
   func lastOrder() -> BookOrder? {
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(kLastOrder)) as? BookOrder
+    var lastOrder: BookOrder? = nil
+    if let data = NSUserDefaults.standardUserDefaults().objectForKey("LastOrder") as? NSData {
+      lastOrder = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? BookOrder
+    }
+    return lastOrder
   }
   
-  func updateLastOrder(order: BookOrder) {
-    NSKeyedArchiver.archiveRootObject(order, toFile: documentDirectory().stringByAppendingPathComponent(kLastOrder))
+  func updateLastOrder(order: BookOrder?) {
+    var encodedObject: NSData? = nil
+    if let lastOrder = order {
+      encodedObject = NSKeyedArchiver.archivedDataWithRootObject(lastOrder)
+    }
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(encodedObject, forKey: "LastOrder")
+    defaults.synchronize()
   }
   
   func lastBeacon() -> [String: String]? {

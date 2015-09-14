@@ -549,8 +549,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let token = JSHAccountManager.sharedJSHAccountManager().token
     ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token,
       success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        let order = BookOrder(dictionary: responseObject as! NSDictionary)
-        StorageManager.sharedInstance().updateLastOrder(order)
+        let lastOrder = responseObject as! NSDictionary
+        if let reservation_no = lastOrder["reservation_no"] as? String {
+          if reservation_no == "0" {
+            StorageManager.sharedInstance().updateLastOrder(nil)
+          } else {
+            let order = BookOrder(dictionary: responseObject as! NSDictionary)
+            StorageManager.sharedInstance().updateLastOrder(order)
+          }
+        }
         self.determineCurrentRegionState()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
