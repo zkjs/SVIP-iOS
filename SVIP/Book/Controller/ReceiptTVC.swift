@@ -84,12 +84,15 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     navigationController?.popViewControllerAnimated(true)
     
     for dic in self.dataArray {
-      if let d = dic as? [String: String] {
-        if d["invoice_title"] == headerView.textField.text {
-          return
+      if let d = dic as? NSDictionary {
+        if let invoice_title = d["invoice_title"] as? String {
+          if invoice_title == headerView.textField.text {
+            return
+          }
         }
       }
     }
+    
     ZKJSHTTPSessionManager.sharedInstance().addInvoiceWithTitle(headerView.textField.text, isDefault:false, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!

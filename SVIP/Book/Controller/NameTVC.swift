@@ -74,9 +74,11 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     navigationController?.popViewControllerAnimated(true)
     
     for dic in self.dataArray {
-      if let d = dic as? [String: String] {
-        if d["realname"] == headerView.textField.text {
-          return
+      if let d = dic as? NSDictionary {
+        if let realname = d["realname"] as? String {
+          if realname == headerView.textField.text {
+            return
+          }
         }
       }
     }
