@@ -131,9 +131,9 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.section == kNameSection {
-      if indexPath.row > roomCount {
+//      if indexPath.row > roomCount {
         return 0.0
-      }
+//      }
     }
     return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
   }
@@ -141,7 +141,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     var count = super.tableView(tableView, numberOfRowsInSection: section)
     if section == kNameSection {
-      count = roomCount
+      count = 0//roomCount
     }
     return count
   }
