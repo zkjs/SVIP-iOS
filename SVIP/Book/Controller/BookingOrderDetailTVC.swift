@@ -78,7 +78,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     tableView.estimatedRowHeight = UITableViewAutomaticDimension
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "sendConfirmMessageToChatVC")
     shopID = 808
-    reservation_no = "H20150911042959"
+    reservation_no = "H20150914025548"
     bkOrder = BookOrder()
     bkOrder.reservation_no = reservation_no
     loadData()
@@ -158,7 +158,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
 
     paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
 
-    bkOrder = BookOrder()
+//    bkOrder = BookOrder()
     bkOrder.room_type = self.roomDic["room_type"] as? String
     bkOrder.rooms = self.roomDic["rooms"]! as! String
     bkOrder.room_rate = self.roomDic["room_rate"] as! String
