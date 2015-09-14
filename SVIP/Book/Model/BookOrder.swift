@@ -39,6 +39,7 @@ class BookOrder: NSObject {
   var arrival_date: String!
   var departure_date: String!
   var dayInt: String!
+  var phone: String!
   //for alipay
   var reservation_no: String!
 
@@ -79,6 +80,7 @@ class BookOrder: NSObject {
     arrival_date = dictionary["arrival_date"] as? String
     created = dictionary["created"] as? String
     departure_date = dictionary["departure_date"] as? String
+    phone = dictionary["phone"] as? String ?? ""
     guest = dictionary["guest"] as? String
     guesttel = dictionary["guesttel"] as? String
     remark = dictionary["remark"] as? String ?? ""
@@ -93,9 +95,17 @@ class BookOrder: NSObject {
     nologin = dictionary["nologin"] as? String
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
-    let startDate = dateFormatter.dateFromString(arrival_date)
-    let endDate = dateFormatter.dateFromString(departure_date)
-    dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
+    var startDate: NSDate?
+    var endDate: NSDate?
+    if arrival_date != nil {
+      startDate = dateFormatter.dateFromString(arrival_date)
+    }
+    if departure_date != nil {
+      endDate = dateFormatter.dateFromString(departure_date)
+    }
+    if startDate != nil && endDate != nil {
+      dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
+    }
     room_image_URL = dictionary["room_image_URL"] as? String ?? ""
   }
   
@@ -111,6 +121,7 @@ class BookOrder: NSObject {
     arrival_date = aDecoder.decodeObjectForKey("arrival_date") as! String
     departure_date = aDecoder.decodeObjectForKey("departure_date") as! String
     dayInt = aDecoder.decodeObjectForKey("dayInt") as! String
+    phone = aDecoder.decodeObjectForKey("phone") as! String
     reservation_no = aDecoder.decodeObjectForKey("reservation_no") as! String
     created = aDecoder.decodeObjectForKey("created") as! String
     status = aDecoder.decodeObjectForKey("status") as! String
@@ -131,6 +142,7 @@ class BookOrder: NSObject {
     aCoder.encodeObject(arrival_date, forKey:"arrival_date")
     aCoder.encodeObject(departure_date, forKey:"departure_date")
     aCoder.encodeObject(dayInt, forKey:"dayInt")
+    aCoder.encodeObject(phone, forKey:"phone")
     aCoder.encodeObject(reservation_no, forKey:"reservation_no")
     aCoder.encodeObject(created, forKey:"created")
     aCoder.encodeObject(status, forKey:"status")
