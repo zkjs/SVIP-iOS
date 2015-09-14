@@ -34,6 +34,20 @@
                ReferencedContainer = "container:SVIP.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "404A36C11BA6B2490094CEB3"
+               BuildableName = "CommonTests.xctest"
+               BlueprintName = "CommonTests"
+               ReferencedContainer = "container:SVIP.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "40641F0C1B3E569800CF150D"
                BuildableName = "SVIPTests.xctest"
                BlueprintName = "SVIPTests"
+               ReferencedContainer = "container:SVIP.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "404A36C11BA6B2490094CEB3"
+               BuildableName = "CommonTests.xctest"
+               BlueprintName = "CommonTests"
                ReferencedContainer = "container:SVIP.xcodeproj">
             </BuildableReference>
          </TestableReference>

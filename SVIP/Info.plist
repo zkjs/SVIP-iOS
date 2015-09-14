@@ -40,6 +40,16 @@
 				<string>wxe09e14fcb69825cc</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.zkjinshi.SVIP</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>SVIP</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>20150912</string>

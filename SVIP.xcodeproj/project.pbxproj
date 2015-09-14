@@ -28,6 +28,10 @@
 		4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052665A1B4128F900B277BE /* HotelMessageCell.xib */; };
 		405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266641B41470F00B277BE /* OrderListHeaderView.swift */; };
 		405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405266651B41470F00B277BE /* OrderListHeaderView.xib */; };
+		405352171BA66251007157FC /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405352161BA66251007157FC /* NotificationCenter.framework */; };
+		4053521C1BA66251007157FC /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053521B1BA66251007157FC /* TodayViewController.swift */; };
+		4053521E1BA66251007157FC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4053521D1BA66251007157FC /* MainInterface.storyboard */; };
+		405352211BA66251007157FC /* SVIPTodayWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 405352151BA66251007157FC /* SVIPTodayWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */; };
 		4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */; };
 		4058E48F1BA0211B00EF6D76 /* NSString+MessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4058E38E1BA0211B00EF6D76 /* NSString+MessageInputView.m */; };
@@ -275,6 +279,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4053521F1BA66251007157FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40641EF01B3E569700CF150D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 405352141BA66251007157FC;
+			remoteInfo = SVIPTodayWidget;
+		};
 		40641F0E1B3E569800CF150D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 40641EF01B3E569700CF150D /* Project object */;
@@ -284,7 +295,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		404A36D41BA6B2490094CEB3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		405352251BA66251007157FC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				405352211BA66251007157FC /* SVIPTodayWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
+		404A36B01BA6984C0094CEB3 /* SVIPTodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIPTodayWidget.entitlements; sourceTree = "<group>"; };
 		404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderDetailTVC.swift; sourceTree = "<group>"; };
 		404C183E1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKJSDiffie-HellmanProtocol.h"; sourceTree = "<group>"; };
 		404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKJSDiffie-HellmanProtocol.m"; sourceTree = "<group>"; };
@@ -309,6 +346,11 @@
 		4052665A1B4128F900B277BE /* HotelMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelMessageCell.xib; sourceTree = "<group>"; };
 		405266641B41470F00B277BE /* OrderListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListHeaderView.swift; sourceTree = "<group>"; };
 		405266651B41470F00B277BE /* OrderListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListHeaderView.xib; sourceTree = "<group>"; };
+		405352151BA66251007157FC /* SVIPTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SVIPTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		405352161BA66251007157FC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		4053521A1BA66251007157FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4053521B1BA66251007157FC /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		4053521D1BA66251007157FC /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrder.storyboard; sourceTree = "<group>"; };
 		4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrderDetail.storyboard; sourceTree = "<group>"; };
 		405826481BA11CC5005A2C8E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -690,6 +732,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		405352121BA66251007157FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				405352171BA66251007157FC /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40641EF51B3E569700CF150D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -844,6 +894,25 @@
 				405266651B41470F00B277BE /* OrderListHeaderView.xib */,
 			);
 			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		405352181BA66251007157FC /* SVIPTodayWidget */ = {
+			isa = PBXGroup;
+			children = (
+				404A36B01BA6984C0094CEB3 /* SVIPTodayWidget.entitlements */,
+				4053521B1BA66251007157FC /* TodayViewController.swift */,
+				4053521D1BA66251007157FC /* MainInterface.storyboard */,
+				405352191BA66251007157FC /* Supporting Files */,
+			);
+			path = SVIPTodayWidget;
+			sourceTree = "<group>";
+		};
+		405352191BA66251007157FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4053521A1BA66251007157FC /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4058E3891BA0211B00EF6D76 /* MessageDisplayKit */ = {
@@ -1274,6 +1343,7 @@
 				40641F861B3E79A300CF150D /* Common */,
 				40641EFA1B3E569700CF150D /* SVIP */,
 				40641F101B3E569800CF150D /* SVIPTests */,
+				405352181BA66251007157FC /* SVIPTodayWidget */,
 				40641EF91B3E569700CF150D /* Products */,
 				35D3481E8EFB7901D0E20AFC /* Pods */,
 				D8D0F96B75FA018B7CF90312 /* Frameworks */,
@@ -1285,6 +1355,7 @@
 			children = (
 				40641EF81B3E569700CF150D /* SVIP.app */,
 				40641F0D1B3E569800CF150D /* SVIPTests.xctest */,
+				405352151BA66251007157FC /* SVIPTodayWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1292,6 +1363,7 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
+				404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */,
 				B20812B71B8DD8650070D96F /* Helper */,
 				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
@@ -1801,6 +1873,7 @@
 				404C184B1B5368FE00F11122 /* libz.dylib */,
 				B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */,
 				46501E00CF356A221CE759C9 /* libPods-SVIP.a */,
+				405352161BA66251007157FC /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1808,6 +1881,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		405352141BA66251007157FC /* SVIPTodayWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 405352241BA66251007157FC /* Build configuration list for PBXNativeTarget "SVIPTodayWidget" */;
+			buildPhases = (
+				405352111BA66251007157FC /* Sources */,
+				405352121BA66251007157FC /* Frameworks */,
+				405352131BA66251007157FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SVIPTodayWidget;
+			productName = SVIPTodayWidget;
+			productReference = 405352151BA66251007157FC /* SVIPTodayWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		40641EF71B3E569700CF150D /* SVIP */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F171B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIP" */;
@@ -1817,10 +1907,13 @@
 				40641EF51B3E569700CF150D /* Frameworks */,
 				40641EF61B3E569700CF150D /* Resources */,
 				667A5268AD89F73F6ECE5B4F /* Copy Pods Resources */,
+				405352251BA66251007157FC /* Embed App Extensions */,
+				404A36D41BA6B2490094CEB3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				405352201BA66251007157FC /* PBXTargetDependency */,
 			);
 			name = SVIP;
 			productName = SVIP;
@@ -1855,10 +1948,22 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = zkjinshi;
 				TargetAttributes = {
+					405352141BA66251007157FC = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = ERF86L9T4U;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					40641EF71B3E569700CF150D = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = ERF86L9T4U;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -1886,11 +1991,20 @@
 			targets = (
 				40641EF71B3E569700CF150D /* SVIP */,
 				40641F0C1B3E569800CF150D /* SVIPTests */,
+				405352141BA66251007157FC /* SVIPTodayWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		405352131BA66251007157FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4053521E1BA66251007157FC /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40641EF61B3E569700CF150D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2032,6 +2146,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		405352111BA66251007157FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4053521C1BA66251007157FC /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40641EF41B3E569700CF150D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2213,6 +2335,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		405352201BA66251007157FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 405352141BA66251007157FC /* SVIPTodayWidget */;
+			targetProxy = 4053521F1BA66251007157FC /* PBXContainerItemProxy */;
+		};
 		40641F0F1B3E569800CF150D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 40641EF71B3E569700CF150D /* SVIP */;
@@ -2250,6 +2377,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		405352221BA66251007157FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SVIPTodayWidget/SVIPTodayWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Common/AliPay",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SVIPTodayWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_4.2.3",
+					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_Extra_Frameworks/Wechat",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		405352231BA66251007157FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SVIPTodayWidget/SVIPTodayWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Common/AliPay",
+				);
+				INFOPLIST_FILE = SVIPTodayWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_4.2.3",
+					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_Extra_Frameworks/Wechat",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		40641F151B3E569800CF150D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2337,7 +2516,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
@@ -2397,7 +2578,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen Zhongke Jinshi Technology Co., Ltd (ERF86L9T4U)";
+				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
@@ -2487,6 +2670,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		405352241BA66251007157FC /* Build configuration list for PBXNativeTarget "SVIPTodayWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				405352221BA66251007157FC /* Debug */,
+				405352231BA66251007157FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		40641EF31B3E569700CF150D /* Build configuration list for PBXProject "SVIP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
