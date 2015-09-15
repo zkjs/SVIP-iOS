@@ -441,11 +441,14 @@ const CGFloat shortcutViewHeight = 45.0;
 
       break;
     }
+    case ChatOrder: {
+      self.title = self.order.fullname;
+      break;
+    }
     case ChatConfirmOrder:
     case ChatCancelOrder:
-    case ChatOrder:
     case ChatOldSession: {
-      self.title = [NSString stringWithFormat:@"%@", self.shopName];
+      self.title = self.shopName;
       break;
     }
     case ChatCallingWaiter: {

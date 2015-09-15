@@ -88,6 +88,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   func sendConfirmMessageToChatVC() {
     let chatVC = JSHChatVC(chatType: .ConfirmOrder)
     chatVC.shopID = "\(shopID)"
+    chatVC.shopName = self.roomDic["fullname"] as! String
     chatVC.firtMessage = "我已经确认订单"
     navigationController?.pushViewController(chatVC, animated: true)
   }
@@ -292,9 +293,10 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   @IBAction func cancelOrder(sender: AnyObject) {
-    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
       chatVC.shopID = "\(self.shopID)"
+      chatVC.shopName = self.bkOrder.fullname
       chatVC.firtMessage = "你好，我想取消订单"
       self.navigationController?.pushViewController(chatVC, animated: true)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
