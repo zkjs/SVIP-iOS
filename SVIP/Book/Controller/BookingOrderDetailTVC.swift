@@ -77,8 +77,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     title = "确定订单"
     tableView.estimatedRowHeight = UITableViewAutomaticDimension
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "sendConfirmMessageToChatVC")
-    shopID = 808
-    reservation_no = "H20150914025548"
+//    shopID = 808
+    reservation_no = "H20150915052444"
     bkOrder = BookOrder()
     bkOrder.reservation_no = reservation_no
     loadData()
@@ -96,15 +96,19 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Private
   private func loadData() {
     //获取订单
-    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         self.invoiceDic = dic["invoice"] as? [String: String]
         self.privilegeArr = dic["privilege"] as? [[String: String]]
         self.roomDic = dic["room"] as? NSDictionary
         self.roomTagArr = dic["room_tag"] as? [[String: String]]
         self.userArr = dic["users"] as? [[String: String]]
+        if let shopid = dic["shopid"]?.integerValue {
+          self.shopID = shopid
+        }
       }
       self.setupData()
+      self.tableView.reloadData()
       self.setupUI()
       self.setupRoomTagView()
       self.setupServiceTagView()
@@ -280,16 +284,64 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let mutDic = NSMutableDictionary()
     mutDic.setObject(self.roomDic["reservation_no"] as! String, forKey: "reservation_no")
     mutDic.setObject([2], forKey: "status")
-//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "users")
-//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "invoice[invoice_title]")
-//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "invoice[invoice_get_id]")
-//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "privilege")
-//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "room_tags")
-//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "remark")
-//    mutDic.setObject(<#anObject: AnyObject#>, forKey: "pay_status")
     
+    let users = NSMutableArray()
+    for var i = 0 ; i < roomCount; i++ {
+      if self.nameTextFields[i].text.isEmpty {
+        ZKJSTool.showMsg("请选择入住人")
+        return
+      }else {
+        users.addObject("\(self.nameTextFields[i].tag)")
+      }
+    }
     
-    sendConfirmMessageToChatVC()
+    mutDic.setObject(users.componentsJoinedByString(","), forKey: "users")
+    
+    if receiptLabel.text == "[请选择发票]" {
+      ZKJSTool.showMsg("请选择发票")
+    }else {
+      mutDic.setObject(receiptLabel.text!, forKey: "invoice[invoice_title]")
+    }
+    
+    mutDic.setObject(1, forKey: "invoice[invoice_get_id]")
+
+    let privilegeIDs = NSMutableArray()
+    for tag in serviceTagView.seletedTags {
+      for dic in privilegeArr {
+        if dic["privilege_name"] == (tag as! String) {
+          privilegeIDs.addObject(dic["id"]!)
+        }
+      }
+    }
+    if privilegeIDs.count != 0 {
+    mutDic.setObject(privilegeIDs.componentsJoinedByString(","), forKey: "privilege")
+    }
+    
+//    let roomTagIDs = NSMutableArray()
+//    for tag in roomTagView.tags {
+//      for dic in roomTagArr {
+//        if dic["content"] == (tag as! String) {
+//          roomTagIDs.addObject(dic["id"]!)
+//        }
+//      }
+//    }
+//    if roomTagIDs.count != 0 {
+//      mutDic.setObject(roomTagIDs, forKey: "room_tags")
+//    }
+    if roomTagView.seletedTags.count != 0 {
+      mutDic.setObject(roomTagView.seletedTags.componentsJoinedByString(","), forKey: "room_tags")
+    }
+    
+    if !remarkTextView.text.isEmpty {
+      mutDic.setObject(remarkTextView.text, forKey: "remark")
+    }
+//    mutDic.setObject([2], forKey: "pay_status")
+    
+    ZKJSHTTPSessionManager.sharedInstance().modifyOrderWithReservation_no(bkOrder.reservation_no, param: mutDic as [NSObject : AnyObject], success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      self.sendConfirmMessageToChatVC()
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        ZKJSTool.showMsg(error.localizedDescription)
+    })
   }
   
   @IBAction func cancelOrder(sender: AnyObject) {
@@ -359,6 +411,13 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
 //        self.nameTextFields[indexPath.row].text = name
 //      }
 //      navigationController?.pushViewController(vc, animated: true)
+    } else if indexPath.section == kNameSection {  // 入住人
+      let vc = NameTVC()
+      vc.selection = { [unowned self] (name: String, idInt: Int) ->() in
+        self.nameTextFields[indexPath.row].text = name
+        self.nameTextFields[indexPath.row].tag = idInt
+      }
+      navigationController?.pushViewController(vc, animated: true)
     }
   }
   

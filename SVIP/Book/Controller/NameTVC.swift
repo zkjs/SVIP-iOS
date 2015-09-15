@@ -8,13 +8,14 @@
 
 import UIKit
 
-typealias NameSelectionBlock = (String) -> ()
+typealias NameSelectionBlock = (String, Int) -> ()
 
 class NameTVC: UITableViewController, UITextFieldDelegate {
 
   var headerView: NewItemHeaderView!
   var footerView: NewItemFooterView!
   var selection: NameSelectionBlock!
+  var selectedRow: Int! = 0
   
   let dataArray = NSMutableArray()
   override func viewDidLoad() {
@@ -70,7 +71,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
       return
     }
     
-    selection(headerView.textField.text)
+    selection(headerView.textField.text,selectedRow)
     navigationController?.popViewControllerAnimated(true)
     
     for dic in self.dataArray {
@@ -141,6 +142,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewItemCell
     headerView.textField.text = cell.title.text
+    selectedRow = self.dataArray[indexPath.row]["id"]!!.integerValue
   }
 
 }

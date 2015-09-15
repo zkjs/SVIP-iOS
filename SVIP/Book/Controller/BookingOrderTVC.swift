@@ -182,7 +182,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
       navigationController?.pushViewController(vc, animated: true)
     } else if indexPath.section == kNameSection {  // 入住人
       let vc = NameTVC()
-      vc.selection = { [unowned self] (name: String) ->() in
+      vc.selection = { [unowned self] (name: String, idInt: Int) ->() in
         self.nameTextFields[indexPath.row].text = name
       }
       navigationController?.pushViewController(vc, animated: true)
