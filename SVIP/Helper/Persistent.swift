@@ -74,7 +74,6 @@ class Persistence: NSObject {
       inManagedObjectContext: self.managedObjectContext!) as! Message
     message.userID = JSHAccountManager.sharedJSHAccountManager().userid
     message.shopID = shopID
-//    message.avatar = NSData(data: UIImagePNGRepresentation(chatMessage.avatar))
     message.avatar = NSData(data: UIImageJPEGRepresentation(chatMessage.avatar, 1))
     message.sender = chatMessage.senderName
     message.timestamp = Int64(chatMessage.timestamp.timeIntervalSince1970 * 1000)
@@ -84,8 +83,9 @@ class Persistence: NSObject {
     message.isRead = chatMessage.isRead
     switch chatMessage.messageMediaType.rawValue {
     case XHBubbleMessageMediaType.Photo.rawValue:
-//      message.photo = NSData(data: UIImagePNGRepresentation(chatMessage.photo))
       message.photo = NSData(data: UIImageJPEGRepresentation(chatMessage.photo, 1))
+      message.originPhotoUrl = chatMessage.originPhotoUrl
+      message.thumbnailUrl = chatMessage.thumbnailUrl
     case XHBubbleMessageMediaType.Voice.rawValue:
       message.voicePath = chatMessage.voicePath
       message.voiceDuration = chatMessage.voiceDuration
@@ -123,6 +123,8 @@ class Persistence: NSObject {
       switch Int(message.messageMediaType) {
       case XHBubbleMessageMediaType.Photo.rawValue:
         chatMessage.photo = UIImage(data: message.photo)
+        chatMessage.originPhotoUrl = message.originPhotoUrl
+        chatMessage.thumbnailUrl = message.thumbnailUrl
         chatMessage.messageMediaType = .Photo
       case XHBubbleMessageMediaType.Voice.rawValue:
         chatMessage.voicePath = message.voicePath

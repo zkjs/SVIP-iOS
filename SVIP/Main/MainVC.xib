@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -80,23 +80,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="574" height="34"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconfont-huitudangqianweizhi" translatesAutoresizingMaskIntoConstraints="NO" id="DX8-3R-zZd">
-                                            <rect key="frame" x="15" y="9" width="10" height="16"/>
+                                            <rect key="frame" x="5" y="9" width="10" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="10" id="5H7-DO-87e"/>
                                                 <constraint firstAttribute="height" constant="16" id="hnS-vN-Gge"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不在酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dim-4e-hvh" userLabel="Region Label">
-                                            <rect key="frame" x="36" y="8" width="56" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不在酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dim-4e-hvh" userLabel="Region Label">
+                                            <rect key="frame" x="18" y="8" width="70" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="iFl-uk-riU"/>
+                                                <constraint firstAttribute="width" constant="70" id="oDL-0S-AD7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华大床房 | 6/30入住 | 2晚" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T43-K7-b5R" userLabel="Info Label">
-                                            <rect key="frame" x="387" y="8" width="172" height="17"/>
+                                            <rect key="frame" x="397" y="8" width="172" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.79215686269999996" green="0.79215686269999996" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -105,12 +106,12 @@
                                     <color key="backgroundColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="DX8-3R-zZd" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="top" constant="9" id="5cJ-2j-yIu"/>
-                                        <constraint firstAttribute="trailing" secondItem="T43-K7-b5R" secondAttribute="trailing" constant="15" id="LDD-df-Zid"/>
-                                        <constraint firstItem="dim-4e-hvh" firstAttribute="leading" secondItem="DX8-3R-zZd" secondAttribute="trailing" constant="11" id="brN-li-sWb"/>
+                                        <constraint firstAttribute="trailing" secondItem="T43-K7-b5R" secondAttribute="trailing" constant="5" id="LDD-df-Zid"/>
+                                        <constraint firstItem="dim-4e-hvh" firstAttribute="leading" secondItem="DX8-3R-zZd" secondAttribute="trailing" constant="3" id="brN-li-sWb"/>
                                         <constraint firstItem="T43-K7-b5R" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="top" constant="8" id="kMM-6S-Fmx"/>
                                         <constraint firstAttribute="height" constant="34" id="pzy-83-XV3"/>
                                         <constraint firstItem="dim-4e-hvh" firstAttribute="top" secondItem="kJW-CB-nCk" secondAttribute="top" constant="8" id="rCu-jo-Zg9"/>
-                                        <constraint firstItem="DX8-3R-zZd" firstAttribute="leading" secondItem="kJW-CB-nCk" secondAttribute="leading" constant="15" id="rhg-Yg-0tg"/>
+                                        <constraint firstItem="DX8-3R-zZd" firstAttribute="leading" secondItem="kJW-CB-nCk" secondAttribute="leading" constant="5" id="rhg-Yg-0tg"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNk-xA-Dnk" userLabel="Status Label">
@@ -313,7 +314,7 @@
                     <exclude reference="eFe-eS-hzj"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="571" y="653"/>
+            <point key="canvasLocation" x="557" y="791"/>
         </view>
         <tapGestureRecognizer id="4In-aJ-VYO">
             <connections>

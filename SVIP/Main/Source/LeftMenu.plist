@@ -4,12 +4,6 @@
 <array>
 	<dict>
 		<key>logo</key>
-		<string>ic_home</string>
-		<key>text</key>
-		<string>首页</string>
-	</dict>
-	<dict>
-		<key>logo</key>
 		<string>ic_shezhi</string>
 		<key>text</key>
 		<string>设置</string>
