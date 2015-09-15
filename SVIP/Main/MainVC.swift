@@ -708,9 +708,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status != CLAuthorizationStatus.AuthorizedAlways {
-      let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
-      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-      presentViewController(alertView, animated: true, completion: nil)
+//      let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
+//      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+//      presentViewController(alertView, animated: true, completion: nil)
     }
     println("didChangeAuthorizationStatus: \(status.rawValue)")
   }
