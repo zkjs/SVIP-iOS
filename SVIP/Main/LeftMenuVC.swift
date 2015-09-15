@@ -9,8 +9,7 @@
 import UIKit
 
 enum LeftButton: Int {
-  case Main = 0
-  case Setting
+  case Setting = 0
   case InRoomCheckin
   case BookingOrder
   case HistoryOrder
@@ -98,8 +97,6 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     if let buttonIndex = LeftButton(rawValue: indexPath.row) {
       switch buttonIndex {
-      case .Main:
-        println(".Main")
       case .Setting:
         let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
         if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
