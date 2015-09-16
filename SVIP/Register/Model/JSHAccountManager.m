@@ -8,23 +8,34 @@
 
 #import "JSHAccountManager.h"
 
+@interface JSHAccountManager ()
+
+@property (nonatomic, copy) NSUserDefaults *defaults;
+
+@end
+
 @implementation JSHAccountManager
+
 single_implementation(JSHAccountManager)
+
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
-        _userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
-        _token = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    _defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.zkjinshi.svip"];
+    _userid = [_defaults objectForKey:@"userid"];
+    _token = [_defaults objectForKey:@"token"];
+  }
+  return self;
 }
+
 - (void)saveAccountWithDic:(NSDictionary *)dic
 {
-    _userid = dic[@"userid"];
-    _token = dic[@"token"];
-    [[NSUserDefaults standardUserDefaults] setObject:_userid forKey:@"userid"];
-    [[NSUserDefaults standardUserDefaults] setObject:_token forKey:@"token"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+  _userid = dic[@"userid"];
+  _token = dic[@"token"];
+  [_defaults setObject:_userid forKey:@"userid"];
+  [_defaults setObject:_token forKey:@"token"];
+  [_defaults synchronize];
 }
+
 @end

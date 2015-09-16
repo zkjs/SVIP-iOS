@@ -50,6 +50,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupBluetoothManager()
     
 //    testGPSBasedNotification()
+    
+    println("userid: \(JSHAccountManager.sharedJSHAccountManager().userid)")
+    println("token: \(JSHAccountManager.sharedJSHAccountManager().token)")
   }
   
   override func viewWillAppear(animated: Bool) {
