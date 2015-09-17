@@ -621,9 +621,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       println("查看免前台特权")
     }
     
-    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
-    navigationController?.pushViewController(vc, animated: true)
+//    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
+//    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+//    navigationController?.pushViewController(vc, animated: true)
   }
   
   @IBAction func tappedMainButton(sender: AnyObject) {

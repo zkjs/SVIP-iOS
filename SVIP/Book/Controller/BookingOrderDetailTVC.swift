@@ -78,7 +78,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     tableView.estimatedRowHeight = UITableViewAutomaticDimension
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "sendConfirmMessageToChatVC")
 //    shopID = 808
-    reservation_no = "H20150915052444"
+//    reservation_no = "H20150917102251"
     bkOrder = BookOrder()
     bkOrder.reservation_no = reservation_no
     loadData()
@@ -115,28 +115,6 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     })
-    
-//    //获取发票列表
-//    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      if let arr = responseObject as? [AnyObject] {
-//        self.receiptArray.removeAllObjects()
-//        for dic in arr {
-//          if let d = dic as? NSDictionary {
-//            let is_default = d["is_default"]!.boolValue!
-//            if is_default {//默认
-//              self.receiptArray.insertObject(d, atIndex: 0)
-//              self.receiptLabel.text = d["invoice_title"] as! String
-//            }else {//未默认
-//              self.receiptArray.addObject(d)
-//            }
-//          }
-//        }
-//
-////        self.tableView.reloadSections(NSIndexSet(index: 4), withRowAnimation: UITableViewRowAnimation.None)
-//      }
-//      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    })
   }
   private func setupData() {
     roomCount = self.roomDic["rooms"]!.integerValue;
@@ -163,7 +141,6 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
 
     paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
 
-//    bkOrder = BookOrder()
     bkOrder.room_type = self.roomDic["room_type"] as? String
     bkOrder.rooms = self.roomDic["rooms"]! as! String
     bkOrder.room_rate = self.roomDic["room_rate"] as! String
@@ -284,19 +261,19 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let mutDic = NSMutableDictionary()
     mutDic.setObject(self.roomDic["reservation_no"] as! String, forKey: "reservation_no")
     
+    //设置入住人
     let users = NSMutableArray()
     for var i = 0 ; i < roomCount; i++ {
-      if self.nameTextFields[i].text.isEmpty {
+      if self.nameTextFields[i].text.isEmpty {//判断入住人信息是否已选择
         ZKJSTool.showMsg("请选择入住人")
         return
       }else {
         users.addObject("\(self.nameTextFields[i].tag)")
       }
     }
-    
     mutDic.setObject(users.componentsJoinedByString(","), forKey: "users")
     
-    if receiptLabel.text == "[请选择发票]" {
+    if receiptLabel.text == "[请选择发票]" {//判断发票信息是否已选择
       ZKJSTool.showMsg("请选择发票")
       return
     }else {
@@ -405,12 +382,6 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         self.receiptLabel.text = receiptTitle
       }
       navigationController?.pushViewController(vc, animated: true)
-//    } else if indexPath.section == kNameSection {  // 入住人
-//      let vc = NameTVC()
-//      vc.selection = { [unowned self] (name: String) ->() in
-//        self.nameTextFields[indexPath.row].text = name
-//      }
-//      navigationController?.pushViewController(vc, animated: true)
     } else if indexPath.section == kNameSection {  // 入住人
       let vc = NameTVC()
       vc.selection = { [unowned self] (name: String, idInt: Int) ->() in
