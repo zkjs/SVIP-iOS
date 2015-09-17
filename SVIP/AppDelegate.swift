@@ -306,7 +306,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     let urlStr = url.absoluteString
     if urlStr!.hasPrefix("SVIPPAY") {
         AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { ([NSObject : AnyObject]!) -> Void in
-            
+            // 从本地支付宝App跳回
         })
     }else if urlStr!.hasPrefix(WXAppId) {
         return UMSocialSnsService.handleOpenURL(url)
