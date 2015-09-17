@@ -828,7 +828,6 @@
 		405266311B41279B00B277BE /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
-				405266321B41279B00B277BE /* Model */,
 				405266631B41470F00B277BE /* HeaderView */,
 				405266531B4128E900B277BE /* Cell */,
 				405266331B41279B00B277BE /* OrderListTVC.swift */,
@@ -840,13 +839,6 @@
 				405BC0FB1B42495F00081C0A /* DotLine.swift */,
 			);
 			path = OrderList;
-			sourceTree = "<group>";
-		};
-		405266321B41279B00B277BE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		405266421B4127F600B277BE /* MessageCenter */ = {
