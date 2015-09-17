@@ -283,7 +283,6 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   @IBAction func confirmOrder(sender: AnyObject) {
     let mutDic = NSMutableDictionary()
     mutDic.setObject(self.roomDic["reservation_no"] as! String, forKey: "reservation_no")
-    mutDic.setObject([2], forKey: "status")
     
     let users = NSMutableArray()
     for var i = 0 ; i < roomCount; i++ {
@@ -299,6 +298,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     
     if receiptLabel.text == "[请选择发票]" {
       ZKJSTool.showMsg("请选择发票")
+      return
     }else {
       mutDic.setObject(receiptLabel.text!, forKey: "invoice[invoice_title]")
     }

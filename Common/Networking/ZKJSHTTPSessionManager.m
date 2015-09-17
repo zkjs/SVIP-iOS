@@ -394,7 +394,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
     //    [dic setObject: forKey:@"userid"];
     //    [dic setObject:@"I1Ae4us4ssrwsWIg" forKey:@"token"];
-    [dic setObject:@1 forKey:@"status"];
+    [dic setObject:@2 forKey:@"status"];
     [dic setObject:reservation_no forKey:@"reservation_no"];
     //    [dic setObject:[NSNumber numberWithInt:shopid] forKey:@"shopid"];
     [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
