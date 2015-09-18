@@ -12,7 +12,7 @@ class JSSideMenu: RESideMenu {
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
     if self.contentViewController != nil {
       let navi = self.contentViewController as! UINavigationController
-      let vc = navi.viewControllers.last as! UIViewController
+      let vc = navi.viewControllers.last!
       if vc.isKindOfClass(MainVC) {
         return UIStatusBarStyle.LightContent
       }

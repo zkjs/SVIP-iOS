@@ -76,7 +76,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let order = orders[indexPath.row] as! BookOrder
     
-    if order.status.toInt() == 0 {  // 0 未确认可取消订单
+    if Int(order.status) == 0 {  // 0 未确认可取消订单
       let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
       bookingOrderDetailVC.delegate = self
       navigationController?.pushViewController(bookingOrderDetailVC, animated: true)

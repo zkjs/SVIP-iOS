@@ -21,8 +21,8 @@ class StorageManager: NSObject {
     return Singleton.instance
   }
   
-  func documentDirectory() -> String {
-    return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+  func documentDirectory() -> NSString {
+    return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
   }
   
   func saveBeaconRegions(beaconRegions: [String: [String: String]]) {

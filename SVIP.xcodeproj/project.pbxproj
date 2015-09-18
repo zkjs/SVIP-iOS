@@ -2367,6 +2367,7 @@
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -2382,6 +2383,7 @@
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -2478,15 +2480,11 @@
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
 					"$(PROJECT_DIR)/Common/AliPay",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitCoreDataExample/MessageDisplayKitCoreDataExample/Vendor",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitLeanchatExample/MessageDisplayKitLeanchatExample/Vendor/LeanCloud",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitLeanchatExample/MessageDisplayKitLeanchatExample/Vendor/MessageDisplayKit",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitStoryBoradExample/MessageDisplayKitStoryBoradExample/Vendor",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitWeChatExample/MessageDisplayKitWeChatExample/Vendor/MessageDisplayKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
@@ -2522,6 +2520,7 @@
 					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";
@@ -2540,15 +2539,11 @@
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
 					"$(PROJECT_DIR)/Common/AliPay",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitCoreDataExample/MessageDisplayKitCoreDataExample/Vendor",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitLeanchatExample/MessageDisplayKitLeanchatExample/Vendor/LeanCloud",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitLeanchatExample/MessageDisplayKitLeanchatExample/Vendor/MessageDisplayKit",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitStoryBoradExample/MessageDisplayKitStoryBoradExample/Vendor",
-					"$(PROJECT_DIR)/Common/MessageDisplayKit/Example/MessageDisplayKitWeChatExample/MessageDisplayKitWeChatExample/Vendor/MessageDisplayKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
@@ -2584,6 +2579,7 @@
 					"$(PROJECT_DIR)/Common/UMSocial/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				OTHER_SWIFT_FLAGS = "-DRELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";

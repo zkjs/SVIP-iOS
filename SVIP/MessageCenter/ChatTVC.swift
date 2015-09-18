@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Foundation
 
-class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegate, XHMessageTableViewCellDelegate, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate {
+class ChatTVC: XHMessageTableViewController, XHAudioPlayerHelperDelegate, AVAudioPlayerDelegate {
   
   let bookingOrder: BookingOrder
   let currentSelectedCell = XHMessageTableViewCell()
@@ -27,7 +27,7 @@ class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegat
     super.init(nibName: nil, bundle: nil)
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
@@ -49,11 +49,11 @@ class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegat
     let plugIcons = ["sharemore_pic", "sharemore_video"]
     let plugTitles = ["照片", "拍摄"]
     for plugIcon in plugIcons {
-      let shareMenuItem = XHShareMenuItem(normalIconImage: UIImage(named: plugIcon), title: plugTitles[find(plugIcons, plugIcon)!])
+      let shareMenuItem = XHShareMenuItem(normalIconImage: UIImage(named: plugIcon), title: plugTitles[plugIcons.indexOf(plugIcon)!])
       shareMenuItems.append(shareMenuItem)
     }
     self.shareMenuItems = shareMenuItems
-    shareMenuView.reloadData()
+    shareMenuView!.reloadData()
     
 //    loadDataSource()
     setupNotification()
@@ -105,7 +105,7 @@ class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegat
   // MARK: - XHMessageTableViewControllerDelegate
   override func didSendText(text: String!, fromSender sender: String!, onDate date: NSDate!) {
     sendTextMessage(text)
-    var message = XHMessage(text: text, sender: sender, timestamp: date)
+    let message = XHMessage(text: text, sender: sender, timestamp: date)
     message.avatar = UIImage(named: "ic_home_nor")
     
     addMessage(message)
@@ -114,7 +114,7 @@ class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegat
   
   override func didSendPhoto(photo: UIImage!, fromSender sender: String!, onDate date: NSDate!) {
     sendImageMessage(photo)
-    var message = XHMessage(photo: photo, thumbnailUrl: nil, originPhotoUrl: nil, sender: sender, timestamp: date)
+    let message = XHMessage(photo: photo, thumbnailUrl: nil, originPhotoUrl: nil, sender: sender, timestamp: date)
     message.avatar = UIImage(named: "ic_home_nor")
     
     addMessage(message)
@@ -123,7 +123,7 @@ class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegat
   
   override func didSendVoice(voicePath: String!, voiceDuration: String!, fromSender sender: String!, onDate date: NSDate!) {
     sendTextMessage(voicePath)
-    var message = XHMessage(voicePath: voicePath, voiceUrl: nil, voiceDuration: voiceDuration, sender: sender, timestamp: date, isRead: true)
+    let message = XHMessage(voicePath: voicePath, voiceUrl: nil, voiceDuration: voiceDuration, sender: sender, timestamp: date, isRead: true)
     message.avatar = UIImage(named: "ic_home_nor")
     
     addMessage(message)
@@ -132,18 +132,18 @@ class ChatTVC: XHMessageTableViewController, XHMessageTableViewControllerDelegat
   
   // MARK: - XHMessageTableViewCellDelegate
   override func multiMediaMessageDidSelectedOnMessage(message: XHMessageModel!, atIndexPath indexPath: NSIndexPath!, onMessageTableViewCell messageTableViewCell: XHMessageTableViewCell!) {
-    var displayVC: UIViewController
-    switch message.messageMediaType() {
-    case .Photo:
-      var messageDisplayTextView = XHDisplayMediaViewController()
-      messageDisplayTextView.message = message
-      displayVC = messageDisplayTextView
-    case .Voice:
-      message.setIsRead!(true)
-      messageTableViewCell.messageBubbleView.voiceUnreadDotImageView.hidden = true
-    default:
-      break
-    }
+//    let displayVC: UIViewController
+//    switch message.messageMediaType() {
+//    case .Photo:
+//      let messageDisplayTextView = XHDisplayMediaViewController()
+//      messageDisplayTextView.message = message
+//      displayVC = messageDisplayTextView
+//    case .Voice:
+//      message.setIsRead!(true)
+//      messageTableViewCell.messageBubbleView!.voiceUnreadDotImageView!.hidden = true
+//    default:
+//      break
+//    }
   }
   
 }

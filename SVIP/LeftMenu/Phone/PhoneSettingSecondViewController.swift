@@ -55,34 +55,34 @@ class PhoneSettingSecondViewController: UIViewController {
   
   //MARK:- UITextField Delegate
   func textFieldDidChanged(aNotification: NSNotification) {
-    let phoneText = phoneTextField.text as NSString
-    let codeText = codeTextField.text as NSString
+    let phoneText = phoneTextField.text
+    let codeText = codeTextField.text
     let textfield = aNotification.object as! UITextField
     
-    if phoneText.length == 11 && textfield == phoneTextField { //phoneTextField输入11位
-      if ZKJSTool.validateMobile(phoneText as String) {
+    if phoneText?.characters.count == 11 && textfield == phoneTextField { //phoneTextField输入11位
+      if ZKJSTool.validateMobile(phoneText) {
         okButton.enabled = true
       }else {
         ZKJSTool.showMsg("手机号错误")
       }
     }
-    if phoneText.length < 11 && okButton.titleLabel?.text == "发送验证码" {
+    if phoneText?.characters.count < 11 && okButton.titleLabel?.text == "发送验证码" {
       okButton.enabled = false
       return
     }
     
-    if phoneText.length == 11 && codeText.length == 6 {
-      ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(codeText as String, mobilePhoneNumber: phoneText as String , callback: { (successed: Bool, error: NSError!) -> Void in
+    if phoneText?.characters.count == 11 && codeText?.characters.count == 6 {
+      ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(codeText, mobilePhoneNumber: phoneText, callback: { (successed: Bool, error: NSError!) -> Void in
         if successed {
-          ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithParaDic(["phone" : phoneText],success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+          let dictionary = ["phone" : phoneText!]
+          ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithParaDic(dictionary, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
             let dic = responseObject as! NSDictionary
             if dic["set"]!.boolValue! {
               ZKJSTool.showMsg("电话修改成功")
-              let controllers = self.navigationController!.viewControllers!
+              let controllers = self.navigationController!.viewControllers
               let count = controllers.count
-              if let vc = controllers[count - 3] as? UIViewController {
-                self.navigationController?.popToViewController(vc, animated: true)
-              }
+              let vc = controllers[count - 3]
+              self.navigationController?.popToViewController(vc, animated: true)
             }
             }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
               

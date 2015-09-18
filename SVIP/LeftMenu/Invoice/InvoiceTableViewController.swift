@@ -75,7 +75,7 @@ class InvoiceTableViewController: UITableViewController, InvoiceTableViewCellDel
     }
     cell?.tag = indexPath.row
     cell?.delegate = self
-    cell?.invoiceTextField.text = dataArray[indexPath.row]["invoice_title"] as! String
+    cell?.invoiceTextField.text = dataArray[indexPath.row]["invoice_title"] as? String
     if indexPath.row != 0 && indexPath.row != dataArray.count {
       cell?.title.text = "发票\(indexPath.row)"
     }

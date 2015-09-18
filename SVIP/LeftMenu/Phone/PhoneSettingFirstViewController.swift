@@ -56,8 +56,8 @@ class PhoneSettingFirstViewController: UIViewController {
   
   //MARK:- UITextField Delegate
   func textFieldDidChanged(aNotification: NSNotification) {
-    let text = textField.text as NSString
-    if text.length == 6 {
+    let text = textField.text
+    if text?.characters.count == 6 {
       ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(textField.text, mobilePhoneNumber: phone.text, callback: { (successed: Bool, error: NSError!) -> Void in
         if successed {
           self.navigationController?.pushViewController(PhoneSettingSecondViewController(), animated: true)

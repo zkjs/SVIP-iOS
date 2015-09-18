@@ -27,7 +27,7 @@ class OrderDetailVC: UIViewController {
     super.init(nibName: nil, bundle: nil)
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
   }
   
@@ -49,14 +49,13 @@ class OrderDetailVC: UIViewController {
     
     var startDateString = order.arrival_date
     var endDateString = order.departure_date
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(startDateString)
     let endDate = dateFormatter.dateFromString(endDateString)
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
-    let status = order.status
     var room_rate = 0
-    if let roomRate = order.room_rate.toInt() {
+    if let roomRate = Int(order.room_rate) {
       room_rate = roomRate
     }
     let rooms = order.rooms
@@ -70,8 +69,8 @@ class OrderDetailVC: UIViewController {
     startDateString = dateFormatter.stringFromDate(startDate!)
     endDateString = dateFormatter.stringFromDate(endDate!)
     dateDurationLabel.text = "\(startDateString)-\(endDateString)"
-    amountFormulaLabel.text = "¥\(room_rate) * \(rooms.toInt()!)间 * \(days)天"
-    amountLabel.text = "¥\(room_rate * rooms.toInt()! * days)"
+    amountFormulaLabel.text = "¥\(room_rate) * \(Int(rooms)!)间 * \(days)天"
+    amountLabel.text = "¥\(room_rate * Int(rooms)! * days)"
   }
   
   // MARK: - Button Action

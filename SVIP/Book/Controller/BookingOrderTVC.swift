@@ -72,10 +72,10 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
           self.roomImageURL = defaultGoods.image!
           let baseUrl = kBaseURL
           if let goodsImage = defaultGoods.image {
-            let urlStr = baseUrl .stringByAppendingString(goodsImage)
             let placeholderImage = UIImage(named: "bg_dingdan")
-            let url = NSURL(string: urlStr)
-            self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+            let url = NSURL(string: baseUrl)
+            url?.URLByAppendingPathComponent(goodsImage)
+            self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
           }
         }
       }
@@ -101,9 +101,9 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     order.dayInt = String(duration)
     var guests = [String]()
     for index in 0..<roomCount {
-      guests.append(nameTextFields[index].text)
+      guests.append(nameTextFields[index].text!)
     }
-    order.guest = ",".join(guests)
+    order.guest = guests.joinWithSeparator(",")
     order.guesttel = JSHStorage.baseInfo().phone
     order.room_image = roomImage.image
     
@@ -149,7 +149,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Table view delegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    println(indexPath)
+    print(indexPath)
     
     if indexPath.section == kRoomSection && indexPath.row == kRoomRow {  // 房型
       let vc = BookVC()
@@ -162,10 +162,10 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         self.roomImageURL = goods.image!
         let baseUrl = kBaseURL
         if let goodsImage = goods.image {
-          let urlStr = baseUrl .stringByAppendingString(goodsImage)
           let placeholderImage = UIImage(named: "bg_dingdan")
-          let url = NSURL(string: urlStr)
-          self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+          let url = NSURL(string: baseUrl)
+          url?.URLByAppendingPathComponent(goodsImage)
+          self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
         }
       }
       navigationController?.pushViewController(vc, animated: true)

@@ -28,8 +28,13 @@ class Persistence: NSObject {
     var error: NSError? = nil
     let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel!)
     
-    if persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error) == nil {
+    do {
+      try persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+    } catch var error1 as NSError {
+      error = error1
       abort()
+    } catch {
+      fatalError()
     }
     
     // Initialize the managed object context
@@ -40,32 +45,39 @@ class Persistence: NSObject {
   }()
   
   func saveContext() {
-    var error: NSError? = nil
     if let managedObjectContext = self.managedObjectContext {
-      if ((managedObjectContext.hasChanges && !managedObjectContext.save(&error))) {
-        abort()
+      if (managedObjectContext.hasChanges) {
+        do {
+          try managedObjectContext.save()
+        } catch {
+          abort()
+        }
       }
     }
   }
   
   class var applicationDocumentsDirectory: NSURL {
     let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-    return urls[urls.endIndex - 1] as! NSURL
+    return urls[urls.endIndex - 1] 
   }
   
   func deleteAllObjectsForEntityWithName(name: String) {
-    println("Deleting all objects in entity \(name)")
-    var fetchRequest = NSFetchRequest(entityName: name)
+    print("Deleting all objects in entity \(name)")
+    let fetchRequest = NSFetchRequest(entityName: name)
     fetchRequest.resultType = .ManagedObjectIDResultType
     
     if let managedObjectContext = managedObjectContext {
-      var error: NSError? = nil
-      let objectIDs = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)
+      let objectIDs: [AnyObject]?
+      do {
+        objectIDs = try managedObjectContext.executeFetchRequest(fetchRequest)
+      } catch {
+        objectIDs = nil
+      }
       for objectID in objectIDs! {
         managedObjectContext.deleteObject(managedObjectContext.objectWithID(objectID as! NSManagedObjectID))
       }
       saveContext()
-      println("All objects in entity \(name) deleted")
+      print("All objects in entity \(name) deleted")
     }
   }
   
@@ -74,7 +86,7 @@ class Persistence: NSObject {
       inManagedObjectContext: self.managedObjectContext!) as! Message
     message.userID = JSHAccountManager.sharedJSHAccountManager().userid
     message.shopID = shopID
-    message.avatar = NSData(data: UIImageJPEGRepresentation(chatMessage.avatar, 1))
+    message.avatar = NSData(data: UIImageJPEGRepresentation(chatMessage.avatar, 1)!)
     message.sender = chatMessage.senderName
     message.timestamp = Int64(chatMessage.timestamp.timeIntervalSince1970 * 1000)
     message.sended = chatMessage.sended
@@ -83,7 +95,7 @@ class Persistence: NSObject {
     message.isRead = chatMessage.isRead
     switch chatMessage.messageMediaType.rawValue {
     case XHBubbleMessageMediaType.Photo.rawValue:
-      message.photo = NSData(data: UIImageJPEGRepresentation(chatMessage.photo, 1))
+      message.photo = NSData(data: UIImageJPEGRepresentation(chatMessage.photo, 1)!)
       message.originPhotoUrl = chatMessage.originPhotoUrl
       message.thumbnailUrl = chatMessage.thumbnailUrl
     case XHBubbleMessageMediaType.Voice.rawValue:
@@ -93,7 +105,7 @@ class Persistence: NSObject {
       message.text = chatMessage.textString
     case XHBubbleMessageMediaType.Card.rawValue:
       message.cardTitle = chatMessage.cardTitle
-      message.cardImage = NSData(data: UIImageJPEGRepresentation(chatMessage.cardImage, 0.8))
+      message.cardImage = NSData(data: UIImageJPEGRepresentation(chatMessage.cardImage, 0.8)!)
       message.cardContent = chatMessage.cardContent
     default:
       break
@@ -107,11 +119,17 @@ class Persistence: NSObject {
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
     fetchRequest.fetchLimit = 7
     var error : NSError?
-    let messages = self.managedObjectContext!.executeFetchRequest(fetchRequest, error: &error)
-    if let error = error {
-      println("Something went wrong: \(error.localizedDescription)")
+    let messages: [AnyObject]?
+    do {
+      messages = try self.managedObjectContext!.executeFetchRequest(fetchRequest)
+    } catch let error1 as NSError {
+      error = error1
+      messages = nil
     }
-    var chatMessages = NSMutableArray()
+    if let error = error {
+      print("Something went wrong: \(error.localizedDescription)")
+    }
+    let chatMessages = NSMutableArray()
     for message in messages as! [Message] {
       let chatMessage = XHMessage()
       chatMessage.avatar = UIImage(data: message.avatar)
@@ -163,9 +181,15 @@ class Persistence: NSObject {
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
     fetchRequest.fetchLimit = 1
     var error : NSError?
-    let messages = self.managedObjectContext!.executeFetchRequest(fetchRequest, error: &error)
+    let messages: [AnyObject]?
+    do {
+      messages = try self.managedObjectContext!.executeFetchRequest(fetchRequest)
+    } catch let error1 as NSError {
+      error = error1
+      messages = nil
+    }
     if let error = error {
-      println("Something went wrong: \(error.localizedDescription)")
+      print("Something went wrong: \(error.localizedDescription)")
     }
     
     if let message = messages?.first as? Message {

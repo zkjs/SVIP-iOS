@@ -20,7 +20,7 @@ class LabelButton: UIButton {
   
   required init(title: NSString!, edit: Bool) {
     self.edit = edit
-    let size = title.boundingRectWithSize(CGSizeMake(CGFloat.max, CGFloat.max), options: NSStringDrawingOptions.allZeros, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14)], context: nil)
+    let size = title.boundingRectWithSize(CGSizeMake(CGFloat.max, CGFloat.max), options: NSStringDrawingOptions(), attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14)], context: nil)
     let buttonW = size.width + kButtonMargin > 40 ? size.width + kButtonMargin : kButtonMinW
     super.init(frame: CGRectMake(0, 0, buttonW, size.height))
     setUI()
@@ -34,7 +34,7 @@ class LabelButton: UIButton {
     self.tag = tagid
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
   }
   

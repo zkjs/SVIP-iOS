@@ -34,7 +34,7 @@ import UIKit
 class BookListRightMenuCell: UITableViewCell {
   var hotelData: Hotel? {
     didSet {
-      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
       hotel.text = hotelData!.fullname
     }
   }
@@ -97,7 +97,7 @@ class BookListRightMenuVC: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier("RightMenuCell", forIndexPath: indexPath) as! BookListRightMenuCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("RightMenuCell", forIndexPath: indexPath) as! BookListRightMenuCell
     // Configure the cell...
     cell.hotelData = dataArray[indexPath.row] as? Hotel
     return cell

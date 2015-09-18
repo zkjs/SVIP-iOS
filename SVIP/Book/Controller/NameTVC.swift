@@ -66,12 +66,12 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     })
   }
   func done() {
-    if headerView.textField.text.isEmpty {
+    if headerView.textField.text!.isEmpty {
       ZKJSTool.showMsg("请填写内容")
       return
     }
     
-    selection(headerView.textField.text,selectedRow)
+    selection(headerView.textField.text!,selectedRow)
     navigationController?.popViewControllerAnimated(true)
     
     for dic in self.dataArray {
@@ -85,7 +85,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     }
     
     let param = ["realname" : headerView.textField.text]
-    ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(param as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(param as! [String: String], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {

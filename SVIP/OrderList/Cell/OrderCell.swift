@@ -43,8 +43,8 @@ class OrderCell: SWTableViewCell {
     let urlString = "\(kBaseURL)uploads/shops/\(order.shopid).png"
     let logoURL = NSURL(string: urlString)
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: SDWebImageOptions.ProgressiveDownload | SDWebImageOptions.RetryFailed, completed: nil)
-    var dateFormatter = NSDateFormatter()
+    logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: [SDWebImageOptions.ProgressiveDownload, SDWebImageOptions.RetryFailed], completed: nil)
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(order.arrival_date)
     let endDate = dateFormatter.dateFromString(order.departure_date)
@@ -54,26 +54,25 @@ class OrderCell: SWTableViewCell {
     if let roomRate = order.room_rate {
       room_rate = Int((roomRate as NSString).floatValue)
     }
-    let rooms = order.rooms
     
     // status=订单状态 默认0 未确认可取消订单 1取消订单 2已确认订单 3已经完成的订单 4已经入住的订单 5删除订单
-    if status.toInt() == 0 {
+    if Int(status) == 0 {
       rightUtilityButtons = nil
       bookingImageView.hidden = false
       statusLabel.text = "未确定"
-    } else if status.toInt() == 1 {
+    } else if Int(status) == 1 {
       rightUtilityButtons = rightButtons() as [AnyObject]
       bookingImageView.hidden = true
       statusLabel.text = "已取消"
-    } else if status.toInt() == 2 {
+    } else if Int(status) == 2 {
       rightUtilityButtons = nil
       bookingImageView.hidden = false
       statusLabel.text = "已确定"
-    } else if status.toInt() == 3 {
+    } else if Int(status) == 3 {
       rightUtilityButtons = rightButtons() as [AnyObject]
       bookingImageView.hidden = true
       statusLabel.text = "已完成"
-    } else if status.toInt() == 4 {
+    } else if Int(status) == 4 {
       rightUtilityButtons = nil
       bookingImageView.hidden = false
       statusLabel.text = "已入住"

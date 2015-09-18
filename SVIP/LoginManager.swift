@@ -86,7 +86,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
         afterFetch()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      println("\(error.description)")
+      print("\(error.description)")
     }
   }
   
@@ -127,7 +127,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
                   //save account data
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
                   //编辑个人信息
-                  println("here goes to edit info ")
+                  print("here goes to edit info ")
                   self.appWindow.rootViewController = UINavigationController(rootViewController: InfoEditViewController())
                   
                 }

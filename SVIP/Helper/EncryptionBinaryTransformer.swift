@@ -22,7 +22,7 @@ class EncryptionBinaryTransformer: NSValueTransformer {
     let result = transform(data!, password: password()!, salt: salt, iv: iv, operation: UInt32(kCCEncrypt))
     
     // Build the response data
-    var response = NSMutableData()
+    let response = NSMutableData()
     response.appendData(salt)
     response.appendData(iv)
     response.appendData(result!)
@@ -103,7 +103,7 @@ class EncryptionBinaryTransformer: NSValueTransformer {
   
   func randomDataOfLength(length: UInt) -> NSData {
     let data = NSMutableData(length: Int(length))
-    var dataPointer = UnsafeMutablePointer<UInt8>(data!.mutableBytes)
+    let dataPointer = UnsafeMutablePointer<UInt8>(data!.mutableBytes)
     SecRandomCopyBytes(kSecRandomDefault, Int(length), dataPointer)
     return data!
   }

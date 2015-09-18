@@ -872,121 +872,80 @@ const CGFloat shortcutViewHeight = 45.0;
 - (void)loadDataSource {
   [ZKJSTool showLoading:@"正在加载聊天记录"];
   
-  WEAKSELF
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  [[ZKJSHTTPChatSessionManager sharedInstance] getChatLogWithUserID:self.senderID shopID:self.shopID fromTime:timestamp count:7 success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSMutableArray *chatMessages = [NSMutableArray array];
-    for (NSDictionary *message in responseObject) {
-      XHMessage *chatMessage = [XHMessage new];
-      chatMessage.sender = message[@"fromname"];
-      chatMessage.senderName = message[@"fromname"];
-      NSTimeInterval timestamp = [message[@"srvtime"] doubleValue];
-      chatMessage.timestamp = [[NSDate alloc] initWithTimeIntervalSince1970:timestamp];
-//      chatMessage.sended =
-//      chatMessage.isRead =
-      switch ([message[@"type"] integerValue]) {
-        case MessageServiceChatCustomerServiceTextChat:
-          if ([message[@"childtype"] integerValue] == 0) {
-            // 普通文本
-            chatMessage.text = message[@"textmsg"];
-            chatMessage.textString = message[@"textmsg"];
-            chatMessage.messageMediaType = XHBubbleMessageMediaTypeText;
-          } else if ([message[@"childtype"] integerValue] == 1) {
-            // 卡片消息
-            chatMessage.cardTitle = @"你好，帮我预定这间房";
-            NSData *jsonData = [message[@"textmsg"] dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
-            NSString *urlString = [kBaseURL stringByAppendingString:json[@"image"]];
-            NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlString]];
-            chatMessage.cardImage = [UIImage imageWithData:imageData];
-            NSArray *subStrings = [json[@"arrival_date"] componentsSeparatedByString:@"-"];
-            NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
-            NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", json[@"room_type"], date, json[@"dayNum"]];
-            chatMessage.cardContent = content;
-            chatMessage.messageMediaType = XHBubbleMessageMediaTypeCard;
-          }
-          break;
-        case MessageServiceChatCustomerServiceImgChat:
-          chatMessage.originPhotoUrl = message[@"url"];
-          chatMessage.thumbnailUrl = message[@"scaleurl"];
-          chatMessage.messageMediaType = XHBubbleMessageMediaTypePhoto;
-        case MessageServiceChatCustomerServiceMediaChat:
-          chatMessage.voicePath = message[@""];
-        default:
-          break;
-      }
-      
-      if (message[@"clientid"] == message[@"fromid"]) {
-        chatMessage.bubbleMessageType = XHBubbleMessageTypeSending;
-        chatMessage.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-      } else {
-        chatMessage.bubbleMessageType = XHBubbleMessageTypeReceiving;
-        chatMessage.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-      }
-      [chatMessages addObject:chatMessage];
-    }
-    self.messages = chatMessages;
-//      switch Int(message.messageMediaType) {
-//      case XHBubbleMessageMediaType.Voice.rawValue:
-//        chatMessage.voicePath = message.voicePath
-//        chatMessage.voiceDuration = message.voiceDuration
-//        chatMessage.messageMediaType = .Voice
-//      case XHBubbleMessageMediaType.Card.rawValue:
-//        chatMessage.cardTitle = message.cardTitle as String
-//        chatMessage.cardImage = UIImage(data: message.cardImage)
-//        chatMessage.cardContent = message.cardContent as String
-//        chatMessage.messageMediaType = .Card
-//      default:
-//        break
-//      }
-//    }
-//    let sort = NSSortDescriptor(key: "timestamp", ascending: true)
-//    chatMessages.sortUsingDescriptors([sort])
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [weakSelf.messageTableView reloadData];
-      [weakSelf scrollToBottomAnimated:NO];
-      [ZKJSTool hideHUD];
-      
-      switch (self.chatType) {
-        case ChatNewSession: {
-          NSArray *subStrings = [weakSelf.order.arrival_date componentsSeparatedByString:@"-"];
-          NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
-          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, date, weakSelf.order.dayInt];
-          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
-          break;
-        }
-        case ChatOldSession:
-        case ChatConfirmOrder:
-        case ChatCancelOrder: {
-          if (self.firtMessage) {
-            [weakSelf sendTextMessage:self.firtMessage];
-            XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
-            message.bubbleMessageType = XHBubbleMessageTypeSending;
-            message.messageMediaType = XHBubbleMessageMediaTypeText;
-            if ([JSHStorage baseInfo].avatarImage) {
-              message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-            } else {
-              message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-            }
-            
-            [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-            
-            [weakSelf addMessage:message];
-            [weakSelf finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
-          }
-          break;
-        }
-        default:
-          break;
-      }
-    });
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-  }];
-  
 //  WEAKSELF
-//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//    self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:[NSDate date]];
+//  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+//  [[ZKJSHTTPChatSessionManager sharedInstance] getChatLogWithUserID:self.senderID shopID:self.shopID fromTime:timestamp count:7 success:^(NSURLSessionDataTask *task, id responseObject) {
+//    NSMutableArray *chatMessages = [NSMutableArray array];
+//    for (NSDictionary *message in responseObject) {
+//      XHMessage *chatMessage = [XHMessage new];
+//      chatMessage.sender = message[@"fromname"];
+//      chatMessage.senderName = message[@"fromname"];
+//      NSTimeInterval timestamp = [message[@"srvtime"] doubleValue];
+//      chatMessage.timestamp = [[NSDate alloc] initWithTimeIntervalSince1970:timestamp];
+////      chatMessage.sended =
+////      chatMessage.isRead =
+//      switch ([message[@"type"] integerValue]) {
+//        case MessageServiceChatCustomerServiceTextChat:
+//          if ([message[@"childtype"] integerValue] == 0) {
+//            // 普通文本
+//            chatMessage.text = message[@"textmsg"];
+//            chatMessage.textString = message[@"textmsg"];
+//            chatMessage.messageMediaType = XHBubbleMessageMediaTypeText;
+//          } else if ([message[@"childtype"] integerValue] == 1) {
+//            // 卡片消息
+//            chatMessage.cardTitle = @"你好，帮我预定这间房";
+//            NSData *jsonData = [message[@"textmsg"] dataUsingEncoding:NSUTF8StringEncoding];
+//            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+//            NSString *urlString = [kBaseURL stringByAppendingString:json[@"image"]];
+//            NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlString]];
+//            chatMessage.cardImage = [UIImage imageWithData:imageData];
+//            NSArray *subStrings = [json[@"arrival_date"] componentsSeparatedByString:@"-"];
+//            NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
+//            NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", json[@"room_type"], date, json[@"dayNum"]];
+//            chatMessage.cardContent = content;
+//            chatMessage.messageMediaType = XHBubbleMessageMediaTypeCard;
+//          }
+//          break;
+//        case MessageServiceChatCustomerServiceImgChat:
+//          chatMessage.originPhotoUrl = message[@"url"];
+//          chatMessage.thumbnailUrl = message[@"scaleurl"];
+//          chatMessage.messageMediaType = XHBubbleMessageMediaTypePhoto;
+//        case MessageServiceChatCustomerServiceMediaChat:
+//          chatMessage.voicePath = message[@""];
+//        default:
+//          break;
+//      }
+//      
+//      if (message[@"clientid"] == message[@"fromid"]) {
+//        chatMessage.bubbleMessageType = XHBubbleMessageTypeSending;
+//        chatMessage.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+//      } else {
+//        chatMessage.bubbleMessageType = XHBubbleMessageTypeReceiving;
+//        chatMessage.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+//      }
+//      [chatMessages addObject:chatMessage];
+//    }
+//    self.messages = chatMessages;
+  
+/*
+      switch Int(message.messageMediaType) {
+      case XHBubbleMessageMediaType.Voice.rawValue:
+        chatMessage.voicePath = message.voicePath
+        chatMessage.voiceDuration = message.voiceDuration
+        chatMessage.messageMediaType = .Voice
+      case XHBubbleMessageMediaType.Card.rawValue:
+        chatMessage.cardTitle = message.cardTitle as String
+        chatMessage.cardImage = UIImage(data: message.cardImage)
+        chatMessage.cardContent = message.cardContent as String
+        chatMessage.messageMediaType = .Card
+      default:
+        break
+      }
+    }
+    let sort = NSSortDescriptor(key: "timestamp", ascending: true)
+    chatMessages.sortUsingDescriptors([sort])
+*/
+
 //    dispatch_async(dispatch_get_main_queue(), ^{
 //      [weakSelf.messageTableView reloadData];
 //      [weakSelf scrollToBottomAnimated:NO];
@@ -994,7 +953,9 @@ const CGFloat shortcutViewHeight = 45.0;
 //      
 //      switch (self.chatType) {
 //        case ChatNewSession: {
-//          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+//          NSArray *subStrings = [weakSelf.order.arrival_date componentsSeparatedByString:@"-"];
+//          NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
+//          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, date, weakSelf.order.dayInt];
 //          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
 //          break;
 //        }
@@ -1007,9 +968,9 @@ const CGFloat shortcutViewHeight = 45.0;
 //            message.bubbleMessageType = XHBubbleMessageTypeSending;
 //            message.messageMediaType = XHBubbleMessageMediaTypeText;
 //            if ([JSHStorage baseInfo].avatarImage) {
-//              message.avatar = [JSHStorage baseInfo].avatarImage;
+//              message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
 //            } else {
-//              message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+//              message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
 //            }
 //            
 //            [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
@@ -1023,7 +984,50 @@ const CGFloat shortcutViewHeight = 45.0;
 //          break;
 //      }
 //    });
-//  });
+//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//  }];
+  
+  WEAKSELF
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:[NSDate date]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [weakSelf.messageTableView reloadData];
+      [weakSelf scrollToBottomAnimated:NO];
+      [ZKJSTool hideHUD];
+      
+      switch (self.chatType) {
+        case ChatNewSession: {
+          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+          break;
+        }
+        case ChatOldSession:
+        case ChatConfirmOrder:
+        case ChatCancelOrder: {
+          if (self.firtMessage) {
+            [weakSelf sendTextMessage:self.firtMessage];
+            XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
+            message.bubbleMessageType = XHBubbleMessageTypeSending;
+            message.messageMediaType = XHBubbleMessageMediaTypeText;
+            if ([JSHStorage baseInfo].avatarImage) {
+              message.avatar = [JSHStorage baseInfo].avatarImage;
+            } else {
+              message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+            }
+            
+            [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+            
+            [weakSelf addMessage:message];
+            [weakSelf finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
+          }
+          break;
+        }
+        default:
+          break;
+      }
+    });
+  });
 }
 
 //// 用户发送预定单给商家

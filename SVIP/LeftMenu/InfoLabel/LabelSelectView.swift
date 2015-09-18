@@ -26,7 +26,7 @@ class LabelSelectView: UIView {
     super.init(frame: CGRectZero)
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     edit = false
     dataArray = NSMutableArray()
     super.init(coder: aDecoder)
@@ -86,7 +86,7 @@ class LabelSelectView: UIView {
   private func setItemsPosition(button: LabelButton) {
     let buttonSize = CGSizeMake(button.frame.width, kButtonHeight)
     var buttonOrigin = CGPointZero
-    if let lastObject = subviews.last as? UIView {
+    if let lastObject = subviews.last {
       let lastObjectMaxX = CGRectGetMaxX(lastObject.frame)
       if lastObjectMaxX + buttonSize.width + 2 * kMarginW > self.bounds.width {//超过宽度
         buttonOrigin.x = kMarginW

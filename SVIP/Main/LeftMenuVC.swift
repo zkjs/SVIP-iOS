@@ -36,21 +36,21 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     loadData()
     tableView?.reloadData()
   }
-
+  
   func loadData() {
     let path = NSBundle.mainBundle().pathForResource("LeftMenu", ofType: "plist")
     dataArray = NSArray(contentsOfFile:path!)
   }
-
+  
   func setUI() {
     if let baseInfo = JSHStorage.baseInfo() {
       if baseInfo.avatarImage != nil {
         avatar .setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
       }else {
         if let userid = JSHStorage.baseInfo().userid {
-            let urlStr = kBaseURL.stringByAppendingPathComponent("uploads/users/\(userid).jpg")
-            let url = NSURL(string: urlStr)
-            avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RefreshCached | SDWebImageOptions.RetryFailed)
+          let url = NSURL(string: kBaseURL)
+          url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
+          avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RefreshCached, SDWebImageOptions.RetryFailed])
         }
       }
       
@@ -79,7 +79,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as? UITableViewCell
+    var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier")
     if cell == nil {
       cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: Identifier)
     }
@@ -104,7 +104,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
           navi.pushViewController(vc, animated: true)
         }
       case .InRoomCheckin:
-        println(".InRoomCheckin")
+        print(".InRoomCheckin")
         let vc = SkipCheckInSettingViewController()
         if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
           self.sideMenuViewController.hideMenuViewController()
@@ -122,12 +122,10 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
           self.sideMenuViewController.hideMenuViewController()
           navi.pushViewController(vc, animated: true)
         }
-      default:
-        break
       }
     } else {
-      println("在枚举LeftButton中未找到\(indexPath.row)")
+      print("在枚举LeftButton中未找到\(indexPath.row)")
     }
   }
-
+  
 }

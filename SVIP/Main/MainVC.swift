@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, CLLocationManagerDelegate, AMapSearchDelegate, CBCentralManagerDelegate {
+class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDelegate, CLLocationManagerDelegate/*, AMapSearchDelegate*/, CBCentralManagerDelegate {
   
   @IBOutlet weak var settingsButton: UIButton!
   
@@ -29,7 +29,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   let locationManager = CLLocationManager()
 
   var beaconRegions = [String: [String: String]]()
-  var locationSearch = AMapSearchAPI()
+//  var locationSearch = AMapSearchAPI()
   var bluetoothManager = CBCentralManager()
   
   // MARK: - View Lifecycle
@@ -51,8 +51,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
 //    testGPSBasedNotification()
     
-    println("userid: \(JSHAccountManager.sharedJSHAccountManager().userid)")
-    println("token: \(JSHAccountManager.sharedJSHAccountManager().token)")
+    print("userid: \(JSHAccountManager.sharedJSHAccountManager().userid)")
+    print("token: \(JSHAccountManager.sharedJSHAccountManager().token)")
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -62,12 +62,12 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     //daifengyi
     //应用于已注册用户在新客户端登陆情况
     if let image = JSHStorage.baseInfo().avatarImage {
-      settingsButton.setImage(JSHStorage.baseInfo().avatarImage, forState: .Normal)
+      settingsButton.setImage(image, forState: .Normal)
     }else {
       let userid = JSHStorage.baseInfo().userid
-      let urlStr = kBaseURL.stringByAppendingPathComponent("uploads/users/\(userid).jpg")
-      let url = NSURL(string: urlStr)
-      settingsButton .sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: nil, options: SDWebImageOptions.RetryFailed | SDWebImageOptions.LowPriority)
+      let url = NSURL(string: kBaseURL)
+      url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
+      settingsButton .sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: nil, options: [SDWebImageOptions.RetryFailed, SDWebImageOptions.LowPriority])
     }
     
     setupLeftRightButtons()
@@ -92,7 +92,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   // MARK: - CRMotionView Delegate
   
   func scrollViewDidScrollToOffset(offset: CGPoint) {
-    println(offset)
+    print(offset)
   }
   
   // MARK: - Private Method
@@ -133,7 +133,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   private func setupMotionView() {
     let motionView = YXTMotionView(frame: UIScreen.mainScreen().bounds, image: UIImage(named: "星空中心"))
-    println("Bounds: \(UIScreen.mainScreen().bounds)")
+    print("Bounds: \(UIScreen.mainScreen().bounds)")
     motionView.delegate = self
     motionView.motionEnabled = true
     motionView.scrollIndicatorEnabled = false
@@ -163,7 +163,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     
     setupBeaconMonitor()
     setupGPSMonitor()
-    println("setupCoreLocationService")
+    print("setupCoreLocationService")
   }
   
   private func removeAllMonitoredRegions() {
@@ -179,39 +179,38 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     beaconRegions = StorageManager.sharedInstance().beaconRegions()
     for key in beaconRegions.keys {
       if let beaconInfo = beaconRegions[key] {
-        let shopID = beaconInfo["shopid"]
         let uuid = beaconInfo["uuid"]
         let majorString = beaconInfo["major"]
         let minorString = beaconInfo["minor"]
         let identifier = key
         var major = 0
         var minor = 0
-        if let majorValue = majorString?.toInt() {
+        if let majorValue = Int((majorString)!) {
           major = majorValue
         }
-        if let minorValue = minorString?.toInt() {
+        if let minorValue = Int((minorString)!) {
           minor = minorValue
         }
         
         if minor == 0 && major == 0 {
-          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
+          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
           locationManager.startMonitoringForRegion(beaconRegion)
         } else if minor == 0 {
-          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
+          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, major: CLBeaconMajorValue(major), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
           locationManager.startMonitoringForRegion(beaconRegion)
         } else {
-          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
+          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
           beaconRegion.notifyOnExit = true
           beaconRegion.notifyOnEntry = true
           locationManager.startMonitoringForRegion(beaconRegion)
         }
       }
     }
-    println("已监控的Beacon区域:\(locationManager.monitoredRegions)")
+    print("已监控的Beacon区域:\(locationManager.monitoredRegions)")
   }
   
   private func setupGPSMonitor() {
@@ -232,20 +231,20 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let identifier = "DetermineCurrentRegionState"
       var major = 0
       var minor = 0
-      if let majorValue = majorString?.toInt() {
+      if let majorValue = Int((majorString)!) {
         major = majorValue
       }
-      if let minorValue = minorString?.toInt() {
+      if let minorValue = Int((minorString)!) {
         minor = minorValue
       }
       if minor == 0 && major == 0 {
-        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), identifier: identifier)
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, identifier: identifier)
         locationManager.requestStateForRegion(beaconRegion)
       } else if minor == 0 {
-        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), identifier: identifier)
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, major: CLBeaconMajorValue(major), identifier: identifier)
         locationManager.requestStateForRegion(beaconRegion)
       } else {
-        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!), major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
+        let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
         locationManager.requestStateForRegion(beaconRegion)
       }
     }
@@ -297,7 +296,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     let traceTime = dateFormatter.stringFromDate(NSDate())
     ZKJSHTTPSessionManager.sharedInstance().postGPSWithUserID(userID, token: token, longitude: "\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -320,9 +319,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //    checkinSubLabel.hidden = false
     
     let beacon = StorageManager.sharedInstance().lastBeacon()
-    println("Last Beacon: \(beacon)")
+    print("Last Beacon: \(beacon)")
     let order = StorageManager.sharedInstance().lastOrder()
-    println("Last Order: \(order)")
+    print("Last Order: \(order)")
     
     if beacon != nil {
       regionLabel.text = beacon!["locdesc"]
@@ -331,7 +330,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
     
     // 免前台
-    if order?.nologin.toInt() == 0 {
+    if Int((order?.nologin)!) == 0 {
       checkinLabel.setTitle(" 免前台服务已经推出", forState: .Normal)
       checkinSubLabel.text = "立即了解"
     } else {
@@ -344,8 +343,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     switch ruleType {
     case .InRegion_HasOrder_Checkin:  //在酒店-已入住
       var startDateString = order?.arrival_date
-      var endDateString = order?.departure_date
-      var dateFormatter = NSDateFormatter()
+      let endDateString = order?.departure_date
+      let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "yyyy-MM-dd"
       let startDate = dateFormatter.dateFromString(startDateString!)
       let endDate = dateFormatter.dateFromString(endDateString!)
@@ -379,8 +378,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_HasOrder_UnCheckin:  //在酒店-未入住
       var startDateString = order?.arrival_date
-      var endDateString = order?.departure_date
-      var dateFormatter = NSDateFormatter()
+      let endDateString = order?.departure_date
+      let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "yyyy-MM-dd"
       let startDate = dateFormatter.dateFromString(startDateString!)
       let endDate = dateFormatter.dateFromString(endDateString!)
@@ -395,7 +394,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
-          if order?.nologin.toInt() == 0 {
+          if Int((order?.nologin)!) == 0 {
             statusLabel.setTitle(" 酒店将为您办理入住手续", forState: .Normal)
           } else {
             statusLabel.setTitle(" 已到达酒店，请办理入住手续", forState: .Normal)
@@ -426,8 +425,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:  // 不在酒店-未入住
       var startDateString = order?.arrival_date
-      var endDateString = order?.departure_date
-      var dateFormatter = NSDateFormatter()
+      let endDateString = order?.departure_date
+      let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "yyyy-MM-dd"
       let startDate = dateFormatter.dateFromString(startDateString!)
       let endDate = dateFormatter.dateFromString(endDateString!)
@@ -465,15 +464,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
       tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
     }
-    println("Update Smart Panel")
+    print("Update Smart Panel")
   }
   
   private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
     let shopID = beacon["shopid"]
     let locid = beacon["locid"]
-    let uuid = beacon["uuid"]
-    let major = beacon["major"]
-    let minor = beacon["minor"]
+//    let uuid = beacon["uuid"]
+//    let major = beacon["major"]
+//    let minor = beacon["minor"]
     #if DEBUG
       let appid = "HOTELVIP_DEBUG"
       #else
@@ -501,9 +500,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
     let shopID = beacon["shopid"]
     let locid = beacon["locid"]
-    let uuid = beacon["uuid"]
-    let major = beacon["major"]
-    let minor = beacon["minor"]
+//    let uuid = beacon["uuid"]
+//    let major = beacon["major"]
+//    let minor = beacon["minor"]
     #if DEBUG
       let appid = "HOTELVIP_DEBUG"
       #else
@@ -578,7 +577,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   @IBAction func tappedStatusButton(sender: AnyObject) {
-    println("Tap Status Button")
+    print("Tap Status Button")
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
@@ -613,21 +612,27 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   @IBAction func tappedCheckinButton(sender: AnyObject) {
     let order = StorageManager.sharedInstance().lastOrder()
-    println("Last Order: \(order)")
+    print("Last Order: \(order)")
     
-    if order?.nologin.toInt() == 0 {
-      println("立即了解免前台服务")
+    if Int((order?.nologin)!) == 0 {
+      print("立即了解免前台服务")
     } else {
-      println("查看免前台特权")
+      print("查看免前台特权")
     }
     
 //    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
 //    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
 //    navigationController?.pushViewController(vc, animated: true)
+    
+    let vc = SkipCheckInSettingViewController()
+    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+      self.sideMenuViewController.hideMenuViewController()
+      navi.pushViewController(vc, animated: true)
+    }
   }
   
   @IBAction func tappedMainButton(sender: AnyObject) {
-    println("Tap Main Button")
+    print("Tap Main Button")
     let beacon = StorageManager.sharedInstance().lastBeacon()
     let order = StorageManager.sharedInstance().lastOrder()
     
@@ -654,7 +659,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   @IBAction func longPressedMainButton(sender: AnyObject) {
     if sender.state == UIGestureRecognizerState.Began {
-      println("Long Press Main Button.")
+      print("Long Press Main Button.")
       
       let beacon = StorageManager.sharedInstance().lastBeacon()
       let order = StorageManager.sharedInstance().lastOrder()
@@ -709,36 +714,37 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   // MARK: - CLLocationManagerDelegate
   
-  func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+  func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status != CLAuthorizationStatus.AuthorizedAlways {
 //      let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
 //      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
 //      presentViewController(alertView, animated: true, completion: nil)
     }
-    println("didChangeAuthorizationStatus: \(status.rawValue)")
+    print("didChangeAuthorizationStatus: \(status.rawValue)")
   }
   
-  func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-    println("Error while updating location " + error.localizedDescription)
+  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    print("Error while updating location " + error.localizedDescription)
   }
   
-  func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     locationManager.stopMonitoringSignificantLocationChanges()
-    let coordinate = manager.location.coordinate
-    let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
-    regeoRequest.searchType = AMapSearchType.ReGeocode
-    regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
-    regeoRequest.radius = 10000
-    regeoRequest.requireExtension = true
-    println("regeoRequest :\(regeoRequest)")
-    locationSearch.AMapReGoecodeSearch(regeoRequest)
+    let coordinate = manager.location!.coordinate
+    
+//    let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
+//    regeoRequest.searchType = AMapSearchType.ReGeocode
+//    regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
+//    regeoRequest.radius = 10000
+//    regeoRequest.requireExtension = true
+//    print("regeoRequest :\(regeoRequest)")
+//    locationSearch.AMapReGoecodeSearch(regeoRequest)
     
     postGPSLocation(coordinate)
   }
   
-  func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
+  func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
     if region.identifier == "DetermineCurrentRegionState" {
-      println("didDetermineState: \(state.rawValue)")
+      print("didDetermineState: \(state.rawValue)")
       if state != CLRegionState.Inside {
         StorageManager.sharedInstance().updateLastBeacon(nil)
       }
@@ -746,18 +752,18 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
   }
   
-  func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+  func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
     if region is CLBeaconRegion {
       didEnterBeaconRegion(region as! CLBeaconRegion)
     }
-    println("didEnterRegion: \(region)")
+    print("didEnterRegion: \(region)")
   }
   
-  func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+  func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
     if region is CLBeaconRegion {
       didExitBeaconRegion(region as! CLBeaconRegion)
     }
-    println("didExitRegion: \(region)")
+    print("didExitRegion: \(region)")
   }
   
 //  func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
@@ -767,42 +773,42 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   // MARK: - CBCentralManagerDelegate
   
-  func centralManagerDidUpdateState(central: CBCentralManager!) {
+  func centralManagerDidUpdateState(central: CBCentralManager) {
     switch central.state {
     case .PoweredOn:
-      println(".PoweredOn")
+      print(".PoweredOn")
     case .PoweredOff:
-      println(".PoweredOff")
+      print(".PoweredOff")
       let alertView = UIAlertController(title: "请打开蓝牙", message: "我们将为您提供免登记办理入住手续等贴心服务需要使用蓝牙功能", preferredStyle: .Alert)
       alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
       presentViewController(alertView, animated: true, completion: nil)
     case .Resetting:
-      println(".Resetting")
+      print(".Resetting")
     case .Unauthorized:
-      println(".Unauthorized")
+      print(".Unauthorized")
     case .Unknown:
-      println(".Unknown")
+      print(".Unknown")
     case .Unsupported:
-      println(".Unsupported")
+      print(".Unsupported")
     }
   }
   
-  // MARK: - AMapSearchDelegate
-  
-  func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
-    
-    if (response.regeocode != nil) {
-      var title = response.regeocode.addressComponent.city
-      var length: Int{
-        return count(title)
-      }
-      
-      if (length == 0){
-        title = response.regeocode.addressComponent.province
-      }
-      println("Location: \(response.regeocode.formattedAddress)")
-    }
-  }
+//  // MARK: - AMapSearchDelegate
+//  
+//  func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
+//    
+//    if (response.regeocode != nil) {
+//      var title = response.regeocode.addressComponent.city
+//      var length: Int{
+//        return title.characters.count
+//      }
+//      
+//      if (length == 0){
+//        title = response.regeocode.addressComponent.province
+//      }
+//      print("Location: \(response.regeocode.formattedAddress)")
+//    }
+//  }
   
   // MARK: - UINavigationControllerDelegate
   

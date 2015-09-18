@@ -50,25 +50,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func applicationWillResignActive(application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    println("applicationWillResignActive")
+    print("applicationWillResignActive")
   }
 
   func applicationDidEnterBackground(application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     ZKJSTCPSessionManager.sharedInstance().deinitNetworkCommunication()
-    println("applicationDidEnterBackground")
+    print("applicationDidEnterBackground")
   }
 
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-    println("applicationWillEnterForeground")
+    print("applicationWillEnterForeground")
   }
 
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    println("applicationDidBecomeActive")
+    print("applicationDidBecomeActive")
     UMSocialSnsService.applicationDidBecomeActive()//UM
     
 //    println(window?.rootViewController)
@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    println("applicationWillTerminate")
+    print("applicationWillTerminate")
   }
   
   // MARK: - Local Notification
@@ -106,15 +106,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     self.deviceToken = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
     self.deviceToken = self.deviceToken.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
     JSHStorage.saveDeviceToken(self.deviceToken)
-    println("Device Token: \(self.deviceToken)")
+    print("Device Token: \(self.deviceToken)")
   }
   
   func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-    println(error)
+    print(error)
   }
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-    println(userInfo)
+    print(userInfo)
     
     if let type = userInfo["type"] as? String {
       if type == "newMessage" {
@@ -122,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
           let alertView = UIAlertController(title: "新消息", message: "您有新消息", preferredStyle: .Alert)
           alertView.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
           alertView.addAction(UIAlertAction(title: "查看", style: .Default, handler: { (alertAction) -> Void in
-            println("查看")
+            print("查看")
             let chatVC = JSHChatVC(chatType: .OldSession)
             chatVC.shopID = shopID
             let navController = UINavigationController(rootViewController: chatVC)
@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
             }
           } else {
             // 第一次存储该变量
-            var newShopMessageBadge = [shopID: 1]
+            let newShopMessageBadge = [shopID: 1]
             StorageManager.sharedInstance().updateShopMessageBadge(newShopMessageBadge)
           }
         }
@@ -154,10 +154,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     
     if let childType = userInfo["childType"] as? NSNumber {
       if childType.integerValue == MessageUserDefineType.Payment.rawValue {
-        println("Payment is ready...")
+        print("Payment is ready...")
         let content = userInfo["content"] as! String
         let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
+        let dict = (try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)) as! [String: String]
         let room_type = dict["room_type"]
         let remark = dict["remark"]
         let room_rate = dict["room_rate"]
@@ -168,7 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         let reservation_no = dict["reservation_no"]
         let rooms = dict["rooms"]
         let status = dict["status"]
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let startDate = dateFormatter.dateFromString(arrival_date!)
         let endDate = dateFormatter.dateFromString(departure_date!)
@@ -201,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       } else if childType.integerValue == MessageUserDefineType.ShopConfirmOrder.rawValue {
         let content = userInfo["content"] as! String
         let data = content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        let dict = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: nil) as! [String: String]
+        let dict = (try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)) as! [String: String]
         let reservation_no = dict["orderId"]
         let shopid = dict["shopId"]
         let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopid!)
@@ -210,7 +210,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         alertView.addAction(UIAlertAction(title: "查看", style: .Default, handler: { [unowned self] (action: UIAlertAction!) -> Void in
           let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
           let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
-          vc.shopID = shopid!.toInt()!
+          vc.shopID = Int(shopid!)!
           vc.reservation_no = reservation_no!
           if let rootVC = self.window?.rootViewController as? JSSideMenu {
             if let nv = rootVC.contentViewController as? UINavigationController {
@@ -244,24 +244,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     
     let fetchStart = NSDate()
     ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      println("Background Fetch: \(responseObject)")
+      print("Background Fetch: \(responseObject)")
       let shops = responseObject as! [(NSDictionary)]
       StorageManager.sharedInstance().saveShopsInfo(shops)
       completionHandler(.NewData)
       
       let fetchEnd = NSDate()
-      println("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+      print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         completionHandler(.Failed)
         let fetchEnd = NSDate()
-        println("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
     }
   }
   
   // MARK: - TCPSessionManagerDelegate
   func didOpenTCPSocket() {
     // App在后台，只需要发一个进入区域的包
-    println("didOpenTCPSocket")
+    print("didOpenTCPSocket")
     if NSUserDefaults.standardUserDefaults().boolForKey("ShouldSendEnterBeaconRegionPacket") {
       if let beaconRegion = StorageManager.sharedInstance().lastBeacon() {
         sendEnterRegionPacketWithBeacon(beaconRegion)
@@ -302,13 +302,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
   
     //UM
-  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
     let urlStr = url.absoluteString
-    if urlStr!.hasPrefix("SVIPPAY") {
-        AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { ([NSObject : AnyObject]!) -> Void in
+    if urlStr.hasPrefix("SVIPPAY") {
+        AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { (_: [NSObject : AnyObject]!) -> Void in
             // 从本地支付宝App跳回
         })
-    }else if urlStr!.hasPrefix(WXAppId) {
+    }else if urlStr.hasPrefix(WXAppId) {
         return UMSocialSnsService.handleOpenURL(url)
     }
         return true
@@ -335,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     DDLog.addLogger(DDTTYLogger.sharedInstance())
     
     let logFileManager = CompressingLogFileManager(logsDirectory: LogManager.sharedInstance().logsDirectory())
-    println(logFileManager.logsDirectory())
+    print(logFileManager.logsDirectory())
     let fileLogger = DDFileLogger(logFileManager: logFileManager)
     fileLogger.maximumFileSize = 1024 * 512
 //    fileLogger.rollingFrequency = 60 * 60 * 24
@@ -353,17 +353,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
 
   func setupNotification() {
-    UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+    UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
     UIApplication.sharedApplication().registerForRemoteNotifications()
   }
   
   func setupTCPSessionManager() {
     ZKJSTCPSessionManager.sharedInstance().delegate = self
-    println("setupTCPSessionManager")
+    print("setupTCPSessionManager")
   }
   
   func fetchShops() {
-    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: {  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let shops = responseObject as! [(NSDictionary)]
       StorageManager.sharedInstance().saveShopsInfo(shops)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

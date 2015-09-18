@@ -34,10 +34,10 @@ class BookRoomCell: UITableViewCell {
 
         let baseUrl = "http://120.25.241.196/"
         if let goodsImage = myGoods.image {
-          let urlStr = baseUrl .stringByAppendingString(goodsImage)
           let placeholderImage = UIImage(named: "星空中心")
-          let url = NSURL(string: urlStr)
-          roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+          let url = NSURL(string: baseUrl)
+          url?.URLByAppendingPathComponent(goodsImage)
+          roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
         }
       }
     }

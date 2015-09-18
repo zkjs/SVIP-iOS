@@ -27,7 +27,7 @@ class BookConfirmVC: UIViewController {
     super.init(nibName: "BookConfirmVC", bundle: nil)
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
   
@@ -80,10 +80,10 @@ class BookConfirmVC: UIViewController {
     
     let baseUrl = kBaseURL
     if let goodsImage = goods?.image {
-      let urlStr = baseUrl .stringByAppendingString(goodsImage)
       let placeholderImage = UIImage(named: "星空中心")
-      let url = NSURL(string: urlStr)
-      roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+      let url = NSURL(string: baseUrl)
+      url?.URLByAppendingPathComponent(goodsImage)
+      roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
     }
     
     if let preference = order.remark {
@@ -98,8 +98,8 @@ class BookConfirmVC: UIViewController {
   }
   
   override func updateViewConstraints() {
-    var screenWidth = UIScreen.mainScreen().bounds.size.width
-    var marginWidth = (Double(screenWidth) - Double(buttonCount) * 70.0) / Double(buttonCount + 1)
+    let screenWidth = UIScreen.mainScreen().bounds.size.width
+    let marginWidth = (Double(screenWidth) - Double(buttonCount) * 70.0) / Double(buttonCount + 1)
     for constrainst in buttonMarginConstraintArray {
       constrainst.constant = CGFloat(marginWidth)
     }
@@ -108,8 +108,8 @@ class BookConfirmVC: UIViewController {
   
   private func updateSubviews() {
     if inDate.date == nil {
-      var calender = NSCalendar .currentCalendar()
-      var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: NSDate())
+      let calender = NSCalendar .currentCalendar()
+      let components = calender .components(([.Year, .Month, .Day]), fromDate: NSDate())
       inDate.date = calender .dateFromComponents(components)
     }
     
@@ -129,11 +129,16 @@ class BookConfirmVC: UIViewController {
       let danjia = (str as NSString).integerValue
       let total = danjia * dayInt
 
-      let dic = NSDictionary(objectsAndKeys: UIFont .systemFontOfSize(18) , NSFontAttributeName, UIColor.orangeColor(), NSForegroundColorAttributeName)
-      let attriStr = NSAttributedString(string: "\(total)", attributes: dic as [NSObject : AnyObject])
+      let dic: [String: AnyObject] = [
+        NSFontAttributeName: UIFont.systemFontOfSize(18),
+        NSForegroundColorAttributeName: UIColor.orangeColor()
+      ]
+      let attriStr = NSAttributedString(string: "\(total)", attributes: dic)
       
-      let dic1 = NSDictionary(objectsAndKeys: UIFont .systemFontOfSize(13) , NSFontAttributeName)
-      var mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1 as [NSObject : AnyObject])
+      let dic1: [String: AnyObject] = [
+        NSFontAttributeName: UIFont.systemFontOfSize(13)
+      ]
+      let mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1)
       
       mutAttriStr .appendAttributedString(attriStr)
       price.attributedText = mutAttriStr

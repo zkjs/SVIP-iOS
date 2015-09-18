@@ -147,10 +147,16 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     
     
     //设置amountLabel
-    let dic = NSDictionary(objectsAndKeys: UIFont .systemFontOfSize(18) , NSFontAttributeName, UIColor.orangeColor(), NSForegroundColorAttributeName)
-    let attriStr = NSAttributedString(string: "\(total)", attributes: dic as [NSObject : AnyObject])
-    let dic1 = NSDictionary(objectsAndKeys: UIFont .systemFontOfSize(13) , NSFontAttributeName)
-    var mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1 as [NSObject : AnyObject])
+    let dic: [String: AnyObject] = [
+      NSFontAttributeName: UIFont.systemFontOfSize(18),
+      NSForegroundColorAttributeName: UIColor.orangeColor()
+    ]
+    let attriStr = NSAttributedString(string: "\(total)", attributes: dic)
+    
+    let dic1: [String: AnyObject] = [
+      NSFontAttributeName: UIFont.systemFontOfSize(13)
+    ]
+    let mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1)
     mutAttriStr .appendAttributedString(attriStr)
     amountLabel.attributedText = mutAttriStr
     //设置roomTypeLabel
@@ -171,7 +177,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     roomTagView.tagCornerRadius = 12.0
     roomTagView.tags.addObjectsFromArray(roomTags)
     roomTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
-      println(self.roomTagView.seletedTags)
+      print(self.roomTagView.seletedTags)
     }
   }
   
@@ -181,7 +187,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     serviceTagView.tagCornerRadius = 12.0
     serviceTagView.tags.addObjectsFromArray(serviceTags)
     serviceTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
-      println(self.serviceTagView.seletedTags)
+      print(self.serviceTagView.seletedTags)
     }
   }
   
@@ -192,7 +198,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     aliOrder.tradeNO = AbookOrder.reservation_no
     aliOrder.productName = AbookOrder.room_type
     aliOrder.productDescription = "needtoknow"
-    if let rooms = AbookOrder.rooms.toInt() {
+    if let rooms = Int(AbookOrder.rooms) {
       let amount = (AbookOrder.room_rate as NSString).doubleValue * Double(rooms)
       aliOrder.amount = NSString(format:"%.2f", amount) as String
     }
@@ -209,7 +215,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     
     //将商品信息拼接成字符串
     let orderSpec = aliOrder.description
-    print(orderSpec)
+    print(orderSpec, terminator: "")
     
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
     let signer = CreateRSADataSigner(privateKey)
@@ -264,7 +270,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     //设置入住人
     let users = NSMutableArray()
     for var i = 0 ; i < roomCount; i++ {
-      if self.nameTextFields[i].text.isEmpty {//判断入住人信息是否已选择
+      if self.nameTextFields[i].text!.isEmpty {//判断入住人信息是否已选择
         ZKJSTool.showMsg("请选择入住人")
         return
       }else {
@@ -373,7 +379,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Table view delegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    println(indexPath)
+    print(indexPath)
     
     if indexPath.section == kReceiptSection && indexPath.row == kReceiptRow {  // 房型
       let vc = ReceiptTVC()

@@ -13,9 +13,9 @@ extension NSDate {
     var startingDate: NSDate? = nil
     var resultDate: NSDate? = nil
     let calendar = NSCalendar.currentCalendar()
-    calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &startingDate, interval: nil, forDate: fromDate)
-    calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &resultDate, interval: nil, forDate: toDate)
-    let dateComponets = calendar.components(NSCalendarUnit.DayCalendarUnit, fromDate: startingDate!, toDate: resultDate!, options: NSCalendarOptions.allZeros)
+    calendar.rangeOfUnit(.Day, startDate: &startingDate, interval: nil, forDate: fromDate)
+    calendar.rangeOfUnit(.Day, startDate: &resultDate, interval: nil, forDate: toDate)
+    let dateComponets = calendar.components(.Day, fromDate: startingDate!, toDate: resultDate!, options: NSCalendarOptions())
     return dateComponets.day
   }
 }

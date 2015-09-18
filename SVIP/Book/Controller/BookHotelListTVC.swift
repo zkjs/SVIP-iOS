@@ -12,7 +12,7 @@ class BookHotelListCell: UITableViewCell {
   
   var hotelData: Hotel? {
     didSet {
-      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
+      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
       hotel.text = hotelData!.fullname
     }
   }
@@ -34,7 +34,7 @@ class BookHotelListCell: UITableViewCell {
   }
 }
 
-enum HotelListStyle: Int, Printable {
+enum HotelListStyle: Int, CustomStringConvertible {
   case Booking
   case PhoneCall
   

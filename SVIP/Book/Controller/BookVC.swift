@@ -33,7 +33,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     super.init(nibName: "BookVC", bundle: nibBundleOrNil)
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
   
@@ -101,7 +101,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     if keyString == "全部" {
       return NSMutableArray(array: dataArray)
     }
-    var mutArr = NSMutableArray()
+    let mutArr = NSMutableArray()
     for tempObject in dataArray {
       let goods = tempObject as! RoomGoods
       if goods.room == keyString {
@@ -112,9 +112,9 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   override func updateViewConstraints() {
-    var buttonCount = layoutConstaintArray.count
-    var screenWidth = UIScreen.mainScreen().bounds.size.width
-    var marginWidth = (Double(screenWidth) - Double(buttonCount) * 30.0) / Double(layoutConstaintArray.count + 1)
+    let buttonCount = layoutConstaintArray.count
+    let screenWidth = UIScreen.mainScreen().bounds.size.width
+    let marginWidth = (Double(screenWidth) - Double(buttonCount) * 30.0) / Double(layoutConstaintArray.count + 1)
     for constrainst in layoutConstaintArray {
       constrainst.constant = CGFloat(marginWidth)
     }
@@ -188,7 +188,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   
   func searchMap(sender: UIView) {
     //jump
-    println("jump to map VC")
+    print("jump to map VC")
   }
 //MARK:- TABLEVIEW
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {

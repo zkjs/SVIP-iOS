@@ -21,7 +21,7 @@ class InvoiceEditViewController: UIViewController {
     super.init(nibName: "InvoiceEditViewController", bundle: nil)
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   convenience init() {
@@ -40,7 +40,7 @@ class InvoiceEditViewController: UIViewController {
   }
   
   @IBAction func save(sender: UIButton) {
-    if invoice.text.isEmpty {
+    if invoice.text!.isEmpty {
       ZKJSTool.showMsg("请填写内容")
       return
     }

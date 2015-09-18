@@ -75,12 +75,12 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Public
   
   func done() {
-    if headerView.textField.text.isEmpty {
+    if headerView.textField.text!.isEmpty {
       ZKJSTool.showMsg("请填写内容")
       return
     }
     
-    selection(headerView.textField.text)
+    selection(headerView.textField.text!)
     navigationController?.popViewControllerAnimated(true)
     
     for dic in self.dataArray {

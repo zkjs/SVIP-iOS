@@ -13,7 +13,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   let Identifier = "reuseIdentifier"
   let textArray: Array<Array<String>>
   //MARK:- Init
-  required override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+  required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     let path = NSBundle.mainBundle() .pathForResource("SettingTable", ofType: "plist")
     textArray = NSArray(contentsOfFile: path!) as! Array
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -25,13 +25,11 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     super.init(style: style)
   }
 
-  required init!(coder aDecoder: NSCoder!) {
+  required init!(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
   }
   //MARK:- Life Cycle
   func loadData() {
-    let userId = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
     localBaseInfo = JSHStorage.baseInfo()
   }
   
@@ -67,7 +65,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier(Identifier) as? UITableViewCell
+    var cell = tableView.dequeueReusableCellWithIdentifier(Identifier)
     if cell == nil {
       cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: Identifier)
     }
@@ -94,7 +92,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
           cell?.detailTextLabel?.text = localBaseInfo?.username
         }
       case 3:
-        println()
+        print("")
         if localBaseInfo?.sex != nil {
           cell?.detailTextLabel?.text = localBaseInfo?.sex
         }
@@ -209,17 +207,17 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
 
   //MARK:- UIImagePickerControllerDelegate
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-    let dic = editingInfo
-    var imageData = UIImageJPEGRepresentation(image, 1.0)
+//    let dic = editingInfo
+    var imageData = UIImageJPEGRepresentation(image, 1.0)!
     var i = 0
     while imageData.length / 1024 > 80 {
-      var persent = CGFloat(100 - i++) / 100.0
-      imageData = UIImageJPEGRepresentation(image, persent)
+      let persent = CGFloat(100 - i++) / 100.0
+      imageData = UIImageJPEGRepresentation(image, persent)!
     }
     ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         if dic["set"]?.boolValue == true {
-          var baseInfo = JSHStorage.baseInfo()
+          let baseInfo = JSHStorage.baseInfo()
           baseInfo.avatarImage = UIImage(data: imageData)
           JSHStorage.saveBaseInfo(baseInfo)
           picker .dismissViewControllerAnimated(true, completion: { () -> Void in

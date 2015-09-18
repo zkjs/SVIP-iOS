@@ -5,7 +5,7 @@ target 'SVIP' do
   pod 'HexColors'
   pod 'JCTagListView'
   pod 'AMapSearch'
-  pod 'CocoaLumberjack'
+  pod 'CocoaLumberjack', :inhibit_warnings => true
 #  pod 'MagicalRecord'
   pod 'SKTagView', :git => 'https://github.com/hanton/SKTagView', :branch => 'master'
   pod 'MIBadgeButton', :inhibit_warnings => true
@@ -24,7 +24,7 @@ target 'SVIP' do
   pod 'AFNetworking'
   pod 'SSKeychain', '~> 1.2.3'
   pod 'SDWebImage', '~> 3.7'
-  pod 'JTSImageViewController'
+  pod 'JTSImageViewController', :inhibit_warnings => true
   pod 'RESideMenu', '~> 4.0.7'
 end
 

@@ -33,7 +33,7 @@ class BookingOrderDetailVC: UIViewController {
     super.init(nibName: nil, bundle: nil)
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
@@ -53,13 +53,11 @@ class BookingOrderDetailVC: UIViewController {
     
     var startDateString = order.arrival_date
     var endDateString = order.departure_date
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(startDateString)
     let endDate = dateFormatter.dateFromString(endDateString)
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
-    let status = order.status
-    let rooms = order.rooms
     let createdDate = order.created
     
     nameLabel.text = order.fullname
@@ -85,7 +83,7 @@ class BookingOrderDetailVC: UIViewController {
   
   func setupTagView(tags: [String]) {
     tagView.backgroundColor = UIColor(hexString: "F4F4F3")
-    tagView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    tagView.translatesAutoresizingMaskIntoConstraints = false
     tagView.padding = UIEdgeInsetsMake(8.0, 30.0, 8.0, 30.0)
     tagView.insets = 25
     tagView.lineSpace = 10

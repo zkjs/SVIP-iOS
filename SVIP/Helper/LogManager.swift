@@ -18,7 +18,7 @@ class LogManager: NSObject {
   }
   
   func logsDirectory() -> String {
-    var documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+    let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
     let path = documentDirectory.stringByAppendingPathComponent("Logs")
     return path
   }

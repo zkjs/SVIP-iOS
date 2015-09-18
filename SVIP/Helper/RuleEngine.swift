@@ -27,7 +27,7 @@ class RuleEngine: NSObject {
   }
   
   func getRuleType(order: BookOrder?, beacon: [String: String]?) -> RuleType {
-    if let beaconInfo = beacon {
+    if let _ = beacon {
       // 在Beacon区域
       if let orderInfo = order {
         // 有订单

@@ -24,7 +24,6 @@ class BookDateButton: UIButton {
     get {
       let formatter = NSDateFormatter()
       formatter.dateFormat = "yyyy-MM-dd"
-      let str: String?
       if let myDate = self.date {
         return formatter .stringFromDate(myDate)
       }else {

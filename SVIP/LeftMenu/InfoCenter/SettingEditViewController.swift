@@ -25,7 +25,7 @@ class SettingEditViewController: UIViewController {
     super.init(nibName: "SettingEditViewController", bundle: nil)
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
@@ -79,7 +79,6 @@ class SettingEditViewController: UIViewController {
           promptLabel.text = prompt
         }
       }
-    default: break
     }
   }
   
@@ -88,7 +87,7 @@ class SettingEditViewController: UIViewController {
     var realname:String?
     var company:String?
     var email:String?
-    if textField.text.isEmpty {
+    if textField.text!.isEmpty {
       ZKJSTool.showMsg("请填写信息")
       return
     }
@@ -106,7 +105,6 @@ class SettingEditViewController: UIViewController {
         ZKJSTool.showMsg("邮箱格式不正确")
         return
       }
-    default: break
     }
     
     ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username, realname:realname, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, email:email, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -123,7 +121,6 @@ class SettingEditViewController: UIViewController {
             baseInfo.company = company
           case VCType.email:
             baseInfo.email = email
-          default: break
           }
           JSHStorage.saveBaseInfo(baseInfo)
         }

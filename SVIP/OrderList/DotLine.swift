@@ -13,7 +13,7 @@ class DotLine: UIImageView {
   override func layoutSubviews() {
     UIGraphicsBeginImageContext(bounds.size);
     image?.drawInRect(CGRectMake(0.0, 0.0, bounds.size.width, bounds.size.height))
-    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+    CGContextSetLineCap(UIGraphicsGetCurrentContext(), CGLineCap.Round);
     let dashArray:[CGFloat] = [2, 2]
     let context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, UIColor.grayColor().CGColor);

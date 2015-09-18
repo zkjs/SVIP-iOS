@@ -33,7 +33,7 @@ class BookDateSelectionViewController: UIViewController, TSQCalendarViewDelegate
   //MARK:- TSQCalendarViewDelegate
   func calendarView(calendarView: TSQCalendarView!, didSelectDate date: NSDate!) {
     if (calendarView.startDate != nil && calendarView.endDate != nil) {
-      println("selection is over")
+      print("selection is over")
       if selection != nil {
         selection!(calendarView.startDate, calendarView.endDate)
       }

@@ -93,7 +93,7 @@ class BookOrder: NSObject {
     fullname = dictionary["fullname"] as? String
     status = dictionary["status"] as? String
     nologin = dictionary["nologin"] as? String
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     var startDate: NSDate?
     var endDate: NSDate?

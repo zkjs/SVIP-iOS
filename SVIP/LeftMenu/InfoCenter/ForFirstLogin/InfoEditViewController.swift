@@ -24,7 +24,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     super.init(nibName: "InfoEditViewController", bundle: nil)
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
   }
   override func viewDidLoad() {
@@ -74,7 +74,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   
   //MARK:- Button Action
   func save() {
-    if username.text.isEmpty || realname.text.isEmpty {
+    if username.text!.isEmpty || realname.text!.isEmpty {
       ZKJSTool .showMsg("请填写必填项")
       return
     }
@@ -134,7 +134,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   
   //MARK:- UIImagePickerControllerDelegate
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-    let dic = editingInfo
+//    let dic = editingInfo
     /*
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
@@ -151,11 +151,11 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     
     }];
     */
-    var imageData = UIImageJPEGRepresentation(image, 1.0)
+    var imageData = UIImageJPEGRepresentation(image, 1.0)!
     var i = 0
     while imageData.length / 1024 > 80 {
-      var persent = CGFloat(100 - i++) / 100.0
-      imageData = UIImageJPEGRepresentation(image, persent)
+      let persent = CGFloat(100 - i++) / 100.0
+      imageData = UIImageJPEGRepresentation(image, persent)!
     }
     avatarData = imageData
     self.avatarButton .setImage(UIImage(data: avatarData), forState: UIControlState.Normal)

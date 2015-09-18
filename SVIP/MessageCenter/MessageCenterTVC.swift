@@ -97,7 +97,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
       let placeholderImage = UIImage(named: "img_hotel_zhanwei")
       let urlString = "\(kBaseURL)uploads/shops/\(shopID).png"
       let logoURL = NSURL(string: urlString)
-      cell.logo.sd_setImageWithURL(logoURL, forState: .Normal, placeholderImage: placeholderImage, options: SDWebImageOptions.ProgressiveDownload | SDWebImageOptions.RetryFailed, completed: nil)
+      cell.logo.sd_setImageWithURL(logoURL, forState: .Normal, placeholderImage: placeholderImage, options: [SDWebImageOptions.ProgressiveDownload, SDWebImageOptions.RetryFailed], completed: nil)
       
       if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
         if let badge = shopMessageBadge[shopID] {
@@ -186,24 +186,28 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
     mailComposer.setSubject("意见反馈")
     let toRecipients = ["hanton@zkjinshi.com"]
     mailComposer.setToRecipients(toRecipients)
-    let logsDirectory = LogManager.sharedInstance().logsDirectory()
+    let logsDirectory = LogManager.sharedInstance().logsDirectory() as NSString
     
     let fileManager = NSFileManager.defaultManager()
-    var error: NSError? = nil
-    let files = NSFileManager.defaultManager().contentsOfDirectoryAtPath(logsDirectory, error: &error)
+    let files: [AnyObject]?
+    do {
+      files = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(logsDirectory as String)
+    } catch {
+      files = nil
+    }
     if files != nil {
-      let sortedFileNames = sorted(files!) { fileName1, fileName2 in
+      let sortedFileNames = (files!).sort { fileName1, fileName2 in
         let file1Path = logsDirectory.stringByAppendingPathComponent(fileName1 as! String)
         let file2Path = logsDirectory.stringByAppendingPathComponent(fileName2 as! String)
-        let attr1 = fileManager.attributesOfItemAtPath(file1Path, error: nil)
-        let attr2 = fileManager.attributesOfItemAtPath(file2Path, error: nil)
+        let attr1 = try? fileManager.attributesOfItemAtPath(file1Path)
+        let attr2 = try? fileManager.attributesOfItemAtPath(file2Path)
         let file1Date = attr1![NSFileModificationDate] as! NSDate
         let file2Date = attr2![NSFileModificationDate] as! NSDate
         let result = file1Date.compare(file2Date)
         return result == NSComparisonResult.OrderedDescending
       }
       let logPath = logsDirectory.stringByAppendingPathComponent(sortedFileNames.first as! String)
-      println(logPath)
+      print(logPath)
       var version = ""
       if let info = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
         version = info
@@ -212,7 +216,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
       if let info = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
         build = info
       }
-      let logData = NSData(contentsOfFile: logPath)
+      let logData = NSData(contentsOfFile: logPath)!
       mailComposer.addAttachmentData(logData, mimeType: "text/plain", fileName: "SVIP.log")
       mailComposer.setMessageBody("来自用户:\(JSHStorage.baseInfo().username)\n账号:\(JSHStorage.baseInfo().phone)\n版本:\(version) (\(build))", isHTML: false)
       if MFMailComposeViewController.canSendMail() {
@@ -258,7 +262,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   
   // MARK: - MFMailComposeViewControllerDelegate Method
   
-  func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+  func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
 

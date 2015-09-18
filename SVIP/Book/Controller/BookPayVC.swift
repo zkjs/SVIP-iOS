@@ -22,7 +22,7 @@ class BookPayVC: UIViewController {
     super.init(nibName: "BookPayVC", bundle: nil)
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
   
@@ -33,7 +33,7 @@ class BookPayVC: UIViewController {
 //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
     let rate = (bkOrder.room_rate as NSString).doubleValue
-    let Money = rate * (Double)(bkOrder.dayInt.toInt()!)
+    let Money = rate * (Double)(Int(bkOrder.dayInt)!)
     price.text = "￥   \(Money)"
   }
   
@@ -79,7 +79,7 @@ class BookPayVC: UIViewController {
     aliOrder.tradeNO = AbookOrder.reservation_no
     aliOrder.productName = AbookOrder.room_type
     aliOrder.productDescription = "needtoknow"
-    if let rooms = AbookOrder.rooms.toInt() {
+    if let rooms = Int(AbookOrder.rooms) {
       let amount = (AbookOrder.room_rate as NSString).doubleValue * Double(rooms)
     aliOrder.amount = NSString(format:"%.2f", amount) as String
 //      aliOrder.amount = "0.02"
@@ -97,7 +97,7 @@ class BookPayVC: UIViewController {
     
     //将商品信息拼接成字符串
     let orderSpec = aliOrder.description
-    print(orderSpec)
+    print(orderSpec, terminator: "")
     
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
 //    id<DataSigner> signer = CreateRSADataSigner(privateKey);
