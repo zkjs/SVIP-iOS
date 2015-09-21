@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Singleton.h"
-//#import "JSHUserInfo.h"
 #import "JSHBaseInfo.h"
 
 @interface JSHStorage : NSObject
-//single_interface(JSHStorage)
+
 /*保留为以后扩展
 + (NSString *)cacheDirectory;
 + (NSString *)documentDirectory;

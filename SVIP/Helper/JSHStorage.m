@@ -22,7 +22,7 @@
 #define kShopsInfo          @"kShopsInfo.archive"
 #define kBeaconRegions          @"kBeaconRegions.archive"
 @implementation JSHStorage
-//single_implementation(JSHStorage)
+
 + (void)initialize
 {
     [self creatCacheSubFolder:@"imagesCaches"];

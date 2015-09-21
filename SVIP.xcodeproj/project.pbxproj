@@ -561,7 +561,6 @@
 		40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSMSSessionManager.m; sourceTree = "<group>"; };
 		40641F961B3E79A300CF150D /* ZKJSTCPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTCPSessionManager.h; sourceTree = "<group>"; };
 		40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTCPSessionManager.m; sourceTree = "<group>"; };
-		40641F991B3E79A300CF150D /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
 		406A27FD1B9596370069C369 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -1396,14 +1395,11 @@
 			isa = PBXGroup;
 			children = (
 				4058E3891BA0211B00EF6D76 /* MessageDisplayKit */,
-				B2F49E891B7347A200556AE2 /* UMSocial */,
 				B23E53D41B4BC12B00CB7761 /* openssl.framework */,
-				B2F471671B4B6CB4005122BB /* AliPay */,
 				40641F871B3E79A300CF150D /* Category */,
 				404C18471B53675300F11122 /* Compressor */,
 				40641F8F1B3E79A300CF150D /* Networking */,
 				404C183D1B5359E100F11122 /* Cryptography */,
-				40641F991B3E79A300CF150D /* Singleton.h */,
 				40641F9A1B3E79A300CF150D /* Tool */,
 			);
 			path = Common;
@@ -1519,6 +1515,8 @@
 		B20812B71B8DD8650070D96F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B2F49E891B7347A200556AE2 /* UMSocial */,
+				B2F471671B4B6CB4005122BB /* AliPay */,
 				B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */,
 				B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */,
 				B20812BA1B8DD8650070D96F /* JSHAnimator.h */,
@@ -1717,7 +1715,8 @@
 				B2F471681B4B6CF0005122BB /* AlipaySDK.bundle */,
 				B2F471691B4B6CF0005122BB /* AlipaySDK.framework */,
 			);
-			path = AliPay;
+			name = AliPay;
+			path = ../../Common/AliPay;
 			sourceTree = "<group>";
 		};
 		B2F49E891B7347A200556AE2 /* UMSocial */ = {
@@ -1726,7 +1725,8 @@
 				B2F49E8A1B7347A200556AE2 /* UMSocial_Sdk_4.2.3 */,
 				B2F49EA51B7347A200556AE2 /* UMSocial_Sdk_Extra_Frameworks */,
 			);
-			path = UMSocial;
+			name = UMSocial;
+			path = ../../Common/UMSocial;
 			sourceTree = "<group>";
 		};
 		B2F49E8A1B7347A200556AE2 /* UMSocial_Sdk_4.2.3 */ = {

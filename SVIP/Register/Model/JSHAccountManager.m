@@ -16,7 +16,14 @@
 
 @implementation JSHAccountManager
 
-single_implementation(JSHAccountManager)
++ (JSHAccountManager *)sharedJSHAccountManager {
+  static JSHAccountManager *sharedJSHAccountManager = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sharedJSHAccountManager = [[self alloc] init];
+  });
+  return sharedJSHAccountManager;
+}
 
 - (instancetype)init
 {
