@@ -173,7 +173,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 - (void)clientLogin:(NSString *)clientID name:(NSString *)name deviceToken:(NSString *)deviceToken {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
 #if DEBUG
   NSString *appid = @"HOTELVIP_DEBUG";
 #else
@@ -194,7 +194,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 - (void)shopLogin:(NSString *)shopID {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   NSDictionary *dictionary = @{
     @"type": [NSNumber numberWithInteger:MessageIMClientLogin],
     @"id": shopID,
@@ -353,7 +353,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 - (NSNumber *)timestamp {
-  return [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  return [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
 }
 
 - (NSString *)jsonFromDictionary:(NSDictionary *)dictionary {
