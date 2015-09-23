@@ -96,20 +96,43 @@ const CGFloat shortcutViewHeight = 45.0;
     if (!self.loadingMoreMessage) {
       self.loadingMoreMessage = YES;
       XHMessage *message = self.messages[0];
+      
       WEAKSELF
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray *messages = [NSMutableArray array];
-        messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:message.timestamp];
-          dispatch_async(dispatch_get_main_queue(), ^{
-            if (messages.count != 0) {
-              [weakSelf insertOldMessages:messages completion:^{
-                weakSelf.loadingMoreMessage = NO;
-              }];
-            } else {
+      NSNumber *timestamp = [NSNumber numberWithLongLong:[message.timestamp timeIntervalSince1970]];
+      [[ZKJSHTTPChatSessionManager sharedInstance] getChatLogWithUserID:self.senderID shopID:self.shopID fromTime:timestamp count:@7 success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSMutableArray *chatMessages = [NSMutableArray array];
+        for (NSDictionary *message in responseObject) {
+          XHMessage *chatMessage = [self getXHMessageFromDictionary:message];
+          [chatMessages addObject:chatMessage];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+          if (chatMessages.count != 0) {
+            [weakSelf insertOldMessages:[[[chatMessages reverseObjectEnumerator] allObjects] copy] completion:^{
               weakSelf.loadingMoreMessage = NO;
-            }
-          });
-      });
+            }];
+          } else {
+            weakSelf.loadingMoreMessage = NO;
+          }
+        });
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [ZKJSTool showMsg:error.localizedDescription];
+      }];
+      
+//      WEAKSELF
+//      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        NSMutableArray *messages = [NSMutableArray array];
+//        messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:message.timestamp];
+//          dispatch_async(dispatch_get_main_queue(), ^{
+//            if (messages.count != 0) {
+//              [weakSelf insertOldMessages:messages completion:^{
+//                weakSelf.loadingMoreMessage = NO;
+//              }];
+//            } else {
+//              weakSelf.loadingMoreMessage = NO;
+//            }
+//          });
+//      });
     }
   }
 }
@@ -120,9 +143,9 @@ const CGFloat shortcutViewHeight = 45.0;
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeText;
   if ([JSHStorage baseInfo].avatarImage) {
-    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   } else {
-    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   }
 
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
@@ -134,27 +157,29 @@ const CGFloat shortcutViewHeight = 45.0;
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
 //  [self sendImageMessage:photo];
   [ZKJSTool showLoading:@"正在发送图片，请稍候..."];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
+  NSString *format = @"jpg";
+//  UIImage *thumbnail = [photo resizedImage:CGSizeMake(200.0, 200.0) interpolationQuality:kCGInterpolationHigh];
+  // 压缩图片
   CGFloat compression = 0.9f;
   CGFloat maxCompression = 0.1f;
-  int maxFileSize = 700*1024;//1024*1024;  //整个消息包最大1M,图片大约最大700K
+  int maxFileSize = 1*1024;//1024*1024;  //大约1K
   NSData *imageData = UIImageJPEGRepresentation(photo, compression);
   while ([imageData length] > maxFileSize && compression > maxCompression) {
     compression -= 0.1;
     imageData = UIImageJPEGRepresentation(photo, compression);
   }
-  NSLog(@"Image Size: %f", [imageData length]/1024.0);
-  NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-  NSString *format = @"jpg";
+  UIImage *thumbnail = [UIImage imageWithData:imageData];
+  NSLog(@"Thumbnail Size: %fK", [imageData length]/1024.0);
   
-  UIImage *thumbnail = [photo resizedImage:CGSizeMake(140.0, 140.0) interpolationQuality:kCGInterpolationDefault];
-  NSData *thumbnailData = UIImageJPEGRepresentation(thumbnail, 1.0);
-  NSString *thumbnailBody = [thumbnailData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-  [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
+  [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:format image:photo success:^(NSURLSessionDataTask *task, id responseObject) {
     NSNumber *result = responseObject[@"result"];
     NSString *url = responseObject[@"url"];
     NSString *s_url = responseObject[@"s_url"];
     if ([result isEqual:@1]) {
+      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+      [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
+      NSString *fileName = [dateFormatter stringFromDate:[NSDate date]];
       NSDictionary *dictionary = @{
                                    @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
                                    @"timestamp": timestamp,
@@ -165,39 +190,32 @@ const CGFloat shortcutViewHeight = 45.0;
                                    @"shopid": self.shopID,
                                    @"sessionid": self.sessionID,
                                    @"url": url,
-                                   @"scaleurl": s_url
-                                   };
-      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
-    } else {
-      NSDictionary *dictionary = @{
-                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceImgChat],
-                                   @"timestamp": timestamp,
-                                   @"fromid": self.senderID,
-                                   @"fromname": self.senderName,
-                                   @"clientid": self.senderID,
-                                   @"clientname": self.senderName,
-                                   @"shopid": self.shopID,
-                                   @"sessionid": self.sessionID,
+                                   @"scaleurl": s_url,
                                    @"format": format,
-                                   @"body": thumbnailBody
+                                   @"ruletype": @"DefaultChatRuleType",
+                                   @"filename": [NSString stringWithFormat:@"%@.%@", fileName, format]
                                    };
       [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
-    }
-    XHMessage *message = [[XHMessage alloc] initWithPhoto:thumbnail thumbnailUrl:s_url originPhotoUrl:url sender:sender timestamp:date];
-    message.bubbleMessageType = XHBubbleMessageTypeSending;
-    message.messageMediaType = XHBubbleMessageMediaTypePhoto;
-    if ([JSHStorage baseInfo].avatarImage) {
-      message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+      
+      XHMessage *message = [[XHMessage alloc] initWithPhoto:thumbnail thumbnailUrl:s_url originPhotoUrl:url sender:sender timestamp:date];
+      message.bubbleMessageType = XHBubbleMessageTypeSending;
+      message.messageMediaType = XHBubbleMessageMediaTypePhoto;
+      if ([JSHStorage baseInfo].avatarImage) {
+        message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
+      } else {
+        message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
+      }
+      
+      [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+      
+      [self addMessage:message];
+      [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
+      
+      [ZKJSTool hideHUD];
     } else {
-      message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+      [ZKJSTool hideHUD];
+      [ZKJSTool showMsg:@"图片上传失败，请重新发送"];
     }
-    
-    [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-    
-    [self addMessage:message];
-    [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
-    
-    [ZKJSTool hideHUD];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     [ZKJSTool hideHUD];
     [ZKJSTool showMsg:error.localizedDescription];
@@ -205,20 +223,54 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString *)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
-  [self sendVoiceMessage:voicePath];
-  XHMessage *message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voicePath voiceDuration:voiceDuration sender:sender timestamp:date];
-  message.bubbleMessageType = XHBubbleMessageTypeSending;
-  message.messageMediaType = XHBubbleMessageMediaTypeVoice;
-  if ([JSHStorage baseInfo].avatarImage) {
-    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-  } else {
-    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-  }
+//  [self sendVoiceMessage:voicePath];
+  NSData *audioData = [[NSData alloc] initWithContentsOfFile:voicePath];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
+  NSString *format = @"aac";
   
-  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-  
-  [self addMessage:message];
-  [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
+  [[ZKJSHTTPChatSessionManager sharedInstance] uploadAudioWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:format body:audioData success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSNumber *result = responseObject[@"result"];
+    NSString *url = responseObject[@"url"];
+    if ([result  isEqual: @1]) {
+      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+      [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
+      NSString *fileName = [dateFormatter stringFromDate:[NSDate date]];
+      NSDictionary *dictionary = @{
+                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
+                                   @"timestamp": timestamp,
+                                   @"fromid": self.senderID,
+                                   @"fromname": self.senderName,
+                                   @"clientid": self.senderID,
+                                   @"clientname": self.senderName,
+                                   @"shopid": self.shopID,
+                                   @"sessionid": self.sessionID,
+                                   @"durnum": voiceDuration,
+                                   @"format": format,
+                                   @"ruletype": @"DefaultChatRuleType",
+                                   @"filename": [NSString stringWithFormat:@"%@.%@", fileName, format],
+                                   @"url": url
+                                   };
+      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+      
+      XHMessage *message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voicePath voiceDuration:voiceDuration sender:sender timestamp:date];
+      message.bubbleMessageType = XHBubbleMessageTypeSending;
+      message.messageMediaType = XHBubbleMessageMediaTypeVoice;
+      if ([JSHStorage baseInfo].avatarImage) {
+        message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
+      } else {
+        message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
+      }
+      
+      [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+      
+      [self addMessage:message];
+      [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
+    } else {
+      [ZKJSTool showMsg:@"语音上传失败，请重新发送"];
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    [ZKJSTool showMsg:error.localizedDescription];
+  }];
 }
 
 - (void)didSendEmotion:(NSString *)emotionPath fromSender:(NSString *)sender onDate:(NSDate *)date {
@@ -227,9 +279,9 @@ const CGFloat shortcutViewHeight = 45.0;
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeEmotion;
   if ([JSHStorage baseInfo].avatarImage) {
-    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   } else {
-    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   }
   
 //  [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
@@ -249,7 +301,6 @@ const CGFloat shortcutViewHeight = 45.0;
       DLog(@"message : %@", message.videoConverPhoto);
       
       JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-//      imageInfo.image = message.photo;
       imageInfo.imageURL = [NSURL URLWithString:message.originPhotoUrl];
       imageInfo.referenceRect = messageTableViewCell.frame;
       imageInfo.referenceView = messageTableViewCell.superview;
@@ -290,13 +341,13 @@ const CGFloat shortcutViewHeight = 45.0;
       break;
     }
     case XHBubbleMessageMediaTypeCard: {
-      disPlayViewController = [UIViewController new];
-      disPlayViewController.view.backgroundColor = [UIColor whiteColor];
-      UILabel *label = [[UILabel alloc] initWithFrame:disPlayViewController.view.bounds];
-      label.textAlignment = NSTextAlignmentCenter;
-      label.textColor = [UIColor blackColor];
-      label.text = @"呵呵";
-      [disPlayViewController.view addSubview:label];
+//      disPlayViewController = [UIViewController new];
+//      disPlayViewController.view.backgroundColor = [UIColor whiteColor];
+//      UILabel *label = [[UILabel alloc] initWithFrame:disPlayViewController.view.bounds];
+//      label.textAlignment = NSTextAlignmentCenter;
+//      label.textColor = [UIColor blackColor];
+//      label.text = @"呵呵";
+//      [disPlayViewController.view addSubview:label];
       break;
     }
     default:
@@ -334,23 +385,23 @@ const CGFloat shortcutViewHeight = 45.0;
 #pragma mark - RecorderPath Helper Method
 
 - (NSString *)getRecorderPath {
-  NSString *recorderPath = nil;
-  recorderPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
+  NSURL *recorderPath = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
   NSDate *now = [NSDate date];
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
-  recorderPath = [recorderPath stringByAppendingFormat:@"%@.aac", [dateFormatter stringFromDate:now]];
-  return recorderPath;
+  NSString *fileName = [NSString stringWithFormat:@"%@.aac", [dateFormatter stringFromDate:now]];
+  recorderPath = [recorderPath URLByAppendingPathComponent:fileName];
+  return [recorderPath path];
 }
 
 - (NSString *)getPlayPath {
-  NSString *recorderPath = nil;
-  recorderPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
+  NSURL *recorderPath = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
   NSDate *now = [NSDate date];
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
-  recorderPath = [recorderPath stringByAppendingFormat:@"%@", [dateFormatter stringFromDate:now]];
-  return recorderPath;
+  NSString *fileName = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:now]];
+  recorderPath = [recorderPath URLByAppendingPathComponent:fileName];
+  return [recorderPath path];
 }
 
 #pragma mark - Private Methods
@@ -493,7 +544,7 @@ const CGFloat shortcutViewHeight = 45.0;
   NSDate *timestamp = [NSDate date];
   message = [[XHMessage alloc] initWithText:text sender:@"系统" timestamp:timestamp];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
-  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -508,9 +559,9 @@ const CGFloat shortcutViewHeight = 45.0;
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeCard;
   if ([JSHStorage baseInfo].avatarImage) {
-    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   } else {
-    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   }
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
@@ -771,9 +822,9 @@ const CGFloat shortcutViewHeight = 45.0;
   message.bubbleMessageType = XHBubbleMessageTypeSending;
   message.messageMediaType = XHBubbleMessageMediaTypeText;
   if ([JSHStorage baseInfo].avatarImage) {
-    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   } else {
-    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+    message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   }
   [self addMessage:message];
   [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
@@ -846,7 +897,7 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)requestWaiterWithRuleType:(NSString *)ruleType andDescription:(NSString *)desc {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   self.sessionID = [NSString stringWithFormat:@"%@_%@_%@", self.senderID, self.shopID, ruleType];
   NSLog(@"lastBeacon: %@", [StorageManager sharedInstance].lastBeacon);
   NSString *locid = @"";
@@ -871,123 +922,128 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)loadDataSource {
   [ZKJSTool showLoading:@"正在加载聊天记录"];
-  
-//  WEAKSELF
-//  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
-//  [[ZKJSHTTPChatSessionManager sharedInstance] getChatLogWithUserID:self.senderID shopID:self.shopID fromTime:timestamp count:7 success:^(NSURLSessionDataTask *task, id responseObject) {
-//    NSMutableArray *chatMessages = [NSMutableArray array];
-//    for (NSDictionary *message in responseObject) {
-//      XHMessage *chatMessage = [XHMessage new];
-//      chatMessage.sender = message[@"fromname"];
-//      chatMessage.senderName = message[@"fromname"];
-//      NSTimeInterval timestamp = [message[@"srvtime"] doubleValue];
-//      chatMessage.timestamp = [[NSDate alloc] initWithTimeIntervalSince1970:timestamp];
-////      chatMessage.sended =
-////      chatMessage.isRead =
-//      switch ([message[@"type"] integerValue]) {
-//        case MessageServiceChatCustomerServiceTextChat:
-//          if ([message[@"childtype"] integerValue] == 0) {
-//            // 普通文本
-//            chatMessage.text = message[@"textmsg"];
-//            chatMessage.textString = message[@"textmsg"];
-//            chatMessage.messageMediaType = XHBubbleMessageMediaTypeText;
-//          } else if ([message[@"childtype"] integerValue] == 1) {
-//            // 卡片消息
-//            chatMessage.cardTitle = @"你好，帮我预定这间房";
-//            NSData *jsonData = [message[@"textmsg"] dataUsingEncoding:NSUTF8StringEncoding];
-//            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
-//            NSString *urlString = [kBaseURL stringByAppendingString:json[@"image"]];
-//            NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlString]];
-//            chatMessage.cardImage = [UIImage imageWithData:imageData];
-//            NSArray *subStrings = [json[@"arrival_date"] componentsSeparatedByString:@"-"];
-//            NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
-//            NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", json[@"room_type"], date, json[@"dayNum"]];
-//            chatMessage.cardContent = content;
-//            chatMessage.messageMediaType = XHBubbleMessageMediaTypeCard;
-//          }
-//          break;
-//        case MessageServiceChatCustomerServiceImgChat:
-//          chatMessage.originPhotoUrl = message[@"url"];
-//          chatMessage.thumbnailUrl = message[@"scaleurl"];
-//          chatMessage.messageMediaType = XHBubbleMessageMediaTypePhoto;
-//        case MessageServiceChatCustomerServiceMediaChat:
-//          chatMessage.voicePath = message[@""];
-//        default:
-//          break;
-//      }
-//      
-//      if (message[@"clientid"] == message[@"fromid"]) {
-//        chatMessage.bubbleMessageType = XHBubbleMessageTypeSending;
-//        chatMessage.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-//      } else {
-//        chatMessage.bubbleMessageType = XHBubbleMessageTypeReceiving;
-//        chatMessage.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-//      }
-//      [chatMessages addObject:chatMessage];
-//    }
-//    self.messages = chatMessages;
-  
-/*
-      switch Int(message.messageMediaType) {
-      case XHBubbleMessageMediaType.Voice.rawValue:
-        chatMessage.voicePath = message.voicePath
-        chatMessage.voiceDuration = message.voiceDuration
-        chatMessage.messageMediaType = .Voice
-      case XHBubbleMessageMediaType.Card.rawValue:
-        chatMessage.cardTitle = message.cardTitle as String
-        chatMessage.cardImage = UIImage(data: message.cardImage)
-        chatMessage.cardContent = message.cardContent as String
-        chatMessage.messageMediaType = .Card
-      default:
-        break
-      }
-    }
-    let sort = NSSortDescriptor(key: "timestamp", ascending: true)
-    chatMessages.sortUsingDescriptors([sort])
-*/
 
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//      [weakSelf.messageTableView reloadData];
-//      [weakSelf scrollToBottomAnimated:NO];
-//      [ZKJSTool hideHUD];
-//      
-//      switch (self.chatType) {
-//        case ChatNewSession: {
-//          NSArray *subStrings = [weakSelf.order.arrival_date componentsSeparatedByString:@"-"];
-//          NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
-//          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, date, weakSelf.order.dayInt];
-//          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
-//          break;
-//        }
-//        case ChatOldSession:
-//        case ChatConfirmOrder:
-//        case ChatCancelOrder: {
-//          if (self.firtMessage) {
-//            [weakSelf sendTextMessage:self.firtMessage];
-//            XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
-//            message.bubbleMessageType = XHBubbleMessageTypeSending;
-//            message.messageMediaType = XHBubbleMessageMediaTypeText;
-//            if ([JSHStorage baseInfo].avatarImage) {
-//              message.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-//            } else {
-//              message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
-//            }
-//            
-//            [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
-//            
-//            [weakSelf addMessage:message];
-//            [weakSelf finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
-//          }
-//          break;
-//        }
-//        default:
-//          break;
-//      }
-//    });
-//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//  }];
+  [self loadServerMessages];
+//  [self loadLocalMessages];
+}
+
+- (XHMessage *)getXHMessageFromDictionary:(NSDictionary *)message {
+  XHMessage *chatMessage = [XHMessage new];
+  chatMessage.sender = message[@"fromname"];
+  chatMessage.senderName = message[@"fromname"];
+  NSTimeInterval timestamp = [message[@"srvtime"] doubleValue];
+  chatMessage.timestamp = [[NSDate alloc] initWithTimeIntervalSince1970:timestamp];
+  NSLog(@"Message Timestamp: %@", chatMessage.timestamp);
+  chatMessage.sended = YES;
+  chatMessage.isRead = YES;
+  switch ([message[@"type"] integerValue]) {
+    case MessageServiceChatCustomerServiceTextChat:
+      if ([message[@"childtype"] integerValue] == 0) {
+        // 普通文本
+        chatMessage.text = message[@"textmsg"];
+        chatMessage.textString = message[@"textmsg"];
+        chatMessage.messageMediaType = XHBubbleMessageMediaTypeText;
+      } else if ([message[@"childtype"] integerValue] == 1) {
+        // 卡片消息
+        chatMessage.cardTitle = @"你好，帮我预定这间房";
+        NSData *jsonData = [message[@"textmsg"] dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+        NSString *urlString = [kBaseURL stringByAppendingString:json[@"image"]];
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlString]];
+        chatMessage.cardImage = [UIImage imageWithData:imageData];
+        NSArray *subStrings = [json[@"arrival_date"] componentsSeparatedByString:@"-"];
+        NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
+        NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", json[@"room_type"], date, json[@"dayNum"]];
+        chatMessage.cardContent = content;
+        chatMessage.messageMediaType = XHBubbleMessageMediaTypeCard;
+      }
+      break;
+    case MessageServiceChatCustomerServiceImgChat:
+      chatMessage.originPhotoUrl = message[@"url"];
+      chatMessage.thumbnailUrl = message[@"scaleurl"];
+      chatMessage.messageMediaType = XHBubbleMessageMediaTypePhoto;
+      break;
+    case MessageServiceChatCustomerServiceMediaChat: {
+      NSURL *audioURL = [NSURL URLWithString:message[@"url"]];
+      NSData *audioData = [NSData dataWithContentsOfURL:audioURL];
+      NSString *path = [self getRecorderPath];
+      [audioData writeToFile:path atomically:YES];
+      chatMessage.voicePath = path;
+      chatMessage.voiceUrl = path;
+      chatMessage.voiceDuration = message[@"durationnum"];
+      chatMessage.messageMediaType = XHBubbleMessageMediaTypeVoice;
+      break;
+    }
+    default:
+      break;
+  }
   
+  if (message[@"clientid"] == message[@"fromid"]) {
+    chatMessage.bubbleMessageType = XHBubbleMessageTypeSending;
+    chatMessage.avatar = [[JSHStorage baseInfo].avatarImage resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
+  } else {
+    chatMessage.bubbleMessageType = XHBubbleMessageTypeReceiving;
+    chatMessage.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
+  }
+
+  return chatMessage;
+}
+
+- (void)loadServerMessages {
+  WEAKSELF
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
+  [[ZKJSHTTPChatSessionManager sharedInstance] getChatLogWithUserID:self.senderID shopID:self.shopID fromTime:timestamp count:@7 success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSMutableArray *chatMessages = [NSMutableArray array];
+    for (NSDictionary *message in responseObject) {
+      XHMessage *chatMessage = [self getXHMessageFromDictionary:message];
+      [chatMessages addObject:chatMessage];
+    }
+    
+    self.messages = [[[chatMessages reverseObjectEnumerator] allObjects] copy];
+//    self.messages = chatMessages;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [weakSelf.messageTableView reloadData];
+      [weakSelf scrollToBottomAnimated:NO];
+      [ZKJSTool hideHUD];
+      
+      switch (self.chatType) {
+        case ChatNewSession: {
+          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+          break;
+        }
+        case ChatOldSession:
+        case ChatConfirmOrder:
+        case ChatCancelOrder: {
+          if (self.firtMessage) {
+            [weakSelf sendTextMessage:self.firtMessage];
+            XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
+            message.bubbleMessageType = XHBubbleMessageTypeSending;
+            message.messageMediaType = XHBubbleMessageMediaTypeText;
+            if ([JSHStorage baseInfo].avatarImage) {
+              message.avatar = [JSHStorage baseInfo].avatarImage;
+            } else {
+              message.avatar = [UIImage imageNamed:@"ic_home_nor"];
+            }
+            
+            [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
+            
+            [weakSelf addMessage:message];
+            [weakSelf finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
+          }
+          break;
+        }
+        default:
+          break;
+      }
+    });
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    [ZKJSTool showMsg:error.localizedDescription];
+  }];
+}
+
+- (void)loadLocalMessages {
   WEAKSELF
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     self.messages = [Persistence.sharedInstance fetchMessagesWithShopID:self.shopID userID:self.senderID beforeTimeStamp:[NSDate date]];
@@ -1061,7 +1117,7 @@ const CGFloat shortcutViewHeight = 45.0;
     NSLog(@"Got an error: %@", error);
   } else {
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+    NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
     NSDictionary *dictionary = @{
                                  @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceTextChat],
                                  @"timestamp": timestamp,
@@ -1080,7 +1136,7 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)sendTextMessage:(NSString *)text {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceTextChat],
                                @"timestamp": timestamp,
@@ -1099,14 +1155,16 @@ const CGFloat shortcutViewHeight = 45.0;
 - (void)sendVoiceMessage:(NSString *)voicePath {
   NSData *audioData = [[NSData alloc] initWithContentsOfFile:voicePath];
   NSString *voiceDuration = [self getVoiceDuration:voicePath];
-  NSString *body = [audioData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   NSString *format = @"aac";
   
-  [[ZKJSHTTPChatSessionManager sharedInstance] uploadAudioWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:format body:body success:^(NSURLSessionDataTask *task, id responseObject) {
+  [[ZKJSHTTPChatSessionManager sharedInstance] uploadAudioWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:format body:audioData success:^(NSURLSessionDataTask *task, id responseObject) {
     NSNumber *result = responseObject[@"result"];
     NSString *url = responseObject[@"url"];
     if ([result  isEqual: @1]) {
+      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+      [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
+      NSString *fileName = [dateFormatter stringFromDate:[NSDate date]];
       NSDictionary *dictionary = @{
                                    @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
                                    @"timestamp": timestamp,
@@ -1117,23 +1175,14 @@ const CGFloat shortcutViewHeight = 45.0;
                                    @"shopid": self.shopID,
                                    @"sessionid": self.sessionID,
                                    @"durnum": voiceDuration,
+                                   @"format": format,
+                                   @"ruletype": @"DefaultChatRuleType",
+                                   @"filename": [NSString stringWithFormat:@"%@.%@", fileName, format],
                                    @"url": url
                                    };
       [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
     } else {
-      NSDictionary *dictionary = @{
-                                   @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceMediaChat],
-                                   @"timestamp": timestamp,
-                                   @"fromid": self.senderID,
-                                   @"fromname": self.senderName,
-                                   @"clientid": self.senderID,
-                                   @"clientname": self.senderName,
-                                   @"shopid": self.shopID,
-                                   @"sessionid": self.sessionID,
-                                   @"format": format,
-                                   @"body": body
-                                   };
-      [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
+      [ZKJSTool showMsg:@"语音上传失败，请重新发送"];
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     
@@ -1143,7 +1192,7 @@ const CGFloat shortcutViewHeight = 45.0;
 - (void)sendImageMessage:(UIImage *)image {
 //  NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
 //  NSString *body = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-//  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+//  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
 //  NSString *format = @"jpg";
 //  
 //  [[ZKJSHTTPChatSessionManager sharedInstance] uploadPictureWithFromID:self.senderID sessionID:self.sessionID shopID:self.shopID format:@"jpg" body:body success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -1193,7 +1242,7 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)requestOfflineMessages {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatOfflineMssage],
                                @"timestamp": timestamp,
@@ -1209,11 +1258,11 @@ const CGFloat shortcutViewHeight = 45.0;
   [center addObserver:self selector:@selector(showTextMessage:) name:@"MessageServiceChatCustomerServiceTextChatNotification" object:nil];
   [center addObserver:self selector:@selector(showImageMessage:) name:@"MessageServiceChatCustomerServiceImgChatNotification" object:nil];
   [center addObserver:self selector:@selector(showVoiceMessage:) name:@"MessageServiceChatCustomerServiceMediaChatNotification" object:nil];
-  [center addObserver:self selector:@selector(handleMessageResponse:) name:@"MessageServiceChatCustomerServiceTextMediaImgChatRSPNotification" object:nil];
+  [center addObserver:self selector:@selector(handleMessageResponse:) name:@"MessageServiceChatCustomerServiceRSPNotification" object:nil];
 }
 
 - (void)sendReadAcknowledge:(NSDictionary *)userInfo {
-  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970] * 1000];
+  NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   NSDictionary *dictionary = @{
                                @"type": [NSNumber numberWithInteger:MessageServiceChatCustomerServiceSessionMsgReadAck],
                                @"timestamp": timestamp,
@@ -1233,7 +1282,7 @@ const CGFloat shortcutViewHeight = 45.0;
   message = [[XHMessage alloc] initWithText:text sender:sender timestamp:[NSDate date]];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.messageMediaType = XHBubbleMessageMediaTypeText;
-  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -1272,7 +1321,7 @@ const CGFloat shortcutViewHeight = 45.0;
   message = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:voiceURL voiceDuration:voiceDuration sender:sender timestamp:timestamp isRead:NO];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.messageMediaType = XHBubbleMessageMediaTypeVoice;
-  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -1287,29 +1336,20 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)showImageMessage:(NSNotification *)notification {
-  NSString *body = nil;
   UIImage *image = nil;
   NSString *thumbnailURL = nil;
   NSString *originPhotoURL = nil;
   
   NSString *sender = notification.userInfo[@"fromname"];
-  if ([notification.userInfo[@"body"] length] == 0) {
-    // 直接传图片文件URL
-    thumbnailURL = notification.userInfo[@"scaleurl"];
-    originPhotoURL = notification.userInfo[@"url"];
-  } else {
-    // 直接传图片文件
-    body = notification.userInfo[@"body"];
-    NSData *imageData = [[NSData alloc] initWithBase64EncodedString:body options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    image = [UIImage imageWithData:imageData];
-  }
+  thumbnailURL = notification.userInfo[@"scaleurl"];
+  originPhotoURL = notification.userInfo[@"url"];
   
   XHMessage *message;
   NSDate *timestamp = [NSDate date];
   message = [[XHMessage alloc] initWithPhoto:image thumbnailUrl:thumbnailURL originPhotoUrl:originPhotoURL sender:sender timestamp:timestamp];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.messageMediaType = XHBubbleMessageMediaTypePhoto;
-  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(30, 30) interpolationQuality:kCGInterpolationDefault];
+  message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
@@ -1324,8 +1364,11 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)handleMessageResponse:(NSNotification *)notification {
-  NSString *result = notification.userInfo[@"result"];
-  if ([result isEqual:@"2"]) {
+  NSNumber *result = notification.userInfo[@"result"];
+  // 0:发送成功 1:发送失败(说明会话无成员或创建失败,不保存消息) 2:会话中仅客人在线(针对客人) 3:客人当前不在线(针对客服)
+  if ([result integerValue] == 1) {
+    [ZKJSTool showMsg:@"商家不在线"];
+  } else if ([result integerValue] == 2) {
     // 当前会话成员中只有客户自己在线
     [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
     [ZKJSTool showMsg:@"消息发送失败，请重新发送"];

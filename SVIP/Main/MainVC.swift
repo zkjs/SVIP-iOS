@@ -478,7 +478,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       #else
       let appid = "HOTELVIP"
     #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
       "devtoken": JSHStorage.deviceToken(),
@@ -508,7 +508,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       #else
       let appid = "HOTELVIP"
     #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLeaveLoc.rawValue,
       "devtoken": JSHStorage.deviceToken(),

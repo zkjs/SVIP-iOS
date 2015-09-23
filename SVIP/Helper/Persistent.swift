@@ -88,14 +88,14 @@ class Persistence: NSObject {
     message.shopID = shopID
     message.avatar = NSData(data: UIImageJPEGRepresentation(chatMessage.avatar, 1)!)
     message.sender = chatMessage.senderName
-    message.timestamp = Int64(chatMessage.timestamp.timeIntervalSince1970 * 1000)
+    message.timestamp = Int64(chatMessage.timestamp.timeIntervalSince1970)
     message.sended = chatMessage.sended
     message.messageMediaType = Int16(chatMessage.messageMediaType.rawValue)
     message.bubbleMessageType = Int16(chatMessage.bubbleMessageType.rawValue)
     message.isRead = chatMessage.isRead
     switch chatMessage.messageMediaType.rawValue {
     case XHBubbleMessageMediaType.Photo.rawValue:
-      message.photo = NSData(data: UIImageJPEGRepresentation(chatMessage.photo, 1)!)
+//      message.photo = NSData(data: UIImageJPEGRepresentation(chatMessage.photo, 1)!)
       message.originPhotoUrl = chatMessage.originPhotoUrl
       message.thumbnailUrl = chatMessage.thumbnailUrl
     case XHBubbleMessageMediaType.Voice.rawValue:
@@ -115,7 +115,7 @@ class Persistence: NSObject {
   
   func fetchMessagesWithShopID(shopID: String, userID: String, beforeTimeStamp: NSDate) -> NSMutableArray {
     let fetchRequest = NSFetchRequest(entityName: "Message")
-    fetchRequest.predicate = NSPredicate(format: "shopID = %@ && userID = %@ && timestamp < %lld", argumentArray: [shopID, userID, beforeTimeStamp.timeIntervalSince1970 * 1000])
+    fetchRequest.predicate = NSPredicate(format: "shopID = %@ && userID = %@ && timestamp < %lld", argumentArray: [shopID, userID, beforeTimeStamp.timeIntervalSince1970])
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
     fetchRequest.fetchLimit = 7
     var error : NSError?
@@ -135,7 +135,7 @@ class Persistence: NSObject {
       chatMessage.avatar = UIImage(data: message.avatar)
       chatMessage.sender = message.sender as! String
       chatMessage.senderName = message.sender as! String
-      chatMessage.timestamp = NSDate(timeIntervalSince1970: NSTimeInterval(message.timestamp / 1000))
+      chatMessage.timestamp = NSDate(timeIntervalSince1970: NSTimeInterval(message.timestamp))
       chatMessage.sended = message.sended.boolValue
       chatMessage.isRead = message.isRead.boolValue
       switch Int(message.messageMediaType) {
@@ -197,7 +197,7 @@ class Persistence: NSObject {
       chatMessage.avatar = UIImage(data: message.avatar)
       chatMessage.sender = message.sender as! String
       chatMessage.senderName = message.sender as! String
-      chatMessage.timestamp = NSDate(timeIntervalSince1970: NSTimeInterval(message.timestamp / 1000))
+      chatMessage.timestamp = NSDate(timeIntervalSince1970: NSTimeInterval(message.timestamp))
       chatMessage.sended = message.sended.boolValue
       chatMessage.isRead = message.isRead.boolValue
       switch Int(message.messageMediaType) {

@@ -290,9 +290,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     } else if type.integerValue == MessageServiceChatType.CustomerServiceImgChat.rawValue {
       NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
     } else if type.integerValue == MessageServiceChatType.CustomerServiceTextChat_RSP.rawValue ||
-              type.integerValue == MessageServiceChatType.CustomerServiceTextChat_RSP.rawValue ||
-              type.integerValue == MessageServiceChatType.CustomerServiceTextChat_RSP.rawValue {
-        NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceTextMediaImgChatRSPNotification", object: self, userInfo: dictionary)
+              type.integerValue == MessageServiceChatType.CustomerServiceMediaChat_RSP.rawValue ||
+              type.integerValue == MessageServiceChatType.CustomerServiceImgChat_RSP.rawValue ||
+              type.integerValue == MessageServiceChatType.RequestWaiter_C2S_RSP.rawValue {
+        NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceRSPNotification", object: self, userInfo: dictionary)
     } else if type.integerValue == MessagePaymentType.ShopOrderStatus_IOS.rawValue {
 //      println("Booking Order is ready...")
 //      let alertView = UIAlertController(title: "订单", message: "您的订单已确认", preferredStyle: .Alert)
@@ -316,7 +317,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   // MARK: - Private Method
   func requestOfflineMessages() {
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
       "type": MessageServiceChatType.OfflineMssage.rawValue,
       "timestamp": NSNumber(longLong: timestamp),
@@ -439,7 +440,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       #else
       let appid = "HOTELVIP"
     #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
       "devtoken": JSHStorage.deviceToken(),
@@ -469,7 +470,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       #else
       let appid = "HOTELVIP"
     #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLeaveLoc.rawValue,
       "devtoken": JSHStorage.deviceToken(),
