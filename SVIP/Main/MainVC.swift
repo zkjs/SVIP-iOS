@@ -573,7 +573,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   @IBAction func showSettings(sender: AnyObject) {
-//    navigationController?.pushViewController(JSHInfoEditVC(), animated: true)
+    let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   @IBAction func tappedStatusButton(sender: AnyObject) {
@@ -814,9 +815,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-//    if operation == UINavigationControllerOperation.Push && toVC is JSHInfoEditVC {
+//    if operation == UINavigationControllerOperation.Push && toVC is SettingTableViewController {
 //      return JSHAnimator()
 //    }
+    
     return nil
   }
   
