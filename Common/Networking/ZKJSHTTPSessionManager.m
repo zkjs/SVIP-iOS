@@ -133,13 +133,13 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [dic setObject:username forKey:@"username"];
   }
   if (realname) {
-    [dic setObject:realname forKey:@"realname"];
+    [dic setObject:realname forKey:@"real_name"];
   }
   if (sex) {
     if ([sex isEqual:@"男"]) {
-      [dic setObject:sex forKey:@"1"];
+      [dic setObject:@"1" forKey:@"sex"];
     } else {
-      [dic setObject:sex forKey:@"0"];
+      [dic setObject:@"0" forKey:@"sex"];
     }
   }
   if (company) {
