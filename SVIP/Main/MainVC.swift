@@ -67,7 +67,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let userid = JSHStorage.baseInfo().userid
       let url = NSURL(string: kBaseURL)
       url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
-      settingsButton .sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: nil, options: [SDWebImageOptions.RetryFailed, SDWebImageOptions.LowPriority])
+      settingsButton.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"))
     }
     
     setupLeftRightButtons()
@@ -330,12 +330,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
     
     // 免前台
-    if Int((order?.nologin)!) == 0 {
-      checkinLabel.setTitle(" 免前台服务已经推出", forState: .Normal)
-      checkinSubLabel.text = "立即了解"
-    } else {
-      checkinLabel.setTitle(" 您具有申请免前台的特权", forState: .Normal)
-      checkinSubLabel.text = "立即查看"
+    checkinLabel.setTitle(" 免前台服务已经推出", forState: .Normal)
+    checkinSubLabel.text = "立即了解"
+    if let nologin = order?.nologin {
+      if Int(nologin) == 1 {
+        checkinLabel.setTitle(" 您具有申请免前台的特权", forState: .Normal)
+        checkinSubLabel.text = "立即查看"
+      }
     }
     
     let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
@@ -614,12 +615,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   @IBAction func tappedCheckinButton(sender: AnyObject) {
     let order = StorageManager.sharedInstance().lastOrder()
     print("Last Order: \(order)")
-    
-    if Int((order?.nologin)!) == 0 {
-      print("立即了解免前台服务")
-    } else {
-      print("查看免前台特权")
-    }
     
 //    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
 //    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
