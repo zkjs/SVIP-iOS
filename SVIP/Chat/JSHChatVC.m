@@ -1009,7 +1009,9 @@ const CGFloat shortcutViewHeight = 45.0;
       
       switch (self.chatType) {
         case ChatNewSession: {
-          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+          NSArray *subStrings = [weakSelf.order.departure_date componentsSeparatedByString:@"-"];
+          NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
+          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, date, weakSelf.order.dayInt];
           [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
           break;
         }

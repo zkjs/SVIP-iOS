@@ -780,9 +780,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       print(".PoweredOn")
     case .PoweredOff:
       print(".PoweredOff")
-      let alertView = UIAlertController(title: "请打开蓝牙", message: "我们将为您提供免登记办理入住手续等贴心服务需要使用蓝牙功能", preferredStyle: .Alert)
-      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-      presentViewController(alertView, animated: true, completion: nil)
+//      let alertView = UIAlertController(title: "请打开蓝牙", message: "我们将为您提供免登记办理入住手续等贴心服务需要使用蓝牙功能", preferredStyle: .Alert)
+//      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+//      presentViewController(alertView, animated: true, completion: nil)
     case .Resetting:
       print(".Resetting")
     case .Unauthorized:
