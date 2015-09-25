@@ -18,9 +18,6 @@ class BookDateSelectionViewController: UIViewController, TSQCalendarViewDelegate
   }
 
   func initSubviews() {
-    // Hanton
-//    let size = self.view.bounds.size
-//    let calendarView = TSQCalendarView(frame: CGRectMake(0, 0, size.width, size.height - 64))
     let calendarView = TSQCalendarView(frame: view.bounds)
     calendarView.delegate = self;
     calendarView.firstDate = NSDate()
