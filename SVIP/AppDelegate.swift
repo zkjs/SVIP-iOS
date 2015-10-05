@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     print("applicationDidBecomeActive")
-    UMSocialSnsService.applicationDidBecomeActive()//UM
+//    UMSocialSnsService.applicationDidBecomeActive()//UM
     
 //    println(window?.rootViewController)
 //    if let navigationController = window?.rootViewController as? UINavigationController {
@@ -309,9 +309,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
         AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { (_: [NSObject : AnyObject]!) -> Void in
             // 从本地支付宝App跳回
         })
-    }else if urlStr.hasPrefix(WXAppId) {
-        return UMSocialSnsService.handleOpenURL(url)
     }
+//    else if urlStr.hasPrefix(WXAppId) {
+//        return UMSocialSnsService.handleOpenURL(url)
+//    }
         return true
   }
   
@@ -420,9 +421,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 
   //UM
   func setupUMSocial() {
-    UMSocialData.openLog(true);
-    UMSocialData.setAppKey(UMAppKey)
-    UMSocialWechatHandler.setWXAppId(WXAppId, appSecret: WXAppSecret, url: UMURL)
+//    UMSocialData.openLog(true);
+//    UMSocialData.setAppKey(UMAppKey)
+//    UMSocialWechatHandler.setWXAppId(WXAppId, appSecret: WXAppSecret, url: UMURL)
   }
   
   func setupBackgroundFetch() {

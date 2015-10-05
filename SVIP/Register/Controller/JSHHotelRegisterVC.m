@@ -110,22 +110,22 @@
   switch (((UIView *)sender).tag) {
     case 1:
     {
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-      NSLog(@"response is %@",response);
-      //need to fetch info from wechat
-      if (response.responseCode == UMSResponseCodeSuccess) {//授权成功
-        //                UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToWechatSession];//暂时没用，后期扩展有用
-        [[UMSocialDataService defaultDataService] requestSnsInformation:UMShareToWechatSession completion:^(UMSocialResponseEntity *response) {//获取微信信息
-          NSLog(@"SnsInformation is %@",response.data);
-          _wechatInfoDic = response.data;
-        }];
-        
-        _buttonTitle = @"验证手机号";
-        [_OKButton setTitle:_buttonTitle forState:UIControlStateNormal];
-        
-      }
-    });
+//      UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
+//      snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+//        NSLog(@"response is %@",response);
+//        //need to fetch info from wechat
+//        if (response.responseCode == UMSResponseCodeSuccess) {//授权成功
+//          //                UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToWechatSession];//暂时没用，后期扩展有用
+//          [[UMSocialDataService defaultDataService] requestSnsInformation:UMShareToWechatSession completion:^(UMSocialResponseEntity *response) {//获取微信信息
+//            NSLog(@"SnsInformation is %@",response.data);
+//            _wechatInfoDic = response.data;
+//          }];
+//          
+//          _buttonTitle = @"验证手机号";
+//          [_OKButton setTitle:_buttonTitle forState:UIControlStateNormal];
+//          
+//        }
+//      });
     }
       break;
     case 2:
