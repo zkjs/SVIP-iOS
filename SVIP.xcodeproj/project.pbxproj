@@ -2230,7 +2230,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "985c2331-f32e-47ba-a8d9-6ae4a9cf0c8f";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -2246,7 +2246,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "330a391c-b4c1-4fd6-8556-8f9616f714c8";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
