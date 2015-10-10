@@ -121,8 +121,23 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [_webSocket close];
   _webSocket = nil;
   
-  NSString *websocketURL = [NSString stringWithFormat:@"%@://%@:%@/zkjs2", WEBSOCKET_PREFIX, ip, port];
-  _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:websocketURL]]];
+  NSString *websocketURL = [NSString stringWithFormat:@"%@://%@:%@/zkjs", WEBSOCKET_PREFIX, ip, port];
+//  NSString *websocketURL = @"wss://im.zkjinshi.com:6666/zkjs";
+//  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:websocketURL]];
+  
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:websocketURL]
+                                                         cachePolicy: NSURLRequestUseProtocolCachePolicy
+                                                     timeoutInterval:5.0];
+  
+  // pin down certificate
+  NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"];
+  NSData *certData = [[NSData alloc] initWithContentsOfFile:cerPath];
+  CFDataRef certDataRef = (__bridge CFDataRef)certData;
+  SecCertificateRef certRef = SecCertificateCreateWithData(NULL, certDataRef);
+  id certificate = (__bridge id)certRef;
+  [request setSR_SSLPinnedCertificates:@[certificate]];
+  
+  _webSocket = [[SRWebSocket alloc] initWithURLRequest:request];
   _webSocket.delegate = self;
   
   [_webSocket open];

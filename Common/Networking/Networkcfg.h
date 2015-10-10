@@ -21,7 +21,7 @@
 // TCP外网服务器
 //#define HOST @"im.zkjinshi.cn"
 #define kChatBaseURL @"http://mmm.zkjinshi.com:9090/" // 记录服务器
-#define HOST @"112.74.82.82"
-#define WEBSOCKET_PREFIX @"ws"
-#define PORT @"7777"
+#define HOST @"im.zkjinshi.com"
+#define WEBSOCKET_PREFIX @"wss"
+#define PORT @"6666"
 #endif
