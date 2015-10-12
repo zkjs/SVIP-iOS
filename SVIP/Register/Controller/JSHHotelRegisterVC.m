@@ -68,7 +68,7 @@
 
 - (void)setupSubviews
 {
-  _buttonTitle = @"注册";
+  _buttonTitle = NSLocalizedString(@"REGISTER", nil);
   
   _phoneField.background = [UIImage imageResizedWithName:@"line_dot"];
   _codeField.background = [UIImage imageResizedWithName:@"line_dot"];
@@ -77,8 +77,10 @@
   
   NSAttributedString *attString1 = [[NSAttributedString alloc] initWithString:@"130-0000-0000" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorWithHexString:@"8d8d8d"]}];
   _phoneField.attributedPlaceholder = attString1;
-  NSAttributedString *attString2 = [[NSAttributedString alloc] initWithString:@"验证码" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorWithHexString:@"8d8d8d"]}];
+  NSAttributedString *attString2 = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"VERIFIED_CODE", nil) attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorWithHexString:NSLocalizedString(@"8d8d8d", nil)]}];
   _codeField.attributedPlaceholder = attString2;
+  
+  [_OKButton setTitle:NSLocalizedString(@"REGISTER", nil) forState:UIControlStateNormal];
 }
 #pragma mark - timer action
 - (void)refreshCount:(id)sender
@@ -93,11 +95,15 @@
 
 #pragma mark - button action
 - (IBAction)OKButtonClicked:(UIButton *)sender {
-  if ([sender.titleLabel.text isEqualToString:@"注册"]) {
+  if ([sender.titleLabel.text isEqualToString:NSLocalizedString(@"REGISTER", nil)]) {
     return;
   }
-  if ([sender.titleLabel.text isEqualToString:@"发送验证码"]) {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认手机号码" message:[NSString stringWithFormat:@"验证码将发送至手机号%@",_phoneField.text] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+  if ([sender.titleLabel.text isEqualToString:NSLocalizedString(@"SEND_VERIFIED_CODE", nil)]) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CONFIRM_MOBILE_PHONE", nil)
+                                                    message:[NSString stringWithFormat:NSLocalizedString(@"SEND_VERIFIED_CODE_TO", nil),_phoneField.text]
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+                                          otherButtonTitles:NSLocalizedString(@"CONFIRM", nil), nil];
     [alert show];
   }
 }
@@ -148,7 +154,7 @@
     //        //request 验证码
     [[ZKJSHTTPSMSSessionManager sharedInstance] requestSmsCodeWithPhoneNumber:_phoneField.text callback:^(BOOL succeeded, NSError *error) {
       if (succeeded) {
-        [ZKJSTool showMsg:@"验证码已发送"];
+        [ZKJSTool showMsg:NSLocalizedString(@"VERIFIED_CODE_IS_SENT", nil)];
         [_codeField becomeFirstResponder];
       }
     }];
@@ -167,8 +173,8 @@
       //          [[ZKJSHTTPSessionManager sharedInstance] checkDuplicatePhoneWithPhone:_phoneField.text success:^(NSURLSessionDataTask *task, id responseObject) {
       //            NSDictionary *dic = (NSDictionary *)responseObject;
       //            if ([dic[@"set"]  isEqual: @"true"]) {
-      [_OKButton setTitle:@"发送验证码" forState:UIControlStateDisabled];
-      [_OKButton setTitle:@"发送验证码" forState:UIControlStateNormal];
+      [_OKButton setTitle:NSLocalizedString(@"SEND_VERIFIED_CODE", nil) forState:UIControlStateDisabled];
+      [_OKButton setTitle:NSLocalizedString(@"SEND_VERIFIED_CODE", nil) forState:UIControlStateNormal];
       _OKButton.enabled = YES;
       //            }else {
       //              [ZKJSTool showMsg:@"当前仅限被邀请客户使用！"];
@@ -178,14 +184,14 @@
       //            [ZKJSTool showMsg:@"当前仅限被邀请客户使用！"];
       //          }];
     }else {
-      [ZKJSTool showMsg:@"手机号错误"];
+      [ZKJSTool showMsg:NSLocalizedString(@"WRONG_MOBILE_PHONE", nil)];
       return;
     }
   }
   
   
   
-  if ((_phoneField.text.length < 11) & [_OKButton.titleLabel.text isEqualToString:@"发送验证码"]) {
+  if ((_phoneField.text.length < 11) & [_OKButton.titleLabel.text isEqualToString:NSLocalizedString(@"SEND_VERIFIED_CODE", nil)]) {
     [_OKButton setTitle:_buttonTitle forState:UIControlStateDisabled];
     _OKButton.enabled = NO;
     return;
@@ -205,7 +211,7 @@
         //跳过验证，直接注册
         [[LoginManager sharedInstance] signup:_phoneField.text openID:nil success:^{
           JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] init];
-          baseInfo.sex = [_wechatInfoDic[@"gender"] boolValue] ? @"男" : @"女";
+          baseInfo.sex = [_wechatInfoDic[@"gender"] boolValue] ? NSLocalizedString(@"MAN", nil) : NSLocalizedString(@"WOMAN", nil);
           baseInfo.openid = _wechatInfoDic[@"openid"];
           baseInfo.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_wechatInfoDic[@"profile_image_url"]]]];
           baseInfo.username = _wechatInfoDic[@"screen_name"];
@@ -219,7 +225,7 @@
             //注册
             [[LoginManager sharedInstance] signup:_phoneField.text openID:nil success:^{
               JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] init];
-              baseInfo.sex = [_wechatInfoDic[@"gender"] boolValue] ? @"男" : @"女";
+              baseInfo.sex = [_wechatInfoDic[@"gender"] boolValue] ? NSLocalizedString(@"MAN", nil) : NSLocalizedString(@"WOMAN", nil);
               baseInfo.openid = _wechatInfoDic[@"openid"];
               baseInfo.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_wechatInfoDic[@"profile_image_url"]]]];
               baseInfo.username = _wechatInfoDic[@"screen_name"];
@@ -227,7 +233,7 @@
             }];
           }else{
             _codeField.text = @"";
-            [ZKJSTool showMsg:@"验证码错误"];
+            [ZKJSTool showMsg:NSLocalizedString(@"WRONG_VERIFIED_CODE", nil)];
           }
         }];
         
