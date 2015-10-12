@@ -326,16 +326,16 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     if beacon != nil {
       regionLabel.text = beacon!["locdesc"]
     } else {
-      regionLabel.text = "不在酒店"
+      regionLabel.text = NSLocalizedString("OUTSIDE_HOTEL", comment: "")
     }
     
     // 免前台
     checkinLabel.setTitle(" 免前台服务已经推出", forState: .Normal)
-    checkinSubLabel.text = "立即了解"
+//    checkinSubLabel.text = "立即了解"
     if let nologin = order?.nologin {
       if Int(nologin) == 1 {
         checkinLabel.setTitle(" 您具有申请免前台的特权", forState: .Normal)
-        checkinSubLabel.text = "立即查看"
+//        checkinSubLabel.text = "立即查看"
       }
     }
     
@@ -376,7 +376,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let duration = "\(days)晚"
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
-      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
+//      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_HasOrder_UnCheckin:  //在酒店-未入住
       var startDateString = order?.arrival_date
       let endDateString = order?.departure_date
@@ -411,7 +411,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let duration = "\(days)晚"
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
-      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
+//      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_NoOrder:  // 在酒店-无订单
       if let shopID = beacon!["shopid"] {
         if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID) {
@@ -419,11 +419,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         }
       }
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
-      tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
+//      tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:  // 不在酒店-已入住
       statusLabel.setTitle(" \((order?.fullname)!)随时为您服务!", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_likai"), forState: .Normal)
-      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
+//      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:  // 不在酒店-未入住
       var startDateString = order?.arrival_date
       let endDateString = order?.departure_date
@@ -459,11 +459,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let duration = "\(days)晚"
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
-      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
+//      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_NoOrder:  // 不在酒店-无订单
       statusLabel.setTitle(" 您还没有预订信息, 请立即预订", forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
-      tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
+//      tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
     }
     print("Update Smart Panel")
   }

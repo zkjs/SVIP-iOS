@@ -75,3 +75,13 @@
 
 "CAMERA" = "拍摄";
 "PHOTOS" = "照片";
+"CHOOSE_HOTEL" = "选择酒店";
+"FILL_BOOKING_FORM" = "填写订单";
+"DONE" = "确定";
+"OUTSIDE_HOTEL" = "不在酒店";
+
+"SLOGAN" = "无声的尊贵";
+"REGISTER" = "注册";
+"CONFIRM" = "确定";
+"CONFIRM_MOBILE_PHONE" = "确认手机号码";
+"SEND_VERIFIED_CODE_TO" = "验证码将发送至手机号%";

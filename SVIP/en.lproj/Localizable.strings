@@ -76,3 +76,13 @@
 
 "CAMERA" = "Camera";
 "PHOTOS" = "Photos";
+"CHOOSE_HOTEL" = "Choose Hotel";
+"FILL_BOOKING_FORM" = "Fill Booking Form";
+"DONE" = "Done";
+"OUTSIDE_HOTEL" = "Outside Hotel";
+
+"SLOGAN" = "I'M VIP";
+"REGISTER" = "Register";
+"CONFIRM" = "Confirm";
+"CONFIRM_MOBILE_PHONE" = "Confirm Mobile Phone";
+"SEND_VERIFIED_CODE_TO" = "Send Verified Code To %@";
