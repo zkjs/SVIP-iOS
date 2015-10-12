@@ -30,14 +30,14 @@ class PhoneSettingSecondViewController: UIViewController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = "修改手机"
+    self.title = NSLocalizedString("CHANGE_MOBILE_PHONE", comment: "")
   }
   
   func refreshCount() {
     if --count == 0 {
       countTimer?.invalidate()
       okButton.enabled = true
-      okButton.setTitle("发送验证码", forState: UIControlState.Disabled)
+      okButton.setTitle(NSLocalizedString("SEND_VERIFIED_CODE", comment: ""), forState: UIControlState.Disabled)
     }else {
       okButton.setTitle("\(count)S", forState: UIControlState.Disabled)
     }
@@ -45,7 +45,7 @@ class PhoneSettingSecondViewController: UIViewController {
   @IBAction func buttonClick(sender: UIButton) {
     ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phoneTextField.text, callback: { (successed: Bool, error: NSError!) -> Void in
       if successed {
-        ZKJSTool.showMsg("验证码已发送")
+        ZKJSTool.showMsg(NSLocalizedString("VERIFIED_CODE_IS_SENT", comment: ""))
       }
     })
     okButton.enabled = false
@@ -63,10 +63,10 @@ class PhoneSettingSecondViewController: UIViewController {
       if ZKJSTool.validateMobile(phoneText) {
         okButton.enabled = true
       }else {
-        ZKJSTool.showMsg("手机号错误")
+        ZKJSTool.showMsg(NSLocalizedString("WRONG_MOBILE_PHONE", comment: ""))
       }
     }
-    if phoneText?.characters.count < 11 && okButton.titleLabel?.text == "发送验证码" {
+    if phoneText?.characters.count < 11 && okButton.titleLabel?.text == NSLocalizedString("SEND_VERIFIED_CODE", comment: "") {
       okButton.enabled = false
       return
     }
@@ -78,7 +78,7 @@ class PhoneSettingSecondViewController: UIViewController {
           ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithParaDic(dictionary, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
             let dic = responseObject as! NSDictionary
             if dic["set"]!.boolValue! {
-              ZKJSTool.showMsg("电话修改成功")
+              ZKJSTool.showMsg(NSLocalizedString("MOBILE_PHONE_IS_CHANGED", comment: ""))
               let controllers = self.navigationController!.viewControllers
               let count = controllers.count
               let vc = controllers[count - 3]
@@ -90,7 +90,7 @@ class PhoneSettingSecondViewController: UIViewController {
 
           
         }else {
-          ZKJSTool.showMsg("验证码错误")
+          ZKJSTool.showMsg(NSLocalizedString("WRONG_VERIFIED_CODE", comment: ""))
         }
       })
     }

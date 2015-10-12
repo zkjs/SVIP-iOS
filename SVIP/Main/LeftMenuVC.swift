@@ -39,16 +39,18 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   func loadData() {
-//    let path = NSBundle.mainBundle().pathForResource("LeftMenu", ofType: "plist")
-//    dataArray = NSArray(contentsOfFile:path!)
+    let title1 = NSLocalizedString("SETTINGS", comment: "")
     let menu1 = ["logo": "ic_shezhi",
-                 "text": "设置"]
+                 "text": title1]
+    let title2 = NSLocalizedString("IN_ROOM_CHECK_IN", comment: "")
     let menu2 = ["logo": "ic_mianqiantai",
-                 "text": "免前台"]
+                 "text": title2]
+    let title3 = NSLocalizedString("ORDRE_LIST", comment: "")
     let menu3 = ["logo": "ic_dingdan",
-                 "text": "订单"]
+                 "text": title3]
+    let title4 = NSLocalizedString("ORDER_HISTORY", comment: "")
     let menu4 = ["logo": "ic_zuji",
-                 "text": "足迹"]
+                 "text": title4]
     dataArray.append(menu1)
     dataArray.append(menu2)
     dataArray.append(menu3)

@@ -18,12 +18,18 @@ class InvoiceTableViewCell: UITableViewCell {
   @IBOutlet weak var invoiceTextField: UITextField!
   @IBOutlet weak var modifyButton: UIButton!
   @IBOutlet weak var deleteButton: UIButton!
+  @IBOutlet weak var promptTextField: UITextField!
 
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
     layer.borderWidth = 1
     layer.cornerRadius = 5
+    
+    title.text = NSLocalizedString("INVOICE_DEFAULT_TITLE", comment: "")
+    promptTextField.placeholder = NSLocalizedString("INVOICE_PROMPT", comment: "")
+    modifyButton.setTitle(NSLocalizedString("EDIT", comment: ""), forState: UIControlState.Normal)
+    deleteButton.setTitle(NSLocalizedString("DELETE", comment: ""), forState: UIControlState.Normal)
   }
   
   override func setSelected(selected: Bool, animated: Bool) {

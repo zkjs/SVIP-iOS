@@ -20,8 +20,32 @@ class SettingEditViewController: UIViewController {
   @IBOutlet weak var promptLabel: UILabel!
   required init(type: VCType) {
     self.type = type
-    let path = NSBundle.mainBundle().pathForResource("SettingEdit", ofType: "plist")
-    editDic = NSDictionary(contentsOfFile:path!)!
+    
+    var placeholder = NSLocalizedString("REALNAME_PLACEHOLDER", comment: "")
+    var prompt = NSLocalizedString("REALNAME_PROMPT", comment: "")
+    let realname = ["placeholder": placeholder,
+                    "prompt": prompt]
+    
+    placeholder = NSLocalizedString("USERNAME_PLACEHOLDER", comment: "")
+    prompt = ""
+    let username = ["placeholder": placeholder,
+                    "prompt": prompt]
+    
+    placeholder = NSLocalizedString("COMPANY_PLACEHOLDER", comment: "")
+    prompt = NSLocalizedString("COMPANY_PROMPT", comment: "")
+    let company = ["placeholder": placeholder,
+                   "prompt": prompt]
+    
+    placeholder = NSLocalizedString("EMAIL_PLACEHOLDER", comment: "")
+    prompt = ""
+    let email = ["placeholder": placeholder,
+                 "prompt": prompt]
+    
+    editDic = ["realname": realname,
+               "username": username,
+               "company": company,
+               "email": email]
+    
     super.init(nibName: "SettingEditViewController", bundle: nil)
   }
   
@@ -88,7 +112,7 @@ class SettingEditViewController: UIViewController {
     var company:String?
     var email:String?
     if textField.text!.isEmpty {
-      ZKJSTool.showMsg("请填写信息")
+      ZKJSTool.showMsg(NSLocalizedString("ENTER_INFORMATION", comment: ""))
       return
     }
     switch type {
@@ -102,7 +126,7 @@ class SettingEditViewController: UIViewController {
       if ZKJSTool.validateEmail(textField.text) {
         email = textField.text
       }else {
-        ZKJSTool.showMsg("邮箱格式不正确")
+        ZKJSTool.showMsg(NSLocalizedString("WRONG_EMAIL", comment: ""))
         return
       }
     }

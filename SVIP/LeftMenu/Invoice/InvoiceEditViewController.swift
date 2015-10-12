@@ -9,9 +9,14 @@
 import UIKit
 
 class InvoiceEditViewController: UIViewController {
+  
   let dic: NSMutableDictionary
+  
   @IBOutlet weak var invoice: UITextField!
   @IBOutlet weak var isDefaultButton: UIButton!
+  @IBOutlet weak var promptTextField: UITextField!
+  @IBOutlet weak var saveButton: UIButton!
+  
   required init(dic: NSDictionary?) {
     if dic == nil {//创建新dic
       self.dic = NSMutableDictionary()
@@ -24,11 +29,18 @@ class InvoiceEditViewController: UIViewController {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
   convenience init() {
     self.init(dic: nil)
   }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    invoice.placeholder = NSLocalizedString("INVOICE_NAME", comment: "")
+    promptTextField.placeholder = NSLocalizedString("INVOICE_PROMPT", comment: "")
+    isDefaultButton.setTitle(NSLocalizedString("DEFAULT", comment: ""), forState: UIControlState.Normal)
+    saveButton.setTitle(NSLocalizedString("SAVE", comment: ""), forState: UIControlState.Normal)
+    
     invoice.text = dic["invoice_title"] as? String
     if let is_default = dic["is_default"] as? NSNumber {
       isDefaultButton.selected = is_default.boolValue

@@ -20,7 +20,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     loadMoreData()
     
-    title = "订单列表"
+    title = NSLocalizedString("ORDRE_LIST", comment: "")
     
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
@@ -108,7 +108,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          ZKJSTool.showMsg("删除失败")
+          ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
       })
     default:
       break

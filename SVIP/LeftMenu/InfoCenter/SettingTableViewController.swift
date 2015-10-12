@@ -9,27 +9,58 @@
 import UIKit
 
 class SettingTableViewController: UITableViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
   var localBaseInfo :JSHBaseInfo?
   let Identifier = "reuseIdentifier"
-  let textArray: Array<Array<String>>
+  var textArray = Array<Array<String>>()
+  
   //MARK:- Init
+  
   required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-    let path = NSBundle.mainBundle() .pathForResource("SettingTable", ofType: "plist")
-    textArray = NSArray(contentsOfFile: path!) as! Array
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    loadData()
   }
 
   override init(style: UITableViewStyle) {
-    let path = NSBundle.mainBundle() .pathForResource("SettingTable", ofType: "plist")
-    textArray = NSArray(contentsOfFile: path!) as! Array
     super.init(style: style)
+    loadData()
   }
 
   required init!(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
   }
+  
   //MARK:- Life Cycle
+  
   func loadData() {
+    var titleSection1 = [String]()
+    let title1 = NSLocalizedString("PROFILE_IMAGE", comment: "")
+    let title2 = NSLocalizedString("NAME", comment: "")
+    let title3 = NSLocalizedString("NICKNAME", comment: "")
+    let title4 = NSLocalizedString("SEX", comment: "")
+    let title5 = NSLocalizedString("COMPANY", comment: "")
+    let title6 = NSLocalizedString("EMAIL", comment: "")
+    titleSection1.append(title1)
+    titleSection1.append(title2)
+    titleSection1.append(title3)
+    titleSection1.append(title4)
+    titleSection1.append(title5)
+    titleSection1.append(title6)
+    textArray.append(titleSection1)
+    
+    var titleSection2 = [String]()
+    let title7 = NSLocalizedString("MOBILE_NUMBER", comment: "")
+    let title8 = NSLocalizedString("INVOICE_LIST", comment: "")
+    let title9 = NSLocalizedString("PERSONAL_TAGS", comment: "")
+    let title10 = NSLocalizedString("ABOUT_US", comment: "")
+    titleSection2.append(title7)
+    titleSection2.append(title8)
+    titleSection2.append(title9)
+    titleSection2.append(title10)
+    textArray.append(titleSection2)
+  }
+  
+  func loadUserData() {
     localBaseInfo = JSHStorage.baseInfo()
   }
   
@@ -43,11 +74,12 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   }
   
   private func refreshDataAndUI() {
-    loadData()
+    loadUserData()
     tableView.reloadData()
   }
   
   // MARK: - Table view data source
+  
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return textArray.count
   }
@@ -123,13 +155,21 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     switch indexPath {
     case NSIndexPath(forRow: 0, inSection: 0):
-      UIActionSheet(title:"选择照片来源", delegate:self, cancelButtonTitle:"取消", destructiveButtonTitle:"照相", otherButtonTitles:"照片库") .showInView(self.view)
+      UIActionSheet(title:NSLocalizedString("CHOOSE_PHOTO", comment: ""),
+                    delegate:self,
+                    cancelButtonTitle:NSLocalizedString("CANCEL", comment: ""),
+                    destructiveButtonTitle:NSLocalizedString("TAKE_PHOTO", comment: ""),
+                    otherButtonTitles:NSLocalizedString("PHOTO_LIBRARY", comment: "")) .showInView(self.view)
     case NSIndexPath(forRow: 1, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.realname), animated: true)
     case NSIndexPath(forRow: 2, inSection: 0):
       self.navigationController?.pushViewController(SettingEditViewController(type:VCType.username), animated: true)
     case NSIndexPath(forRow: 3, inSection: 0):
-      let sheet = UIActionSheet(title: "性别", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "男", otherButtonTitles: "女")
+      let sheet = UIActionSheet(title: NSLocalizedString("SEX", comment: ""),
+                                delegate: self,
+                                cancelButtonTitle: NSLocalizedString("CANCEL", comment: ""),
+                                destructiveButtonTitle: NSLocalizedString("MAN", comment: ""),
+                                otherButtonTitles: NSLocalizedString("WOMAN", comment: ""))
       sheet.tag = 888
       sheet.showInView(self.view)
     case NSIndexPath(forRow: 4, inSection: 0):
@@ -151,16 +191,17 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   }
   
   //MARK:- ACTIONSHEET
+  
   func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {//两个actionSheet，通过tag区分
     if actionSheet.tag == 888 {//选择性别
       var set = false
       var sex = JSHStorage.baseInfo().sex
       switch buttonIndex {
       case 0:
-        sex = "男"
+        sex = NSLocalizedString("MAN", comment: "")
         set = true
       case 2:
-        sex = "女"
+        sex = NSLocalizedString("WOMAN", comment: "")
         set = true
       default:
         break
@@ -170,7 +211,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
           if let dic = responseObject as? NSDictionary {
             let set = dic["set"]!.boolValue!
             if set {
-              ZKJSTool.showMsg("保存成功")
+              ZKJSTool.showMsg(NSLocalizedString("SAVED", comment: ""))
               let baseInfo = JSHStorage.baseInfo()
               baseInfo.sex = sex
               JSHStorage.saveBaseInfo(baseInfo)
@@ -206,6 +247,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   }
 
   //MARK:- UIImagePickerControllerDelegate
+  
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
 //    let dic = editingInfo
     var imageData = UIImageJPEGRepresentation(image, 1.0)!

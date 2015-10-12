@@ -77,7 +77,7 @@ class InvoiceTableViewController: UITableViewController, InvoiceTableViewCellDel
     cell?.delegate = self
     cell?.invoiceTextField.text = dataArray[indexPath.row]["invoice_title"] as? String
     if indexPath.row != 0 && indexPath.row != dataArray.count {
-      cell?.title.text = "发票\(indexPath.row)"
+      cell?.title.text = NSLocalizedString("INVOICE", comment: "") + " \(indexPath.row)"
     }
     return cell!
   }
@@ -99,7 +99,7 @@ class InvoiceTableViewController: UITableViewController, InvoiceTableViewCellDel
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
-          ZKJSTool.showMsg("删除成功")
+          ZKJSTool.showMsg(NSLocalizedString("DELETED", comment: ""))
           self.dataArray.removeObjectAtIndex(row)
           self.tableView.reloadData()
         }

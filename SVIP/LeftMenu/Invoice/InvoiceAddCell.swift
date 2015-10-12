@@ -9,11 +9,18 @@
 import UIKit
 
 class InvoiceAddCell: UITableViewCell {
+  
+  @IBOutlet weak var invoiceTextField: UITextField!
+  @IBOutlet weak var promptTextField: UITextField!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
     layer.borderWidth = 1
     layer.cornerRadius = 5
+    
+    invoiceTextField.placeholder = NSLocalizedString("INVOICE_NAME", comment: "")
+    promptTextField.placeholder = NSLocalizedString("INVOICE_PROMPT", comment: "")
   }
   
   override func setSelected(selected: Bool, animated: Bool) {

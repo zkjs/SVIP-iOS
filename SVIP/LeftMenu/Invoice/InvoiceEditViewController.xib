@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceEditViewController" customModule="SVIP" customModuleProvider="target">
             <connections>
                 <outlet property="invoice" destination="sJY-CH-EZC" id="xld-8r-MmN"/>
                 <outlet property="isDefaultButton" destination="RaJ-oF-M45" id="rbo-fc-WAu"/>
+                <outlet property="promptTextField" destination="Mjf-lE-OaS" id="Zac-Ti-y6N"/>
+                <outlet property="saveButton" destination="qBX-M7-RXa" id="exP-Gu-MVn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -71,8 +74,7 @@
                             <exclude reference="x8t-ui-M3X"/>
                         </mask>
                     </variation>
-                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                        <rect key="frame" x="161" y="188" width="80" height="30"/>
+                    <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
                             <include reference="x8t-ui-M3X"/>
                         </mask>
@@ -135,18 +137,18 @@
                     <exclude reference="qBX-M7-RXa"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="5xN-8z-a9n"/>
-                    <exclude reference="VXz-WW-3IG"/>
-                    <exclude reference="lSD-C1-Gdx"/>
                     <exclude reference="12F-8r-tD7"/>
                     <exclude reference="L77-8f-rZO"/>
                     <exclude reference="TdS-Lc-Shz"/>
+                    <exclude reference="5xN-8z-a9n"/>
+                    <exclude reference="VXz-WW-3IG"/>
+                    <exclude reference="lSD-C1-Gdx"/>
+                    <exclude reference="4g3-H9-0CM"/>
+                    <exclude reference="Yfz-NP-paD"/>
                     <exclude reference="A7N-46-ecQ"/>
                     <exclude reference="GqG-SV-eto"/>
                     <exclude reference="gJT-ZD-3aD"/>
                     <exclude reference="l5R-hb-UlN"/>
-                    <exclude reference="4g3-H9-0CM"/>
-                    <exclude reference="Yfz-NP-paD"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -157,18 +159,18 @@
                     <include reference="qBX-M7-RXa"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="5xN-8z-a9n"/>
-                    <include reference="VXz-WW-3IG"/>
-                    <include reference="lSD-C1-Gdx"/>
                     <include reference="12F-8r-tD7"/>
                     <include reference="L77-8f-rZO"/>
                     <include reference="TdS-Lc-Shz"/>
+                    <include reference="5xN-8z-a9n"/>
+                    <include reference="VXz-WW-3IG"/>
+                    <include reference="lSD-C1-Gdx"/>
+                    <include reference="4g3-H9-0CM"/>
+                    <include reference="Yfz-NP-paD"/>
                     <exclude reference="A7N-46-ecQ"/>
                     <include reference="GqG-SV-eto"/>
                     <include reference="gJT-ZD-3aD"/>
                     <include reference="l5R-hb-UlN"/>
-                    <include reference="4g3-H9-0CM"/>
-                    <include reference="Yfz-NP-paD"/>
                 </mask>
             </variation>
         </view>

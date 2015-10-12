@@ -168,16 +168,15 @@
 		40817D1C1B8EDCED00EF188F /* NewItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1B1B8EDCED00EF188F /* NewItemHeaderView.swift */; };
 		40817D1E1B8EDD4B00EF188F /* NewItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1D1B8EDD4B00EF188F /* NewItemFooterView.swift */; };
 		40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */; };
+		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
 		40D599DE1BA2BED300AF79B3 /* OrderHistoryListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */; };
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
 		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
 		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
-		B20812A21B8DD7950070D96F /* SettingEdit.plist in Resources */ = {isa = PBXBuildFile; fileRef = B208127B1B8DD7950070D96F /* SettingEdit.plist */; };
 		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
 		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
-		B20812A51B8DD7950070D96F /* SettingTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = B208127E1B8DD7950070D96F /* SettingTable.plist */; };
 		B20812A61B8DD7950070D96F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127F1B8DD7950070D96F /* SettingTableViewController.swift */; };
 		B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812861B8DD7950070D96F /* LabelButton.swift */; };
 		B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812871B8DD7950070D96F /* LabelSelectView.swift */; };
@@ -197,7 +196,6 @@
 		B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */; };
 		B21250B11B74586F0056835D /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250B01B74586F0056835D /* LoginManager.swift */; };
 		B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250BA1B7484F80056835D /* LeftMenuVC.swift */; };
-		B21250C01B7487B90056835D /* LeftMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21250BF1B7487B90056835D /* LeftMenu.plist */; };
 		B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */; };
 		B21250CA1B74AFD50056835D /* BookListRightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250C91B74AFD50056835D /* BookListRightMenuVC.swift */; };
 		B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250CB1B74AFDF0056835D /* BookListRightMenuVC.xib */; };
@@ -561,6 +559,8 @@
 		40817D1B1B8EDCED00EF188F /* NewItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemHeaderView.swift; sourceTree = "<group>"; };
 		40817D1D1B8EDD4B00EF188F /* NewItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemFooterView.swift; sourceTree = "<group>"; };
 		40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTVC.swift; sourceTree = "<group>"; };
+		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryListTVC.swift; sourceTree = "<group>"; };
 		40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Decompression.swift"; sourceTree = "<group>"; };
 		40DA7A011B463E850097CE3D /* JSHChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHChatVC.h; sourceTree = "<group>"; };
@@ -570,10 +570,8 @@
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
 		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
-		B208127B1B8DD7950070D96F /* SettingEdit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingEdit.plist; sourceTree = "<group>"; };
 		B208127C1B8DD7950070D96F /* SettingEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingEditViewController.swift; sourceTree = "<group>"; };
 		B208127D1B8DD7950070D96F /* SettingEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingEditViewController.xib; sourceTree = "<group>"; };
-		B208127E1B8DD7950070D96F /* SettingTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingTable.plist; sourceTree = "<group>"; };
 		B208127F1B8DD7950070D96F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		B20812861B8DD7950070D96F /* LabelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
 		B20812871B8DD7950070D96F /* LabelSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelSelectView.swift; sourceTree = "<group>"; };
@@ -597,7 +595,6 @@
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
 		B21250B01B74586F0056835D /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		B21250BA1B7484F80056835D /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftMenuVC.swift; path = ../Main/LeftMenuVC.swift; sourceTree = "<group>"; };
-		B21250BF1B7487B90056835D /* LeftMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftMenu.plist; sourceTree = "<group>"; };
 		B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListRightMenuCell.xib; sourceTree = "<group>"; };
 		B21250C91B74AFD50056835D /* BookListRightMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListRightMenuVC.swift; sourceTree = "<group>"; };
 		B21250CB1B74AFDF0056835D /* BookListRightMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListRightMenuVC.xib; sourceTree = "<group>"; };
@@ -796,7 +793,8 @@
 				4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */,
 				405BC0FB1B42495F00081C0A /* DotLine.swift */,
 			);
-			path = OrderList;
+			name = OrderList;
+			path = ../OrderList;
 			sourceTree = "<group>";
 		};
 		405266421B4127F600B277BE /* MessageCenter */ = {
@@ -1315,10 +1313,10 @@
 				4052664D1B41283900B277BE /* Main */,
 				405266421B4127F600B277BE /* MessageCenter */,
 				40DA7A001B463E850097CE3D /* Chat */,
-				405266311B41279B00B277BE /* OrderList */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
 				405826481BA11CC5005A2C8E /* PrefixHeader.pch */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
+				40D412201BCB4FAB00FC28DB /* Localizable.strings */,
 			);
 			path = SVIP;
 			sourceTree = "<group>";
@@ -1416,13 +1414,13 @@
 			children = (
 				B21250BA1B7484F80056835D /* LeftMenuVC.swift */,
 				B21250CD1B74AFF00056835D /* LeftMenuVC.xib */,
-				B21250BE1B7487A70056835D /* Source */,
 				B28967B81B9E78C900DF5D79 /* AboutUs */,
 				B2F037751B93F3D4006FF396 /* Phone */,
 				B2FB43321B8EF75700C9BEBB /* Invoice */,
 				B20812621B8DD7950070D96F /* InfoCenter */,
 				B20812851B8DD7950070D96F /* InfoLabel */,
 				B20812901B8DD7950070D96F /* SkipCheckIn */,
+				405266311B41279B00B277BE /* OrderList */,
 			);
 			path = LeftMenu;
 			sourceTree = "<group>";
@@ -1432,10 +1430,8 @@
 			children = (
 				B2FB432B1B8EB49600C9BEBB /* ForFirstLogin */,
 				B20812691B8DD7950070D96F /* Model */,
-				B208127B1B8DD7950070D96F /* SettingEdit.plist */,
 				B208127C1B8DD7950070D96F /* SettingEditViewController.swift */,
 				B208127D1B8DD7950070D96F /* SettingEditViewController.xib */,
-				B208127E1B8DD7950070D96F /* SettingTable.plist */,
 				B208127F1B8DD7950070D96F /* SettingTableViewController.swift */,
 			);
 			path = InfoCenter;
@@ -1490,15 +1486,6 @@
 				B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		B21250BE1B7487A70056835D /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				B21250BF1B7487B90056835D /* LeftMenu.plist */,
-			);
-			name = Source;
-			path = ../Main/Source;
 			sourceTree = "<group>";
 		};
 		B23E536A1B4BB64C00CB7761 /* Util */ = {
@@ -1875,8 +1862,6 @@
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
 				4058E4DF1BA0211B00EF6D76 /* MessageDisplayKitString.strings in Resources */,
 				4058E5041BA0211B00EF6D76 /* RecordingSignal008@2x.png in Resources */,
-				B20812A21B8DD7950070D96F /* SettingEdit.plist in Resources */,
-				B20812A51B8DD7950070D96F /* SettingTable.plist in Resources */,
 				4058E52B1BA0211B00EF6D76 /* weChatBubble_Receiving_Solid@2x.png in Resources */,
 				4058E4EF1BA0211B00EF6D76 /* msg_chat_voice_unread.png in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
@@ -1887,6 +1872,7 @@
 				4058E4E31BA0211B00EF6D76 /* ic_jianpan2@2x.png in Resources */,
 				B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */,
 				4058E4FF1BA0211B00EF6D76 /* RecordingSignal003@2x.png in Resources */,
+				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
 				4058E4F51BA0211B00EF6D76 /* placeholderImage@2x.png in Resources */,
 				B2F4716A1B4B6CF0005122BB /* AlipaySDK.bundle in Resources */,
 				B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */,
@@ -1903,7 +1889,6 @@
 				4058E5001BA0211B00EF6D76 /* RecordingSignal004@2x.png in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				4058E5061BA0211B00EF6D76 /* SECoreTextView.bundle in Resources */,
-				B21250C01B7487B90056835D /* LeftMenu.plist in Resources */,
 				B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */,
 				4058E4FB1BA0211B00EF6D76 /* RecordCancel@2x.png in Resources */,
 				4058E5291BA0211B00EF6D76 /* VoiceBtn_BlackHL@2x.png in Resources */,
@@ -2214,6 +2199,15 @@
 				40641F071B3E569700CF150D /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		40D412201BCB4FAB00FC28DB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40D412211BCB4FB100FC28DB /* zh-Hans */,
+				40D412221BCB4FBB00FC28DB /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

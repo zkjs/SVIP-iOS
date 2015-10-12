@@ -20,7 +20,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     
     loadMoreData()
     
-    title = "足迹"
+    title = NSLocalizedString("ORDER_HISTORY", comment: "")
     
     let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
@@ -108,7 +108,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          ZKJSTool.showMsg("删除失败")
+          ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
       })
     default:
       break

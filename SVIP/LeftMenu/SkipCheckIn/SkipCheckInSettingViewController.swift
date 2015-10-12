@@ -21,10 +21,11 @@ class SkipCheckInSettingViewController: UIViewController, UIWebViewDelegate {
     ZKJSTool.hideHUD()
   }
   func initSubviews() {
-    let v = NSBundle.mainBundle().loadNibNamed("SwitchView", owner: self, options: nil).last as! UIView
-    let right = UIBarButtonItem(customView:v)
+    let switchView = NSBundle.mainBundle().loadNibNamed("SwitchView", owner: self, options: nil).last as! UIView
+    let right = UIBarButtonItem(customView:switchView)
     self.navigationItem.rightBarButtonItem = right
     
+    switchStatus.text = NSLocalizedString("OFF", comment: "")
     switchButton.addTarget(self, action:"switchValueChange:", forControlEvents: UIControlEvents.ValueChanged)
     
     webView = UIWebView(frame: view.bounds)
@@ -37,9 +38,9 @@ class SkipCheckInSettingViewController: UIViewController, UIWebViewDelegate {
   
   func switchValueChange(sender: UISwitch) {
     if switchButton.on {
-      switchStatus.text = "开启"
+      switchStatus.text = NSLocalizedString("ON", comment: "")
     }else {
-      switchStatus.text = "关闭"
+      switchStatus.text = NSLocalizedString("OFF", comment: "")
     }
   }
   

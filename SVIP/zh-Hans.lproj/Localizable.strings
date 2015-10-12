@@ -1,0 +1,73 @@
+/* 
+  Localizable.strings
+  SVIP
+
+  Created by Hanton on 10/12/15.
+  Copyright © 2015 zkjinshi. All rights reserved.
+*/
+
+"ORDRE_LIST" = "订单";
+"IN_ROOM_CHECK_IN" = "免前台";
+"SETTINGS" = "设置";
+"ORDER_HISTORY" = "足迹";
+
+"PROFILE_IMAGE" = "头像";
+"NAME" = "姓名";
+"NICKNAME" = "昵称";
+"SEX" = "性别";
+"COMPANY" = "单位";
+"EMAIL" = "邮箱";
+
+"MOBILE_NUMBER" = "修改手机";
+"INVOICE_LIST" = "发票信息";
+"PERSONAL_TAGS" = "个人标签";
+"ABOUT_US" = "关于我们";
+
+"REALNAME_PLACEHOLDER" = "输入您的真实姓名";
+"REALNAME_PROMPT" = "该名字用于您订房时确认，不会透露给他人";
+"USERNAME_PLACEHOLDER" = "取个昵称，让更多人认识你";
+"COMPANY_PLACEHOLDER" = "输入您的单位名称";
+"COMPANY_PROMPT" = "建议输入全名 如XX市XX科技有限公司";
+"EMAIL_PLACEHOLDER" = "xxxzkjinshi.com";
+
+"ENTER_INFORMATION" = "请填写信息";
+"WRONG_EMAIL" = "邮箱格式不正确";
+"PHOTO_LIBRARY" = "照片库";
+"TAKE_PHOTO" = "照相";
+"CANCEL" = "取消";
+"CHOOSE_PHOTO" = "选择照片来源";
+"WOMAN" = "女";
+"MAN" = "男";
+"SAVED" = "保存成功";
+"SAVE" = "保存";
+"FAILED" = "保存失败";
+"KEEP_PUBLIC" = "公开";
+"CHOSEN" = "已选";
+"TO_CHOOSE" = "可选";
+"CHANGE_MOBILE_PHONE" = "修改手机";
+"SEND_VERIFIED_CODE" = "发送验证码";
+"VERIFIED_CODE_IS_SENT" = "验证码已发送";
+"WRONG_MOBILE_PHONE" = "手机号错误";
+"WRONG_VERIFIED_CODE" = "验证码错误";
+"MOBILE_PHONE_IS_CHANGED" = "电话修改成功";
+"VERIFIED_CODE" = "验证码";
+"VERIFIED_YOUR_PHONE" = "验证原手机";
+"DELETE" = "删除";
+"EDIT" = "修改";
+"INVOICE_PROMPT" = "获取方式：离店时自取";
+"INVOICE_DEFAULT_TITLE" = "默认发票";
+"INVOICE_NAME" = "发票抬头";
+"DEFAULT" = "设为默认";
+"DELETED" = "删除成功";
+"INVOICE" = "发票";
+"ON" = "开启";
+"OFF" = "关闭";
+"ORDER_DETAIL" = "订单详情";
+"BOOKING_INFO" = "预定信息";
+"ROOM_INFO" = "房间信息";
+"BILL_INFO" = "账单信息";
+"BOOKING_ORDER" = "预定中的订单";
+"PREFERRED" = "我的要求";
+
+"PAYMENT" = "支付";
+"CANCEL_BOOKING" = "取消预定";

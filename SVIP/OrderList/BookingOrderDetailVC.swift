@@ -21,6 +21,10 @@ class BookingOrderDetailVC: UIViewController {
   @IBOutlet weak var remarkLabel: UILabel!
   @IBOutlet weak var chatButton: UIButton!
   @IBOutlet weak var paymentButton: UIButton!
+  @IBOutlet weak var bookingInfoLabel: UILabel!
+  @IBOutlet weak var roomInfoLabel: UILabel!
+  @IBOutlet weak var preferredInfoLabel: UILabel!
+  @IBOutlet weak var cancelBookingButton: UIButton!
   
   let order: BookOrder
   
@@ -45,7 +49,13 @@ class BookingOrderDetailVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = "预定中的订单"
+    title = NSLocalizedString("BOOKING_ORDER", comment: "")
+    bookingInfoLabel.text = NSLocalizedString("BOOKING_INFO", comment: "")
+    roomInfoLabel.text = NSLocalizedString("ROOM_INFO", comment: "")
+    preferredInfoLabel.text = NSLocalizedString("PREFERRED", comment: "")
+    paymentButton.setTitle(NSLocalizedString("PAYMENT", comment: ""), forState: UIControlState.Normal)
+    chatButton.setTitle(NSLocalizedString("IN_ROOM_CHECK_IN", comment: ""), forState: UIControlState.Normal)
+    cancelBookingButton.setTitle(NSLocalizedString("CANCEL_BOOKING", comment: ""), forState: UIControlState.Normal)
     
     // 把Navigation Bar设置为不透明的
     navigationController?.navigationBar.barStyle = .Default

@@ -12,8 +12,11 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
   @IBOutlet weak var avatar: UIImageView!
   @IBOutlet weak var username: UILabel!
   @IBOutlet weak var publicSwitch: UISwitch!
+  @IBOutlet weak var switchLabel: UILabel!
   
+  @IBOutlet weak var selectedLabel: UILabel!
   @IBOutlet weak var selectedLabelView: LabelSelectView!
+  @IBOutlet weak var toSelectLabel: UILabel!
   @IBOutlet weak var toSelectLabelView: LabelSelectView!
   @IBOutlet weak var selectedLabelViewConstraintHeight: NSLayoutConstraint!
   @IBOutlet weak var toSelectLabelViewConstraintHeight: NSLayoutConstraint!
@@ -29,9 +32,12 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
   }
 
   func setUI() {
-    self.title = "偏好标签"
+    self.title = NSLocalizedString("PERSONAL_TAGS", comment: "")
     self.view.backgroundColor = UIColor.blackColor()
-    let right = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Plain, target: self, action: NSSelectorFromString("save"))
+    let right = UIBarButtonItem(title: NSLocalizedString("SAVE", comment: ""),
+                                style: UIBarButtonItemStyle.Plain,
+                                target: self,
+                                action: NSSelectorFromString("save"))
     self.navigationItem.rightBarButtonItem = right
 
     self.view.addSubview(scrollView)
@@ -43,6 +49,10 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
     footer.backgroundColor = UIColor(red: 255.0/255.0, green: 95.0/255.0, blue: 154.0/255.0, alpha: 1.0)//UIColor.pinkColor()
     scrollView.addSubview(header)
     scrollView.addSubview(footer)
+    
+    self.switchLabel.text = NSLocalizedString("KEEP_PUBLIC", comment: "")
+    self.selectedLabel.text = NSLocalizedString("CHOSEN", comment: "")
+    self.toSelectLabel.text = NSLocalizedString("TO_CHOOSE", comment: "")
 
     let baseinfo = JSHStorage.baseInfo()
     self.username.text = baseinfo.username
@@ -99,10 +109,10 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
-          ZKJSTool.showMsg("保存成功")
+          ZKJSTool.showMsg(NSLocalizedString("SAVED", comment: ""))
           self.navigationController?.popViewControllerAnimated(true)
         }else {
-          ZKJSTool.showMsg("保存失败")
+          ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
         }
       }
     }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

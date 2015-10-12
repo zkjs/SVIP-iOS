@@ -12,6 +12,7 @@ class PhoneSettingFirstViewController: UIViewController {
   @IBOutlet weak var phone: UILabel!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var smsButton: UIButton!
+  @IBOutlet weak var titleLabel: UILabel!
   
   var countTimer: NSTimer?
   let kCountTime = 30
@@ -30,7 +31,10 @@ class PhoneSettingFirstViewController: UIViewController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = "修改手机"
+    self.title = NSLocalizedString("CHANGE_MOBILE_PHONE", comment: "")
+    self.titleLabel.text = NSLocalizedString("VERIFIED_YOUR_PHONE", comment: "")
+    self.textField.placeholder = NSLocalizedString("VERIFIED_CODE", comment: "")
+    self.smsButton.setTitle(NSLocalizedString("SEND_VERIFIED_CODE", comment: ""), forState: UIControlState.Normal)
     phone.text = JSHStorage.baseInfo().phone
   }
   
@@ -38,7 +42,7 @@ class PhoneSettingFirstViewController: UIViewController {
     if --count == 0 {
       countTimer?.invalidate()
       smsButton.enabled = true
-      smsButton.setTitle("发送验证码", forState: UIControlState.Disabled)
+      smsButton.setTitle(NSLocalizedString("SEND_VERIFIED_CODE", comment: ""), forState: UIControlState.Disabled)
     }else {
       smsButton.setTitle("\(count)S", forState: UIControlState.Disabled)
     }
@@ -46,7 +50,7 @@ class PhoneSettingFirstViewController: UIViewController {
   @IBAction func buttonClick(sender: UIButton) {
     ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phone.text, callback: { (successed: Bool, error: NSError!) -> Void in
       if successed {
-        ZKJSTool.showMsg("验证码已发送")
+        ZKJSTool.showMsg(NSLocalizedString("VERIFIED_CODE_IS_SENT", comment: ""))
       }
     })
     smsButton.enabled = false

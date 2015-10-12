@@ -18,6 +18,9 @@ class OrderDetailVC: UIViewController {
   @IBOutlet weak var amountFormulaLabel: UILabel!
   @IBOutlet weak var amountLabel: UILabel!
   @IBOutlet weak var chatButton: UIButton!
+  @IBOutlet weak var bookingInfoLabel: UILabel!
+  @IBOutlet weak var roomInfoLabel: UILabel!
+  @IBOutlet weak var billInfoLabel: UILabel!
   
   let order: BookOrder
   
@@ -39,7 +42,11 @@ class OrderDetailVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = "订单详情"
+    title = NSLocalizedString("ORDER_DETAIL", comment: "")
+    bookingInfoLabel.text = NSLocalizedString("BOOKING_INFO", comment: "")
+    roomInfoLabel.text = NSLocalizedString("ROOM_INFO", comment: "")
+    billInfoLabel.text = NSLocalizedString("BILL_INFO", comment: "")
+    chatButton.setTitle(NSLocalizedString("IN_ROOM_CHECK_IN", comment: ""), forState: UIControlState.Normal)
     
     setupChatButton()
     

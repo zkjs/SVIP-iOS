@@ -1,0 +1,74 @@
+/* 
+  Localizable.strings
+  SVIP
+
+  Created by Hanton on 10/12/15.
+  Copyright © 2015 zkjinshi. All rights reserved.
+*/
+
+"ORDRE_LIST" = "Order List";
+"IN_ROOM_CHECK_IN" = "In-Room Check In";
+"SETTINGS" = "Settings";
+"ORDER_HISTORY" = "Order History";
+
+"PROFILE_IMAGE" = "Profile Image";
+"NAME" = "Name";
+"NICKNAME" = "Nickname";
+"SEX" = "Sex";
+"COMPANY" = "Company";
+"EMAIL" = "Email";
+
+"MOBILE_NUMBER" = "Mobile Number";
+"INVOICE_LIST" = "Invoice List";
+"PERSONAL_TAGS" = "Preferred Tags";
+"ABOUT_US" = "About us";
+
+"REALNAME_PLACEHOLDER" = "Your real name";
+"REALNAME_PROMPT" = "It's used when you're booking a room.";
+"USERNAME_PLACEHOLDER" = "Your nickname";
+"COMPANY_PLACEHOLDER" = "Your company";
+"COMPANY_PROMPT" = "Please enter the full company name.";
+"EMAIL_PLACEHOLDER" = "xxxzkjinshi.com";
+
+"ENTER_INFORMATION" = "Please enter your information";
+"WRONG_EMAIL" = "The email is in wrong format";
+"PHOTO_LIBRARY" = "Photo Library";
+"TAKE_PHOTO" = "Take a Photo";
+"CANCEL" = "Cancel";
+"CHOOSE_PHOTO" = "Where to choose";
+"WOMAN" = "Woman";
+"MAN" = "Man";
+"SAVED" = "Saved";
+
+"SAVE" = "Save";
+"FAILED" = "Failed";
+"KEEP_PUBLIC" = "Keep Public";
+"CHOSEN" = "Chosen";
+"TO_CHOOSE" = "To Choose";
+"CHANGE_MOBILE_PHONE" = "Change Mobile Number";
+"SEND_VERIFIED_CODE" = "Verified Code";
+"VERIFIED_CODE_IS_SENT" = "Verified code is sent";
+"WRONG_MOBILE_PHONE" = "Wrong Mobile Number";
+"WRONG_VERIFIED_CODE" = "Wrong Verified Code";
+"MOBILE_PHONE_IS_CHANGED" = "Mobile number is changed";
+"VERIFIED_CODE" = "Verified Code";
+"VERIFIED_YOUR_PHONE" = "Verified Your Phone";
+"DELETE" = "Delete";
+"EDIT" = "Edit";
+"INVOICE_PROMPT" = "Please ask for invoice when check out";
+"INVOICE_DEFAULT_TITLE" = "Default Invoice";
+"INVOICE_NAME" = "Invoice Name";
+"DEFAULT" = "Default";
+"DELETED" = "Deleted";
+"INVOICE" = "Invoice";
+"ON" = "On";
+"OFF" = "Off";
+"ORDER_DETAIL" = "Order Detail";
+"BOOKING_INFO" = "Booking Info";
+"ROOM_INFO" = "Room Info";
+"BILL_INFO" = "Bill Info";
+"BOOKING_ORDER" = "Booking Order";
+"PREFERRED" = "Preferred";
+
+"PAYMENT" = "Payment";
+"CANCEL_BOOKING" = "Cancel Booking";

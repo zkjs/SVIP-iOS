@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -7,8 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonalLabelViewController" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="selectedLabel" destination="qFj-a2-aui" id="mMN-Pt-y1u"/>
                 <outlet property="selectedLabelView" destination="jOe-GM-TFH" id="BNs-ID-eHx"/>
                 <outlet property="selectedLabelViewConstraintHeight" destination="e8m-CD-jMN" id="RDx-Ww-SUa"/>
+                <outlet property="toSelectLabel" destination="Xuu-Gn-4mZ" id="8zA-rW-Bzk"/>
                 <outlet property="toSelectLabelView" destination="Xa3-y3-rK0" id="eQq-Do-Rzo"/>
                 <outlet property="toSelectLabelViewConstraintHeight" destination="YJ9-DG-tDX" id="Tx0-f2-PHN"/>
             </connections>
