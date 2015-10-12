@@ -437,7 +437,7 @@ const CGFloat shortcutViewHeight = 45.0;
 - (void)setupMessageInputView {
   NSMutableArray *shareMenuItems = [NSMutableArray array];
   NSArray *plugIcons = @[@"sharemore_pic", @"sharemore_video"];
-  NSArray *plugTitle = @[@"照片", @"拍摄"];
+  NSArray *plugTitle = @[NSLocalizedString(@"PHOTOS", nil), NSLocalizedString(@"CAMERA", nil)];
   for (NSString *plugIcon in plugIcons) {
     XHShareMenuItem *shareMenuItem = [[XHShareMenuItem alloc] initWithNormalIconImage:[UIImage imageNamed:plugIcon] title:[plugTitle objectAtIndex:[plugIcons indexOfObject:plugIcon]]];
     [shareMenuItems addObject:shareMenuItem];

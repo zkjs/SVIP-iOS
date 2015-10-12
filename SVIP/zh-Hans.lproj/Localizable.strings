@@ -71,3 +71,7 @@
 
 "PAYMENT" = "支付";
 "CANCEL_BOOKING" = "取消预定";
+"MESSAGE_CENTER" = "消息中心";
+
+"CAMERA" = "拍摄";
+"PHOTOS" = "照片";

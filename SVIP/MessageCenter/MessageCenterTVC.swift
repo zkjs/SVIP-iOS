@@ -49,7 +49,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return shops.count + 1
+    return shops.count// + 1
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -59,28 +59,29 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: HotelMessageCell = tableView.dequeueReusableCellWithIdentifier(HotelMessageCell.reuseIdentifier()) as! HotelMessageCell
     
-    if indexPath.row == 0 {
-      cell.name.text = "软件反馈"
-      cell.logo.setImage(UIImage(named: "img_hotel_zhanwei"), forState: .Normal)
-      let userID = JSHAccountManager.sharedJSHAccountManager().userid
-      let shopID = "808"  // 我们自己用shopID 808
-      if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID(shopID, userID: userID) {
-        let message = formatMessage(chatMessage)
-        cell.tips.text = message["message"]
-        cell.date.text = message["date"]
-      }
-      
-      if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
-        if let badge = shopMessageBadge[shopID] {
-          if badge != 0 {
-            cell.logo.badgeString = String(badge)
-          }
-        }
-      }
-      return cell
-    }
+//    if indexPath.row == 0 {
+//      cell.name.text = "软件反馈"
+//      cell.logo.setImage(UIImage(named: "img_hotel_zhanwei"), forState: .Normal)
+//      let userID = JSHAccountManager.sharedJSHAccountManager().userid
+//      let shopID = "808"  // 我们自己用shopID 808
+//      if let chatMessage = Persistence.sharedInstance().fetchLastMessageWithShopID(shopID, userID: userID) {
+//        let message = formatMessage(chatMessage)
+//        cell.tips.text = message["message"]
+//        cell.date.text = message["date"]
+//      }
+//      
+//      if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
+//        if let badge = shopMessageBadge[shopID] {
+//          if badge != 0 {
+//            cell.logo.badgeString = String(badge)
+//          }
+//        }
+//      }
+//      return cell
+//    }
   
-    let shop = shops[indexPath.row - 1]
+//    let shop = shops[indexPath.row - 1]
+    let shop = shops[indexPath.row]
     
     if let name = shop["fullname"] as? String {
       cell.name.text = name
@@ -123,7 +124,8 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
     headerView.addSubview(imageView)
     let title = UILabel(frame: CGRectMake(20.0, 50.0, 120.0, 30.0))
     title.textColor = UIColor.whiteColor()
-    title.text = "消息中心"
+    title.text = NSLocalizedString("MESSAGE_CENTER", comment: "")
+    title.sizeToFit()
     headerView.addSubview(title)
     return headerView
   }
@@ -133,19 +135,20 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
-    if indexPath.row == 0 {
-//      sendLogEmail()
-      let chatVC = JSHChatVC(chatType: ChatType.OldSession)
-      chatVC.shopID = "808"
-      chatVC.shopName = "软件反馈"
-      if let navigationController = self.sideMenuViewController.contentViewController as? UINavigationController {
-        self.sideMenuViewController.hideMenuViewController()
-        navigationController.pushViewController(chatVC, animated: false)
-      }
-      return
-    }
+//    if indexPath.row == 0 {
+////      sendLogEmail()
+//      let chatVC = JSHChatVC(chatType: ChatType.OldSession)
+//      chatVC.shopID = "808"
+//      chatVC.shopName = "软件反馈"
+//      if let navigationController = self.sideMenuViewController.contentViewController as? UINavigationController {
+//        self.sideMenuViewController.hideMenuViewController()
+//        navigationController.pushViewController(chatVC, animated: false)
+//      }
+//      return
+//    }
     
-    let shop = shops[indexPath.row - 1]
+//    let shop = shops[indexPath.row - 1]
+    let shop = shops[indexPath.row]
     if let shopID = shop["shopid"] as? String {
       let chatVC = JSHChatVC(chatType: ChatType.OldSession)
       chatVC.shopID = shopID
