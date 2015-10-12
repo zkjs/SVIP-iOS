@@ -41,8 +41,11 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = "填写订单"
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoChatVC")
+    title = NSLocalizedString("FILL_BOOKING_FORM", comment: "")
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("DONE", comment: ""),
+                                                             style: UIBarButtonItemStyle.Done,
+                                                             target: self,
+                                                             action: "gotoChatVC")
     
     dateFormatter.dateFormat = "M月dd日"
     startDateLabel.text = dateFormatter.stringFromDate(startDate)

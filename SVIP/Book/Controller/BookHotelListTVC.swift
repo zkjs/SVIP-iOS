@@ -60,7 +60,7 @@ class BookHotelListTVC: UITableViewController {
     self.tableView.tableFooterView = UIView()
     
     // Hanton
-    title = "选择酒店"
+    title = NSLocalizedString("CHOOSE_HOTEL", comment: "")
     
     loadData()
   }
