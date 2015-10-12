@@ -10,7 +10,7 @@ import UIKit
 
 class OrderListHeaderView: UIView {
   
-  class func header() -> UIView {
+  class func view() -> UIView {
     return NSBundle.mainBundle().loadNibNamed("OrderListHeaderView", owner: nil, options: nil)[0] as! UIView
   }
   

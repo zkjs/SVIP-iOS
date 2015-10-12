@@ -56,7 +56,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
   
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    return OrderListHeaderView.header()
+    return OrderListHeaderView.view()
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

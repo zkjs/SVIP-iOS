@@ -19,7 +19,8 @@ let LeftMenuProportion = 0.75
 
 class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   let Identifier = "LeftMenuCell"
-  var dataArray: NSArray?
+//  var dataArray: NSArray?
+  var dataArray = Array<[String: String]>()
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var widthConstraint: NSLayoutConstraint!
@@ -38,8 +39,20 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   func loadData() {
-    let path = NSBundle.mainBundle().pathForResource("LeftMenu", ofType: "plist")
-    dataArray = NSArray(contentsOfFile:path!)
+//    let path = NSBundle.mainBundle().pathForResource("LeftMenu", ofType: "plist")
+//    dataArray = NSArray(contentsOfFile:path!)
+    let menu1 = ["logo": "ic_shezhi",
+                 "text": "设置"]
+    let menu2 = ["logo": "ic_mianqiantai",
+                 "text": "免前台"]
+    let menu3 = ["logo": "ic_dingdan",
+                 "text": "订单"]
+    let menu4 = ["logo": "ic_zuji",
+                 "text": "足迹"]
+    dataArray.append(menu1)
+    dataArray.append(menu2)
+    dataArray.append(menu3)
+    dataArray.append(menu4)
   }
   
   func setUI() {
@@ -67,11 +80,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if self.dataArray == nil {
-      return 0
-    }else {
-      return self.dataArray!.count
-    }
+    return self.dataArray.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -79,16 +88,15 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let dic = dataArray[indexPath.row]
     var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier")
     if cell == nil {
       cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: Identifier)
     }
     cell?.backgroundColor = UIColor.clearColor()
-    if let dic = dataArray![indexPath.row] as? Dictionary<String, String> {
-      cell!.textLabel?.text = dic["text"]
-      cell?.imageView?.image = UIImage(named:dic["logo"]!)
-      cell?.textLabel?.textColor = UIColor.whiteColor()
-    }
+    cell!.textLabel?.text = dic["text"]
+    cell?.imageView?.image = UIImage(named:dic["logo"]!)
+    cell?.textLabel?.textColor = UIColor.whiteColor()
     
     return cell!
   }
