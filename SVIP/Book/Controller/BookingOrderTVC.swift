@@ -24,6 +24,11 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var roomCountLabel: UILabel!
   @IBOutlet var nameTextFields: [UITextField]!
   
+  @IBOutlet weak var roomTypePromptLabel: UILabel!
+  @IBOutlet weak var roomCountInfoLabel: UILabel!
+  @IBOutlet weak var dateInfoLabel: UILabel!
+  @IBOutlet weak var sendOrderButton: UIButton!
+  
   var shopID = ""
   var dateFormatter = NSDateFormatter()
   var roomCount = 1
@@ -40,6 +45,11 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    roomTypePromptLabel.text = NSLocalizedString("CHOOSE_ROOM_TYPE", comment: "")
+    roomCountInfoLabel.text = NSLocalizedString("ROOM_COUNT", comment: "")
+    dateInfoLabel.text = NSLocalizedString("START_END_DATE", comment: "")
+    sendOrderButton.setTitle(NSLocalizedString("SEND_ORDER", comment: ""), forState: UIControlState.Normal)
 
     title = NSLocalizedString("FILL_BOOKING_FORM", comment: "")
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("DONE", comment: ""),
@@ -47,10 +57,10 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
                                                              target: self,
                                                              action: "gotoChatVC")
     
-    dateFormatter.dateFormat = "M月dd日"
+    dateFormatter.dateFormat = "M-dd"
     startDateLabel.text = dateFormatter.stringFromDate(startDate)
     endDateLabel.text = dateFormatter.stringFromDate(endDate.dateByAddingTimeInterval(60*60*24*1))
-    dateTips.text = "共\(duration)晚，在\(endDateLabel.text!)13点前退房"
+    dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, self.endDateLabel.text!])
     rooms = "1"
     
     loadRoomTypes()
@@ -120,7 +130,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   @IBAction func roomCountChanged(sender: UIStepper) {
     rooms = Int(sender.value).description
-    roomCountLabel.text = rooms + "间"
+    roomCountLabel.text = rooms
     let count = Int(sender.value)
     roomCount = count
     tableView.reloadData()
@@ -180,7 +190,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         self.startDate = startDate
         self.endDate = endDate
         self.duration = NSDate.daysFromDate(startDate, toDate: endDate)
-        self.dateTips.text = "共\(self.duration)晚，在\(self.endDateLabel.text!)13点前退房"
+        self.dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, self.endDateLabel.text!])
       }
       navigationController?.pushViewController(vc, animated: true)
     } else if indexPath.section == kNameSection {  // 入住人

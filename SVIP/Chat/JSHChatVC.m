@@ -1018,9 +1018,9 @@ const CGFloat shortcutViewHeight = 45.0;
         case ChatOldSession:
         case ChatConfirmOrder:
         case ChatCancelOrder: {
-          if (self.firtMessage) {
-            [weakSelf sendTextMessage:self.firtMessage];
-            XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
+          if (self.firstMessage) {
+            [weakSelf sendTextMessage:self.firstMessage];
+            XHMessage *message = [[XHMessage alloc] initWithText:self.firstMessage sender:self.senderName timestamp:[NSDate date]];
             message.bubbleMessageType = XHBubbleMessageTypeSending;
             message.messageMediaType = XHBubbleMessageMediaTypeText;
             if ([JSHStorage baseInfo].avatarImage) {
@@ -1063,9 +1063,9 @@ const CGFloat shortcutViewHeight = 45.0;
         case ChatOldSession:
         case ChatConfirmOrder:
         case ChatCancelOrder: {
-          if (self.firtMessage) {
-            [weakSelf sendTextMessage:self.firtMessage];
-            XHMessage *message = [[XHMessage alloc] initWithText:self.firtMessage sender:self.senderName timestamp:[NSDate date]];
+          if (self.firstMessage) {
+            [weakSelf sendTextMessage:self.firstMessage];
+            XHMessage *message = [[XHMessage alloc] initWithText:self.firstMessage sender:self.senderName timestamp:[NSDate date]];
             message.bubbleMessageType = XHBubbleMessageTypeSending;
             message.messageMediaType = XHBubbleMessageMediaTypeText;
             if ([JSHStorage baseInfo].avatarImage) {

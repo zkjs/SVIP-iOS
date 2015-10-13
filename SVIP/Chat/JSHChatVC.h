@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, ChatType) {
 @property (nonatomic, strong) BookOrder *order;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *condition;
-@property (nonatomic, strong) NSString *firtMessage;
+@property (nonatomic, strong) NSString *firstMessage;
 
 - (instancetype)initWithChatType:(ChatType)chatType;
 @end

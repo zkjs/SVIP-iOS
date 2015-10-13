@@ -76,8 +76,8 @@
 
 "CAMERA" = "Camera";
 "PHOTOS" = "Photos";
-"CHOOSE_HOTEL" = "Choose Hotel";
-"FILL_BOOKING_FORM" = "Fill Booking Form";
+"CHOOSE_HOTEL" = "Hotel";
+"FILL_BOOKING_FORM" = "Booking";
 "DONE" = "Done";
 "OUTSIDE_HOTEL" = "Outside Hotel";
 
@@ -100,3 +100,35 @@
 "OutOfRegion_NoOrder" = " Booking Here";
 "OutOfRegion_HasOrder_UnCheckin_BOOKING" = " Waiting Confirmation";
 "OutOfRegion_HasOrder_UnCheckin_CHECKIN_TODAY" = " Check In %@ Today";
+"CHOOSE_ROOM_TYPE" = "Room Type";
+"ROOM_COUNT" = "Rooms";
+"START_END_DATE" = "Arrival/Departure Date";
+"SEND_ORDER" = "Send Order";
+"DEPARTURE_DATE_PROMPT" = "";
+"ROOM_TYPE" = "Room Type";
+"ORDER_STATUS_BOOKING" = "Booking";
+"ORDER_STATUS_CANCEL" = "Canceled";
+"ORDER_STATUS_CONFIRMED" = "Confirmed";
+"ORDER_STATUS_CHECKOUT" = "Checkout";
+"ORDER_STATUS_CHECKIN" = "Checkin";
+"ORDER_STATUS_DELETED" = "Deleted";
+"CONFIRM_ORDER" = "Confirm Order";
+"CLIENT" = "Client";
+"ONE_ROOM_ONE_PERSON" = "at leaset 1 name per room";
+"PAYMENT_TYPE" = "Payment";
+"INVOICE_TYPE" = "Invoice";
+"CHOOSE_INVOICE" = "Choose Invoice";
+"INVOICE_FOOTER" = "fetch at front desk when check out";
+"REMARK_INFO" = "Remarks";
+"REMARK_INFO_PROMPT" = "please write down remarks";
+"ROOM_TAG_INFO" = "Preferred Room Tag";
+"ROOM_TAG_FOOTER" = "choose your preferred room tag";
+"SERVICE_INFO" = "Preferred Service Tag";
+"SERVICE_FOOTER" = "choose your preferred service tag";
+"PAYED_UNPAY" = "Payed:%d, Unpaid: %d";
+"PAY_NOW" = "Pay Now";
+"PAYED" = "Paid";
+"PAY_FAIL" = "Pay Fail";
+"CHOOSE_PAYMENT_TYPE" = "Choose Payment";
+"ALIPAY" = "Alipay";
+"CHOOSE_CLIENT" = "Choose Client";

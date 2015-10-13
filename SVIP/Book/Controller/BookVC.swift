@@ -20,6 +20,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 //  @IBOutlet private weak var tableViewBottomConstraint: NSLayoutConstraint!
   @IBOutlet private var leftSelectButtonArray: [BookItemButton]!
   @IBOutlet private var rightSelectButtonArray: [BookItemButton]!
+  @IBOutlet weak var okButton: UIButton!
+  
 //Data
   var shopid: String!
   var dataArray = NSMutableArray()
@@ -47,7 +49,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   
   private func setUI() {
     // Hanton
-    title = "选择房型"
+    title = NSLocalizedString("ROOM_TYPE", comment: "")
     
     tableView.contentInset = UIEdgeInsetsMake(0, 0, 135, 0)
     
@@ -61,6 +63,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     for button in rightSelectButtonArray {
       button .addTarget(self, action: Selector("breakfastSelect:"), forControlEvents: UIControlEvents.TouchUpInside)
     }
+    
+    okButton.setTitle(NSLocalizedString("CONFIRM", comment: ""), forState: UIControlState.Normal)
   }
   
   private func loadData() {

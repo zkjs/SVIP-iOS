@@ -26,18 +26,38 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var roomTypeLabel: UILabel!
   @IBOutlet weak var statusLabel: UILabel!
   
+  @IBOutlet weak var roomCountInfoLabel: UILabel!
   @IBOutlet weak var roomCountLabel: UILabel!
+  @IBOutlet weak var dateInfoLabel: UILabel!
   @IBOutlet weak var startDateLabel: UILabel!
   @IBOutlet weak var endDateLabel: UILabel!
+  @IBOutlet var nameInfos: [UILabel]!
   @IBOutlet var nameTextFields: [UITextField]!
+  @IBOutlet weak var PaymentInfoLabel: UILabel!
   @IBOutlet weak var paymentLabel: UILabel!
   @IBOutlet weak var paymentButton: UIButton!
+  @IBOutlet weak var invoiceInfoLabel: UILabel!
   @IBOutlet weak var receiptLabel: UILabel!
+  @IBOutlet weak var invoiceFooterLabel: UILabel!
+  @IBOutlet weak var remarkInfoLabel: UILabel!
+  @IBOutlet weak var remarkInfoPromptLabel: UILabel!
   @IBOutlet weak var remarkTextView: UITextView!
+  @IBOutlet weak var roomTagInfoLabel: UILabel!
   @IBOutlet weak var roomTagView: JCTagListView!
+  @IBOutlet weak var roomTagFooterLabel: UILabel!
+  @IBOutlet weak var serviceInfoLabel: UILabel!
   @IBOutlet weak var serviceTagView: JCTagListView!
+  @IBOutlet weak var serviceFooterLabel: UILabel!
   
-  let status = ["可取消", "已取消", "已确认", "已完成", "入住中", "已删除"]
+  @IBOutlet weak var okButton: UIButton!
+  @IBOutlet weak var cancelButton: UIButton!
+  
+  let status = [NSLocalizedString("ORDER_STATUS_BOOKING", comment: ""),
+                NSLocalizedString("ORDER_STATUS_CANCEL", comment: ""),
+                NSLocalizedString("ORDER_STATUS_CONFIRMED", comment: ""),
+                NSLocalizedString("ORDER_STATUS_CHECKOUT", comment: ""),
+                NSLocalizedString("ORDER_STATUS_CHECKIN", comment: ""),
+                NSLocalizedString("ORDER_STATUS_DELETED", comment: "")]
   var roomCount = 1
   var shopID: Int = 0
   var reservation_no = ""
@@ -56,7 +76,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   var arrivalDateStr: String!{
     get {
       let fmt = NSDateFormatter()
-      fmt.dateFormat = "MM月dd日"
+      fmt.dateFormat = "MM-dd"
       return fmt.stringFromDate(arrivalDate)
     }
   }
@@ -64,7 +84,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   var departureDateStr: String!{
     get {
       let fmt = NSDateFormatter()
-      fmt.dateFormat = "MM月dd日"
+      fmt.dateFormat = "MM-dd"
       return fmt.stringFromDate(departureDate)
     }
   }
@@ -74,9 +94,31 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = "确定订单"
+    title = NSLocalizedString("CONFIRM_ORDER", comment: "")
+    roomCountInfoLabel.text = NSLocalizedString("ROOM_COUNT", comment: "")
+    dateInfoLabel.text = NSLocalizedString("START_END_DATE", comment: "")
+    for var i = 0 ; i < roomCount; i++ {
+      nameInfos[i].text = NSLocalizedString("CLIENT", comment: "") + "\(i+1)"
+      nameTextFields[i].text = NSLocalizedString("ONE_ROOM_ONE_PERSON", comment: "")
+    }
+    PaymentInfoLabel.text = NSLocalizedString("PAYMENT_TYPE", comment: "")
+    invoiceInfoLabel.text = NSLocalizedString("INVOICE_TYPE", comment: "")
+    receiptLabel.text = "[" + NSLocalizedString("CHOOSE_INVOICE", comment: "") + "]"
+    invoiceFooterLabel.text = NSLocalizedString("INVOICE_FOOTER", comment: "")
+    remarkInfoLabel.text = NSLocalizedString("REMARK_INFO", comment: "")
+    remarkInfoPromptLabel.text = NSLocalizedString("REMARK_INFO_PROMPT", comment: "")
+    roomTagInfoLabel.text = NSLocalizedString("ROOM_TAG_INFO", comment: "")
+    roomTagFooterLabel.text = NSLocalizedString("ROOM_TAG_FOOTER", comment: "")
+    serviceInfoLabel.text = NSLocalizedString("SERVICE_INFO", comment: "")
+    serviceFooterLabel.text = NSLocalizedString("SERVICE_FOOTER", comment: "")
+    okButton.setTitle(NSLocalizedString("CONFIRM", comment: ""), forState: .Normal)
+    cancelButton.setTitle(NSLocalizedString("CANCEL", comment: ""), forState: .Normal)
+    
     tableView.estimatedRowHeight = UITableViewAutomaticDimension
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "sendConfirmMessageToChatVC")
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("DONE", comment: ""),
+                                                             style: UIBarButtonItemStyle.Plain,
+                                                             target: self,
+                                                             action: "sendConfirmMessageToChatVC")
 //    shopID = 808
 //    reservation_no = "H20150917102251"
     bkOrder = BookOrder()
@@ -89,7 +131,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let chatVC = JSHChatVC(chatType: .ConfirmOrder)
     chatVC.shopID = "\(shopID)"
     chatVC.shopName = self.roomDic["fullname"] as! String
-    chatVC.firtMessage = "我已经确认订单"
+    chatVC.firstMessage = "我已经确认订单"
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -137,9 +179,9 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let total = rate
     let payed: Float = 0
     let remain = total - payed
-    paymentLabel.text = "应该支付\(total)元，还要支付\(remain)元"
+    paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [total, remain])
 
-    paymentButton.setTitle("立即支付", forState: UIControlState.Normal)
+    paymentButton.setTitle(NSLocalizedString("PAY_NOW", comment: ""), forState: UIControlState.Normal)
 
     bkOrder.room_type = self.roomDic["room_type"] as? String
     bkOrder.rooms = self.roomDic["rooms"]! as! String
@@ -227,15 +269,15 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         let result = aDictionary["result"] as! NSString
         if self.validateResult(result) && resultStatus == "9000" {
           //支付成功
-          let totoal = 1890
+          let total = 1890
           let payed = 314
-          let remain = totoal - payed
-          self.paymentLabel.text = "应该支付\(totoal)元，还要支付\(remain)元"
-          self.paymentButton.setTitle("您已支付", forState: UIControlState.Disabled)
+          let remain = total - payed
+          self.paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [total, remain])
+          self.paymentButton.setTitle(NSLocalizedString("PAYED", comment: ""), forState: UIControlState.Disabled)
           self.paymentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
           self.paymentButton.enabled = false
         }else {
-          ZKJSTool.showMsg("支付失败")
+          ZKJSTool.showMsg(NSLocalizedString("PAY_FAIL", comment: ""))
         }
         })
     }
@@ -253,13 +295,15 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Action
   
   @IBAction func payOrder(sender: AnyObject) {
-    let alertView = UIAlertController(title: "请选择支付方式", message: "", preferredStyle: .ActionSheet)
-    alertView.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-    let wechatAction = UIAlertAction(title: "支付宝支付", style: .Default, handler: { [unowned self] (alertAction) -> Void in
+    let alertView = UIAlertController(title: NSLocalizedString("CHOOSE_PAYMENT_TYPE", comment: ""),
+                                      message: "",
+                                      preferredStyle: .ActionSheet)
+    alertView.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel, handler: nil))
+    let alipayAction = UIAlertAction(title: NSLocalizedString("ALIPAY", comment: ""), style: .Default, handler: { [unowned self] (alertAction) -> Void in
       self.payAliOrder(self.bkOrder)
       })
 //    wechatAction.setValue(UIImage(named: "ic_weixinzhifu"), forKey: "image")
-    alertView.addAction(wechatAction)
+    alertView.addAction(alipayAction)
     presentViewController(alertView, animated: true, completion: nil)
   }
   
@@ -271,7 +315,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let users = NSMutableArray()
     for var i = 0 ; i < roomCount; i++ {
       if self.nameTextFields[i].text!.isEmpty {//判断入住人信息是否已选择
-        ZKJSTool.showMsg("请选择入住人")
+        ZKJSTool.showMsg(NSLocalizedString("CHOOSE_CLIENT", comment: ""))
         return
       }else {
         users.addObject("\(self.nameTextFields[i].tag)")
@@ -279,8 +323,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     }
     mutDic.setObject(users.componentsJoinedByString(","), forKey: "users")
     
-    if receiptLabel.text == "[请选择发票]" {//判断发票信息是否已选择
-      ZKJSTool.showMsg("请选择发票")
+    if receiptLabel.text == NSLocalizedString("CHOOSE_INVOICE", comment: "") {//判断发票信息是否已选择
+      ZKJSTool.showMsg(NSLocalizedString("CHOOSE_INVOICE", comment: ""))
       return
     }else {
       mutDic.setObject(receiptLabel.text!, forKey: "invoice[invoice_title]")
@@ -332,7 +376,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
       chatVC.shopID = "\(self.shopID)"
       chatVC.shopName = self.bkOrder.fullname
-      chatVC.firtMessage = "你好，我想取消订单"
+      chatVC.firstMessage = "你好，我想取消订单"
       self.navigationController?.pushViewController(chatVC, animated: true)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg(error.localizedDescription)

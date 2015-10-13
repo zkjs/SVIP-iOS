@@ -66,7 +66,7 @@ class BookPayVC: UIViewController {
     let chatVC = JSHChatVC(chatType: .OldSession)
     chatVC.order = bkOrder
     chatVC.shopID = bkOrder.shopid
-    chatVC.firtMessage = "你好，我想到店支付"
+    chatVC.firstMessage = "你好，我想到店支付"
     navigationController?.pushViewController(chatVC, animated: true)
   }
 
@@ -117,7 +117,7 @@ class BookPayVC: UIViewController {
           let chatVC = JSHChatVC(chatType: .OldSession)
           chatVC.order = self.bkOrder
           chatVC.shopID = self.bkOrder.shopid
-          chatVC.firtMessage = "你好，订单已经支付"
+          chatVC.firstMessage = "你好，订单已经支付"
           chatVC.navigationItem.hidesBackButton = true
           self.navigationController?.pushViewController(chatVC, animated: true)
         }else {
