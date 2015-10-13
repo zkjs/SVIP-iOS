@@ -156,7 +156,7 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
 //  [self sendImageMessage:photo];
-  [ZKJSTool showLoading:@"正在发送图片，请稍候..."];
+  [ZKJSTool showLoading:NSLocalizedString(@"SENDING_PHOTO", nil)];
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   NSString *format = @"jpg";
 //  UIImage *thumbnail = [photo resizedImage:CGSizeMake(200.0, 200.0) interpolationQuality:kCGInterpolationHigh];
@@ -214,7 +214,7 @@ const CGFloat shortcutViewHeight = 45.0;
       [ZKJSTool hideHUD];
     } else {
       [ZKJSTool hideHUD];
-      [ZKJSTool showMsg:@"图片上传失败，请重新发送"];
+      [ZKJSTool showMsg:NSLocalizedString(@"UPLOAD_FAIL", nil)];
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     [ZKJSTool hideHUD];
@@ -266,7 +266,7 @@ const CGFloat shortcutViewHeight = 45.0;
       [self addMessage:message];
       [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
     } else {
-      [ZKJSTool showMsg:@"语音上传失败，请重新发送"];
+      [ZKJSTool showMsg:NSLocalizedString(@"UPLOAD_FAIL_AUDIO", nil)];
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     [ZKJSTool showMsg:error.localizedDescription];
@@ -424,7 +424,7 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)setupMessageTableView {
   self.messageTableView.backgroundColor = [UIColor colorWithHexString:@"#CBCCCA"];
-  self.messageSender = @"我";
+  self.messageSender = NSLocalizedString(@"ME", nil);
   self.messageReceiver = self.receiverName;
   self.senderID = [JSHAccountManager sharedJSHAccountManager].userid;
   if ([JSHStorage baseInfo].username) {
@@ -471,9 +471,9 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)customizeChatType {
+  self.title = self.shopName;
   switch (self.chatType) {
     case ChatNewSession: {
-      self.title = @"联系客服";
       [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
       break;
     }
@@ -488,7 +488,6 @@ const CGFloat shortcutViewHeight = 45.0;
       break;
     }
     case ChatCallingWaiter: {
-      self.title = [NSString stringWithFormat:@"%@", self.shopName];
       NSString *orderStatus = @"";
       if ([self.order.status isEqualToString:@"0"]) {
         orderStatus = @"未确认可取消订单";
@@ -511,7 +510,6 @@ const CGFloat shortcutViewHeight = 45.0;
       break;
     }
     case ChatService: {
-      self.title = [NSString stringWithFormat:@"%@", self.shopName];
       [self setupShortcutView];
       break;
     }
@@ -542,7 +540,7 @@ const CGFloat shortcutViewHeight = 45.0;
 - (void)showSystemFeedbackWithText:(NSString *)text {
   XHMessage *message;
   NSDate *timestamp = [NSDate date];
-  message = [[XHMessage alloc] initWithText:text sender:@"系统" timestamp:timestamp];
+  message = [[XHMessage alloc] initWithText:text sender:NSLocalizedString(@"SYSTEM", nil) timestamp:timestamp];
   message.bubbleMessageType = XHBubbleMessageTypeReceiving;
   message.avatar = [[UIImage imageNamed:@"ic_home_nor"] resizedImage:CGSizeMake(50, 50) interpolationQuality:kCGInterpolationDefault];
   
@@ -921,7 +919,7 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)loadDataSource {
-  [ZKJSTool showLoading:@"正在加载聊天记录"];
+  [ZKJSTool showLoading:NSLocalizedString(@"LOADING_CHAT_LOG", nil)];
 
   [self loadServerMessages];
 //  [self loadLocalMessages];
@@ -945,7 +943,7 @@ const CGFloat shortcutViewHeight = 45.0;
         chatMessage.messageMediaType = XHBubbleMessageMediaTypeText;
       } else if ([message[@"childtype"] integerValue] == 1) {
         // 卡片消息
-        chatMessage.cardTitle = @"你好，帮我预定这间房";
+        chatMessage.cardTitle = NSLocalizedString(@"BOOKING_CARD_TITLE", nil);
         NSData *jsonData = [message[@"textmsg"] dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
         NSString *urlString = [kBaseURL stringByAppendingString:json[@"image"]];
@@ -953,7 +951,7 @@ const CGFloat shortcutViewHeight = 45.0;
         chatMessage.cardImage = [UIImage imageWithData:imageData];
         NSArray *subStrings = [json[@"arrival_date"] componentsSeparatedByString:@"-"];
         NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
-        NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", json[@"room_type"], date, json[@"dayNum"]];
+        NSString *content = [NSString stringWithFormat:NSLocalizedString(@"BOOKING_CARD_CONTENT", nil), json[@"room_type"], date, json[@"dayNum"]];
         chatMessage.cardContent = content;
         chatMessage.messageMediaType = XHBubbleMessageMediaTypeCard;
       }
@@ -1011,8 +1009,8 @@ const CGFloat shortcutViewHeight = 45.0;
         case ChatNewSession: {
           NSArray *subStrings = [weakSelf.order.departure_date componentsSeparatedByString:@"-"];
           NSString *date = [NSString stringWithFormat:@"%@/%@", subStrings[1], subStrings[2]];
-          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, date, weakSelf.order.dayInt];
-          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+          NSString *content = [NSString stringWithFormat:NSLocalizedString(@"BOOKING_CARD_CONTENT", nil), weakSelf.order.room_type, date, weakSelf.order.dayInt];
+          [weakSelf sendCardWithTitle:NSLocalizedString(@"BOOKING_CARD_TITLE", nil) image:weakSelf.order.room_image content:content];
           break;
         }
         case ChatOldSession:
@@ -1056,8 +1054,8 @@ const CGFloat shortcutViewHeight = 45.0;
       
       switch (self.chatType) {
         case ChatNewSession: {
-          NSString *content = [NSString stringWithFormat:@"%@ | %@入住 | %@晚", weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
-          [weakSelf sendCardWithTitle:@"你好，帮我预定这间房" image:weakSelf.order.room_image content:content];
+          NSString *content = [NSString stringWithFormat:NSLocalizedString(@"BOOKING_CARD_CONTENT", nil), weakSelf.order.room_type, weakSelf.order.departure_date, weakSelf.order.dayInt];
+          [weakSelf sendCardWithTitle:NSLocalizedString(@"BOOKING_CARD_TITLE", nil) image:weakSelf.order.room_image content:content];
           break;
         }
         case ChatOldSession:
@@ -1104,7 +1102,7 @@ const CGFloat shortcutViewHeight = 45.0;
   content[@"arrival_date"] = self.order.arrival_date;
   content[@"departure_date"] = self.order.departure_date;
   content[@"manInStay"] = self.order.guest;
-  content[@"content"] = @"您好，帮我预定这间房";
+  content[@"content"] = NSLocalizedString(@"BOOKING_CARD_TITLE", nil);
   content[@"userid"] = self.senderID;
   content[@"image"] = self.order.room_image_URL;
   content[@"shopid"] = self.shopID;
@@ -1184,7 +1182,7 @@ const CGFloat shortcutViewHeight = 45.0;
                                    };
       [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];
     } else {
-      [ZKJSTool showMsg:@"语音上传失败，请重新发送"];
+      [ZKJSTool showMsg:NSLocalizedString(@"UPLOAD_FAIL_AUDIO", nil)];
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     
@@ -1369,11 +1367,11 @@ const CGFloat shortcutViewHeight = 45.0;
   NSNumber *result = notification.userInfo[@"result"];
   // 0:发送成功 1:发送失败(说明会话无成员或创建失败,不保存消息) 2:会话中仅客人在线(针对客人) 3:客人当前不在线(针对客服)
   if ([result integerValue] == 1) {
-    [ZKJSTool showMsg:@"商家不在线"];
+    [ZKJSTool showMsg:NSLocalizedString(@"HOTEL_IS_OFFLINE", nil)];
   } else if ([result integerValue] == 2) {
     // 当前会话成员中只有客户自己在线
     [self requestWaiterWithRuleType:@"DefaultChatRuleType" andDescription:@""];
-    [ZKJSTool showMsg:@"消息发送失败，请重新发送"];
+    [ZKJSTool showMsg:NSLocalizedString(@"SEND_MESSAGE_FAIL", nil)];
   }
 }
 

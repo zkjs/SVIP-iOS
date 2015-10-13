@@ -131,7 +131,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let chatVC = JSHChatVC(chatType: .ConfirmOrder)
     chatVC.shopID = "\(shopID)"
     chatVC.shopName = self.roomDic["fullname"] as! String
-    chatVC.firstMessage = "我已经确认订单"
+    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CONFIRM_ORDER", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -376,7 +376,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
       chatVC.shopID = "\(self.shopID)"
       chatVC.shopName = self.bkOrder.fullname
-      chatVC.firstMessage = "你好，我想取消订单"
+      chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
       self.navigationController?.pushViewController(chatVC, animated: true)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg(error.localizedDescription)

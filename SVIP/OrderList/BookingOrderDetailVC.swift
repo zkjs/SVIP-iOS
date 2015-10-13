@@ -137,7 +137,7 @@ class BookingOrderDetailVC: UIViewController {
     let chatVC = JSHChatVC(chatType: .OldSession)
     chatVC.shopID = order.shopid
     chatVC.shopName = order.fullname
-    chatVC.firstMessage = "你好，我想选择快捷入住"
+    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -151,7 +151,7 @@ class BookingOrderDetailVC: UIViewController {
     let chatVC = JSHChatVC(chatType: .CancelOrder)
     chatVC.shopID = order.shopid
     chatVC.shopName = order.fullname
-    chatVC.firstMessage = "你好，我想取消订单"
+    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)
     
 //    let userID = JSHAccountManager.sharedJSHAccountManager().userid

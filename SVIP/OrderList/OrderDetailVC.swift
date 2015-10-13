@@ -85,7 +85,7 @@ class OrderDetailVC: UIViewController {
     let chatVC = JSHChatVC(chatType: .OldSession)
     chatVC.shopID = order.shopid
     chatVC.shopName = order.fullname
-    chatVC.firstMessage = "你好，我想选择快捷入住"
+    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
