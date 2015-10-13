@@ -85,3 +85,17 @@
 "CONFIRM" = "确定";
 "CONFIRM_MOBILE_PHONE" = "确认手机号码";
 "SEND_VERIFIED_CODE_TO" = "验证码将发送至手机号%";
+"CHECKIN_LABEL_NO_IN_ROOM_CHECKIN" = " 免前台服务已经推出";
+"CHECKIN_LABEL_IN_ROOM_CHECKIN" = " 您具有申请免前台的特权";
+"ORDER_STATUSLABEL_NEED_CHECKOUT" = " 您今天需要退房，旅途愉快";
+"ORDER_STATUSLABEL_HAVE_CHECKIN" = "%随时为您服务";
+"NIGHT" = "晚";
+"CHECKIN_TIME" = "入住";
+"InRegion_HasOrder_UnCheckin_BOOKING" = " 请等待酒店确定订单";
+"InRegion_HasOrder_UnCheckin_IN_ROOM_CHECK_IN" = " 酒店将为您办理入住手续";
+"InRegion_HasOrder_UnCheckin_NO_IN_ROOM_CHECK_IN" = " 已到达酒店，请办理入住手续";
+"InRegion_NoOrder" = " %欢迎您";
+"OutOfRegion_HasOrder_Checkin" = " %随时为您服务!";
+"OutOfRegion_NoOrder" = " 您还没有预订信息, 请立即预订";
+"OutOfRegion_HasOrder_UnCheckin_BOOKING" = " 请等待酒店确定订单";
+"OutOfRegion_HasOrder_UnCheckin_CHECKIN_TODAY" = " 今天入住%";

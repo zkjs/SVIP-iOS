@@ -86,3 +86,17 @@
 "CONFIRM" = "Confirm";
 "CONFIRM_MOBILE_PHONE" = "Confirm Mobile Phone";
 "SEND_VERIFIED_CODE_TO" = "Send Verified Code To %@";
+"CHECKIN_LABEL_NO_IN_ROOM_CHECKIN" = " What's In-Room Check in";
+"CHECKIN_LABEL_IN_ROOM_CHECKIN" = " You have In-Room Check in";
+"InRegion_HasOrder_Checkin_NEED_CHECKOUT" = " Checkout Today";
+"InRegion_HasOrder_Checkin" = " Welcome to %@";
+"NIGHT" = "night";
+"CHECKIN_TIME" = "";
+"InRegion_HasOrder_UnCheckin_BOOKING" = " Waiting Confirmation";
+"InRegion_HasOrder_UnCheckin_IN_ROOM_CHECK_IN" = " We'll Check In for You";
+"InRegion_HasOrder_UnCheckin_NO_IN_ROOM_CHECK_IN" = " Please Check in";
+"InRegion_NoOrder" = " Welcome to %@";
+"OutOfRegion_HasOrder_Checkin" = " Welcome to %@";
+"OutOfRegion_NoOrder" = " Booking Here";
+"OutOfRegion_HasOrder_UnCheckin_BOOKING" = " Waiting Confirmation";
+"OutOfRegion_HasOrder_UnCheckin_CHECKIN_TODAY" = " Check In %@ Today";

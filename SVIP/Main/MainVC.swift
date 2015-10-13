@@ -330,11 +330,11 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     }
     
     // 免前台
-    checkinLabel.setTitle(" 免前台服务已经推出", forState: .Normal)
+    checkinLabel.setTitle(NSLocalizedString("CHECKIN_LABEL_NO_IN_ROOM_CHECKIN", comment: ""), forState: .Normal)
 //    checkinSubLabel.text = "立即了解"
     if let nologin = order?.nologin {
       if Int(nologin) == 1 {
-        checkinLabel.setTitle(" 您具有申请免前台的特权", forState: .Normal)
+        checkinLabel.setTitle(NSLocalizedString("CHECKIN_LABEL_IN_ROOM_CHECKIN", comment: ""), forState: .Normal)
 //        checkinSubLabel.text = "立即查看"
       }
     }
@@ -354,13 +354,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       startDateString = dateFormatter.stringFromDate(startDate!)
       if NSDate.daysFromDate(NSDate(), toDate: endDate!) == 0 {
         // 退房状态
-        statusLabel.setTitle(" 您今天需要退房，旅途愉快", forState: .Normal)
+        statusLabel.setTitle(NSLocalizedString("InRegion_HasOrder_Checkin_NEED_CHECKOUT", comment: ""), forState: .Normal)
         statusLabel.setImage(UIImage(named: "sl_tuifang"), forState: .Normal)
       } else {
         // 入住状态
 //        if let location = beacon!["locdesc"] {
 //          if location.isEmpty {
-            statusLabel.setTitle(" \((order?.fullname)!)随时为您服务", forState: .Normal)
+            statusLabel.setTitle(String(format: NSLocalizedString("InRegion_HasOrder_Checkin", comment: ""),
+                                        arguments: [(order?.fullname)!]),
+                                 forState: .Normal)
 //          } else {
 //            statusLabel.setTitle(" 您已到达\(location)，旅途愉快", forState: .Normal)
 //          }
@@ -372,8 +374,8 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let room_type = order?.room_type {
         roomType = room_type
       }
-      let date = "\(startDateString!)入住"
-      let duration = "\(days)晚"
+      let date = "\(startDateString!)" + NSLocalizedString("CHECKIN_TIME", comment: "")
+      let duration = "\(days)" + NSLocalizedString("NIGHT", comment: "")
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
 //      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
@@ -391,14 +393,14 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let orderInfo = order {
         if orderInfo.status == "0" {
           // 预订状态
-          statusLabel.setTitle(" 请等待酒店确定订单", forState: .Normal)
+          statusLabel.setTitle(NSLocalizedString("InRegion_HasOrder_UnCheckin_BOOKING", comment: ""), forState: .Normal)
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
           if Int((order?.nologin)!) == 0 {
-            statusLabel.setTitle(" 酒店将为您办理入住手续", forState: .Normal)
+            statusLabel.setTitle(NSLocalizedString("InRegion_HasOrder_UnCheckin_IN_ROOM_CHECK_IN", comment: ""), forState: .Normal)
           } else {
-            statusLabel.setTitle(" 已到达酒店，请办理入住手续", forState: .Normal)
+            statusLabel.setTitle(NSLocalizedString("InRegion_HasOrder_UnCheckin_NO_IN_ROOM_CHECK_IN", comment: ""), forState: .Normal)
           }
           statusLabel.setImage(UIImage(named: "sl_yuding"), forState: .Normal)
         }
@@ -407,21 +409,23 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let room_type = order?.room_type {
         roomType = room_type
       }
-      let date = "\(startDateString!)入住"
-      let duration = "\(days)晚"
+      let date = "\(startDateString!)" + NSLocalizedString("CHECKIN_TIME", comment: "")
+      let duration = "\(days)" + NSLocalizedString("NIGHT", comment: "")
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
 //      tipsLabel.setTitle(" 点击智键快速聊天，长按智键呼叫服务员", forState: .Normal)
     case .InRegion_NoOrder:  // 在酒店-无订单
       if let shopID = beacon!["shopid"] {
         if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID) {
-          statusLabel.setTitle(" \(shopName)欢迎您", forState: .Normal)
+          statusLabel.setTitle(String(format: NSLocalizedString("InRegion_NoOrder", comment: ""), arguments: [shopName]),
+                               forState: .Normal)
         }
       }
       statusLabel.setImage(UIImage(named: "sl_dengdai"), forState: .Normal)
 //      tipsLabel.setTitle(" 按此快速马上预定酒店", forState: UIControlState.Normal)
     case .OutOfRegion_HasOrder_Checkin:  // 不在酒店-已入住
-      statusLabel.setTitle(" \((order?.fullname)!)随时为您服务!", forState: .Normal)
+      statusLabel.setTitle(String(format: NSLocalizedString("OutOfRegion_HasOrder_Checkin", comment: ""), arguments: [(order?.fullname)!]),
+                           forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_likai"), forState: .Normal)
 //      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_HasOrder_UnCheckin:  // 不在酒店-未入住
@@ -438,15 +442,17 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let orderInfo = order {
         if orderInfo.status == "0" {
           // 预订状态
-          statusLabel.setTitle(" 请等待酒店确定订单", forState: .Normal)
+          statusLabel.setTitle(NSLocalizedString("OutOfRegion_HasOrder_UnCheckin_BOOKING", comment: ""), forState: .Normal)
           statusLabel.setImage(UIImage(named: "sl_tijiao"), forState: .Normal)
         } else {
           // 确定订单
           let days = NSDate.daysFromDate(NSDate(), toDate: startDate!)
           if days == 0 {
-            statusLabel.setTitle(" 今天入住\((order?.fullname)!)", forState: .Normal)
+            statusLabel.setTitle(String(format: NSLocalizedString("OutOfRegion_HasOrder_UnCheckin_CHECKIN_TODAY", comment: ""), arguments: [(order?.fullname)!]),
+                                 forState: .Normal)
           } else {
-            statusLabel.setTitle(" 请于\(days)天后入住\((order?.fullname)!)", forState: .Normal)
+            statusLabel.setTitle(String(format: " 请于%d天后入住%@", arguments: [days, (order?.fullname)!]),
+                                 forState: .Normal)
           }
           statusLabel.setImage(UIImage(named: "sl_zhuyi"), forState: .Normal)
         }
@@ -455,13 +461,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       if let room_type = order?.room_type {
         roomType = room_type
       }
-      let date = "\(startDateString!)入住"
-      let duration = "\(days)晚"
+      let date = "\(startDateString!)" + NSLocalizedString("CHECKIN_TIME", comment: "")
+      let duration = "\(days)" + NSLocalizedString("NIGHT", comment: "")
       infoLabel.text = "\(roomType) | \(date) | \(duration)";
       infoLabel.sizeToFit()
 //      tipsLabel.setTitle(" 点击智键和酒店聊天", forState: .Normal)
     case .OutOfRegion_NoOrder:  // 不在酒店-无订单
-      statusLabel.setTitle(" 您还没有预订信息, 请立即预订", forState: .Normal)
+      statusLabel.setTitle(NSLocalizedString("OutOfRegion_NoOrder", comment: ""), forState: .Normal)
       statusLabel.setImage(UIImage(named: "sl_wu"), forState: .Normal)
 //      tipsLabel.setTitle(" 此快速马上预定酒店", forState: .Normal)
     }
