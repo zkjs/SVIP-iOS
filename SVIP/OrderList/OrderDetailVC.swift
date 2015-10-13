@@ -69,14 +69,14 @@ class OrderDetailVC: UIViewController {
     let createdDate = order.created
 
     nameLabel.text = order.fullname
-    dateLabel.text = "在 \(createdDate) 预订"
+    dateLabel.text = String(format: NSLocalizedString("BOOKING_AT", comment: ""), arguments: [createdDate])
     roomTypeLabel.text = order.room_type
-    durationLabel.text = "\(days)晚"
+    durationLabel.text = "\(days)" + NSLocalizedString("NIGHT", comment: "")
     dateFormatter.dateFormat = "M/dd"
     startDateString = dateFormatter.stringFromDate(startDate!)
     endDateString = dateFormatter.stringFromDate(endDate!)
     dateDurationLabel.text = "\(startDateString)-\(endDateString)"
-    amountFormulaLabel.text = "¥\(room_rate) * \(Int(rooms)!)间 * \(days)天"
+    amountFormulaLabel.text = "¥\(room_rate) * \(Int(rooms)!)" + NSLocalizedString("ROOM", comment: "") + " * \(days)" + NSLocalizedString("NIGHT", comment: "")
     amountLabel.text = "¥\(room_rate * Int(rooms)! * days)"
   }
   

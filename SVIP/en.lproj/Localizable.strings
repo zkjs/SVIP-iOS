@@ -147,3 +147,6 @@
 "HOTEL_IS_OFFLINE" = "Hotel is Offline, Please Try Again";
 "BOOKING_CARD_TITLE" = "This is my Booking";
 "BOOKING_CARD_CONTENT" = "% | % | % Night";
+
+"ROOM" = "间";
+"BOOKING_AT" = "在 % 预订";
