@@ -59,20 +59,25 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     navigationController?.setNavigationBarHidden(true, animated: true)//为了保证每次进入首页无navigationbar页面效果
     navigationController?.delegate = self
     
-    //daifengyi
-    //应用于已注册用户在新客户端登陆情况
-    if let image = JSHStorage.baseInfo().avatarImage {
-      settingsButton.setImage(image, forState: .Normal)
-    }else {
-      let userid = JSHStorage.baseInfo().userid
-      let url = NSURL(string: kBaseURL)
-      url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
-      settingsButton.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"))
-    }
-    
+    setupAvatarImage()
     setupLeftRightButtons()
     updateSmartPanel()
     updateMessageBadge()
+  }
+  
+  func setupAvatarImage() {
+    settingsButton.imageView?.contentMode = .ScaleAspectFit
+    if let image = JSHStorage.baseInfo().avatarImage {
+      settingsButton.setImage(image, forState: .Normal)
+    } else {
+      let userid = JSHStorage.baseInfo().userid
+      var url = NSURL(string: kBaseURL)
+      url = url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
+      settingsButton.sd_setImageWithURL(url,
+                                        forState: .Normal,
+                                        placeholderImage: UIImage(named: "ic_camera_nor"),
+                                        options: [.RetryFailed, .ProgressiveDownload, .HighPriority])
+    }
   }
   
   override func viewWillDisappear(animated: Bool) {

@@ -19,11 +19,9 @@ let LeftMenuProportion = 0.75
 
 class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   let Identifier = "LeftMenuCell"
-//  var dataArray: NSArray?
   var dataArray = Array<[String: String]>()
   
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var widthConstraint: NSLayoutConstraint!
   @IBOutlet weak var avatar: UIButton!
   @IBOutlet weak var name: UILabel!
   
@@ -58,13 +56,14 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   func setUI() {
+    avatar.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     if let baseInfo = JSHStorage.baseInfo() {
       if baseInfo.avatarImage != nil {
-        avatar .setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
+        avatar.setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
       }else {
         if let userid = JSHStorage.baseInfo().userid {
-          let url = NSURL(string: kBaseURL)
-          url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
+          var url = NSURL(string: kBaseURL)
+          url = url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
           avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RefreshCached, SDWebImageOptions.RetryFailed])
         }
       }
@@ -72,14 +71,20 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
       name.text = baseInfo.username
     }
     
-    tableView .registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
-    widthConstraint.constant = UIScreen.mainScreen().bounds.width * 0.75
+    tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
+  }
+  
+  // MARK: - Button Action
+  
+  @IBAction func tapAvatarImage(sender: AnyObject) {
+    let vc = SettingTableViewController(style: .Grouped)
+    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+      self.sideMenuViewController.hideMenuViewController()
+      navi.pushViewController(vc, animated: true)
+    }
   }
   
   // MARK: - Table view data source
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 1
-  }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.dataArray.count
@@ -91,47 +96,32 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let dic = dataArray[indexPath.row]
-    var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier")
-    if cell == nil {
-      cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: Identifier)
-    }
-    cell?.backgroundColor = UIColor.clearColor()
-    cell!.textLabel?.text = dic["text"]
-    cell?.imageView?.image = UIImage(named:dic["logo"]!)
-    cell?.textLabel?.textColor = UIColor.whiteColor()
-    
-    return cell!
+    let cell = tableView.dequeueReusableCellWithIdentifier(Identifier, forIndexPath: indexPath)
+    cell.backgroundColor = UIColor.clearColor()
+    cell.textLabel?.text = dic["text"]
+    cell.imageView?.image = UIImage(named:dic["logo"]!)
+    cell.textLabel?.textColor = UIColor.whiteColor()
+    return cell
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     if let buttonIndex = LeftButton(rawValue: indexPath.row) {
+      var vc = UIViewController()
       switch buttonIndex {
       case .Setting:
-        let vc = SettingTableViewController(style: UITableViewStyle.Grouped)
-        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-          self.sideMenuViewController.hideMenuViewController()
-          navi.pushViewController(vc, animated: true)
-        }
+        vc = SettingTableViewController(style: .Grouped)
       case .InRoomCheckin:
         print(".InRoomCheckin")
-        let vc = SkipCheckInSettingViewController()
-        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-          self.sideMenuViewController.hideMenuViewController()
-          navi.pushViewController(vc, animated: true)
-        }
+        vc = SkipCheckInSettingViewController()
       case .BookingOrder:
-        let vc = OrderListTVC()
-        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-          self.sideMenuViewController.hideMenuViewController()
-          navi.pushViewController(vc, animated: true)
-        }
+        vc = OrderListTVC()
       case .HistoryOrder:
-        let vc = OrderHistoryListTVC()
-        if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-          self.sideMenuViewController.hideMenuViewController()
-          navi.pushViewController(vc, animated: true)
-        }
+        vc = OrderHistoryListTVC()
+      }
+      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+        self.sideMenuViewController.hideMenuViewController()
+        navi.pushViewController(vc, animated: true)
       }
     } else {
       print("在枚举LeftButton中未找到\(indexPath.row)")

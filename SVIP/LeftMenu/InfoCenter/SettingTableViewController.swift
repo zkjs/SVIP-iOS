@@ -114,6 +114,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
         }else {
           imageView.image = UIImage(named: "img_hotel_zhanwei")
         }
+        imageView.contentMode = .ScaleAspectFit
         cell?.accessoryView = imageView
       case 1:
         if localBaseInfo?.real_name != nil {
