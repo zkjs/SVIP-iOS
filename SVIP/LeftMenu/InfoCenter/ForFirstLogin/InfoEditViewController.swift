@@ -18,7 +18,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   @IBOutlet weak var maleButton: UIButton!
   @IBOutlet weak var femaleButton: UIButton!
   var avatarData: NSData! = nil
-  var sexstr = "男"
+  var sexstr = NSLocalizedString("MAN", comment: "")
   
   required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: "InfoEditViewController", bundle: nil)
@@ -42,7 +42,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   _codeField.attributedPlaceholder = attString2;
   */
   func setUI() {
-    self.title = "完善信息"
+    self.title = NSLocalizedString("MY_PROFILE", comment: "")
     let right = UIBarButtonItem(image: UIImage(named: "ic_qianwang"), style: UIBarButtonItemStyle.Plain, target: self, action: "save")
 //    let right = UIBarButtonItem(title: "提交", style: UIBarButtonItemStyle.Plain, target: self, action: "save")
     self.navigationItem.rightBarButtonItem = right
@@ -53,9 +53,15 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     let tap = UITapGestureRecognizer(target: self, action: "touchBlank")
     bgImgeView.addGestureRecognizer(tap)
     
-    let attString1 = NSAttributedString(string: "昵称(必填)", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
-    let attString2 = NSAttributedString(string: "姓名(必填)", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
-    let attString3 = NSAttributedString(string: "公司/单位", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
+    let attString1 = NSAttributedString(string: NSLocalizedString("PROFILE_NICKNAME", comment: ""),
+                                        attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
+                                        NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
+    let attString2 = NSAttributedString(string: NSLocalizedString("PROFILE_NAME", comment: ""),
+                                        attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
+                                        NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
+    let attString3 = NSAttributedString(string: NSLocalizedString("PROFILE_COMPANY", comment: ""),
+                                        attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
+                                        NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
     username.attributedPlaceholder = attString1
     realname.attributedPlaceholder = attString2
     company.attributedPlaceholder = attString3
@@ -64,7 +70,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       avatarButton.setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
       username.text = baseInfo.username
       sexstr = baseInfo.sex
-      if sexstr == "男" {
+      if sexstr == NSLocalizedString("MAN", comment: "") {
         selectSex(maleButton)
       }
       
@@ -73,9 +79,10 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   
   
   //MARK:- Button Action
+  
   func save() {
     if username.text!.isEmpty || realname.text!.isEmpty {
-      ZKJSTool .showMsg("请填写必填项")
+      ZKJSTool.showMsg(NSLocalizedString("PROFILE_FILL_ALL", comment: ""))
       return
     }
     ZKJSTool.showLoading()
@@ -90,17 +97,22 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     
     
   }
+  
   @IBAction func selectAvatar(sender: AnyObject) {
-    UIActionSheet(title:"选择照片来源", delegate:self, cancelButtonTitle:"取消", destructiveButtonTitle:"照相", otherButtonTitles:"照片库").showInView(self.view)
+    UIActionSheet(title:NSLocalizedString("CHOOSE_PHOTO", comment: ""),
+                  delegate:self,
+                  cancelButtonTitle:NSLocalizedString("CANCEL", comment: ""),
+                  destructiveButtonTitle:NSLocalizedString("TAKE_PHOTO", comment: ""),
+                  otherButtonTitles:NSLocalizedString("PHOTO_LIBRARY", comment: "")).showInView(self.view)
   }
   
   @IBAction func selectSex(sender: UIButton) {
     if sender == maleButton {
       femaleButton.selected = false
-      sexstr = "男"
+      sexstr = NSLocalizedString("MAN", comment: "")
     }else {
       maleButton.selected = false
-      sexstr = "女"
+      sexstr = NSLocalizedString("WOMAN", comment: "")
     }
     sender.selected = true
   }
@@ -108,7 +120,9 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   func touchBlank() {
     self.view.endEditing(true)
   }
+  
   //MARK:- ACTIONSHEET
+  
   func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
     switch buttonIndex {//莫名其妙的buttonIndex：照相0，取消1，照片库2
     case 0:
@@ -133,24 +147,8 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   }
   
   //MARK:- UIImagePickerControllerDelegate
+  
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-//    let dic = editingInfo
-    /*
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    int i = 1;
-    while (imageData.length / 1024 > 80) {
-    float persent = (100 - i++) / 100;
-    imageData = UIImageJPEGRepresentation(image, persent);
-    }
-    
-    image = [UIImage imageWithData:imageData];
-    [_avatarButton setImage:image forState:UIControlStateNormal];
-    _headerFrame.baseInfo.avatarImage = image;
-    [picker dismissViewControllerAnimated:YES completion:^{
-    
-    }];
-    */
     var imageData = UIImageJPEGRepresentation(image, 1.0)!
     var i = 0
     while imageData.length / 1024 > 80 {
@@ -163,7 +161,9 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       
     })
   }
+  
   //MARK:- UITextFieldDelegate
+  
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if textField == username {
       realname.becomeFirstResponder()
@@ -174,19 +174,5 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     }
     return true
   }
-//    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-//      if let dic = responseObject as? NSDictionary {
-//        if dic["set"]?.boolValue == true {
-//          var baseInfo = JSHStorage.baseInfo()
-//          baseInfo.avatarImage = UIImage(data: imageData)
-//          JSHStorage.saveBaseInfo(baseInfo)
-//          picker .dismissViewControllerAnimated(true, completion: { () -> Void in
-//            
-//          })
-//        }
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
 
 }

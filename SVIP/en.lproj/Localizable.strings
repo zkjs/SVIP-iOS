@@ -146,7 +146,12 @@
 "SEND_MESSAGE_FAIL" = "Send Fail, Please Try Again";
 "HOTEL_IS_OFFLINE" = "Hotel is Offline, Please Try Again";
 "BOOKING_CARD_TITLE" = "This is my Booking";
-"BOOKING_CARD_CONTENT" = "% | % | % Night";
+"BOOKING_CARD_CONTENT" = "%@ | %@ | %d Night";
 
-"ROOM" = "间";
-"BOOKING_AT" = "在 % 预订";
+"ROOM" = "Room";
+"BOOKING_AT" = "Booking At %@";
+"MY_PROFILE" = "My Profile";
+"PROFILE_NICKNAME" = "Nickname";
+"PROFILE_NAME" = "Name";
+"PROFILE_COMPANY" = "Company";
+"PROFILE_FILL_ALL" = "Please Fill All Information";
