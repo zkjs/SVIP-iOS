@@ -24,7 +24,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     preferredContentSize = CGSizeMake(320, 120)
     
     attentionLabel.text = ""
-    hotelNameLabel.text = "正在加载数据..."
+    hotelNameLabel.text = NSLocalizedString("LOADING", comment: "")
     dateLabel.text = ""
     roomTypeLabel.text = ""
   }
@@ -79,16 +79,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 if reservation_no == "0" {
                   // 暂无订单
                   dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-                    self.hotelNameLabel.text = "暂无订单"
+                    self.hotelNameLabel.text = NSLocalizedString("NO_ORDER", comment: "")
                     })
                 } else {
                   // 有订单
                   dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-                    self.attentionLabel.text = "请注意入住:"
+                    self.attentionLabel.text = NSLocalizedString("YOUR_ORDER", comment: "")
                     self.hotelNameLabel.text = parseJSON["fullname"] as? String ?? ""
                     let arrival_date = parseJSON["arrival_date"] as? String ?? ""
                     let departure_date = parseJSON["departure_date"] as? String ?? ""
-                    self.dateLabel.text = "\(arrival_date) 至 \(departure_date)"
+                    self.dateLabel.text = "\(arrival_date) " + NSLocalizedString("TO", comment: "") + " \(departure_date)"
                     self.roomTypeLabel.text = parseJSON["room_type"] as? String ?? ""
                     })
                 }
