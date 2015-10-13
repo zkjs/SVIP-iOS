@@ -57,11 +57,11 @@ class LoginManager: NSObject, RESideMenuDelegate {
       nc.pushViewController(pushedVC!, animated: false)
     }
 //    nc.navigationBarHidden = true
-    let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: MessageCenterTVC())
+    let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: RightMenuVC())
     menu.delegate = self
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false
-    menu.contentViewInPortraitOffsetCenterX = appWindow.bounds.size.width * (0.75 - 0.5)
+    menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5//appWindow.bounds.size.width * (0.75 - 0.5)
     appWindow.rootViewController = menu
 
   }

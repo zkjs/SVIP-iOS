@@ -33,7 +33,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     super.viewDidLoad()
     setUI()
     loadData()
-    tableView?.reloadData()
+    tableView.reloadData()
   }
   
   func loadData() {

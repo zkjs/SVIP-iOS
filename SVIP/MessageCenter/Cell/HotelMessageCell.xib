@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="长沙温德姆至尊豪廷" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="Vfe-Mp-6Mi">
@@ -19,8 +20,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="客服已经和您确认订单" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3Y-vX-L4x">
-                        <rect key="frame" x="83" y="45" width="140" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="客服已经和您确认订单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3Y-vX-L4x">
+                        <rect key="frame" x="83" y="45" width="229" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -42,7 +43,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昨天08:39" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm0-9t-Rkm">
-                        <rect key="frame" x="83" y="68" width="51" height="14"/>
+                        <rect key="frame" x="83" y="68" width="54" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -56,6 +57,7 @@
                     <constraint firstItem="Vfe-Mp-6Mi" firstAttribute="leading" secondItem="8eh-bz-dOD" secondAttribute="trailing" constant="8" symbolic="YES" id="NOQ-uq-4jC"/>
                     <constraint firstAttribute="trailing" secondItem="mm0-9t-Rkm" secondAttribute="trailing" constant="8" id="Ql9-JA-ECX"/>
                     <constraint firstItem="G3Y-vX-L4x" firstAttribute="leading" secondItem="8eh-bz-dOD" secondAttribute="trailing" constant="10" id="XKr-d5-MRe"/>
+                    <constraint firstAttribute="trailing" secondItem="G3Y-vX-L4x" secondAttribute="trailing" constant="8" id="eaJ-rT-K03"/>
                     <constraint firstItem="mm0-9t-Rkm" firstAttribute="top" secondItem="1y3-J4-1Uv" secondAttribute="bottom" constant="5" id="mIH-ff-eGq"/>
                     <constraint firstItem="8eh-bz-dOD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="msl-hw-pwH"/>
                     <constraint firstAttribute="bottom" secondItem="mm0-9t-Rkm" secondAttribute="bottom" constant="20" id="nNv-jY-EW6"/>
@@ -81,7 +83,7 @@
                 <outlet property="status" destination="1y3-J4-1Uv" id="v9L-OU-MzL"/>
                 <outlet property="tips" destination="G3Y-vX-L4x" id="07a-Tf-Ltf"/>
             </connections>
-            <point key="canvasLocation" x="474" y="428"/>
+            <point key="canvasLocation" x="559" y="785"/>
         </tableViewCell>
     </objects>
     <resources>

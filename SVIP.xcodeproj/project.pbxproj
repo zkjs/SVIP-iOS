@@ -22,7 +22,6 @@
 		4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052663B1B4127B400B277BE /* OrderDetailVC.xib */; };
 		405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */; };
 		405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */; };
-		405266491B4127F600B277BE /* ChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266431B4127F600B277BE /* ChatTVC.swift */; };
 		4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405266441B4127F600B277BE /* MessageCenterTVC.swift */; };
 		405266511B41283900B277BE /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4052664E1B41283900B277BE /* MainVC.swift */; };
 		405266521B41283900B277BE /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4052664F1B41283900B277BE /* MainVC.xib */; };
@@ -167,13 +166,14 @@
 		40817D1A1B8EDA7300EF188F /* NewItemFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D191B8EDA7300EF188F /* NewItemFooterView.xib */; };
 		40817D1C1B8EDCED00EF188F /* NewItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1B1B8EDCED00EF188F /* NewItemHeaderView.swift */; };
 		40817D1E1B8EDD4B00EF188F /* NewItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1D1B8EDD4B00EF188F /* NewItemFooterView.swift */; };
+		409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409587E41BCCEDE400D212D6 /* RightMenuVC.swift */; settings = {ASSET_TAGS = (); }; };
+		409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409587E51BCCEDE400D212D6 /* RightMenuVC.xib */; settings = {ASSET_TAGS = (); }; };
 		40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
 		40D599DE1BA2BED300AF79B3 /* OrderHistoryListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */; };
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
-		40E686F81B45297400C9725B /* BookingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E686F71B45297400C9725B /* BookingOrder.swift */; };
 		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
 		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
 		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
@@ -326,8 +326,7 @@
 		4052663B1B4127B400B277BE /* OrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailVC.xib; sourceTree = "<group>"; };
 		4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BookingOrderDetailVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOrderDetailVC.xib; sourceTree = "<group>"; };
-		405266431B4127F600B277BE /* ChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTVC.swift; sourceTree = "<group>"; };
-		405266441B4127F600B277BE /* MessageCenterTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCenterTVC.swift; sourceTree = "<group>"; };
+		405266441B4127F600B277BE /* MessageCenterTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCenterTVC.swift; path = MessageCenter/MessageCenterTVC.swift; sourceTree = "<group>"; };
 		4052664E1B41283900B277BE /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		4052664F1B41283900B277BE /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		405266541B4128E900B277BE /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
@@ -558,6 +557,8 @@
 		40817D191B8EDA7300EF188F /* NewItemFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewItemFooterView.xib; sourceTree = "<group>"; };
 		40817D1B1B8EDCED00EF188F /* NewItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemHeaderView.swift; sourceTree = "<group>"; };
 		40817D1D1B8EDD4B00EF188F /* NewItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemFooterView.swift; sourceTree = "<group>"; };
+		409587E41BCCEDE400D212D6 /* RightMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RightMenuVC.swift; path = MessageCenter/RightMenuVC.swift; sourceTree = "<group>"; };
+		409587E51BCCEDE400D212D6 /* RightMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightMenuVC.xib; path = MessageCenter/RightMenuVC.xib; sourceTree = "<group>"; };
 		40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTVC.swift; sourceTree = "<group>"; };
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -566,7 +567,6 @@
 		40DA7A011B463E850097CE3D /* JSHChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSHChatVC.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		40DA7A021B463E850097CE3D /* JSHChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSHChatVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
-		40E686F71B45297400C9725B /* BookingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrder.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
 		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
@@ -797,25 +797,6 @@
 			path = ../OrderList;
 			sourceTree = "<group>";
 		};
-		405266421B4127F600B277BE /* MessageCenter */ = {
-			isa = PBXGroup;
-			children = (
-				405266451B4127F600B277BE /* Model */,
-				405266581B4128F900B277BE /* Cell */,
-				405266441B4127F600B277BE /* MessageCenterTVC.swift */,
-				405266431B4127F600B277BE /* ChatTVC.swift */,
-			);
-			path = MessageCenter;
-			sourceTree = "<group>";
-		};
-		405266451B4127F600B277BE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				40E686F71B45297400C9725B /* BookingOrder.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		4052664D1B41283900B277BE /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,7 +821,8 @@
 				405266591B4128F900B277BE /* HotelMessageCell.swift */,
 				4052665A1B4128F900B277BE /* HotelMessageCell.xib */,
 			);
-			path = Cell;
+			name = Cell;
+			path = MessageCenter/Cell;
 			sourceTree = "<group>";
 		};
 		405266631B41470F00B277BE /* HeaderView */ = {
@@ -1306,12 +1288,12 @@
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
 				B2564D351B4BFAED0098608F /* Register */,
 				B2A6420F1B47C2A700AF0F28 /* Book */,
+				4052664D1B41283900B277BE /* Main */,
 				B20812611B8DD7950070D96F /* LeftMenu */,
+				409587E31BCCED9200D212D6 /* RightMenu */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
 				B263DA201B944E9500BB1970 /* JSSideMenu.swift */,
-				4052664D1B41283900B277BE /* Main */,
-				405266421B4127F600B277BE /* MessageCenter */,
 				40DA7A001B463E850097CE3D /* Chat */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
 				405826481BA11CC5005A2C8E /* PrefixHeader.pch */,
@@ -1397,6 +1379,17 @@
 				40641F9C1B3E79A300CF150D /* ZKJSTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		409587E31BCCED9200D212D6 /* RightMenu */ = {
+			isa = PBXGroup;
+			children = (
+				409587E41BCCEDE400D212D6 /* RightMenuVC.swift */,
+				409587E51BCCEDE400D212D6 /* RightMenuVC.xib */,
+				405266441B4127F600B277BE /* MessageCenterTVC.swift */,
+				405266581B4128F900B277BE /* Cell */,
+			);
+			name = RightMenu;
 			sourceTree = "<group>";
 		};
 		40DA7A001B463E850097CE3D /* Chat */ = {
@@ -1920,6 +1913,7 @@
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				4058E4F81BA0211B00EF6D76 /* ReceiverVoiceNodePlaying002@2x.png in Resources */,
 				B21250CC1B74AFDF0056835D /* BookListRightMenuVC.xib in Resources */,
+				409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */,
 				4058E5261BA0211B00EF6D76 /* voice@2x.png in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				4058E4E01BA0211B00EF6D76 /* face@2x.png in Resources */,
@@ -2024,7 +2018,6 @@
 				406A27FE1B9596370069C369 /* Message.swift in Sources */,
 				404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
-				40E686F81B45297400C9725B /* BookingOrder.swift in Sources */,
 				B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */,
 				40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */,
 				4058E4961BA0211B00EF6D76 /* UIScrollView+XHkeyboardControl.m in Sources */,
@@ -2073,7 +2066,6 @@
 				4058E4921BA0211B00EF6D76 /* UIImage+Resize.m in Sources */,
 				B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */,
 				4058E4CB1BA0211B00EF6D76 /* XHMessageTextView.m in Sources */,
-				405266491B4127F600B277BE /* ChatTVC.swift in Sources */,
 				4058E49B1BA0211B00EF6D76 /* XHLocationHelper.m in Sources */,
 				4058E49D1BA0211B00EF6D76 /* XHPhotographyHelper.m in Sources */,
 				B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */,
@@ -2122,6 +2114,7 @@
 				4058E4CF1BA0211B00EF6D76 /* XHEmotionManagerView.m in Sources */,
 				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
 				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
+				409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */,
 				4058E4AE1BA0211B00EF6D76 /* XHAnnotation.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				4058E4C11BA0211B00EF6D76 /* SETextMagnifierRanged.m in Sources */,
