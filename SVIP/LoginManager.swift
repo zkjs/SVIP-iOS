@@ -24,8 +24,10 @@
 */
 import UIKit
 
-class LoginManager: NSObject, RESideMenuDelegate {
+class LoginManager: NSObject {
+  
   var appWindow: UIWindow!
+  
   class func sharedInstance() -> LoginManager {
     struct Singleton {
       static let instance = LoginManager()
@@ -37,15 +39,17 @@ class LoginManager: NSObject, RESideMenuDelegate {
   func showAnimation() {
      appWindow.rootViewController = JSHAnimationVC()
   }
+  
   //动画结束
   func afterAnimation() {
-    if JSHAccountManager.sharedJSHAccountManager().userid != nil {//已注册
+    if JSHAccountManager.sharedJSHAccountManager().userid != nil {
+      //已注册
       fetchUserInfo({ () -> () in
         ZKJSTool.hideHUD()
         self.showResideMenu(haspushed: nil)
       })
-      
-    }else {//未注册
+    }else {
+      //未注册
       showRegister()
     }
   }
@@ -56,9 +60,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
     if pushedVC != nil {
       nc.pushViewController(pushedVC!, animated: false)
     }
-//    nc.navigationBarHidden = true
     let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: RightMenuVC())
-    menu.delegate = self
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false
     menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5//appWindow.bounds.size.width * (0.75 - 0.5)
@@ -74,7 +76,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
   func fetchUserInfo(afterFetch: () -> ()) {
     let userId = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
-    let oldImage = JSHStorage.baseInfo().avatarImage//单独将本地头像提出来，为了从服务器取头像数据滞后于显示的问题
+    let oldImage = JSHStorage.baseInfo().avatarImage  //单独将本地头像提出来，为了从服务器取头像数据滞后于显示的问题
     ZKJSHTTPSessionManager.sharedInstance().getUserInfo(userId, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? [NSObject : AnyObject] {
         let baseInfo = JSHBaseInfo(dic: dic)
@@ -90,21 +92,6 @@ class LoginManager: NSObject, RESideMenuDelegate {
     }
   }
   
-  /*
-  [[ZKJSHTTPSessionManager sharedInstance] userSignUpWithPhone:_phoneField.text openID:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-  if ([[responseObject objectForKey:@"set"] boolValue]) {
-  //save account data
-  [[JSHAccountManager sharedJSHAccountManager] saveAccountWithDic:responseObject];
-  //获取用户信息
-  [[LoginManager sharedInstance] fetchUserInfo:^{
-  //jump
-  [[LoginManager sharedInstance] showResideMenuWithHaspushed:nil];
-  }];
-  }
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-  [ZKJSTool showMsg:@"请输入受邀请的手机号码"];
-  }];
-  */
   func signup(phone: String?, openID: String?, success:() ->()) {
     var idstr :String?
     if phone == nil && openID != nil {
@@ -135,22 +122,7 @@ class LoginManager: NSObject, RESideMenuDelegate {
               }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
                 
             })
-          }else {//已注册
-//            ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: openID, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
-//              if let dic = responseObject as? [NSObject : AnyObject] {
-//                let set = dic["set"]!.boolValue!
-//                if set {//注册成功
-//                  //save account data
-//                  JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
-//                  //获取用户信息
-//                  LoginManager.sharedInstance().fetchUserInfo({ () -> () in
-//                    LoginManager.sharedInstance().showResideMenu(haspushed: nil)
-//                  })
-//                }
-//              }
-//              }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//                
-//            })
+          } else {//已注册
             //save account data
             JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic as [NSObject : AnyObject])
             //获取用户信息
@@ -158,19 +130,10 @@ class LoginManager: NSObject, RESideMenuDelegate {
               LoginManager.sharedInstance().showResideMenu(haspushed: nil)
             })
           }
-          
         }
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       })
     }
   }
-  
-  // MARK: - RESideMenuDelegate
-  func sideMenu(sideMenu: RESideMenu!, willShowMenuViewController menuViewController: UIViewController!) {
-    if let rightVC = menuViewController as? MessageCenterTVC {
-      rightVC.tableView.reloadData()
-    }
-  }
-  
   
 }

@@ -19,6 +19,7 @@ let UMAppKey = "55c31431e0f55a65c1002597"
 let WXAppId = "wxe09e14fcb69825cc"
 let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
 let UMURL = ""
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate {
   var loginManager: LoginManager?
@@ -115,7 +116,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
     print(userInfo)
-    
     if let type = userInfo["type"] as? String {
       if type == "newMessage" {
         if let shopID = userInfo["shopID"] as? String {
@@ -317,19 +317,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
   
   // MARK: - Private Method
-  func requestOfflineMessages() {
-    let timestamp = Int64(NSDate().timeIntervalSince1970)
-    let dictionary: [String: AnyObject] = [
-      "type": MessageServiceChatType.OfflineMssage.rawValue,
-      "timestamp": NSNumber(longLong: timestamp),
-      "userid": JSHAccountManager.sharedJSHAccountManager().userid
-    ]
-    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+  
+  func setupWindow() {
+    window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    setupLoginManager()
+    window?.makeKeyAndVisible()
   }
   
   func setupLoginManager() {
     loginManager = LoginManager.sharedInstance()
     loginManager?.appWindow = self.window
+    loginManager?.showAnimation()
   }
   
   func setupLogger() {
@@ -343,15 +341,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 //    fileLogger.rollingFrequency = 60 * 60 * 24
     fileLogger.logFileManager.maximumNumberOfLogFiles = 1
     DDLog.addLogger(fileLogger)
-  }
-  
-  func setupWindow() {
-    window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//    window?.tintColor = UIColor.blackColor()
-    setupLoginManager()
-    loginManager?.showAnimation()
-//    window?.rootViewController = UINavigationController(rootViewController: InfoEditViewController())
-    window?.makeKeyAndVisible()
   }
 
   func setupNotification() {
