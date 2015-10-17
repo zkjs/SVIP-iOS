@@ -259,13 +259,18 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   private func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
-      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
-      if UIApplication.sharedApplication().applicationState == .Background {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
-        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-      } else {
-        sendEnterRegionPacketWithBeacon(beaconRegion)
-      }
+//      let lastSendDate = NSUserDefaults.standardUserDefaults().objectForKey(region.identifier)
+//      print(region.identifier + " Last Send Date: \(lastSendDate)" + " Now: \(NSDate())")
+//      // 如果10分钟内再次触发该区域，则不发推送
+//      if lastSendDate?.timeIntervalSinceDate(NSDate()) >= 60 * 10 || lastSendDate == nil {
+        StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
+        if UIApplication.sharedApplication().applicationState == .Background {
+          NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
+          ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+        } else {
+          sendEnterRegionPacketWithBeacon(beaconRegion)
+        }
+//      }
     }
   }
   
@@ -480,15 +485,16 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   }
   
   private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
-    let shopID = beacon["shopid"]
-    let locid = beacon["locid"]
-//    let uuid = beacon["uuid"]
-//    let major = beacon["major"]
-//    let minor = beacon["minor"]
+    guard let shopID = beacon["shopid"] else { return }
+    guard let locid = beacon["locid"] else { return }
+    guard let locdesc = beacon["locdesc"] else { return }
+//    guard let uuid = beacon["uuid"] else { return }
+//    guard let major = beacon["major"] else { return }
+//    guard let minor = beacon["minor"] else { return }
     #if DEBUG
-      let appid = "HOTELVIP_DEBUG"
+      let appid = "SVIP_DEBUG"
       #else
-      let appid = "HOTELVIP"
+      let appid = "SVIP"
     #endif
     let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
@@ -496,12 +502,18 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       "devtoken": JSHStorage.deviceToken(),
       "appid": appid,
       "userid": JSHAccountManager.sharedJSHAccountManager().userid,
-      "shopid": shopID!,
-      "locid": locid!,
+      "shopid": shopID,
+      "locid": locid,
+      "locdesc": locdesc,
+      "childtype": 0,
       "username": JSHStorage.baseInfo().username ?? "",
       "timestamp": NSNumber(longLong: timestamp)
     ]
     ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+    
+//    let key = "\(shopID)\(uuid)\(major)\(minor)\(locid)"
+//    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
+//    print("Saved \(key) Last Send Date: \(NSDate())")
     
 //    let notification = UILocalNotification()
 //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
@@ -516,9 +528,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //    let major = beacon["major"]
 //    let minor = beacon["minor"]
     #if DEBUG
-      let appid = "HOTELVIP_DEBUG"
+      let appid = "SVIP_DEBUG"
       #else
-      let appid = "HOTELVIP"
+      let appid = "SVIP"
     #endif
     let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
@@ -662,6 +674,26 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       chatVC.condition = String(ruleType.rawValue)
       navigationController?.pushViewController(chatVC, animated: true)
     }
+
+    #if DEBUG
+      let appid = "SVIP_DEBUG"
+      #else
+      let appid = "SVIP"
+    #endif
+    let timestamp = Int64(NSDate().timeIntervalSince1970)
+    let dictionary: [String: AnyObject] = [
+      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
+      "devtoken": "dsajfasklfjalsfjlsajf",
+      "appid": appid,
+      "userid": JSHAccountManager.sharedJSHAccountManager().userid,
+      "shopid": "120",
+      "locid": "6",
+      "locdesc": "大堂",
+      "childtype": 0,
+      "username": "Hanton",
+      "timestamp": NSNumber(longLong: timestamp)
+    ]
+    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
   }
   
   @IBAction func longPressedMainButton(sender: AnyObject) {

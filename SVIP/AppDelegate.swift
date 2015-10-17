@@ -420,15 +420,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   }
   
   func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
-    let shopID = beacon["shopid"]
-    let locid = beacon["locid"]
-//    let uuid = beacon["uuid"]
-//    let major = beacon["major"]
-//    let minor = beacon["minor"]
+    guard let shopID = beacon["shopid"] else { return }
+    guard let locid = beacon["locid"] else { return }
+    guard let locdesc = beacon["locdesc"] else { return }
+//    guard let uuid = beacon["uuid"] else { return }
+//    guard let major = beacon["major"] else { return }
+//    guard let minor = beacon["minor"] else { return }
     #if DEBUG
-      let appid = "HOTELVIP_DEBUG"
+      let appid = "SVIP_DEBUG"
       #else
-      let appid = "HOTELVIP"
+      let appid = "SVIP"
     #endif
     let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
@@ -436,12 +437,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       "devtoken": JSHStorage.deviceToken(),
       "appid": appid,
       "userid": JSHAccountManager.sharedJSHAccountManager().userid,
-      "shopid": shopID!,
-      "locid": locid!,
+      "shopid": shopID,
+      "locid": locid,
+      "locdesc": locdesc,
+      "childtype": 0,
       "username": JSHStorage.baseInfo().username ?? "",
       "timestamp": NSNumber(longLong: timestamp)
     ]
     ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+    
+//    let key = "\(shopID)\(uuid)\(major)\(minor)\(locid)"
+//    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
+//    print("Saved \(key) Last Send Date: \(NSDate())")
     
 //    let notification = UILocalNotification()
 //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
@@ -456,9 +463,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 //    let major = beacon["major"]
 //    let minor = beacon["minor"]
     #if DEBUG
-      let appid = "HOTELVIP_DEBUG"
+      let appid = "SVIP_DEBUG"
       #else
-      let appid = "HOTELVIP"
+      let appid = "SVIP"
     #endif
     let timestamp = Int64(NSDate().timeIntervalSince1970)
     let dictionary: [String: AnyObject] = [
