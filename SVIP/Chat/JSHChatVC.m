@@ -546,7 +546,8 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
-  [self.messages addObject:message];
+//  [self.messages addObject:message];
+  [self addMessage:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
 }
@@ -1286,7 +1287,7 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
-  [self.messages addObject:message];
+  [self addMessage:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
   
@@ -1325,7 +1326,7 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
-  [self.messages addObject:message];
+  [self addMessage:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
   
@@ -1353,7 +1354,7 @@ const CGFloat shortcutViewHeight = 45.0;
   
   [Persistence.sharedInstance saveMessage:message shopID:self.shopID];
   
-  [self.messages addObject:message];
+  [self addMessage:message];
   [self.messageTableView reloadData];
   [self scrollToBottomAnimated:NO];
   

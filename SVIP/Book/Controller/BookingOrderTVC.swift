@@ -38,7 +38,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   var rooms = ""
   var breakfast = ""
   var startDate = NSDate()
-  var endDate = NSDate()
+  var endDate = NSDate().dateByAddingTimeInterval(60*60*24*1)
   var roomImageURL = ""
   
   // MARK: - View Lifecycle
@@ -59,7 +59,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     
     dateFormatter.dateFormat = "M-dd"
     startDateLabel.text = dateFormatter.stringFromDate(startDate)
-    endDateLabel.text = dateFormatter.stringFromDate(endDate.dateByAddingTimeInterval(60*60*24*1))
+    endDateLabel.text = dateFormatter.stringFromDate(endDate)
     dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, self.endDateLabel.text!])
     rooms = "1"
     
