@@ -190,9 +190,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 - (void)clientLogin:(NSString *)clientID name:(NSString *)name deviceToken:(NSString *)deviceToken {
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
 #if DEBUG
-  NSString *appid = @"HOTELVIP_DEBUG";
+  NSString *appid = @"SVIP_DEBUG";
 #else
-  NSString *appid = @"HOTELVIP";
+  NSString *appid = @"SVIP";
 #endif
   NSDictionary *dictionary = @{
     @"type": [NSNumber numberWithInteger:MessageIMClientLogin],
