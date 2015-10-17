@@ -71,7 +71,7 @@ class OrderDetailVC: UIViewController {
     nameLabel.text = order.fullname
     dateLabel.text = String(format: NSLocalizedString("BOOKING_AT", comment: ""), arguments: [createdDate])
     roomTypeLabel.text = order.room_type
-    durationLabel.text = "\(days)" + NSLocalizedString("NIGHT", comment: "")
+    durationLabel.text = "\(days) " + NSLocalizedString("NIGHT", comment: "")
     dateFormatter.dateFormat = "M/dd"
     startDateString = dateFormatter.stringFromDate(startDate!)
     endDateString = dateFormatter.stringFromDate(endDate!)

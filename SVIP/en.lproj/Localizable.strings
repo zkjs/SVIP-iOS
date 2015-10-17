@@ -64,7 +64,7 @@
 "ON" = "On";
 "OFF" = "Off";
 "ORDER_DETAIL" = "Order Detail";
-"BOOKING_INFO" = "Booking Info";
+"BOOKING_INFO" = "Order Info";
 "ROOM_INFO" = "Room Info";
 "BILL_INFO" = "Bill Info";
 "BOOKING_ORDER" = "Booking Order";
@@ -146,7 +146,7 @@
 "SEND_MESSAGE_FAIL" = "Send Fail, Please Try Again";
 "HOTEL_IS_OFFLINE" = "Hotel is Offline, Please Try Again";
 "BOOKING_CARD_TITLE" = "This is my Booking";
-"BOOKING_CARD_CONTENT" = "%@ | %@ | %d Night";
+"BOOKING_CARD_CONTENT" = "%@ | %@ | %@ Night";
 
 "ROOM" = "Room";
 "BOOKING_AT" = "Booking At %@";
