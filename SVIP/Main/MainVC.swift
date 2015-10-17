@@ -497,16 +497,23 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let appid = "SVIP"
     #endif
     let timestamp = Int64(NSDate().timeIntervalSince1970)
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let userName = JSHStorage.baseInfo().username ?? ""
+    let deviceToken = JSHStorage.deviceToken()
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-      "devtoken": JSHStorage.deviceToken(),
+      "devtoken": deviceToken,
       "appid": appid,
-      "userid": JSHAccountManager.sharedJSHAccountManager().userid,
+      "userid": userID,
       "shopid": shopID,
       "locid": locid,
       "locdesc": locdesc,
       "childtype": 0,
-      "username": JSHStorage.baseInfo().username ?? "",
+      "username": userName,
+      "iosalert": "\(userName) 已到达 \(locdesc)", //通知内容
+      "iossound": "bingbong.aiff",
+      "iosbadge": "1",    //角标
+      //      "ioscategory": "", //IOS8才支持
       "timestamp": NSNumber(longLong: timestamp)
     ]
     ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
@@ -681,16 +688,23 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       let appid = "SVIP"
     #endif
     let timestamp = Int64(NSDate().timeIntervalSince1970)
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let userName = "Hanton"
+    let deviceToken = "sdafasjfdlasjdflk"
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-      "devtoken": "dsajfasklfjalsfjlsajf",
+      "devtoken": deviceToken,
       "appid": appid,
-      "userid": JSHAccountManager.sharedJSHAccountManager().userid,
+      "userid": userID,
       "shopid": "120",
       "locid": "6",
       "locdesc": "大堂",
       "childtype": 0,
-      "username": "Hanton",
+      "username": userName,
+      "iosalert": "Hanton 已到达 大堂", //通知内容
+      "iossound": "bingbong.aiff",
+      "iosbadge": "1",    //角标
+      //      "ioscategory": "", //IOS8才支持
       "timestamp": NSNumber(longLong: timestamp)
     ]
     ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)

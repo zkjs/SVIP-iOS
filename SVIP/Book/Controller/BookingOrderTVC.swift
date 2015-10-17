@@ -86,8 +86,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
           let baseUrl = kBaseURL
           if let goodsImage = defaultGoods.image {
             let placeholderImage = UIImage(named: "bg_dingdan")
-            let url = NSURL(string: baseUrl)
-            url?.URLByAppendingPathComponent(goodsImage)
+            var url = NSURL(string: baseUrl)
+            url = url?.URLByAppendingPathComponent(goodsImage)
             self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
           }
         }

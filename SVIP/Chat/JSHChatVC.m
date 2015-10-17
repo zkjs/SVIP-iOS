@@ -1109,6 +1109,7 @@ const CGFloat shortcutViewHeight = 45.0;
   content[@"shopid"] = self.shopID;
   content[@"fullname"] = self.order.fullname;
   content[@"dayNum"] = self.order.dayInt;
+  content[@"guest"] = self.senderName;
   content[@"guesttel"] = self.order.guesttel;
   NSError *error;
   NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
