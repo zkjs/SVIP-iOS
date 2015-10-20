@@ -191,7 +191,7 @@
 		B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = B20812BD1B8DD8650070D96F /* JSHStorage.m */; };
 		B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812BE1B8DD8650070D96F /* LogManager.swift */; };
 		B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */ = {isa = PBXBuildFile; fileRef = B20812C01B8DD8650070D96F /* NSString+JSH.m */; };
-		B20812CC1B8DD8650070D96F /* Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812C11B8DD8650070D96F /* Persistent.swift */; };
+		B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812C11B8DD8650070D96F /* Persistence.swift */; };
 		B20812CD1B8DD8650070D96F /* RuleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812C21B8DD8650070D96F /* RuleEngine.swift */; };
 		B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812C31B8DD8650070D96F /* StorageManager.swift */; };
 		B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */; };
@@ -591,7 +591,7 @@
 		B20812BE1B8DD8650070D96F /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		B20812BF1B8DD8650070D96F /* NSString+JSH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSH.h"; sourceTree = "<group>"; };
 		B20812C01B8DD8650070D96F /* NSString+JSH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSH.m"; sourceTree = "<group>"; };
-		B20812C11B8DD8650070D96F /* Persistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistent.swift; sourceTree = "<group>"; };
+		B20812C11B8DD8650070D96F /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B20812C21B8DD8650070D96F /* RuleEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleEngine.swift; sourceTree = "<group>"; };
 		B20812C31B8DD8650070D96F /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B20812C51B8DD8650070D96F /* SVIP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SVIP.xcdatamodel; sourceTree = "<group>"; };
@@ -1477,7 +1477,7 @@
 				B20812BE1B8DD8650070D96F /* LogManager.swift */,
 				B20812BF1B8DD8650070D96F /* NSString+JSH.h */,
 				B20812C01B8DD8650070D96F /* NSString+JSH.m */,
-				B20812C11B8DD8650070D96F /* Persistent.swift */,
+				B20812C11B8DD8650070D96F /* Persistence.swift */,
 				B20812C21B8DD8650070D96F /* RuleEngine.swift */,
 				B20812C31B8DD8650070D96F /* StorageManager.swift */,
 				B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */,
@@ -2026,7 +2026,7 @@
 				B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */,
 				40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */,
 				4058E4961BA0211B00EF6D76 /* UIScrollView+XHkeyboardControl.m in Sources */,
-				B20812CC1B8DD8650070D96F /* Persistent.swift in Sources */,
+				B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
 				B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,

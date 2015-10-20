@@ -236,6 +236,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 //        window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
       }
     }
+    
+    // 广告推送
+    if let childType = userInfo["childtype"] as? NSNumber {
+      if childType.integerValue == MessageUserDefineType.PushAd.rawValue {
+        if let aps = userInfo["aps"] as? [String: AnyObject] {
+          if let alertMessage = aps["alert"] as? String {
+            let alertView = UIAlertController(title: "到店通知", message: alertMessage, preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .Cancel, handler: nil))
+            window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+          }
+        }
+        // 缓存发送时间，因为iBeacon信号不稳定，避免10分钟内重复发送
+        guard let regionID = userInfo["regionid"] as? String else { return }
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: regionID)
+        print("\(regionID) saved at \(NSDate())")
+      }
+    }
   }
   
   // MARK: - Background Fetch
@@ -423,9 +440,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     guard let shopID = beacon["shopid"] else { return }
     guard let locid = beacon["locid"] else { return }
     guard let locdesc = beacon["locdesc"] else { return }
-//    guard let uuid = beacon["uuid"] else { return }
-//    guard let major = beacon["major"] else { return }
-//    guard let minor = beacon["minor"] else { return }
+    guard let UUID = beacon["uuid"] else { return }
+    guard let major = beacon["major"] else { return }
+    guard let minor = beacon["minor"] else { return }
     #if DEBUG
       let appid = "SVIP_DEBUG"
       #else
@@ -435,6 +452,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let userName = JSHStorage.baseInfo().username ?? ""
     let deviceToken = JSHStorage.deviceToken()
+    let key = "\(shopID)\(UUID)\(major)\(minor)\(locid)"
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
       "devtoken": deviceToken,
@@ -445,17 +463,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
       "locdesc": locdesc,
       "childtype": 0,
       "username": userName,
+      "regionid": key,
       "iosalert": "\(userName) 已到达 \(locdesc)", //通知内容
       "iossound": "bingbong.aiff",
-      "iosbadge": "1",    //角标
+      "iosbadge": "-1",    //角标
 //      "ioscategory": "", //IOS8才支持
       "timestamp": NSNumber(longLong: timestamp)
     ]
     ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-    
-//    let key = "\(shopID)\(uuid)\(major)\(minor)\(locid)"
-//    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
-//    print("Saved \(key) Last Send Date: \(NSDate())")
     
 //    let notification = UILocalNotification()
 //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
