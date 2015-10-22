@@ -28,17 +28,6 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     let cellNib = UINib(nibName: NewItemCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: NewItemCell.reuseIdentifier())
     
-    // Header View
-    headerView = NSBundle.mainBundle().loadNibNamed(NewItemHeaderView.nibName(), owner:self, options:nil).first as! NewItemHeaderView
-    headerView.textField.delegate = self
-    headerView.textField.placeholder = "入住人"
-//    tableView.tableHeaderView = headerView
-    
-    // Footer View
-    footerView = NSBundle.mainBundle().loadNibNamed(NewItemFooterView.nibName(), owner:self, options:nil).first as! NewItemFooterView
-    footerView.doneButton.addTarget(self, action: "done", forControlEvents: .TouchUpInside)
-//    tableView.tableFooterView = footerView
-    
     // Tap background to dimiss keyboard
     let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard")
     tap.cancelsTouchesInView = false
@@ -124,7 +113,24 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   }
   
   override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 8.0
+    return NewItemHeaderView.height()
+  }
+  
+  override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return NewItemFooterView.height()
+  }
+  
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    headerView = NSBundle.mainBundle().loadNibNamed(NewItemHeaderView.nibName(), owner:self, options:nil).first as! NewItemHeaderView
+    headerView.textField.delegate = self
+    headerView.textField.placeholder = "入住人"
+    return headerView
+  }
+  
+  override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    footerView = NSBundle.mainBundle().loadNibNamed(NewItemFooterView.nibName(), owner:self, options:nil).first as! NewItemFooterView
+    footerView.doneButton.addTarget(self, action: "done", forControlEvents: .TouchUpInside)
+    return footerView
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

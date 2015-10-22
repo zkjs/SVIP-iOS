@@ -124,7 +124,7 @@
 "ROOM_TAG_FOOTER" = "选择您需要的房间要求";
 "SERVICE_INFO" = "其它服务";
 "SERVICE_FOOTER" = "选择您需要的定制服务";
-"PAYED_UNPAY" = "应该支付%d元，还要支付%d元";
+"PAYED_UNPAY" = "应该支付%@元，还要支付%@元";
 "PAY_NOW" = "立即支付";
 "PAYED" = "您已支付";
 "PAY_FAIL" = "支付失败";

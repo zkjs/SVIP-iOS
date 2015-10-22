@@ -125,7 +125,7 @@
 "ROOM_TAG_FOOTER" = "choose your preferred room tag";
 "SERVICE_INFO" = "Preferred Service Tag";
 "SERVICE_FOOTER" = "choose your preferred service tag";
-"PAYED_UNPAY" = "Payed:%d, Unpaid: %d";
+"PAYED_UNPAY" = "Payed:%@, Unpaid: %@";
 "PAY_NOW" = "Pay Now";
 "PAYED" = "Paid";
 "PAY_FAIL" = "Pay Fail";

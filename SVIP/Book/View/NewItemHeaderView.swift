@@ -16,4 +16,8 @@ class NewItemHeaderView: UIView {
     return "NewItemHeaderView"
   }
   
+  class func height() -> CGFloat {
+    return 45.0
+  }
+  
 }

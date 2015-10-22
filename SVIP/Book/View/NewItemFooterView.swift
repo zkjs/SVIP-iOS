@@ -16,4 +16,8 @@ class NewItemFooterView: UIView {
     return "NewItemFooterView"
   }
   
+  class func height() -> CGFloat {
+    return 75.0
+  }
+  
 }

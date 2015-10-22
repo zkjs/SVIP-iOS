@@ -175,11 +175,13 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
 
   }
   private func setupUI() {
-    let rate = self.roomDic["room_rate"]!.floatValue
+    let rate = roomDic["room_rate"]!.floatValue
     let total = rate
+    let totalString = String(Int(total))
     let payed: Float = 0
     let remain = total - payed
-    paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [total, remain])
+    let remainString = String(Int(remain))
+    paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [totalString, remainString])
 
     paymentButton.setTitle(NSLocalizedString("PAY_NOW", comment: ""), forState: UIControlState.Normal)
 
