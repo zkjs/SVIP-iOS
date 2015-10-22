@@ -145,7 +145,7 @@
 "SEND_MESSAGE_FAIL" = "消息发送失败，请重新发送";
 "HOTEL_IS_OFFLINE" = "商家不在线，请重新发送消息";
 "BOOKING_CARD_TITLE" = "您好，帮我预定这间房";
-"BOOKING_CARD_CONTENT" = "%@ | %@入住 | %d晚";
+"BOOKING_CARD_CONTENT" = "%@ | %@入住 | %@晚";
 
 "ROOM" = "间";
 "BOOKING_AT" = "在 %@ 预订";
