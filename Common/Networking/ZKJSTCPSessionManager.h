@@ -202,7 +202,8 @@ typedef NS_ENUM(NSInteger, MessageUserDefineType) {
   MessageUserDefinePayment = 1001,
   MessageUserDefineShopCancelOrder = 1002,
   MessageUserDefineShopConfirmOrder = 1003,
-  MessageUserDefinePushAd = 0
+  MessageUserDefineOfflineMessage = 1004,
+  MessageUserDefineClientArrivalPushAd = 1005
 };
 
 typedef NS_ENUM(NSInteger, MessageCustomType) {

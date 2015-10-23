@@ -33,7 +33,7 @@
 		405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405266651B41470F00B277BE /* OrderListHeaderView.xib */; };
 		4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */; };
 		4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */; };
-		4056A8131BC9004C00D42393 /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = 4056A8121BC9004C00D42393 /* server.der */; settings = {ASSET_TAGS = (); }; };
+		4056A8131BC9004C00D42393 /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = 4056A8121BC9004C00D42393 /* server.der */; };
 		4058E48F1BA0211B00EF6D76 /* NSString+MessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4058E38E1BA0211B00EF6D76 /* NSString+MessageInputView.m */; };
 		4058E4901BA0211B00EF6D76 /* NSString+XHMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 4058E3901BA0211B00EF6D76 /* NSString+XHMD5.m */; };
 		4058E4911BA0211B00EF6D76 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 4058E3931BA0211B00EF6D76 /* UIImage+Alpha.m */; };
@@ -166,8 +166,8 @@
 		40817D1A1B8EDA7300EF188F /* NewItemFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D191B8EDA7300EF188F /* NewItemFooterView.xib */; };
 		40817D1C1B8EDCED00EF188F /* NewItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1B1B8EDCED00EF188F /* NewItemHeaderView.swift */; };
 		40817D1E1B8EDD4B00EF188F /* NewItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1D1B8EDD4B00EF188F /* NewItemFooterView.swift */; };
-		409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409587E41BCCEDE400D212D6 /* RightMenuVC.swift */; settings = {ASSET_TAGS = (); }; };
-		409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409587E51BCCEDE400D212D6 /* RightMenuVC.xib */; settings = {ASSET_TAGS = (); }; };
+		409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409587E41BCCEDE400D212D6 /* RightMenuVC.swift */; };
+		409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409587E51BCCEDE400D212D6 /* RightMenuVC.xib */; };
 		409587EA1BCD05CE00D212D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 409587EC1BCD05CE00D212D6 /* Localizable.strings */; };
 		40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
@@ -1789,7 +1789,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = zkjinshi;
 				TargetAttributes = {
 					404A2F401BA94C7B006475D7 = {
@@ -2278,6 +2278,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

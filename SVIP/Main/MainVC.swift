@@ -488,9 +488,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     guard let shopID = beacon["shopid"] else { return }
     guard let locid = beacon["locid"] else { return }
     guard let locdesc = beacon["locdesc"] else { return }
-    guard let UUID = beacon["uuid"] else { return }
-    guard let major = beacon["major"] else { return }
-    guard let minor = beacon["minor"] else { return }
+//    guard let UUID = beacon["uuid"] else { return }
+//    guard let major = beacon["major"] else { return }
+//    guard let minor = beacon["minor"] else { return }
     #if DEBUG
       let appid = "SVIP_DEBUG"
       #else
@@ -500,7 +500,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let userName = JSHStorage.baseInfo().username ?? ""
     let deviceToken = JSHStorage.deviceToken()
-    let key = "\(shopID)\(UUID)\(major)\(minor)\(locid)"
     let dictionary: [String: AnyObject] = [
       "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
       "devtoken": deviceToken,
@@ -509,13 +508,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       "shopid": shopID,
       "locid": locid,
       "locdesc": locdesc,
-      "childtype": 0,
       "username": userName,
-      "regionid": key,
-      "iosalert": "\(userName) 已到达 \(locdesc)", //通知内容
-      "iossound": "bingbong.aiff",
-      "iosbadge": "-1",    //角标
-      //      "ioscategory": "", //IOS8才支持
       "timestamp": NSNumber(longLong: timestamp)
     ]
     ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
@@ -680,31 +673,25 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       navigationController?.pushViewController(chatVC, animated: true)
     }
 
-//#if DEBUG
-//  let appid = "SVIP_DEBUG"
-//  let timestamp = Int64(NSDate().timeIntervalSince1970)
-//  let userID = JSHAccountManager.sharedJSHAccountManager().userid
-//  let userName = JSHStorage.baseInfo().username ?? ""
-//  let deviceToken = JSHStorage.deviceToken()
-//  let dictionary: [String: AnyObject] = [
-//    "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-//    "devtoken": deviceToken,
-//    "appid": appid,
-//    "userid": userID,
-//    "shopid": "120",
-//    "locid": "6",
-//    "locdesc": "大堂",
-//    "childtype": 0,
-//    "username": userName,
-//    "regionid": "abcde",
-//    "iosalert": "Hanton 已到达 大堂", //通知内容
-//    "iossound": "bingbong.aiff",
-//    "iosbadge": "1",    //角标
-//    //      "ioscategory": "", //IOS8才支持
-//    "timestamp": NSNumber(longLong: timestamp)
-//  ]
-//  ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-//#endif
+#if DEBUG
+  let appid = "SVIP_DEBUG"
+  let timestamp = Int64(NSDate().timeIntervalSince1970)
+  let userID = JSHAccountManager.sharedJSHAccountManager().userid
+  let userName = JSHStorage.baseInfo().username ?? ""
+  let deviceToken = JSHStorage.deviceToken()
+  let dictionary: [String: AnyObject] = [
+    "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
+    "devtoken": deviceToken,
+    "appid": appid,
+    "userid": userID,
+    "shopid": "120",
+    "locid": "6",
+    "locdesc": "大堂",
+    "username": userName,
+    "timestamp": NSNumber(longLong: timestamp)
+  ]
+  ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+#endif
   }
   
   @IBAction func longPressedMainButton(sender: AnyObject) {
