@@ -16,12 +16,15 @@ class BookConfirmVC: UIViewController {
   @IBOutlet private weak var preference: UILabel!
   @IBOutlet private weak var inDate: BookDateButton!
   @IBOutlet private weak var outDate: BookDateButton!
-  
   @IBOutlet private var buttonMarginConstraintArray: [NSLayoutConstraint]!
   @IBOutlet private var optionButtonArray: [UIButton]!
-  //DATA
+  
   var goods:RoomGoods?
+  
   private var order: BookOrder!
+  
+  
+  // MARK: - Initialization
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: "BookConfirmVC", bundle: nil)
@@ -31,46 +34,51 @@ class BookConfirmVC: UIViewController {
     super.init(coder: aDecoder)
   }
   
+  
+  // MARK: - View Lifecycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
     loadData()
     setupUI()
     updateSubviews()
   }
-  /*
-  "id": "3",
-  "shopid": "120",
-  "room": "豪华",
-  "image": "uploads/rooms/3.jpg",
-  "type": "大床",
-  "meat": "双早",
-  "price": "888.00",
-  "logo": "uploads/shops/120.png",
-  "fullname": "长沙芙蓉国温德姆至尊豪廷大酒店"
-  */
+  
+  
+  // MARK: - Constraints
+  
+  override func updateViewConstraints() {
+    let screenWidth = UIScreen.mainScreen().bounds.size.width
+    let marginWidth = (Double(screenWidth) - Double(buttonCount) * 70.0) / Double(buttonCount + 1)
+    for constrainst in buttonMarginConstraintArray {
+      constrainst.constant = CGFloat(marginWidth)
+    }
+    super.updateViewConstraints()
+  }
+  
+  
+  // MARK: - Private
+
   private func loadData() {
     order = BookOrder()
     if let selectedGoods = goods {
       order.room_typeid = selectedGoods.goodsid
-      var room: String! = ""
-      var type: String! = ""
-      if selectedGoods.room != nil {
-        room = selectedGoods.room!
+      var room = ""
+      var type = ""
+      if let goodsRoom = selectedGoods.room {
+        room = goodsRoom
       }
-      if selectedGoods.type != nil {
-        type = selectedGoods.type!
+      if let goodsType = selectedGoods.type {
+        type = goodsType
       }
       order.room_type = "\(room)\(type)"//有问题的，order与goods字段对不上
       order.room_rate = selectedGoods.price
       order.rooms = "1"
-      order.shopid = goods?.shopid
-      let localBaseInfo = JSHStorage .baseInfo()
+      order.shopid = selectedGoods.shopid
+      let localBaseInfo = JSHStorage.baseInfo()
       order.guest = localBaseInfo.username
       order.guesttel = localBaseInfo.phone
-//      order.arrival_date = "2015-12-1"
-//      order.departure_date = "2015-12-28"
     }
   }
   
@@ -83,34 +91,28 @@ class BookConfirmVC: UIViewController {
       let placeholderImage = UIImage(named: "星空中心")
       var url = NSURL(string: baseUrl)
       url = url?.URLByAppendingPathComponent(goodsImage)
-      roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
+      roomLook.sd_setImageWithURL(url,
+        placeholderImage: placeholderImage,
+        options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed],
+        completed: nil)
     }
     
-    if let preference = order.remark {
-      self.preference.text = preference
+    if let remark = order.remark {
+      preference.text = remark
     }
     
     for button in optionButtonArray {
-      button.layer.borderColor = UIColor .grayColor().CGColor
+      button.layer.borderColor = UIColor.grayColor().CGColor
       button.layer.borderWidth = 1
-      button .addTarget(self, action: "optionSelect:", forControlEvents: UIControlEvents.TouchUpInside)
+      button.addTarget(self, action: "optionSelect:", forControlEvents: .TouchUpInside)
     }
-  }
-  
-  override func updateViewConstraints() {
-    let screenWidth = UIScreen.mainScreen().bounds.size.width
-    let marginWidth = (Double(screenWidth) - Double(buttonCount) * 70.0) / Double(buttonCount + 1)
-    for constrainst in buttonMarginConstraintArray {
-      constrainst.constant = CGFloat(marginWidth)
-    }
-    super.updateViewConstraints()
   }
   
   private func updateSubviews() {
     if inDate.date == nil {
-      let calender = NSCalendar .currentCalendar()
-      let components = calender .components(([.Year, .Month, .Day]), fromDate: NSDate())
-      inDate.date = calender .dateFromComponents(components)
+      let calender = NSCalendar.currentCalendar()
+      let components = calender.components(([.Year, .Month, .Day]), fromDate: NSDate())
+      inDate.date = calender.dateFromComponents(components)
     }
     
     if outDate.date == nil {
@@ -145,46 +147,23 @@ class BookConfirmVC: UIViewController {
     }
     
   }
-//MARK:- BUTTON ACTION
+  
+  
+  //MARK: - Button Action
+  
+  func optionSelect(sender: UIButton) {
+    sender.selected = !sender.selected
+  }
+  
   @IBAction private func dateSelect(sender: BookDateButton) {
-/*最初的actionSheet的滚轮date选择
-    BlurDatePickerView .showInView(self.view, startDate:sender == inDate ? NSDate() : (inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)), success: { (date: NSDate!) -> Void in
-      var calender = NSCalendar .currentCalendar()
-      var components = calender .components((NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit), fromDate: date)
-      sender.date = calender .dateFromComponents(components)
-      if sender == self.inDate {
-        self.outDate.date = self.inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)
-      }
-      self.updateSubviews()
-    })
-*/
-    //new date calendar picker
     let vc = BookDateSelectionViewController()
-    vc.selection = { (startDate: NSDate, endDate: NSDate) ->() in
+    vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
       self.inDate.date = startDate
       self.outDate.date = endDate
     }
     self.navigationController?.pushViewController(vc, animated: true)
   }
-  
-  func optionSelect(sender: UIButton) {
-    sender.selected = !sender.selected
-  }
-  /*
-  [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-  [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-  [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
-  [formData appendPartWithFormData:[goodsID dataUsingEncoding:NSUTF8StringEncoding] name:@"room_typeid"];
-  [formData appendPartWithFormData:[guest dataUsingEncoding:NSUTF8StringEncoding] name:@"guest"];
-  [formData appendPartWithFormData:[guestPhone dataUsingEncoding:NSUTF8StringEncoding] name:@"guesttel"];
-  [formData appendPartWithFormData:[arrivalDate dataUsingEncoding:NSUTF8StringEncoding] name:@"arrival_date"];
-  [formData appendPartWithFormData:[departureDate dataUsingEncoding:NSUTF8StringEncoding] name:@"departure_date"];
-  [formData appendPartWithFormData:[roomNum dataUsingEncoding:NSUTF8StringEncoding] name:@"rooms"];
-  [formData appendPartWithFormData:[roomType dataUsingEncoding:NSUTF8StringEncoding] name:@"room_type"];
-  [formData appendPartWithFormData:[roomRate dataUsingEncoding:NSUTF8StringEncoding] name:@"room_rate"];
-  [formData appendPartWithFormData:[remark dataUsingEncoding:NSUTF8StringEncoding] name:@"remark"];
-  [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
-  */
+
   @IBAction private func commit(sender: UIButton) {
     var remark: String?
     for optionButton in optionButtonArray {
@@ -192,27 +171,41 @@ class BookConfirmVC: UIViewController {
         if remark == nil {
           remark = optionButton.titleLabel?.text as String!
         }else {
-          remark = remark! .stringByAppendingString(",\(optionButton.titleLabel?.text as String!)")
+          remark = remark!.stringByAppendingString(",\(optionButton.titleLabel?.text as String!)")
         }
       }
     }
     if remark == nil {
       order.remark = ""
-    }else {
+    } else {
       order.remark = remark
     }
     order.arrival_date = inDate.dateString
     order.departure_date = outDate.dateString
-    let account = JSHAccountManager .sharedJSHAccountManager()
-    ZKJSHTTPSessionManager .sharedInstance() .postBookingInfoWithUserID(account.userid, token: account.token, shopID: order.shopid, goodsID: order.room_typeid, guest: order.guest, guestPhone: order.guesttel, roomNum: order.rooms, arrivalDate: order.arrival_date, departureDate: order.departure_date, roomType: order.room_type, roomRate: order.room_rate, remark: order.remark, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    let account = JSHAccountManager.sharedJSHAccountManager()
+    ZKJSHTTPSessionManager.sharedInstance().postBookingInfoWithUserID(account.userid,
+      token: account.token,
+      shopID: order.shopid,
+      goodsID: order.room_typeid,
+      guest: order.guest,
+      guestPhone: order.guesttel,
+      roomNum: order.rooms,
+      arrivalDate: order.arrival_date,
+      departureDate: order.departure_date,
+      roomType: order.room_type,
+      roomRate: order.room_rate,
+      remark: order.remark,
+      success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let payVC = BookPayVC()
         payVC.bkOrder = self.order
         let dic = responseObject as! NSDictionary
-        if let reservation_no = (dic["reservation_no"] as? String) {
+        if let reservation_no = dic["reservation_no"] as? String {
           payVC.bkOrder.reservation_no = reservation_no
         }
-        self.navigationController? .pushViewController(payVC, animated: true)
+        self.navigationController?.pushViewController(payVC, animated: true)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
     }
   }
+  
 }
