@@ -12,8 +12,6 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   @IBOutlet weak var bgImgeView: UIImageView!
   @IBOutlet weak var avatarButton: UIButton!
   @IBOutlet weak var username: UITextField!
-  @IBOutlet weak var realname: UITextField!
-  @IBOutlet weak var company: UITextField!
 //  @IBOutlet var sexButtons: [UIButton]!
   @IBOutlet weak var maleButton: UIButton!
   @IBOutlet weak var femaleButton: UIButton!
@@ -43,9 +41,6 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   */
   func setUI() {
     self.title = NSLocalizedString("MY_PROFILE", comment: "")
-    let right = UIBarButtonItem(image: UIImage(named: "ic_qianwang"), style: UIBarButtonItemStyle.Plain, target: self, action: "save")
-//    let right = UIBarButtonItem(title: "提交", style: UIBarButtonItemStyle.Plain, target: self, action: "save")
-    self.navigationItem.rightBarButtonItem = right
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
     self.navigationController?.navigationBar .setBackgroundImage(UIImage(named: "ic_qianwang"), forBarMetrics: UIBarMetrics.Compact)
@@ -56,15 +51,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     let attString1 = NSAttributedString(string: NSLocalizedString("PROFILE_NICKNAME", comment: ""),
                                         attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
                                         NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
-    let attString2 = NSAttributedString(string: NSLocalizedString("PROFILE_NAME", comment: ""),
-                                        attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
-                                        NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
-    let attString3 = NSAttributedString(string: NSLocalizedString("PROFILE_COMPANY", comment: ""),
-                                        attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
-                                        NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
     username.attributedPlaceholder = attString1
-    realname.attributedPlaceholder = attString2
-    company.attributedPlaceholder = attString3
     
     if let baseInfo = JSHStorage.baseInfo() {
       avatarButton.setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
@@ -80,22 +67,20 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   
   //MARK:- Button Action
   
-  func save() {
-    if username.text!.isEmpty || realname.text!.isEmpty {
+  @IBAction func nextStep(sender: AnyObject) {
+    if username.text!.isEmpty {
       ZKJSTool.showMsg(NSLocalizedString("PROFILE_FILL_ALL", comment: ""))
       return
     }
     ZKJSTool.showLoading()
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username.text, realname: realname.text, imageData: avatarData, imageName: " ", sex: sexstr, company: company.text, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username.text, realname: "", imageData: avatarData, imageName: " ", sex: sexstr, company: "", occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       if dic["set"]!.boolValue! {
         LoginManager.sharedInstance().afterAnimation()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      
+        
     }
-    
-    
   }
   
   @IBAction func selectAvatar(sender: AnyObject) {
@@ -166,11 +151,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if textField == username {
-      realname.becomeFirstResponder()
-    }else if textField == realname {
-      company.becomeFirstResponder()
-    }else {
-      company.endEditing(true)
+      view.endEditing(true)
     }
     return true
   }
