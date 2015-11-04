@@ -43,7 +43,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let title2 = NSLocalizedString("IN_ROOM_CHECK_IN", comment: "")
     let menu2 = ["logo": "ic_mianqiantai",
                  "text": title2]
-    let title3 = NSLocalizedString("ORDRE_LIST", comment: "")
+    let title3 = NSLocalizedString("行程", comment: "")
     let menu3 = ["logo": "ic_dingdan",
                  "text": title3]
     let title4 = NSLocalizedString("ORDER_HISTORY", comment: "")

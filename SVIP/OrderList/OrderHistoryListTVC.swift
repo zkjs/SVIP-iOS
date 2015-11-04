@@ -22,11 +22,11 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     
     title = NSLocalizedString("ORDER_HISTORY", comment: "")
     
-    let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
-    tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
+    let cellNib = UINib(nibName: OrderHistoryCell.nibName(), bundle: nil)
+    tableView.registerNib(cellNib, forCellReuseIdentifier: OrderHistoryCell.reuseIdentifier())
     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.footer.hidden = true
-    tableView.separatorStyle = .None
+    //tableView.separatorStyle = .None
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
   }
   
@@ -44,11 +44,11 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   
   // MARK: - Table view data source
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return orders.count
+    return 10
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return OrderCell.height()
+    return OrderHistoryCell.height()
   }
   
   override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -60,29 +60,31 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if orders.count == 0 {
-      return UITableViewCell()
-    }
+//    if orders.count == 0 {
+//      return UITableViewCell()
+//    }
     
-    let cell: OrderCell = tableView.dequeueReusableCellWithIdentifier(OrderCell.reuseIdentifier()) as! OrderCell
-    let order = orders[indexPath.row] as! BookOrder
-    cell.setOrder(order)
-    cell.delegate = self
+    let cell: OrderHistoryCell = tableView.dequeueReusableCellWithIdentifier(OrderHistoryCell.reuseIdentifier()) as! OrderHistoryCell
+//   let order = orders[indexPath.row] as! BookOrder
+//    cell.setOrder(order)
+//    cell.delegate = self
     
     return cell
   }
   
   // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let order = orders[indexPath.row] as! BookOrder
-    
-    if Int(order.status) == 0 {  // 0 未确认可取消订单
-      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
-      bookingOrderDetailVC.delegate = self
-      navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
-    } else {
-      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
-    }
+//    let order = orders[indexPath.row] as! BookOrder
+//    
+//    if Int(order.status) == 0 {  // 0 未确认可取消订单
+//      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
+//      bookingOrderDetailVC.delegate = self
+//      navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
+//    } else {
+//      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
+//    }
+    let vc = OrderDetailsVC()
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   // MARK: - BookingOrderDetailVCDelegate

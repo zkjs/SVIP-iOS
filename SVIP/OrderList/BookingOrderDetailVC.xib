@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookingOrderDetailVC" customModule="SVIP" customModuleProvider="target">
@@ -27,13 +27,13 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温德姆至尊豪庭大酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2sA-wj-zMw">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="温德姆至尊豪庭大酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2sA-wj-zMw">
                     <rect key="frame" x="128" y="30" width="464" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华双人间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubq-3h-3uN">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="豪华双人间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubq-3h-3uN">
                     <rect key="frame" x="128" y="124" width="150" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="a4C-EB-wb0"/>
@@ -42,13 +42,13 @@
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1L-o5-TUb" customClass="DotLine" customModule="SVIP" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1L-o5-TUb" customClass="DotLine" customModule="SVIP" customModuleProvider="target">
                     <rect key="frame" x="8" y="99" width="584" height="2"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="1lu-9c-PQU"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房间信息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fr-99-h6J">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="房间信息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fr-99-h6J">
                     <rect key="frame" x="20" y="149" width="100" height="23"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="5OC-B6-xjT"/>
@@ -57,10 +57,10 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_jiudianimg_anli" translatesAutoresizingMaskIntoConstraints="NO" id="rrL-3F-FPY">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ic_jiudianimg_anli" translatesAutoresizingMaskIntoConstraints="NO" id="rrL-3F-FPY">
                     <rect key="frame" x="506" y="126" width="73" height="71"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在2015/05/28 18:30 预订" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="106-SK-AHW">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="在2015/05/28 18:30 预订" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="106-SK-AHW">
                     <rect key="frame" x="128" y="58" width="464" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,7 +81,7 @@
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5/16-5/18" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zin-jD-dcu">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="5/16-5/18" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zin-jD-dcu">
                     <rect key="frame" x="128" y="178" width="150" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="0a9-zS-BM3"/>
@@ -90,7 +90,7 @@
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2晚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTr-ZE-WjX">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="2晚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTr-ZE-WjX">
                     <rect key="frame" x="128" y="151" width="150" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="vgq-Yw-1LT"/>
@@ -114,13 +114,13 @@
                         <action selector="payBookingOrder:" destination="-1" eventType="touchUpInside" id="0ON-oh-cjN"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oUZ-sN-6lq" customClass="DotLine" customModule="SVIP" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUZ-sN-6lq" customClass="DotLine" customModule="SVIP" customModuleProvider="target">
                     <rect key="frame" x="8" y="217" width="584" height="2"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="7mo-ey-5xi"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的要求" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-a4-lIt">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="我的要求" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-a4-lIt">
                     <rect key="frame" x="20" y="239" width="100" height="23"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="glv-lA-sKh"/>
@@ -165,7 +165,7 @@
                         <action selector="showChatView:" destination="-1" eventType="touchUpInside" id="UbC-Nz-IRR"/>
                     </connections>
                 </button>
-                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="离电梯近     安静     景色好" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFR-Bs-Io8">
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="离电梯近     安静     景色好" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFR-Bs-Io8">
                     <rect key="frame" x="20" y="270" width="560" height="116"/>
                     <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
