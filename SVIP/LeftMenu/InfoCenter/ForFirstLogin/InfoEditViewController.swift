@@ -60,7 +60,6 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       if sexstr == NSLocalizedString("MAN", comment: "") {
         selectSex(maleButton)
       }
-      
     }
   }
   

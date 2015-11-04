@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     setupTCPSessionManager()
     fetchShops()
     fetchBeaconRegions()
-    setupUMSocial()//UM
+//    setupUMSocial()//UM
     setupBackgroundFetch()
     
     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isFirstRun")
