@@ -10,6 +10,7 @@ import UIKit
 
 class OrderContentView: UIView {
 
+    @IBOutlet weak var room_priceLabel: UILabel!
   @IBOutlet weak var hotelImage: UIImageView!
   @IBOutlet weak var hotelNameLabel: UILabel!
   @IBOutlet weak var bedStulyLabel: UILabel!

@@ -19,14 +19,12 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     super.viewDidLoad()
     
     loadMoreData()
-    
     title = NSLocalizedString("ORDRE_LIST", comment: "")
-    
     let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderListCell.reuseIdentifier())
     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.footer.hidden = true
-    
+    tableView.tableFooterView = UIView()
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
   }
   
@@ -44,7 +42,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   // MARK: - Table view data source
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return orders.count
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -60,14 +58,14 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//    if orders.count == 0 {
-//      return UITableViewCell()
-//    }
+    if orders.count == 0 {
+      return UITableViewCell()
+    }
     
     let cell: OrderListCell = tableView.dequeueReusableCellWithIdentifier(OrderListCell.reuseIdentifier()) as! OrderListCell
-//    let order = orders[indexPath.row] as! BookOrder
-//    cell.setOrder(order)
-//    cell.delegate = self
+    let order = orders[indexPath.row] as! BookOrder
+    cell.setOrder(order)
+    cell.delegate = self
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
   }
@@ -75,7 +73,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-//    let order = orders[indexPath.row] as! BookOrder
+    let order = orders[indexPath.row] as! BookOrder
 //    if Int(order.status) == 0 {  // 0 未确认可取消订单
 //      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
 //      bookingOrderDetailVC.delegate = self
@@ -83,6 +81,12 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
 //    } else {
 //      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
 //    }
+    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+    vc.reservation_no = order.reservation_no
+    navigationController?.pushViewController(vc, animated: true)
+
+    
   }
   
   // MARK: - BookingOrderDetailVCDelegate
@@ -129,6 +133,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           let order = BookOrder(dictionary: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
+        print(self.orders.count)
         self.tableView.reloadData()
         self.tableView.footer.endRefreshing()
         self.orderPage++

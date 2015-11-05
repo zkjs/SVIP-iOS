@@ -40,6 +40,7 @@ class BookOrder: NSObject {
   var departure_date: String!
   var dayInt: String!
   var phone: String!
+  var userid:String!
   //for alipay
   var reservation_no: String!
 
@@ -71,6 +72,7 @@ class BookOrder: NSObject {
     output += "remark: \(remark)\n"
     output += "nologin: \(nologin)\n"
     output += "room_image_URL: \(room_image_URL)\n"
+    output += "userid: \(userid)\n"
     return output
   }
   
@@ -93,6 +95,7 @@ class BookOrder: NSObject {
     fullname = dictionary["fullname"] as? String
     status = dictionary["status"] as? String
     nologin = dictionary["nologin"] as? String
+    userid = dictionary["userid"] as? String
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     var startDate: NSDate?

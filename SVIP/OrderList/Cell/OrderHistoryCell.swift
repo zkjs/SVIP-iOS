@@ -8,8 +8,9 @@
 
 import UIKit
 
-class OrderHistoryCell: UITableViewCell {
+class OrderHistoryCell: SWTableViewCell {
 
+  @IBOutlet weak var roomPriceLabel: UILabel!
   @IBOutlet weak var evaluateLabel: UILabel!
   @IBOutlet weak var creattimeLabel: UILabel!
   @IBOutlet weak var roomTypeLabel: UILabel!
@@ -37,6 +38,20 @@ class OrderHistoryCell: UITableViewCell {
     return 116.0
   }
   
+  func setOrder(order:BookOrder) {
+    rightUtilityButtons = rightButtons() as [AnyObject]
+    hotelnameLabel.text = order.fullname
+    roomTypeLabel.text = order.room_type + "x" + order.rooms
+    creattimeLabel.text = order.room_rate
+    roomPriceLabel.text = "￥" + order.room_rate
+    
+    
+  }
+  func rightButtons() -> NSArray {
+    let rightUtilityButtons: NSMutableArray = []
+    rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.redColor(), title: "删除")
+    return rightUtilityButtons
+  }
 
     
 }

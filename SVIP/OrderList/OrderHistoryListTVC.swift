@@ -17,7 +17,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    ZKJSTool.showLoading()
     loadMoreData()
     
     title = NSLocalizedString("ORDER_HISTORY", comment: "")
@@ -26,6 +26,8 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderHistoryCell.reuseIdentifier())
     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.footer.hidden = true
+    tableView.tableFooterView = UIView()
+    
     //tableView.separatorStyle = .None
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
   }
@@ -44,7 +46,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   
   // MARK: - Table view data source
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return orders.count
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -60,14 +62,14 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//    if orders.count == 0 {
-//      return UITableViewCell()
-//    }
+    if orders.count == 0 {
+      return UITableViewCell()
+    }
     
     let cell: OrderHistoryCell = tableView.dequeueReusableCellWithIdentifier(OrderHistoryCell.reuseIdentifier()) as! OrderHistoryCell
-//   let order = orders[indexPath.row] as! BookOrder
-//    cell.setOrder(order)
-//    cell.delegate = self
+   let order = orders[indexPath.row] as! BookOrder
+    cell.setOrder(order)
+    cell.delegate = self
     
     return cell
   }
@@ -84,6 +86,8 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
 //      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
 //    }
     let vc = OrderDetailsVC()
+    let order = orders[indexPath.row]
+    vc.order = order as! BookOrder
     navigationController?.pushViewController(vc, animated: true)
   }
   
@@ -120,6 +124,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   // MARK: - Private Method
   
   func loadMoreData() -> Void {
+    
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let token = JSHAccountManager.sharedJSHAccountManager().token
     let page = String(orderPage)
@@ -131,6 +136,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
           let order = BookOrder(dictionary: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
+        ZKJSTool.hideHUD()
         self.tableView.reloadData()
         self.tableView.footer.endRefreshing()
         self.orderPage++

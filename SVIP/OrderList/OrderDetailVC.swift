@@ -22,7 +22,7 @@ class OrderDetailVC: UIViewController {
   @IBOutlet weak var roomInfoLabel: UILabel!
   @IBOutlet weak var billInfoLabel: UILabel!
   
-  let order: BookOrder
+  var order: BookOrder
   
   // MARK: - Init
   init(order: BookOrder?) {

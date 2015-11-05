@@ -8,6 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailsVC" customModule="SVIP" customModuleProvider="target">
             <connections>
                 <outlet property="scrollView" destination="vmj-fD-SR3" id="Jn9-iB-s79"/>
+                <outlet property="userImageView" destination="T8V-Sz-owf" id="tbY-CA-fq8"/>
+                <outlet property="usernameLabel" destination="pS4-vf-TvB" id="LZT-5D-ROK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
