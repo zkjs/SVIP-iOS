@@ -11,17 +11,23 @@ import UIKit
 class RightMenuVC: UIViewController, RESideMenuDelegate {
   
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var name: UILabel!
+  @IBOutlet weak var nameLabel: UILabel!
   
   var shops = [NSDictionary]()
   
   // MARK: - Life cycle
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("RightMenuVC", owner:self, options:nil)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setupUI()
     loadData()
   }
+  
   
   // MARK: - RESideMenuDelegate
   
@@ -30,6 +36,7 @@ class RightMenuVC: UIViewController, RESideMenuDelegate {
       tableView.reloadData()
     }
   }
+  
   
   // MARK: - Table view data source
   
@@ -127,9 +134,9 @@ class RightMenuVC: UIViewController, RESideMenuDelegate {
       if let shopName = shop["fullname"] as? String {
         chatVC.shopName = shopName
       }
-      //      navigationController?.pushViewController(chatVC, animated: true)
-      if let navigationController = self.sideMenuViewController.contentViewController as? UINavigationController {
-        self.sideMenuViewController.hideMenuViewController()
+      
+      if let navigationController = sideMenuViewController.contentViewController as? UINavigationController {
+        sideMenuViewController.hideMenuViewController()
         navigationController.pushViewController(chatVC, animated: false)
       }
     }
@@ -138,7 +145,7 @@ class RightMenuVC: UIViewController, RESideMenuDelegate {
   // MARK: - Private Method
   
   private func setupUI() {
-    name.text = NSLocalizedString("MESSAGE_CENTER", comment: "")
+    nameLabel.text = NSLocalizedString("MESSAGE_CENTER", comment: "")
     
     sideMenuViewController.delegate = self
     
