@@ -87,4 +87,8 @@
 - (void)getGuestListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // 新增入住人
 - (void)addGuestWithParam:(NSDictionary *)param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+// 客户根据邀请码查询服务员
+- (void)getSaleInfoWithCode:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+// 超级身份输入\绑定 邀请码动作
+- (void)pairInvitationCodeWith:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end

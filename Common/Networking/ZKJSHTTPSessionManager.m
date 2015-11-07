@@ -38,6 +38,14 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   return self;
 }
 
+- (NSString *)userID {
+  return [JSHAccountManager sharedJSHAccountManager].userid;
+}
+
+- (NSString *)token {
+  return [JSHAccountManager sharedJSHAccountManager].token;
+}
+
 // 获取Beacon列表
 - (void)getBeaconRegionListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"user/location" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -597,8 +605,8 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 // 获取入住人列表
 - (void)getGuestListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
   [self POST:@"order/createlist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -607,11 +615,12 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     failure(task, error);
   }];
 }
+
 // 新增入住人
 - (void)addGuestWithParam:(NSDictionary *)param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
   [self POST:@"order/useradd" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -620,4 +629,35 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     failure(task, error);
   }];
 }
+
+// 客户根据邀请码查询服务员
+- (void)getSaleInfoWithCode:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"invitation/getcode" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[code dataUsingEncoding:NSUTF8StringEncoding] name:@"code"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
+// 超级身份输入\绑定 邀请码动作
+- (void)pairInvitationCodeWith:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"invitation/bdcode" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[code dataUsingEncoding:NSUTF8StringEncoding] name:@"code"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
 @end
