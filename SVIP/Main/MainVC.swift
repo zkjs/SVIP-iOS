@@ -45,7 +45,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     setupCoreLocationService()
     setupMotionView()
     setupRightButton()
-    initTCPSessionManager()
+//    initTCPSessionManager()
     initSmartPanelUI()
     setupBluetoothManager()
     

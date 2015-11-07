@@ -48,6 +48,8 @@ class LoginManager: NSObject {
         ZKJSTool.hideHUD()
         self.showResideMenu(haspushed: nil)
       })
+      // 打开TCP连接
+      ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     }else {
       //未注册
       showRegister()
@@ -115,8 +117,11 @@ class LoginManager: NSObject {
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
                   //编辑个人信息
                   print("here goes to edit info ")
-                  self.appWindow.rootViewController = UINavigationController(rootViewController: InfoEditViewController())
-                  
+                  let nv = BaseNC(rootViewController: InfoEditViewController())
+                  nv.navigationBar.tintColor = UIColor.whiteColor()
+                  nv.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+                  nv.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+                  self.appWindow.rootViewController = nv
                 }
               }
               }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -129,6 +134,8 @@ class LoginManager: NSObject {
             LoginManager.sharedInstance().fetchUserInfo({ () -> () in
               LoginManager.sharedInstance().showResideMenu(haspushed: nil)
             })
+            // 打开TCP连接
+            ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
           }
         }
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

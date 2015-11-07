@@ -207,7 +207,7 @@
   
   if (_phoneField.text.length == 11) {
     if ([ZKJSTool validateMobile:_phoneField.text]) {
-      if ([_phoneField.text isEqual:@"18503027465"]/* || [_phoneField.text isEqual:@"18925232944"]*/) {
+      if ([_phoneField.text isEqual:@"18503027465"] || [_phoneField.text isEqual:@"18925232944"]) {
         //跳过验证，直接注册
         [[LoginManager sharedInstance] signup:_phoneField.text openID:nil success:^{
           JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] init];
