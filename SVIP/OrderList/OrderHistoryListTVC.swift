@@ -109,9 +109,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       
-      let userID = JSHAccountManager.sharedJSHAccountManager().userid
-      let token = JSHAccountManager.sharedJSHAccountManager().token
-      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
@@ -125,10 +123,8 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   
   func loadMoreData() -> Void {
     
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
     let page = String(orderPage)
-    ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithUserID(userID, token: token, page: page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.tableView.footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {

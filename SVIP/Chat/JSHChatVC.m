@@ -914,6 +914,7 @@ const CGFloat shortcutViewHeight = 45.0;
                                @"shopid": self.shopID,
                                @"locid": locid,
                                @"desc": desc,
+                               @"salesid": @"5629a1adf119f", // 专属客服
                                @"sessionid": self.sessionID
                                };
   [[ZKJSTCPSessionManager sharedInstance] sendPacketFromDictionary:dictionary];

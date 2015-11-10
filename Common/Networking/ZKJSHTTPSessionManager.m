@@ -11,6 +11,7 @@
 #import "Networkcfg.h"
 #import "CocoaLumberjack.h"
 #import "JSHAccountManager.h"
+#import "JSHHotelRegisterVC.h"
 
 static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
@@ -46,7 +47,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   return [JSHAccountManager sharedJSHAccountManager].token;
 }
 
-// 获取Beacon列表
+#pragma mark - 获取Beacon列表
 - (void)getBeaconRegionListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"user/location" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
@@ -57,7 +58,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 注册
+#pragma mark - 注册
 - (void)userSignUpWithPhone:(NSString *)phone openID:(NSString *)openID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *phoneOS = [[UIDevice currentDevice] systemVersion];  // 系统版本
   NSString *os = @"3";  // WEB'1' 安卓'2' 苹果'3' 其他'4'
@@ -82,9 +83,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 判断用户手机和微信第三方id是否已经注册过
+#pragma mark - 判断用户手机和微信第三方id是否已经注册过
 - (void)verifyIsRegisteredWithID:(NSString *)__id success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"user/getuser?id=%@", __id];
+  NSString *urlString = [NSString stringWithFormat:@"user/getuser?id=%@", [self userID]];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -94,9 +95,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 登出
-- (void)logoutWithUserID:(NSString *)userID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"user/logout?userid=%@", userID];
+#pragma mark - 登出
+- (void)logoutWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *urlString = [NSString stringWithFormat:@"user/logout?userid=%@", [self userID]];
   [self POST:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -106,7 +107,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 检查重复手机
+#pragma mark - 检查重复手机
 - (void)checkDuplicatePhoneWithPhone:(NSString *)phone success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/getphone?phone=%@", phone];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -118,7 +119,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 修改帐号密码
+#pragma mark - 修改帐号密码
 - (void)changeAccountPasswordWithPhone:(NSString *)phone newPassword:(NSString *)newPassword success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/chg" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[phone dataUsingEncoding:NSUTF8StringEncoding] name:@"phone"];
@@ -132,11 +133,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 修改用户信息
-- (void)updateUserInfoWithUserID:(NSString *)userID token:(NSString *)token username:(NSString *)username realname:(NSString *)realname imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation email:(NSString *)email tagopen:(NSNumber *)tagopen success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 修改用户信息
+- (void)updateUserInfoWithUsername:(NSString *)username realname:(NSString *)realname imageData:(NSData *)imageData imageName:(NSString *)imageName sex:(NSString *)sex company:(NSString *)company occupation:(NSString *)occupation email:(NSString *)email tagopen:(NSNumber *)tagopen success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-  [dic setObject:userID forKey:@"userid"];
-  [dic setObject:token forKey:@"token"];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
   if (username) {
     [dic setObject:username forKey:@"username"];
   }
@@ -177,8 +178,8 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 - (void)updateUserInfoWithParaDic:(NSDictionary *)paraDic success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:paraDic];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
   [self POST:@"user/upload" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -188,29 +189,27 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 获取默认发票
-- (void)getDefaultInvoiceSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 获取默认发票
+- (void)getDefaultInvoiceWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
   NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
   NSDictionary *dic = @{@"userid" : userid,
                         @"token" : token,
                         @"set" : @1
                         };
-    [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-      DDLogInfo(@"%@", [responseObject description]);
-      success(task, responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-      DDLogInfo(@"%@", error.description);
-      failure(task, error);
-    }];
+  [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
 }
 
-// 获取发票列表
-- (void)getInvoiceListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
-  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
-  NSDictionary *dic = @{@"userid" : userid,
-                        @"token" : token,
+#pragma mark - 获取发票列表
+- (void)getInvoiceListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSDictionary *dic = @{@"userid" : [self userID],
+                        @"token" : [self token],
                         @"set" : @0
                         };
   [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -222,12 +221,10 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 添加发票
+#pragma mark - 添加发票
 - (void)addInvoiceWithTitle:(NSString *)title isDefault:(BOOL)isDefault Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
-  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
-  NSDictionary *dic = @{@"userid" : userid,
-                        @"token" : token,
+  NSDictionary *dic = @{@"userid" : [self userID],
+                        @"token" : [self token],
                         @"invoice_title" : title,
                         @"is_default" : [NSNumber numberWithBool:isDefault]
                         };
@@ -240,12 +237,10 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 修改发票
+#pragma mark - 修改发票
 - (void)modifyInvoiceWithInvoiceid:(NSString *)invoiceid title:(NSString *)title isDefault:(BOOL)isDefault Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
-  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
-  NSDictionary *dic = @{@"userid" : userid,
-                        @"token" : token,
+  NSDictionary *dic = @{@"userid" : [self userID],
+                        @"token" : [self token],
                         @"id" : invoiceid,
                         @"set" : @2,
                         @"invoice_title" : title,
@@ -260,12 +255,10 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 删除发票
+#pragma mark - 删除发票
 - (void)deleteInvoiceWithInvoiceid:(NSString *)invoiceid Success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
-  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
-  NSDictionary *dic = @{@"userid" : userid,
-                        @"token" : token,
+  NSDictionary *dic = @{@"userid" : [self userID],
+                        @"token" : [self token],
                         @"id" : invoiceid,
                         @"set" : @3
                         };
@@ -278,17 +271,17 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 取得用户头像
-- (UIImage *)getUserProfileWithUserID:(NSString *)userID {
-  NSString *urlString = [NSString stringWithFormat:@"%@uploads/users/%@.jpg", kBaseURL, userID];
+#pragma mark - 取得用户头像
+- (UIImage *)getUserProfile {
+  NSString *urlString = [NSString stringWithFormat:@"%@uploads/users/%@.jpg", kBaseURL, [self userID]];
   NSData *imageData = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:urlString]];
   UIImage *image = [[UIImage alloc] initWithData:imageData];
   return image;
 }
 
-// 取得用户信息
-- (void)getUserInfo:(NSString *)userID token:(NSString *)token success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"user/select?&userid=%@&token=%@", userID, token];
+#pragma mark - 取得用户信息
+- (void)getUserInfoWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *urlString = [NSString stringWithFormat:@"user/select?&userid=%@&token=%@", [self userID], [self token]];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -298,7 +291,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 取得指定条件的商家列表信息
+#pragma mark - 取得指定条件的商家列表信息
 - (void)getAllShopInfoWithPage:(NSInteger)page key:(NSString *)key isDesc:(BOOL)isDesc success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *order = isDesc ? @"desc" : @"asc";
   NSString *urlString;
@@ -316,7 +309,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 取得商家信息
+#pragma mark - 取得商家信息
 - (void)getShopInfo:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/selectshop?&shopid=%@&web=0", shopID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -328,7 +321,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 取得商家评论信息
+#pragma mark - 取得商家评论信息
 - (void)getShopCommentsWithShopID:(NSString *)shopID start:(NSInteger)start page:(NSInteger)page key:(NSString *)key isDesc:(BOOL)isDesc success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *order = isDesc ? @"desc" : @"asc";
   NSString *urlString = [NSString stringWithFormat:@"user/comment?web=0&shopid=%@&stat=%ld&page=%ld&key=%@&desc=%@", shopID, (long)start, (long)page, key, order];
@@ -341,36 +334,36 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-//取得已有标签
-- (void)getSelectedTagsWithID:(NSString *)userID token:(NSString *)token success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+#pragma mark - 取得已有标签
+- (void)getSelectedTagsWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    NSString *urlString = [NSString stringWithFormat:@"tags/user?userid=%@&token=%@", userID, token];
-    [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-      DDLogInfo(@"%@", [responseObject description]);
-      success(task, responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-      DDLogInfo(@"%@", error.description);
-      failure(task, error);
-    }];
+  NSString *urlString = [NSString stringWithFormat:@"tags/user?userid=%@&token=%@", [self userID], [self token]];
+  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
 }
 
-// 获取随机标签池
+#pragma mark - 获取随机标签池
 - (void)getRandomTagsWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    [self GET:@"tags/show" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-      DDLogInfo(@"%@", [responseObject description]);
-      success(task, responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-      DDLogInfo(@"%@", error.description);
-      failure(task, error);
-    }];
+  [self GET:@"tags/show" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
 }
 
-// 上传用户标签
-- (void)updateTagsWithUserID:(NSString *)userID token:(NSString *)token tags:(NSString *)tags success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 上传用户标签
+- (void)updateTagsWithTags:(NSString *)tags success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"tags/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[tags dataUsingEncoding:NSUTF8StringEncoding] name:@"tagid"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
@@ -381,59 +374,54 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 获取订单详情
+#pragma mark - 获取订单详情
 - (void)getOrderWithReservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
-    [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
-//    [dic setObject: forKey:@"userid"];
-//    [dic setObject:@"I1Ae4us4ssrwsWIg" forKey:@"token"];
-    [dic setObject:reservation_no forKey:@"reservation_no"];
-//    [dic setObject:[NSNumber numberWithInt:shopid] forKey:@"shopid"];
-    [self POST:@"order/show" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        DDLogInfo(@"%@", [responseObject description]);
-        success(task, responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        DDLogInfo(@"%@", error.description);
-        failure(task, error);
-    }];
+  NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
+  [dic setObject:reservation_no forKey:@"reservation_no"];
+  [self POST:@"order/show" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
 }
 
-// 修改订单
+#pragma mark - 修改订单
 - (void)modifyOrderWithReservation_no:(NSString *)reservation_no param:(NSDictionary *)param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
-    [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
-    [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
-    //    [dic setObject: forKey:@"userid"];
-    //    [dic setObject:@"I1Ae4us4ssrwsWIg" forKey:@"token"];
-    [dic setObject:@2 forKey:@"status"];
-    [dic setObject:reservation_no forKey:@"reservation_no"];
-    //    [dic setObject:[NSNumber numberWithInt:shopid] forKey:@"shopid"];
-    [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-      DDLogInfo(@"%@", [responseObject description]);
-      success(task, responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-      DDLogInfo(@"%@", error.description);
-      failure(task, error);
-    }];
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
+  [dic setObject:@2 forKey:@"status"];
+  [dic setObject:reservation_no forKey:@"reservation_no"];
+  [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
 }
-// 取消订单
+
+#pragma mark - 取消订单
 - (void)cancelOrderWithReservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
-    [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
-    [dic setObject:@1 forKey:@"status"];
-    [dic setObject:reservation_no forKey:@"reservation_no"];
-    //    [dic setObject:[NSNumber numberWithInt:shopid] forKey:@"shopid"];
-    [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-      DDLogInfo(@"%@", [responseObject description]);
-      success(task, responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-      DDLogInfo(@"%@", error.description);
-      failure(task, error);
-    }];
+  NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
+  [dic setObject:@1 forKey:@"status"];
+  [dic setObject:reservation_no forKey:@"reservation_no"];
+  [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
 }
-// 获取指定商家的商品列表
+
+#pragma mark - 获取指定商家的商品列表
 - (void)getShopGoodsListWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"order/goods?shopid=%@", shopID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -444,10 +432,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     failure(task, error);
   }];
 }
-// 获取所有商品列表
+
+#pragma mark - 获取所有商品列表
 - (void)getShopGoodsPage:(NSInteger)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    NSString *urlString = [NSString stringWithFormat:@"user/goods?page=%ld", (long)page];
-    [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+  NSString *urlString = [NSString stringWithFormat:@"user/goods?page=%ld", (long)page];
+  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -456,8 +445,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-
-// 获取商品
+#pragma mark - 获取商品
 - (void)getShopGoodsWithShopID:(NSString *)shopID goodsID:(NSString *)goodsID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&goodsid=%@", shopID, goodsID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -469,7 +457,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 获取商品分类
+#pragma mark - 获取商品分类
 - (void)getShopGoodsCategoryWith:(NSString *)categoryID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/category/%@", categoryID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -481,11 +469,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 上传酒店订单
-- (void)postBookingInfoWithUserID:(NSString *)userID token:(NSString *)token shopID:(NSString *)shopID goodsID:(NSString *)goodsID guest:(NSString *)guest guestPhone:(NSString *)guestPhone roomNum:(NSString *)roomNum arrivalDate:(NSString *)arrivalDate departureDate:(NSString *)departureDate roomType:(NSString *)roomType roomRate:(NSString *)roomRate remark:(NSString *)remark success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 上传酒店订单
+- (void)postBookingInfoWithShopID:(NSString *)shopID goodsID:(NSString *)goodsID guest:(NSString *)guest guestPhone:(NSString *)guestPhone roomNum:(NSString *)roomNum arrivalDate:(NSString *)arrivalDate departureDate:(NSString *)departureDate roomType:(NSString *)roomType roomRate:(NSString *)roomRate remark:(NSString *)remark success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/postvipre" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
     [formData appendPartWithFormData:[goodsID dataUsingEncoding:NSUTF8StringEncoding] name:@"room_typeid"];
     [formData appendPartWithFormData:[guest dataUsingEncoding:NSUTF8StringEncoding] name:@"guest"];
@@ -506,11 +494,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 订单列表
-- (void)getOrderListWithUserID:(NSString *)userID token:(NSString *)token page:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 订单列表
+- (void)getOrderListWithPage:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"order/showlist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
     [formData appendPartWithFormData:[@"0,2,4" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -522,11 +510,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 历史订单列表
-- (void)getOrderHistoryListWithUserID:(NSString *)userID token:(NSString *)token page:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 历史订单列表
+- (void)getOrderHistoryListWithPage:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"order/showlist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
     [formData appendPartWithFormData:[@"3" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -538,11 +526,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 最近一张订单
-- (void)getLatestOrderWithUserID:(NSString *)userID token:(NSString *)token success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 最近一张订单
+- (void)getLatestOrderWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"order/last" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     success(task, responseObject);
@@ -552,11 +540,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 取消订单
-- (void)cancelOrderWithUserID:(NSString *)userID token:(NSString *)token reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 取消订单
+- (void)cancelOrderWithReservationNO:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/order" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[reservation_no dataUsingEncoding:NSUTF8StringEncoding] name:@"reservation_no"];
     [formData appendPartWithFormData:[@"0" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
     [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
@@ -569,11 +557,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 删除订单
-- (void)deleteOrderWithUserID:(NSString *)userID token:(NSString *)token reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 删除订单
+- (void)deleteOrderWithReservationNO:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].userid forKey:@"userid"];
-  [dic setObject:[JSHAccountManager sharedJSHAccountManager].token forKey:@"token"];
+  [dic setObject:[self userID] forKey:@"userid"];
+  [dic setObject:[self token] forKey:@"token"];
   [dic setObject:@5 forKey:@"status"];
   [dic setObject:reservation_no forKey:@"reservation_no"];
   [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -585,11 +573,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 提交轨迹
-- (void)postGPSWithUserID:(NSString *)userID token:(NSString *)token longitude:(NSString *)longitude latitude:(NSString *)latitude traceTime:(NSString *)traceTime success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 提交轨迹
+- (void)postGPSWithLongitude:(NSString *)longitude latitude:(NSString *)latitude traceTime:(NSString *)traceTime success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/gpsadd" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[longitude dataUsingEncoding:NSUTF8StringEncoding] name:@"map_longitude"];
     [formData appendPartWithFormData:[latitude dataUsingEncoding:NSUTF8StringEncoding] name:@"map_latitude"];
     [formData appendPartWithFormData:[traceTime dataUsingEncoding:NSUTF8StringEncoding] name:@"trace_time"];
@@ -602,8 +590,8 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 获取入住人列表
-- (void)getGuestListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+#pragma mark - 获取入住人列表
+- (void)getGuestListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSMutableDictionary *dic = [NSMutableDictionary dictionary];
   [dic setObject:[self userID] forKey:@"userid"];
   [dic setObject:[self token] forKey:@"token"];
@@ -616,7 +604,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 新增入住人
+#pragma mark - 新增入住人
 - (void)addGuestWithParam:(NSDictionary *)param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
   [dic setObject:[self userID] forKey:@"userid"];
@@ -630,7 +618,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 客户根据邀请码查询服务员
+#pragma mark - 客户根据邀请码查询服务员
 - (void)getSaleInfoWithCode:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"invitation/getcode" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
@@ -645,7 +633,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }];
 }
 
-// 超级身份输入\绑定 邀请码动作
+#pragma mark - 超级身份输入\绑定 邀请码动作
 - (void)pairInvitationCodeWith:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"invitation/bdcode" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];

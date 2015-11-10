@@ -72,7 +72,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       return
     }
     ZKJSTool.showLoading()
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: username.text, realname: nil, imageData: avatarData, imageName: " ", sex: sexstr, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(username.text, realname: nil, imageData: avatarData, imageName: " ", sex: sexstr, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       if dic["set"]!.boolValue! {
         // 打开TCP连接

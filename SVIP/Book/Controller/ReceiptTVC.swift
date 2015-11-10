@@ -43,7 +43,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   }
   
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? [AnyObject] {
         self.dataArray.removeAllObjects()
         for dic in arr {
