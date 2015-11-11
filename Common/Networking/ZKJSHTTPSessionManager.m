@@ -11,7 +11,6 @@
 #import "Networkcfg.h"
 #import "CocoaLumberjack.h"
 #import "JSHAccountManager.h"
-#import "JSHHotelRegisterVC.h"
 
 static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
@@ -47,11 +46,25 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   return [JSHAccountManager sharedJSHAccountManager].token;
 }
 
+- (BOOL)isValidTokenWithObject:(id)responseObject {
+  if ([responseObject isKindOfClass:[NSDictionary class]] &&
+      responseObject[@"set"] &&
+      [responseObject[@"set"] boolValue] == NO) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didReceiveInvalidToken)]) {
+      [self.delegate didReceiveInvalidToken];
+      return NO;
+    }
+  }
+  return YES;
+}
+
 #pragma mark - 获取Beacon列表
 - (void)getBeaconRegionListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"user/location" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -76,7 +89,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[deviceUUID dataUsingEncoding:NSUTF8StringEncoding] name:@"bluetooth_key"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -85,10 +100,12 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 #pragma mark - 判断用户手机和微信第三方id是否已经注册过
 - (void)verifyIsRegisteredWithID:(NSString *)__id success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *urlString = [NSString stringWithFormat:@"user/getuser?id=%@", [self userID]];
+  NSString *urlString = [NSString stringWithFormat:@"user/getuser?id=%@", __id];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -100,7 +117,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/logout?userid=%@", [self userID]];
   [self POST:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -112,7 +131,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/getphone?phone=%@", phone];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -126,7 +147,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[[newPassword MD5String] dataUsingEncoding:NSUTF8StringEncoding] name:@"password"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -169,7 +192,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     }
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -182,7 +207,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:[self token] forKey:@"token"];
   [self POST:@"user/upload" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    };
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -199,7 +226,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
                         };
   [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -214,7 +243,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
                         };
   [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -230,7 +261,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
                         };
   [self POST:@"user/fpadd" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -248,7 +281,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
                         };
   [self POST:@"user/fpupdate" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -264,7 +299,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
                         };
   [self POST:@"user/fpupdate" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -284,7 +321,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/select?&userid=%@&token=%@", [self userID], [self token]];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -302,7 +341,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   }
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -314,7 +355,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/selectshop?&shopid=%@&web=0", shopID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -327,7 +370,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/comment?web=0&shopid=%@&stat=%ld&page=%ld&key=%@&desc=%@", shopID, (long)start, (long)page, key, order];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -340,7 +385,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"tags/user?userid=%@&token=%@", [self userID], [self token]];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -352,7 +399,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 {
   [self GET:@"tags/show" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -367,7 +416,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[tags dataUsingEncoding:NSUTF8StringEncoding] name:@"tagid"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -382,7 +433,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:reservation_no forKey:@"reservation_no"];
   [self POST:@"order/show" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -398,7 +451,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:reservation_no forKey:@"reservation_no"];
   [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -414,7 +469,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:reservation_no forKey:@"reservation_no"];
   [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -426,7 +483,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"order/goods?shopid=%@", shopID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -438,7 +497,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/goods?page=%ld", (long)page];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -450,7 +511,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/goods?shopid=%@&goodsid=%@", shopID, goodsID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -462,7 +525,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSString *urlString = [NSString stringWithFormat:@"user/category/%@", categoryID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -487,7 +552,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -503,7 +570,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[@"0,2,4" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -519,7 +588,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[@"3" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"==%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -533,7 +604,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -550,7 +623,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -566,7 +641,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:reservation_no forKey:@"reservation_no"];
   [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -583,7 +660,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[traceTime dataUsingEncoding:NSUTF8StringEncoding] name:@"trace_time"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -597,7 +676,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:[self token] forKey:@"token"];
   [self POST:@"order/createlist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -611,7 +692,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:[self token] forKey:@"token"];
   [self POST:@"order/useradd" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -626,7 +709,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[code dataUsingEncoding:NSUTF8StringEncoding] name:@"code"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);
@@ -641,7 +726,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[code dataUsingEncoding:NSUTF8StringEncoding] name:@"code"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
-    success(task, responseObject);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     DDLogInfo(@"%@", error.description);
     failure(task, error);

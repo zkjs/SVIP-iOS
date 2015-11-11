@@ -86,8 +86,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       
     }
-    
-    
+
   }
   
   @IBAction func selectAvatar(sender: AnyObject) {

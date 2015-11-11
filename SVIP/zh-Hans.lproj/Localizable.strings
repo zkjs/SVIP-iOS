@@ -45,7 +45,7 @@
 "CHOSEN" = "已选";
 "TO_CHOOSE" = "可选";
 "CHANGE_MOBILE_PHONE" = "修改手机";
-"SEND_VERIFIED_CODE" = "发送验证码";
+"SEND_VERIFIED_CODE" = "验证码";
 "VERIFIED_CODE_IS_SENT" = "验证码已发送";
 "WRONG_MOBILE_PHONE" = "手机号错误";
 "WRONG_VERIFIED_CODE" = "验证码错误";

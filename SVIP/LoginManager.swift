@@ -110,7 +110,7 @@ class LoginManager: NSObject {
                 let set = dic["set"]!.boolValue!
                 if set {//注册成功
                   //回调
-                  success()
+//                  success()
                   //save account data
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
                   //编辑个人信息

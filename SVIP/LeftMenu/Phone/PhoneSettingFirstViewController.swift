@@ -38,6 +38,10 @@ class PhoneSettingFirstViewController: UIViewController {
     phone.text = JSHStorage.baseInfo().phone
   }
   
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
   func refreshCount() {
     if --count == 0 {
       countTimer?.invalidate()

@@ -46,7 +46,7 @@
 "CHOSEN" = "Chosen";
 "TO_CHOOSE" = "To Choose";
 "CHANGE_MOBILE_PHONE" = "Change Mobile Number";
-"SEND_VERIFIED_CODE" = "Verified Code";
+"SEND_VERIFIED_CODE" = "Code";
 "VERIFIED_CODE_IS_SENT" = "Verified code is sent";
 "WRONG_MOBILE_PHONE" = "Wrong Mobile Number";
 "WRONG_VERIFIED_CODE" = "Wrong Verified Code";

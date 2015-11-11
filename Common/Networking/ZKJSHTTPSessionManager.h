@@ -11,7 +11,11 @@
 
 @import UIKit;
 
+@protocol HTTPSessionManagerDelegate;
+
 @interface ZKJSHTTPSessionManager : AFHTTPSessionManager
+
+@property (nonatomic, weak) id<HTTPSessionManagerDelegate> delegate;
 
 + (instancetype)sharedInstance;
 
@@ -130,5 +134,12 @@
 
 #pragma mark - 超级身份输入\绑定 邀请码动作
 - (void)pairInvitationCodeWith:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+@end
+
+@protocol HTTPSessionManagerDelegate <NSObject>
+
+// error = 400, token失效
+- (void)didReceiveInvalidToken;
 
 @end

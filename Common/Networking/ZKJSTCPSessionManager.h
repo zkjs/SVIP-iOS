@@ -216,6 +216,7 @@ typedef NS_ENUM(NSInteger, MessageCustomType) {
 @interface ZKJSTCPSessionManager : NSObject
 
 @property (nonatomic, weak) id<TCPSessionManagerDelegate> delegate;
+
 // 单例
 + (instancetype)sharedInstance;
 // 初始化Socket
