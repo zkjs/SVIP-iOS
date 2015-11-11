@@ -123,7 +123,6 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
           cell.detailTextLabel?.text = localBaseInfo?.username
         }
       case 3:
-        print("")
         if localBaseInfo?.sex != nil {
           cell.detailTextLabel?.text = localBaseInfo?.sex
         }

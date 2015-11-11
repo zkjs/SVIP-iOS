@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -20,6 +20,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ow7-Ih-8s1">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="maE-f7-27o"/>
@@ -50,6 +51,7 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="5qb-8J-SgA">
                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="aDm-Op-KQz"/>
                     </constraints>
@@ -65,9 +67,13 @@
                             <include reference="aDm-Op-KQz"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="rvo-tQ-zWm"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入新的手机号" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="E4X-yp-q13">
                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="OfJ-ck-nT8"/>
                     </constraints>
@@ -83,8 +89,12 @@
                             <include reference="OfJ-ck-nT8"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="BC7-BA-aep"/>
+                    </connections>
                 </textField>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="E4X-yp-q13" secondAttribute="trailing" constant="20" id="AJJ-cA-u5W"/>

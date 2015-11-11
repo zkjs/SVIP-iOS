@@ -105,7 +105,6 @@ class LoginManager: NSObject {
         if let dic = responseObject as? NSDictionary {
           let newRegister = !dic["set"]!.boolValue!
           if newRegister {//新注册
-//          if true {
             ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: openID, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
               if let dic = responseObject as? [NSObject : AnyObject] {
                 let set = dic["set"]!.boolValue!

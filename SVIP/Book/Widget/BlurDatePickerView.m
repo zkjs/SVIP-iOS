@@ -174,7 +174,7 @@
 
 - (void)dismissCommentView
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeFromSuperview];
     [_sheetView removeFromSuperview];
 }

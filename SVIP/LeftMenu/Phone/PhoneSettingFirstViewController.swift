@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhoneSettingFirstViewController: UIViewController {
+class PhoneSettingFirstViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var phone: UILabel!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var smsButton: UIButton!
@@ -21,14 +21,7 @@ class PhoneSettingFirstViewController: UIViewController {
   convenience init() {
     self.init(nibName:"PhoneSettingFirstViewController", bundle: nil)
   }
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChanged:", name: UITextFieldTextDidChangeNotification, object: nil)
-  }
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    NSNotificationCenter.defaultCenter().removeObserver(self)
-  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.title = NSLocalizedString("CHANGE_MOBILE_PHONE", comment: "")
@@ -36,10 +29,6 @@ class PhoneSettingFirstViewController: UIViewController {
     self.textField.placeholder = NSLocalizedString("VERIFIED_CODE", comment: "")
     self.smsButton.setTitle(NSLocalizedString("SEND_VERIFIED_CODE", comment: ""), forState: UIControlState.Normal)
     phone.text = JSHStorage.baseInfo().phone
-  }
-  
-  deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
   func refreshCount() {
@@ -63,14 +52,18 @@ class PhoneSettingFirstViewController: UIViewController {
   }
   
   //MARK:- UITextField Delegate
-  func textFieldDidChanged(aNotification: NSNotification) {
-    let text = textField.text
-    if text?.characters.count == 6 {
-      ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(textField.text, mobilePhoneNumber: phone.text, callback: { (successed: Bool, error: NSError!) -> Void in
-        if successed {
-          self.navigationController?.pushViewController(PhoneSettingSecondViewController(), animated: true)
-        }
-      })
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    if textField == self.textField {
+      if textField.text?.characters.count == 6 {
+        ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(textField.text, mobilePhoneNumber: phone.text, callback: { (successed: Bool, error: NSError!) -> Void in
+          if successed {
+            self.navigationController?.pushViewController(PhoneSettingSecondViewController(), animated: true)
+          }
+        })
+      }
     }
+    
+    return true
   }
+  
 }

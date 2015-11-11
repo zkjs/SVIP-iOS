@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhoneSettingSecondViewController: UIViewController {
+class PhoneSettingSecondViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var phoneTextField: UITextField!
   @IBOutlet weak var codeTextField: UITextField!
   @IBOutlet weak var okButton: UIButton!
@@ -20,21 +20,10 @@ class PhoneSettingSecondViewController: UIViewController {
   convenience init() {
     self.init(nibName:"PhoneSettingSecondViewController", bundle: nil)
   }
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChanged:", name: UITextFieldTextDidChangeNotification, object: nil)
-  }
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    NSNotificationCenter.defaultCenter().removeObserver(self)
-  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.title = NSLocalizedString("CHANGE_MOBILE_PHONE", comment: "")
-  }
-  
-  deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
   func refreshCount() {
@@ -58,12 +47,12 @@ class PhoneSettingSecondViewController: UIViewController {
   }
   
   //MARK:- UITextField Delegate
-  func textFieldDidChanged(aNotification: NSNotification) {
+  
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
     let phoneText = phoneTextField.text
     let codeText = codeTextField.text
-    let textfield = aNotification.object as! UITextField
     
-    if phoneText?.characters.count == 11 && textfield == phoneTextField { //phoneTextField输入11位
+    if phoneText?.characters.count == 11 && textField == phoneTextField { //phoneTextField输入11位
       if ZKJSTool.validateMobile(phoneText) {
         okButton.enabled = true
       }else {
@@ -72,7 +61,7 @@ class PhoneSettingSecondViewController: UIViewController {
     }
     if phoneText?.characters.count < 11 && okButton.titleLabel?.text == NSLocalizedString("SEND_VERIFIED_CODE", comment: "") {
       okButton.enabled = false
-      return
+      return true
     }
     
     if phoneText?.characters.count == 11 && codeText?.characters.count == 6 {
@@ -91,12 +80,15 @@ class PhoneSettingSecondViewController: UIViewController {
             }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
               
           }
-
+          
           
         }else {
           ZKJSTool.showMsg(NSLocalizedString("WRONG_VERIFIED_CODE", comment: ""))
         }
       })
     }
+    
+    return true
   }
+  
 }

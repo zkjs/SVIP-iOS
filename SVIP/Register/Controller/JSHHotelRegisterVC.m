@@ -38,17 +38,6 @@
   NSDictionary *_wechatInfoDic;
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//  [super viewWillAppear:animated];
-//
-//  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChanged:) name:UITextFieldTextDidChangeNotification object:nil];
-//}
-
-//- (void)viewWillDisappear:(BOOL)animated {
-//  [super viewWillDisappear:animated];
-//  [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   
@@ -59,10 +48,6 @@
 - (UIStatusBarStyle)preferredStatusBarStyle {
   return UIStatusBarStyleLightContent;
 }
-
-//-(void)dealloc {
-//  [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
 
 - (void)setupSubviews {  
   _phoneField.background = [UIImage imageResizedWithName:@"line_dot"];
