@@ -325,7 +325,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   // MARK: - HTTPSessionManagerDelegate
   func didReceiveInvalidToken() {
-    window?.rootViewController?.presentViewController(JSHHotelRegisterVC(), animated: true, completion: nil)
+    window?.rootViewController = JSHHotelRegisterVC()
     ZKJSTool.showMsg("账号在别处登录，请重新重录")
   }
   

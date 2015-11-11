@@ -65,7 +65,7 @@ class LoginManager: NSObject {
     let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: RightMenuVC())
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false
-    menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5//appWindow.bounds.size.width * (0.75 - 0.5)
+    menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5
     appWindow.rootViewController = menu
 
   }
@@ -110,7 +110,7 @@ class LoginManager: NSObject {
                 let set = dic["set"]!.boolValue!
                 if set {//注册成功
                   //回调
-//                  success()
+                  success()
                   //save account data
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
                   //编辑个人信息
