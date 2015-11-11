@@ -55,7 +55,7 @@
                         <action selector="selectAvatar:" destination="-1" eventType="touchUpInside" id="6Ig-Sd-1Zw"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="line_dot" translatesAutoresizingMaskIntoConstraints="NO" id="loJ-Gi-XHY">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="line_dot" translatesAutoresizingMaskIntoConstraints="NO" id="loJ-Gi-XHY">
                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                     <animations/>
                     <constraints>
@@ -66,7 +66,7 @@
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="4eG-vZ-ELw"/>
@@ -83,120 +83,140 @@
                         <outlet property="delegate" destination="-1" id="fdv-Tr-Bdr"/>
                     </connections>
                 </textField>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm7-PO-Rkw">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbq-hu-zlp">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm7-PO-Rkw">
+                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="37" id="AaZ-rs-RZz"/>
+                                <constraint firstAttribute="height" constant="37" id="gap-Ew-5V8"/>
+                            </constraints>
+                            <state key="normal" image="ic_boy_nor">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="ic_boy_pre"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="AaZ-rs-RZz"/>
+                                    <exclude reference="gap-Ew-5V8"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="AaZ-rs-RZz"/>
+                                    <include reference="gap-Ew-5V8"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="selectSex:" destination="-1" eventType="touchUpInside" id="hkq-li-W9c"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVJ-Eg-rxi">
+                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="37" id="WNe-i2-PrV"/>
+                                <constraint firstAttribute="height" constant="37" id="zfs-zE-VEj"/>
+                            </constraints>
+                            <state key="normal" image="ic_girl_nor">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="ic_girl_pre"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="WNe-i2-PrV"/>
+                                    <exclude reference="zfs-zE-VEj"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="WNe-i2-PrV"/>
+                                    <include reference="zfs-zE-VEj"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="selectSex:" destination="-1" eventType="touchUpInside" id="LDy-Cq-kTF"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="37" id="AaZ-rs-RZz"/>
-                        <constraint firstAttribute="height" constant="37" id="gap-Ew-5V8"/>
+                        <constraint firstAttribute="trailing" secondItem="OVJ-Eg-rxi" secondAttribute="trailing" id="5lR-oS-dY5"/>
+                        <constraint firstItem="bm7-PO-Rkw" firstAttribute="top" secondItem="pbq-hu-zlp" secondAttribute="top" id="7EV-Uo-zAm"/>
+                        <constraint firstItem="OVJ-Eg-rxi" firstAttribute="top" secondItem="pbq-hu-zlp" secondAttribute="top" id="aUM-3e-7wi"/>
+                        <constraint firstItem="bm7-PO-Rkw" firstAttribute="leading" secondItem="pbq-hu-zlp" secondAttribute="leading" id="k3Q-h5-r6U"/>
+                        <constraint firstAttribute="width" constant="120" id="nMD-Me-0Ih"/>
+                        <constraint firstAttribute="height" constant="37" id="wng-6O-dwO"/>
                     </constraints>
-                    <state key="normal" image="ic_boy_nor">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="selected" image="ic_boy_pre"/>
                     <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="bm7-PO-Rkw"/>
+                            <exclude reference="OVJ-Eg-rxi"/>
+                        </mask>
                         <mask key="constraints">
-                            <exclude reference="AaZ-rs-RZz"/>
-                            <exclude reference="gap-Ew-5V8"/>
+                            <exclude reference="nMD-Me-0Ih"/>
+                            <exclude reference="wng-6O-dwO"/>
+                            <exclude reference="5lR-oS-dY5"/>
+                            <exclude reference="aUM-3e-7wi"/>
+                            <exclude reference="7EV-Uo-zAm"/>
+                            <exclude reference="k3Q-h5-r6U"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="subviews">
+                            <include reference="bm7-PO-Rkw"/>
+                            <include reference="OVJ-Eg-rxi"/>
+                        </mask>
                         <mask key="constraints">
-                            <include reference="AaZ-rs-RZz"/>
-                            <include reference="gap-Ew-5V8"/>
+                            <include reference="nMD-Me-0Ih"/>
+                            <include reference="wng-6O-dwO"/>
+                            <include reference="5lR-oS-dY5"/>
+                            <include reference="aUM-3e-7wi"/>
+                            <include reference="7EV-Uo-zAm"/>
+                            <include reference="k3Q-h5-r6U"/>
                         </mask>
                     </variation>
-                    <connections>
-                        <action selector="selectSex:" destination="-1" eventType="touchUpInside" id="hkq-li-W9c"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVJ-Eg-rxi">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="37" id="WNe-i2-PrV"/>
-                        <constraint firstAttribute="height" constant="37" id="zfs-zE-VEj"/>
-                    </constraints>
-                    <state key="normal" image="ic_girl_nor">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="selected" image="ic_girl_pre"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="WNe-i2-PrV"/>
-                            <exclude reference="zfs-zE-VEj"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="WNe-i2-PrV"/>
-                            <include reference="zfs-zE-VEj"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="selectSex:" destination="-1" eventType="touchUpInside" id="LDy-Cq-kTF"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvk-CZ-3wd">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
-                    <state key="normal" image="ic_qianwang"/>
-                    <connections>
-                        <action selector="nextStep:" destination="-1" eventType="touchUpInside" id="RXI-1M-hd9"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="A2q-Ba-8n3" secondAttribute="centerX" id="1F1-7k-iWY"/>
+                <constraint firstAttribute="centerX" secondItem="pbq-hu-zlp" secondAttribute="centerX" id="1vJ-jD-i84"/>
                 <constraint firstItem="GbE-cs-qrQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ezu-p2-GJY"/>
                 <constraint firstItem="A2q-Ba-8n3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="FWi-c5-BjT">
                     <variation key="heightClass=regular-widthClass=compact" constant="80"/>
                 </constraint>
-                <constraint firstItem="bm7-PO-Rkw" firstAttribute="top" secondItem="loJ-Gi-XHY" secondAttribute="bottom" constant="41" id="HFe-U6-K1a"/>
-                <constraint firstItem="bm7-PO-Rkw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Khc-hz-8T6">
-                    <variation key="heightClass=regular-widthClass=compact" constant="-42"/>
-                </constraint>
                 <constraint firstAttribute="trailing" secondItem="GbE-cs-qrQ" secondAttribute="trailing" id="Kqa-Br-yJD"/>
-                <constraint firstItem="OVJ-Eg-rxi" firstAttribute="top" secondItem="loJ-Gi-XHY" secondAttribute="bottom" constant="41" id="Ng3-K9-MXy"/>
-                <constraint firstItem="qvk-CZ-3wd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VxY-Cq-VHd"/>
-                <constraint firstItem="qvk-CZ-3wd" firstAttribute="top" secondItem="loJ-Gi-XHY" secondAttribute="bottom" constant="142" id="WXI-yZ-Z5H"/>
                 <constraint firstAttribute="centerX" secondItem="loJ-Gi-XHY" secondAttribute="centerX" id="Xop-ZP-akj"/>
                 <constraint firstItem="GbE-cs-qrQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pfX-bb-EGm"/>
-                <constraint firstItem="OVJ-Eg-rxi" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qjo-fL-yHQ">
-                    <variation key="heightClass=regular-widthClass=compact" constant="42"/>
-                </constraint>
+                <constraint firstItem="pbq-hu-zlp" firstAttribute="top" secondItem="loJ-Gi-XHY" secondAttribute="bottom" constant="50" id="wlr-Li-Lno"/>
                 <constraint firstAttribute="bottom" secondItem="GbE-cs-qrQ" secondAttribute="bottom" id="wmS-Q9-peP"/>
                 <constraint firstItem="loJ-Gi-XHY" firstAttribute="top" secondItem="A2q-Ba-8n3" secondAttribute="bottom" constant="20" id="zxC-8p-VqR">
-                    <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                    <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                 </constraint>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="GbE-cs-qrQ"/>
                     <exclude reference="A2q-Ba-8n3"/>
                     <exclude reference="loJ-Gi-XHY"/>
-                    <exclude reference="bm7-PO-Rkw"/>
-                    <exclude reference="OVJ-Eg-rxi"/>
-                    <exclude reference="qvk-CZ-3wd"/>
+                    <exclude reference="pbq-hu-zlp"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="Xop-ZP-akj"/>
-                    <exclude reference="zxC-8p-VqR"/>
-                    <exclude reference="1F1-7k-iWY"/>
-                    <exclude reference="FWi-c5-BjT"/>
-                    <exclude reference="Ng3-K9-MXy"/>
-                    <exclude reference="qjo-fL-yHQ"/>
-                    <exclude reference="HFe-U6-K1a"/>
-                    <exclude reference="Khc-hz-8T6"/>
-                    <exclude reference="VxY-Cq-VHd"/>
-                    <exclude reference="WXI-yZ-Z5H"/>
                     <exclude reference="Ezu-p2-GJY"/>
                     <exclude reference="Kqa-Br-yJD"/>
                     <exclude reference="pfX-bb-EGm"/>
                     <exclude reference="wmS-Q9-peP"/>
+                    <exclude reference="1F1-7k-iWY"/>
+                    <exclude reference="FWi-c5-BjT"/>
+                    <exclude reference="Xop-ZP-akj"/>
+                    <exclude reference="zxC-8p-VqR"/>
+                    <exclude reference="1vJ-jD-i84"/>
+                    <exclude reference="wlr-Li-Lno"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -204,28 +224,22 @@
                     <include reference="GbE-cs-qrQ"/>
                     <include reference="A2q-Ba-8n3"/>
                     <include reference="loJ-Gi-XHY"/>
-                    <include reference="bm7-PO-Rkw"/>
-                    <include reference="OVJ-Eg-rxi"/>
-                    <include reference="qvk-CZ-3wd"/>
+                    <include reference="pbq-hu-zlp"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="Xop-ZP-akj"/>
-                    <include reference="zxC-8p-VqR"/>
-                    <include reference="1F1-7k-iWY"/>
-                    <include reference="FWi-c5-BjT"/>
-                    <include reference="Ng3-K9-MXy"/>
-                    <include reference="qjo-fL-yHQ"/>
-                    <include reference="HFe-U6-K1a"/>
-                    <include reference="Khc-hz-8T6"/>
-                    <include reference="VxY-Cq-VHd"/>
-                    <include reference="WXI-yZ-Z5H"/>
                     <include reference="Ezu-p2-GJY"/>
                     <include reference="Kqa-Br-yJD"/>
                     <include reference="pfX-bb-EGm"/>
                     <include reference="wmS-Q9-peP"/>
+                    <include reference="1F1-7k-iWY"/>
+                    <include reference="FWi-c5-BjT"/>
+                    <include reference="Xop-ZP-akj"/>
+                    <include reference="zxC-8p-VqR"/>
+                    <include reference="1vJ-jD-i84"/>
+                    <include reference="wlr-Li-Lno"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="785" y="399"/>
+            <point key="canvasLocation" x="275" y="465"/>
         </view>
     </objects>
     <resources>
@@ -233,7 +247,6 @@
         <image name="ic_boy_pre" width="37" height="37"/>
         <image name="ic_girl_nor" width="37" height="37"/>
         <image name="ic_girl_pre" width="37" height="37"/>
-        <image name="ic_qianwang" width="8" height="15"/>
         <image name="img_shezhitoux" width="102" height="102"/>
         <image name="line_dot" width="1" height="31"/>
         <image name="星空_设置" width="375" height="667"/>

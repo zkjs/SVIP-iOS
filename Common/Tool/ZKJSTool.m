@@ -9,6 +9,7 @@
 #import "ZKJSTool.h"
 #import "MBProgressHUD.h"
 #define APP [UIApplication sharedApplication]
+
 @implementation ZKJSTool
 #pragma mark - HUD
 + (MBProgressHUD *)Hud

@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="OrderCell" customModule="SVIP" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="242" id="KGk-i7-Jjw" customClass="OrderCell" customModule="SVIP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="503" height="242"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="503" height="241"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
                         <rect key="frame" x="160" y="0.0" width="1" height="115"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="qWt-h4-AUx" userLabel="Logo Image View">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="qWt-h4-AUx" userLabel="Logo Image View">
                         <rect key="frame" x="116" y="27" width="88" height="88"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="88" id="1H2-Z7-b2T"/>
                             <constraint firstAttribute="width" constant="88" id="VQh-Az-Zfk"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015/05/06" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMj-f0-rBu" userLabel="Date Label">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2015/05/06" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMj-f0-rBu" userLabel="Date Label">
                         <rect key="frame" x="25" y="47" width="83" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2晚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaP-Kr-A36" userLabel="Count Label">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2晚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaP-Kr-A36" userLabel="Count Label">
                         <rect key="frame" x="25" y="70" width="26" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fB-OD-xhL" userLabel="Amount Label">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="¥0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fB-OD-xhL" userLabel="Amount Label">
                         <rect key="frame" x="89" y="70" width="19" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙芙蓉国温德姆至尊豪廷大酒店" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9m-Me-nUQ" userLabel="Name Label">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="长沙芙蓉国温德姆至尊豪廷大酒店" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9m-Me-nUQ" userLabel="Name Label">
                         <rect key="frame" x="212" y="47" width="100" height="58"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-yuding" translatesAutoresizingMaskIntoConstraints="NO" id="QuE-m1-vBo" userLabel="Booking Image View">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic-yuding" translatesAutoresizingMaskIntoConstraints="NO" id="QuE-m1-vBo" userLabel="Booking Image View">
                         <rect key="frame" x="181" y="88" width="23" height="23"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="已确定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrk-wv-JaX" userLabel="Count Label">
@@ -93,7 +94,7 @@
                 <outlet property="nameLabel" destination="I9m-Me-nUQ" id="4St-gx-OZ4"/>
                 <outlet property="statusLabel" destination="Qrk-wv-JaX" id="ph4-ns-qjP"/>
             </connections>
-            <point key="canvasLocation" x="378" y="212"/>
+            <point key="canvasLocation" x="460.5" y="275"/>
         </tableViewCell>
     </objects>
     <resources>

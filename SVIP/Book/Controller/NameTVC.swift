@@ -45,7 +45,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   
   // MARK: - Public
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getGuestListSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getGuestListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? NSArray {
         self.dataArray.addObjectsFromArray(arr as [AnyObject])
         self.tableView.reloadData()

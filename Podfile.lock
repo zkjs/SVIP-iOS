@@ -30,6 +30,7 @@ PODS:
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
   - DateTools (1.7.0)
+  - EDStarRating (1.1)
   - HexColors (2.3.0)
   - JCTagListView (0.0.4)
   - JTSImageViewController (1.5.1)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - AMapSearch
   - CocoaLumberjack
   - DateTools
+  - EDStarRating
   - HexColors
   - JCTagListView
   - JTSImageViewController
@@ -92,6 +94,7 @@ SPEC CHECKSUMS:
   AMapSearch: fd1ed96353f8a0f5c2e2463dac6a145bb3e6970f
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9

@@ -18,12 +18,10 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   
   required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    loadData()
   }
 
   override init(style: UITableViewStyle) {
     super.init(style: style)
-    loadData()
   }
 
   required init!(coder aDecoder: NSCoder) {
@@ -66,10 +64,13 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    loadData()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    
     refreshDataAndUI()//每次出现都加在一次数据，并且刷新tableview
   }
   
@@ -97,12 +98,9 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier(Identifier)
-    if cell == nil {
-      cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: Identifier)
-    }
-  // Configure the cell...
-    cell!.textLabel?.text = textArray[indexPath.section][indexPath.row]
+    let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: Identifier)
+    
+    cell.textLabel?.text = textArray[indexPath.section][indexPath.row]
     if indexPath.section == 0 {
       switch indexPath.row {
       case 0:
@@ -115,27 +113,27 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
           imageView.image = UIImage(named: "img_hotel_zhanwei")
         }
         imageView.contentMode = .ScaleAspectFit
-        cell?.accessoryView = imageView
+        cell.accessoryView = imageView
       case 1:
         if localBaseInfo?.real_name != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.real_name
+          cell.detailTextLabel?.text = localBaseInfo?.real_name
         }
       case 2:
         if localBaseInfo?.username != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.username
+          cell.detailTextLabel?.text = localBaseInfo?.username
         }
       case 3:
         print("")
         if localBaseInfo?.sex != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.sex
+          cell.detailTextLabel?.text = localBaseInfo?.sex
         }
       case 4:
         if localBaseInfo?.company != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.company
+          cell.detailTextLabel?.text = localBaseInfo?.company
         }
       case 5:
         if localBaseInfo?.email != nil {
-          cell?.detailTextLabel?.text = localBaseInfo?.email
+          cell.detailTextLabel?.text = localBaseInfo?.email
         }
       default:
         break
@@ -143,13 +141,13 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     }else if indexPath.section == 1 {
       switch indexPath.row {
       case 0:
-        cell?.detailTextLabel?.text = localBaseInfo?.phone
+        cell.detailTextLabel?.text = localBaseInfo?.phone
       default:
         break
       }
     }
     
-    return cell!
+    return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -208,7 +206,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
         break
       }
       if set {
-        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: nil, imageName: nil, sex: sex, company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: sex, company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
           if let dic = responseObject as? NSDictionary {
             let set = dic["set"]!.boolValue!
             if set {
@@ -257,7 +255,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
       let persent = CGFloat(100 - i++) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         if dic["set"]?.boolValue == true {
           let baseInfo = JSHStorage.baseInfo()

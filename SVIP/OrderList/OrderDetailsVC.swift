@@ -1,0 +1,91 @@
+//
+//  OrderDetailsVC.swift
+//  SVIP
+//
+//  Created by AlexBang on 15/11/2.
+//  Copyright © 2015年 zkjinshi. All rights reserved.
+//
+
+import UIKit
+
+class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
+  var order = BookOrder()
+
+  @IBOutlet weak var usernameLabel: UILabel!
+  @IBOutlet weak var scrollView: UIScrollView!
+  @IBOutlet weak var userImageView: UIImageView! {
+    didSet {
+      userImageView.layer.masksToBounds = true
+      userImageView.layer.cornerRadius = 45
+    }
+  }
+  var orderV = UIView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+      
+      title = "订单详情"
+      navigationController?.navigationBar.tintColor = UIColor.clearColor()
+      scrollView.contentSize = CGSize(width:0,height:700)
+      scrollView.showsHorizontalScrollIndicator = false
+      scrollView.showsVerticalScrollIndicator = false
+      let orderV = NSBundle.mainBundle().loadNibNamed("OrderContentView", owner: self, options: nil).first as? OrderContentView
+      orderV?.frame = CGRectMake(0, 214, self.view.bounds.width, 259)
+      setupUI(orderV!)
+      if orderV != nil {
+        scrollView.addSubview(orderV!)
+      }
+      //评价
+      let starRating = EDStarRating()
+      starRating.frame = CGRectMake(80, 500, self.view.bounds.width/3, 123)
+      starRating.backgroundColor = UIColor.whiteColor()
+      starRating.starImage = UIImage(named: "ic_star_nor")
+      starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
+      starRating.maxRating = 5
+      starRating.delegate = self;
+      starRating.horizontalMargin = 12;
+      starRating.editable = true;
+      scrollView.addSubview(starRating)
+      
+      starRating.rating = 5.0;
+
+        // Do any additional setup after loading the view.
+    }
+  
+  func setupUI(orderV:OrderContentView) {
+    let userid = JSHAccountManager.sharedJSHAccountManager().userid
+    let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"
+
+    let urlString = "\(kBaseURL)uploads/users/\(userid).jpg"
+    userImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    usernameLabel.text = order.guest
+    orderV.hotelNameLabel.text = order.fullname
+    orderV.bedStulyLabel.text = order.room_type + "x" + order.rooms
+    orderV.room_priceLabel.text = "￥" + order.room_rate
+    orderV.startLabel.text = order.departure_date
+    orderV.usernameLabel.text = order.guest
+    orderV.hotelImage.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    
+  }
+  
+  //MARK -EDStarRating Protocol
+  func starsSelectionChanged(control: EDStarRating!, rating: Float) {
+    print(rating)
+  }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

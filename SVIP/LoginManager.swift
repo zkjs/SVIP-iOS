@@ -48,6 +48,8 @@ class LoginManager: NSObject {
         ZKJSTool.hideHUD()
         self.showResideMenu(haspushed: nil)
       })
+      // 打开TCP连接
+      ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     }else {
       //未注册
       showRegister()
@@ -63,7 +65,7 @@ class LoginManager: NSObject {
     let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: RightMenuVC())
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false
-    menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5//appWindow.bounds.size.width * (0.75 - 0.5)
+    menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5
     appWindow.rootViewController = menu
 
   }
@@ -74,10 +76,8 @@ class LoginManager: NSObject {
   
   //获取用户信息保存本地
   func fetchUserInfo(afterFetch: () -> ()) {
-    let userId = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
     let oldImage = JSHStorage.baseInfo().avatarImage  //单独将本地头像提出来，为了从服务器取头像数据滞后于显示的问题
-    ZKJSHTTPSessionManager.sharedInstance().getUserInfo(userId, token: token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? [NSObject : AnyObject] {
         let baseInfo = JSHBaseInfo(dic: dic)
         if baseInfo.avatarImage == nil {
@@ -116,8 +116,11 @@ class LoginManager: NSObject {
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
                   //编辑个人信息
                   print("here goes to edit info ")
-                  self.appWindow.rootViewController = UINavigationController(rootViewController: InfoEditViewController())
-                  
+                  let nv = BaseNC(rootViewController: InfoEditViewController())
+                  nv.navigationBar.tintColor = UIColor.whiteColor()
+                  nv.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+                  nv.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+                  self.appWindow.rootViewController = nv
                 }
               }
               }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -130,6 +133,8 @@ class LoginManager: NSObject {
             LoginManager.sharedInstance().fetchUserInfo({ () -> () in
               LoginManager.sharedInstance().showResideMenu(haspushed: nil)
             })
+            // 打开TCP连接
+            ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
           }
         }
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

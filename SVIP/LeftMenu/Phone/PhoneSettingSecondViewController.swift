@@ -33,6 +33,10 @@ class PhoneSettingSecondViewController: UIViewController {
     self.title = NSLocalizedString("CHANGE_MOBILE_PHONE", comment: "")
   }
   
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
   func refreshCount() {
     if --count == 0 {
       countTimer?.invalidate()

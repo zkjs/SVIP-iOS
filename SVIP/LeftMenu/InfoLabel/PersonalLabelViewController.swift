@@ -69,7 +69,7 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
   }
   
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getSelectedTagsWithID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getSelectedTagsWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? [AnyObject] {
         for dic in arr {
           self.selectedLabelView.addItem(dic as! NSDictionary)
@@ -105,7 +105,7 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
       }
       tags = mutArr.componentsJoinedByString(",")
     }
-    ZKJSHTTPSessionManager.sharedInstance().updateTagsWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, tags: tags, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateTagsWithTags(tags, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
@@ -120,7 +120,7 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
     }
     
     let tagopen = NSNumber(int: publicSwitch.on ? 1 : 0)
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUserID(JSHAccountManager.sharedJSHAccountManager().userid, token: JSHAccountManager.sharedJSHAccountManager().token, username: nil, realname: nil, imageData: nil, imageName: nil, sex: nil, company: nil, occupation: nil, email: nil, tagopen: tagopen,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: nil, company: nil, occupation: nil, email: nil, tagopen: tagopen,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationCodeVC" customModule="SVIP" customModuleProvider="target">
+            <connections>
+                <outlet property="codeTextField" destination="14q-5I-2lT" id="oYn-uh-Fjo"/>
+                <outlet property="saleAvatarImageView" destination="dVR-rr-gjR" id="bLr-ja-nPF"/>
+                <outlet property="saleNameTextField" destination="tN6-O2-oqh" id="Ipg-zi-amZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星空_设置" translatesAutoresizingMaskIntoConstraints="NO" id="NQO-tZ-hCK">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="line_dot" translatesAutoresizingMaskIntoConstraints="NO" id="14q-5I-2lT">
+                    <rect key="frame" x="210" y="201" width="180" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="AKd-1C-lwe">
+                            <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                        </constraint>
+                        <constraint firstAttribute="height" constant="30" id="T1E-lz-eRb"/>
+                        <constraint firstAttribute="width" constant="180" id="qHA-Js-9NH"/>
+                        <constraint firstAttribute="width" constant="180" id="xsN-HA-stJ"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="AKd-1C-lwe"/>
+                            <exclude reference="qHA-Js-9NH"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="AKd-1C-lwe"/>
+                            <include reference="qHA-Js-9NH"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="jlR-yM-ZDi"/>
+                    </connections>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dVR-rr-gjR">
+                    <rect key="frame" x="261" y="80" width="78" height="78"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="78" id="7HM-3v-IcN"/>
+                        <constraint firstAttribute="height" constant="78" id="hVa-fp-Sy9"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN6-O2-oqh" userLabel="Name Label">
+                    <rect key="frame" x="8" y="166" width="584" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="uyC-b2-plm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="NQO-tZ-hCK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AWn-ww-C9k"/>
+                <constraint firstAttribute="bottom" secondItem="NQO-tZ-hCK" secondAttribute="bottom" id="ESv-bR-MO1"/>
+                <constraint firstAttribute="trailing" secondItem="NQO-tZ-hCK" secondAttribute="trailing" id="EUf-e8-0Wd"/>
+                <constraint firstItem="tN6-O2-oqh" firstAttribute="top" secondItem="dVR-rr-gjR" secondAttribute="bottom" constant="8" id="UGn-J8-fPv"/>
+                <constraint firstItem="dVR-rr-gjR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cHo-qK-jFQ"/>
+                <constraint firstItem="14q-5I-2lT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cQ1-rg-imF"/>
+                <constraint firstItem="14q-5I-2lT" firstAttribute="top" secondItem="dVR-rr-gjR" secondAttribute="bottom" constant="43" id="fYp-0t-UYx"/>
+                <constraint firstItem="NQO-tZ-hCK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="orE-RT-xyb"/>
+                <constraint firstAttribute="trailing" secondItem="tN6-O2-oqh" secondAttribute="trailing" constant="8" id="q0E-5T-W8g"/>
+                <constraint firstItem="dVR-rr-gjR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="wSM-7d-xP9"/>
+                <constraint firstItem="tN6-O2-oqh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="z12-nj-ueh"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="line_dot" width="1" height="31"/>
+        <image name="星空_设置" width="375" height="667"/>
+    </resources>
+</document>

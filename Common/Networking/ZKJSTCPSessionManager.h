@@ -203,7 +203,8 @@ typedef NS_ENUM(NSInteger, MessageUserDefineType) {
   MessageUserDefineShopCancelOrder = 1002,
   MessageUserDefineShopConfirmOrder = 1003,
   MessageUserDefineOfflineMessage = 1004,
-  MessageUserDefineClientArrivalPushAd = 1005
+  MessageUserDefineClientArrivalPushAd = 1005,
+  MessageUserDefineInvitationCode = 1007
 };
 
 typedef NS_ENUM(NSInteger, MessageCustomType) {
@@ -215,6 +216,7 @@ typedef NS_ENUM(NSInteger, MessageCustomType) {
 @interface ZKJSTCPSessionManager : NSObject
 
 @property (nonatomic, weak) id<TCPSessionManagerDelegate> delegate;
+
 // 单例
 + (instancetype)sharedInstance;
 // 初始化Socket

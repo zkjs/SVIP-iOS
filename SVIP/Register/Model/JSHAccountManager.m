@@ -32,6 +32,7 @@
     _defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.zkjinshi.svip"];
     _userid = [_defaults objectForKey:@"userid"];
     _token = [_defaults objectForKey:@"token"];
+    _username = [_defaults objectForKey:@"username"];
   }
   return self;
 }
@@ -42,6 +43,12 @@
   _token = dic[@"token"];
   [_defaults setObject:_userid forKey:@"userid"];
   [_defaults setObject:_token forKey:@"token"];
+  [_defaults synchronize];
+}
+
+- (void)saveUserName:(NSString *)userName {
+  _username = userName;
+  [_defaults setObject:_username forKey:@"username"];
   [_defaults synchronize];
 }
 

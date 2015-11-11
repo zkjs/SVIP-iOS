@@ -170,6 +170,9 @@
 		409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409587E51BCCEDE400D212D6 /* RightMenuVC.xib */; };
 		409587EA1BCD05CE00D212D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 409587EC1BCD05CE00D212D6 /* Localizable.strings */; };
 		40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */; };
+		40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */; };
+		40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */; };
+		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
 		40D599DE1BA2BED300AF79B3 /* OrderHistoryListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */; };
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
@@ -263,6 +266,14 @@
 		B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
+		FAEFA5691BE8B01D002C07E8 /* OrderHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFA5671BE8B01D002C07E8 /* OrderHistoryCell.swift */; };
+		FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFA5681BE8B01D002C07E8 /* OrderHistoryCell.xib */; };
+		FAEFA56D1BE8BB37002C07E8 /* OrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFA56B1BE8BB37002C07E8 /* OrderListCell.swift */; };
+		FAEFA56E1BE8BB37002C07E8 /* OrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFA56C1BE8BB37002C07E8 /* OrderListCell.xib */; };
+		FAF695061BE7514A007682DC /* OrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF695041BE7514A007682DC /* OrderDetailsVC.swift */; };
+		FAF695071BE7514A007682DC /* OrderDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF695051BE7514A007682DC /* OrderDetailsVC.xib */; };
+		FAF695091BE755A0007682DC /* OrderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF695081BE755A0007682DC /* OrderContentView.swift */; };
+		FAF6950B1BE755AF007682DC /* OrderContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF6950A1BE755AF007682DC /* OrderContentView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -563,6 +574,9 @@
 		409587EB1BCD05CE00D212D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		409587ED1BCD05D000D212D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTVC.swift; sourceTree = "<group>"; };
+		40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
+		40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationCodeVC.xib; sourceTree = "<group>"; };
+		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryListTVC.swift; sourceTree = "<group>"; };
@@ -689,6 +703,14 @@
 		B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAddCell.swift; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
+		FAEFA5671BE8B01D002C07E8 /* OrderHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryCell.swift; sourceTree = "<group>"; };
+		FAEFA5681BE8B01D002C07E8 /* OrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderHistoryCell.xib; sourceTree = "<group>"; };
+		FAEFA56B1BE8BB37002C07E8 /* OrderListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListCell.swift; sourceTree = "<group>"; };
+		FAEFA56C1BE8BB37002C07E8 /* OrderListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListCell.xib; sourceTree = "<group>"; };
+		FAF695041BE7514A007682DC /* OrderDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
+		FAF695051BE7514A007682DC /* OrderDetailsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailsVC.xib; sourceTree = "<group>"; };
+		FAF695081BE755A0007682DC /* OrderContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderContentView.swift; sourceTree = "<group>"; };
+		FAF6950A1BE755AF007682DC /* OrderContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderContentView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -793,6 +815,10 @@
 				40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */,
 				4052663A1B4127B400B277BE /* OrderDetailVC.swift */,
 				4052663B1B4127B400B277BE /* OrderDetailVC.xib */,
+				FAF695041BE7514A007682DC /* OrderDetailsVC.swift */,
+				FAF695051BE7514A007682DC /* OrderDetailsVC.xib */,
+				FAF695081BE755A0007682DC /* OrderContentView.swift */,
+				FAF6950A1BE755AF007682DC /* OrderContentView.xib */,
 				4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */,
 				4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */,
 				405BC0FB1B42495F00081C0A /* DotLine.swift */,
@@ -815,6 +841,10 @@
 			children = (
 				405266541B4128E900B277BE /* OrderCell.swift */,
 				405266551B4128E900B277BE /* OrderCell.xib */,
+				FAEFA56B1BE8BB37002C07E8 /* OrderListCell.swift */,
+				FAEFA56C1BE8BB37002C07E8 /* OrderListCell.xib */,
+				FAEFA5671BE8B01D002C07E8 /* OrderHistoryCell.swift */,
+				FAEFA5681BE8B01D002C07E8 /* OrderHistoryCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1297,6 +1327,7 @@
 				409587E31BCCED9200D212D6 /* RightMenu */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
+				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
 				B263DA201B944E9500BB1970 /* JSSideMenu.swift */,
 				40DA7A001B463E850097CE3D /* Chat */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
@@ -1691,6 +1722,8 @@
 			children = (
 				B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */,
 				B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */,
+				40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */,
+				40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */,
 			);
 			path = ForFirstLogin;
 			sourceTree = "<group>";
@@ -1878,15 +1911,19 @@
 				4058E5021BA0211B00EF6D76 /* RecordingSignal006@2x.png in Resources */,
 				4058E5171BA0211B00EF6D76 /* SenderVoiceNodePlaying000@2x.png in Resources */,
 				4058E4EB1BA0211B00EF6D76 /* keyboard@2x.png in Resources */,
+				40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */,
 				4058E5191BA0211B00EF6D76 /* SenderVoiceNodePlaying002@2x.png in Resources */,
 				4058E4E81BA0211B00EF6D76 /* input-bar-flat@2x.png in Resources */,
+				FAF695071BE7514A007682DC /* OrderDetailsVC.xib in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				4058E4FE1BA0211B00EF6D76 /* RecordingSignal002@2x.png in Resources */,
 				B2F916171BA0670000381FFB /* SwitchView.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
+				FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */,
 				4058E5001BA0211B00EF6D76 /* RecordingSignal004@2x.png in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				4058E5061BA0211B00EF6D76 /* SECoreTextView.bundle in Resources */,
+				FAEFA56E1BE8BB37002C07E8 /* OrderListCell.xib in Resources */,
 				B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */,
 				4058E4FB1BA0211B00EF6D76 /* RecordCancel@2x.png in Resources */,
 				4058E5291BA0211B00EF6D76 /* VoiceBtn_BlackHL@2x.png in Resources */,
@@ -1921,6 +1958,7 @@
 				409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */,
 				4058E5261BA0211B00EF6D76 /* voice@2x.png in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
+				FAF6950B1BE755AF007682DC /* OrderContentView.xib in Resources */,
 				4058E4E01BA0211B00EF6D76 /* face@2x.png in Resources */,
 				4058E4FD1BA0211B00EF6D76 /* RecordingSignal001@2x.png in Resources */,
 				4058E52D1BA0211B00EF6D76 /* weChatBubble_Sending_Solid@2x.png in Resources */,
@@ -2067,6 +2105,8 @@
 				4058E4CE1BA0211B00EF6D76 /* XHEmotionCollectionViewFlowLayout.m in Sources */,
 				4058E4C21BA0211B00EF6D76 /* SETextSelection.m in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
+				FAEFA56D1BE8BB37002C07E8 /* OrderListCell.swift in Sources */,
+				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				4058E4921BA0211B00EF6D76 /* UIImage+Resize.m in Sources */,
 				B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */,
@@ -2091,6 +2131,7 @@
 				4058E4B21BA0211B00EF6D76 /* XHShareMenuItem.m in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
+				40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */,
 				4058E4BB1BA0211B00EF6D76 /* SETextAttachment.m in Sources */,
 				4058E4AC1BA0211B00EF6D76 /* XHMessageVoiceFactory.m in Sources */,
 				B23E537F1B4BB64C00CB7761 /* MD5DataSigner.m in Sources */,
@@ -2120,6 +2161,8 @@
 				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
 				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
 				409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */,
+				FAEFA5691BE8B01D002C07E8 /* OrderHistoryCell.swift in Sources */,
+				FAF695091BE755A0007682DC /* OrderContentView.swift in Sources */,
 				4058E4AE1BA0211B00EF6D76 /* XHAnnotation.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				4058E4C11BA0211B00EF6D76 /* SETextMagnifierRanged.m in Sources */,
@@ -2150,6 +2193,7 @@
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
 				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
+				FAF695061BE7514A007682DC /* OrderDetailsVC.swift in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,
 				4058E4BC1BA0211B00EF6D76 /* SETextEditingCaret.m in Sources */,
@@ -2391,7 +2435,7 @@
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "985c2331-f32e-47ba-a8d9-6ae4a9cf0c8f";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2450,7 +2494,7 @@
 				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "330a391c-b4c1-4fd6-8556-8f9616f714c8";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";

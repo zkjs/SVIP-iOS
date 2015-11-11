@@ -19,14 +19,12 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     super.viewDidLoad()
     
     loadMoreData()
-    
     title = NSLocalizedString("ORDRE_LIST", comment: "")
-    
-    let cellNib = UINib(nibName: OrderCell.nibName(), bundle: nil)
-    tableView.registerNib(cellNib, forCellReuseIdentifier: OrderCell.reuseIdentifier())
+    let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
+    tableView.registerNib(cellNib, forCellReuseIdentifier: OrderListCell.reuseIdentifier())
     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.footer.hidden = true
-    tableView.separatorStyle = .None
+    tableView.tableFooterView = UIView()
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
   }
   
@@ -48,7 +46,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return OrderCell.height()
+    return OrderListCell.height()
   }
   
   override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -64,25 +62,31 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       return UITableViewCell()
     }
     
-    let cell: OrderCell = tableView.dequeueReusableCellWithIdentifier(OrderCell.reuseIdentifier()) as! OrderCell
+    let cell: OrderListCell = tableView.dequeueReusableCellWithIdentifier(OrderListCell.reuseIdentifier()) as! OrderListCell
     let order = orders[indexPath.row] as! BookOrder
     cell.setOrder(order)
     cell.delegate = self
-    
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
   }
   
   // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let order = orders[indexPath.row] as! BookOrder
     
-    if Int(order.status) == 0 {  // 0 未确认可取消订单
-      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
-      bookingOrderDetailVC.delegate = self
-      navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
-    } else {
-      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
-    }
+    let order = orders[indexPath.row] as! BookOrder
+//    if Int(order.status) == 0 {  // 0 未确认可取消订单
+//      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
+//      bookingOrderDetailVC.delegate = self
+//      navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
+//    } else {
+//      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
+//    }
+    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+    vc.reservation_no = order.reservation_no
+    navigationController?.pushViewController(vc, animated: true)
+
+    
   }
   
   // MARK: - BookingOrderDetailVCDelegate
@@ -103,9 +107,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       
-      let userID = JSHAccountManager.sharedJSHAccountManager().userid
-      let token = JSHAccountManager.sharedJSHAccountManager().token
-      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
@@ -118,10 +120,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   // MARK: - Private Method
   
   func loadMoreData() -> Void {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
     let page = String(orderPage)
-    ZKJSHTTPSessionManager.sharedInstance().getOrderListWithUserID(userID, token: token, page: page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getOrderListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.tableView.footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
@@ -129,6 +129,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           let order = BookOrder(dictionary: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
+        print(self.orders.count)
         self.tableView.reloadData()
         self.tableView.footer.endRefreshing()
         self.orderPage++

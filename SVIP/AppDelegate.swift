@@ -21,7 +21,7 @@ let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
 let UMURL = ""
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegate, TCPSessionManagerDelegate {
   var loginManager: LoginManager?
   var window: UIWindow?
   var deviceToken = ""
@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
     fetchBeaconRegions()
 //    setupUMSocial()//UM
     setupBackgroundFetch()
+    
+    ZKJSHTTPSessionManager.sharedInstance().delegate = self
     
     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isFirstRun")
     
@@ -319,6 +321,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
 //      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
 //      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
     }
+  }
+  
+  // MARK: - HTTPSessionManagerDelegate
+  func didReceiveInvalidToken() {
+    window?.rootViewController = JSHHotelRegisterVC()
+    ZKJSTool.showMsg("账号在别处登录，请重新重录")
   }
   
     //UM

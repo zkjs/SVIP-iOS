@@ -44,4 +44,5 @@
 #import "HexColors.h"
 #import "ZKJSHTTPSMSSessionManager.h"
 #import "JCTagListView.h"
+#import "EDStarRating.h"
 //#import <FIR/FIR.h>

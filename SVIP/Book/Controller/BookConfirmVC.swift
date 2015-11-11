@@ -182,10 +182,7 @@ class BookConfirmVC: UIViewController {
     }
     order.arrival_date = inDate.dateString
     order.departure_date = outDate.dateString
-    let account = JSHAccountManager.sharedJSHAccountManager()
-    ZKJSHTTPSessionManager.sharedInstance().postBookingInfoWithUserID(account.userid,
-      token: account.token,
-      shopID: order.shopid,
+    ZKJSHTTPSessionManager.sharedInstance().postBookingInfoWithShopID(order.shopid,
       goodsID: order.room_typeid,
       guest: order.guest,
       guestPhone: order.guesttel,
