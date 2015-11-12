@@ -9,8 +9,7 @@
 import UIKit
 
 class SkipCheckInSettingViewController: UIViewController, UIWebViewDelegate {
-  @IBOutlet weak var switchStatus: UILabel!
-  @IBOutlet weak var switchButton: UISwitch!
+
   var webView: UIWebView!
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,27 +20,12 @@ class SkipCheckInSettingViewController: UIViewController, UIWebViewDelegate {
     ZKJSTool.hideHUD()
   }
   func initSubviews() {
-    let switchView = NSBundle.mainBundle().loadNibNamed("SwitchView", owner: self, options: nil).last as! UIView
-    let right = UIBarButtonItem(customView:switchView)
-    self.navigationItem.rightBarButtonItem = right
-    
-    switchStatus.text = NSLocalizedString("OFF", comment: "")
-    switchButton.addTarget(self, action:"switchValueChange:", forControlEvents: UIControlEvents.ValueChanged)
-    
     webView = UIWebView(frame: view.bounds)
     let url = NSURL(string: "http://iwxy.cc/mqt")
     webView.loadRequest(NSURLRequest(URL: url!))
     webView.scrollView.bounces = false
     webView.delegate = self
     view.addSubview(webView)
-  }
-  
-  func switchValueChange(sender: UISwitch) {
-    if switchButton.on {
-      switchStatus.text = NSLocalizedString("ON", comment: "")
-    }else {
-      switchStatus.text = NSLocalizedString("OFF", comment: "")
-    }
   }
   
   func webViewDidStartLoad(webView: UIWebView) {

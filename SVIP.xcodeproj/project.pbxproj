@@ -254,7 +254,6 @@
 		B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E81B7EE229000DBD81 /* TSQCalendarRowCell.m */; };
 		B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */; };
 		B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */; };
-		B2F916171BA0670000381FFB /* SwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F916161BA0670000381FFB /* SwitchView.xib */; };
 		B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */; };
 		B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */; };
 		B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */; };
@@ -691,7 +690,6 @@
 		B2F4A9E91B7EE229000DBD81 /* TSQCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQCalendarView.h; sourceTree = "<group>"; };
 		B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQCalendarView.m; sourceTree = "<group>"; };
 		B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateSelectionViewController.swift; sourceTree = "<group>"; };
-		B2F916161BA0670000381FFB /* SwitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchView.xib; sourceTree = "<group>"; };
 		B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
 		B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditViewController.xib; sourceTree = "<group>"; };
 		B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
@@ -1489,7 +1487,6 @@
 		B20812901B8DD7950070D96F /* SkipCheckIn */ = {
 			isa = PBXGroup;
 			children = (
-				B2F916161BA0670000381FFB /* SwitchView.xib */,
 				B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */,
 			);
 			path = SkipCheckIn;
@@ -1917,7 +1914,6 @@
 				FAF695071BE7514A007682DC /* OrderDetailsVC.xib in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				4058E4FE1BA0211B00EF6D76 /* RecordingSignal002@2x.png in Resources */,
-				B2F916171BA0670000381FFB /* SwitchView.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
 				FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */,
 				4058E5001BA0211B00EF6D76 /* RecordingSignal004@2x.png in Resources */,
