@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #define kTextFieldINTERVALWIDTH          5
-#define kTextFieldWIDTHMARGIN            10
+#define kTextFieldWIDTHMARGIN            2
 #define kTextFieldRightButtonW           30
 #define kTextFieldRightButtonH           30
 

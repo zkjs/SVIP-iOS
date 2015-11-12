@@ -50,7 +50,7 @@
 "WRONG_MOBILE_PHONE" = "手机号错误";
 "WRONG_VERIFIED_CODE" = "验证码错误";
 "MOBILE_PHONE_IS_CHANGED" = "电话修改成功";
-"VERIFIED_CODE" = "验证码";
+"VERIFIED_CODE" = "输入验证码";
 "VERIFIED_YOUR_PHONE" = "验证原手机";
 "DELETE" = "删除";
 "EDIT" = "修改";

@@ -24,7 +24,7 @@
                     <animations/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="130-0000-0000" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Bsp-j9-cRF" customClass="JSHTextField">
-                    <rect key="frame" x="35" y="70" width="230" height="30"/>
+                    <rect key="frame" x="16" y="90" width="265" height="30"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="rfy-HK-tVb"/>
@@ -37,7 +37,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="57w-wh-PFI" customClass="JSHTextField">
-                    <rect key="frame" x="35" y="130" width="230" height="30"/>
+                    <rect key="frame" x="16" y="140" width="343" height="30"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="FUA-Hw-dWf"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjW-tE-ZWS" customClass="JSHRoundRectButton">
-                    <rect key="frame" x="16" y="210" width="343" height="50"/>
+                    <rect key="frame" x="16" y="220" width="343" height="50"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -81,7 +81,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cug-eW-K9o">
-                    <rect key="frame" x="104" y="280" width="168" height="30"/>
+                    <rect key="frame" x="104" y="290" width="168" height="30"/>
                     <subviews>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击确定，即同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajd-ki-CmA">
                             <rect key="frame" x="20" y="4" width="80" height="21"/>
@@ -155,17 +155,16 @@
                         <constraint firstAttribute="height" constant="44" id="NBQ-DL-2av"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fg-Ph-9mL" userLabel="Code Button" customClass="JSHRoundRectButton">
-                    <rect key="frame" x="273" y="70" width="86" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fg-Ph-9mL" userLabel="Code Button">
+                    <rect key="frame" x="284" y="85" width="75" height="35"/>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="86" id="DXa-0M-qBN"/>
-                        <constraint firstAttribute="height" constant="30" id="JFT-tA-Dsh"/>
+                        <constraint firstAttribute="width" constant="75" id="DXa-0M-qBN"/>
+                        <constraint firstAttribute="height" constant="35" id="JFT-tA-Dsh"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="验证码">
-                        <color key="titleColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -176,21 +175,21 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="57w-wh-PFI" secondAttribute="trailing" constant="16" id="66a-u5-XXa"/>
                 <constraint firstItem="57w-wh-PFI" firstAttribute="leading" secondItem="Bsp-j9-cRF" secondAttribute="leading" id="7Jz-JW-UCl"/>
                 <constraint firstItem="QKF-6U-rmA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8Tw-dC-YEh"/>
                 <constraint firstItem="8DP-Vn-cuu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="A2n-0v-x9K"/>
                 <constraint firstItem="yjW-tE-ZWS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="CPB-hl-Ibj"/>
-                <constraint firstItem="57w-wh-PFI" firstAttribute="width" secondItem="Bsp-j9-cRF" secondAttribute="width" id="E5N-YN-Gk3"/>
-                <constraint firstItem="9fg-Ph-9mL" firstAttribute="leading" secondItem="Bsp-j9-cRF" secondAttribute="trailing" constant="8" id="GJc-pA-sJa"/>
-                <constraint firstItem="9fg-Ph-9mL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="Gqg-HO-9XW"/>
+                <constraint firstItem="9fg-Ph-9mL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="85" id="Gqg-HO-9XW"/>
                 <constraint firstItem="cug-eW-K9o" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Hjy-aO-MvI"/>
                 <constraint firstItem="QKF-6U-rmA" firstAttribute="top" secondItem="8DP-Vn-cuu" secondAttribute="bottom" constant="8" id="Kyv-VN-rgz"/>
                 <constraint firstItem="yjW-tE-ZWS" firstAttribute="top" secondItem="57w-wh-PFI" secondAttribute="bottom" constant="50" id="TJ2-qH-H7A"/>
-                <constraint firstItem="Bsp-j9-cRF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="Ubt-3z-OGl"/>
-                <constraint firstItem="57w-wh-PFI" firstAttribute="top" secondItem="Bsp-j9-cRF" secondAttribute="bottom" constant="30" id="Wlt-rH-E7o"/>
-                <constraint firstItem="Bsp-j9-cRF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="XIf-Ip-Kdv"/>
+                <constraint firstItem="Bsp-j9-cRF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="90" id="Ubt-3z-OGl"/>
+                <constraint firstItem="57w-wh-PFI" firstAttribute="top" secondItem="Bsp-j9-cRF" secondAttribute="bottom" constant="20" id="Wlt-rH-E7o"/>
+                <constraint firstItem="Bsp-j9-cRF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="XIf-Ip-Kdv"/>
                 <constraint firstAttribute="trailing" secondItem="9fg-Ph-9mL" secondAttribute="trailing" constant="16" id="e3m-WQ-2Yy"/>
                 <constraint firstAttribute="trailing" secondItem="yjW-tE-ZWS" secondAttribute="trailing" constant="16" id="eFs-fo-hNF"/>
+                <constraint firstItem="9fg-Ph-9mL" firstAttribute="leading" secondItem="Bsp-j9-cRF" secondAttribute="trailing" constant="3" id="hka-rc-70v"/>
                 <constraint firstItem="cug-eW-K9o" firstAttribute="top" secondItem="yjW-tE-ZWS" secondAttribute="bottom" constant="20" id="r50-M8-jYx"/>
                 <constraint firstAttribute="bottom" secondItem="QKF-6U-rmA" secondAttribute="bottom" constant="10" id="wRn-aa-jTi"/>
             </constraints>

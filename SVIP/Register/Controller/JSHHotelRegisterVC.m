@@ -67,6 +67,10 @@
   [_CodeButton setTitle:NSLocalizedString(@"SEND_VERIFIED_CODE", nil) forState:UIControlStateNormal];
   _CodeButton.enabled = NO;
   _CodeButton.alpha = 0.5;
+  _CodeButton.layer.borderColor = [UIColor whiteColor].CGColor;
+  _CodeButton.layer.borderWidth = 0.8;
+  _CodeButton.layer.masksToBounds = YES;
+  _CodeButton.layer.cornerRadius = 2;
 }
 
 #pragma mark - timer action
