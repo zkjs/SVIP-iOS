@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailsVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="remarkTextField" destination="gyd-qD-ZYe" id="QAx-wV-n1G"/>
                 <outlet property="scrollView" destination="vmj-fD-SR3" id="Jn9-iB-s79"/>
+                <outlet property="submitButton" destination="60o-qp-50d" id="FSo-UT-PKE"/>
                 <outlet property="userImageView" destination="T8V-Sz-owf" id="tbY-CA-fq8"/>
                 <outlet property="usernameLabel" destination="pS4-vf-TvB" id="LZT-5D-ROK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,10 +38,6 @@
                                 <constraint firstAttribute="width" constant="90" id="szf-KU-doq"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8b-G2-QFL">
-                            <rect key="frame" x="0.0" y="959" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
-                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘萱萱" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pS4-vf-TvB">
                             <rect key="frame" x="250" y="170" width="100" height="21"/>
                             <constraints>
@@ -50,11 +48,35 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyd-qD-ZYe">
+                            <rect key="frame" x="150" y="659" width="300" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="dBX-Aa-HQy"/>
+                                <constraint firstAttribute="width" constant="300" id="hfw-tF-pyK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60o-qp-50d">
+                            <rect key="frame" x="150" y="759" width="300" height="60"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="j1N-7m-Kak"/>
+                                <constraint firstAttribute="width" constant="300" id="ufX-pt-aAk"/>
+                            </constraints>
+                            <state key="normal" title="确认"/>
+                            <connections>
+                                <action selector="submit:" destination="-1" eventType="touchUpInside" id="C7z-YT-gnk"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="60o-qp-50d" firstAttribute="centerX" secondItem="vmj-fD-SR3" secondAttribute="centerX" id="3qf-o9-OMj"/>
                         <constraint firstItem="pS4-vf-TvB" firstAttribute="centerX" secondItem="vmj-fD-SR3" secondAttribute="centerX" id="4iJ-pP-Qbx"/>
-                        <constraint firstItem="Y8b-G2-QFL" firstAttribute="top" secondItem="hP4-kr-Omj" secondAttribute="bottom" constant="700" id="7wK-gD-4xd"/>
+                        <constraint firstItem="gyd-qD-ZYe" firstAttribute="top" secondItem="hP4-kr-Omj" secondAttribute="bottom" constant="400" id="BLe-NW-UZT"/>
+                        <constraint firstItem="gyd-qD-ZYe" firstAttribute="centerX" secondItem="vmj-fD-SR3" secondAttribute="centerX" id="BZR-rH-lga"/>
                         <constraint firstItem="hP4-kr-Omj" firstAttribute="top" secondItem="vmj-fD-SR3" secondAttribute="top" id="EQx-ML-VQE"/>
+                        <constraint firstItem="60o-qp-50d" firstAttribute="top" secondItem="hP4-kr-Omj" secondAttribute="bottom" constant="500" id="FTt-h2-CcI"/>
                         <constraint firstAttribute="height" constant="600" id="Fra-wG-HvO"/>
                         <constraint firstItem="T8V-Sz-owf" firstAttribute="centerX" secondItem="vmj-fD-SR3" secondAttribute="centerX" id="K9E-hR-rXc"/>
                         <constraint firstItem="pS4-vf-TvB" firstAttribute="top" secondItem="T8V-Sz-owf" secondAttribute="bottom" constant="20" id="Mfe-RH-Jwv"/>

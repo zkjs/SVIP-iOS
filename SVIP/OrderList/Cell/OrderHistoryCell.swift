@@ -38,12 +38,17 @@ class OrderHistoryCell: SWTableViewCell {
     return 116.0
   }
   
-  func setOrder(order:BookOrder) {
+  func setOrder(order:OrderModel) {
     rightUtilityButtons = rightButtons() as [AnyObject]
     hotelnameLabel.text = order.fullname
-    roomTypeLabel.text = order.room_type + "x" + order.rooms
-    creattimeLabel.text = order.room_rate
-    roomPriceLabel.text = "￥" + order.room_rate
+    roomTypeLabel.text = order.room_type + "x" + order.rooms.stringValue
+    creattimeLabel.text = order.created
+    roomPriceLabel.text = "￥" + order.room_rate.stringValue
+    if order.score.stringValue == "0" {
+      evaluateLabel.text = "未评价"
+    }else {
+      evaluateLabel.text = order.score.stringValue
+    }
     
     
   }

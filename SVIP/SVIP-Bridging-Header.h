@@ -45,4 +45,6 @@
 #import "ZKJSHTTPSMSSessionManager.h"
 #import "JCTagListView.h"
 #import "EDStarRating.h"
+#import "DCPathButton.h"
+#import "XLSegmentedPagerTabStripViewController.h"
 //#import <FIR/FIR.h>

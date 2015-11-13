@@ -422,7 +422,7 @@
                 <outlet property="startLabel" destination="f0A-qc-DuQ" id="5dI-dD-Vth"/>
                 <outlet property="usernameLabel" destination="HQR-1V-kkH" id="Nao-xL-n4z"/>
             </connections>
-            <point key="canvasLocation" x="486" y="435"/>
+            <point key="canvasLocation" x="561" y="497"/>
         </view>
     </objects>
     <resources>

@@ -339,6 +339,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TCPSessionManagerDelegate
   
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    
     setupLoginManager()
     window?.makeKeyAndVisible()
   }

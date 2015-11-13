@@ -87,4 +87,13 @@
 - (void)getGuestListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // 新增入住人
 - (void)addGuestWithParam:(NSDictionary *)param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+//提交订单评价
+- (void)submitEvaluationWithUserID:(NSString *)userID token:(NSString *)token score:(NSString *)score content:(NSString *)content reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+//获取推送的广告
+- (void)getAdvertisementListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+//查看商家客服列表带专属客服
+- (void)getMerchanCustomerServiceListWithuserID:(NSString *)userID token:(NSString *)token shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end

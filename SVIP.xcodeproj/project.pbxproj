@@ -267,6 +267,38 @@
 		FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFA5681BE8B01D002C07E8 /* OrderHistoryCell.xib */; };
 		FAEFA56D1BE8BB37002C07E8 /* OrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFA56B1BE8BB37002C07E8 /* OrderListCell.swift */; };
 		FAEFA56E1BE8BB37002C07E8 /* OrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFA56C1BE8BB37002C07E8 /* OrderListCell.xib */; };
+		FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */; };
+		FAF2E0621BF1868A008DD5BC /* MainTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0601BF1868A008DD5BC /* MainTVC.xib */; };
+		FAF2E06D1BF1CBCB008DD5BC /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */; };
+		FAF2E06E1BF1CBCB008DD5BC /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */; };
+		FAF2E0721BF1E551008DD5BC /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */; };
+		FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */; };
+		FAF2E0771BF2188D008DD5BC /* HotelPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0761BF2188D008DD5BC /* HotelPageVC.swift */; };
+		FAF2E07A1BF219C6008DD5BC /* HotelTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0781BF219C6008DD5BC /* HotelTVC.swift */; };
+		FAF2E07B1BF219C6008DD5BC /* HotelTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0791BF219C6008DD5BC /* HotelTVC.xib */; };
+		FAF2E07E1BF219F6008DD5BC /* LeisureTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E07C1BF219F6008DD5BC /* LeisureTVC.swift */; };
+		FAF2E07F1BF219F6008DD5BC /* LeisureTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E07D1BF219F6008DD5BC /* LeisureTVC.xib */; };
+		FAF2E0821BF21A16008DD5BC /* RestaurantTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0801BF21A16008DD5BC /* RestaurantTVC.swift */; };
+		FAF2E0831BF21A16008DD5BC /* RestaurantTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0811BF21A16008DD5BC /* RestaurantTVC.xib */; };
+		FAF2E0881BF21E39008DD5BC /* HotelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0861BF21E39008DD5BC /* HotelCell.swift */; };
+		FAF2E0891BF21E39008DD5BC /* HotelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0871BF21E39008DD5BC /* HotelCell.xib */; };
+		FAF35D011BF42B6C00918BCF /* SalesPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D001BF42B6C00918BCF /* SalesPageVC.swift */; };
+		FAF35D041BF42B9000918BCF /* ChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D021BF42B9000918BCF /* ChatTVC.swift */; };
+		FAF35D051BF42B9000918BCF /* ChatTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D031BF42B9000918BCF /* ChatTVC.xib */; };
+		FAF35D081BF42BB600918BCF /* MailListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D061BF42BB600918BCF /* MailListTVC.swift */; };
+		FAF35D091BF42BB600918BCF /* MailListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D071BF42BB600918BCF /* MailListTVC.xib */; };
+		FAF35D0C1BF42BD000918BCF /* FindListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D0A1BF42BD000918BCF /* FindListTVC.swift */; };
+		FAF35D0D1BF42BD000918BCF /* FindListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D0B1BF42BD000918BCF /* FindListTVC.xib */; };
+		FAF35D101BF43EC100918BCF /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D0E1BF43EC100918BCF /* SearchTVC.swift */; };
+		FAF35D111BF43EC100918BCF /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D0F1BF43EC100918BCF /* SearchTVC.xib */; };
+		FAF35D141BF43EE600918BCF /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D131BF43EE600918BCF /* SearchBarView.swift */; };
+		FAF35D161BF43F0100918BCF /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D151BF43F0100918BCF /* SearchBarView.xib */; };
+		FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */; };
+		FAF35D1C1BF46D8700918BCF /* WebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */; };
+		FAF35D1D1BF46D8700918BCF /* WebViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */; };
+		FAF35D201BF4843100918BCF /* FloatingWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D1E1BF4843100918BCF /* FloatingWindowVC.swift */; };
+		FAF35D211BF4843100918BCF /* FloatingWindowVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D1F1BF4843100918BCF /* FloatingWindowVC.xib */; };
+		FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40DE91BF0807E002C77A6 /* OrderModel.swift */; };
 		FAF695061BE7514A007682DC /* OrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF695041BE7514A007682DC /* OrderDetailsVC.swift */; };
 		FAF695071BE7514A007682DC /* OrderDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF695051BE7514A007682DC /* OrderDetailsVC.xib */; };
 		FAF695091BE755A0007682DC /* OrderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF695081BE755A0007682DC /* OrderContentView.swift */; };
@@ -701,6 +733,38 @@
 		FAEFA5681BE8B01D002C07E8 /* OrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderHistoryCell.xib; sourceTree = "<group>"; };
 		FAEFA56B1BE8BB37002C07E8 /* OrderListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListCell.swift; sourceTree = "<group>"; };
 		FAEFA56C1BE8BB37002C07E8 /* OrderListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListCell.xib; sourceTree = "<group>"; };
+		FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
+		FAF2E0601BF1868A008DD5BC /* MainTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTVC.xib; sourceTree = "<group>"; };
+		FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
+		FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
+		FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHeaderView.xib; sourceTree = "<group>"; };
+		FAF2E0761BF2188D008DD5BC /* HotelPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelPageVC.swift; sourceTree = "<group>"; };
+		FAF2E0781BF219C6008DD5BC /* HotelTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelTVC.swift; sourceTree = "<group>"; };
+		FAF2E0791BF219C6008DD5BC /* HotelTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelTVC.xib; sourceTree = "<group>"; };
+		FAF2E07C1BF219F6008DD5BC /* LeisureTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeisureTVC.swift; sourceTree = "<group>"; };
+		FAF2E07D1BF219F6008DD5BC /* LeisureTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeisureTVC.xib; sourceTree = "<group>"; };
+		FAF2E0801BF21A16008DD5BC /* RestaurantTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTVC.swift; sourceTree = "<group>"; };
+		FAF2E0811BF21A16008DD5BC /* RestaurantTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTVC.xib; sourceTree = "<group>"; };
+		FAF2E0861BF21E39008DD5BC /* HotelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelCell.swift; sourceTree = "<group>"; };
+		FAF2E0871BF21E39008DD5BC /* HotelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelCell.xib; sourceTree = "<group>"; };
+		FAF35D001BF42B6C00918BCF /* SalesPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesPageVC.swift; sourceTree = "<group>"; };
+		FAF35D021BF42B9000918BCF /* ChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTVC.swift; sourceTree = "<group>"; };
+		FAF35D031BF42B9000918BCF /* ChatTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTVC.xib; sourceTree = "<group>"; };
+		FAF35D061BF42BB600918BCF /* MailListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListTVC.swift; sourceTree = "<group>"; };
+		FAF35D071BF42BB600918BCF /* MailListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListTVC.xib; sourceTree = "<group>"; };
+		FAF35D0A1BF42BD000918BCF /* FindListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindListTVC.swift; sourceTree = "<group>"; };
+		FAF35D0B1BF42BD000918BCF /* FindListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindListTVC.xib; sourceTree = "<group>"; };
+		FAF35D0E1BF43EC100918BCF /* SearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTVC.swift; sourceTree = "<group>"; };
+		FAF35D0F1BF43EC100918BCF /* SearchTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTVC.xib; sourceTree = "<group>"; };
+		FAF35D131BF43EE600918BCF /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		FAF35D151BF43F0100918BCF /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
+		FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementModel.swift; sourceTree = "<group>"; };
+		FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewCell.swift; sourceTree = "<group>"; };
+		FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewCell.xib; sourceTree = "<group>"; };
+		FAF35D1E1BF4843100918BCF /* FloatingWindowVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingWindowVC.swift; sourceTree = "<group>"; };
+		FAF35D1F1BF4843100918BCF /* FloatingWindowVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingWindowVC.xib; sourceTree = "<group>"; };
+		FAF40DE91BF0807E002C77A6 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		FAF695041BE7514A007682DC /* OrderDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
 		FAF695051BE7514A007682DC /* OrderDetailsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailsVC.xib; sourceTree = "<group>"; };
 		FAF695081BE755A0007682DC /* OrderContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderContentView.swift; sourceTree = "<group>"; };
@@ -826,6 +890,15 @@
 			children = (
 				4052664E1B41283900B277BE /* MainVC.swift */,
 				4052664F1B41283900B277BE /* MainVC.xib */,
+				FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */,
+				FAF2E0601BF1868A008DD5BC /* MainTVC.xib */,
+				FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */,
+				FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */,
+				FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */,
+				FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */,
+				FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */,
+				FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */,
+				FAF35D171BF469DF00918BCF /* Model */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1311,6 +1384,9 @@
 			isa = PBXGroup;
 			children = (
 				404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */,
+				FAF35D121BF43EC700918BCF /* Search */,
+				FA480A6F1BF2EB09004B56F8 /* Sale */,
+				FAF2E0751BF217C8008DD5BC /* Hotel */,
 				B20812B71B8DD8650070D96F /* Helper */,
 				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
@@ -1619,6 +1695,7 @@
 			isa = PBXGroup;
 			children = (
 				B2A642151B47C2A700AF0F28 /* RoomGoods.swift */,
+				FAF40DE91BF0807E002C77A6 /* OrderModel.swift */,
 				B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */,
 				B27004091B608ABF00B1BEA7 /* Hotel.swift */,
 			);
@@ -1744,6 +1821,74 @@
 				405352161BA66251007157FC /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA480A6F1BF2EB09004B56F8 /* Sale */ = {
+			isa = PBXGroup;
+			children = (
+				FAF35D001BF42B6C00918BCF /* SalesPageVC.swift */,
+				FAF35D021BF42B9000918BCF /* ChatTVC.swift */,
+				FAF35D031BF42B9000918BCF /* ChatTVC.xib */,
+				FAF35D061BF42BB600918BCF /* MailListTVC.swift */,
+				FAF35D071BF42BB600918BCF /* MailListTVC.xib */,
+				FAF35D0A1BF42BD000918BCF /* FindListTVC.swift */,
+				FAF35D0B1BF42BD000918BCF /* FindListTVC.xib */,
+			);
+			name = Sale;
+			path = ../Common;
+			sourceTree = "<group>";
+		};
+		FAF2E0751BF217C8008DD5BC /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
+				FAF2E0761BF2188D008DD5BC /* HotelPageVC.swift */,
+				FAF2E0851BF21E20008DD5BC /* View */,
+				FAF2E0841BF21DFC008DD5BC /* Controller */,
+			);
+			name = Hotel;
+			sourceTree = "<group>";
+		};
+		FAF2E0841BF21DFC008DD5BC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FAF2E0781BF219C6008DD5BC /* HotelTVC.swift */,
+				FAF2E0791BF219C6008DD5BC /* HotelTVC.xib */,
+				FAF2E07C1BF219F6008DD5BC /* LeisureTVC.swift */,
+				FAF2E07D1BF219F6008DD5BC /* LeisureTVC.xib */,
+				FAF2E0801BF21A16008DD5BC /* RestaurantTVC.swift */,
+				FAF2E0811BF21A16008DD5BC /* RestaurantTVC.xib */,
+				FAF35D1E1BF4843100918BCF /* FloatingWindowVC.swift */,
+				FAF35D1F1BF4843100918BCF /* FloatingWindowVC.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		FAF2E0851BF21E20008DD5BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FAF2E0861BF21E39008DD5BC /* HotelCell.swift */,
+				FAF2E0871BF21E39008DD5BC /* HotelCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FAF35D121BF43EC700918BCF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				FAF35D0E1BF43EC100918BCF /* SearchTVC.swift */,
+				FAF35D0F1BF43EC100918BCF /* SearchTVC.xib */,
+				FAF35D131BF43EE600918BCF /* SearchBarView.swift */,
+				FAF35D151BF43F0100918BCF /* SearchBarView.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		FAF35D171BF469DF00918BCF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1879,6 +2024,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4058E5281BA0211B00EF6D76 /* VoiceBtn_Black@2x.png in Resources */,
+				FAF35D0D1BF42BD000918BCF /* FindListTVC.xib in Resources */,
 				4052665C1B4128F900B277BE /* HotelMessageCell.xib in Resources */,
 				40817D1A1B8EDA7300EF188F /* NewItemFooterView.xib in Resources */,
 				405266571B4128E900B277BE /* OrderCell.xib in Resources */,
@@ -1888,6 +2034,8 @@
 				4058E4EF1BA0211B00EF6D76 /* msg_chat_voice_unread.png in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				4058E4FC1BA0211B00EF6D76 /* RecordingBkg@2x.png in Resources */,
+				FAF35D1D1BF46D8700918BCF /* WebViewCell.xib in Resources */,
+				FAF2E0891BF21E39008DD5BC /* HotelCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
@@ -1904,18 +2052,25 @@
 				4058E4EB1BA0211B00EF6D76 /* keyboard@2x.png in Resources */,
 				4058E5191BA0211B00EF6D76 /* SenderVoiceNodePlaying002@2x.png in Resources */,
 				4058E4E81BA0211B00EF6D76 /* input-bar-flat@2x.png in Resources */,
+				FAF35D051BF42B9000918BCF /* ChatTVC.xib in Resources */,
+				FAF2E0621BF1868A008DD5BC /* MainTVC.xib in Resources */,
 				FAF695071BE7514A007682DC /* OrderDetailsVC.xib in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				4058E4FE1BA0211B00EF6D76 /* RecordingSignal002@2x.png in Resources */,
 				B2F916171BA0670000381FFB /* SwitchView.xib in Resources */,
+				FAF2E07F1BF219F6008DD5BC /* LeisureTVC.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
 				FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */,
+				FAF2E06E1BF1CBCB008DD5BC /* MainViewCell.xib in Resources */,
 				4058E5001BA0211B00EF6D76 /* RecordingSignal004@2x.png in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				4058E5061BA0211B00EF6D76 /* SECoreTextView.bundle in Resources */,
 				FAEFA56E1BE8BB37002C07E8 /* OrderListCell.xib in Resources */,
+				FAF35D161BF43F0100918BCF /* SearchBarView.xib in Resources */,
+				FAF2E07B1BF219C6008DD5BC /* HotelTVC.xib in Resources */,
 				B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */,
 				4058E4FB1BA0211B00EF6D76 /* RecordCancel@2x.png in Resources */,
+				FAF35D211BF4843100918BCF /* FloatingWindowVC.xib in Resources */,
 				4058E5291BA0211B00EF6D76 /* VoiceBtn_BlackHL@2x.png in Resources */,
 				4058E4E71BA0211B00EF6D76 /* input-bar-flat.png in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
@@ -1936,6 +2091,7 @@
 				4058E4F91BA0211B00EF6D76 /* ReceiverVoiceNodePlaying003@2x.png in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				4058E4EC1BA0211B00EF6D76 /* keyboard_HL@2x.png in Resources */,
+				FAF35D111BF43EC100918BCF /* SearchTVC.xib in Resources */,
 				4058E4E11BA0211B00EF6D76 /* face_HL@2x.png in Resources */,
 				4058E4F21BA0211B00EF6D76 /* multiMedia_HL@2x.png in Resources */,
 				4058E51A1BA0211B00EF6D76 /* SenderVoiceNodePlaying003@2x.png in Resources */,
@@ -1956,10 +2112,13 @@
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
 				4058E4F71BA0211B00EF6D76 /* ReceiverVoiceNodePlaying001@2x.png in Resources */,
+				FAF35D091BF42BB600918BCF /* MailListTVC.xib in Resources */,
 				B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */,
+				FAF2E0831BF21A16008DD5BC /* RestaurantTVC.xib in Resources */,
 				4058E51B1BA0211B00EF6D76 /* SenderVoiceNodePlaying@2x.png in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
 				4058E5031BA0211B00EF6D76 /* RecordingSignal007@2x.png in Resources */,
+				FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */,
 				B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */,
 				4058E4E41BA0211B00EF6D76 /* ic_jianpan2@3x.png in Resources */,
 				4058E5271BA0211B00EF6D76 /* voice_HL@2x.png in Resources */,
@@ -2031,18 +2190,26 @@
 				4058E4941BA0211B00EF6D76 /* UIImage+Utility.m in Sources */,
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
 				4058E4B51BA0211B00EF6D76 /* LKBadgeView.m in Sources */,
+				FAF35D011BF42B6C00918BCF /* SalesPageVC.swift in Sources */,
+				FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */,
 				B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
+				FAF2E0771BF2188D008DD5BC /* HotelPageVC.swift in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
+				FAF35D041BF42B9000918BCF /* ChatTVC.swift in Sources */,
 				4058E4B71BA0211B00EF6D76 /* SEConstants.m in Sources */,
+				FAF35D081BF42BB600918BCF /* MailListTVC.swift in Sources */,
 				4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */,
 				404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */,
 				4058E4B61BA0211B00EF6D76 /* SECompatibility.m in Sources */,
 				B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */,
 				405BC0FC1B42495F00081C0A /* DotLine.swift in Sources */,
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
+				FAF35D101BF43EC100918BCF /* SearchTVC.swift in Sources */,
 				4058E4B31BA0211B00EF6D76 /* FLAnimatedImage.m in Sources */,
+				FAF35D141BF43EE600918BCF /* SearchBarView.swift in Sources */,
 				B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */,
+				FAF2E0821BF21A16008DD5BC /* RestaurantTVC.swift in Sources */,
 				4058E4C91BA0211B00EF6D76 /* XHMessageTableViewCell.m in Sources */,
 				B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */,
 				B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */,
@@ -2053,6 +2220,7 @@
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */,
 				40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */,
+				FAF2E07A1BF219C6008DD5BC /* HotelTVC.swift in Sources */,
 				4058E4961BA0211B00EF6D76 /* UIScrollView+XHkeyboardControl.m in Sources */,
 				B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
@@ -2060,11 +2228,13 @@
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
 				4058E4A91BA0211B00EF6D76 /* XHMessageAvatarFactory.m in Sources */,
 				B23E53811B4BB64C00CB7761 /* openssl_wrapper.m in Sources */,
+				FAF2E0721BF1E551008DD5BC /* MainHeaderView.swift in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				4058E4B01BA0211B00EF6D76 /* XHEmotionManager.m in Sources */,
 				4058E4B91BA0211B00EF6D76 /* SELinkText.m in Sources */,
 				4058E49E1BA0211B00EF6D76 /* XHVoiceCommonHelper.m in Sources */,
 				4058E4911BA0211B00EF6D76 /* UIImage+Alpha.m in Sources */,
+				FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */,
 				4058E4C81BA0211B00EF6D76 /* XHMessageTableView.m in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
 				4058E4AD1BA0211B00EF6D76 /* XHVideoOutputSampleBufferFactory.m in Sources */,
@@ -2086,6 +2256,7 @@
 				B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */,
 				4058E4A51BA0211B00EF6D76 /* XHCacheManager.m in Sources */,
 				B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */,
+				FAF35D1C1BF46D8700918BCF /* WebViewCell.swift in Sources */,
 				4058E4931BA0211B00EF6D76 /* UIImage+RoundedCorner.m in Sources */,
 				4058E4C61BA0211B00EF6D76 /* XHBubblePhotoImageView.m in Sources */,
 				B2F0377A1B93F3D4006FF396 /* PhoneSettingFirstViewController.swift in Sources */,
@@ -2099,6 +2270,7 @@
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				4058E4921BA0211B00EF6D76 /* UIImage+Resize.m in Sources */,
 				B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */,
+				FAF35D0C1BF42BD000918BCF /* FindListTVC.swift in Sources */,
 				4058E4CB1BA0211B00EF6D76 /* XHMessageTextView.m in Sources */,
 				4058E49B1BA0211B00EF6D76 /* XHLocationHelper.m in Sources */,
 				4058E49D1BA0211B00EF6D76 /* XHPhotographyHelper.m in Sources */,
@@ -2142,6 +2314,7 @@
 				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
 				4058E4CC1BA0211B00EF6D76 /* XHVoiceRecordHUD.m in Sources */,
 				B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */,
+				FAF35D201BF4843100918BCF /* FloatingWindowVC.swift in Sources */,
 				4058E4981BA0211B00EF6D76 /* XHAudioPlayerHelper.m in Sources */,
 				405B78251B9D3F1D009AD0E2 /* ZKJSHTTPChatSessionManager.m in Sources */,
 				4058E4A31BA0211B00EF6D76 /* XHDisplayTextViewController.m in Sources */,
@@ -2150,12 +2323,15 @@
 				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
 				409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */,
 				FAEFA5691BE8B01D002C07E8 /* OrderHistoryCell.swift in Sources */,
+				FAF2E0881BF21E39008DD5BC /* HotelCell.swift in Sources */,
 				FAF695091BE755A0007682DC /* OrderContentView.swift in Sources */,
 				4058E4AE1BA0211B00EF6D76 /* XHAnnotation.m in Sources */,
+				FAF2E07E1BF219F6008DD5BC /* LeisureTVC.swift in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				4058E4C11BA0211B00EF6D76 /* SETextMagnifierRanged.m in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
+				FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */,
 				B28967BD1B9E796300DF5D79 /* AboutUsViewController.swift in Sources */,
@@ -2173,6 +2349,7 @@
 				4058E49A1BA0211B00EF6D76 /* XHConfigurationHelper.m in Sources */,
 				4058E4C71BA0211B00EF6D76 /* XHMessageBubbleView.m in Sources */,
 				4058E4A01BA0211B00EF6D76 /* XHDisplayEmotionViewController.m in Sources */,
+				FAF2E06D1BF1CBCB008DD5BC /* MainViewCell.swift in Sources */,
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				4058E4BE1BA0211B00EF6D76 /* SETextInput.m in Sources */,

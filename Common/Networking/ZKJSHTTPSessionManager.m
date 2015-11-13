@@ -38,6 +38,17 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   return self;
 }
 
+#pragma mark - Private
+
+- (NSString *)userID {
+  return [JSHAccountManager sharedJSHAccountManager].userid;
+}
+
+- (NSString *)token {
+  return [JSHAccountManager sharedJSHAccountManager].token;
+}
+
+
 // 获取Beacon列表
 - (void)getBeaconRegionListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"user/location" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -500,7 +511,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 // 订单列表
 - (void)getOrderListWithUserID:(NSString *)userID token:(NSString *)token page:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"order/showlist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  [self POST:@"order/v10list" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
@@ -515,8 +526,8 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 // 历史订单列表
-- (void)getOrderHistoryListWithUserID:(NSString *)userID token:(NSString *)token page:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"order/showlist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+- (void)getOrderHistoryListWithUserID:(NSString *)userID token:(NSString *)token  page:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"order/v10list" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
@@ -620,4 +631,53 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     failure(task, error);
   }];
 }
+
+//提交订单评价
+- (void)submitEvaluationWithUserID:(NSString *)userID token:(NSString *)token score:(NSString *)score content:(NSString *)content reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"comment/add" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[score dataUsingEncoding:NSUTF8StringEncoding] name:@"score"];
+    [formData appendPartWithFormData:[content dataUsingEncoding:NSUTF8StringEncoding] name:@"content"];
+    [formData appendPartWithFormData:[reservation_no dataUsingEncoding:NSUTF8StringEncoding] name:@"reservation_no"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
+//获取推送的广告
+- (void)getAdvertisementListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self GET:@"ad/list" parameters:nil success:^(NSURLSessionDataTask *  task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+        success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *  task, NSError *  error) {
+    DDLogInfo(@"%@", error.description);
+        failure(task, error);
+
+  }];
+}
+
+//查看商家客服列表带专属客服
+
+- (void)getMerchanCustomerServiceListWithuserID:(NSString *)userID token:(NSString *)token shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"user/mysemplist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[userID dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
+    
+   
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+
+}
+
 @end

@@ -27,6 +27,8 @@ target 'SVIP' do
   pod 'JTSImageViewController', :inhibit_warnings => true
   pod 'RESideMenu', '~> 4.0.7'
   pod 'EDStarRating'
+  pod 'DCPathButton'
+  pod 'XLPagerTabStrip', :inhibit_warnings => true
 end
 
 target 'SVIPTests' do

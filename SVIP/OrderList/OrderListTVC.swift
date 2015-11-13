@@ -63,7 +63,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     }
     
     let cell: OrderListCell = tableView.dequeueReusableCellWithIdentifier(OrderListCell.reuseIdentifier()) as! OrderListCell
-    let order = orders[indexPath.row] as! BookOrder
+    let order = orders[indexPath.row] as! OrderModel
     cell.setOrder(order)
     cell.delegate = self
     cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -73,7 +73,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-    let order = orders[indexPath.row] as! BookOrder
+    let order = orders[indexPath.row] as! OrderModel
 //    if Int(order.status) == 0 {  // 0 未确认可取消订单
 //      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
 //      bookingOrderDetailVC.delegate = self
@@ -91,11 +91,11 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   // MARK: - BookingOrderDetailVCDelegate
   func didCancelOrder(order: BookOrder) {
-    order.status = "1"  // 1 取消订单
-    let index = orders.indexOfObject(order)
-    orders.replaceObjectAtIndex(index, withObject: order)
-    let indexPath = NSIndexPath(forRow: index, inSection: 0)
-    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//    order.status = "1"  // 1 取消订单
+//    let index = orders.indexOfObject(order)
+//    orders.replaceObjectAtIndex(index, withObject: order)
+//    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+//    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
   }
   
   // MARK: - SWTableViewDelegate
@@ -103,7 +103,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     switch index {
     case 0:
       let indexPath = tableView.indexPathForCell(cell)!
-      let order = orders[indexPath.row] as! BookOrder
+      let order = orders[indexPath.row] as! OrderModel
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       
@@ -130,7 +130,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
         for orderInfo in orderArray {
-          let order = BookOrder(dictionary: orderInfo as! NSDictionary)
+          let order = OrderModel(dic: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
         print(self.orders.count)

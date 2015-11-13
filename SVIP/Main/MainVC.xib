@@ -54,9 +54,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="轨迹2-copy" translatesAutoresizingMaskIntoConstraints="NO" id="vBb-2A-ocr">
                     <rect key="frame" x="218" y="104" width="165" height="165"/>
                 </imageView>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_logo1" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-PG-wLD">
-                    <rect key="frame" x="127" y="140" width="43" height="43"/>
-                </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdp-DE-53L">
                     <rect key="frame" x="556" y="26" width="44" height="44"/>
                     <constraints>
@@ -339,7 +336,6 @@
         <image name="ic_tianjia" width="20" height="20"/>
         <image name="ic_xiaoxi" width="21" height="16"/>
         <image name="iconfont-huitudangqianweizhi" width="10" height="16"/>
-        <image name="img_logo1" width="43" height="43"/>
         <image name="sl_canting" width="17" height="16"/>
         <image name="text_svip" width="108" height="42"/>
         <image name="轨迹2-copy" width="165" height="165"/>
