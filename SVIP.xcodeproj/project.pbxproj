@@ -2009,8 +2009,8 @@
 			projectRoot = "";
 			targets = (
 				40641EF71B3E569700CF150D /* SVIP */,
-				40641F0C1B3E569800CF150D /* SVIPTests */,
 				404A2F401BA94C7B006475D7 /* Today */,
+				40641F0C1B3E569800CF150D /* SVIPTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2679,7 +2679,6 @@
 		40641F1B1B3E569800CF150D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2696,7 +2695,6 @@
 		40641F1C1B3E569800CF150D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SVIPTests/Info.plist;

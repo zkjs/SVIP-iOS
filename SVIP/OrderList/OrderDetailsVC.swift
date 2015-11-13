@@ -94,9 +94,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     
 
   @IBAction func submit(sender: AnyObject) {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSHTTPSessionManager.sharedInstance().submitEvaluationWithUserID(userID, token: token, score: NSString(format: "%f", score) as String, content: remarkTextField.text, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().submitEvaluationWithScore(NSString(format: "%f", score) as String, content: remarkTextField.text, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responObject: AnyObject!) -> Void in
       let dic = responObject as! NSDictionary
       let set = dic["set"] as? Bool
       if (set == true) {

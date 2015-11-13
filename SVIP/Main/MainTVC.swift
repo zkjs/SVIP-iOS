@@ -44,7 +44,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   }
   func getAdvertisementData() {
     
-    ZKJSHTTPSessionManager.sharedInstance().getAdvertisementListSuccess({ (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getAdvertisementListWithSuccess({ (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       if let array = dic["data"] as? NSArray {
         for dict in array {
@@ -60,10 +60,8 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   }
   
   func getlastOrder() {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
-    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithUserID(userID, token: token,
-      success: {(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+
+    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let lastOrder = responseObject as! NSDictionary
         if let reservation_no = lastOrder["reservation_no"] as? String {
           if reservation_no == "0" {
@@ -412,12 +410,10 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   }
   
   private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let token = JSHAccountManager.sharedJSHAccountManager().token
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     let traceTime = dateFormatter.stringFromDate(NSDate())
-    ZKJSHTTPSessionManager.sharedInstance().postGPSWithUserID(userID, token: token, longitude: "\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().postGPSWithLongitude("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
