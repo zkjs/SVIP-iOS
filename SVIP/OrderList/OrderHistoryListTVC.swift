@@ -67,7 +67,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     }
     
     let cell: OrderHistoryCell = tableView.dequeueReusableCellWithIdentifier(OrderHistoryCell.reuseIdentifier()) as! OrderHistoryCell
-   let order = orders[indexPath.row] as! BookOrder
+   let order = orders[indexPath.row] as! OrderModel
     cell.setOrder(order)
     cell.delegate = self
     
@@ -87,17 +87,17 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
 //    }
     let vc = OrderDetailsVC()
     let order = orders[indexPath.row]
-    vc.order = order as! BookOrder
+    vc.order = order as! OrderModel
     navigationController?.pushViewController(vc, animated: true)
   }
   
   // MARK: - BookingOrderDetailVCDelegate
   func didCancelOrder(order: BookOrder) {
-    order.status = "1"  // 1 取消订单
-    let index = orders.indexOfObject(order)
-    orders.replaceObjectAtIndex(index, withObject: order)
-    let indexPath = NSIndexPath(forRow: index, inSection: 0)
-    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//    order.status = "1"  // 1 取消订单
+//    let index = orders.indexOfObject(order)
+//    orders.replaceObjectAtIndex(index, withObject: order)
+//    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+//    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
   }
   
   // MARK: - SWTableViewDelegate
@@ -105,7 +105,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     switch index {
     case 0:
       let indexPath = tableView.indexPathForCell(cell)!
-      let order = orders[indexPath.row] as! BookOrder
+      let order = orders[indexPath.row] as! OrderModel
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       
@@ -129,7 +129,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
         for orderInfo in orderArray {
-          let order = BookOrder(dictionary: orderInfo as! NSDictionary)
+          let order = OrderModel(dic: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
         ZKJSTool.hideHUD()

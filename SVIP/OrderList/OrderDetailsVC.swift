@@ -9,7 +9,17 @@
 import UIKit
 
 class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
-  var order = BookOrder()
+  var order = OrderModel()
+  var score = Float()
+  
+
+  @IBOutlet weak var remarkTextField: UITextField!
+  @IBOutlet weak var submitButton: UIButton! {
+    didSet {
+      submitButton.layer.masksToBounds = true
+      submitButton.layer.cornerRadius = 20
+    }
+  }
 
   @IBOutlet weak var usernameLabel: UILabel!
   @IBOutlet weak var scrollView: UIScrollView!
@@ -25,7 +35,12 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       
       title = "订单详情"
       navigationController?.navigationBar.tintColor = UIColor.clearColor()
-      scrollView.contentSize = CGSize(width:0,height:700)
+      if order.score == 0 {
+        scrollView.contentSize = CGSize(width:0,height:850)
+      }else {
+        scrollView.contentSize = CGSize(width:0,height:600)
+      }
+      
       scrollView.showsHorizontalScrollIndicator = false
       scrollView.showsVerticalScrollIndicator = false
       let orderV = NSBundle.mainBundle().loadNibNamed("OrderContentView", owner: self, options: nil).first as? OrderContentView
@@ -36,17 +51,16 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       }
       //评价
       let starRating = EDStarRating()
-      starRating.frame = CGRectMake(80, 500, self.view.bounds.width/3, 123)
+      starRating.frame = CGRectMake(20, 550, self.view.bounds.width/1.7, 60)
       starRating.backgroundColor = UIColor.whiteColor()
       starRating.starImage = UIImage(named: "ic_star_nor")
       starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
       starRating.maxRating = 5
-      starRating.delegate = self;
-      starRating.horizontalMargin = 12;
-      starRating.editable = true;
+      starRating.delegate = self
+      starRating.horizontalMargin = 12
+      starRating.editable = true
       scrollView.addSubview(starRating)
-      
-      starRating.rating = 5.0;
+      starRating.rating = order.score.floatValue
 
         // Do any additional setup after loading the view.
     }
@@ -59,17 +73,18 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     userImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     usernameLabel.text = order.guest
     orderV.hotelNameLabel.text = order.fullname
-    orderV.bedStulyLabel.text = order.room_type + "x" + order.rooms
-    orderV.room_priceLabel.text = "￥" + order.room_rate
+    orderV.bedStulyLabel.text = order.room_type + "x" + order.rooms.stringValue
+    orderV.room_priceLabel.text = "￥" + order.room_rate.stringValue
     orderV.startLabel.text = order.departure_date
     orderV.usernameLabel.text = order.guest
     orderV.hotelImage.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    
     
   }
   
   //MARK -EDStarRating Protocol
   func starsSelectionChanged(control: EDStarRating!, rating: Float) {
-    print(rating)
+    score = rating
   }
 
     override func didReceiveMemoryWarning() {
@@ -78,6 +93,19 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     }
     
 
+  @IBAction func submit(sender: AnyObject) {
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let token = JSHAccountManager.sharedJSHAccountManager().token
+    ZKJSHTTPSessionManager.sharedInstance().submitEvaluationWithUserID(userID, token: token, score: NSString(format: "%f", score) as String, content: remarkTextField.text, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responObject: AnyObject!) -> Void in
+      let dic = responObject as! NSDictionary
+      let set = dic["set"] as? Bool
+      if (set == true) {
+        self.navigationController?.popViewControllerAnimated(true)
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+  }
     /*
     // MARK: - Navigation
 

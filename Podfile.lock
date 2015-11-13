@@ -30,6 +30,7 @@ PODS:
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
   - DateTools (1.7.0)
+  - DCPathButton (2.1.3)
   - EDStarRating (1.1)
   - HexColors (2.3.0)
   - JCTagListView (0.0.4)
@@ -49,6 +50,7 @@ PODS:
   - SocketRocket (0.4.1)
   - SSKeychain (1.2.3)
   - SWTableViewCell (0.3.7)
+  - XLPagerTabStrip (2.0.0)
   - YXTMotionView (0.1)
 
 DEPENDENCIES:
@@ -56,6 +58,7 @@ DEPENDENCIES:
   - AMapSearch
   - CocoaLumberjack
   - DateTools
+  - DCPathButton
   - EDStarRating
   - HexColors
   - JCTagListView
@@ -71,6 +74,7 @@ DEPENDENCIES:
   - SocketRocket
   - SSKeychain (~> 1.2.3)
   - SWTableViewCell
+  - XLPagerTabStrip
   - YXTMotionView (from `https://github.com/hanton/YXTMotionView.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -94,6 +98,7 @@ SPEC CHECKSUMS:
   AMapSearch: fd1ed96353f8a0f5c2e2463dac6a145bb3e6970f
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
@@ -110,6 +115,7 @@ SPEC CHECKSUMS:
   SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  XLPagerTabStrip: 2c69b8e3208432a94e713c198ce597faad5a87bb
   YXTMotionView: cef229d560c50fc8e4fd2897b3715bec208ac95f
 
 COCOAPODS: 0.38.2

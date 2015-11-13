@@ -40,12 +40,12 @@ class OrderListCell: SWTableViewCell {
         return 116.0
       }
 
-  func setOrder(order:BookOrder) {
-    let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"
+  func setOrder(order:OrderModel) {
+    let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid.stringValue).png"
     hotelImageView.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     hotelnameLabel.text = order.fullname
-    roomTypeLabel.text = order.room_type + "x" + order.rooms
-    priceLabel.text = "￥" + order.room_rate
+    roomTypeLabel.text = order.room_type + "x" + order.rooms.stringValue
+    priceLabel.text = "￥" + order.room_rate.stringValue
     getDayOfWeek(order.arrival_date)
     daysFromDateString(order.departure_date, toDateString: order.arrival_date)
     rightUtilityButtons = rightButtons() as [AnyObject]

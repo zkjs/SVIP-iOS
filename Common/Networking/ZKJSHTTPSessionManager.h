@@ -135,6 +135,15 @@
 #pragma mark - 超级身份输入\绑定 邀请码动作
 - (void)pairInvitationCodeWith:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+#pragma mark - 提交订单评价
+- (void)submitEvaluationWithUserID:(NSString *)userID token:(NSString *)token score:(NSString *)score content:(NSString *)content reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+#pragma mark - 获取推送的广告
+- (void)getAdvertisementListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+#pragma mark - 查看商家客服列表带专属客服
+- (void)getMerchanCustomerServiceListWithuserID:(NSString *)userID token:(NSString *)token shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end
 
 @protocol HTTPSessionManagerDelegate <NSObject>

@@ -27,7 +27,7 @@
 
 + (void)showMsg:(NSString *)message
 {
-    MBProgressHUD *hud = [self Hud];
+    MBProgressHUD * hud = [self Hud];
     hud.labelText = message;
     hud.mode = MBProgressHUDModeText;
     hud.labelFont = [UIFont systemFontOfSize:13];

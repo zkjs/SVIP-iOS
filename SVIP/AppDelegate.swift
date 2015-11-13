@@ -347,6 +347,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    
     setupLoginManager()
     window?.makeKeyAndVisible()
   }

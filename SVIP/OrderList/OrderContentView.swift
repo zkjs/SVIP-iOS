@@ -18,7 +18,8 @@ class OrderContentView: UIView {
   @IBOutlet weak var usernameLabel: UILabel!
   @IBOutlet weak var invoiceLabel: UILabel!
   @IBOutlet weak var remarklabel: UILabel!
-  @IBOutlet weak var startRating: EDStarRating!
+  
+  
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
