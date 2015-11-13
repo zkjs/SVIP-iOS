@@ -135,7 +135,7 @@ class BookingOrderDetailVC: UIViewController {
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
     let chatVC = JSHChatVC(chatType: .OldSession)
-    chatVC.shopID = order.shopid
+    chatVC.shopID = order.shopid.stringValue
     chatVC.shopName = order.fullname
     chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)
@@ -149,7 +149,7 @@ class BookingOrderDetailVC: UIViewController {
 
   @IBAction func cancelOrder(sender: AnyObject) {
     let chatVC = JSHChatVC(chatType: .CancelOrder)
-    chatVC.shopID = order.shopid
+    chatVC.shopID = order.shopid.stringValue
     chatVC.shopName = order.fullname
     chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)

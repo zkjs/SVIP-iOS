@@ -32,7 +32,7 @@ class BookPayVC: UIViewController {
     name.text = bkOrder.room_type
 //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
-    let rate = (bkOrder.room_rate as NSString).doubleValue
+    let rate = bkOrder.room_rate.doubleValue
     let Money = rate * (Double)(Int(bkOrder.dayInt)!)
     price.text = "￥   \(Money)"
   }
@@ -64,7 +64,7 @@ class BookPayVC: UIViewController {
     // Hanton
     let chatVC = JSHChatVC(chatType: .OldSession)
     chatVC.order = bkOrder
-    chatVC.shopID = bkOrder.shopid
+    chatVC.shopID = bkOrder.shopid.stringValue
     chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_PAY_WHEN_CHECKIN", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)
   }
@@ -78,8 +78,8 @@ class BookPayVC: UIViewController {
     aliOrder.tradeNO = AbookOrder.reservation_no
     aliOrder.productName = AbookOrder.room_type
     aliOrder.productDescription = "needtoknow"
-    if let rooms = Int(AbookOrder.rooms) {
-      let amount = (AbookOrder.room_rate as NSString).doubleValue * Double(rooms)
+    if let rooms = AbookOrder.rooms {
+      let amount = AbookOrder.room_rate.doubleValue * rooms.doubleValue
     aliOrder.amount = NSString(format:"%.2f", amount) as String
 //      aliOrder.amount = "0.02"
     }
@@ -115,7 +115,7 @@ class BookPayVC: UIViewController {
           //支付成功,跳到聊天
           let chatVC = JSHChatVC(chatType: .OldSession)
           chatVC.order = self.bkOrder
-          chatVC.shopID = self.bkOrder.shopid
+          chatVC.shopID = self.bkOrder.shopid.stringValue
           chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_ORDER_PAID", comment: "")
           chatVC.navigationItem.hidesBackButton = true
           self.navigationController?.pushViewController(chatVC, animated: true)

@@ -39,7 +39,7 @@ class HotelCell: UITableViewCell {
     hotelNameLabel.text = hotel.fullname
     let shopID = hotel.shopid
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    let urlString = "\(kBaseURL)uploads/shops/\(shopID).png"
+    let urlString = "\(kBaseURL)uploads/shops/\(shopID.stringValue).png"
     let logoURL = NSURL(string: urlString)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
   }

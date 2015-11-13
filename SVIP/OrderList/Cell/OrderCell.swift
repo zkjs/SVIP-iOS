@@ -52,7 +52,7 @@ class OrderCell: SWTableViewCell {
     let status = order.status
     var room_rate = 0
     if let roomRate = order.room_rate {
-      room_rate = Int((roomRate as NSString).floatValue)
+      room_rate = roomRate.integerValue
     }
     
     // status=订单状态 默认0 未确认可取消订单 1取消订单 2已确认订单 3已经完成的订单 4已经入住的订单 5删除订单

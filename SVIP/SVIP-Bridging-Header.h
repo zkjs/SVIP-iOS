@@ -47,4 +47,5 @@
 #import "EDStarRating.h"
 #import "DCPathButton.h"
 #import "XLSegmentedPagerTabStripViewController.h"
+#import "UIImage+Resize.h"
 //#import <FIR/FIR.h>
