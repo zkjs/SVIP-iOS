@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 
 target 'SVIP' do
+  pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'
 #  pod 'FIR.im'
   pod 'HexColors'
   pod 'JCTagListView'

@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     fetchBeaconRegions()
 //    setupUMSocial()//UM
     setupBackgroundFetch()
+    setupEaseMobWithApplication(application, launchOptions: launchOptions)
     
     ZKJSHTTPSessionManager.sharedInstance().delegate = self
     
@@ -60,12 +61,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     ZKJSTCPSessionManager.sharedInstance().deinitNetworkCommunication()
+    EaseMob.sharedInstance().applicationDidEnterBackground(application)
     print("applicationDidEnterBackground")
   }
 
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+    EaseMob.sharedInstance().applicationWillEnterForeground(application)
     print("applicationWillEnterForeground")
   }
 
@@ -91,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    EaseMob.sharedInstance().applicationWillTerminate(application)
     print("applicationWillTerminate")
   }
   
@@ -511,5 +515,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    notification.alertBody = alertMessage
 //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
+  
+  func setupEaseMobWithApplication(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
+    #if DEBUG
+      let cert = "SVIP_dev"
+    #else
+      let cert = "SVIP"
+    #endif
+    EaseMob.sharedInstance().registerSDKWithAppKey("zkjs#svip", apnsCertName: cert)
+    EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+
+    // 自动登录
+    let isAutoLogin = EaseMob.sharedInstance().chatManager.isAutoLoginEnabled
+    if isAutoLogin == false {
+      EaseMob.sharedInstance().chatManager.asyncLoginWithUsername("5603d8d417392", password: "123456", completion: { (responseObject: [NSObject : AnyObject]!, error: EMError!) -> Void in
+        EaseMob.sharedInstance().chatManager.enableAutoLogin!()
+        }, onQueue: nil)
+    }
+  }
+  
 }
 

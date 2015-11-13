@@ -31,6 +31,7 @@ PODS:
     - CocoaLumberjack/Default
   - DateTools (1.7.0)
   - DCPathButton (2.1.3)
+  - EaseMobSDKFull (2.2.1)
   - EDStarRating (1.1)
   - HexColors (2.3.0)
   - JCTagListView (0.0.4)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - CocoaLumberjack
   - DateTools
   - DCPathButton
+  - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - EDStarRating
   - HexColors
   - JCTagListView
@@ -78,6 +80,8 @@ DEPENDENCIES:
   - YXTMotionView (from `https://github.com/hanton/YXTMotionView.git`, branch `master`)
 
 EXTERNAL SOURCES:
+  EaseMobSDKFull:
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
     :branch: master
     :git: https://github.com/hanton/SKTagView
@@ -86,6 +90,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/hanton/YXTMotionView.git
 
 CHECKOUT OPTIONS:
+  EaseMobSDKFull:
+    :commit: c4a63a69518d396309e8d6c267f2756cac3877ee
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
     :commit: 29e0bcdbb112d80a84630de367b713c543c56e58
     :git: https://github.com/hanton/SKTagView
@@ -99,6 +106,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
+  EaseMobSDKFull: 4a18d6ad47b4ccca564833963511bddd151e1654
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
