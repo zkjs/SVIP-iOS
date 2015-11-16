@@ -9,7 +9,7 @@
 import UIKit
 
 class Hotel: NSObject {
-  var shopid: String!
+  var shopid: NSNumber!
   var logo: String!
   var logoURL: String! {
     get {
@@ -22,7 +22,8 @@ class Hotel: NSObject {
   var phone: String!
   
   init(dic: NSDictionary) {
-    shopid = dic["shopid"] as! String
+    let shopidString = dic["shopid"] as! String
+    shopid = NSNumber(integer: Int(shopidString)!)
     logo = dic["logo"] as! String
     fullname = dic["fullname"] as? String
     phone = dic["phone"] as? String

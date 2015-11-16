@@ -73,9 +73,9 @@ class BookConfirmVC: UIViewController {
         type = goodsType
       }
       order.room_type = "\(room)\(type)"//有问题的，order与goods字段对不上
-      order.room_rate = selectedGoods.price
-      order.rooms = "1"
-      order.shopid = selectedGoods.shopid
+      order.room_rate = NSNumber(integer: Int(selectedGoods.price!)!)
+      order.rooms = NSNumber(integer: 1)
+      order.shopid = NSNumber(integer: Int(selectedGoods.shopid!)!)
       let localBaseInfo = JSHStorage.baseInfo()
       order.guest = localBaseInfo.username
       order.guesttel = localBaseInfo.phone
@@ -128,7 +128,7 @@ class BookConfirmVC: UIViewController {
     }
     
     if let str = order.room_rate {
-      let danjia = (str as NSString).integerValue
+      let danjia = str.integerValue
       let total = danjia * dayInt
 
       let dic: [String: AnyObject] = [
@@ -182,15 +182,15 @@ class BookConfirmVC: UIViewController {
     }
     order.arrival_date = inDate.dateString
     order.departure_date = outDate.dateString
-    ZKJSHTTPSessionManager.sharedInstance().postBookingInfoWithShopID(order.shopid,
+    ZKJSHTTPSessionManager.sharedInstance().postBookingInfoWithShopID(order.shopid.stringValue,
       goodsID: order.room_typeid,
       guest: order.guest,
       guestPhone: order.guesttel,
-      roomNum: order.rooms,
+      roomNum: order.rooms.stringValue,
       arrivalDate: order.arrival_date,
       departureDate: order.departure_date,
       roomType: order.room_type,
-      roomRate: order.room_rate,
+      roomRate: order.room_rate.stringValue,
       remark: order.remark,
       success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         let payVC = BookPayVC()

@@ -23,7 +23,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   @IBOutlet weak var okButton: UIButton!
   
 //Data
-  var shopid: String!
+  var shopid: NSNumber!
   var dataArray = NSMutableArray()
   var selection: RoomSelectionBlock?  // Hanton
   private var filtedArray = NSMutableArray()

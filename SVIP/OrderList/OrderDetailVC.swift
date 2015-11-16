@@ -62,8 +62,8 @@ class OrderDetailVC: UIViewController {
     let endDate = dateFormatter.dateFromString(endDateString)
     let days = NSDate.daysFromDate(startDate!, toDate: endDate!)
     var room_rate = 0
-    if let roomRate = Int(order.room_rate) {
-      room_rate = roomRate
+    if let roomRate = order.room_rate {
+      room_rate = roomRate.integerValue
     }
     let rooms = order.rooms
     let createdDate = order.created
@@ -76,14 +76,14 @@ class OrderDetailVC: UIViewController {
     startDateString = dateFormatter.stringFromDate(startDate!)
     endDateString = dateFormatter.stringFromDate(endDate!)
     dateDurationLabel.text = "\(startDateString)-\(endDateString)"
-    amountFormulaLabel.text = "¥\(room_rate) * \(Int(rooms)!)" + NSLocalizedString("ROOM", comment: "") + " * \(days)" + NSLocalizedString("NIGHT", comment: "")
-    amountLabel.text = "¥\(room_rate * Int(rooms)! * days)"
+    amountFormulaLabel.text = "¥\(room_rate) * \(rooms.integerValue)" + NSLocalizedString("ROOM", comment: "") + " * \(days)" + NSLocalizedString("NIGHT", comment: "")
+    amountLabel.text = "¥\(room_rate * rooms.integerValue * days)"
   }
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
     let chatVC = JSHChatVC(chatType: .OldSession)
-    chatVC.shopID = order.shopid
+    chatVC.shopID = order.shopid.stringValue
     chatVC.shopName = order.fullname
     chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)

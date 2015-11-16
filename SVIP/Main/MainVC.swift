@@ -604,7 +604,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
     case .InRegion_NoOrder:
       let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-      vc.shopID = beacon!["shopid"]!
+      vc.shopID = NSNumber(integer: Int(beacon!["shopid"]!)!)
       self.navigationController?.pushViewController(vc, animated: true)
       break
     case .OutOfRegion_NoOrder:
@@ -654,14 +654,14 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
       sideMenuViewController.presentRightMenuViewController()
     case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
-      chatVC.shopID = order?.shopid
+      chatVC.shopID = order?.shopid.stringValue
       chatVC.shopName = order?.fullname
       chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
       navigationController?.pushViewController(chatVC, animated: true)
     case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
       let chatVC = JSHChatVC(chatType: .Service)
-      chatVC.shopID = order?.shopid
+      chatVC.shopID = order?.shopid.stringValue
       chatVC.shopName = order?.fullname
       chatVC.order = order
       chatVC.condition = String(ruleType.rawValue)
@@ -714,7 +714,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //        presentViewController(navController, animated: true, completion: nil)
         // 拨打酒店电话
         if let shopID = order?.shopid {
-          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID) {
+          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID.stringValue) {
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
           }
         }
@@ -728,7 +728,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
 //        presentViewController(navController, animated: true, completion: nil)
         // 拨打酒店电话
         if let shopID = order?.shopid {
-          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID) {
+          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID.stringValue) {
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
           }
         }

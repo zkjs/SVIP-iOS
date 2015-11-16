@@ -186,8 +186,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     paymentButton.setTitle(NSLocalizedString("PAY_NOW", comment: ""), forState: UIControlState.Normal)
 
     bkOrder.room_type = self.roomDic["room_type"] as? String
-    bkOrder.rooms = self.roomDic["rooms"]! as! String
-    bkOrder.room_rate = self.roomDic["room_rate"] as! String
+    bkOrder.rooms = self.roomDic["rooms"]! as! NSNumber
+    bkOrder.room_rate = self.roomDic["room_rate"] as! NSNumber
     
     
     //设置amountLabel
@@ -242,8 +242,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     aliOrder.tradeNO = AbookOrder.reservation_no
     aliOrder.productName = AbookOrder.room_type
     aliOrder.productDescription = "needtoknow"
-    if let rooms = Int(AbookOrder.rooms) {
-      let amount = (AbookOrder.room_rate as NSString).doubleValue * Double(rooms)
+    if let rooms = AbookOrder.rooms {
+      let amount = AbookOrder.room_rate.doubleValue * rooms.doubleValue
       aliOrder.amount = NSString(format:"%.2f", amount) as String
     }
     

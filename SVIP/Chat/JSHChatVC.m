@@ -489,15 +489,15 @@ const CGFloat shortcutViewHeight = 45.0;
     }
     case ChatCallingWaiter: {
       NSString *orderStatus = @"";
-      if ([self.order.status isEqualToString:@"0"]) {
+      if ([self.order.status.stringValue isEqualToString:@"0"]) {
         orderStatus = @"未确认可取消订单";
-      } else if ([self.order.status isEqualToString:@"1"]) {
+      } else if ([self.order.status.stringValue isEqualToString:@"1"]) {
         orderStatus = @"取消订单";
-      } else if ([self.order.status isEqualToString:@"2"]) {
+      } else if ([self.order.status.stringValue isEqualToString:@"2"]) {
         orderStatus = @"已确认订单";
-      } else if ([self.order.status isEqualToString:@"3"]) {
+      } else if ([self.order.status.stringValue isEqualToString:@"3"]) {
         orderStatus = @"已经完成的订单";
-      } else if ([self.order.status isEqualToString:@"5"]) {
+      } else if ([self.order.status.stringValue isEqualToString:@"5"]) {
         orderStatus = @"删除订单";
       }
       

@@ -21,6 +21,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+      
       setupNotification()
       setupCoreLocationService()
       setupBluetoothManager()
@@ -78,8 +79,9 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     }
   }
   func configureDCPathButton() {
+    let image = UIImage(named: "ic_zhong_nor")
     
-    dcPathButton = DCPathButton(centerImage: UIImage(named: "ic_zhong_nor"), highlightedImage: UIImage(named: "ic_zhong_pre"))
+    dcPathButton = DCPathButton(centerImage: image, highlightedImage: UIImage(named: "ic_zhong_pre"))
     dcPathButton.delegate = self
     dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.width/3.2, self.view.bounds.height+30)
     dcPathButton.allowSounds = true
@@ -125,7 +127,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
         //        presentViewController(navController, animated: true, completion: nil)
         // 拨打酒店电话
         if let shopID = order?.shopid {
-          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID) {
+          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID.stringValue) {
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
           }
         }
@@ -139,7 +141,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
         //        presentViewController(navController, animated: true, completion: nil)
         // 拨打酒店电话
         if let shopID = order?.shopid {
-          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID) {
+          if let shopPhone = StorageManager.sharedInstance().shopPhoneWithShopID(shopID.stringValue) {
             UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(shopPhone)")!)
           }
         }

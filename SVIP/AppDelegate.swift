@@ -186,16 +186,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
         alertView.addAction(UIAlertAction(title: "查看", style: .Default, handler: { (alertAction) -> Void in
           let bookPayVC = BookPayVC()
           let order = BookOrder()
-          order.shopid = shopid
-          order.rooms = rooms
+          order.shopid = NSNumber(integer: Int(shopid!)!)
+          order.rooms = NSNumber(integer: Int(rooms!)!)
           order.room_type = room_type
-          order.room_rate = room_rate
+          order.room_rate = NSNumber(integer: Int(room_rate!)!)
           order.arrival_date = arrival_date
           order.departure_date = departure_date
           order.created = created
           order.dayInt = String(dayInt)
           order.reservation_no = reservation_no
-          order.status = status
+          order.status = NSNumber(integer: Int(status!)!)
           order.remark = remark
           bookPayVC.bkOrder = order
           let navController = UINavigationController(rootViewController: bookPayVC)

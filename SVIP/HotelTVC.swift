@@ -85,7 +85,7 @@ class HotelTVC: UITableViewController,XLPagerTabStripChildItem {
     
     let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-    vc.shopID = (dataArray[indexPath.row] as! Hotel).shopid
+    vc.shopID = NSNumber(integer: Int((dataArray[indexPath.row] as! Hotel).shopid))
     self.navigationController?.pushViewController(vc, animated: true)
 
   }

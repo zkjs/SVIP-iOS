@@ -29,7 +29,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var dateInfoLabel: UILabel!
   @IBOutlet weak var sendOrderButton: UIButton!
   
-  var shopID = ""
+  var shopID = NSNumber(integer: 0)
   var dateFormatter = NSDateFormatter()
   var roomCount = 1
   var duration = 1
@@ -69,7 +69,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Private
   
   func loadRoomTypes() {
-    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(shopID, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(shopID.stringValue, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? NSArray {
         for dict in arr {
           if let myDict = dict as? NSDictionary {
@@ -100,10 +100,10 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   func gotoChatVC() {
     let order = BookOrder()
     order.shopid = shopID
-    order.rooms = rooms
+    order.rooms = NSNumber(integer: Int(rooms)!)
     order.room_typeid = roomTypeID
     order.room_type = roomType.text! + breakfast
-    if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID) {
+    if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID.stringValue) {
       order.fullname = shopName
     }
     order.room_image_URL = roomImageURL
@@ -122,7 +122,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     
     let chatVC = JSHChatVC(chatType: .NewSession)
     chatVC.order = order
-    chatVC.shopID = shopID
+    chatVC.shopID = shopID.stringValue
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
