@@ -178,6 +178,7 @@
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
+		40E9E93E1BF972A7007C0A90 /* SalesTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9E93D1BF972A7007C0A90 /* SalesTBC.swift */; };
 		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
 		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
 		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
@@ -615,6 +616,7 @@
 		40DA7A011B463E850097CE3D /* JSHChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSHChatVC.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		40DA7A021B463E850097CE3D /* JSHChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSHChatVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
+		40E9E93D1BF972A7007C0A90 /* SalesTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SalesTBC.swift; path = SVIP/SalesTBC.swift; sourceTree = SOURCE_ROOT; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
 		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
@@ -1833,6 +1835,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF35D001BF42B6C00918BCF /* SalesPageVC.swift */,
+				40E9E93D1BF972A7007C0A90 /* SalesTBC.swift */,
 				FAF35D021BF42B9000918BCF /* ChatTVC.swift */,
 				FAF35D031BF42B9000918BCF /* ChatTVC.xib */,
 				FAF35D061BF42BB600918BCF /* MailListTVC.swift */,
@@ -2314,6 +2317,7 @@
 				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,
 				4058E4C41BA0211B00EF6D76 /* SETextView.m in Sources */,
 				4058E4991BA0211B00EF6D76 /* XHCaptureHelper.m in Sources */,
+				40E9E93E1BF972A7007C0A90 /* SalesTBC.swift in Sources */,
 				B2F0377C1B93F3D4006FF396 /* PhoneSettingSecondViewController.swift in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
@@ -2511,7 +2515,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "0174be54-d4a9-4550-8144-51b54c3e3105";
@@ -2551,7 +2555,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "5987ced2-81ae-4718-a596-d369f500d59b";
 				SDKROOT = iphoneos;
@@ -2600,7 +2604,7 @@
 					"$(SRCROOT)/SVIP",
 				);
 				INFOPLIST_FILE = SVIP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2659,7 +2663,7 @@
 					"$(SRCROOT)/SVIP",
 				);
 				INFOPLIST_FILE = SVIP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

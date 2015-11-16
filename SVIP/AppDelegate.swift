@@ -524,14 +524,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     #endif
     EaseMob.sharedInstance().registerSDKWithAppKey("zkjs#svip", apnsCertName: cert)
     EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-
-    // 自动登录
-    let isAutoLogin = EaseMob.sharedInstance().chatManager.isAutoLoginEnabled
-    if isAutoLogin == false {
-      EaseMob.sharedInstance().chatManager.asyncLoginWithUsername("5603d8d417392", password: "123456", completion: { (responseObject: [NSObject : AnyObject]!, error: EMError!) -> Void in
-        EaseMob.sharedInstance().chatManager.enableAutoLogin!()
-        }, onQueue: nil)
-    }
   }
   
 }

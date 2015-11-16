@@ -44,7 +44,7 @@ class LoginManager: NSObject {
   func afterAnimation() {
     if JSHAccountManager.sharedJSHAccountManager().userid != nil {
       //已注册
-      fetchUserInfo({ () -> () in
+      fetchUserInfo({[unowned self] () -> () in
         ZKJSTool.hideHUD()
         self.showResideMenu(haspushed: nil)
       })
@@ -53,6 +53,17 @@ class LoginManager: NSObject {
     }else {
       //未注册
       showRegister()
+    }
+  }
+  
+  func easeMobAutoLogin() {
+    // 自动登录
+    let isAutoLogin = EaseMob.sharedInstance().chatManager.isAutoLoginEnabled
+    if isAutoLogin == false {
+      let userID = JSHAccountManager.sharedJSHAccountManager().userid
+      EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(userID, password: "123456", completion: { (responseObject: [NSObject : AnyObject]!, error: EMError!) -> Void in
+        EaseMob.sharedInstance().chatManager.enableAutoLogin!()
+        }, onQueue: nil)
     }
   }
   
@@ -67,7 +78,6 @@ class LoginManager: NSObject {
     menu.bouncesHorizontally = false
     menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5
     appWindow.rootViewController = menu
-
   }
   
   func showRegister() {
@@ -85,6 +95,7 @@ class LoginManager: NSObject {
         }
         //本地存储
         JSHStorage.saveBaseInfo(baseInfo)
+        self.easeMobAutoLogin()
         afterFetch()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -113,11 +124,12 @@ class LoginManager: NSObject {
                   success()
                   //save account data
                   JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
+                  self.easeMobAutoLogin()
                   //编辑个人信息
                   print("here goes to edit info ")
                   let nv = BaseNC(rootViewController: InfoEditViewController())
                   nv.navigationBar.tintColor = UIColor.whiteColor()
-                  nv.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+                  nv.navigationBar.setBackgroundImage(UIImage(named: "avator"), forBarMetrics: UIBarMetrics.Default)
                   nv.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
                   self.appWindow.rootViewController = nv
                 }

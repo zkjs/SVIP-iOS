@@ -215,7 +215,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
         }
       }
     }
-    print("已监控的Beacon区域:\(locationManager.monitoredRegions)")
+//    print("已监控的Beacon区域:\(locationManager.monitoredRegions)")
   }
   
   private func setupGPSMonitor() {

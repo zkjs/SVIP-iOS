@@ -16,28 +16,28 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   let locationManager = CLLocationManager()
   var bluetoothManager = CBCentralManager()
   var beaconRegions = [String: [String: String]]()
-
+  
   
   @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-      setupNotification()
-      setupCoreLocationService()
-      setupBluetoothManager()
-      initTCPSessionManager()
-      configureDCPathButton()
-      getlastOrder()
-      //getAdvertisementData()
-      navigationController?.navigationBarHidden = false
-      tableView.tableFooterView = UIView()
-      let nibName = UINib(nibName: MainViewCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName, forCellReuseIdentifier: MainViewCell.reuseIdentifier())
-      let nibName1 = UINib(nibName: WebViewCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
-      tableView.tableFooterView = UIView()
-
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    setupNotification()
+    setupCoreLocationService()
+    setupBluetoothManager()
+    initTCPSessionManager()
+    configureDCPathButton()
+    getlastOrder()
+    //getAdvertisementData()
+    navigationController?.navigationBarHidden = false
+    tableView.tableFooterView = UIView()
+    let nibName = UINib(nibName: MainViewCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName, forCellReuseIdentifier: MainViewCell.reuseIdentifier())
+    let nibName1 = UINib(nibName: WebViewCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
+    tableView.tableFooterView = UIView()
+    
+  }
   
   // MARK: - View Lifecycle
   override func loadView() {
@@ -61,19 +61,19 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   }
   
   func getlastOrder() {
-
+    
     ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        let lastOrder = responseObject as! NSDictionary
-        if let reservation_no = lastOrder["reservation_no"] as? String {
-          if reservation_no == "0" {
-            StorageManager.sharedInstance().updateLastOrder(nil)
-          } else {
-            let order = BookOrder(dictionary: responseObject as! NSDictionary)
-            StorageManager.sharedInstance().updateLastOrder(order)
-            
-          }
+      let lastOrder = responseObject as! NSDictionary
+      if let reservation_no = lastOrder["reservation_no"] as? String {
+        if reservation_no == "0" {
+          StorageManager.sharedInstance().updateLastOrder(nil)
+        } else {
+          let order = BookOrder(dictionary: responseObject as! NSDictionary)
+          StorageManager.sharedInstance().updateLastOrder(order)
+          
         }
-        
+      }
+      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -148,7 +148,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       }
     }
   }
-    //MARK -DCPathButtonDelegate
+  //MARK -DCPathButtonDelegate
   func pathButton(dcPathButton: DCPathButton!, clickItemButtonAtIndex itemButtonIndex: UInt) {
     
     switch itemButtonIndex {
@@ -166,7 +166,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     default:
       break
     }
-
+    
   }
   
   private func setupBluetoothManager() {
@@ -185,20 +185,20 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     localNotification.region = region
     UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
   }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   override func viewWillAppear(animated: Bool) {
     navigationController?.navigationBarHidden = true
-      }
+  }
   override func viewWillDisappear(animated: Bool) {
     navigationController?.navigationBarHidden = false
   }
   
- 
+  
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 2
@@ -229,8 +229,9 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if indexPath.section == 0 {
       let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
-      let order = StorageManager.sharedInstance().lastOrder()
-      cell.setData(order!)
+      if let order = StorageManager.sharedInstance().lastOrder() {
+        cell.setData(order)
+      }
       cell.selectionStyle = UITableViewCellSelectionStyle.None
       return cell
     }else {
@@ -242,14 +243,14 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       
       return cell
     }
-   
+    
     
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     if section == 0 {
       let myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as? MainHeaderView
-     myView?.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
+      myView?.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
       myView?.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
       setupMainViewUI(myView!)
       
@@ -274,32 +275,32 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
         options: [.RetryFailed, .ProgressiveDownload, .HighPriority])
     }
     myView.userNameLabel.text = JSHStorage.baseInfo().username
-
+    
   }
   func setInfo(sender:UIButton) {
-   let vc = SettingTableViewController(style: .Grouped)
+    let vc = SettingTableViewController(style: .Grouped)
     navigationController?.pushViewController(vc, animated: true)
   }
   
   func leftPage(sender:UIButton) {
-     sideMenuViewController.presentLeftMenuViewController()
+    sideMenuViewController.presentLeftMenuViewController()
   }
- 
   
-
-
+  
+  
+  
   
   @IBAction func pushToHotel(sender: AnyObject) {
     let vc = HotelPageVC()
     let nav = UINavigationController(rootViewController: vc)
-    navigationController?.presentViewController(nav, animated: true, completion: { () -> Void in
-    })
+    navigationController?.presentViewController(nav, animated: true, completion: nil)
   }
   @IBAction func pushToSale(sender: AnyObject) {
-    let vc = SalesPageVC()
-    let nav = UINavigationController(rootViewController: vc)
-    navigationController?.presentViewController(nav, animated: true, completion: nil)
-
+    //    let vc = SalesPageVC()
+    //    let nav = UINavigationController(rootViewController: vc)
+    //    navigationController?.presentViewController(nav, animated: true, completion: nil)
+    let vc = SalesTBC()
+    navigationController?.presentViewController(vc, animated: true, completion: nil)
   }
   
   private func setupNotification() {
@@ -364,7 +365,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
         }
       }
     }
-    print("已监控的Beacon区域:\(locationManager.monitoredRegions)")
+    //    print("已监控的Beacon区域:\(locationManager.monitoredRegions)")
   }
   private func removeAllMonitoredRegions() {
     for monitoredRegion in locationManager.monitoredRegions {
@@ -372,7 +373,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       locationManager.stopMonitoringForRegion(region)
     }
   }
-
+  
   private func setupGPSMonitor() {
     locationManager.startMonitoringSignificantLocationChanges()
   }
@@ -559,8 +560,8 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       print(".Unsupported")
     }
   }
-
   
-
-
+  
+  
+  
 }
