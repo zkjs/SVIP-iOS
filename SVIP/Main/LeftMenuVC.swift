@@ -64,7 +64,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if let userid = JSHStorage.baseInfo().userid {
           var url = NSURL(string: kBaseURL)
           url = url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
-          avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RefreshCached, SDWebImageOptions.RetryFailed])
+          avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: [.LowPriority, .RefreshCached, .RetryFailed])
         }
       }
       

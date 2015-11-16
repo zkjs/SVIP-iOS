@@ -22,8 +22,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     title = NSLocalizedString("ORDRE_LIST", comment: "")
     let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderListCell.reuseIdentifier())
-    tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
-    tableView.footer.hidden = true
+    tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
+    tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
   }
@@ -122,7 +122,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   func loadMoreData() -> Void {
     let page = String(orderPage)
     ZKJSHTTPSessionManager.sharedInstance().getOrderListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      self.tableView.footer.hidden = false
+      self.tableView.mj_footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
         for orderInfo in orderArray {
@@ -131,10 +131,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
         }
         print(self.orders.count)
         self.tableView.reloadData()
-        self.tableView.footer.endRefreshing()
+        self.tableView.mj_footer.endRefreshing()
         self.orderPage++
       } else {
-        self.tableView.footer.noticeNoMoreData()
+        self.tableView.mj_footer.endRefreshingWithNoMoreData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       

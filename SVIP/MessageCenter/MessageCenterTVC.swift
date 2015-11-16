@@ -98,7 +98,7 @@ class MessageCenterTVC: UIViewController, UITableViewDataSource, UITableViewDele
       let placeholderImage = UIImage(named: "img_hotel_zhanwei")
       let urlString = "\(kBaseURL)uploads/shops/\(shopID).png"
       let logoURL = NSURL(string: urlString)
-      cell.logo.sd_setImageWithURL(logoURL, forState: .Normal, placeholderImage: placeholderImage, options: [SDWebImageOptions.ProgressiveDownload, SDWebImageOptions.RetryFailed], completed: nil)
+      cell.logo.sd_setImageWithURL(logoURL, forState: .Normal, placeholderImage: placeholderImage, options: [.ProgressiveDownload, .RetryFailed], completed: nil)
       
       if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
         if let badge = shopMessageBadge[shopID] {

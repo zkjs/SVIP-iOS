@@ -37,7 +37,7 @@ class BookRoomCell: UITableViewCell {
           let placeholderImage = UIImage(named: "星空中心")
           var url = NSURL(string: baseUrl)
           url = url?.URLByAppendingPathComponent(goodsImage)
-          roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
+          roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.LowPriority, .RetryFailed], completed: nil)
         }
       }
     }

@@ -7,9 +7,10 @@
 //
 
 #import "JSHBaseInfo.h"
-#import "SDWebImageDownloader.h"
+#import "EMSDWebImageDownloader.h"
 #import "Networkcfg.h"
 #import "JSHStorage.h"
+
 @implementation JSHBaseInfo
 /*
  @property (strong, nonatomic) NSString *avatarStr;
@@ -48,7 +49,7 @@
         //用户头像  uploads/users/userid.jpg
         NSString *urlStr = [kBaseURL stringByAppendingPathComponent:[NSString stringWithFormat:@"uploads/users/%@.jpg",_userid]];
         NSURL *url = [NSURL URLWithString:urlStr];
-        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+        [[EMSDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:EMSDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
           if (finished) {
             if (image) {
               _avatarImage = image;

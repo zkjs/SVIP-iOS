@@ -88,7 +88,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
             let placeholderImage = UIImage(named: "bg_dingdan")
             var url = NSURL(string: baseUrl)
             url = url?.URLByAppendingPathComponent(goodsImage)
-            self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
+            self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.LowPriority, .RetryFailed], completed: nil)
           }
         }
       }
@@ -178,7 +178,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
           let placeholderImage = UIImage(named: "bg_dingdan")
           var url = NSURL(string: baseUrl)
           url = url?.URLByAppendingPathComponent(goodsImage)
-          self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
+          self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.LowPriority, .RetryFailed], completed: nil)
         }
       }
       navigationController?.pushViewController(vc, animated: true)

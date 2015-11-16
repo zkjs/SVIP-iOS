@@ -24,8 +24,8 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     
     let cellNib = UINib(nibName: OrderHistoryCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderHistoryCell.reuseIdentifier())
-    tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
-    tableView.footer.hidden = true
+    tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
+    tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
     
     //tableView.separatorStyle = .None
@@ -125,7 +125,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     
     let page = String(orderPage)
     ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      self.tableView.footer.hidden = false
+      self.tableView.mj_footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
         for orderInfo in orderArray {
@@ -134,10 +134,10 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
         }
         ZKJSTool.hideHUD()
         self.tableView.reloadData()
-        self.tableView.footer.endRefreshing()
+        self.tableView.mj_footer.endRefreshing()
         self.orderPage++
       } else {
-        self.tableView.footer.noticeNoMoreData()
+        self.tableView.mj_footer.endRefreshingWithNoMoreData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         

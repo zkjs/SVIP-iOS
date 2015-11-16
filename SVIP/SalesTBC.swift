@@ -22,7 +22,7 @@ class SalesTBC: UITabBarController {
   }
   
   func setupView() {
-    let vc1 = ChatTVC()
+    let vc1 = GroupListViewController()
     vc1.tabBarItem.image = UIImage(named: "ic_home")
     vc1.tabBarItem.title = "聊天"
     let nv1 = BaseNC()

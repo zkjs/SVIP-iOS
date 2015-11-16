@@ -43,7 +43,7 @@ class OrderCell: SWTableViewCell {
     let urlString = "\(kBaseURL)uploads/shops/\(order.shopid).png"
     let logoURL = NSURL(string: urlString)
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: [SDWebImageOptions.ProgressiveDownload, SDWebImageOptions.RetryFailed], completed: nil)
+    logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: [.ProgressiveDownload, .RetryFailed], completed: nil)
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let startDate = dateFormatter.dateFromString(order.arrival_date)

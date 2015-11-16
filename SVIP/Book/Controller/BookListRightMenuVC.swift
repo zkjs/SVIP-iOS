@@ -34,7 +34,7 @@ import UIKit
 class BookListRightMenuCell: UITableViewCell {
   var hotelData: Hotel? {
     didSet {
-      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed], completed: nil)
+      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: [.LowPriority, .RetryFailed], completed: nil)
       hotel.text = hotelData!.fullname
     }
   }

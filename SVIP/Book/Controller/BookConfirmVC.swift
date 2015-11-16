@@ -93,7 +93,7 @@ class BookConfirmVC: UIViewController {
       url = url?.URLByAppendingPathComponent(goodsImage)
       roomLook.sd_setImageWithURL(url,
         placeholderImage: placeholderImage,
-        options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RetryFailed],
+        options: [.LowPriority, .RetryFailed],
         completed: nil)
     }
     
