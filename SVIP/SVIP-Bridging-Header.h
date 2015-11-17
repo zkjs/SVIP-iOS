@@ -50,4 +50,3 @@
 #import "UIImage+Resize.h"
 #import "EaseMob.h"
 //#import <FIR/FIR.h>
-#import "GroupListViewController.h"

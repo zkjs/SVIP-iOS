@@ -186,7 +186,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     paymentButton.setTitle(NSLocalizedString("PAY_NOW", comment: ""), forState: UIControlState.Normal)
 
     bkOrder.room_type = self.roomDic["room_type"] as? String
-    bkOrder.rooms = self.roomDic["rooms"]! as! NSNumber
+    bkOrder.rooms = self.roomDic["rooms"] as! NSNumber
     bkOrder.room_rate = self.roomDic["room_rate"] as! NSNumber
     
     
