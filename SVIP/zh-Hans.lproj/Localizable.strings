@@ -28,7 +28,7 @@
 "USERNAME_PLACEHOLDER" = "取个昵称，让更多人认识你";
 "COMPANY_PLACEHOLDER" = "输入您的单位名称";
 "COMPANY_PROMPT" = "建议输入全名 如XX市XX科技有限公司";
-"EMAIL_PLACEHOLDER" = "xxxzkjinshi.com";
+"EMAIL_PLACEHOLDER" = "xxx@zkjinshi.com";
 
 "ENTER_INFORMATION" = "请填写信息";
 "WRONG_EMAIL" = "邮箱格式不正确";

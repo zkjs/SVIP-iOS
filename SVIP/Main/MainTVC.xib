@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTVC" customModule="SVIP" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
             <connections>
                 <outlet property="tableView" destination="TRu-bX-agy" id="IlO-rZ-Cpp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,6 +23,11 @@
                         <constraint firstAttribute="height" constant="622" id="8B5-hx-HSs"/>
                         <constraint firstAttribute="width" constant="600" id="bHO-BT-w8w"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="bHO-BT-w8w"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="rBx-tG-rdK"/>
                         <outlet property="delegate" destination="-1" id="xO4-aV-7s9"/>
@@ -70,8 +75,11 @@
                 <constraint firstAttribute="bottom" secondItem="aJJ-pl-oJ3" secondAttribute="bottom" id="OVO-3M-LWF"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ejx-BG-9iZ"/>
                 <constraint firstItem="aJJ-pl-oJ3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gCv-pJ-o00"/>
+                <constraint firstItem="TRu-bX-agy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kUe-6c-SnG"/>
+                <constraint firstAttribute="trailing" secondItem="TRu-bX-agy" secondAttribute="trailing" id="qwc-Yy-Cmk"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-22" id="vlU-Eq-vWD"/>
             </constraints>
+            <point key="canvasLocation" x="314" y="416"/>
         </view>
     </objects>
     <resources>

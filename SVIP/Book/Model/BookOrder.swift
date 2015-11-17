@@ -41,8 +41,9 @@ class BookOrder: NSObject {
   var dayInt: String!
   var phone: NSNumber!
   var userid:String!
-  var map_longitude: NSNumber!
-  var map_latitude: NSNumber!
+  var star:String!
+  var map_longitude: double_t!
+  var map_latitude: double_t!
   //for alipay
   var reservation_no: String!
 
@@ -57,6 +58,7 @@ class BookOrder: NSObject {
   
   override var description: String {
     var output = ""
+    
     output += "shopid: \(shopid)\n"
     output += "fullname: \(fullname)\n"
     output += "room_typeid: \(room_typeid)\n"
@@ -83,6 +85,7 @@ class BookOrder: NSObject {
   override init() {}
   
   init(dictionary: NSDictionary) {
+   
     arrival_date = dictionary["arrival_date"] as? String
     created = dictionary["created"] as? String
     departure_date = dictionary["departure_date"] as? String
@@ -100,8 +103,8 @@ class BookOrder: NSObject {
     status = dictionary["status"] as? NSNumber
     nologin = dictionary["nologin"] as? NSNumber
     userid = dictionary["userid"] as? String
-    map_longitude = dictionary["map_longitude"] as? NSNumber
-    map_latitude = dictionary["map_latitude"] as? NSNumber
+    map_longitude = dictionary["map_longitude"] as? double_t
+    map_latitude = dictionary["map_latitude"] as? double_t
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     var startDate: NSDate?
@@ -119,6 +122,7 @@ class BookOrder: NSObject {
   }
   
   init (coder aDecoder: NSCoder!) {
+    
     shopid = aDecoder.decodeObjectForKey("shopid") as! NSNumber
     fullname = aDecoder.decodeObjectForKey("fullname") as! String
     room_typeid = aDecoder.decodeObjectForKey("room_typeid") as? String ?? ""
@@ -137,11 +141,12 @@ class BookOrder: NSObject {
     remark = aDecoder.decodeObjectForKey("remark") as! String
     nologin = aDecoder.decodeObjectForKey("nologin") as! NSNumber
     room_image_URL = aDecoder.decodeObjectForKey("room_image_URL") as! String
-    map_longitude = aDecoder.decodeObjectForKey("map_longitude") as! NSNumber
-    map_latitude = aDecoder.decodeObjectForKey("map_latitude") as! NSNumber
+    map_longitude = aDecoder.decodeObjectForKey("map_longitude") as! double_t
+    map_latitude = aDecoder.decodeObjectForKey("map_latitude") as! double_t
   }
   
   func encodeWithCoder(aCoder: NSCoder!) {
+    
     aCoder.encodeObject(shopid, forKey:"shopid")
     aCoder.encodeObject(fullname, forKey:"fullname")
     aCoder.encodeObject(room_typeid, forKey:"room_typeid")

@@ -10,6 +10,8 @@ import UIKit
 
 class MainHeaderView: UIView {
 
+  @IBOutlet weak var activationButton: UIButton!
+  @IBOutlet weak var choiceCityButton: UIButton!
   @IBOutlet weak var orderStatusLabel: UILabel!
   @IBOutlet weak var gradeLabel: UILabel!
   @IBOutlet weak var userNameLabel: UILabel!
@@ -29,4 +31,5 @@ class MainHeaderView: UIView {
     }
     */
 
+  
 }

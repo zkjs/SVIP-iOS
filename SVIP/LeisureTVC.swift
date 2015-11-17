@@ -14,6 +14,8 @@ class LeisureTVC: UITableViewController,XLPagerTabStripChildItem {
         super.viewDidLoad()
       title = "休闲"
       tableView.tableFooterView = UIView()
+      let nibName = UINib(nibName: LeisureCell.nibName(), bundle: nil)
+      tableView.registerNib(nibName, forCellReuseIdentifier: LeisureCell.reuseIdentifier())
       let imageView = UIImageView(image: UIImage(named: "img_nodate"))
       imageView.frame = CGRectMake(100, 100, 150, 150)
       tableView.addSubview(imageView)
@@ -48,23 +50,23 @@ class LeisureTVC: UITableViewController,XLPagerTabStripChildItem {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 6
     }
 
-    /*
+  
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(LeisureCell.reuseIdentifier(), forIndexPath: indexPath) as! LeisureCell
 
-        // Configure the cell...
+        
 
         return cell
     }
-    */
+  
 
     /*
     // Override to support conditional editing of the table view.

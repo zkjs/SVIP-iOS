@@ -372,6 +372,10 @@
 		FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFA5681BE8B01D002C07E8 /* OrderHistoryCell.xib */; };
 		FAEFA56D1BE8BB37002C07E8 /* OrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFA56B1BE8BB37002C07E8 /* OrderListCell.swift */; };
 		FAEFA56E1BE8BB37002C07E8 /* OrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFA56C1BE8BB37002C07E8 /* OrderListCell.xib */; };
+		FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF212D31BF71DD5002C1C73 /* CityVC.swift */; };
+		FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF212D41BF71DD5002C1C73 /* CityVC.xib */; };
+		FAF212D91BF73F83002C1C73 /* ActivationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF212D71BF73F83002C1C73 /* ActivationCell.swift */; };
+		FAF212DA1BF73F83002C1C73 /* ActivationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF212D81BF73F83002C1C73 /* ActivationCell.xib */; };
 		FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */; };
 		FAF2E0621BF1868A008DD5BC /* MainTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0601BF1868A008DD5BC /* MainTVC.xib */; };
 		FAF2E06D1BF1CBCB008DD5BC /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */; };
@@ -397,6 +401,10 @@
 		FAF35D201BF4843100918BCF /* FloatingWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D1E1BF4843100918BCF /* FloatingWindowVC.swift */; };
 		FAF35D211BF4843100918BCF /* FloatingWindowVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D1F1BF4843100918BCF /* FloatingWindowVC.xib */; };
 		FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40DE91BF0807E002C77A6 /* OrderModel.swift */; };
+		FAF684471BF983270090D461 /* LeisureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF684451BF983270090D461 /* LeisureCell.swift */; };
+		FAF684481BF983270090D461 /* LeisureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF684461BF983270090D461 /* LeisureCell.xib */; };
+		FAF6844B1BF983460090D461 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF684491BF983460090D461 /* RestaurantCell.swift */; };
+		FAF6844C1BF983460090D461 /* RestaurantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF6844A1BF983460090D461 /* RestaurantCell.xib */; };
 		FAF695061BE7514A007682DC /* OrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF695041BE7514A007682DC /* OrderDetailsVC.swift */; };
 		FAF695071BE7514A007682DC /* OrderDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF695051BE7514A007682DC /* OrderDetailsVC.xib */; };
 		FAF695091BE755A0007682DC /* OrderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF695081BE755A0007682DC /* OrderContentView.swift */; };
@@ -1049,6 +1057,10 @@
 		FAEFA5681BE8B01D002C07E8 /* OrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderHistoryCell.xib; sourceTree = "<group>"; };
 		FAEFA56B1BE8BB37002C07E8 /* OrderListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListCell.swift; sourceTree = "<group>"; };
 		FAEFA56C1BE8BB37002C07E8 /* OrderListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListCell.xib; sourceTree = "<group>"; };
+		FAF212D31BF71DD5002C1C73 /* CityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityVC.swift; sourceTree = "<group>"; };
+		FAF212D41BF71DD5002C1C73 /* CityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityVC.xib; sourceTree = "<group>"; };
+		FAF212D71BF73F83002C1C73 /* ActivationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivationCell.swift; sourceTree = "<group>"; };
+		FAF212D81BF73F83002C1C73 /* ActivationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivationCell.xib; sourceTree = "<group>"; };
 		FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		FAF2E0601BF1868A008DD5BC /* MainTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTVC.xib; sourceTree = "<group>"; };
 		FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
@@ -1074,6 +1086,10 @@
 		FAF35D1E1BF4843100918BCF /* FloatingWindowVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingWindowVC.swift; sourceTree = "<group>"; };
 		FAF35D1F1BF4843100918BCF /* FloatingWindowVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingWindowVC.xib; sourceTree = "<group>"; };
 		FAF40DE91BF0807E002C77A6 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		FAF684451BF983270090D461 /* LeisureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeisureCell.swift; sourceTree = "<group>"; };
+		FAF684461BF983270090D461 /* LeisureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeisureCell.xib; sourceTree = "<group>"; };
+		FAF684491BF983460090D461 /* RestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		FAF6844A1BF983460090D461 /* RestaurantCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantCell.xib; sourceTree = "<group>"; };
 		FAF695041BE7514A007682DC /* OrderDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
 		FAF695051BE7514A007682DC /* OrderDetailsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailsVC.xib; sourceTree = "<group>"; };
 		FAF695081BE755A0007682DC /* OrderContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderContentView.swift; sourceTree = "<group>"; };
@@ -1207,8 +1223,12 @@
 				FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */,
 				FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */,
 				FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */,
+				FAF212D71BF73F83002C1C73 /* ActivationCell.swift */,
+				FAF212D81BF73F83002C1C73 /* ActivationCell.xib */,
 				FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */,
 				FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */,
+				FAF212D31BF71DD5002C1C73 /* CityVC.swift */,
+				FAF212D41BF71DD5002C1C73 /* CityVC.xib */,
 				FAF35D171BF469DF00918BCF /* Model */,
 			);
 			path = Main;
@@ -2678,6 +2698,10 @@
 			children = (
 				FAF2E0861BF21E39008DD5BC /* HotelCell.swift */,
 				FAF2E0871BF21E39008DD5BC /* HotelCell.xib */,
+				FAF684451BF983270090D461 /* LeisureCell.swift */,
+				FAF684461BF983270090D461 /* LeisureCell.xib */,
+				FAF684491BF983460090D461 /* RestaurantCell.swift */,
+				FAF6844A1BF983460090D461 /* RestaurantCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2846,6 +2870,7 @@
 				4058E4FC1BA0211B00EF6D76 /* RecordingBkg@2x.png in Resources */,
 				FAF35D1D1BF46D8700918BCF /* WebViewCell.xib in Resources */,
 				FAF2E0891BF21E39008DD5BC /* HotelCell.xib in Resources */,
+				FAF6844C1BF983460090D461 /* RestaurantCell.xib in Resources */,
 				4052663D1B4127B400B277BE /* OrderDetailVC.xib in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
@@ -2874,6 +2899,7 @@
 				FAF2E06E1BF1CBCB008DD5BC /* MainViewCell.xib in Resources */,
 				4058E5001BA0211B00EF6D76 /* RecordingSignal004@2x.png in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
+				FAF684481BF983270090D461 /* LeisureCell.xib in Resources */,
 				4058E5061BA0211B00EF6D76 /* SECoreTextView.bundle in Resources */,
 				FAEFA56E1BE8BB37002C07E8 /* OrderListCell.xib in Resources */,
 				FAF35D161BF43F0100918BCF /* SearchBarView.xib in Resources */,
@@ -2915,11 +2941,13 @@
 				409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */,
 				4058E5261BA0211B00EF6D76 /* voice@2x.png in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
+				FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */,
 				FAF6950B1BE755AF007682DC /* OrderContentView.xib in Resources */,
 				4058E4E01BA0211B00EF6D76 /* face@2x.png in Resources */,
 				4058E4FD1BA0211B00EF6D76 /* RecordingSignal001@2x.png in Resources */,
 				4058E52D1BA0211B00EF6D76 /* weChatBubble_Sending_Solid@2x.png in Resources */,
 				4058E4ED1BA0211B00EF6D76 /* MessageVideoPlay@2x.png in Resources */,
+				FAF212DA1BF73F83002C1C73 /* ActivationCell.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				40C4B7191BFACD6E00CB2DA5 /* FindListTVC.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
@@ -3017,6 +3045,8 @@
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				FAF2E0771BF2188D008DD5BC /* HotelPageVC.swift in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
+				FAF35D041BF42B9000918BCF /* ChatTVC.swift in Sources */,
+				FAF212D91BF73F83002C1C73 /* ActivationCell.swift in Sources */,
 				4058E4B71BA0211B00EF6D76 /* SEConstants.m in Sources */,
 				40E9EF751BF9D159007C0A90 /* EaseMessageTimeCell.m in Sources */,
 				40E9EF441BF9D159007C0A90 /* MKAnnotationView+EMWebCache.m in Sources */,
@@ -3055,6 +3085,7 @@
 				40E9EF561BF9D159007C0A90 /* PSTGridLayoutInfo.m in Sources */,
 				40C4B7101BFAC80200CB2DA5 /* ConversationListTVC.swift in Sources */,
 				4058E4961BA0211B00EF6D76 /* UIScrollView+XHkeyboardControl.m in Sources */,
+				FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */,
 				B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
 				B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */,
@@ -3221,6 +3252,7 @@
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				4058E4C11BA0211B00EF6D76 /* SETextMagnifierRanged.m in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,
+				FAF684471BF983270090D461 /* LeisureCell.swift in Sources */,
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
 				FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
@@ -3259,6 +3291,7 @@
 				4058E4A61BA0211B00EF6D76 /* XHFileAttribute.m in Sources */,
 				40E9EF4E1BF9D159007C0A90 /* PSTCollectionView.m in Sources */,
 				40E9EF731BF9D159007C0A90 /* EaseBaseMessageCell.m in Sources */,
+				FAF6844B1BF983460090D461 /* RestaurantCell.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
 				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
