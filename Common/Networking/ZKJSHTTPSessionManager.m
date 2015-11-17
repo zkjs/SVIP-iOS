@@ -758,7 +758,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 #pragma mark - 获取推送的广告
 - (void)getAdvertisementListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self GET:@"ad/list" parameters:nil success:^(NSURLSessionDataTask *  task, id responseObject) {
+  [self GET:@"ad/push" parameters:nil success:^(NSURLSessionDataTask *  task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);

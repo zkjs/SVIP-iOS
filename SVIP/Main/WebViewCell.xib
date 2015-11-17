@@ -16,11 +16,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBi-AW-phh">
-                        <rect key="frame" x="-109" y="8" width="601" height="80"/>
+                        <rect key="frame" x="-109" y="8" width="601" height="230"/>
                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="600" id="Dca-P1-5JY"/>
-                            <constraint firstAttribute="height" constant="80" id="J04-tC-dL3"/>
+                            <constraint firstAttribute="height" constant="230" id="J04-tC-dL3"/>
                         </constraints>
                     </webView>
                 </subviews>

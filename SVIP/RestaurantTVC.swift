@@ -13,6 +13,8 @@ class RestaurantTVC: UITableViewController,XLPagerTabStripChildItem {
     override func viewDidLoad() {
         super.viewDidLoad()
       title = "餐饮"
+      let nibName = UINib(nibName: RestaurantCell.nibName(), bundle: nil)
+      tableView.registerNib(nibName, forCellReuseIdentifier: RestaurantCell.reuseIdentifier())
       tableView.tableFooterView = UIView()
       tableView.showsVerticalScrollIndicator = false
 
@@ -40,23 +42,20 @@ class RestaurantTVC: UITableViewController,XLPagerTabStripChildItem {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 6
     }
 
-  /*
+  
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier(RestaurantCell.reuseIdentifier(), forIndexPath: indexPath)
         return cell
     }
-   */
+  
   
 
     /*

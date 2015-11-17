@@ -28,7 +28,7 @@
 "USERNAME_PLACEHOLDER" = "Your nickname";
 "COMPANY_PLACEHOLDER" = "Your company";
 "COMPANY_PROMPT" = "Please enter the full company name.";
-"EMAIL_PLACEHOLDER" = "xxxzkjinshi.com";
+"EMAIL_PLACEHOLDER" = "xxx@zkjinshi.com";
 
 "ENTER_INFORMATION" = "Please enter your information";
 "WRONG_EMAIL" = "The email is in wrong format";

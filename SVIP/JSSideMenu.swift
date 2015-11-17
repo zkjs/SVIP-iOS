@@ -18,7 +18,7 @@ class JSSideMenu: RESideMenu {
         }
       }
     }
-    return .Default
+    return .LightContent
   }
   
 }

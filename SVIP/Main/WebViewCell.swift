@@ -22,15 +22,9 @@ class WebViewCell: UITableViewCell {
   class func nibName() -> String {
     return "WebViewCell"
   }
-  
-  class func height() -> CGFloat {
-    return 230
-  }
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

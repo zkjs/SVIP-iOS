@@ -34,6 +34,8 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     setUI()
     loadData()
     tableView.reloadData()
+   
+
   }
   
   func loadData() {
@@ -55,7 +57,11 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     dataArray.append(menu4)
   }
   
+ 
+  
   func setUI() {
+    NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
+      name: "DownloadImageNotification", object: nil)
     avatar.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     if let baseInfo = JSHStorage.baseInfo() {
       if baseInfo.avatarImage != nil {
@@ -64,7 +70,10 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if let userid = JSHStorage.baseInfo().userid {
           var url = NSURL(string: kBaseURL)
           url = url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
-          avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RefreshCached, SDWebImageOptions.RetryFailed])
+          let data = NSData(contentsOfURL: url!)
+          avatar.imageView?.image = UIImage(data: data!)
+          
+          //avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RefreshCached, SDWebImageOptions.RetryFailed])
         }
       }
       
@@ -112,7 +121,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
       case .Setting:
         vc = SettingTableViewController(style: .Grouped)
       case .InRoomCheckin:
-        print(".InRoomCheckin")
+        
         vc = SkipCheckInSettingViewController()
       case .BookingOrder:
         vc = OrderListTVC()
@@ -124,8 +133,17 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         navi.pushViewController(vc, animated: true)
       }
     } else {
-      print("在枚举LeftButton中未找到\(indexPath.row)")
+      
     }
+  }
+  
+  func downloadImage(notification: NSNotification) {
+    let userInfo = notification.userInfo as! [String:AnyObject]
+    let imageData = userInfo["avtarImage"] as! NSData
+    let image = UIImage(data: imageData)
+    avatar.setImage(image, forState: UIControlState.Normal)
+    
+    
   }
   
 }

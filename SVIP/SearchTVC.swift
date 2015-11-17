@@ -13,7 +13,7 @@ class SearchTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       let searchView = NSBundle.mainBundle().loadNibNamed("SearchBarView", owner: self, options: nil).first as? SearchBarView
-      searchView?.frame = CGRectMake(0, -10, 200, 35)
+      searchView?.frame = CGRectMake(0, 0, 200, 35)
       navigationItem.titleView?.sizeToFit()
       searchView?.searchBar.layer.borderColor = navigationController?.navigationBar.barTintColor?.CGColor
       navigationItem.titleView = searchView

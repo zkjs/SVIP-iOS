@@ -10,80 +10,96 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPathButtonDelegate,CLLocationManagerDelegate,CBCentralManagerDelegate {
+  var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
+  var height:CGFloat!
+  var distance:CLLocationDistance!
+  var longitude:double_t!
+  var latution:double_t!
   var AdvertisementArray = [AdvertisementModel]()
   var dcPathButton:DCPathButton!
   let locationManager = CLLocationManager()
   var bluetoothManager = CBCentralManager()
   var beaconRegions = [String: [String: String]]()
-
+  var myView:MainHeaderView!
   
   @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-      setupNotification()
-      setupCoreLocationService()
-      setupBluetoothManager()
-      initTCPSessionManager()
-      configureDCPathButton()
-      getlastOrder()
-      //getAdvertisementData()
-      navigationController?.navigationBarHidden = false
-      tableView.tableFooterView = UIView()
-      let nibName = UINib(nibName: MainViewCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName, forCellReuseIdentifier: MainViewCell.reuseIdentifier())
-      let nibName1 = UINib(nibName: WebViewCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
-      tableView.tableFooterView = UIView()
-
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    getlastOrder()
+    setupNotification()
+    setupCoreLocationService()
+    setupBluetoothManager()
+    initTCPSessionManager()
+    configureDCPathButton()
+    getAdvertisementData()
+    navigationController?.navigationBarHidden = false
+    tableView.tableFooterView = UIView()
+    
+    
+//    tableView.contentSize = view.bounds.size
+    
+    let nibName = UINib(nibName: MainViewCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName, forCellReuseIdentifier: MainViewCell.reuseIdentifier())
+    let nibName1 = UINib(nibName: WebViewCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
+    let nibName2 = UINib(nibName: ActivationCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName2, forCellReuseIdentifier: ActivationCell.reuseIdentifier())
+    tableView.tableFooterView = UIView()
+    
+    
+  }
   
   // MARK: - View Lifecycle
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MainTVC", owner:self, options:nil)
   }
+  
   func getAdvertisementData() {
     
     ZKJSHTTPSessionManager.sharedInstance().getAdvertisementListWithSuccess({ (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
-      if let array = dic["data"] as? NSArray {
-        for dict in array {
-          let advertisement = AdvertisementModel(dic: dict as! [String:AnyObject])
-          self.AdvertisementArray.append(advertisement)
-          
-        }
-        self.tableView.reloadData()
-      }
+      let advertisement = AdvertisementModel(dic: dic as! [String:AnyObject])
+      self.AdvertisementArray.append(advertisement)
+      self.tableView.reloadData()
+      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
   }
   
   func getlastOrder() {
-
+    
     ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        let lastOrder = responseObject as! NSDictionary
-        if let reservation_no = lastOrder["reservation_no"] as? String {
-          if reservation_no == "0" {
-            StorageManager.sharedInstance().updateLastOrder(nil)
-          } else {
-            let order = BookOrder(dictionary: responseObject as! NSDictionary)
-            StorageManager.sharedInstance().updateLastOrder(order)
-            
-          }
+      let lastOrder = responseObject as! NSDictionary
+      if let reservation_no = lastOrder["reservation_no"] as? String {
+        if reservation_no == "0" {
+          StorageManager.sharedInstance().updateLastOrder(nil)
+        } else {
+          let order = BookOrder(dictionary: responseObject as! NSDictionary)
+          StorageManager.sharedInstance().updateLastOrder(order)
+          //计算距离
+          let currentLocation = CLLocation(latitude: self.latution, longitude: self.longitude)
+          let targetLocation = CLLocation(latitude:order.map_latitude , longitude:order.map_longitude)
+          self.distance = currentLocation.distanceFromLocation(targetLocation)
+          
+          
         }
-        
+        self.tableView.reloadData()
+      }
+      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
   }
+  
   func configureDCPathButton() {
     let image = UIImage(named: "ic_zhong_nor")
     
     dcPathButton = DCPathButton(centerImage: image, highlightedImage: UIImage(named: "ic_zhong_pre"))
     dcPathButton.delegate = self
-    dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.width/3.2, self.view.bounds.height+30)
+    view.frame = UIScreen.mainScreen().bounds
+    dcPathButton.dcButtonCenter = CGPointMake(view.bounds.width/2, view.bounds.height-40)
     dcPathButton.allowSounds = true
     dcPathButton.allowCenterButtonRotation = true
     dcPathButton.bloomRadius = 90
@@ -91,20 +107,15 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     guester.minimumPressDuration = 1.5
     dcPathButton.addGestureRecognizer(guester)
     
-    let itemButton_1 = DCPathItemButton(image: UIImage(named: "ic_canyin"), highlightedImage: UIImage(named: "ic_canyin"), backgroundImage: UIImage(named: "ic_canyin"), backgroundHighlightedImage: UIImage(named: "ic_zhong_pre"))
+    let itemButton_1 = DCPathItemButton(image: UIImage(named: "ic_canyin"), highlightedImage: UIImage(named: "ic_canyin"), backgroundImage: UIImage(named: "ic_canyin"), backgroundHighlightedImage: UIImage(named: "ic_canyin"))
     let itemButton_2 = DCPathItemButton(image: UIImage(named: "ic_jiudian"), highlightedImage: UIImage(named: "ic_jiudian"), backgroundImage: UIImage(named: "ic_jiudian"), backgroundHighlightedImage: UIImage(named: "ic_jiudian"))
     let itemButton_3 = DCPathItemButton(image: UIImage(named: "ic_xiuxian"), highlightedImage: UIImage(named: "ic_xiuxian"), backgroundImage: UIImage(named: "ic_xiuxian"), backgroundHighlightedImage: UIImage(named: "ic_xiuxian"))
-    
-    
-    
     dcPathButton.addPathItems([itemButton_1, itemButton_2, itemButton_3])
-    
     self.view.addSubview(dcPathButton)
     
   }
   func long(sender:UILongPressGestureRecognizer) {
     if sender.state == UIGestureRecognizerState.Began {
-      print("Long Press Main Button.")
       
       let beacon = StorageManager.sharedInstance().lastBeacon()
       let order = StorageManager.sharedInstance().lastOrder()
@@ -148,7 +159,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       }
     }
   }
-    //MARK -DCPathButtonDelegate
+  //MARK -DCPathButtonDelegate
   func pathButton(dcPathButton: DCPathButton!, clickItemButtonAtIndex itemButtonIndex: UInt) {
     
     switch itemButtonIndex {
@@ -166,7 +177,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     default:
       break
     }
-
+    
   }
   
   private func setupBluetoothManager() {
@@ -185,20 +196,23 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     localNotification.region = region
     UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
   }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
     navigationController?.navigationBarHidden = true
-      }
+  }
   override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
     navigationController?.navigationBarHidden = false
   }
   
- 
+  
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 2
@@ -206,7 +220,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
-      return 1
+      return 2
     }
     else {
       
@@ -215,7 +229,22 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return MainViewCell.height()
+    if indexPath.section == 0 && indexPath.row == 0{
+      
+      return ActivationCell.height()
+    }
+    if indexPath.section == 0 && indexPath.row == 1 {
+      return MainViewCell.height()
+    }
+    else {
+      if height == nil {
+        return 0
+      }else {
+        return height
+      }
+      
+    }
+    
   }
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if section == 0 {
@@ -227,67 +256,90 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.section == 0 {
+    if indexPath.section == 0 && indexPath.row == 1{
       let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
       let order = StorageManager.sharedInstance().lastOrder()
       cell.setData(order!)
       cell.selectionStyle = UITableViewCellSelectionStyle.None
       return cell
-    }else {
+    }
+    if indexPath.section == 0 && indexPath.row == 0 {
+      let cell = tableView.dequeueReusableCellWithIdentifier("ActivationCell", forIndexPath: indexPath) as! ActivationCell
+      
+      return cell
+    }
+    else {
       let cell = tableView.dequeueReusableCellWithIdentifier("WebViewCell", forIndexPath:indexPath) as! WebViewCell
       let ad = AdvertisementArray[indexPath.row]
       let url = NSURL(string: ad.url!)
       let request = NSURLRequest(URL: url!)
       cell.webView.loadRequest(request)
+      height = CGFloat ( (cell.webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight")! as NSString).floatValue)
+      
       
       return cell
     }
-   
+    
     
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     if section == 0 {
-      let myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as? MainHeaderView
-     myView?.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
-      myView?.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-      setupMainViewUI(myView!)
+     
+      myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
+      myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
+      myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+      myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
+      setupMainViewUI(myView)
       
-      self.view.addSubview(myView!)
+      //      self.view.addSubview(myView)
+      
       return myView
     }else {
       return nil
     }
     
   }
-  func setupMainViewUI(myView:MainHeaderView) {
-    myView.userImageButton.imageView?.contentMode = .ScaleAspectFit
-    if let image = JSHStorage.baseInfo().avatarImage {
-      myView.userImageButton.setImage(image, forState: .Normal)
-    } else {
-      let userid = JSHStorage.baseInfo().userid
-      var url = NSURL(string: kBaseURL)
-      url = url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
-      myView.userImageButton.sd_setImageWithURL(url,
-        forState: .Normal,
-        placeholderImage: UIImage(named: "ic_camera_nor"),
-        options: [.RetryFailed, .ProgressiveDownload, .HighPriority])
-    }
-    myView.userNameLabel.text = JSHStorage.baseInfo().username
-
+  
+  func choiceCity(sender:UIButton) {
+    let vc = CityVC()
+    navigationController?.pushViewController(vc, animated: true)
   }
+  
+  func setupMainViewUI(myView:MainHeaderView) {
+    let image = JSHStorage.baseInfo().avatarImage
+    myView.userImageButton.setImage(image, forState: .Normal)
+    if distance == nil {
+      return
+    }else {
+      //定位客户位子 算出距离目的地酒店的距离
+      myView.orderStatusLabel.text = "有订单 距离\(String(format: "%.2f", distance/1000))km"
+      myView.userNameLabel.text = JSHStorage.baseInfo().username
+    }
+    
+    
+  }
+  
+  
+  
+  func downloadImage(notification: NSNotification) {
+    let userInfo = notification.userInfo as! [String:AnyObject]
+    let imageData = userInfo["avtarImage"] as! NSData
+    let image = UIImage(data: imageData)
+    myView.userImageButton.setImage(image, forState: UIControlState.Normal)
+    self.tableView.reloadData()
+    
+  }
+  
   func setInfo(sender:UIButton) {
-   let vc = SettingTableViewController(style: .Grouped)
+    let vc = SettingTableViewController(style: .Grouped)
     navigationController?.pushViewController(vc, animated: true)
   }
   
   func leftPage(sender:UIButton) {
-     sideMenuViewController.presentLeftMenuViewController()
+    sideMenuViewController.presentLeftMenuViewController()
   }
- 
   
-
-
   
   @IBAction func pushToHotel(sender: AnyObject) {
     let vc = HotelPageVC()
@@ -295,14 +347,17 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     navigationController?.presentViewController(nav, animated: true, completion: { () -> Void in
     })
   }
+  
   @IBAction func pushToSale(sender: AnyObject) {
     let vc = SalesPageVC()
     let nav = UINavigationController(rootViewController: vc)
     navigationController?.presentViewController(nav, animated: true, completion: nil)
-
+    
   }
   
   private func setupNotification() {
+    NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
+      name: "DownloadImageNotification", object: nil)
     //NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSmartPanel", name: "UIApplicationDidBecomeActiveNotification", object: nil)
   }
   
@@ -327,6 +382,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     setupGPSMonitor()
     print("setupCoreLocationService")
   }
+  
   private func setupBeaconMonitor() {
     removeAllMonitoredRegions()
     
@@ -364,15 +420,17 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
         }
       }
     }
-    print("已监控的Beacon区域:\(locationManager.monitoredRegions)")
+    
   }
+  
+  
   private func removeAllMonitoredRegions() {
     for monitoredRegion in locationManager.monitoredRegions {
       let region = monitoredRegion as! CLBeaconRegion
       locationManager.stopMonitoringForRegion(region)
     }
   }
-
+  
   private func setupGPSMonitor() {
     locationManager.startMonitoringSignificantLocationChanges()
   }
@@ -389,7 +447,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       //      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
       //      presentViewController(alertView, animated: true, completion: nil)
     }
-    print("didChangeAuthorizationStatus: \(status.rawValue)")
+    
   }
   
   func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -398,7 +456,12 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
   
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     locationManager.stopMonitoringSignificantLocationChanges()
+    //获取客户当前的地理位置
     let coordinate = manager.location!.coordinate
+    longitude = coordinate.longitude
+    latution = coordinate.latitude
+    
+    
     
     //    let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
     //    regeoRequest.searchType = AMapSearchType.ReGeocode
@@ -436,14 +499,14 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     if region is CLBeaconRegion {
       didEnterBeaconRegion(region as! CLBeaconRegion)
     }
-    print("didEnterRegion: \(region)")
+    
   }
   
   func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
     if region is CLBeaconRegion {
       didExitBeaconRegion(region as! CLBeaconRegion)
     }
-    print("didExitRegion: \(region)")
+    
   }
   
   private func didEnterBeaconRegion(region: CLBeaconRegion!) {
@@ -463,6 +526,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       }
     }
   }
+  
   private func didExitBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     if let beaconRegion = beaconRegions[region.identifier] {
@@ -475,6 +539,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       }
     }
   }
+  
   private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
     let shopID = beacon["shopid"]
     let locid = beacon["locid"]
@@ -504,6 +569,7 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
     //    notification.alertBody = alertMessage
     //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
+  
   private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
     guard let shopID = beacon["shopid"] else { return }
     guard let locid = beacon["locid"] else { return }
@@ -559,8 +625,8 @@ class MainTVC: UIViewController,UITableViewDelegate,UITableViewDataSource,DCPath
       print(".Unsupported")
     }
   }
-
   
-
-
+  
+  
+  
 }

@@ -56,6 +56,7 @@ class FloatingWindowVC: UIViewController,XLPagerTabStripViewControllerDelegate {
  
   @IBAction func DeterminetheCustomerService(sender: AnyObject) {
     
+    self.view.removeFromSuperview()
   }
   
   

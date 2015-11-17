@@ -1,4 +1,4 @@
-//
+
 //  MainViewCell.swift
 //  SVIP
 //
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MainViewCell: UITableViewCell {
-
+class MainViewCell: UITableViewCell{
+ 
   @IBOutlet weak var orderStyleLabel: UILabel!
   @IBOutlet weak var orderStatusLabel: UILabel!
   @IBOutlet weak var hotelNameLabel: UILabel!
@@ -30,6 +30,7 @@ class MainViewCell: UITableViewCell {
     return 130
   }
   func setData(order:BookOrder) {
+    
     orderStyleLabel.text = "\(order.room_type!) | \(order.dayInt!)晚 | \(order.arrival_date!) | " + "￥" + order.room_rate.stringValue
     hotelNameLabel.text = order.fullname
     let url = NSURL(string: kBaseURL)

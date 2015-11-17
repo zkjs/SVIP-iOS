@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -207,14 +207,14 @@
                     <exclude reference="pbq-hu-zlp"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="Xop-ZP-akj"/>
+                    <exclude reference="zxC-8p-VqR"/>
+                    <exclude reference="1F1-7k-iWY"/>
+                    <exclude reference="FWi-c5-BjT"/>
                     <exclude reference="Ezu-p2-GJY"/>
                     <exclude reference="Kqa-Br-yJD"/>
                     <exclude reference="pfX-bb-EGm"/>
                     <exclude reference="wmS-Q9-peP"/>
-                    <exclude reference="1F1-7k-iWY"/>
-                    <exclude reference="FWi-c5-BjT"/>
-                    <exclude reference="Xop-ZP-akj"/>
-                    <exclude reference="zxC-8p-VqR"/>
                     <exclude reference="1vJ-jD-i84"/>
                     <exclude reference="wlr-Li-Lno"/>
                 </mask>
@@ -227,14 +227,14 @@
                     <include reference="pbq-hu-zlp"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="Xop-ZP-akj"/>
+                    <include reference="zxC-8p-VqR"/>
+                    <include reference="1F1-7k-iWY"/>
+                    <include reference="FWi-c5-BjT"/>
                     <include reference="Ezu-p2-GJY"/>
                     <include reference="Kqa-Br-yJD"/>
                     <include reference="pfX-bb-EGm"/>
                     <include reference="wmS-Q9-peP"/>
-                    <include reference="1F1-7k-iWY"/>
-                    <include reference="FWi-c5-BjT"/>
-                    <include reference="Xop-ZP-akj"/>
-                    <include reference="zxC-8p-VqR"/>
                     <include reference="1vJ-jD-i84"/>
                     <include reference="wlr-Li-Lno"/>
                 </mask>
