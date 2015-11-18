@@ -426,7 +426,12 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   }
   
   private func setupGPSMonitor() {
-    locationManager.startMonitoringSignificantLocationChanges()
+    if #available(iOS 9.0, *) {
+      locationManager.desiredAccuracy = kCLLocationAccuracyBest
+      locationManager.requestLocation()
+    } else {
+      locationManager.startMonitoringSignificantLocationChanges()
+    }
   }
   
   private func initTCPSessionManager() {
