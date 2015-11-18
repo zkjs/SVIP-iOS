@@ -77,10 +77,11 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
           StorageManager.sharedInstance().updateLastOrder(order)
           //计算距离
           let currentLocation = CLLocation(latitude: self.latution, longitude: self.longitude)
-          let targetLocation = CLLocation(latitude:order.map_latitude , longitude:order.map_longitude)
-          self.distance = currentLocation.distanceFromLocation(targetLocation)
-          
-          
+          if let latitude = order.map_latitude,
+            let longitude = order.map_longitude {
+              let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
+              self.distance = currentLocation.distanceFromLocation(targetLocation)
+          }
         }
         self.tableView.reloadData()
       }
@@ -309,7 +310,11 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       return
     }else {
       //定位客户位子 算出距离目的地酒店的距离
-      myView.orderStatusLabel.text = "有订单 距离\(String(format: "%.2f", distance/1000))km"
+      let formatter = MKDistanceFormatter()
+      formatter.units = .Metric
+      let distanceString = formatter.stringFromDistance(distance)
+//      myView.orderStatusLabel.text = "有订单 距离\(String(format: "%.2f", distance/1000))km"
+      myView.orderStatusLabel.text = "有订单 距离\(distanceString)"
       myView.userNameLabel.text = JSHStorage.baseInfo().username
     }
     
@@ -343,9 +348,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   
   @IBAction func pushToSale(sender: AnyObject) {
     let vc = SalesTBC()
-    let nav = UINavigationController(rootViewController: vc)
-    navigationController?.presentViewController(nav, animated: true, completion: nil)
-    
+    navigationController?.presentViewController(vc, animated: true, completion: nil)
   }
   
   private func setupNotification() {
