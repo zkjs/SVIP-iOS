@@ -110,6 +110,13 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
     let order = packetOrder()
     vc.title = order.fullname
+    // 扩展字段
+    let userName = JSHStorage.baseInfo().username
+    let ext = ["shopId": order.shopid.stringValue,
+    "shopName": order.fullname,
+    "toName": salesName,
+    "fromName": userName]
+    vc.conversation.ext = ext
     navigationController?.pushViewController(vc, animated: true)
   }
   

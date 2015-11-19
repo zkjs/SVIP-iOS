@@ -19,7 +19,7 @@ class AboutUsViewController: UIViewController, UIWebViewDelegate {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    ZKJSTool.hideHUD()
+    hideHUD()
   }
   
   func initSubviews() {
@@ -32,9 +32,9 @@ class AboutUsViewController: UIViewController, UIWebViewDelegate {
   }
   
   func webViewDidStartLoad(webView: UIWebView) {
-    ZKJSTool.showLoading()
+    showHUDInView(view, withLoading: "")
   }
   func webViewDidFinishLoad(webView: UIWebView) {
-    ZKJSTool.hideHUD()
+    hideHUD()
   }
 }

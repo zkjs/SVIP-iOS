@@ -17,7 +17,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    ZKJSTool.showLoading()
+    showHUDInView(view, withLoading: "")
     loadMoreData()
     
     title = NSLocalizedString("ORDER_HISTORY", comment: "")
@@ -112,7 +112,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
+          self.showHint(NSLocalizedString("FAILED", comment: ""))
       })
     default:
       break
@@ -132,7 +132,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
           let order = OrderModel(dic: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
-        ZKJSTool.hideHUD()
+        self.hideHUD()
         self.tableView.reloadData()
         self.tableView.mj_footer.endRefreshing()
         self.orderPage++

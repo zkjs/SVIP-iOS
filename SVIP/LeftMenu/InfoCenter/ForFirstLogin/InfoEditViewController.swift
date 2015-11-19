@@ -68,10 +68,10 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
   
   func nextStep() {
     if username.text!.isEmpty {
-      ZKJSTool.showMsg(NSLocalizedString("PROFILE_FILL_ALL", comment: ""))
+      showHint(NSLocalizedString("PROFILE_FILL_ALL", comment: ""))
       return
     }
-    ZKJSTool.showLoading()
+    showHUDInView(view, withLoading: "")
     ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(username.text, realname: nil, imageData: avatarData, imageName: " ", sex: sexstr, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       if dic["set"]!.boolValue! {
@@ -80,7 +80,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
         // 保存用户名
         JSHAccountManager.sharedJSHAccountManager().saveUserName(self.username.text!)
         
-        ZKJSTool.hideHUD()
+        self.hideHUD()
         self.navigationController?.pushViewController(InvitationCodeVC(), animated: true)
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

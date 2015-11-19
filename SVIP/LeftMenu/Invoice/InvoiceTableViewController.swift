@@ -92,14 +92,14 @@ class InvoiceTableViewController: UITableViewController, InvoiceTableViewCellDel
 
   //MARK:- InvoiceTableViewCellDelegate
   func deleteWithIndex(row: Int) {
-    ZKJSTool.showLoading()
+    showHUDInView(view, withLoading: "")
     let dic = dataArray[row] as! NSDictionary
     let invoiceid = dic["id"] as! String
     ZKJSHTTPSessionManager.sharedInstance().deleteInvoiceWithInvoiceid(invoiceid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
-          ZKJSTool.showMsg(NSLocalizedString("DELETED", comment: ""))
+          self.showHint(NSLocalizedString("DELETED", comment: ""))
           self.dataArray.removeObjectAtIndex(row)
           self.tableView.reloadData()
         }

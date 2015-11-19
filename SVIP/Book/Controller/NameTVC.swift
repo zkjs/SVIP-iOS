@@ -51,12 +51,12 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
         self.tableView.reloadData()
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      ZKJSTool.showMsg("加载失败")
+        self.showHint("加载失败")
     })
   }
   func done() {
     if headerView.textField.text!.isEmpty {
-      ZKJSTool.showMsg("请填写内容")
+      self.showHint("请填写内容")
       return
     }
     

@@ -21,7 +21,7 @@ class BookPayVC: UIViewController {
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: "BookPayVC", bundle: nil)
   }
-
+  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
@@ -30,7 +30,7 @@ class BookPayVC: UIViewController {
     super.viewDidLoad()
     
     name.text = bkOrder.room_type
-//    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
+    //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
     let rate = bkOrder.room_rate.doubleValue
     let Money = rate * (Double)(Int(bkOrder.dayInt)!)
@@ -38,13 +38,13 @@ class BookPayVC: UIViewController {
   }
   
   func cancelOrder() {
-    ZKJSTool .showLoading("正在取消订单")
+    showHUDInView(view, withLoading: "正在取消订单")
     ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithReservationNO(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        ZKJSTool .showMsg("订单已取消")
-        self .dismissViewControllerAnimated(true, completion: nil)
+      self.showHint("订单已取消")
+      self.dismissViewControllerAnimated(true, completion: nil)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        ZKJSTool .showMsg("订单取消失败，请进入订单列表取消订单")
-        self .dismissViewControllerAnimated(true, completion: nil)
+        self.showHint("订单取消失败，请进入订单列表取消订单")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
   
@@ -68,20 +68,20 @@ class BookPayVC: UIViewController {
     chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_PAY_WHEN_CHECKIN", comment: "")
     navigationController?.pushViewController(chatVC, animated: true)
   }
-
-//MARK:- ALIPAY
+  
+  //MARK:- ALIPAY
   private func payAliOrder(AbookOrder: BookOrder) {
     let aliOrder = AlipayOrder()
     aliOrder.partner = partner
     aliOrder.seller = seller
-//    aliOrder.tradeNO = tradeNo  //need to fetch 
+    //    aliOrder.tradeNO = tradeNo  //need to fetch
     aliOrder.tradeNO = AbookOrder.reservation_no
     aliOrder.productName = AbookOrder.room_type
     aliOrder.productDescription = "needtoknow"
     if let rooms = AbookOrder.rooms {
       let amount = AbookOrder.room_rate.doubleValue * rooms.doubleValue
-    aliOrder.amount = NSString(format:"%.2f", amount) as String
-//      aliOrder.amount = "0.02"
+      aliOrder.amount = NSString(format:"%.2f", amount) as String
+      //      aliOrder.amount = "0.02"
     }
     
     aliOrder.notifyURL = "http://api.zkjinshi.com/alipay/notify"
@@ -99,15 +99,15 @@ class BookPayVC: UIViewController {
     print(orderSpec, terminator: "")
     
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-//    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-//    NSString *signedString = [signer signString:orderSpec];
+    //    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+    //    NSString *signedString = [signer signString:orderSpec];
     let signer = CreateRSADataSigner(privateKey)
     if let signedString = signer.signString(orderSpec) {
       let orderString = String(format: "%@&sign=\"%@\"&sign_type=\"%@\"", orderSpec, signedString, "RSA")
       let service = AlipaySDK .defaultService()
-//      service .payOrder("abc", fromScheme: "abc", callback: { (resultDic: AnyObject!) -> Void in
-//
-//      })
+      //      service .payOrder("abc", fromScheme: "abc", callback: { (resultDic: AnyObject!) -> Void in
+      //
+      //      })
       service .payOrder(orderString, fromScheme: appScheme, callback: { [unowned self] (aDictionary) -> Void in
         let resultStatus = aDictionary["resultStatus"] as! String
         let result = aDictionary["result"] as! NSString
@@ -120,27 +120,27 @@ class BookPayVC: UIViewController {
           chatVC.navigationItem.hidesBackButton = true
           self.navigationController?.pushViewController(chatVC, animated: true)
         }else {
-          ZKJSTool .showMsg("支付失败")
+          self.showHint("支付失败")
         }
-      })
+        })
     }
     //将签名成功字符串格式化为订单字符串,请严格按照该格式
-//    NSString *orderString = nil;
-//    if (signedString != nil) {
-//      orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-//      orderSpec, signedString, @"RSA"];
-//      
-//      [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-//      NSLog(@"reslut = %@",resultDic);
-//      }];
-//
-//    }
+    //    NSString *orderString = nil;
+    //    if (signedString != nil) {
+    //      orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+    //      orderSpec, signedString, @"RSA"];
+    //
+    //      [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+    //      NSLog(@"reslut = %@",resultDic);
+    //      }];
+    //
+    //    }
   }
   
   private func validateResult(result: NSString) -> Bool{
-//    let resultRange = NSRange(location: 0, length: count(result))
-//    let locale = NSLocale.systemLocale()
-//    result .rangeOfString("success=\"", options: NSStringCompareOptions.LiteralSearch, range: resultRange, locale:locale)
+    //    let resultRange = NSRange(location: 0, length: count(result))
+    //    let locale = NSLocale.systemLocale()
+    //    result .rangeOfString("success=\"", options: NSStringCompareOptions.LiteralSearch, range: resultRange, locale:locale)
     let range = result .rangeOfString("success=\"")
     if range.length == 0 {
       return false

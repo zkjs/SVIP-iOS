@@ -53,7 +53,7 @@ class InvoiceEditViewController: UIViewController {
   
   @IBAction func save(sender: UIButton) {
     if invoice.text!.isEmpty {
-      ZKJSTool.showMsg("请填写内容")
+      self.showHint("请填写内容")
       return
     }
     let is_default = isDefaultButton.selected
@@ -63,7 +63,7 @@ class InvoiceEditViewController: UIViewController {
         if let dic = responseObject as? NSDictionary {
           let set = dic["set"]!.boolValue!
           if set {
-            ZKJSTool.showMsg("保存成功")
+            self.showHint("保存成功")
             self.navigationController?.popViewControllerAnimated(true)
           }
         }
@@ -75,7 +75,7 @@ class InvoiceEditViewController: UIViewController {
         if let dic = responseObject as? NSDictionary {
           let set = dic["set"]!.boolValue!
           if set {
-            ZKJSTool.showMsg("保存成功")
+            self.showHint("保存成功")
             self.navigationController?.popViewControllerAnimated(true)
           }
         }

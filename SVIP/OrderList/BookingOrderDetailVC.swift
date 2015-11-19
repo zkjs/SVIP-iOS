@@ -158,7 +158,7 @@ class BookingOrderDetailVC: UIViewController {
 //    let token = JSHAccountManager.sharedJSHAccountManager().token
 //    ZKJSTool.showLoading("正在取消订单...")
 //    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-////      ZKJSTool.hideHUD()
+////      hideHUD()
 //      ZKJSTool.showMsg("已成功取消订单")
 //      
 //      let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -172,7 +172,7 @@ class BookingOrderDetailVC: UIViewController {
 ////        }
 //      }
 //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//      ZKJSTool.hideHUD()
+//      hideHUD()
 //      ZKJSTool.showMsg(error.description)
 //    }
   }

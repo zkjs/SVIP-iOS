@@ -16,11 +16,14 @@
 
 - (void)showHudInView:(UIView *)view hint:(NSString *)hint;
 
+- (void)showHint:(NSString *)hint yOffset:(float)yOffset;
+
 - (void)hideHud;
 
-- (void)showHint:(NSString *)hint;
+- (void)showHUDInView:(UIView *)view withLoading:(NSString *)hint;
 
-// 从默认(showHint:)显示的位置再往上(下)yOffset
-- (void)showHint:(NSString *)hint yOffset:(float)yOffset;
+- (void)hideHUD;
+
+- (void)showHint:(NSString *)hint;
 
 @end

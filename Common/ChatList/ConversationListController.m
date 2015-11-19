@@ -102,8 +102,9 @@
     EMConversation *conversation = conversationModel.conversation;
     if (conversation) {
       ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
-      chatController.title = conversationModel.title;
+      chatController.title = conversation.ext[@"shopName"];
       chatController.hidesBottomBarWhenPushed = YES;
+      chatController.conversation.ext = conversation.ext;
       [self.navigationController pushViewController:chatController animated:YES];
     }
   }
@@ -117,12 +118,17 @@
   EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
   if (model.conversation.conversationType == eConversationTypeChat) {
     EMMessage *latestOtherMessage = conversation.latestMessageFromOthers;
-    NSDictionary *ext = latestOtherMessage.ext;
-    model.title = ext[@"fromName"];
+    if (latestOtherMessage == nil) {
+      NSString *shopName = conversation.latestMessage.ext[@"shopName"];
+      NSString *toName = conversation.latestMessage.ext[@"toName"];
+      model.title = [NSString stringWithFormat:@"%@-%@", shopName, toName];
+    } else {
+      NSString *shopName = conversation.latestMessage.ext[@"shopName"];
+      NSString *fromName = conversation.latestMessage.ext[@"fromName"];
+      model.title = [NSString stringWithFormat:@"%@-%@", shopName, fromName];
+    }
     NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", conversation.chatter];
     model.avatarURLPath = [kBaseURL stringByAppendingString:url];
-  } else if (model.conversation.conversationType == eConversationTypeGroupChat) {
-
   }
   return model;
 }
@@ -181,7 +187,7 @@
 -(void)refreshDataSource
 {
   [self tableViewDidTriggerHeaderRefresh];
-  [self hideHud];
+  [self hideHUD];
 }
 
 - (void)isConnect:(BOOL)isConnect{

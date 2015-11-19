@@ -279,7 +279,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
           self.paymentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
           self.paymentButton.enabled = false
         }else {
-          ZKJSTool.showMsg(NSLocalizedString("PAY_FAIL", comment: ""))
+          self.showHint(NSLocalizedString("PAY_FAIL", comment: ""))
         }
         })
     }
@@ -317,7 +317,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     let users = NSMutableArray()
     for var i = 0 ; i < roomCount; i++ {
       if self.nameTextFields[i].text!.isEmpty {//判断入住人信息是否已选择
-        ZKJSTool.showMsg(NSLocalizedString("CHOOSE_CLIENT", comment: ""))
+        showHint(NSLocalizedString("CHOOSE_CLIENT", comment: ""))
         return
       }else {
         users.addObject("\(self.nameTextFields[i].tag)")
@@ -326,7 +326,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     mutDic.setObject(users.componentsJoinedByString(","), forKey: "users")
     
     if receiptLabel.text == NSLocalizedString("CHOOSE_INVOICE", comment: "") {//判断发票信息是否已选择
-      ZKJSTool.showMsg(NSLocalizedString("CHOOSE_INVOICE", comment: ""))
+      showHint(NSLocalizedString("CHOOSE_INVOICE", comment: ""))
       return
     }else {
       mutDic.setObject(receiptLabel.text!, forKey: "invoice[invoice_title]")
@@ -369,7 +369,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     ZKJSHTTPSessionManager.sharedInstance().modifyOrderWithReservation_no(bkOrder.reservation_no, param: mutDic as [NSObject : AnyObject], success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.sendConfirmMessageToChatVC()
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        ZKJSTool.showMsg(error.localizedDescription)
+        self.showHint(error.localizedDescription)
     })
   }
   
@@ -381,7 +381,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
       self.navigationController?.pushViewController(chatVC, animated: true)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        ZKJSTool.showMsg(error.localizedDescription)
+        self.showHint(error.localizedDescription)
     })
 
   }

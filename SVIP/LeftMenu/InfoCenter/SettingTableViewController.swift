@@ -209,7 +209,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
           if let dic = responseObject as? NSDictionary {
             let set = dic["set"]!.boolValue!
             if set {
-              ZKJSTool.showMsg(NSLocalizedString("SAVED", comment: ""))
+              self.showHint(NSLocalizedString("SAVED", comment: ""))
               let baseInfo = JSHStorage.baseInfo()
               baseInfo.sex = sex
               JSHStorage.saveBaseInfo(baseInfo)

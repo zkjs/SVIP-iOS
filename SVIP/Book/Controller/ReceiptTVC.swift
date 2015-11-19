@@ -66,7 +66,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   
   func done() {
     if headerView.textField.text!.isEmpty {
-      ZKJSTool.showMsg("请填写内容")
+      showHint("请填写内容")
       return
     }
     

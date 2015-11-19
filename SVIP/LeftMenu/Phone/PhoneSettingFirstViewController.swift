@@ -43,7 +43,7 @@ class PhoneSettingFirstViewController: UIViewController, UITextFieldDelegate {
   @IBAction func buttonClick(sender: UIButton) {
     ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phone.text, callback: { (successed: Bool, error: NSError!) -> Void in
       if successed {
-        ZKJSTool.showMsg(NSLocalizedString("VERIFIED_CODE_IS_SENT", comment: ""))
+        self.showHint(NSLocalizedString("VERIFIED_CODE_IS_SENT", comment: ""))
       }
     })
     smsButton.enabled = false

@@ -169,6 +169,10 @@
 		409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409587E41BCCEDE400D212D6 /* RightMenuVC.swift */; };
 		409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409587E51BCCEDE400D212D6 /* RightMenuVC.xib */; };
 		409587EA1BCD05CE00D212D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 409587EC1BCD05CE00D212D6 /* Localizable.strings */; };
+		40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */; };
+		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
+		40B84E821BFDC13800C327E1 /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 40B84E7F1BFDC13800C327E1 /* callRing.mp3 */; };
+		40B84E831BFDC13800C327E1 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E811BFDC13800C327E1 /* CallViewController.m */; };
 		40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */; };
 		40BC845B1BFC570700038C81 /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC836B1BFC570700038C81 /* EaseUI.m */; };
 		40BC845C1BFC570700038C81 /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83751BFC570700038C81 /* EMAudioPlayerUtil.m */; };
@@ -710,6 +714,11 @@
 		409587E51BCCEDE400D212D6 /* RightMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightMenuVC.xib; path = MessageCenter/RightMenuVC.xib; sourceTree = "<group>"; };
 		409587EB1BCD05CE00D212D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		409587ED1BCD05D000D212D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
+		40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		40B84E7F1BFDC13800C327E1 /* callRing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = callRing.mp3; sourceTree = "<group>"; };
+		40B84E801BFDC13800C327E1 /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
+		40B84E811BFDC13800C327E1 /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
 		40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTVC.swift; sourceTree = "<group>"; };
 		40BC83691BFC570700038C81 /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
 		40BC836A1BFC570700038C81 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
@@ -1197,6 +1206,8 @@
 			children = (
 				404FACD21B84792700352023 /* NSDate+Days.swift */,
 				40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */,
+				40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */,
+				40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1838,18 +1849,40 @@
 			name = RightMenu;
 			sourceTree = "<group>";
 		};
+		40B84E7C1BFDC08700C327E1 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				40C4B71F1BFB2A3200CB2DA5 /* ChatList */,
+				40C4B7221BFB2A3200CB2DA5 /* ChatView */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		40B84E7D1BFDC09100C327E1 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				40B84E7E1BFDC13800C327E1 /* Call */,
+				40B84E7C1BFDC08700C327E1 /* Chat */,
+				40C4B7361BFB307A00CB2DA5 /* 3rdparty */,
+				40C4B73A1BFB309800CB2DA5 /* Category */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		40B84E7E1BFDC13800C327E1 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				40B84E7F1BFDC13800C327E1 /* callRing.mp3 */,
+				40B84E801BFDC13800C327E1 /* CallViewController.h */,
+				40B84E811BFDC13800C327E1 /* CallViewController.m */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
 		40BC82531BFC50D400038C81 /* ChatDemo-UI3.0 */ = {
 			isa = PBXGroup;
 			children = (
-				40C4B7361BFB307A00CB2DA5 /* 3rdparty */,
-				40C4B7321BFB307600CB2DA5 /* GifImage */,
-				40C4B7331BFB307700CB2DA5 /* EMGifImage.h */,
-				40C4B7341BFB307700CB2DA5 /* EMGifImage.m */,
-				40C4B73A1BFB309800CB2DA5 /* Category */,
-				40C4B7371BFB309300CB2DA5 /* UIImageView+HeadImage.h */,
-				40C4B7381BFB309300CB2DA5 /* UIImageView+HeadImage.m */,
-				40C4B71F1BFB2A3200CB2DA5 /* ChatList */,
-				40C4B7221BFB2A3200CB2DA5 /* ChatView */,
+				40B84E7D1BFDC09100C327E1 /* Class */,
 			);
 			name = "ChatDemo-UI3.0";
 			path = ..;
@@ -2384,6 +2417,9 @@
 		40C4B7361BFB307A00CB2DA5 /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				40C4B7321BFB307600CB2DA5 /* GifImage */,
+				40C4B7331BFB307700CB2DA5 /* EMGifImage.h */,
+				40C4B7341BFB307700CB2DA5 /* EMGifImage.m */,
 			);
 			name = 3rdparty;
 			sourceTree = "<group>";
@@ -2391,6 +2427,8 @@
 		40C4B73A1BFB309800CB2DA5 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				40C4B7371BFB309300CB2DA5 /* UIImageView+HeadImage.h */,
+				40C4B7381BFB309300CB2DA5 /* UIImageView+HeadImage.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -2960,6 +2998,7 @@
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* MWPhotoBrowser.bundle in Resources */,
 				4058E4FE1BA0211B00EF6D76 /* RecordingSignal002@2x.png in Resources */,
+				40B84E821BFDC13800C327E1 /* callRing.mp3 in Resources */,
 				FAF2E07F1BF219F6008DD5BC /* LeisureTVC.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
 				FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */,
@@ -3274,9 +3313,11 @@
 				40BC846D1BFC570700038C81 /* MWPhotoBrowser.m in Sources */,
 				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,
 				4058E4C41BA0211B00EF6D76 /* SETextView.m in Sources */,
+				40B84E831BFDC13800C327E1 /* CallViewController.m in Sources */,
 				4058E4991BA0211B00EF6D76 /* XHCaptureHelper.m in Sources */,
 				40BC84731BFC570700038C81 /* EMSDWebImageCompat.m in Sources */,
 				40BC84931BFC570700038C81 /* EaseUserModel.m in Sources */,
+				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				40E9E93E1BF972A7007C0A90 /* SalesTBC.swift in Sources */,
 				B2F0377C1B93F3D4006FF396 /* PhoneSettingSecondViewController.swift in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
@@ -3285,6 +3326,7 @@
 				4058E4971BA0211B00EF6D76 /* UIView+XHRemoteImage.m in Sources */,
 				40BC847E1BFC570700038C81 /* UIImage+EMWebP.m in Sources */,
 				40BC84851BFC570700038C81 /* PSTCollectionViewController.m in Sources */,
+				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				40BC84781BFC570700038C81 /* EMSDWebImagePrefetcher.m in Sources */,
 				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
 				4058E4CC1BA0211B00EF6D76 /* XHVoiceRecordHUD.m in Sources */,

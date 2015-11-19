@@ -45,7 +45,7 @@ class LoginManager: NSObject {
     if JSHAccountManager.sharedJSHAccountManager().userid != nil {
       //已注册
       fetchUserInfo({[unowned self] () -> () in
-        ZKJSTool.hideHUD()
+//        self.hideHUD()
         self.showResideMenu(haspushed: nil)
       })
       // 打开TCP连接

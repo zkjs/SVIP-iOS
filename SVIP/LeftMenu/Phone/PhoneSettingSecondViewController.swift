@@ -38,7 +38,7 @@ class PhoneSettingSecondViewController: UIViewController, UITextFieldDelegate {
   @IBAction func buttonClick(sender: UIButton) {
     ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phoneTextField.text, callback: { (successed: Bool, error: NSError!) -> Void in
       if successed {
-        ZKJSTool.showMsg(NSLocalizedString("VERIFIED_CODE_IS_SENT", comment: ""))
+        self.showHint(NSLocalizedString("VERIFIED_CODE_IS_SENT", comment: ""))
       }
     })
     okButton.enabled = false
@@ -56,7 +56,7 @@ class PhoneSettingSecondViewController: UIViewController, UITextFieldDelegate {
       if ZKJSTool.validateMobile(phoneText) {
         okButton.enabled = true
       }else {
-        ZKJSTool.showMsg(NSLocalizedString("WRONG_MOBILE_PHONE", comment: ""))
+        showHint(NSLocalizedString("WRONG_MOBILE_PHONE", comment: ""))
       }
     }
     if phoneText?.characters.count < 11 && okButton.titleLabel?.text == NSLocalizedString("SEND_VERIFIED_CODE", comment: "") {
@@ -71,7 +71,7 @@ class PhoneSettingSecondViewController: UIViewController, UITextFieldDelegate {
           ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithParaDic(dictionary, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
             let dic = responseObject as! NSDictionary
             if dic["set"]!.boolValue! {
-              ZKJSTool.showMsg(NSLocalizedString("MOBILE_PHONE_IS_CHANGED", comment: ""))
+              self.showHint(NSLocalizedString("MOBILE_PHONE_IS_CHANGED", comment: ""))
               let controllers = self.navigationController!.viewControllers
               let count = controllers.count
               let vc = controllers[count - 3]
@@ -80,10 +80,8 @@ class PhoneSettingSecondViewController: UIViewController, UITextFieldDelegate {
             }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
               
           }
-          
-          
-        }else {
-          ZKJSTool.showMsg(NSLocalizedString("WRONG_VERIFIED_CODE", comment: ""))
+        } else {
+          self.showHint(NSLocalizedString("WRONG_VERIFIED_CODE", comment: ""))
         }
       })
     }

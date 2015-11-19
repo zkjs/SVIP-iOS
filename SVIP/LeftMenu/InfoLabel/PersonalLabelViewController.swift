@@ -109,10 +109,10 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
-          ZKJSTool.showMsg(NSLocalizedString("SAVED", comment: ""))
+          self.showHint(NSLocalizedString("SAVED", comment: ""))
           self.navigationController?.popViewControllerAnimated(true)
         }else {
-          ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
+          self.showHint(NSLocalizedString("FAILED", comment: ""))
         }
       }
     }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

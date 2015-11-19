@@ -112,7 +112,7 @@ class SettingEditViewController: UIViewController {
     var company:String?
     var email:String?
     if textField.text!.isEmpty {
-      ZKJSTool.showMsg(NSLocalizedString("ENTER_INFORMATION", comment: ""))
+      showHint(NSLocalizedString("ENTER_INFORMATION", comment: ""))
       return
     }
     switch type {
@@ -126,7 +126,7 @@ class SettingEditViewController: UIViewController {
       if ZKJSTool.validateEmail(textField.text) {
         email = textField.text
       }else {
-        ZKJSTool.showMsg(NSLocalizedString("WRONG_EMAIL", comment: ""))
+        showHint(NSLocalizedString("WRONG_EMAIL", comment: ""))
         return
       }
     }

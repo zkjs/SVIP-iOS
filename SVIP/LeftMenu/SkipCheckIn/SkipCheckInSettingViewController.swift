@@ -17,7 +17,7 @@ class SkipCheckInSettingViewController: UIViewController, UIWebViewDelegate {
   }
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    ZKJSTool.hideHUD()
+    hideHUD()
   }
   func initSubviews() {
     webView = UIWebView(frame: view.bounds)
@@ -29,9 +29,9 @@ class SkipCheckInSettingViewController: UIViewController, UIWebViewDelegate {
   }
   
   func webViewDidStartLoad(webView: UIWebView) {
-    ZKJSTool.showLoading()
+    showHUDInView(view, withLoading: "")
   }
   func webViewDidFinishLoad(webView: UIWebView) {
-    ZKJSTool.hideHUD()
+    hideHUD()
   }
 }

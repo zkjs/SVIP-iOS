@@ -43,7 +43,7 @@ class HotelTVC: UITableViewController,XLPagerTabStripChildItem {
         self.tableView .reloadData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        ZKJSTool .showMsg("加载数据失败")
+        self.showHint("加载数据失败")
     }
   }
 

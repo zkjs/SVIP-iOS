@@ -156,7 +156,7 @@ const CGFloat shortcutViewHeight = 45.0;
 
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
 //  [self sendImageMessage:photo];
-  [ZKJSTool showLoading:NSLocalizedString(@"SENDING_PHOTO", nil)];
+  [self showHUDInView:self.view withLoading:NSLocalizedString(@"SENDING_PHOTO", nil)];
   NSNumber *timestamp = [NSNumber numberWithLongLong:[[NSDate date] timeIntervalSince1970]];
   NSString *format = @"jpg";
 //  UIImage *thumbnail = [photo resizedImage:CGSizeMake(200.0, 200.0) interpolationQuality:kCGInterpolationHigh];
@@ -211,14 +211,14 @@ const CGFloat shortcutViewHeight = 45.0;
       [self addMessage:message];
       [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
       
-      [ZKJSTool hideHUD];
+      [self hideHUD];
     } else {
-      [ZKJSTool hideHUD];
-      [ZKJSTool showMsg:NSLocalizedString(@"UPLOAD_FAIL", nil)];
+      [self hideHUD];
+      [self showHint:NSLocalizedString(@"UPLOAD_FAIL", nil)];
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    [ZKJSTool hideHUD];
-    [ZKJSTool showMsg:error.localizedDescription];
+    [self hideHUD];
+    [self showHint:error.localizedDescription];
   }];
 }
 
@@ -921,7 +921,7 @@ const CGFloat shortcutViewHeight = 45.0;
 }
 
 - (void)loadDataSource {
-  [ZKJSTool showLoading:NSLocalizedString(@"LOADING_CHAT_LOG", nil)];
+  [self showHUDInView:self.view withLoading:NSLocalizedString(@"LOADING_CHAT_LOG", nil)];
 
   [self loadServerMessages];
 //  [self loadLocalMessages];
@@ -1005,7 +1005,7 @@ const CGFloat shortcutViewHeight = 45.0;
     dispatch_async(dispatch_get_main_queue(), ^{
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
-      [ZKJSTool hideHUD];
+      [self hideHUD];
       
       switch (self.chatType) {
         case ChatNewSession: {
@@ -1052,7 +1052,7 @@ const CGFloat shortcutViewHeight = 45.0;
     dispatch_async(dispatch_get_main_queue(), ^{
       [weakSelf.messageTableView reloadData];
       [weakSelf scrollToBottomAnimated:NO];
-      [ZKJSTool hideHUD];
+      [weakSelf hideHUD];
       
       switch (self.chatType) {
         case ChatNewSession: {

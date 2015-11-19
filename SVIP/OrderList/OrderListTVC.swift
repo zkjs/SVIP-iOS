@@ -110,7 +110,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          ZKJSTool.showMsg(NSLocalizedString("FAILED", comment: ""))
+          self.showHint(NSLocalizedString("FAILED", comment: ""))
       })
     default:
       break

@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "CustomMessageCell.h"
 //#import "ContactListSelectViewController.h"
+#import "Networkcfg.h"
 
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 {
@@ -55,8 +56,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAllMessages:) name:KNOTIFICATIONNAME_DELETEALLMESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitGroup) name:@"ExitGroup" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertCallMessage:) name:@"insertCallMessage" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callOutWithChatter" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:KNOTIFICATION_CALL object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:KNOTIFICATION_CALL_CLOSE object:nil];
     
     //通过会话管理者获取已收发消息
     [self tableViewDidTriggerHeaderRefresh];
@@ -239,12 +240,95 @@
     id<IMessageModel> model = nil;
     model = [[EaseMessageModel alloc] initWithMessage:message];
     model.avatarImage = [UIImage imageNamed:@"user"];
-//    UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.nickname];
-//    if (profileEntity) {
-//        model.avatarURLPath = profileEntity.imageUrl;
-//    }
+    NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", model.nickname];
+    model.avatarURLPath = [kBaseURL stringByAppendingString:url];
+    model.nickname = message.ext[@"fromName"];
     model.failImageName = @"imageDownloadFail";
     return model;
+}
+
+#pragma mark - send message
+
+- (void)sendTextMessage:(NSString *)text
+{
+  [self sendTextMessage:text withExt:self.conversation.ext];
+}
+
+- (void)sendLocationMessageLatitude:(double)latitude
+                          longitude:(double)longitude
+                         andAddress:(NSString *)address
+{
+  EMMessage *message = [EaseSDKHelper sendLocationMessageWithLatitude:latitude
+                                                            longitude:longitude
+                                                              address:address
+                                                                   to:self.conversation.chatter
+                                                          messageType:eMessageTypeChat
+                                                    requireEncryption:NO
+                                                           messageExt:self.conversation.ext];
+  [self addMessageToDataSource:message
+                      progress:nil];
+}
+
+- (void)sendImageMessage:(UIImage *)image
+{
+  id<IEMChatProgressDelegate> progress = nil;
+  if (self.dataSource && [self.dataSource respondsToSelector:@selector(messageViewController:progressDelegateForMessageBodyType:)]) {
+    progress = [self.dataSource messageViewController:self progressDelegateForMessageBodyType:eMessageBodyType_Image];
+  }
+  else{
+    progress = self;
+  }
+  
+  EMMessage *message = [EaseSDKHelper sendImageMessageWithImage:image
+                                                             to:self.conversation.chatter
+                                                    messageType:eMessageTypeChat
+                                              requireEncryption:NO
+                                                     messageExt:self.conversation.ext
+                                                       progress:progress];
+  [self addMessageToDataSource:message
+                      progress:progress];
+}
+
+- (void)sendVoiceMessageWithLocalPath:(NSString *)localPath
+                             duration:(NSInteger)duration
+{
+  id<IEMChatProgressDelegate> progress = nil;
+  if (self.dataSource && [self.dataSource respondsToSelector:@selector(messageViewController:progressDelegateForMessageBodyType:)]) {
+    progress = [self.dataSource messageViewController:self progressDelegateForMessageBodyType:eMessageBodyType_Voice];
+  }
+  else{
+    progress = self;
+  }
+  
+  EMMessage *message = [EaseSDKHelper sendVoiceMessageWithLocalPath:localPath
+                                                           duration:duration
+                                                                 to:self.conversation.chatter
+                                                        messageType:eMessageTypeChat
+                                                  requireEncryption:NO
+                                                         messageExt:self.conversation.ext
+                                                           progress:progress];
+  [self addMessageToDataSource:message
+                      progress:progress];
+}
+
+- (void)sendVideoMessageWithURL:(NSURL *)url
+{
+  id<IEMChatProgressDelegate> progress = nil;
+  if (self.dataSource && [self.dataSource respondsToSelector:@selector(messageViewController:progressDelegateForMessageBodyType:)]) {
+    progress = [self.dataSource messageViewController:self progressDelegateForMessageBodyType:eMessageBodyType_Video];
+  }
+  else{
+    progress = self;
+  }
+  
+  EMMessage *message = [EaseSDKHelper sendVideoMessageWithURL:url
+                                                           to:self.conversation.chatter
+                                                  messageType:eMessageTypeChat
+                                            requireEncryption:NO
+                                                   messageExt:self.conversation.ext
+                                                     progress:progress];
+  [self addMessageToDataSource:message
+                      progress:progress];
 }
 
 #pragma mark - EaseMob
@@ -368,21 +452,8 @@
     self.menuIndexPath = nil;
 }
 
-//#pragma mark - EMChatToolbarDelegate
-//
-//- (void)didSendText:(NSString *)text
-//{
-//  if (text && text.length > 0) {
-//    NSDictionary *ext = @{
-//                          @"shopId": ,
-//                          @"shopName": ,
-//                          @"toName": ,
-//                          @"fromName": };
-//    [self sendTextMessage:text withExt:ext];
-//  }
-//}
-
 #pragma mark - notification
+
 - (void)exitGroup
 {
     [self.navigationController popToViewController:self animated:NO];

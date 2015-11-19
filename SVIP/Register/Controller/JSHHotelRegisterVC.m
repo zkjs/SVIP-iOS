@@ -89,19 +89,6 @@
 - (IBAction)OKButtonClicked:(UIButton *)sender {
   if (_phoneField.text.length == 11) {
     if ([ZKJSTool validateMobile:_phoneField.text]) {
-      if ([_phoneField.text isEqual:@"18503027465"] || [_phoneField.text isEqual:@"18925232944"]) {
-        //跳过验证，直接注册
-        [self.view endEditing:true];
-        [[LoginManager sharedInstance] signup:_phoneField.text openID:nil success:^{
-          JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] init];
-          baseInfo.sex = [_wechatInfoDic[@"gender"] boolValue] ? NSLocalizedString(@"MAN", nil) : NSLocalizedString(@"WOMAN", nil);
-          baseInfo.openid = _wechatInfoDic[@"openid"];
-          baseInfo.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_wechatInfoDic[@"profile_image_url"]]]];
-          baseInfo.username = _wechatInfoDic[@"screen_name"];
-          [JSHStorage saveBaseInfo:baseInfo];
-        }];
-        return;
-      }
       if (_codeField.text.length == 6) {
         [[ZKJSHTTPSMSSessionManager sharedInstance] verifySmsCode:_codeField.text mobilePhoneNumber:_phoneField.text callback:^(BOOL succeeded, NSError *error) {
           if (succeeded) {
