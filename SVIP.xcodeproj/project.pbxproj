@@ -170,15 +170,113 @@
 		409587E71BCCEDE400D212D6 /* RightMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409587E51BCCEDE400D212D6 /* RightMenuVC.xib */; };
 		409587EA1BCD05CE00D212D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 409587EC1BCD05CE00D212D6 /* Localizable.strings */; };
 		40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */; };
-		40C4B70B1BFAC3B500CB2DA5 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7091BFAC3B500CB2DA5 /* ConversationCell.swift */; };
-		40C4B70C1BFAC3B500CB2DA5 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C4B70A1BFAC3B500CB2DA5 /* ConversationCell.xib */; };
-		40C4B7101BFAC80200CB2DA5 /* ConversationListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B70E1BFAC80200CB2DA5 /* ConversationListTVC.swift */; };
-		40C4B7111BFAC80200CB2DA5 /* ConversationListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C4B70F1BFAC80200CB2DA5 /* ConversationListTVC.xib */; };
+		40BC845B1BFC570700038C81 /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC836B1BFC570700038C81 /* EaseUI.m */; };
+		40BC845C1BFC570700038C81 /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83751BFC570700038C81 /* EMAudioPlayerUtil.m */; };
+		40BC845D1BFC570700038C81 /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83771BFC570700038C81 /* EMAudioRecorderUtil.m */; };
+		40BC845E1BFC570700038C81 /* EMCDDeviceManager+Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83791BFC570700038C81 /* EMCDDeviceManager+Media.m */; };
+		40BC845F1BFC570700038C81 /* EMCDDeviceManager+Microphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC837B1BFC570700038C81 /* EMCDDeviceManager+Microphone.m */; };
+		40BC84601BFC570700038C81 /* EMCDDeviceManager+ProximitySensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC837D1BFC570700038C81 /* EMCDDeviceManager+ProximitySensor.m */; };
+		40BC84611BFC570700038C81 /* EMCDDeviceManager+Remind.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC837F1BFC570700038C81 /* EMCDDeviceManager+Remind.m */; };
+		40BC84621BFC570700038C81 /* EMCDDeviceManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83821BFC570700038C81 /* EMCDDeviceManagerBase.m */; };
+		40BC84631BFC570700038C81 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83861BFC570700038C81 /* amrFileCodec.mm */; };
+		40BC84641BFC570700038C81 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83881BFC570700038C81 /* wav.mm */; };
+		40BC84651BFC570700038C81 /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40BC838A1BFC570700038C81 /* EMVoiceConverter.mm */; };
+		40BC84661BFC570700038C81 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BC838E1BFC570700038C81 /* libopencore-amrnb.a */; };
+		40BC84671BFC570700038C81 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BC83921BFC570700038C81 /* libopencore-amrwb.a */; };
+		40BC84681BFC570700038C81 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83951BFC570700038C81 /* MBProgressHUD+Add.m */; };
+		40BC84691BFC570700038C81 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC839A1BFC570700038C81 /* MWCaptionView.m */; };
+		40BC846A1BFC570700038C81 /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC839D1BFC570700038C81 /* MWGridCell.m */; };
+		40BC846B1BFC570700038C81 /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC839F1BFC570700038C81 /* MWGridViewController.m */; };
+		40BC846C1BFC570700038C81 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83A11BFC570700038C81 /* MWPhoto.m */; };
+		40BC846D1BFC570700038C81 /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83A31BFC570700038C81 /* MWPhotoBrowser.m */; };
+		40BC846E1BFC570700038C81 /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83A71BFC570700038C81 /* MWTapDetectingImageView.m */; };
+		40BC846F1BFC570700038C81 /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83A91BFC570700038C81 /* MWTapDetectingView.m */; };
+		40BC84701BFC570700038C81 /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83AB1BFC570700038C81 /* MWZoomingScrollView.m */; };
+		40BC84711BFC570700038C81 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83AF1BFC570700038C81 /* DACircularProgressView.m */; };
+		40BC84721BFC570700038C81 /* EMSDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83B21BFC570700038C81 /* EMSDImageCache.m */; };
+		40BC84731BFC570700038C81 /* EMSDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83B41BFC570700038C81 /* EMSDWebImageCompat.m */; };
+		40BC84741BFC570700038C81 /* EMSDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83B61BFC570700038C81 /* EMSDWebImageDecoder.m */; };
+		40BC84751BFC570700038C81 /* EMSDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83B81BFC570700038C81 /* EMSDWebImageDownloader.m */; };
+		40BC84761BFC570700038C81 /* EMSDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83BA1BFC570700038C81 /* EMSDWebImageDownloaderOperation.m */; };
+		40BC84771BFC570700038C81 /* EMSDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83BC1BFC570700038C81 /* EMSDWebImageManager.m */; };
+		40BC84781BFC570700038C81 /* EMSDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83BF1BFC570700038C81 /* EMSDWebImagePrefetcher.m */; };
+		40BC84791BFC570700038C81 /* MKAnnotationView+EMWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83C11BFC570700038C81 /* MKAnnotationView+EMWebCache.m */; };
+		40BC847A1BFC570700038C81 /* NSData+EMImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83C31BFC570700038C81 /* NSData+EMImageContentType.m */; };
+		40BC847B1BFC570700038C81 /* UIButton+EMWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83C51BFC570700038C81 /* UIButton+EMWebCache.m */; };
+		40BC847C1BFC570700038C81 /* UIImage+EMGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83C71BFC570700038C81 /* UIImage+EMGIF.m */; };
+		40BC847D1BFC570700038C81 /* UIImage+EMMultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83C91BFC570700038C81 /* UIImage+EMMultiFormat.m */; };
+		40BC847E1BFC570700038C81 /* UIImage+EMWebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83CB1BFC570700038C81 /* UIImage+EMWebP.m */; };
+		40BC847F1BFC570700038C81 /* UIImageView+EMHighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83CD1BFC570700038C81 /* UIImageView+EMHighlightedWebCache.m */; };
+		40BC84801BFC570700038C81 /* UIImageView+EMWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83CF1BFC570700038C81 /* UIImageView+EMWebCache.m */; };
+		40BC84811BFC570700038C81 /* UIView+EMWebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83D11BFC570700038C81 /* UIView+EMWebCacheOperation.m */; };
+		40BC84821BFC570700038C81 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83D41BFC570700038C81 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
+		40BC84831BFC570700038C81 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83D61BFC570700038C81 /* PSTCollectionView.m */; };
+		40BC84841BFC570700038C81 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83D81BFC570700038C81 /* PSTCollectionViewCell.m */; };
+		40BC84851BFC570700038C81 /* PSTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83DB1BFC570700038C81 /* PSTCollectionViewController.m */; };
+		40BC84861BFC570700038C81 /* PSTCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83DD1BFC570700038C81 /* PSTCollectionViewData.m */; };
+		40BC84871BFC570700038C81 /* PSTCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83DF1BFC570700038C81 /* PSTCollectionViewFlowLayout.m */; };
+		40BC84881BFC570700038C81 /* PSTCollectionViewItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83E11BFC570700038C81 /* PSTCollectionViewItemKey.m */; };
+		40BC84891BFC570700038C81 /* PSTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83E41BFC570700038C81 /* PSTCollectionViewLayout.m */; };
+		40BC848A1BFC570700038C81 /* PSTCollectionViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83E61BFC570700038C81 /* PSTCollectionViewUpdateItem.m */; };
+		40BC848B1BFC570700038C81 /* PSTGridLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83E81BFC570700038C81 /* PSTGridLayoutInfo.m */; };
+		40BC848C1BFC570700038C81 /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83EA1BFC570700038C81 /* PSTGridLayoutItem.m */; };
+		40BC848D1BFC570700038C81 /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83EC1BFC570700038C81 /* PSTGridLayoutRow.m */; };
+		40BC848E1BFC570700038C81 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83EE1BFC570700038C81 /* PSTGridLayoutSection.m */; };
+		40BC848F1BFC570700038C81 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 40BC83EF1BFC570700038C81 /* MWPhotoBrowser.bundle */; };
+		40BC84901BFC570700038C81 /* EaseSDKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83F21BFC570700038C81 /* EaseSDKHelper.m */; };
+		40BC84911BFC570700038C81 /* EaseConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83F51BFC570700038C81 /* EaseConversationModel.m */; };
+		40BC84921BFC570700038C81 /* EaseMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83F71BFC570700038C81 /* EaseMessageModel.m */; };
+		40BC84931BFC570700038C81 /* EaseUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC83F91BFC570700038C81 /* EaseUserModel.m */; };
+		40BC84941BFC570700038C81 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84021BFC570700038C81 /* NSDate+Category.m */; };
+		40BC84951BFC570700038C81 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84041BFC570700038C81 /* NSDateFormatter+Category.m */; };
+		40BC84961BFC570700038C81 /* NSObject+EaseMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84061BFC570700038C81 /* NSObject+EaseMob.m */; };
+		40BC84971BFC570700038C81 /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84081BFC570700038C81 /* NSString+Valid.m */; };
+		40BC84981BFC570700038C81 /* UIViewController+DismissKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC840A1BFC570700038C81 /* UIViewController+DismissKeyboard.m */; };
+		40BC84991BFC570700038C81 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC840C1BFC570700038C81 /* UIViewController+HUD.m */; };
+		40BC849A1BFC570700038C81 /* EaseChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC840E1BFC570700038C81 /* EaseChineseToPinyin.m */; };
+		40BC849B1BFC570700038C81 /* EaseConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84101BFC570700038C81 /* EaseConvertToCommonEmoticonsHelper.m */; };
+		40BC849C1BFC570700038C81 /* EaseMessageReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84121BFC570700038C81 /* EaseMessageReadManager.m */; };
+		40BC849D1BFC570700038C81 /* EaseEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84151BFC570700038C81 /* EaseEmoji.m */; };
+		40BC849E1BFC570700038C81 /* EaseEmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84171BFC570700038C81 /* EaseEmojiEmoticons.m */; };
+		40BC849F1BFC570700038C81 /* EaseEmotionEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84191BFC570700038C81 /* EaseEmotionEscape.m */; };
+		40BC84A01BFC570700038C81 /* EaseEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC841B1BFC570700038C81 /* EaseEmotionManager.m */; };
+		40BC84A11BFC570700038C81 /* EaseConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC841E1BFC570700038C81 /* EaseConversationListViewController.m */; };
+		40BC84A21BFC570700038C81 /* EaseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84201BFC570700038C81 /* EaseLocationViewController.m */; };
+		40BC84A31BFC570700038C81 /* EaseMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84221BFC570700038C81 /* EaseMessageViewController.m */; };
+		40BC84A41BFC570700038C81 /* EaseRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84241BFC570700038C81 /* EaseRefreshTableViewController.m */; };
+		40BC84A51BFC570700038C81 /* EaseUsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84261BFC570700038C81 /* EaseUsersListViewController.m */; };
+		40BC84A61BFC570700038C81 /* EaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84281BFC570700038C81 /* EaseViewController.m */; };
+		40BC84A71BFC570700038C81 /* EaseUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC842C1BFC570700038C81 /* EaseUserCell.m */; };
+		40BC84A81BFC570700038C81 /* EaseBaseMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84301BFC570700038C81 /* EaseBaseMessageCell.m */; };
+		40BC84A91BFC570700038C81 /* EaseMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84321BFC570700038C81 /* EaseMessageCell.m */; };
+		40BC84AA1BFC570700038C81 /* EaseMessageTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84341BFC570700038C81 /* EaseMessageTimeCell.m */; };
+		40BC84AB1BFC570700038C81 /* EaseBubbleView+File.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84371BFC570700038C81 /* EaseBubbleView+File.m */; };
+		40BC84AC1BFC570700038C81 /* EaseBubbleView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84391BFC570700038C81 /* EaseBubbleView+Image.m */; };
+		40BC84AD1BFC570700038C81 /* EaseBubbleView+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC843B1BFC570700038C81 /* EaseBubbleView+Location.m */; };
+		40BC84AE1BFC570700038C81 /* EaseBubbleView+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC843D1BFC570700038C81 /* EaseBubbleView+Text.m */; };
+		40BC84AF1BFC570700038C81 /* EaseBubbleView+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC843F1BFC570700038C81 /* EaseBubbleView+Video.m */; };
+		40BC84B01BFC570700038C81 /* EaseBubbleView+Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84411BFC570700038C81 /* EaseBubbleView+Voice.m */; };
+		40BC84B11BFC570700038C81 /* EaseBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84431BFC570700038C81 /* EaseBubbleView.m */; };
+		40BC84B21BFC570700038C81 /* EaseChatToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84461BFC570700038C81 /* EaseChatToolbar.m */; };
+		40BC84B31BFC570700038C81 /* EaseChatToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84481BFC570700038C81 /* EaseChatToolbarItem.m */; };
+		40BC84B41BFC570700038C81 /* EaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC844A1BFC570700038C81 /* EaseImageView.m */; };
+		40BC84B51BFC570700038C81 /* EaseTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC844C1BFC570700038C81 /* EaseTextView.m */; };
+		40BC84B61BFC570700038C81 /* EaseFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC844F1BFC570700038C81 /* EaseFaceView.m */; };
+		40BC84B71BFC570700038C81 /* EaseFacialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84511BFC570700038C81 /* EaseFacialView.m */; };
+		40BC84B81BFC570700038C81 /* EaseChatBarMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84541BFC570700038C81 /* EaseChatBarMoreView.m */; };
+		40BC84B91BFC570700038C81 /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC84571BFC570700038C81 /* EaseRecordView.m */; };
+		40BC84BA1BFC570700038C81 /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BC845A1BFC570700038C81 /* EaseConversationCell.m */; };
 		40C4B7141BFACD6600CB2DA5 /* MailListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7121BFACD6600CB2DA5 /* MailListTVC.swift */; };
 		40C4B7151BFACD6600CB2DA5 /* MailListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C4B7131BFACD6600CB2DA5 /* MailListTVC.xib */; };
 		40C4B7181BFACD6E00CB2DA5 /* FindListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7161BFACD6E00CB2DA5 /* FindListTVC.swift */; };
 		40C4B7191BFACD6E00CB2DA5 /* FindListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C4B7171BFACD6E00CB2DA5 /* FindListTVC.xib */; };
 		40C4B71B1BFACDD000CB2DA5 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C4B71A1BFACDD000CB2DA5 /* openssl.framework */; };
+		40C4B72A1BFB2A3200CB2DA5 /* ConversationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7211BFB2A3200CB2DA5 /* ConversationListController.m */; };
+		40C4B72B1BFB2A3200CB2DA5 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7241BFB2A3200CB2DA5 /* ChatViewController.m */; };
+		40C4B72C1BFB2A3200CB2DA5 /* CustomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7271BFB2A3200CB2DA5 /* CustomMessageCell.m */; };
+		40C4B72D1BFB2A3200CB2DA5 /* EMBubbleView+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7291BFB2A3200CB2DA5 /* EMBubbleView+Gif.m */; };
+		40C4B7351BFB307700CB2DA5 /* EMGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7341BFB307700CB2DA5 /* EMGifImage.m */; };
+		40C4B7391BFB309300CB2DA5 /* UIImageView+HeadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C4B7381BFB309300CB2DA5 /* UIImageView+HeadImage.m */; };
 		40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */; };
 		40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */; };
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
@@ -188,102 +286,6 @@
 		40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA7A021B463E850097CE3D /* JSHChatVC.m */; };
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
 		40E9E93E1BF972A7007C0A90 /* SalesTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9E93D1BF972A7007C0A90 /* SalesTBC.swift */; };
-		40E9EF251BF9D159007C0A90 /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE181BF9D159007C0A90 /* EaseUI.m */; };
-		40E9EF261BF9D159007C0A90 /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE221BF9D159007C0A90 /* EMAudioPlayerUtil.m */; };
-		40E9EF271BF9D159007C0A90 /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE241BF9D159007C0A90 /* EMAudioRecorderUtil.m */; };
-		40E9EF281BF9D159007C0A90 /* EMCDDeviceManager+Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE261BF9D159007C0A90 /* EMCDDeviceManager+Media.m */; };
-		40E9EF291BF9D159007C0A90 /* EMCDDeviceManager+Microphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE281BF9D159007C0A90 /* EMCDDeviceManager+Microphone.m */; };
-		40E9EF2A1BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE2A1BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.m */; };
-		40E9EF2B1BF9D159007C0A90 /* EMCDDeviceManager+Remind.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE2C1BF9D159007C0A90 /* EMCDDeviceManager+Remind.m */; };
-		40E9EF2C1BF9D159007C0A90 /* EMCDDeviceManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE2F1BF9D159007C0A90 /* EMCDDeviceManagerBase.m */; };
-		40E9EF2D1BF9D159007C0A90 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE331BF9D159007C0A90 /* amrFileCodec.mm */; };
-		40E9EF2E1BF9D159007C0A90 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE351BF9D159007C0A90 /* wav.mm */; };
-		40E9EF2F1BF9D159007C0A90 /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE371BF9D159007C0A90 /* EMVoiceConverter.mm */; };
-		40E9EF301BF9D159007C0A90 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E9EE3B1BF9D159007C0A90 /* libopencore-amrnb.a */; };
-		40E9EF311BF9D159007C0A90 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E9EE3F1BF9D159007C0A90 /* libopencore-amrwb.a */; };
-		40E9EF321BF9D159007C0A90 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE421BF9D159007C0A90 /* MBProgressHUD+Add.m */; };
-		40E9EF341BF9D159007C0A90 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE491BF9D159007C0A90 /* MWCaptionView.m */; };
-		40E9EF351BF9D159007C0A90 /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE4C1BF9D159007C0A90 /* MWGridCell.m */; };
-		40E9EF361BF9D159007C0A90 /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE4E1BF9D159007C0A90 /* MWGridViewController.m */; };
-		40E9EF371BF9D159007C0A90 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE501BF9D159007C0A90 /* MWPhoto.m */; };
-		40E9EF381BF9D159007C0A90 /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE521BF9D159007C0A90 /* MWPhotoBrowser.m */; };
-		40E9EF391BF9D159007C0A90 /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE561BF9D159007C0A90 /* MWTapDetectingImageView.m */; };
-		40E9EF3A1BF9D159007C0A90 /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE581BF9D159007C0A90 /* MWTapDetectingView.m */; };
-		40E9EF3B1BF9D159007C0A90 /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE5A1BF9D159007C0A90 /* MWZoomingScrollView.m */; };
-		40E9EF3C1BF9D159007C0A90 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE5E1BF9D159007C0A90 /* DACircularProgressView.m */; };
-		40E9EF3D1BF9D159007C0A90 /* EMSDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE611BF9D159007C0A90 /* EMSDImageCache.m */; };
-		40E9EF3E1BF9D159007C0A90 /* EMSDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE631BF9D159007C0A90 /* EMSDWebImageCompat.m */; };
-		40E9EF3F1BF9D159007C0A90 /* EMSDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE651BF9D159007C0A90 /* EMSDWebImageDecoder.m */; };
-		40E9EF401BF9D159007C0A90 /* EMSDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE671BF9D159007C0A90 /* EMSDWebImageDownloader.m */; };
-		40E9EF411BF9D159007C0A90 /* EMSDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE691BF9D159007C0A90 /* EMSDWebImageDownloaderOperation.m */; };
-		40E9EF421BF9D159007C0A90 /* EMSDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE6B1BF9D159007C0A90 /* EMSDWebImageManager.m */; };
-		40E9EF431BF9D159007C0A90 /* EMSDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE6E1BF9D159007C0A90 /* EMSDWebImagePrefetcher.m */; };
-		40E9EF441BF9D159007C0A90 /* MKAnnotationView+EMWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE701BF9D159007C0A90 /* MKAnnotationView+EMWebCache.m */; };
-		40E9EF451BF9D159007C0A90 /* NSData+EMImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE721BF9D159007C0A90 /* NSData+EMImageContentType.m */; };
-		40E9EF461BF9D159007C0A90 /* UIButton+EMWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE741BF9D159007C0A90 /* UIButton+EMWebCache.m */; };
-		40E9EF471BF9D159007C0A90 /* UIImage+EMGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE761BF9D159007C0A90 /* UIImage+EMGIF.m */; };
-		40E9EF481BF9D159007C0A90 /* UIImage+EMMultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE781BF9D159007C0A90 /* UIImage+EMMultiFormat.m */; };
-		40E9EF491BF9D159007C0A90 /* UIImage+EMWebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE7A1BF9D159007C0A90 /* UIImage+EMWebP.m */; };
-		40E9EF4A1BF9D159007C0A90 /* UIImageView+EMHighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE7C1BF9D159007C0A90 /* UIImageView+EMHighlightedWebCache.m */; };
-		40E9EF4B1BF9D159007C0A90 /* UIImageView+EMWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE7E1BF9D159007C0A90 /* UIImageView+EMWebCache.m */; };
-		40E9EF4C1BF9D159007C0A90 /* UIView+EMWebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE801BF9D159007C0A90 /* UIView+EMWebCacheOperation.m */; };
-		40E9EF4D1BF9D159007C0A90 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE831BF9D159007C0A90 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
-		40E9EF4E1BF9D159007C0A90 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE851BF9D159007C0A90 /* PSTCollectionView.m */; };
-		40E9EF4F1BF9D159007C0A90 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE871BF9D159007C0A90 /* PSTCollectionViewCell.m */; };
-		40E9EF501BF9D159007C0A90 /* PSTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE8A1BF9D159007C0A90 /* PSTCollectionViewController.m */; };
-		40E9EF511BF9D159007C0A90 /* PSTCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE8C1BF9D159007C0A90 /* PSTCollectionViewData.m */; };
-		40E9EF521BF9D159007C0A90 /* PSTCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE8E1BF9D159007C0A90 /* PSTCollectionViewFlowLayout.m */; };
-		40E9EF531BF9D159007C0A90 /* PSTCollectionViewItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE901BF9D159007C0A90 /* PSTCollectionViewItemKey.m */; };
-		40E9EF541BF9D159007C0A90 /* PSTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE931BF9D159007C0A90 /* PSTCollectionViewLayout.m */; };
-		40E9EF551BF9D159007C0A90 /* PSTCollectionViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE951BF9D159007C0A90 /* PSTCollectionViewUpdateItem.m */; };
-		40E9EF561BF9D159007C0A90 /* PSTGridLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE971BF9D159007C0A90 /* PSTGridLayoutInfo.m */; };
-		40E9EF571BF9D159007C0A90 /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE991BF9D159007C0A90 /* PSTGridLayoutItem.m */; };
-		40E9EF581BF9D159007C0A90 /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE9B1BF9D159007C0A90 /* PSTGridLayoutRow.m */; };
-		40E9EF591BF9D159007C0A90 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EE9D1BF9D159007C0A90 /* PSTGridLayoutSection.m */; };
-		40E9EF5A1BF9D159007C0A90 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 40E9EE9E1BF9D159007C0A90 /* MWPhotoBrowser.bundle */; };
-		40E9EF5B1BF9D159007C0A90 /* EaseSDKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEA11BF9D159007C0A90 /* EaseSDKHelper.m */; };
-		40E9EF5C1BF9D159007C0A90 /* EaseConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEA41BF9D159007C0A90 /* EaseConversationModel.m */; };
-		40E9EF5D1BF9D159007C0A90 /* EaseMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEA61BF9D159007C0A90 /* EaseMessageModel.m */; };
-		40E9EF5E1BF9D159007C0A90 /* EaseUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEA81BF9D159007C0A90 /* EaseUserModel.m */; };
-		40E9EF5F1BF9D159007C0A90 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEB11BF9D159007C0A90 /* NSDate+Category.m */; };
-		40E9EF601BF9D159007C0A90 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEB31BF9D159007C0A90 /* NSDateFormatter+Category.m */; };
-		40E9EF611BF9D159007C0A90 /* NSObject+EaseMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEB51BF9D159007C0A90 /* NSObject+EaseMob.m */; };
-		40E9EF621BF9D159007C0A90 /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEB71BF9D159007C0A90 /* NSString+Valid.m */; };
-		40E9EF631BF9D159007C0A90 /* UIViewController+DismissKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEB91BF9D159007C0A90 /* UIViewController+DismissKeyboard.m */; };
-		40E9EF641BF9D159007C0A90 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEBB1BF9D159007C0A90 /* UIViewController+HUD.m */; };
-		40E9EF651BF9D159007C0A90 /* EaseChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEBD1BF9D159007C0A90 /* EaseChineseToPinyin.m */; };
-		40E9EF661BF9D159007C0A90 /* EaseConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEBF1BF9D159007C0A90 /* EaseConvertToCommonEmoticonsHelper.m */; };
-		40E9EF671BF9D159007C0A90 /* EaseMessageReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEC11BF9D159007C0A90 /* EaseMessageReadManager.m */; };
-		40E9EF681BF9D159007C0A90 /* EaseEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEC41BF9D159007C0A90 /* EaseEmoji.m */; };
-		40E9EF691BF9D159007C0A90 /* EaseEmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEC61BF9D159007C0A90 /* EaseEmojiEmoticons.m */; };
-		40E9EF6A1BF9D159007C0A90 /* EaseEmotionEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEC81BF9D159007C0A90 /* EaseEmotionEscape.m */; };
-		40E9EF6B1BF9D159007C0A90 /* EaseEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EECA1BF9D159007C0A90 /* EaseEmotionManager.m */; };
-		40E9EF6C1BF9D159007C0A90 /* EaseConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EECD1BF9D159007C0A90 /* EaseConversationListViewController.m */; };
-		40E9EF6D1BF9D159007C0A90 /* EaseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EECF1BF9D159007C0A90 /* EaseLocationViewController.m */; };
-		40E9EF6E1BF9D159007C0A90 /* EaseMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EED11BF9D159007C0A90 /* EaseMessageViewController.m */; };
-		40E9EF6F1BF9D159007C0A90 /* EaseRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EED31BF9D159007C0A90 /* EaseRefreshTableViewController.m */; };
-		40E9EF701BF9D159007C0A90 /* EaseUsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EED51BF9D159007C0A90 /* EaseUsersListViewController.m */; };
-		40E9EF711BF9D159007C0A90 /* EaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EED71BF9D159007C0A90 /* EaseViewController.m */; };
-		40E9EF721BF9D159007C0A90 /* EaseUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEDB1BF9D159007C0A90 /* EaseUserCell.m */; };
-		40E9EF731BF9D159007C0A90 /* EaseBaseMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEDF1BF9D159007C0A90 /* EaseBaseMessageCell.m */; };
-		40E9EF741BF9D159007C0A90 /* EaseMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEE11BF9D159007C0A90 /* EaseMessageCell.m */; };
-		40E9EF751BF9D159007C0A90 /* EaseMessageTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEE31BF9D159007C0A90 /* EaseMessageTimeCell.m */; };
-		40E9EF761BF9D159007C0A90 /* EaseBubbleView+File.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEE61BF9D159007C0A90 /* EaseBubbleView+File.m */; };
-		40E9EF771BF9D159007C0A90 /* EaseBubbleView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEE81BF9D159007C0A90 /* EaseBubbleView+Image.m */; };
-		40E9EF781BF9D159007C0A90 /* EaseBubbleView+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEEA1BF9D159007C0A90 /* EaseBubbleView+Location.m */; };
-		40E9EF791BF9D159007C0A90 /* EaseBubbleView+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEEC1BF9D159007C0A90 /* EaseBubbleView+Text.m */; };
-		40E9EF7A1BF9D159007C0A90 /* EaseBubbleView+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEEE1BF9D159007C0A90 /* EaseBubbleView+Video.m */; };
-		40E9EF7B1BF9D159007C0A90 /* EaseBubbleView+Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEF01BF9D159007C0A90 /* EaseBubbleView+Voice.m */; };
-		40E9EF7C1BF9D159007C0A90 /* EaseBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEF21BF9D159007C0A90 /* EaseBubbleView.m */; };
-		40E9EF7D1BF9D159007C0A90 /* EaseChatToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEF51BF9D159007C0A90 /* EaseChatToolbar.m */; };
-		40E9EF7E1BF9D159007C0A90 /* EaseChatToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEF71BF9D159007C0A90 /* EaseChatToolbarItem.m */; };
-		40E9EF7F1BF9D159007C0A90 /* EaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEF91BF9D159007C0A90 /* EaseImageView.m */; };
-		40E9EF801BF9D159007C0A90 /* EaseTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEFB1BF9D159007C0A90 /* EaseTextView.m */; };
-		40E9EF811BF9D159007C0A90 /* EaseFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EEFE1BF9D159007C0A90 /* EaseFaceView.m */; };
-		40E9EF821BF9D159007C0A90 /* EaseFacialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EF001BF9D159007C0A90 /* EaseFacialView.m */; };
-		40E9EF831BF9D159007C0A90 /* EaseChatBarMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EF031BF9D159007C0A90 /* EaseChatBarMoreView.m */; };
-		40E9EF841BF9D159007C0A90 /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EF061BF9D159007C0A90 /* EaseRecordView.m */; };
-		40E9EF851BF9D159007C0A90 /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9EF091BF9D159007C0A90 /* EaseConversationCell.m */; };
 		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
 		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
 		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
@@ -709,15 +711,232 @@
 		409587EB1BCD05CE00D212D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		409587ED1BCD05D000D212D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40BBFF9F1B9EDB3300D13F77 /* NameTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTVC.swift; sourceTree = "<group>"; };
-		40C4B7091BFAC3B500CB2DA5 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationCell.swift; path = SVIP/ConversationCell.swift; sourceTree = SOURCE_ROOT; };
-		40C4B70A1BFAC3B500CB2DA5 /* ConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationCell.xib; path = SVIP/ConversationCell.xib; sourceTree = SOURCE_ROOT; };
-		40C4B70E1BFAC80200CB2DA5 /* ConversationListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationListTVC.swift; path = SVIP/ConversationListTVC.swift; sourceTree = SOURCE_ROOT; };
-		40C4B70F1BFAC80200CB2DA5 /* ConversationListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationListTVC.xib; path = SVIP/ConversationListTVC.xib; sourceTree = SOURCE_ROOT; };
+		40BC83691BFC570700038C81 /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
+		40BC836A1BFC570700038C81 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
+		40BC836B1BFC570700038C81 /* EaseUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUI.m; sourceTree = "<group>"; };
+		40BC83701BFC570700038C81 /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
+		40BC83711BFC570700038C81 /* EMCDDeviceManagerProximitySensorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerProximitySensorDelegate.h; sourceTree = "<group>"; };
+		40BC83731BFC570700038C81 /* DemoErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoErrorCode.h; sourceTree = "<group>"; };
+		40BC83741BFC570700038C81 /* EMAudioPlayerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioPlayerUtil.h; sourceTree = "<group>"; };
+		40BC83751BFC570700038C81 /* EMAudioPlayerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioPlayerUtil.m; sourceTree = "<group>"; };
+		40BC83761BFC570700038C81 /* EMAudioRecorderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioRecorderUtil.h; sourceTree = "<group>"; };
+		40BC83771BFC570700038C81 /* EMAudioRecorderUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioRecorderUtil.m; sourceTree = "<group>"; };
+		40BC83781BFC570700038C81 /* EMCDDeviceManager+Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Media.h"; sourceTree = "<group>"; };
+		40BC83791BFC570700038C81 /* EMCDDeviceManager+Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Media.m"; sourceTree = "<group>"; };
+		40BC837A1BFC570700038C81 /* EMCDDeviceManager+Microphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Microphone.h"; sourceTree = "<group>"; };
+		40BC837B1BFC570700038C81 /* EMCDDeviceManager+Microphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Microphone.m"; sourceTree = "<group>"; };
+		40BC837C1BFC570700038C81 /* EMCDDeviceManager+ProximitySensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+ProximitySensor.h"; sourceTree = "<group>"; };
+		40BC837D1BFC570700038C81 /* EMCDDeviceManager+ProximitySensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+ProximitySensor.m"; sourceTree = "<group>"; };
+		40BC837E1BFC570700038C81 /* EMCDDeviceManager+Remind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Remind.h"; sourceTree = "<group>"; };
+		40BC837F1BFC570700038C81 /* EMCDDeviceManager+Remind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Remind.m"; sourceTree = "<group>"; };
+		40BC83801BFC570700038C81 /* EMCDDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManager.h; sourceTree = "<group>"; };
+		40BC83811BFC570700038C81 /* EMCDDeviceManagerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerBase.h; sourceTree = "<group>"; };
+		40BC83821BFC570700038C81 /* EMCDDeviceManagerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCDDeviceManagerBase.m; sourceTree = "<group>"; };
+		40BC83851BFC570700038C81 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
+		40BC83861BFC570700038C81 /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
+		40BC83871BFC570700038C81 /* wav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wav.h; sourceTree = "<group>"; };
+		40BC83881BFC570700038C81 /* wav.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = wav.mm; sourceTree = "<group>"; };
+		40BC83891BFC570700038C81 /* EMVoiceConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMVoiceConverter.h; sourceTree = "<group>"; };
+		40BC838A1BFC570700038C81 /* EMVoiceConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EMVoiceConverter.mm; sourceTree = "<group>"; };
+		40BC838C1BFC570700038C81 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		40BC838D1BFC570700038C81 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		40BC838E1BFC570700038C81 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		40BC83901BFC570700038C81 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		40BC83911BFC570700038C81 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		40BC83921BFC570700038C81 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		40BC83941BFC570700038C81 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		40BC83951BFC570700038C81 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		40BC83991BFC570700038C81 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
+		40BC839A1BFC570700038C81 /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
+		40BC839B1BFC570700038C81 /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
+		40BC839C1BFC570700038C81 /* MWGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridCell.h; sourceTree = "<group>"; };
+		40BC839D1BFC570700038C81 /* MWGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridCell.m; sourceTree = "<group>"; };
+		40BC839E1BFC570700038C81 /* MWGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridViewController.h; sourceTree = "<group>"; };
+		40BC839F1BFC570700038C81 /* MWGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridViewController.m; sourceTree = "<group>"; };
+		40BC83A01BFC570700038C81 /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhoto.h; sourceTree = "<group>"; };
+		40BC83A11BFC570700038C81 /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhoto.m; sourceTree = "<group>"; };
+		40BC83A21BFC570700038C81 /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowser.h; sourceTree = "<group>"; };
+		40BC83A31BFC570700038C81 /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhotoBrowser.m; sourceTree = "<group>"; };
+		40BC83A41BFC570700038C81 /* MWPhotoBrowserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowserPrivate.h; sourceTree = "<group>"; };
+		40BC83A51BFC570700038C81 /* MWPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoProtocol.h; sourceTree = "<group>"; };
+		40BC83A61BFC570700038C81 /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
+		40BC83A71BFC570700038C81 /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingImageView.m; sourceTree = "<group>"; };
+		40BC83A81BFC570700038C81 /* MWTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingView.h; sourceTree = "<group>"; };
+		40BC83A91BFC570700038C81 /* MWTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingView.m; sourceTree = "<group>"; };
+		40BC83AA1BFC570700038C81 /* MWZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWZoomingScrollView.h; sourceTree = "<group>"; };
+		40BC83AB1BFC570700038C81 /* MWZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWZoomingScrollView.m; sourceTree = "<group>"; };
+		40BC83AE1BFC570700038C81 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		40BC83AF1BFC570700038C81 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		40BC83B11BFC570700038C81 /* EMSDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDImageCache.h; sourceTree = "<group>"; };
+		40BC83B21BFC570700038C81 /* EMSDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDImageCache.m; sourceTree = "<group>"; };
+		40BC83B31BFC570700038C81 /* EMSDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageCompat.h; sourceTree = "<group>"; };
+		40BC83B41BFC570700038C81 /* EMSDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageCompat.m; sourceTree = "<group>"; };
+		40BC83B51BFC570700038C81 /* EMSDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageDecoder.h; sourceTree = "<group>"; };
+		40BC83B61BFC570700038C81 /* EMSDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageDecoder.m; sourceTree = "<group>"; };
+		40BC83B71BFC570700038C81 /* EMSDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageDownloader.h; sourceTree = "<group>"; };
+		40BC83B81BFC570700038C81 /* EMSDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageDownloader.m; sourceTree = "<group>"; };
+		40BC83B91BFC570700038C81 /* EMSDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		40BC83BA1BFC570700038C81 /* EMSDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		40BC83BB1BFC570700038C81 /* EMSDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageManager.h; sourceTree = "<group>"; };
+		40BC83BC1BFC570700038C81 /* EMSDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageManager.m; sourceTree = "<group>"; };
+		40BC83BD1BFC570700038C81 /* EMSDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageOperation.h; sourceTree = "<group>"; };
+		40BC83BE1BFC570700038C81 /* EMSDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		40BC83BF1BFC570700038C81 /* EMSDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		40BC83C01BFC570700038C81 /* MKAnnotationView+EMWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+EMWebCache.h"; sourceTree = "<group>"; };
+		40BC83C11BFC570700038C81 /* MKAnnotationView+EMWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+EMWebCache.m"; sourceTree = "<group>"; };
+		40BC83C21BFC570700038C81 /* NSData+EMImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+EMImageContentType.h"; sourceTree = "<group>"; };
+		40BC83C31BFC570700038C81 /* NSData+EMImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+EMImageContentType.m"; sourceTree = "<group>"; };
+		40BC83C41BFC570700038C81 /* UIButton+EMWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EMWebCache.h"; sourceTree = "<group>"; };
+		40BC83C51BFC570700038C81 /* UIButton+EMWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EMWebCache.m"; sourceTree = "<group>"; };
+		40BC83C61BFC570700038C81 /* UIImage+EMGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EMGIF.h"; sourceTree = "<group>"; };
+		40BC83C71BFC570700038C81 /* UIImage+EMGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EMGIF.m"; sourceTree = "<group>"; };
+		40BC83C81BFC570700038C81 /* UIImage+EMMultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EMMultiFormat.h"; sourceTree = "<group>"; };
+		40BC83C91BFC570700038C81 /* UIImage+EMMultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EMMultiFormat.m"; sourceTree = "<group>"; };
+		40BC83CA1BFC570700038C81 /* UIImage+EMWebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EMWebP.h"; sourceTree = "<group>"; };
+		40BC83CB1BFC570700038C81 /* UIImage+EMWebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EMWebP.m"; sourceTree = "<group>"; };
+		40BC83CC1BFC570700038C81 /* UIImageView+EMHighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EMHighlightedWebCache.h"; sourceTree = "<group>"; };
+		40BC83CD1BFC570700038C81 /* UIImageView+EMHighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EMHighlightedWebCache.m"; sourceTree = "<group>"; };
+		40BC83CE1BFC570700038C81 /* UIImageView+EMWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EMWebCache.h"; sourceTree = "<group>"; };
+		40BC83CF1BFC570700038C81 /* UIImageView+EMWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EMWebCache.m"; sourceTree = "<group>"; };
+		40BC83D01BFC570700038C81 /* UIView+EMWebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EMWebCacheOperation.h"; sourceTree = "<group>"; };
+		40BC83D11BFC570700038C81 /* UIView+EMWebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EMWebCacheOperation.m"; sourceTree = "<group>"; };
+		40BC83D31BFC570700038C81 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
+		40BC83D41BFC570700038C81 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
+		40BC83D51BFC570700038C81 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
+		40BC83D61BFC570700038C81 /* PSTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionView.m; sourceTree = "<group>"; };
+		40BC83D71BFC570700038C81 /* PSTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCell.h; sourceTree = "<group>"; };
+		40BC83D81BFC570700038C81 /* PSTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewCell.m; sourceTree = "<group>"; };
+		40BC83D91BFC570700038C81 /* PSTCollectionViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCommon.h; sourceTree = "<group>"; };
+		40BC83DA1BFC570700038C81 /* PSTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewController.h; sourceTree = "<group>"; };
+		40BC83DB1BFC570700038C81 /* PSTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewController.m; sourceTree = "<group>"; };
+		40BC83DC1BFC570700038C81 /* PSTCollectionViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewData.h; sourceTree = "<group>"; };
+		40BC83DD1BFC570700038C81 /* PSTCollectionViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewData.m; sourceTree = "<group>"; };
+		40BC83DE1BFC570700038C81 /* PSTCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		40BC83DF1BFC570700038C81 /* PSTCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		40BC83E01BFC570700038C81 /* PSTCollectionViewItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewItemKey.h; sourceTree = "<group>"; };
+		40BC83E11BFC570700038C81 /* PSTCollectionViewItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewItemKey.m; sourceTree = "<group>"; };
+		40BC83E21BFC570700038C81 /* PSTCollectionViewLayout+Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PSTCollectionViewLayout+Internals.h"; sourceTree = "<group>"; };
+		40BC83E31BFC570700038C81 /* PSTCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewLayout.h; sourceTree = "<group>"; };
+		40BC83E41BFC570700038C81 /* PSTCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewLayout.m; sourceTree = "<group>"; };
+		40BC83E51BFC570700038C81 /* PSTCollectionViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewUpdateItem.h; sourceTree = "<group>"; };
+		40BC83E61BFC570700038C81 /* PSTCollectionViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewUpdateItem.m; sourceTree = "<group>"; };
+		40BC83E71BFC570700038C81 /* PSTGridLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutInfo.h; sourceTree = "<group>"; };
+		40BC83E81BFC570700038C81 /* PSTGridLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutInfo.m; sourceTree = "<group>"; };
+		40BC83E91BFC570700038C81 /* PSTGridLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutItem.h; sourceTree = "<group>"; };
+		40BC83EA1BFC570700038C81 /* PSTGridLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutItem.m; sourceTree = "<group>"; };
+		40BC83EB1BFC570700038C81 /* PSTGridLayoutRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutRow.h; sourceTree = "<group>"; };
+		40BC83EC1BFC570700038C81 /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
+		40BC83ED1BFC570700038C81 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
+		40BC83EE1BFC570700038C81 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
+		40BC83EF1BFC570700038C81 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		40BC83F11BFC570700038C81 /* EaseSDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseSDKHelper.h; sourceTree = "<group>"; };
+		40BC83F21BFC570700038C81 /* EaseSDKHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseSDKHelper.m; sourceTree = "<group>"; };
+		40BC83F41BFC570700038C81 /* EaseConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationModel.h; sourceTree = "<group>"; };
+		40BC83F51BFC570700038C81 /* EaseConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationModel.m; sourceTree = "<group>"; };
+		40BC83F61BFC570700038C81 /* EaseMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageModel.h; sourceTree = "<group>"; };
+		40BC83F71BFC570700038C81 /* EaseMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageModel.m; sourceTree = "<group>"; };
+		40BC83F81BFC570700038C81 /* EaseUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUserModel.h; sourceTree = "<group>"; };
+		40BC83F91BFC570700038C81 /* EaseUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUserModel.m; sourceTree = "<group>"; };
+		40BC83FA1BFC570700038C81 /* IConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IConversationModel.h; sourceTree = "<group>"; };
+		40BC83FB1BFC570700038C81 /* IMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMessageModel.h; sourceTree = "<group>"; };
+		40BC83FC1BFC570700038C81 /* IModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IModelCell.h; sourceTree = "<group>"; };
+		40BC83FD1BFC570700038C81 /* IModelChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IModelChatCell.h; sourceTree = "<group>"; };
+		40BC83FE1BFC570700038C81 /* IUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUserModel.h; sourceTree = "<group>"; };
+		40BC84011BFC570700038C81 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		40BC84021BFC570700038C81 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		40BC84031BFC570700038C81 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
+		40BC84041BFC570700038C81 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
+		40BC84051BFC570700038C81 /* NSObject+EaseMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EaseMob.h"; sourceTree = "<group>"; };
+		40BC84061BFC570700038C81 /* NSObject+EaseMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EaseMob.m"; sourceTree = "<group>"; };
+		40BC84071BFC570700038C81 /* NSString+Valid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Valid.h"; sourceTree = "<group>"; };
+		40BC84081BFC570700038C81 /* NSString+Valid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Valid.m"; sourceTree = "<group>"; };
+		40BC84091BFC570700038C81 /* UIViewController+DismissKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DismissKeyboard.h"; sourceTree = "<group>"; };
+		40BC840A1BFC570700038C81 /* UIViewController+DismissKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DismissKeyboard.m"; sourceTree = "<group>"; };
+		40BC840B1BFC570700038C81 /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
+		40BC840C1BFC570700038C81 /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
+		40BC840D1BFC570700038C81 /* EaseChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChineseToPinyin.h; sourceTree = "<group>"; };
+		40BC840E1BFC570700038C81 /* EaseChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChineseToPinyin.m; sourceTree = "<group>"; };
+		40BC840F1BFC570700038C81 /* EaseConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
+		40BC84101BFC570700038C81 /* EaseConvertToCommonEmoticonsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConvertToCommonEmoticonsHelper.m; sourceTree = "<group>"; };
+		40BC84111BFC570700038C81 /* EaseMessageReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageReadManager.h; sourceTree = "<group>"; };
+		40BC84121BFC570700038C81 /* EaseMessageReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageReadManager.m; sourceTree = "<group>"; };
+		40BC84141BFC570700038C81 /* EaseEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmoji.h; sourceTree = "<group>"; };
+		40BC84151BFC570700038C81 /* EaseEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmoji.m; sourceTree = "<group>"; };
+		40BC84161BFC570700038C81 /* EaseEmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmojiEmoticons.h; sourceTree = "<group>"; };
+		40BC84171BFC570700038C81 /* EaseEmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmojiEmoticons.m; sourceTree = "<group>"; };
+		40BC84181BFC570700038C81 /* EaseEmotionEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionEscape.h; sourceTree = "<group>"; };
+		40BC84191BFC570700038C81 /* EaseEmotionEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionEscape.m; sourceTree = "<group>"; };
+		40BC841A1BFC570700038C81 /* EaseEmotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionManager.h; sourceTree = "<group>"; };
+		40BC841B1BFC570700038C81 /* EaseEmotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionManager.m; sourceTree = "<group>"; };
+		40BC841D1BFC570700038C81 /* EaseConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationListViewController.h; sourceTree = "<group>"; };
+		40BC841E1BFC570700038C81 /* EaseConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationListViewController.m; sourceTree = "<group>"; };
+		40BC841F1BFC570700038C81 /* EaseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseLocationViewController.h; sourceTree = "<group>"; };
+		40BC84201BFC570700038C81 /* EaseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseLocationViewController.m; sourceTree = "<group>"; };
+		40BC84211BFC570700038C81 /* EaseMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageViewController.h; sourceTree = "<group>"; };
+		40BC84221BFC570700038C81 /* EaseMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageViewController.m; sourceTree = "<group>"; };
+		40BC84231BFC570700038C81 /* EaseRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseRefreshTableViewController.h; sourceTree = "<group>"; };
+		40BC84241BFC570700038C81 /* EaseRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseRefreshTableViewController.m; sourceTree = "<group>"; };
+		40BC84251BFC570700038C81 /* EaseUsersListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUsersListViewController.h; sourceTree = "<group>"; };
+		40BC84261BFC570700038C81 /* EaseUsersListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUsersListViewController.m; sourceTree = "<group>"; };
+		40BC84271BFC570700038C81 /* EaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseViewController.h; sourceTree = "<group>"; };
+		40BC84281BFC570700038C81 /* EaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseViewController.m; sourceTree = "<group>"; };
+		40BC842B1BFC570700038C81 /* EaseUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUserCell.h; sourceTree = "<group>"; };
+		40BC842C1BFC570700038C81 /* EaseUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUserCell.m; sourceTree = "<group>"; };
+		40BC842F1BFC570700038C81 /* EaseBaseMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseBaseMessageCell.h; sourceTree = "<group>"; };
+		40BC84301BFC570700038C81 /* EaseBaseMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseBaseMessageCell.m; sourceTree = "<group>"; };
+		40BC84311BFC570700038C81 /* EaseMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageCell.h; sourceTree = "<group>"; };
+		40BC84321BFC570700038C81 /* EaseMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageCell.m; sourceTree = "<group>"; };
+		40BC84331BFC570700038C81 /* EaseMessageTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageTimeCell.h; sourceTree = "<group>"; };
+		40BC84341BFC570700038C81 /* EaseMessageTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageTimeCell.m; sourceTree = "<group>"; };
+		40BC84361BFC570700038C81 /* EaseBubbleView+File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+File.h"; sourceTree = "<group>"; };
+		40BC84371BFC570700038C81 /* EaseBubbleView+File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+File.m"; sourceTree = "<group>"; };
+		40BC84381BFC570700038C81 /* EaseBubbleView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Image.h"; sourceTree = "<group>"; };
+		40BC84391BFC570700038C81 /* EaseBubbleView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Image.m"; sourceTree = "<group>"; };
+		40BC843A1BFC570700038C81 /* EaseBubbleView+Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Location.h"; sourceTree = "<group>"; };
+		40BC843B1BFC570700038C81 /* EaseBubbleView+Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Location.m"; sourceTree = "<group>"; };
+		40BC843C1BFC570700038C81 /* EaseBubbleView+Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Text.h"; sourceTree = "<group>"; };
+		40BC843D1BFC570700038C81 /* EaseBubbleView+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Text.m"; sourceTree = "<group>"; };
+		40BC843E1BFC570700038C81 /* EaseBubbleView+Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Video.h"; sourceTree = "<group>"; };
+		40BC843F1BFC570700038C81 /* EaseBubbleView+Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Video.m"; sourceTree = "<group>"; };
+		40BC84401BFC570700038C81 /* EaseBubbleView+Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Voice.h"; sourceTree = "<group>"; };
+		40BC84411BFC570700038C81 /* EaseBubbleView+Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Voice.m"; sourceTree = "<group>"; };
+		40BC84421BFC570700038C81 /* EaseBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseBubbleView.h; sourceTree = "<group>"; };
+		40BC84431BFC570700038C81 /* EaseBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseBubbleView.m; sourceTree = "<group>"; };
+		40BC84451BFC570700038C81 /* EaseChatToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChatToolbar.h; sourceTree = "<group>"; };
+		40BC84461BFC570700038C81 /* EaseChatToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChatToolbar.m; sourceTree = "<group>"; };
+		40BC84471BFC570700038C81 /* EaseChatToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChatToolbarItem.h; sourceTree = "<group>"; };
+		40BC84481BFC570700038C81 /* EaseChatToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChatToolbarItem.m; sourceTree = "<group>"; };
+		40BC84491BFC570700038C81 /* EaseImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseImageView.h; sourceTree = "<group>"; };
+		40BC844A1BFC570700038C81 /* EaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseImageView.m; sourceTree = "<group>"; };
+		40BC844B1BFC570700038C81 /* EaseTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseTextView.h; sourceTree = "<group>"; };
+		40BC844C1BFC570700038C81 /* EaseTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseTextView.m; sourceTree = "<group>"; };
+		40BC844E1BFC570700038C81 /* EaseFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseFaceView.h; sourceTree = "<group>"; };
+		40BC844F1BFC570700038C81 /* EaseFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseFaceView.m; sourceTree = "<group>"; };
+		40BC84501BFC570700038C81 /* EaseFacialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseFacialView.h; sourceTree = "<group>"; };
+		40BC84511BFC570700038C81 /* EaseFacialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseFacialView.m; sourceTree = "<group>"; };
+		40BC84531BFC570700038C81 /* EaseChatBarMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChatBarMoreView.h; sourceTree = "<group>"; };
+		40BC84541BFC570700038C81 /* EaseChatBarMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChatBarMoreView.m; sourceTree = "<group>"; };
+		40BC84561BFC570700038C81 /* EaseRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseRecordView.h; sourceTree = "<group>"; };
+		40BC84571BFC570700038C81 /* EaseRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseRecordView.m; sourceTree = "<group>"; };
+		40BC84591BFC570700038C81 /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
+		40BC845A1BFC570700038C81 /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
 		40C4B7121BFACD6600CB2DA5 /* MailListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListTVC.swift; sourceTree = "<group>"; };
 		40C4B7131BFACD6600CB2DA5 /* MailListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListTVC.xib; sourceTree = "<group>"; };
 		40C4B7161BFACD6E00CB2DA5 /* FindListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindListTVC.swift; sourceTree = "<group>"; };
 		40C4B7171BFACD6E00CB2DA5 /* FindListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindListTVC.xib; sourceTree = "<group>"; };
 		40C4B71A1BFACDD000CB2DA5 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
+		40C4B7201BFB2A3200CB2DA5 /* ConversationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationListController.h; sourceTree = "<group>"; };
+		40C4B7211BFB2A3200CB2DA5 /* ConversationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationListController.m; sourceTree = "<group>"; };
+		40C4B7231BFB2A3200CB2DA5 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		40C4B7241BFB2A3200CB2DA5 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		40C4B7261BFB2A3200CB2DA5 /* CustomMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMessageCell.h; sourceTree = "<group>"; };
+		40C4B7271BFB2A3200CB2DA5 /* CustomMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMessageCell.m; sourceTree = "<group>"; };
+		40C4B7281BFB2A3200CB2DA5 /* EMBubbleView+Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMBubbleView+Gif.h"; sourceTree = "<group>"; };
+		40C4B7291BFB2A3200CB2DA5 /* EMBubbleView+Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMBubbleView+Gif.m"; sourceTree = "<group>"; };
+		40C4B7331BFB307700CB2DA5 /* EMGifImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMGifImage.h; path = GifImage/EMGifImage.h; sourceTree = "<group>"; };
+		40C4B7341BFB307700CB2DA5 /* EMGifImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMGifImage.m; path = GifImage/EMGifImage.m; sourceTree = "<group>"; };
+		40C4B7371BFB309300CB2DA5 /* UIImageView+HeadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HeadImage.h"; sourceTree = "<group>"; };
+		40C4B7381BFB309300CB2DA5 /* UIImageView+HeadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HeadImage.m"; sourceTree = "<group>"; };
 		40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
 		40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationCodeVC.xib; sourceTree = "<group>"; };
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
@@ -729,215 +948,6 @@
 		40DA7A021B463E850097CE3D /* JSHChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSHChatVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
 		40E9E93D1BF972A7007C0A90 /* SalesTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SalesTBC.swift; path = SVIP/SalesTBC.swift; sourceTree = SOURCE_ROOT; };
-		40E9EE161BF9D159007C0A90 /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
-		40E9EE171BF9D159007C0A90 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
-		40E9EE181BF9D159007C0A90 /* EaseUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUI.m; sourceTree = "<group>"; };
-		40E9EE1D1BF9D159007C0A90 /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
-		40E9EE1E1BF9D159007C0A90 /* EMCDDeviceManagerProximitySensorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerProximitySensorDelegate.h; sourceTree = "<group>"; };
-		40E9EE201BF9D159007C0A90 /* DemoErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoErrorCode.h; sourceTree = "<group>"; };
-		40E9EE211BF9D159007C0A90 /* EMAudioPlayerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioPlayerUtil.h; sourceTree = "<group>"; };
-		40E9EE221BF9D159007C0A90 /* EMAudioPlayerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioPlayerUtil.m; sourceTree = "<group>"; };
-		40E9EE231BF9D159007C0A90 /* EMAudioRecorderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioRecorderUtil.h; sourceTree = "<group>"; };
-		40E9EE241BF9D159007C0A90 /* EMAudioRecorderUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioRecorderUtil.m; sourceTree = "<group>"; };
-		40E9EE251BF9D159007C0A90 /* EMCDDeviceManager+Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Media.h"; sourceTree = "<group>"; };
-		40E9EE261BF9D159007C0A90 /* EMCDDeviceManager+Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Media.m"; sourceTree = "<group>"; };
-		40E9EE271BF9D159007C0A90 /* EMCDDeviceManager+Microphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Microphone.h"; sourceTree = "<group>"; };
-		40E9EE281BF9D159007C0A90 /* EMCDDeviceManager+Microphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Microphone.m"; sourceTree = "<group>"; };
-		40E9EE291BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+ProximitySensor.h"; sourceTree = "<group>"; };
-		40E9EE2A1BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+ProximitySensor.m"; sourceTree = "<group>"; };
-		40E9EE2B1BF9D159007C0A90 /* EMCDDeviceManager+Remind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Remind.h"; sourceTree = "<group>"; };
-		40E9EE2C1BF9D159007C0A90 /* EMCDDeviceManager+Remind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Remind.m"; sourceTree = "<group>"; };
-		40E9EE2D1BF9D159007C0A90 /* EMCDDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManager.h; sourceTree = "<group>"; };
-		40E9EE2E1BF9D159007C0A90 /* EMCDDeviceManagerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerBase.h; sourceTree = "<group>"; };
-		40E9EE2F1BF9D159007C0A90 /* EMCDDeviceManagerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCDDeviceManagerBase.m; sourceTree = "<group>"; };
-		40E9EE321BF9D159007C0A90 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
-		40E9EE331BF9D159007C0A90 /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
-		40E9EE341BF9D159007C0A90 /* wav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wav.h; sourceTree = "<group>"; };
-		40E9EE351BF9D159007C0A90 /* wav.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = wav.mm; sourceTree = "<group>"; };
-		40E9EE361BF9D159007C0A90 /* EMVoiceConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMVoiceConverter.h; sourceTree = "<group>"; };
-		40E9EE371BF9D159007C0A90 /* EMVoiceConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EMVoiceConverter.mm; sourceTree = "<group>"; };
-		40E9EE391BF9D159007C0A90 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
-		40E9EE3A1BF9D159007C0A90 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
-		40E9EE3B1BF9D159007C0A90 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
-		40E9EE3D1BF9D159007C0A90 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
-		40E9EE3E1BF9D159007C0A90 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
-		40E9EE3F1BF9D159007C0A90 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
-		40E9EE411BF9D159007C0A90 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
-		40E9EE421BF9D159007C0A90 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
-		40E9EE481BF9D159007C0A90 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
-		40E9EE491BF9D159007C0A90 /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
-		40E9EE4A1BF9D159007C0A90 /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
-		40E9EE4B1BF9D159007C0A90 /* MWGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridCell.h; sourceTree = "<group>"; };
-		40E9EE4C1BF9D159007C0A90 /* MWGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridCell.m; sourceTree = "<group>"; };
-		40E9EE4D1BF9D159007C0A90 /* MWGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridViewController.h; sourceTree = "<group>"; };
-		40E9EE4E1BF9D159007C0A90 /* MWGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridViewController.m; sourceTree = "<group>"; };
-		40E9EE4F1BF9D159007C0A90 /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhoto.h; sourceTree = "<group>"; };
-		40E9EE501BF9D159007C0A90 /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhoto.m; sourceTree = "<group>"; };
-		40E9EE511BF9D159007C0A90 /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowser.h; sourceTree = "<group>"; };
-		40E9EE521BF9D159007C0A90 /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhotoBrowser.m; sourceTree = "<group>"; };
-		40E9EE531BF9D159007C0A90 /* MWPhotoBrowserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowserPrivate.h; sourceTree = "<group>"; };
-		40E9EE541BF9D159007C0A90 /* MWPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoProtocol.h; sourceTree = "<group>"; };
-		40E9EE551BF9D159007C0A90 /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
-		40E9EE561BF9D159007C0A90 /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingImageView.m; sourceTree = "<group>"; };
-		40E9EE571BF9D159007C0A90 /* MWTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingView.h; sourceTree = "<group>"; };
-		40E9EE581BF9D159007C0A90 /* MWTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingView.m; sourceTree = "<group>"; };
-		40E9EE591BF9D159007C0A90 /* MWZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWZoomingScrollView.h; sourceTree = "<group>"; };
-		40E9EE5A1BF9D159007C0A90 /* MWZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWZoomingScrollView.m; sourceTree = "<group>"; };
-		40E9EE5D1BF9D159007C0A90 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
-		40E9EE5E1BF9D159007C0A90 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
-		40E9EE601BF9D159007C0A90 /* EMSDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDImageCache.h; sourceTree = "<group>"; };
-		40E9EE611BF9D159007C0A90 /* EMSDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDImageCache.m; sourceTree = "<group>"; };
-		40E9EE621BF9D159007C0A90 /* EMSDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageCompat.h; sourceTree = "<group>"; };
-		40E9EE631BF9D159007C0A90 /* EMSDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageCompat.m; sourceTree = "<group>"; };
-		40E9EE641BF9D159007C0A90 /* EMSDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageDecoder.h; sourceTree = "<group>"; };
-		40E9EE651BF9D159007C0A90 /* EMSDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageDecoder.m; sourceTree = "<group>"; };
-		40E9EE661BF9D159007C0A90 /* EMSDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageDownloader.h; sourceTree = "<group>"; };
-		40E9EE671BF9D159007C0A90 /* EMSDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageDownloader.m; sourceTree = "<group>"; };
-		40E9EE681BF9D159007C0A90 /* EMSDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
-		40E9EE691BF9D159007C0A90 /* EMSDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
-		40E9EE6A1BF9D159007C0A90 /* EMSDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageManager.h; sourceTree = "<group>"; };
-		40E9EE6B1BF9D159007C0A90 /* EMSDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImageManager.m; sourceTree = "<group>"; };
-		40E9EE6C1BF9D159007C0A90 /* EMSDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImageOperation.h; sourceTree = "<group>"; };
-		40E9EE6D1BF9D159007C0A90 /* EMSDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSDWebImagePrefetcher.h; sourceTree = "<group>"; };
-		40E9EE6E1BF9D159007C0A90 /* EMSDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSDWebImagePrefetcher.m; sourceTree = "<group>"; };
-		40E9EE6F1BF9D159007C0A90 /* MKAnnotationView+EMWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+EMWebCache.h"; sourceTree = "<group>"; };
-		40E9EE701BF9D159007C0A90 /* MKAnnotationView+EMWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+EMWebCache.m"; sourceTree = "<group>"; };
-		40E9EE711BF9D159007C0A90 /* NSData+EMImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+EMImageContentType.h"; sourceTree = "<group>"; };
-		40E9EE721BF9D159007C0A90 /* NSData+EMImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+EMImageContentType.m"; sourceTree = "<group>"; };
-		40E9EE731BF9D159007C0A90 /* UIButton+EMWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EMWebCache.h"; sourceTree = "<group>"; };
-		40E9EE741BF9D159007C0A90 /* UIButton+EMWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EMWebCache.m"; sourceTree = "<group>"; };
-		40E9EE751BF9D159007C0A90 /* UIImage+EMGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EMGIF.h"; sourceTree = "<group>"; };
-		40E9EE761BF9D159007C0A90 /* UIImage+EMGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EMGIF.m"; sourceTree = "<group>"; };
-		40E9EE771BF9D159007C0A90 /* UIImage+EMMultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EMMultiFormat.h"; sourceTree = "<group>"; };
-		40E9EE781BF9D159007C0A90 /* UIImage+EMMultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EMMultiFormat.m"; sourceTree = "<group>"; };
-		40E9EE791BF9D159007C0A90 /* UIImage+EMWebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EMWebP.h"; sourceTree = "<group>"; };
-		40E9EE7A1BF9D159007C0A90 /* UIImage+EMWebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EMWebP.m"; sourceTree = "<group>"; };
-		40E9EE7B1BF9D159007C0A90 /* UIImageView+EMHighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EMHighlightedWebCache.h"; sourceTree = "<group>"; };
-		40E9EE7C1BF9D159007C0A90 /* UIImageView+EMHighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EMHighlightedWebCache.m"; sourceTree = "<group>"; };
-		40E9EE7D1BF9D159007C0A90 /* UIImageView+EMWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EMWebCache.h"; sourceTree = "<group>"; };
-		40E9EE7E1BF9D159007C0A90 /* UIImageView+EMWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EMWebCache.m"; sourceTree = "<group>"; };
-		40E9EE7F1BF9D159007C0A90 /* UIView+EMWebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EMWebCacheOperation.h"; sourceTree = "<group>"; };
-		40E9EE801BF9D159007C0A90 /* UIView+EMWebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EMWebCacheOperation.m"; sourceTree = "<group>"; };
-		40E9EE821BF9D159007C0A90 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
-		40E9EE831BF9D159007C0A90 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
-		40E9EE841BF9D159007C0A90 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
-		40E9EE851BF9D159007C0A90 /* PSTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionView.m; sourceTree = "<group>"; };
-		40E9EE861BF9D159007C0A90 /* PSTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCell.h; sourceTree = "<group>"; };
-		40E9EE871BF9D159007C0A90 /* PSTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewCell.m; sourceTree = "<group>"; };
-		40E9EE881BF9D159007C0A90 /* PSTCollectionViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCommon.h; sourceTree = "<group>"; };
-		40E9EE891BF9D159007C0A90 /* PSTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewController.h; sourceTree = "<group>"; };
-		40E9EE8A1BF9D159007C0A90 /* PSTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewController.m; sourceTree = "<group>"; };
-		40E9EE8B1BF9D159007C0A90 /* PSTCollectionViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewData.h; sourceTree = "<group>"; };
-		40E9EE8C1BF9D159007C0A90 /* PSTCollectionViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewData.m; sourceTree = "<group>"; };
-		40E9EE8D1BF9D159007C0A90 /* PSTCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewFlowLayout.h; sourceTree = "<group>"; };
-		40E9EE8E1BF9D159007C0A90 /* PSTCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewFlowLayout.m; sourceTree = "<group>"; };
-		40E9EE8F1BF9D159007C0A90 /* PSTCollectionViewItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewItemKey.h; sourceTree = "<group>"; };
-		40E9EE901BF9D159007C0A90 /* PSTCollectionViewItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewItemKey.m; sourceTree = "<group>"; };
-		40E9EE911BF9D159007C0A90 /* PSTCollectionViewLayout+Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PSTCollectionViewLayout+Internals.h"; sourceTree = "<group>"; };
-		40E9EE921BF9D159007C0A90 /* PSTCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewLayout.h; sourceTree = "<group>"; };
-		40E9EE931BF9D159007C0A90 /* PSTCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewLayout.m; sourceTree = "<group>"; };
-		40E9EE941BF9D159007C0A90 /* PSTCollectionViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewUpdateItem.h; sourceTree = "<group>"; };
-		40E9EE951BF9D159007C0A90 /* PSTCollectionViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewUpdateItem.m; sourceTree = "<group>"; };
-		40E9EE961BF9D159007C0A90 /* PSTGridLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutInfo.h; sourceTree = "<group>"; };
-		40E9EE971BF9D159007C0A90 /* PSTGridLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutInfo.m; sourceTree = "<group>"; };
-		40E9EE981BF9D159007C0A90 /* PSTGridLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutItem.h; sourceTree = "<group>"; };
-		40E9EE991BF9D159007C0A90 /* PSTGridLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutItem.m; sourceTree = "<group>"; };
-		40E9EE9A1BF9D159007C0A90 /* PSTGridLayoutRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutRow.h; sourceTree = "<group>"; };
-		40E9EE9B1BF9D159007C0A90 /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
-		40E9EE9C1BF9D159007C0A90 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
-		40E9EE9D1BF9D159007C0A90 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
-		40E9EE9E1BF9D159007C0A90 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
-		40E9EEA01BF9D159007C0A90 /* EaseSDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseSDKHelper.h; sourceTree = "<group>"; };
-		40E9EEA11BF9D159007C0A90 /* EaseSDKHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseSDKHelper.m; sourceTree = "<group>"; };
-		40E9EEA31BF9D159007C0A90 /* EaseConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationModel.h; sourceTree = "<group>"; };
-		40E9EEA41BF9D159007C0A90 /* EaseConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationModel.m; sourceTree = "<group>"; };
-		40E9EEA51BF9D159007C0A90 /* EaseMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageModel.h; sourceTree = "<group>"; };
-		40E9EEA61BF9D159007C0A90 /* EaseMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageModel.m; sourceTree = "<group>"; };
-		40E9EEA71BF9D159007C0A90 /* EaseUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUserModel.h; sourceTree = "<group>"; };
-		40E9EEA81BF9D159007C0A90 /* EaseUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUserModel.m; sourceTree = "<group>"; };
-		40E9EEA91BF9D159007C0A90 /* IConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IConversationModel.h; sourceTree = "<group>"; };
-		40E9EEAA1BF9D159007C0A90 /* IMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMessageModel.h; sourceTree = "<group>"; };
-		40E9EEAB1BF9D159007C0A90 /* IModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IModelCell.h; sourceTree = "<group>"; };
-		40E9EEAC1BF9D159007C0A90 /* IModelChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IModelChatCell.h; sourceTree = "<group>"; };
-		40E9EEAD1BF9D159007C0A90 /* IUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUserModel.h; sourceTree = "<group>"; };
-		40E9EEB01BF9D159007C0A90 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
-		40E9EEB11BF9D159007C0A90 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
-		40E9EEB21BF9D159007C0A90 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
-		40E9EEB31BF9D159007C0A90 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
-		40E9EEB41BF9D159007C0A90 /* NSObject+EaseMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EaseMob.h"; sourceTree = "<group>"; };
-		40E9EEB51BF9D159007C0A90 /* NSObject+EaseMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EaseMob.m"; sourceTree = "<group>"; };
-		40E9EEB61BF9D159007C0A90 /* NSString+Valid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Valid.h"; sourceTree = "<group>"; };
-		40E9EEB71BF9D159007C0A90 /* NSString+Valid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Valid.m"; sourceTree = "<group>"; };
-		40E9EEB81BF9D159007C0A90 /* UIViewController+DismissKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DismissKeyboard.h"; sourceTree = "<group>"; };
-		40E9EEB91BF9D159007C0A90 /* UIViewController+DismissKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DismissKeyboard.m"; sourceTree = "<group>"; };
-		40E9EEBA1BF9D159007C0A90 /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
-		40E9EEBB1BF9D159007C0A90 /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
-		40E9EEBC1BF9D159007C0A90 /* EaseChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChineseToPinyin.h; sourceTree = "<group>"; };
-		40E9EEBD1BF9D159007C0A90 /* EaseChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChineseToPinyin.m; sourceTree = "<group>"; };
-		40E9EEBE1BF9D159007C0A90 /* EaseConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
-		40E9EEBF1BF9D159007C0A90 /* EaseConvertToCommonEmoticonsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConvertToCommonEmoticonsHelper.m; sourceTree = "<group>"; };
-		40E9EEC01BF9D159007C0A90 /* EaseMessageReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageReadManager.h; sourceTree = "<group>"; };
-		40E9EEC11BF9D159007C0A90 /* EaseMessageReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageReadManager.m; sourceTree = "<group>"; };
-		40E9EEC31BF9D159007C0A90 /* EaseEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmoji.h; sourceTree = "<group>"; };
-		40E9EEC41BF9D159007C0A90 /* EaseEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmoji.m; sourceTree = "<group>"; };
-		40E9EEC51BF9D159007C0A90 /* EaseEmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmojiEmoticons.h; sourceTree = "<group>"; };
-		40E9EEC61BF9D159007C0A90 /* EaseEmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmojiEmoticons.m; sourceTree = "<group>"; };
-		40E9EEC71BF9D159007C0A90 /* EaseEmotionEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionEscape.h; sourceTree = "<group>"; };
-		40E9EEC81BF9D159007C0A90 /* EaseEmotionEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionEscape.m; sourceTree = "<group>"; };
-		40E9EEC91BF9D159007C0A90 /* EaseEmotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionManager.h; sourceTree = "<group>"; };
-		40E9EECA1BF9D159007C0A90 /* EaseEmotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionManager.m; sourceTree = "<group>"; };
-		40E9EECC1BF9D159007C0A90 /* EaseConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationListViewController.h; sourceTree = "<group>"; };
-		40E9EECD1BF9D159007C0A90 /* EaseConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationListViewController.m; sourceTree = "<group>"; };
-		40E9EECE1BF9D159007C0A90 /* EaseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseLocationViewController.h; sourceTree = "<group>"; };
-		40E9EECF1BF9D159007C0A90 /* EaseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseLocationViewController.m; sourceTree = "<group>"; };
-		40E9EED01BF9D159007C0A90 /* EaseMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageViewController.h; sourceTree = "<group>"; };
-		40E9EED11BF9D159007C0A90 /* EaseMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageViewController.m; sourceTree = "<group>"; };
-		40E9EED21BF9D159007C0A90 /* EaseRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseRefreshTableViewController.h; sourceTree = "<group>"; };
-		40E9EED31BF9D159007C0A90 /* EaseRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseRefreshTableViewController.m; sourceTree = "<group>"; };
-		40E9EED41BF9D159007C0A90 /* EaseUsersListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUsersListViewController.h; sourceTree = "<group>"; };
-		40E9EED51BF9D159007C0A90 /* EaseUsersListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUsersListViewController.m; sourceTree = "<group>"; };
-		40E9EED61BF9D159007C0A90 /* EaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseViewController.h; sourceTree = "<group>"; };
-		40E9EED71BF9D159007C0A90 /* EaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseViewController.m; sourceTree = "<group>"; };
-		40E9EEDA1BF9D159007C0A90 /* EaseUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUserCell.h; sourceTree = "<group>"; };
-		40E9EEDB1BF9D159007C0A90 /* EaseUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUserCell.m; sourceTree = "<group>"; };
-		40E9EEDE1BF9D159007C0A90 /* EaseBaseMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseBaseMessageCell.h; sourceTree = "<group>"; };
-		40E9EEDF1BF9D159007C0A90 /* EaseBaseMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseBaseMessageCell.m; sourceTree = "<group>"; };
-		40E9EEE01BF9D159007C0A90 /* EaseMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageCell.h; sourceTree = "<group>"; };
-		40E9EEE11BF9D159007C0A90 /* EaseMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageCell.m; sourceTree = "<group>"; };
-		40E9EEE21BF9D159007C0A90 /* EaseMessageTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageTimeCell.h; sourceTree = "<group>"; };
-		40E9EEE31BF9D159007C0A90 /* EaseMessageTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageTimeCell.m; sourceTree = "<group>"; };
-		40E9EEE51BF9D159007C0A90 /* EaseBubbleView+File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+File.h"; sourceTree = "<group>"; };
-		40E9EEE61BF9D159007C0A90 /* EaseBubbleView+File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+File.m"; sourceTree = "<group>"; };
-		40E9EEE71BF9D159007C0A90 /* EaseBubbleView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Image.h"; sourceTree = "<group>"; };
-		40E9EEE81BF9D159007C0A90 /* EaseBubbleView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Image.m"; sourceTree = "<group>"; };
-		40E9EEE91BF9D159007C0A90 /* EaseBubbleView+Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Location.h"; sourceTree = "<group>"; };
-		40E9EEEA1BF9D159007C0A90 /* EaseBubbleView+Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Location.m"; sourceTree = "<group>"; };
-		40E9EEEB1BF9D159007C0A90 /* EaseBubbleView+Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Text.h"; sourceTree = "<group>"; };
-		40E9EEEC1BF9D159007C0A90 /* EaseBubbleView+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Text.m"; sourceTree = "<group>"; };
-		40E9EEED1BF9D159007C0A90 /* EaseBubbleView+Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Video.h"; sourceTree = "<group>"; };
-		40E9EEEE1BF9D159007C0A90 /* EaseBubbleView+Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Video.m"; sourceTree = "<group>"; };
-		40E9EEEF1BF9D159007C0A90 /* EaseBubbleView+Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseBubbleView+Voice.h"; sourceTree = "<group>"; };
-		40E9EEF01BF9D159007C0A90 /* EaseBubbleView+Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EaseBubbleView+Voice.m"; sourceTree = "<group>"; };
-		40E9EEF11BF9D159007C0A90 /* EaseBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseBubbleView.h; sourceTree = "<group>"; };
-		40E9EEF21BF9D159007C0A90 /* EaseBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseBubbleView.m; sourceTree = "<group>"; };
-		40E9EEF41BF9D159007C0A90 /* EaseChatToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChatToolbar.h; sourceTree = "<group>"; };
-		40E9EEF51BF9D159007C0A90 /* EaseChatToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChatToolbar.m; sourceTree = "<group>"; };
-		40E9EEF61BF9D159007C0A90 /* EaseChatToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChatToolbarItem.h; sourceTree = "<group>"; };
-		40E9EEF71BF9D159007C0A90 /* EaseChatToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChatToolbarItem.m; sourceTree = "<group>"; };
-		40E9EEF81BF9D159007C0A90 /* EaseImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseImageView.h; sourceTree = "<group>"; };
-		40E9EEF91BF9D159007C0A90 /* EaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseImageView.m; sourceTree = "<group>"; };
-		40E9EEFA1BF9D159007C0A90 /* EaseTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseTextView.h; sourceTree = "<group>"; };
-		40E9EEFB1BF9D159007C0A90 /* EaseTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseTextView.m; sourceTree = "<group>"; };
-		40E9EEFD1BF9D159007C0A90 /* EaseFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseFaceView.h; sourceTree = "<group>"; };
-		40E9EEFE1BF9D159007C0A90 /* EaseFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseFaceView.m; sourceTree = "<group>"; };
-		40E9EEFF1BF9D159007C0A90 /* EaseFacialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseFacialView.h; sourceTree = "<group>"; };
-		40E9EF001BF9D159007C0A90 /* EaseFacialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseFacialView.m; sourceTree = "<group>"; };
-		40E9EF021BF9D159007C0A90 /* EaseChatBarMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChatBarMoreView.h; sourceTree = "<group>"; };
-		40E9EF031BF9D159007C0A90 /* EaseChatBarMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChatBarMoreView.m; sourceTree = "<group>"; };
-		40E9EF051BF9D159007C0A90 /* EaseRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseRecordView.h; sourceTree = "<group>"; };
-		40E9EF061BF9D159007C0A90 /* EaseRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseRecordView.m; sourceTree = "<group>"; };
-		40E9EF081BF9D159007C0A90 /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
-		40E9EF091BF9D159007C0A90 /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
 		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
@@ -1110,11 +1120,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */,
+				40BC84661BFC570700038C81 /* libopencore-amrnb.a in Frameworks */,
 				404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */,
-				40E9EF301BF9D159007C0A90 /* libopencore-amrnb.a in Frameworks */,
 				40C4B71B1BFACDD000CB2DA5 /* openssl.framework in Frameworks */,
+				40BC84671BFC570700038C81 /* libopencore-amrwb.a in Frameworks */,
 				B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */,
-				40E9EF311BF9D159007C0A90 /* libopencore-amrwb.a in Frameworks */,
 				B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */,
 				C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */,
 				B2F4716B1B4B6CF0005122BB /* AlipaySDK.framework in Frameworks */,
@@ -1770,7 +1780,6 @@
 			isa = PBXGroup;
 			children = (
 				4058E3891BA0211B00EF6D76 /* MessageDisplayKit */,
-				40E9EDBB1BF9D159007C0A90 /* EaseMob */,
 				40641F871B3E79A300CF150D /* Category */,
 				404C18471B53675300F11122 /* Compressor */,
 				40641F8F1B3E79A300CF150D /* Networking */,
@@ -1829,13 +1838,561 @@
 			name = RightMenu;
 			sourceTree = "<group>";
 		};
-		40C4B70D1BFAC3C400CB2DA5 /* Cell */ = {
+		40BC82531BFC50D400038C81 /* ChatDemo-UI3.0 */ = {
 			isa = PBXGroup;
 			children = (
-				40C4B7091BFAC3B500CB2DA5 /* ConversationCell.swift */,
-				40C4B70A1BFAC3B500CB2DA5 /* ConversationCell.xib */,
+				40C4B7361BFB307A00CB2DA5 /* 3rdparty */,
+				40C4B7321BFB307600CB2DA5 /* GifImage */,
+				40C4B7331BFB307700CB2DA5 /* EMGifImage.h */,
+				40C4B7341BFB307700CB2DA5 /* EMGifImage.m */,
+				40C4B73A1BFB309800CB2DA5 /* Category */,
+				40C4B7371BFB309300CB2DA5 /* UIImageView+HeadImage.h */,
+				40C4B7381BFB309300CB2DA5 /* UIImageView+HeadImage.m */,
+				40C4B71F1BFB2A3200CB2DA5 /* ChatList */,
+				40C4B7221BFB2A3200CB2DA5 /* ChatView */,
 			);
-			name = Cell;
+			name = "ChatDemo-UI3.0";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		40BC83671BFC570700038C81 /* EaseMob */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83681BFC570700038C81 /* EaseUI */,
+				40BC82531BFC50D400038C81 /* ChatDemo-UI3.0 */,
+			);
+			path = EaseMob;
+			sourceTree = "<group>";
+		};
+		40BC83681BFC570700038C81 /* EaseUI */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83691BFC570700038C81 /* EaseUI-Prefix.pch */,
+				40BC836A1BFC570700038C81 /* EaseUI.h */,
+				40BC836B1BFC570700038C81 /* EaseUI.m */,
+				40BC836C1BFC570700038C81 /* EMUIKit */,
+			);
+			path = EaseUI;
+			sourceTree = "<group>";
+		};
+		40BC836C1BFC570700038C81 /* EMUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				40BC836D1BFC570700038C81 /* 3rdparty */,
+				40BC83F01BFC570700038C81 /* Helper */,
+				40BC83F31BFC570700038C81 /* Model */,
+				40BC83FF1BFC570700038C81 /* Util */,
+				40BC841C1BFC570700038C81 /* ViewController */,
+				40BC84291BFC570700038C81 /* Views */,
+			);
+			path = EMUIKit;
+			sourceTree = "<group>";
+		};
+		40BC836D1BFC570700038C81 /* 3rdparty */ = {
+			isa = PBXGroup;
+			children = (
+				40BC836E1BFC570700038C81 /* DeviceHelper */,
+				40BC83931BFC570700038C81 /* MBProgressHUD */,
+				40BC83961BFC570700038C81 /* MJRefresh */,
+				40BC83971BFC570700038C81 /* MWPhotoBrowser */,
+			);
+			path = 3rdparty;
+			sourceTree = "<group>";
+		};
+		40BC836E1BFC570700038C81 /* DeviceHelper */ = {
+			isa = PBXGroup;
+			children = (
+				40BC836F1BFC570700038C81 /* delegates */,
+				40BC83721BFC570700038C81 /* internal */,
+				40BC83831BFC570700038C81 /* VoiceConvert */,
+			);
+			path = DeviceHelper;
+			sourceTree = "<group>";
+		};
+		40BC836F1BFC570700038C81 /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83701BFC570700038C81 /* EMCDDeviceManagerDelegate.h */,
+				40BC83711BFC570700038C81 /* EMCDDeviceManagerProximitySensorDelegate.h */,
+			);
+			path = delegates;
+			sourceTree = "<group>";
+		};
+		40BC83721BFC570700038C81 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83731BFC570700038C81 /* DemoErrorCode.h */,
+				40BC83741BFC570700038C81 /* EMAudioPlayerUtil.h */,
+				40BC83751BFC570700038C81 /* EMAudioPlayerUtil.m */,
+				40BC83761BFC570700038C81 /* EMAudioRecorderUtil.h */,
+				40BC83771BFC570700038C81 /* EMAudioRecorderUtil.m */,
+				40BC83781BFC570700038C81 /* EMCDDeviceManager+Media.h */,
+				40BC83791BFC570700038C81 /* EMCDDeviceManager+Media.m */,
+				40BC837A1BFC570700038C81 /* EMCDDeviceManager+Microphone.h */,
+				40BC837B1BFC570700038C81 /* EMCDDeviceManager+Microphone.m */,
+				40BC837C1BFC570700038C81 /* EMCDDeviceManager+ProximitySensor.h */,
+				40BC837D1BFC570700038C81 /* EMCDDeviceManager+ProximitySensor.m */,
+				40BC837E1BFC570700038C81 /* EMCDDeviceManager+Remind.h */,
+				40BC837F1BFC570700038C81 /* EMCDDeviceManager+Remind.m */,
+				40BC83801BFC570700038C81 /* EMCDDeviceManager.h */,
+				40BC83811BFC570700038C81 /* EMCDDeviceManagerBase.h */,
+				40BC83821BFC570700038C81 /* EMCDDeviceManagerBase.m */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		40BC83831BFC570700038C81 /* VoiceConvert */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83841BFC570700038C81 /* amrwapper */,
+				40BC83891BFC570700038C81 /* EMVoiceConverter.h */,
+				40BC838A1BFC570700038C81 /* EMVoiceConverter.mm */,
+				40BC838B1BFC570700038C81 /* opencore-amrnb */,
+				40BC838F1BFC570700038C81 /* opencore-amrwb */,
+			);
+			path = VoiceConvert;
+			sourceTree = "<group>";
+		};
+		40BC83841BFC570700038C81 /* amrwapper */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83851BFC570700038C81 /* amrFileCodec.h */,
+				40BC83861BFC570700038C81 /* amrFileCodec.mm */,
+				40BC83871BFC570700038C81 /* wav.h */,
+				40BC83881BFC570700038C81 /* wav.mm */,
+			);
+			path = amrwapper;
+			sourceTree = "<group>";
+		};
+		40BC838B1BFC570700038C81 /* opencore-amrnb */ = {
+			isa = PBXGroup;
+			children = (
+				40BC838C1BFC570700038C81 /* interf_dec.h */,
+				40BC838D1BFC570700038C81 /* interf_enc.h */,
+				40BC838E1BFC570700038C81 /* libopencore-amrnb.a */,
+			);
+			path = "opencore-amrnb";
+			sourceTree = "<group>";
+		};
+		40BC838F1BFC570700038C81 /* opencore-amrwb */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83901BFC570700038C81 /* dec_if.h */,
+				40BC83911BFC570700038C81 /* if_rom.h */,
+				40BC83921BFC570700038C81 /* libopencore-amrwb.a */,
+			);
+			path = "opencore-amrwb";
+			sourceTree = "<group>";
+		};
+		40BC83931BFC570700038C81 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83941BFC570700038C81 /* MBProgressHUD+Add.h */,
+				40BC83951BFC570700038C81 /* MBProgressHUD+Add.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		40BC83961BFC570700038C81 /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		40BC83971BFC570700038C81 /* MWPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83981BFC570700038C81 /* Classes */,
+				40BC83AC1BFC570700038C81 /* Libraries */,
+				40BC83EF1BFC570700038C81 /* MWPhotoBrowser.bundle */,
+			);
+			path = MWPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		40BC83981BFC570700038C81 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83991BFC570700038C81 /* MWCaptionView.h */,
+				40BC839A1BFC570700038C81 /* MWCaptionView.m */,
+				40BC839B1BFC570700038C81 /* MWCommon.h */,
+				40BC839C1BFC570700038C81 /* MWGridCell.h */,
+				40BC839D1BFC570700038C81 /* MWGridCell.m */,
+				40BC839E1BFC570700038C81 /* MWGridViewController.h */,
+				40BC839F1BFC570700038C81 /* MWGridViewController.m */,
+				40BC83A01BFC570700038C81 /* MWPhoto.h */,
+				40BC83A11BFC570700038C81 /* MWPhoto.m */,
+				40BC83A21BFC570700038C81 /* MWPhotoBrowser.h */,
+				40BC83A31BFC570700038C81 /* MWPhotoBrowser.m */,
+				40BC83A41BFC570700038C81 /* MWPhotoBrowserPrivate.h */,
+				40BC83A51BFC570700038C81 /* MWPhotoProtocol.h */,
+				40BC83A61BFC570700038C81 /* MWTapDetectingImageView.h */,
+				40BC83A71BFC570700038C81 /* MWTapDetectingImageView.m */,
+				40BC83A81BFC570700038C81 /* MWTapDetectingView.h */,
+				40BC83A91BFC570700038C81 /* MWTapDetectingView.m */,
+				40BC83AA1BFC570700038C81 /* MWZoomingScrollView.h */,
+				40BC83AB1BFC570700038C81 /* MWZoomingScrollView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		40BC83AC1BFC570700038C81 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83AD1BFC570700038C81 /* DACircularProgress */,
+				40BC83B01BFC570700038C81 /* EMSDWebImage */,
+				40BC83D21BFC570700038C81 /* PSTCollectionView */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		40BC83AD1BFC570700038C81 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83AE1BFC570700038C81 /* DACircularProgressView.h */,
+				40BC83AF1BFC570700038C81 /* DACircularProgressView.m */,
+			);
+			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
+		40BC83B01BFC570700038C81 /* EMSDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83B11BFC570700038C81 /* EMSDImageCache.h */,
+				40BC83B21BFC570700038C81 /* EMSDImageCache.m */,
+				40BC83B31BFC570700038C81 /* EMSDWebImageCompat.h */,
+				40BC83B41BFC570700038C81 /* EMSDWebImageCompat.m */,
+				40BC83B51BFC570700038C81 /* EMSDWebImageDecoder.h */,
+				40BC83B61BFC570700038C81 /* EMSDWebImageDecoder.m */,
+				40BC83B71BFC570700038C81 /* EMSDWebImageDownloader.h */,
+				40BC83B81BFC570700038C81 /* EMSDWebImageDownloader.m */,
+				40BC83B91BFC570700038C81 /* EMSDWebImageDownloaderOperation.h */,
+				40BC83BA1BFC570700038C81 /* EMSDWebImageDownloaderOperation.m */,
+				40BC83BB1BFC570700038C81 /* EMSDWebImageManager.h */,
+				40BC83BC1BFC570700038C81 /* EMSDWebImageManager.m */,
+				40BC83BD1BFC570700038C81 /* EMSDWebImageOperation.h */,
+				40BC83BE1BFC570700038C81 /* EMSDWebImagePrefetcher.h */,
+				40BC83BF1BFC570700038C81 /* EMSDWebImagePrefetcher.m */,
+				40BC83C01BFC570700038C81 /* MKAnnotationView+EMWebCache.h */,
+				40BC83C11BFC570700038C81 /* MKAnnotationView+EMWebCache.m */,
+				40BC83C21BFC570700038C81 /* NSData+EMImageContentType.h */,
+				40BC83C31BFC570700038C81 /* NSData+EMImageContentType.m */,
+				40BC83C41BFC570700038C81 /* UIButton+EMWebCache.h */,
+				40BC83C51BFC570700038C81 /* UIButton+EMWebCache.m */,
+				40BC83C61BFC570700038C81 /* UIImage+EMGIF.h */,
+				40BC83C71BFC570700038C81 /* UIImage+EMGIF.m */,
+				40BC83C81BFC570700038C81 /* UIImage+EMMultiFormat.h */,
+				40BC83C91BFC570700038C81 /* UIImage+EMMultiFormat.m */,
+				40BC83CA1BFC570700038C81 /* UIImage+EMWebP.h */,
+				40BC83CB1BFC570700038C81 /* UIImage+EMWebP.m */,
+				40BC83CC1BFC570700038C81 /* UIImageView+EMHighlightedWebCache.h */,
+				40BC83CD1BFC570700038C81 /* UIImageView+EMHighlightedWebCache.m */,
+				40BC83CE1BFC570700038C81 /* UIImageView+EMWebCache.h */,
+				40BC83CF1BFC570700038C81 /* UIImageView+EMWebCache.m */,
+				40BC83D01BFC570700038C81 /* UIView+EMWebCacheOperation.h */,
+				40BC83D11BFC570700038C81 /* UIView+EMWebCacheOperation.m */,
+			);
+			path = EMSDWebImage;
+			sourceTree = "<group>";
+		};
+		40BC83D21BFC570700038C81 /* PSTCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83D31BFC570700038C81 /* NSIndexPath+PSTCollectionViewAdditions.h */,
+				40BC83D41BFC570700038C81 /* NSIndexPath+PSTCollectionViewAdditions.m */,
+				40BC83D51BFC570700038C81 /* PSTCollectionView.h */,
+				40BC83D61BFC570700038C81 /* PSTCollectionView.m */,
+				40BC83D71BFC570700038C81 /* PSTCollectionViewCell.h */,
+				40BC83D81BFC570700038C81 /* PSTCollectionViewCell.m */,
+				40BC83D91BFC570700038C81 /* PSTCollectionViewCommon.h */,
+				40BC83DA1BFC570700038C81 /* PSTCollectionViewController.h */,
+				40BC83DB1BFC570700038C81 /* PSTCollectionViewController.m */,
+				40BC83DC1BFC570700038C81 /* PSTCollectionViewData.h */,
+				40BC83DD1BFC570700038C81 /* PSTCollectionViewData.m */,
+				40BC83DE1BFC570700038C81 /* PSTCollectionViewFlowLayout.h */,
+				40BC83DF1BFC570700038C81 /* PSTCollectionViewFlowLayout.m */,
+				40BC83E01BFC570700038C81 /* PSTCollectionViewItemKey.h */,
+				40BC83E11BFC570700038C81 /* PSTCollectionViewItemKey.m */,
+				40BC83E21BFC570700038C81 /* PSTCollectionViewLayout+Internals.h */,
+				40BC83E31BFC570700038C81 /* PSTCollectionViewLayout.h */,
+				40BC83E41BFC570700038C81 /* PSTCollectionViewLayout.m */,
+				40BC83E51BFC570700038C81 /* PSTCollectionViewUpdateItem.h */,
+				40BC83E61BFC570700038C81 /* PSTCollectionViewUpdateItem.m */,
+				40BC83E71BFC570700038C81 /* PSTGridLayoutInfo.h */,
+				40BC83E81BFC570700038C81 /* PSTGridLayoutInfo.m */,
+				40BC83E91BFC570700038C81 /* PSTGridLayoutItem.h */,
+				40BC83EA1BFC570700038C81 /* PSTGridLayoutItem.m */,
+				40BC83EB1BFC570700038C81 /* PSTGridLayoutRow.h */,
+				40BC83EC1BFC570700038C81 /* PSTGridLayoutRow.m */,
+				40BC83ED1BFC570700038C81 /* PSTGridLayoutSection.h */,
+				40BC83EE1BFC570700038C81 /* PSTGridLayoutSection.m */,
+			);
+			path = PSTCollectionView;
+			sourceTree = "<group>";
+		};
+		40BC83F01BFC570700038C81 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83F11BFC570700038C81 /* EaseSDKHelper.h */,
+				40BC83F21BFC570700038C81 /* EaseSDKHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		40BC83F31BFC570700038C81 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40BC83F41BFC570700038C81 /* EaseConversationModel.h */,
+				40BC83F51BFC570700038C81 /* EaseConversationModel.m */,
+				40BC83F61BFC570700038C81 /* EaseMessageModel.h */,
+				40BC83F71BFC570700038C81 /* EaseMessageModel.m */,
+				40BC83F81BFC570700038C81 /* EaseUserModel.h */,
+				40BC83F91BFC570700038C81 /* EaseUserModel.m */,
+				40BC83FA1BFC570700038C81 /* IConversationModel.h */,
+				40BC83FB1BFC570700038C81 /* IMessageModel.h */,
+				40BC83FC1BFC570700038C81 /* IModelCell.h */,
+				40BC83FD1BFC570700038C81 /* IModelChatCell.h */,
+				40BC83FE1BFC570700038C81 /* IUserModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		40BC83FF1BFC570700038C81 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84001BFC570700038C81 /* Category */,
+				40BC840D1BFC570700038C81 /* EaseChineseToPinyin.h */,
+				40BC840E1BFC570700038C81 /* EaseChineseToPinyin.m */,
+				40BC840F1BFC570700038C81 /* EaseConvertToCommonEmoticonsHelper.h */,
+				40BC84101BFC570700038C81 /* EaseConvertToCommonEmoticonsHelper.m */,
+				40BC84111BFC570700038C81 /* EaseMessageReadManager.h */,
+				40BC84121BFC570700038C81 /* EaseMessageReadManager.m */,
+				40BC84131BFC570700038C81 /* Emoji */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		40BC84001BFC570700038C81 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84011BFC570700038C81 /* NSDate+Category.h */,
+				40BC84021BFC570700038C81 /* NSDate+Category.m */,
+				40BC84031BFC570700038C81 /* NSDateFormatter+Category.h */,
+				40BC84041BFC570700038C81 /* NSDateFormatter+Category.m */,
+				40BC84051BFC570700038C81 /* NSObject+EaseMob.h */,
+				40BC84061BFC570700038C81 /* NSObject+EaseMob.m */,
+				40BC84071BFC570700038C81 /* NSString+Valid.h */,
+				40BC84081BFC570700038C81 /* NSString+Valid.m */,
+				40BC84091BFC570700038C81 /* UIViewController+DismissKeyboard.h */,
+				40BC840A1BFC570700038C81 /* UIViewController+DismissKeyboard.m */,
+				40BC840B1BFC570700038C81 /* UIViewController+HUD.h */,
+				40BC840C1BFC570700038C81 /* UIViewController+HUD.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		40BC84131BFC570700038C81 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84141BFC570700038C81 /* EaseEmoji.h */,
+				40BC84151BFC570700038C81 /* EaseEmoji.m */,
+				40BC84161BFC570700038C81 /* EaseEmojiEmoticons.h */,
+				40BC84171BFC570700038C81 /* EaseEmojiEmoticons.m */,
+				40BC84181BFC570700038C81 /* EaseEmotionEscape.h */,
+				40BC84191BFC570700038C81 /* EaseEmotionEscape.m */,
+				40BC841A1BFC570700038C81 /* EaseEmotionManager.h */,
+				40BC841B1BFC570700038C81 /* EaseEmotionManager.m */,
+			);
+			path = Emoji;
+			sourceTree = "<group>";
+		};
+		40BC841C1BFC570700038C81 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				40BC841D1BFC570700038C81 /* EaseConversationListViewController.h */,
+				40BC841E1BFC570700038C81 /* EaseConversationListViewController.m */,
+				40BC841F1BFC570700038C81 /* EaseLocationViewController.h */,
+				40BC84201BFC570700038C81 /* EaseLocationViewController.m */,
+				40BC84211BFC570700038C81 /* EaseMessageViewController.h */,
+				40BC84221BFC570700038C81 /* EaseMessageViewController.m */,
+				40BC84231BFC570700038C81 /* EaseRefreshTableViewController.h */,
+				40BC84241BFC570700038C81 /* EaseRefreshTableViewController.m */,
+				40BC84251BFC570700038C81 /* EaseUsersListViewController.h */,
+				40BC84261BFC570700038C81 /* EaseUsersListViewController.m */,
+				40BC84271BFC570700038C81 /* EaseViewController.h */,
+				40BC84281BFC570700038C81 /* EaseViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		40BC84291BFC570700038C81 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40BC842A1BFC570700038C81 /* contact */,
+				40BC842D1BFC570700038C81 /* conversation */,
+				40BC84581BFC570700038C81 /* conversationList */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40BC842A1BFC570700038C81 /* contact */ = {
+			isa = PBXGroup;
+			children = (
+				40BC842B1BFC570700038C81 /* EaseUserCell.h */,
+				40BC842C1BFC570700038C81 /* EaseUserCell.m */,
+			);
+			path = contact;
+			sourceTree = "<group>";
+		};
+		40BC842D1BFC570700038C81 /* conversation */ = {
+			isa = PBXGroup;
+			children = (
+				40BC842E1BFC570700038C81 /* MessageCell */,
+				40BC84351BFC570700038C81 /* MessageCellBubbleView */,
+				40BC84441BFC570700038C81 /* toolbar */,
+			);
+			path = conversation;
+			sourceTree = "<group>";
+		};
+		40BC842E1BFC570700038C81 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				40BC842F1BFC570700038C81 /* EaseBaseMessageCell.h */,
+				40BC84301BFC570700038C81 /* EaseBaseMessageCell.m */,
+				40BC84311BFC570700038C81 /* EaseMessageCell.h */,
+				40BC84321BFC570700038C81 /* EaseMessageCell.m */,
+				40BC84331BFC570700038C81 /* EaseMessageTimeCell.h */,
+				40BC84341BFC570700038C81 /* EaseMessageTimeCell.m */,
+			);
+			path = MessageCell;
+			sourceTree = "<group>";
+		};
+		40BC84351BFC570700038C81 /* MessageCellBubbleView */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84361BFC570700038C81 /* EaseBubbleView+File.h */,
+				40BC84371BFC570700038C81 /* EaseBubbleView+File.m */,
+				40BC84381BFC570700038C81 /* EaseBubbleView+Image.h */,
+				40BC84391BFC570700038C81 /* EaseBubbleView+Image.m */,
+				40BC843A1BFC570700038C81 /* EaseBubbleView+Location.h */,
+				40BC843B1BFC570700038C81 /* EaseBubbleView+Location.m */,
+				40BC843C1BFC570700038C81 /* EaseBubbleView+Text.h */,
+				40BC843D1BFC570700038C81 /* EaseBubbleView+Text.m */,
+				40BC843E1BFC570700038C81 /* EaseBubbleView+Video.h */,
+				40BC843F1BFC570700038C81 /* EaseBubbleView+Video.m */,
+				40BC84401BFC570700038C81 /* EaseBubbleView+Voice.h */,
+				40BC84411BFC570700038C81 /* EaseBubbleView+Voice.m */,
+				40BC84421BFC570700038C81 /* EaseBubbleView.h */,
+				40BC84431BFC570700038C81 /* EaseBubbleView.m */,
+			);
+			path = MessageCellBubbleView;
+			sourceTree = "<group>";
+		};
+		40BC84441BFC570700038C81 /* toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84451BFC570700038C81 /* EaseChatToolbar.h */,
+				40BC84461BFC570700038C81 /* EaseChatToolbar.m */,
+				40BC84471BFC570700038C81 /* EaseChatToolbarItem.h */,
+				40BC84481BFC570700038C81 /* EaseChatToolbarItem.m */,
+				40BC84491BFC570700038C81 /* EaseImageView.h */,
+				40BC844A1BFC570700038C81 /* EaseImageView.m */,
+				40BC844B1BFC570700038C81 /* EaseTextView.h */,
+				40BC844C1BFC570700038C81 /* EaseTextView.m */,
+				40BC844D1BFC570700038C81 /* FaceView */,
+				40BC84521BFC570700038C81 /* MoreView */,
+				40BC84551BFC570700038C81 /* RecordView */,
+			);
+			path = toolbar;
+			sourceTree = "<group>";
+		};
+		40BC844D1BFC570700038C81 /* FaceView */ = {
+			isa = PBXGroup;
+			children = (
+				40BC844E1BFC570700038C81 /* EaseFaceView.h */,
+				40BC844F1BFC570700038C81 /* EaseFaceView.m */,
+				40BC84501BFC570700038C81 /* EaseFacialView.h */,
+				40BC84511BFC570700038C81 /* EaseFacialView.m */,
+			);
+			path = FaceView;
+			sourceTree = "<group>";
+		};
+		40BC84521BFC570700038C81 /* MoreView */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84531BFC570700038C81 /* EaseChatBarMoreView.h */,
+				40BC84541BFC570700038C81 /* EaseChatBarMoreView.m */,
+			);
+			path = MoreView;
+			sourceTree = "<group>";
+		};
+		40BC84551BFC570700038C81 /* RecordView */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84561BFC570700038C81 /* EaseRecordView.h */,
+				40BC84571BFC570700038C81 /* EaseRecordView.m */,
+			);
+			path = RecordView;
+			sourceTree = "<group>";
+		};
+		40BC84581BFC570700038C81 /* conversationList */ = {
+			isa = PBXGroup;
+			children = (
+				40BC84591BFC570700038C81 /* EaseConversationCell.h */,
+				40BC845A1BFC570700038C81 /* EaseConversationCell.m */,
+			);
+			path = conversationList;
+			sourceTree = "<group>";
+		};
+		40C4B71F1BFB2A3200CB2DA5 /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				40C4B7201BFB2A3200CB2DA5 /* ConversationListController.h */,
+				40C4B7211BFB2A3200CB2DA5 /* ConversationListController.m */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		40C4B7221BFB2A3200CB2DA5 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				40C4B7231BFB2A3200CB2DA5 /* ChatViewController.h */,
+				40C4B7241BFB2A3200CB2DA5 /* ChatViewController.m */,
+				40C4B7251BFB2A3200CB2DA5 /* CustomizableCell */,
+			);
+			path = ChatView;
+			sourceTree = "<group>";
+		};
+		40C4B7251BFB2A3200CB2DA5 /* CustomizableCell */ = {
+			isa = PBXGroup;
+			children = (
+				40C4B7261BFB2A3200CB2DA5 /* CustomMessageCell.h */,
+				40C4B7271BFB2A3200CB2DA5 /* CustomMessageCell.m */,
+				40C4B7281BFB2A3200CB2DA5 /* EMBubbleView+Gif.h */,
+				40C4B7291BFB2A3200CB2DA5 /* EMBubbleView+Gif.m */,
+			);
+			path = CustomizableCell;
+			sourceTree = "<group>";
+		};
+		40C4B7321BFB307600CB2DA5 /* GifImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GifImage;
+			sourceTree = "<group>";
+		};
+		40C4B7361BFB307A00CB2DA5 /* 3rdparty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = 3rdparty;
+			sourceTree = "<group>";
+		};
+		40C4B73A1BFB309800CB2DA5 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 		40DA7A001B463E850097CE3D /* Chat */ = {
@@ -1846,494 +2403,6 @@
 				40DA7A021B463E850097CE3D /* JSHChatVC.m */,
 			);
 			path = Chat;
-			sourceTree = "<group>";
-		};
-		40E9EDBB1BF9D159007C0A90 /* EaseMob */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE151BF9D159007C0A90 /* EaseUI */,
-			);
-			path = EaseMob;
-			sourceTree = "<group>";
-		};
-		40E9EE151BF9D159007C0A90 /* EaseUI */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE161BF9D159007C0A90 /* EaseUI-Prefix.pch */,
-				40E9EE171BF9D159007C0A90 /* EaseUI.h */,
-				40E9EE181BF9D159007C0A90 /* EaseUI.m */,
-				40E9EE191BF9D159007C0A90 /* EMUIKit */,
-			);
-			path = EaseUI;
-			sourceTree = "<group>";
-		};
-		40E9EE191BF9D159007C0A90 /* EMUIKit */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE1A1BF9D159007C0A90 /* 3rdparty */,
-				40E9EE9F1BF9D159007C0A90 /* Helper */,
-				40E9EEA21BF9D159007C0A90 /* Model */,
-				40E9EEAE1BF9D159007C0A90 /* Util */,
-				40E9EECB1BF9D159007C0A90 /* ViewController */,
-				40E9EED81BF9D159007C0A90 /* Views */,
-			);
-			path = EMUIKit;
-			sourceTree = "<group>";
-		};
-		40E9EE1A1BF9D159007C0A90 /* 3rdparty */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE1B1BF9D159007C0A90 /* DeviceHelper */,
-				40E9EE401BF9D159007C0A90 /* MBProgressHUD */,
-				40E9EE451BF9D159007C0A90 /* MJRefresh */,
-				40E9EE461BF9D159007C0A90 /* MWPhotoBrowser */,
-			);
-			path = 3rdparty;
-			sourceTree = "<group>";
-		};
-		40E9EE1B1BF9D159007C0A90 /* DeviceHelper */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE1C1BF9D159007C0A90 /* delegates */,
-				40E9EE1F1BF9D159007C0A90 /* internal */,
-				40E9EE301BF9D159007C0A90 /* VoiceConvert */,
-			);
-			path = DeviceHelper;
-			sourceTree = "<group>";
-		};
-		40E9EE1C1BF9D159007C0A90 /* delegates */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE1D1BF9D159007C0A90 /* EMCDDeviceManagerDelegate.h */,
-				40E9EE1E1BF9D159007C0A90 /* EMCDDeviceManagerProximitySensorDelegate.h */,
-			);
-			path = delegates;
-			sourceTree = "<group>";
-		};
-		40E9EE1F1BF9D159007C0A90 /* internal */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE201BF9D159007C0A90 /* DemoErrorCode.h */,
-				40E9EE211BF9D159007C0A90 /* EMAudioPlayerUtil.h */,
-				40E9EE221BF9D159007C0A90 /* EMAudioPlayerUtil.m */,
-				40E9EE231BF9D159007C0A90 /* EMAudioRecorderUtil.h */,
-				40E9EE241BF9D159007C0A90 /* EMAudioRecorderUtil.m */,
-				40E9EE251BF9D159007C0A90 /* EMCDDeviceManager+Media.h */,
-				40E9EE261BF9D159007C0A90 /* EMCDDeviceManager+Media.m */,
-				40E9EE271BF9D159007C0A90 /* EMCDDeviceManager+Microphone.h */,
-				40E9EE281BF9D159007C0A90 /* EMCDDeviceManager+Microphone.m */,
-				40E9EE291BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.h */,
-				40E9EE2A1BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.m */,
-				40E9EE2B1BF9D159007C0A90 /* EMCDDeviceManager+Remind.h */,
-				40E9EE2C1BF9D159007C0A90 /* EMCDDeviceManager+Remind.m */,
-				40E9EE2D1BF9D159007C0A90 /* EMCDDeviceManager.h */,
-				40E9EE2E1BF9D159007C0A90 /* EMCDDeviceManagerBase.h */,
-				40E9EE2F1BF9D159007C0A90 /* EMCDDeviceManagerBase.m */,
-			);
-			path = internal;
-			sourceTree = "<group>";
-		};
-		40E9EE301BF9D159007C0A90 /* VoiceConvert */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE311BF9D159007C0A90 /* amrwapper */,
-				40E9EE361BF9D159007C0A90 /* EMVoiceConverter.h */,
-				40E9EE371BF9D159007C0A90 /* EMVoiceConverter.mm */,
-				40E9EE381BF9D159007C0A90 /* opencore-amrnb */,
-				40E9EE3C1BF9D159007C0A90 /* opencore-amrwb */,
-			);
-			path = VoiceConvert;
-			sourceTree = "<group>";
-		};
-		40E9EE311BF9D159007C0A90 /* amrwapper */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE321BF9D159007C0A90 /* amrFileCodec.h */,
-				40E9EE331BF9D159007C0A90 /* amrFileCodec.mm */,
-				40E9EE341BF9D159007C0A90 /* wav.h */,
-				40E9EE351BF9D159007C0A90 /* wav.mm */,
-			);
-			path = amrwapper;
-			sourceTree = "<group>";
-		};
-		40E9EE381BF9D159007C0A90 /* opencore-amrnb */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE391BF9D159007C0A90 /* interf_dec.h */,
-				40E9EE3A1BF9D159007C0A90 /* interf_enc.h */,
-				40E9EE3B1BF9D159007C0A90 /* libopencore-amrnb.a */,
-			);
-			path = "opencore-amrnb";
-			sourceTree = "<group>";
-		};
-		40E9EE3C1BF9D159007C0A90 /* opencore-amrwb */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE3D1BF9D159007C0A90 /* dec_if.h */,
-				40E9EE3E1BF9D159007C0A90 /* if_rom.h */,
-				40E9EE3F1BF9D159007C0A90 /* libopencore-amrwb.a */,
-			);
-			path = "opencore-amrwb";
-			sourceTree = "<group>";
-		};
-		40E9EE401BF9D159007C0A90 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE411BF9D159007C0A90 /* MBProgressHUD+Add.h */,
-				40E9EE421BF9D159007C0A90 /* MBProgressHUD+Add.m */,
-			);
-			path = MBProgressHUD;
-			sourceTree = "<group>";
-		};
-		40E9EE451BF9D159007C0A90 /* MJRefresh */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MJRefresh;
-			sourceTree = "<group>";
-		};
-		40E9EE461BF9D159007C0A90 /* MWPhotoBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE471BF9D159007C0A90 /* Classes */,
-				40E9EE5B1BF9D159007C0A90 /* Libraries */,
-				40E9EE9E1BF9D159007C0A90 /* MWPhotoBrowser.bundle */,
-			);
-			path = MWPhotoBrowser;
-			sourceTree = "<group>";
-		};
-		40E9EE471BF9D159007C0A90 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE481BF9D159007C0A90 /* MWCaptionView.h */,
-				40E9EE491BF9D159007C0A90 /* MWCaptionView.m */,
-				40E9EE4A1BF9D159007C0A90 /* MWCommon.h */,
-				40E9EE4B1BF9D159007C0A90 /* MWGridCell.h */,
-				40E9EE4C1BF9D159007C0A90 /* MWGridCell.m */,
-				40E9EE4D1BF9D159007C0A90 /* MWGridViewController.h */,
-				40E9EE4E1BF9D159007C0A90 /* MWGridViewController.m */,
-				40E9EE4F1BF9D159007C0A90 /* MWPhoto.h */,
-				40E9EE501BF9D159007C0A90 /* MWPhoto.m */,
-				40E9EE511BF9D159007C0A90 /* MWPhotoBrowser.h */,
-				40E9EE521BF9D159007C0A90 /* MWPhotoBrowser.m */,
-				40E9EE531BF9D159007C0A90 /* MWPhotoBrowserPrivate.h */,
-				40E9EE541BF9D159007C0A90 /* MWPhotoProtocol.h */,
-				40E9EE551BF9D159007C0A90 /* MWTapDetectingImageView.h */,
-				40E9EE561BF9D159007C0A90 /* MWTapDetectingImageView.m */,
-				40E9EE571BF9D159007C0A90 /* MWTapDetectingView.h */,
-				40E9EE581BF9D159007C0A90 /* MWTapDetectingView.m */,
-				40E9EE591BF9D159007C0A90 /* MWZoomingScrollView.h */,
-				40E9EE5A1BF9D159007C0A90 /* MWZoomingScrollView.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		40E9EE5B1BF9D159007C0A90 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE5C1BF9D159007C0A90 /* DACircularProgress */,
-				40E9EE5F1BF9D159007C0A90 /* EMSDWebImage */,
-				40E9EE811BF9D159007C0A90 /* PSTCollectionView */,
-			);
-			path = Libraries;
-			sourceTree = "<group>";
-		};
-		40E9EE5C1BF9D159007C0A90 /* DACircularProgress */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE5D1BF9D159007C0A90 /* DACircularProgressView.h */,
-				40E9EE5E1BF9D159007C0A90 /* DACircularProgressView.m */,
-			);
-			path = DACircularProgress;
-			sourceTree = "<group>";
-		};
-		40E9EE5F1BF9D159007C0A90 /* EMSDWebImage */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE601BF9D159007C0A90 /* EMSDImageCache.h */,
-				40E9EE611BF9D159007C0A90 /* EMSDImageCache.m */,
-				40E9EE621BF9D159007C0A90 /* EMSDWebImageCompat.h */,
-				40E9EE631BF9D159007C0A90 /* EMSDWebImageCompat.m */,
-				40E9EE641BF9D159007C0A90 /* EMSDWebImageDecoder.h */,
-				40E9EE651BF9D159007C0A90 /* EMSDWebImageDecoder.m */,
-				40E9EE661BF9D159007C0A90 /* EMSDWebImageDownloader.h */,
-				40E9EE671BF9D159007C0A90 /* EMSDWebImageDownloader.m */,
-				40E9EE681BF9D159007C0A90 /* EMSDWebImageDownloaderOperation.h */,
-				40E9EE691BF9D159007C0A90 /* EMSDWebImageDownloaderOperation.m */,
-				40E9EE6A1BF9D159007C0A90 /* EMSDWebImageManager.h */,
-				40E9EE6B1BF9D159007C0A90 /* EMSDWebImageManager.m */,
-				40E9EE6C1BF9D159007C0A90 /* EMSDWebImageOperation.h */,
-				40E9EE6D1BF9D159007C0A90 /* EMSDWebImagePrefetcher.h */,
-				40E9EE6E1BF9D159007C0A90 /* EMSDWebImagePrefetcher.m */,
-				40E9EE6F1BF9D159007C0A90 /* MKAnnotationView+EMWebCache.h */,
-				40E9EE701BF9D159007C0A90 /* MKAnnotationView+EMWebCache.m */,
-				40E9EE711BF9D159007C0A90 /* NSData+EMImageContentType.h */,
-				40E9EE721BF9D159007C0A90 /* NSData+EMImageContentType.m */,
-				40E9EE731BF9D159007C0A90 /* UIButton+EMWebCache.h */,
-				40E9EE741BF9D159007C0A90 /* UIButton+EMWebCache.m */,
-				40E9EE751BF9D159007C0A90 /* UIImage+EMGIF.h */,
-				40E9EE761BF9D159007C0A90 /* UIImage+EMGIF.m */,
-				40E9EE771BF9D159007C0A90 /* UIImage+EMMultiFormat.h */,
-				40E9EE781BF9D159007C0A90 /* UIImage+EMMultiFormat.m */,
-				40E9EE791BF9D159007C0A90 /* UIImage+EMWebP.h */,
-				40E9EE7A1BF9D159007C0A90 /* UIImage+EMWebP.m */,
-				40E9EE7B1BF9D159007C0A90 /* UIImageView+EMHighlightedWebCache.h */,
-				40E9EE7C1BF9D159007C0A90 /* UIImageView+EMHighlightedWebCache.m */,
-				40E9EE7D1BF9D159007C0A90 /* UIImageView+EMWebCache.h */,
-				40E9EE7E1BF9D159007C0A90 /* UIImageView+EMWebCache.m */,
-				40E9EE7F1BF9D159007C0A90 /* UIView+EMWebCacheOperation.h */,
-				40E9EE801BF9D159007C0A90 /* UIView+EMWebCacheOperation.m */,
-			);
-			path = EMSDWebImage;
-			sourceTree = "<group>";
-		};
-		40E9EE811BF9D159007C0A90 /* PSTCollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EE821BF9D159007C0A90 /* NSIndexPath+PSTCollectionViewAdditions.h */,
-				40E9EE831BF9D159007C0A90 /* NSIndexPath+PSTCollectionViewAdditions.m */,
-				40E9EE841BF9D159007C0A90 /* PSTCollectionView.h */,
-				40E9EE851BF9D159007C0A90 /* PSTCollectionView.m */,
-				40E9EE861BF9D159007C0A90 /* PSTCollectionViewCell.h */,
-				40E9EE871BF9D159007C0A90 /* PSTCollectionViewCell.m */,
-				40E9EE881BF9D159007C0A90 /* PSTCollectionViewCommon.h */,
-				40E9EE891BF9D159007C0A90 /* PSTCollectionViewController.h */,
-				40E9EE8A1BF9D159007C0A90 /* PSTCollectionViewController.m */,
-				40E9EE8B1BF9D159007C0A90 /* PSTCollectionViewData.h */,
-				40E9EE8C1BF9D159007C0A90 /* PSTCollectionViewData.m */,
-				40E9EE8D1BF9D159007C0A90 /* PSTCollectionViewFlowLayout.h */,
-				40E9EE8E1BF9D159007C0A90 /* PSTCollectionViewFlowLayout.m */,
-				40E9EE8F1BF9D159007C0A90 /* PSTCollectionViewItemKey.h */,
-				40E9EE901BF9D159007C0A90 /* PSTCollectionViewItemKey.m */,
-				40E9EE911BF9D159007C0A90 /* PSTCollectionViewLayout+Internals.h */,
-				40E9EE921BF9D159007C0A90 /* PSTCollectionViewLayout.h */,
-				40E9EE931BF9D159007C0A90 /* PSTCollectionViewLayout.m */,
-				40E9EE941BF9D159007C0A90 /* PSTCollectionViewUpdateItem.h */,
-				40E9EE951BF9D159007C0A90 /* PSTCollectionViewUpdateItem.m */,
-				40E9EE961BF9D159007C0A90 /* PSTGridLayoutInfo.h */,
-				40E9EE971BF9D159007C0A90 /* PSTGridLayoutInfo.m */,
-				40E9EE981BF9D159007C0A90 /* PSTGridLayoutItem.h */,
-				40E9EE991BF9D159007C0A90 /* PSTGridLayoutItem.m */,
-				40E9EE9A1BF9D159007C0A90 /* PSTGridLayoutRow.h */,
-				40E9EE9B1BF9D159007C0A90 /* PSTGridLayoutRow.m */,
-				40E9EE9C1BF9D159007C0A90 /* PSTGridLayoutSection.h */,
-				40E9EE9D1BF9D159007C0A90 /* PSTGridLayoutSection.m */,
-			);
-			path = PSTCollectionView;
-			sourceTree = "<group>";
-		};
-		40E9EE9F1BF9D159007C0A90 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEA01BF9D159007C0A90 /* EaseSDKHelper.h */,
-				40E9EEA11BF9D159007C0A90 /* EaseSDKHelper.m */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		40E9EEA21BF9D159007C0A90 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEA31BF9D159007C0A90 /* EaseConversationModel.h */,
-				40E9EEA41BF9D159007C0A90 /* EaseConversationModel.m */,
-				40E9EEA51BF9D159007C0A90 /* EaseMessageModel.h */,
-				40E9EEA61BF9D159007C0A90 /* EaseMessageModel.m */,
-				40E9EEA71BF9D159007C0A90 /* EaseUserModel.h */,
-				40E9EEA81BF9D159007C0A90 /* EaseUserModel.m */,
-				40E9EEA91BF9D159007C0A90 /* IConversationModel.h */,
-				40E9EEAA1BF9D159007C0A90 /* IMessageModel.h */,
-				40E9EEAB1BF9D159007C0A90 /* IModelCell.h */,
-				40E9EEAC1BF9D159007C0A90 /* IModelChatCell.h */,
-				40E9EEAD1BF9D159007C0A90 /* IUserModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		40E9EEAE1BF9D159007C0A90 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEAF1BF9D159007C0A90 /* Category */,
-				40E9EEBC1BF9D159007C0A90 /* EaseChineseToPinyin.h */,
-				40E9EEBD1BF9D159007C0A90 /* EaseChineseToPinyin.m */,
-				40E9EEBE1BF9D159007C0A90 /* EaseConvertToCommonEmoticonsHelper.h */,
-				40E9EEBF1BF9D159007C0A90 /* EaseConvertToCommonEmoticonsHelper.m */,
-				40E9EEC01BF9D159007C0A90 /* EaseMessageReadManager.h */,
-				40E9EEC11BF9D159007C0A90 /* EaseMessageReadManager.m */,
-				40E9EEC21BF9D159007C0A90 /* Emoji */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
-		40E9EEAF1BF9D159007C0A90 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEB01BF9D159007C0A90 /* NSDate+Category.h */,
-				40E9EEB11BF9D159007C0A90 /* NSDate+Category.m */,
-				40E9EEB21BF9D159007C0A90 /* NSDateFormatter+Category.h */,
-				40E9EEB31BF9D159007C0A90 /* NSDateFormatter+Category.m */,
-				40E9EEB41BF9D159007C0A90 /* NSObject+EaseMob.h */,
-				40E9EEB51BF9D159007C0A90 /* NSObject+EaseMob.m */,
-				40E9EEB61BF9D159007C0A90 /* NSString+Valid.h */,
-				40E9EEB71BF9D159007C0A90 /* NSString+Valid.m */,
-				40E9EEB81BF9D159007C0A90 /* UIViewController+DismissKeyboard.h */,
-				40E9EEB91BF9D159007C0A90 /* UIViewController+DismissKeyboard.m */,
-				40E9EEBA1BF9D159007C0A90 /* UIViewController+HUD.h */,
-				40E9EEBB1BF9D159007C0A90 /* UIViewController+HUD.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		40E9EEC21BF9D159007C0A90 /* Emoji */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEC31BF9D159007C0A90 /* EaseEmoji.h */,
-				40E9EEC41BF9D159007C0A90 /* EaseEmoji.m */,
-				40E9EEC51BF9D159007C0A90 /* EaseEmojiEmoticons.h */,
-				40E9EEC61BF9D159007C0A90 /* EaseEmojiEmoticons.m */,
-				40E9EEC71BF9D159007C0A90 /* EaseEmotionEscape.h */,
-				40E9EEC81BF9D159007C0A90 /* EaseEmotionEscape.m */,
-				40E9EEC91BF9D159007C0A90 /* EaseEmotionManager.h */,
-				40E9EECA1BF9D159007C0A90 /* EaseEmotionManager.m */,
-			);
-			path = Emoji;
-			sourceTree = "<group>";
-		};
-		40E9EECB1BF9D159007C0A90 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EECC1BF9D159007C0A90 /* EaseConversationListViewController.h */,
-				40E9EECD1BF9D159007C0A90 /* EaseConversationListViewController.m */,
-				40E9EECE1BF9D159007C0A90 /* EaseLocationViewController.h */,
-				40E9EECF1BF9D159007C0A90 /* EaseLocationViewController.m */,
-				40E9EED01BF9D159007C0A90 /* EaseMessageViewController.h */,
-				40E9EED11BF9D159007C0A90 /* EaseMessageViewController.m */,
-				40E9EED21BF9D159007C0A90 /* EaseRefreshTableViewController.h */,
-				40E9EED31BF9D159007C0A90 /* EaseRefreshTableViewController.m */,
-				40E9EED41BF9D159007C0A90 /* EaseUsersListViewController.h */,
-				40E9EED51BF9D159007C0A90 /* EaseUsersListViewController.m */,
-				40E9EED61BF9D159007C0A90 /* EaseViewController.h */,
-				40E9EED71BF9D159007C0A90 /* EaseViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		40E9EED81BF9D159007C0A90 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EED91BF9D159007C0A90 /* contact */,
-				40E9EEDC1BF9D159007C0A90 /* conversation */,
-				40E9EF071BF9D159007C0A90 /* conversationList */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		40E9EED91BF9D159007C0A90 /* contact */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEDA1BF9D159007C0A90 /* EaseUserCell.h */,
-				40E9EEDB1BF9D159007C0A90 /* EaseUserCell.m */,
-			);
-			path = contact;
-			sourceTree = "<group>";
-		};
-		40E9EEDC1BF9D159007C0A90 /* conversation */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEDD1BF9D159007C0A90 /* MessageCell */,
-				40E9EEE41BF9D159007C0A90 /* MessageCellBubbleView */,
-				40E9EEF31BF9D159007C0A90 /* toolbar */,
-			);
-			path = conversation;
-			sourceTree = "<group>";
-		};
-		40E9EEDD1BF9D159007C0A90 /* MessageCell */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEDE1BF9D159007C0A90 /* EaseBaseMessageCell.h */,
-				40E9EEDF1BF9D159007C0A90 /* EaseBaseMessageCell.m */,
-				40E9EEE01BF9D159007C0A90 /* EaseMessageCell.h */,
-				40E9EEE11BF9D159007C0A90 /* EaseMessageCell.m */,
-				40E9EEE21BF9D159007C0A90 /* EaseMessageTimeCell.h */,
-				40E9EEE31BF9D159007C0A90 /* EaseMessageTimeCell.m */,
-			);
-			path = MessageCell;
-			sourceTree = "<group>";
-		};
-		40E9EEE41BF9D159007C0A90 /* MessageCellBubbleView */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEE51BF9D159007C0A90 /* EaseBubbleView+File.h */,
-				40E9EEE61BF9D159007C0A90 /* EaseBubbleView+File.m */,
-				40E9EEE71BF9D159007C0A90 /* EaseBubbleView+Image.h */,
-				40E9EEE81BF9D159007C0A90 /* EaseBubbleView+Image.m */,
-				40E9EEE91BF9D159007C0A90 /* EaseBubbleView+Location.h */,
-				40E9EEEA1BF9D159007C0A90 /* EaseBubbleView+Location.m */,
-				40E9EEEB1BF9D159007C0A90 /* EaseBubbleView+Text.h */,
-				40E9EEEC1BF9D159007C0A90 /* EaseBubbleView+Text.m */,
-				40E9EEED1BF9D159007C0A90 /* EaseBubbleView+Video.h */,
-				40E9EEEE1BF9D159007C0A90 /* EaseBubbleView+Video.m */,
-				40E9EEEF1BF9D159007C0A90 /* EaseBubbleView+Voice.h */,
-				40E9EEF01BF9D159007C0A90 /* EaseBubbleView+Voice.m */,
-				40E9EEF11BF9D159007C0A90 /* EaseBubbleView.h */,
-				40E9EEF21BF9D159007C0A90 /* EaseBubbleView.m */,
-			);
-			path = MessageCellBubbleView;
-			sourceTree = "<group>";
-		};
-		40E9EEF31BF9D159007C0A90 /* toolbar */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEF41BF9D159007C0A90 /* EaseChatToolbar.h */,
-				40E9EEF51BF9D159007C0A90 /* EaseChatToolbar.m */,
-				40E9EEF61BF9D159007C0A90 /* EaseChatToolbarItem.h */,
-				40E9EEF71BF9D159007C0A90 /* EaseChatToolbarItem.m */,
-				40E9EEF81BF9D159007C0A90 /* EaseImageView.h */,
-				40E9EEF91BF9D159007C0A90 /* EaseImageView.m */,
-				40E9EEFA1BF9D159007C0A90 /* EaseTextView.h */,
-				40E9EEFB1BF9D159007C0A90 /* EaseTextView.m */,
-				40E9EEFC1BF9D159007C0A90 /* FaceView */,
-				40E9EF011BF9D159007C0A90 /* MoreView */,
-				40E9EF041BF9D159007C0A90 /* RecordView */,
-			);
-			path = toolbar;
-			sourceTree = "<group>";
-		};
-		40E9EEFC1BF9D159007C0A90 /* FaceView */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EEFD1BF9D159007C0A90 /* EaseFaceView.h */,
-				40E9EEFE1BF9D159007C0A90 /* EaseFaceView.m */,
-				40E9EEFF1BF9D159007C0A90 /* EaseFacialView.h */,
-				40E9EF001BF9D159007C0A90 /* EaseFacialView.m */,
-			);
-			path = FaceView;
-			sourceTree = "<group>";
-		};
-		40E9EF011BF9D159007C0A90 /* MoreView */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EF021BF9D159007C0A90 /* EaseChatBarMoreView.h */,
-				40E9EF031BF9D159007C0A90 /* EaseChatBarMoreView.m */,
-			);
-			path = MoreView;
-			sourceTree = "<group>";
-		};
-		40E9EF041BF9D159007C0A90 /* RecordView */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EF051BF9D159007C0A90 /* EaseRecordView.h */,
-				40E9EF061BF9D159007C0A90 /* EaseRecordView.m */,
-			);
-			path = RecordView;
-			sourceTree = "<group>";
-		};
-		40E9EF071BF9D159007C0A90 /* conversationList */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EF081BF9D159007C0A90 /* EaseConversationCell.h */,
-				40E9EF091BF9D159007C0A90 /* EaseConversationCell.m */,
-			);
-			path = conversationList;
 			sourceTree = "<group>";
 		};
 		B20812611B8DD7950070D96F /* LeftMenu */ = {
@@ -2655,10 +2724,8 @@
 		FA480A6F1BF2EB09004B56F8 /* Sale */ = {
 			isa = PBXGroup;
 			children = (
-				40C4B70D1BFAC3C400CB2DA5 /* Cell */,
+				40BC83671BFC570700038C81 /* EaseMob */,
 				40E9E93D1BF972A7007C0A90 /* SalesTBC.swift */,
-				40C4B70E1BFAC80200CB2DA5 /* ConversationListTVC.swift */,
-				40C4B70F1BFAC80200CB2DA5 /* ConversationListTVC.xib */,
 				40C4B7121BFACD6600CB2DA5 /* MailListTVC.swift */,
 				40C4B7131BFACD6600CB2DA5 /* MailListTVC.xib */,
 				40C4B7161BFACD6E00CB2DA5 /* FindListTVC.swift */,
@@ -2866,7 +2933,6 @@
 				4058E52B1BA0211B00EF6D76 /* weChatBubble_Receiving_Solid@2x.png in Resources */,
 				4058E4EF1BA0211B00EF6D76 /* msg_chat_voice_unread.png in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
-				40C4B7111BFAC80200CB2DA5 /* ConversationListTVC.xib in Resources */,
 				4058E4FC1BA0211B00EF6D76 /* RecordingBkg@2x.png in Resources */,
 				FAF35D1D1BF46D8700918BCF /* WebViewCell.xib in Resources */,
 				FAF2E0891BF21E39008DD5BC /* HotelCell.xib in Resources */,
@@ -2892,6 +2958,7 @@
 				FAF2E0621BF1868A008DD5BC /* MainTVC.xib in Resources */,
 				FAF695071BE7514A007682DC /* OrderDetailsVC.xib in Resources */,
 				405266411B4127C500B277BE /* BookingOrderDetailVC.xib in Resources */,
+				40BC848F1BFC570700038C81 /* MWPhotoBrowser.bundle in Resources */,
 				4058E4FE1BA0211B00EF6D76 /* RecordingSignal002@2x.png in Resources */,
 				FAF2E07F1BF219F6008DD5BC /* LeisureTVC.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
@@ -2909,7 +2976,6 @@
 				FAF35D211BF4843100918BCF /* FloatingWindowVC.xib in Resources */,
 				4058E5291BA0211B00EF6D76 /* VoiceBtn_BlackHL@2x.png in Resources */,
 				4058E4E71BA0211B00EF6D76 /* input-bar-flat.png in Resources */,
-				40C4B70C1BFAC3B500CB2DA5 /* ConversationCell.xib in Resources */,
 				405266671B41470F00B277BE /* OrderListHeaderView.xib in Resources */,
 				B2F0377D1B93F3D4006FF396 /* PhoneSettingSecondViewController.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
@@ -2917,7 +2983,6 @@
 				4058E4E21BA0211B00EF6D76 /* Fav_Cell_Loc@2x.png in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				4058E4F61BA0211B00EF6D76 /* ReceiverVoiceNodePlaying000@2x.png in Resources */,
-				40E9EF5A1BF9D159007C0A90 /* MWPhotoBrowser.bundle in Resources */,
 				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
 				4058E5181BA0211B00EF6D76 /* SenderVoiceNodePlaying001@2x.png in Resources */,
 				4058E5011BA0211B00EF6D76 /* RecordingSignal005@2x.png in Resources */,
@@ -3019,236 +3084,228 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E9EF621BF9D159007C0A90 /* NSString+Valid.m in Sources */,
-				40E9EF5B1BF9D159007C0A90 /* EaseSDKHelper.m in Sources */,
-				40E9EF7F1BF9D159007C0A90 /* EaseImageView.m in Sources */,
 				40C4B7141BFACD6600CB2DA5 /* MailListTVC.swift in Sources */,
 				B23E53831B4BB64C00CB7761 /* RSADataVerifier.m in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
 				B23E53801B4BB64C00CB7761 /* NSDataEx.m in Sources */,
-				40E9EF4B1BF9D159007C0A90 /* UIImageView+EMWebCache.m in Sources */,
-				40E9EF761BF9D159007C0A90 /* EaseBubbleView+File.m in Sources */,
+				40BC84AF1BFC570700038C81 /* EaseBubbleView+Video.m in Sources */,
 				B23E53821B4BB64C00CB7761 /* RSADataSigner.m in Sources */,
-				40E9EF781BF9D159007C0A90 /* EaseBubbleView+Location.m in Sources */,
+				40BC845B1BFC570700038C81 /* EaseUI.m in Sources */,
 				40D599DE1BA2BED300AF79B3 /* OrderHistoryListTVC.swift in Sources */,
 				4058E4B11BA0211B00EF6D76 /* XHMessage.m in Sources */,
-				40E9EF671BF9D159007C0A90 /* EaseMessageReadManager.m in Sources */,
+				40BC84911BFC570700038C81 /* EaseConversationModel.m in Sources */,
 				4058E4B41BA0211B00EF6D76 /* FLAnimatedImageView.m in Sources */,
+				40BC84A71BFC570700038C81 /* EaseUserCell.m in Sources */,
 				4058E4941BA0211B00EF6D76 /* UIImage+Utility.m in Sources */,
+				40BC849B1BFC570700038C81 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
 				4058E4B51BA0211B00EF6D76 /* LKBadgeView.m in Sources */,
-				40E9EF2C1BF9D159007C0A90 /* EMCDDeviceManagerBase.m in Sources */,
+				40BC84B31BFC570700038C81 /* EaseChatToolbarItem.m in Sources */,
 				FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */,
-				40E9EF7E1BF9D159007C0A90 /* EaseChatToolbarItem.m in Sources */,
-				40E9EF5D1BF9D159007C0A90 /* EaseMessageModel.m in Sources */,
 				B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */,
+				40BC847A1BFC570700038C81 /* NSData+EMImageContentType.m in Sources */,
+				40BC84761BFC570700038C81 /* EMSDWebImageDownloaderOperation.m in Sources */,
+				40BC846E1BFC570700038C81 /* MWTapDetectingImageView.m in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				FAF2E0771BF2188D008DD5BC /* HotelPageVC.swift in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
-				FAF35D041BF42B9000918BCF /* ChatTVC.swift in Sources */,
 				FAF212D91BF73F83002C1C73 /* ActivationCell.swift in Sources */,
 				4058E4B71BA0211B00EF6D76 /* SEConstants.m in Sources */,
-				40E9EF751BF9D159007C0A90 /* EaseMessageTimeCell.m in Sources */,
-				40E9EF441BF9D159007C0A90 /* MKAnnotationView+EMWebCache.m in Sources */,
 				4052665B1B4128F900B277BE /* HotelMessageCell.swift in Sources */,
 				404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */,
-				40E9EF501BF9D159007C0A90 /* PSTCollectionViewController.m in Sources */,
+				40BC848A1BFC570700038C81 /* PSTCollectionViewUpdateItem.m in Sources */,
+				40C4B72B1BFB2A3200CB2DA5 /* ChatViewController.m in Sources */,
 				4058E4B61BA0211B00EF6D76 /* SECompatibility.m in Sources */,
 				B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */,
 				405BC0FC1B42495F00081C0A /* DotLine.swift in Sources */,
+				40BC84AE1BFC570700038C81 /* EaseBubbleView+Text.m in Sources */,
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
-				40E9EF2A1BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
-				40E9EF461BF9D159007C0A90 /* UIButton+EMWebCache.m in Sources */,
 				FAF35D101BF43EC100918BCF /* SearchTVC.swift in Sources */,
 				4058E4B31BA0211B00EF6D76 /* FLAnimatedImage.m in Sources */,
 				FAF35D141BF43EE600918BCF /* SearchBarView.swift in Sources */,
+				40BC84B81BFC570700038C81 /* EaseChatBarMoreView.m in Sources */,
+				40BC84971BFC570700038C81 /* NSString+Valid.m in Sources */,
 				B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */,
-				40E9EF2F1BF9D159007C0A90 /* EMVoiceConverter.mm in Sources */,
 				FAF2E0821BF21A16008DD5BC /* RestaurantTVC.swift in Sources */,
 				4058E4C91BA0211B00EF6D76 /* XHMessageTableViewCell.m in Sources */,
-				40E9EF5F1BF9D159007C0A90 /* NSDate+Category.m in Sources */,
 				B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */,
+				40BC845E1BFC570700038C81 /* EMCDDeviceManager+Media.m in Sources */,
+				40BC845C1BFC570700038C81 /* EMAudioPlayerUtil.m in Sources */,
 				B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */,
-				40E9EF601BF9D159007C0A90 /* NSDateFormatter+Category.m in Sources */,
+				40BC849E1BFC570700038C81 /* EaseEmojiEmoticons.m in Sources */,
 				4058E4A81BA0211B00EF6D76 /* XHOperationNetworkKit.m in Sources */,
 				4052663C1B4127B400B277BE /* OrderDetailVC.swift in Sources */,
-				40E9EF471BF9D159007C0A90 /* UIImage+EMGIF.m in Sources */,
-				40E9EF791BF9D159007C0A90 /* EaseBubbleView+Text.m in Sources */,
 				406A27FE1B9596370069C369 /* Message.swift in Sources */,
+				40BC84681BFC570700038C81 /* MBProgressHUD+Add.m in Sources */,
 				404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
-				40E9EF371BF9D159007C0A90 /* MWPhoto.m in Sources */,
 				B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */,
+				40BC84631BFC570700038C81 /* amrFileCodec.mm in Sources */,
 				40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */,
-				40E9EF661BF9D159007C0A90 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
+				40BC84B61BFC570700038C81 /* EaseFaceView.m in Sources */,
 				FAF2E07A1BF219C6008DD5BC /* HotelTVC.swift in Sources */,
-				40E9EF561BF9D159007C0A90 /* PSTGridLayoutInfo.m in Sources */,
-				40C4B7101BFAC80200CB2DA5 /* ConversationListTVC.swift in Sources */,
+				40BC846C1BFC570700038C81 /* MWPhoto.m in Sources */,
 				4058E4961BA0211B00EF6D76 /* UIScrollView+XHkeyboardControl.m in Sources */,
 				FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */,
 				B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
 				B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */,
-				40E9EF7C1BF9D159007C0A90 /* EaseBubbleView.m in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
-				40E9EF401BF9D159007C0A90 /* EMSDWebImageDownloader.m in Sources */,
 				4058E4A91BA0211B00EF6D76 /* XHMessageAvatarFactory.m in Sources */,
-				40E9EF6B1BF9D159007C0A90 /* EaseEmotionManager.m in Sources */,
-				40E9EF391BF9D159007C0A90 /* MWTapDetectingImageView.m in Sources */,
+				40BC848D1BFC570700038C81 /* PSTGridLayoutRow.m in Sources */,
 				B23E53811B4BB64C00CB7761 /* openssl_wrapper.m in Sources */,
+				40BC84901BFC570700038C81 /* EaseSDKHelper.m in Sources */,
 				FAF2E0721BF1E551008DD5BC /* MainHeaderView.swift in Sources */,
-				40E9EF271BF9D159007C0A90 /* EMAudioRecorderUtil.m in Sources */,
 				405266511B41283900B277BE /* MainVC.swift in Sources */,
 				4058E4B01BA0211B00EF6D76 /* XHEmotionManager.m in Sources */,
 				4058E4B91BA0211B00EF6D76 /* SELinkText.m in Sources */,
 				4058E49E1BA0211B00EF6D76 /* XHVoiceCommonHelper.m in Sources */,
 				4058E4911BA0211B00EF6D76 /* UIImage+Alpha.m in Sources */,
-				40E9EF831BF9D159007C0A90 /* EaseChatBarMoreView.m in Sources */,
 				FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */,
-				40E9EF451BF9D159007C0A90 /* NSData+EMImageContentType.m in Sources */,
-				40E9EF321BF9D159007C0A90 /* MBProgressHUD+Add.m in Sources */,
 				4058E4C81BA0211B00EF6D76 /* XHMessageTableView.m in Sources */,
 				40C4B7181BFACD6E00CB2DA5 /* FindListTVC.swift in Sources */,
 				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
-				40E9EF261BF9D159007C0A90 /* EMAudioPlayerUtil.m in Sources */,
-				40E9EF4F1BF9D159007C0A90 /* PSTCollectionViewCell.m in Sources */,
 				4058E4AD1BA0211B00EF6D76 /* XHVideoOutputSampleBufferFactory.m in Sources */,
-				40E9EF4C1BF9D159007C0A90 /* UIView+EMWebCacheOperation.m in Sources */,
-				40E9EF571BF9D159007C0A90 /* PSTGridLayoutItem.m in Sources */,
+				40BC84921BFC570700038C81 /* EaseMessageModel.m in Sources */,
+				40BC84651BFC570700038C81 /* EMVoiceConverter.mm in Sources */,
 				405266561B4128E900B277BE /* OrderCell.swift in Sources */,
 				4058E4BA1BA0211B00EF6D76 /* SESelectionGrabber.m in Sources */,
 				4058E4C01BA0211B00EF6D76 /* SETextMagnifierCaret.m in Sources */,
-				40E9EF2B1BF9D159007C0A90 /* EMCDDeviceManager+Remind.m in Sources */,
 				4058E4B81BA0211B00EF6D76 /* SELineLayout.m in Sources */,
 				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,
+				40BC84B91BFC570700038C81 /* EaseRecordView.m in Sources */,
 				405266401B4127C500B277BE /* BookingOrderDetailVC.swift in Sources */,
+				40BC84AA1BFC570700038C81 /* EaseMessageTimeCell.m in Sources */,
 				B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */,
+				40BC84711BFC570700038C81 /* DACircularProgressView.m in Sources */,
+				40BC84991BFC570700038C81 /* UIViewController+HUD.m in Sources */,
 				4058E4AA1BA0211B00EF6D76 /* XHMessageBubbleFactory.m in Sources */,
 				40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */,
+				40BC84AD1BFC570700038C81 /* EaseBubbleView+Location.m in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
+				40BC847B1BFC570700038C81 /* UIButton+EMWebCache.m in Sources */,
 				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
+				40BC84871BFC570700038C81 /* PSTCollectionViewFlowLayout.m in Sources */,
+				40BC84751BFC570700038C81 /* EMSDWebImageDownloader.m in Sources */,
+				40BC84AB1BFC570700038C81 /* EaseBubbleView+File.m in Sources */,
 				B23E537C1B4BB64C00CB7761 /* base64.m in Sources */,
-				40E9EF521BF9D159007C0A90 /* PSTCollectionViewFlowLayout.m in Sources */,
+				40C4B72C1BFB2A3200CB2DA5 /* CustomMessageCell.m in Sources */,
 				B2F471711B4B7B21005122BB /* AlipayOrder.m in Sources */,
+				40BC847D1BFC570700038C81 /* UIImage+EMMultiFormat.m in Sources */,
 				4058E4D11BA0211B00EF6D76 /* XHShareMenuView.m in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */,
-				40E9EF411BF9D159007C0A90 /* EMSDWebImageDownloaderOperation.m in Sources */,
+				40BC84771BFC570700038C81 /* EMSDWebImageManager.m in Sources */,
+				40C4B72A1BFB2A3200CB2DA5 /* ConversationListController.m in Sources */,
 				4058E4A51BA0211B00EF6D76 /* XHCacheManager.m in Sources */,
+				40BC84B41BFC570700038C81 /* EaseImageView.m in Sources */,
+				40BC849A1BFC570700038C81 /* EaseChineseToPinyin.m in Sources */,
+				40BC84A01BFC570700038C81 /* EaseEmotionManager.m in Sources */,
+				40BC84861BFC570700038C81 /* PSTCollectionViewData.m in Sources */,
+				40BC84AC1BFC570700038C81 /* EaseBubbleView+Image.m in Sources */,
 				B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */,
-				40E9EF801BF9D159007C0A90 /* EaseTextView.m in Sources */,
-				40E9EF6A1BF9D159007C0A90 /* EaseEmotionEscape.m in Sources */,
+				40BC848B1BFC570700038C81 /* PSTGridLayoutInfo.m in Sources */,
 				FAF35D1C1BF46D8700918BCF /* WebViewCell.swift in Sources */,
 				4058E4931BA0211B00EF6D76 /* UIImage+RoundedCorner.m in Sources */,
+				40BC84721BFC570700038C81 /* EMSDImageCache.m in Sources */,
 				4058E4C61BA0211B00EF6D76 /* XHBubblePhotoImageView.m in Sources */,
 				B2F0377A1B93F3D4006FF396 /* PhoneSettingFirstViewController.swift in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
 				40817D1C1B8EDCED00EF188F /* NewItemHeaderView.swift in Sources */,
-				40E9EF4D1BF9D159007C0A90 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */,
-				40E9EF2E1BF9D159007C0A90 /* wav.mm in Sources */,
 				4058E4CE1BA0211B00EF6D76 /* XHEmotionCollectionViewFlowLayout.m in Sources */,
 				4058E4C21BA0211B00EF6D76 /* SETextSelection.m in Sources */,
-				40E9EF7A1BF9D159007C0A90 /* EaseBubbleView+Video.m in Sources */,
-				40E9EF3A1BF9D159007C0A90 /* MWTapDetectingView.m in Sources */,
+				40BC84601BFC570700038C81 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
-				40E9EF591BF9D159007C0A90 /* PSTGridLayoutSection.m in Sources */,
+				40BC847C1BFC570700038C81 /* UIImage+EMGIF.m in Sources */,
 				FAEFA56D1BE8BB37002C07E8 /* OrderListCell.swift in Sources */,
-				40E9EF7D1BF9D159007C0A90 /* EaseChatToolbar.m in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				4058E4921BA0211B00EF6D76 /* UIImage+Resize.m in Sources */,
-				40E9EF541BF9D159007C0A90 /* PSTCollectionViewLayout.m in Sources */,
-				40E9EF551BF9D159007C0A90 /* PSTCollectionViewUpdateItem.m in Sources */,
 				B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */,
-				40E9EF6F1BF9D159007C0A90 /* EaseRefreshTableViewController.m in Sources */,
+				40BC84821BFC570700038C81 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				4058E4CB1BA0211B00EF6D76 /* XHMessageTextView.m in Sources */,
 				4058E49B1BA0211B00EF6D76 /* XHLocationHelper.m in Sources */,
-				40E9EF711BF9D159007C0A90 /* EaseViewController.m in Sources */,
+				40BC847F1BFC570700038C81 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				4058E49D1BA0211B00EF6D76 /* XHPhotographyHelper.m in Sources */,
 				B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */,
+				40BC84BA1BFC570700038C81 /* EaseConversationCell.m in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
-				40E9EF3B1BF9D159007C0A90 /* MWZoomingScrollView.m in Sources */,
 				B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */,
 				4058E4C51BA0211B00EF6D76 /* XHBaseTableViewCell.m in Sources */,
+				40BC84A21BFC570700038C81 /* EaseLocationViewController.m in Sources */,
 				4058E4BD1BA0211B00EF6D76 /* SETextGeometry.m in Sources */,
+				40C4B72D1BFB2A3200CB2DA5 /* EMBubbleView+Gif.m in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
-				40E9EF381BF9D159007C0A90 /* MWPhotoBrowser.m in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
+				40BC846A1BFC570700038C81 /* MWGridCell.m in Sources */,
 				B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */,
-				40E9EF5E1BF9D159007C0A90 /* EaseUserModel.m in Sources */,
+				40BC845F1BFC570700038C81 /* EMCDDeviceManager+Microphone.m in Sources */,
 				4058E4BF1BA0211B00EF6D76 /* SETextLayout.m in Sources */,
 				40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */,
 				4058E49F1BA0211B00EF6D76 /* XHVoiceRecordHelper.m in Sources */,
 				4058E4A71BA0211B00EF6D76 /* XHHTTPClient.m in Sources */,
 				4058E4CD1BA0211B00EF6D76 /* XHEmotionCollectionViewCell.m in Sources */,
+				40BC846B1BFC570700038C81 /* MWGridViewController.m in Sources */,
 				4058E4A21BA0211B00EF6D76 /* XHDisplayMediaViewController.m in Sources */,
-				40E9EF2D1BF9D159007C0A90 /* amrFileCodec.mm in Sources */,
 				4058E4CA1BA0211B00EF6D76 /* XHMessageInputView.m in Sources */,
-				40E9EF701BF9D159007C0A90 /* EaseUsersListViewController.m in Sources */,
 				4058E4B21BA0211B00EF6D76 /* XHShareMenuItem.m in Sources */,
-				40E9EF651BF9D159007C0A90 /* EaseChineseToPinyin.m in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
 				40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */,
 				4058E4BB1BA0211B00EF6D76 /* SETextAttachment.m in Sources */,
-				40E9EF691BF9D159007C0A90 /* EaseEmojiEmoticons.m in Sources */,
 				4058E4AC1BA0211B00EF6D76 /* XHMessageVoiceFactory.m in Sources */,
+				40BC849F1BFC570700038C81 /* EaseEmotionEscape.m in Sources */,
 				B23E537F1B4BB64C00CB7761 /* MD5DataSigner.m in Sources */,
-				40E9EF821BF9D159007C0A90 /* EaseFacialView.m in Sources */,
 				4058E4A11BA0211B00EF6D76 /* XHDisplayLocationViewController.m in Sources */,
 				B20812AE1B8DD7950070D96F /* PersonalLabelViewController.swift in Sources */,
+				40BC848C1BFC570700038C81 /* PSTGridLayoutItem.m in Sources */,
+				40BC84941BFC570700038C81 /* NSDate+Category.m in Sources */,
+				40BC84981BFC570700038C81 /* UIViewController+DismissKeyboard.m in Sources */,
 				B20812CD1B8DD8650070D96F /* RuleEngine.swift in Sources */,
-				40C4B70B1BFAC3B500CB2DA5 /* ConversationCell.swift in Sources */,
 				4058E4951BA0211B00EF6D76 /* UIImage+XHRounded.m in Sources */,
 				4052664A1B4127F600B277BE /* MessageCenterTVC.swift in Sources */,
 				B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */,
+				40BC84611BFC570700038C81 /* EMCDDeviceManager+Remind.m in Sources */,
+				40BC84A81BFC570700038C81 /* EaseBaseMessageCell.m in Sources */,
+				40BC845D1BFC570700038C81 /* EMAudioRecorderUtil.m in Sources */,
 				4058E48F1BA0211B00EF6D76 /* NSString+MessageInputView.m in Sources */,
 				40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */,
+				40BC846D1BFC570700038C81 /* MWPhotoBrowser.m in Sources */,
 				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,
 				4058E4C41BA0211B00EF6D76 /* SETextView.m in Sources */,
 				4058E4991BA0211B00EF6D76 /* XHCaptureHelper.m in Sources */,
+				40BC84731BFC570700038C81 /* EMSDWebImageCompat.m in Sources */,
+				40BC84931BFC570700038C81 /* EaseUserModel.m in Sources */,
 				40E9E93E1BF972A7007C0A90 /* SalesTBC.swift in Sources */,
 				B2F0377C1B93F3D4006FF396 /* PhoneSettingSecondViewController.swift in Sources */,
-				40E9EF741BF9D159007C0A90 /* EaseMessageCell.m in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
-				40E9EF251BF9D159007C0A90 /* EaseUI.m in Sources */,
-				40E9EF5C1BF9D159007C0A90 /* EaseConversationModel.m in Sources */,
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
 				B20812A61B8DD7950070D96F /* SettingTableViewController.swift in Sources */,
-				40E9EF351BF9D159007C0A90 /* MWGridCell.m in Sources */,
-				40E9EF511BF9D159007C0A90 /* PSTCollectionViewData.m in Sources */,
-				40E9EF361BF9D159007C0A90 /* MWGridViewController.m in Sources */,
 				4058E4971BA0211B00EF6D76 /* UIView+XHRemoteImage.m in Sources */,
-				40E9EF631BF9D159007C0A90 /* UIViewController+DismissKeyboard.m in Sources */,
-				40E9EF6D1BF9D159007C0A90 /* EaseLocationViewController.m in Sources */,
+				40BC847E1BFC570700038C81 /* UIImage+EMWebP.m in Sources */,
+				40BC84851BFC570700038C81 /* PSTCollectionViewController.m in Sources */,
+				40BC84781BFC570700038C81 /* EMSDWebImagePrefetcher.m in Sources */,
 				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
 				4058E4CC1BA0211B00EF6D76 /* XHVoiceRecordHUD.m in Sources */,
 				B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */,
 				FAF35D201BF4843100918BCF /* FloatingWindowVC.swift in Sources */,
 				4058E4981BA0211B00EF6D76 /* XHAudioPlayerHelper.m in Sources */,
-				40E9EF431BF9D159007C0A90 /* EMSDWebImagePrefetcher.m in Sources */,
 				405B78251B9D3F1D009AD0E2 /* ZKJSHTTPChatSessionManager.m in Sources */,
-				40E9EF491BF9D159007C0A90 /* UIImage+EMWebP.m in Sources */,
-				40E9EF281BF9D159007C0A90 /* EMCDDeviceManager+Media.m in Sources */,
+				40BC84A41BFC570700038C81 /* EaseRefreshTableViewController.m in Sources */,
 				4058E4A31BA0211B00EF6D76 /* XHDisplayTextViewController.m in Sources */,
 				4058E4CF1BA0211B00EF6D76 /* XHEmotionManagerView.m in Sources */,
-				40E9EF291BF9D159007C0A90 /* EMCDDeviceManager+Microphone.m in Sources */,
-				40E9EF771BF9D159007C0A90 /* EaseBubbleView+Image.m in Sources */,
-				40E9EF421BF9D159007C0A90 /* EMSDWebImageManager.m in Sources */,
+				40BC846F1BFC570700038C81 /* MWTapDetectingView.m in Sources */,
 				B23E537E1B4BB64C00CB7761 /* DataVerifier.m in Sources */,
+				40BC84A61BFC570700038C81 /* EaseViewController.m in Sources */,
+				40BC84B21BFC570700038C81 /* EaseChatToolbar.m in Sources */,
 				B23E537D1B4BB64C00CB7761 /* DataSigner.m in Sources */,
 				409587E61BCCEDE400D212D6 /* RightMenuVC.swift in Sources */,
 				FAEFA5691BE8B01D002C07E8 /* OrderHistoryCell.swift in Sources */,
-				40E9EF721BF9D159007C0A90 /* EaseUserCell.m in Sources */,
 				FAF2E0881BF21E39008DD5BC /* HotelCell.swift in Sources */,
 				FAF695091BE755A0007682DC /* OrderContentView.swift in Sources */,
 				4058E4AE1BA0211B00EF6D76 /* XHAnnotation.m in Sources */,
-				40E9EF6C1BF9D159007C0A90 /* EaseConversationListViewController.m in Sources */,
-				40E9EF3F1BF9D159007C0A90 /* EMSDWebImageDecoder.m in Sources */,
-				40E9EF681BF9D159007C0A90 /* EaseEmoji.m in Sources */,
 				FAF2E07E1BF219F6008DD5BC /* LeisureTVC.swift in Sources */,
-				40E9EF3D1BF9D159007C0A90 /* EMSDImageCache.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				4058E4C11BA0211B00EF6D76 /* SETextMagnifierRanged.m in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,
@@ -3256,53 +3313,64 @@
 				40641FA01B3E79A300CF150D /* HTTPSessionManager.swift in Sources */,
 				FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
-				40E9EF851BF9D159007C0A90 /* EaseConversationCell.m in Sources */,
-				40E9EF7B1BF9D159007C0A90 /* EaseBubbleView+Voice.m in Sources */,
+				40BC849C1BFC570700038C81 /* EaseMessageReadManager.m in Sources */,
 				40DA7A031B463E850097CE3D /* JSHChatVC.m in Sources */,
 				B28967BD1B9E796300DF5D79 /* AboutUsViewController.swift in Sources */,
-				40E9EF481BF9D159007C0A90 /* UIImage+EMMultiFormat.m in Sources */,
+				40BC84961BFC570700038C81 /* NSObject+EaseMob.m in Sources */,
 				4058E4A41BA0211B00EF6D76 /* XHMessageTableViewController.m in Sources */,
-				40E9EF811BF9D159007C0A90 /* EaseFaceView.m in Sources */,
+				40BC84621BFC570700038C81 /* EMCDDeviceManagerBase.m in Sources */,
+				40BC84831BFC570700038C81 /* PSTCollectionView.m in Sources */,
+				40BC84791BFC570700038C81 /* MKAnnotationView+EMWebCache.m in Sources */,
+				40BC84B51BFC570700038C81 /* EaseTextView.m in Sources */,
 				4058E4AF1BA0211B00EF6D76 /* XHEmotion.m in Sources */,
+				40BC84881BFC570700038C81 /* PSTCollectionViewItemKey.m in Sources */,
+				40BC84841BFC570700038C81 /* PSTCollectionViewCell.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
-				40E9EF3C1BF9D159007C0A90 /* DACircularProgressView.m in Sources */,
-				40E9EF841BF9D159007C0A90 /* EaseRecordView.m in Sources */,
+				40BC84A31BFC570700038C81 /* EaseMessageViewController.m in Sources */,
+				40BC84691BFC570700038C81 /* MWCaptionView.m in Sources */,
+				40BC84801BFC570700038C81 /* UIImageView+EMWebCache.m in Sources */,
 				4058E4901BA0211B00EF6D76 /* NSString+XHMD5.m in Sources */,
+				40BC84811BFC570700038C81 /* UIView+EMWebCacheOperation.m in Sources */,
 				B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */,
+				40BC84891BFC570700038C81 /* PSTCollectionViewLayout.m in Sources */,
 				B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */,
+				40BC84B11BFC570700038C81 /* EaseBubbleView.m in Sources */,
 				4058E49C1BA0211B00EF6D76 /* XHMessageBubbleHelper.m in Sources */,
+				40BC84A91BFC570700038C81 /* EaseMessageCell.m in Sources */,
 				40817D1E1B8EDD4B00EF188F /* NewItemFooterView.swift in Sources */,
 				4058E4C31BA0211B00EF6D76 /* SETextSelectionView.m in Sources */,
+				40BC84B01BFC570700038C81 /* EaseBubbleView+Voice.m in Sources */,
 				B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */,
-				40E9EF641BF9D159007C0A90 /* UIViewController+HUD.m in Sources */,
 				4058E4D01BA0211B00EF6D76 /* XHEmotionSectionBar.m in Sources */,
 				4058E49A1BA0211B00EF6D76 /* XHConfigurationHelper.m in Sources */,
-				40E9EF531BF9D159007C0A90 /* PSTCollectionViewItemKey.m in Sources */,
+				40BC84641BFC570700038C81 /* wav.mm in Sources */,
+				40C4B7351BFB307700CB2DA5 /* EMGifImage.m in Sources */,
 				4058E4C71BA0211B00EF6D76 /* XHMessageBubbleView.m in Sources */,
-				40E9EF581BF9D159007C0A90 /* PSTGridLayoutRow.m in Sources */,
 				4058E4A01BA0211B00EF6D76 /* XHDisplayEmotionViewController.m in Sources */,
 				FAF2E06D1BF1CBCB008DD5BC /* MainViewCell.swift in Sources */,
 				405266661B41470F00B277BE /* OrderListHeaderView.swift in Sources */,
+				40BC84A51BFC570700038C81 /* EaseUsersListViewController.m in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
-				40E9EF4A1BF9D159007C0A90 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				4058E4BE1BA0211B00EF6D76 /* SETextInput.m in Sources */,
 				4058E4AB1BA0211B00EF6D76 /* XHMessageVideoConverPhotoFactory.m in Sources */,
-				40E9EF611BF9D159007C0A90 /* NSObject+EaseMob.m in Sources */,
+				40BC84A11BFC570700038C81 /* EaseConversationListViewController.m in Sources */,
+				40BC849D1BFC570700038C81 /* EaseEmoji.m in Sources */,
 				4058E4A61BA0211B00EF6D76 /* XHFileAttribute.m in Sources */,
-				40E9EF4E1BF9D159007C0A90 /* PSTCollectionView.m in Sources */,
-				40E9EF731BF9D159007C0A90 /* EaseBaseMessageCell.m in Sources */,
 				FAF6844B1BF983460090D461 /* RestaurantCell.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
+				40BC84701BFC570700038C81 /* MWZoomingScrollView.m in Sources */,
+				40BC84B71BFC570700038C81 /* EaseFacialView.m in Sources */,
 				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
 				FAF695061BE7514A007682DC /* OrderDetailsVC.swift in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
-				40E9EF6E1BF9D159007C0A90 /* EaseMessageViewController.m in Sources */,
+				40C4B7391BFB309300CB2DA5 /* UIImageView+HeadImage.m in Sources */,
+				40BC84741BFC570700038C81 /* EMSDWebImageDecoder.m in Sources */,
 				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,
+				40BC848E1BFC570700038C81 /* PSTGridLayoutSection.m in Sources */,
+				40BC84951BFC570700038C81 /* NSDateFormatter+Category.m in Sources */,
 				4058E4BC1BA0211B00EF6D76 /* SETextEditingCaret.m in Sources */,
 				B263DA211B944E9500BB1970 /* JSSideMenu.swift in Sources */,
-				40E9EF341BF9D159007C0A90 /* MWCaptionView.m in Sources */,
-				40E9EF3E1BF9D159007C0A90 /* EMSDWebImageCompat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3442,7 +3510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "0174be54-d4a9-4550-8144-51b54c3e3105";
@@ -3482,7 +3550,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "5987ced2-81ae-4718-a596-d369f500d59b";
 				SDKROOT = iphoneos;
@@ -3532,7 +3600,7 @@
 					"$(SRCROOT)/SVIP",
 				);
 				INFOPLIST_FILE = SVIP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3601,7 +3669,7 @@
 					"$(SRCROOT)/SVIP",
 				);
 				INFOPLIST_FILE = SVIP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

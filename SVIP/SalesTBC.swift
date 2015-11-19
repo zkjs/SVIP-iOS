@@ -22,26 +22,27 @@ class SalesTBC: UITabBarController {
   }
   
   func setupView() {
-    let vc1 = ConversationListTVC()
-    vc1.tabBarItem.image = UIImage(named: "ic_home")
+    let vc1 = ConversationListController()
     vc1.tabBarItem.title = "聊天"
+    vc1.tabBarItem.image = UIImage(named: "ic_liaotian_nor")
+    vc1.tabBarItem.tag = 0
     let nv1 = BaseNC()
     nv1.viewControllers = [vc1]
     
     let vc2 = MailListTVC()
     vc2.tabBarItem.title = "通讯录"
-    vc2.tabBarItem.image = UIImage(named: "ic_dingdan")
+    vc2.tabBarItem.image = UIImage(named: "ic_tongxunlu_nor")
     let nv2 = BaseNC()
     nv2.viewControllers = [vc2]
     
     let vc3 = FindListTVC()
     vc3.tabBarItem.title = "发现"
-    vc3.tabBarItem.image = UIImage(named: "ic_duihua_b")
+    vc3.tabBarItem.image = UIImage(named: "ic_faxian_nor")
     let nv3 = BaseNC()
     nv3.viewControllers = [vc3]
     
     viewControllers = [nv1, nv2, nv3]
-    
+
     tabBar.tintColor = UIColor(hexString: "#ff9800")
   }
   

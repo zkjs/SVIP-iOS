@@ -106,7 +106,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     _statusButton = [[UIButton alloc] init];
     _statusButton.translatesAutoresizingMaskIntoConstraints = NO;
     _statusButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [_statusButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/messageSendFail"] forState:UIControlStateNormal];
+    [_statusButton setImage:[UIImage imageNamed:@"messageSendFail"] forState:UIControlStateNormal];
     [_statusButton addTarget:self action:@selector(statusAction) forControlEvents:UIControlEventTouchUpInside];
     _statusButton.hidden = YES;
     [self.contentView addSubview:_statusButton];
@@ -154,14 +154,14 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
             {
                 [_bubbleView setupImageBubbleView];
                 
-                _bubbleView.imageView.image = [UIImage imageNamed:@"EaseUIResource.bundle/imageDownloadFail"];
+                _bubbleView.imageView.image = [UIImage imageNamed:@"imageDownloadFail"];
             }
                 break;
             case eMessageBodyType_Location:
             {
                 [_bubbleView setupLocationBubbleView];
                 
-                _bubbleView.locationImageView.image = [[UIImage imageNamed:@"EaseUIResource.bundle/chat_location_preview"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+                _bubbleView.locationImageView.image = [[UIImage imageNamed:@"chat_location_preview"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
                 _bubbleView.locationLabel.font = _messageLocationFont;
                 _bubbleView.locationLabel.textColor = _messageLocationColor;
             }
@@ -178,7 +178,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
             {
                 [_bubbleView setupVideoBubbleView];
                 
-                _bubbleView.videoTagView.image = [UIImage imageNamed:@"EaseUIResource.bundle/messageVideo"];
+                _bubbleView.videoTagView.image = [UIImage imageNamed:@"messageVideo"];
             }
                 break;
             case eMessageBodyType_File:

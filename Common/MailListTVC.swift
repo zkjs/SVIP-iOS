@@ -14,10 +14,17 @@ class MailListTVC: UITableViewController {
     super.viewDidLoad()
     
     title = "通讯录"
+    
+    let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem
   }
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MailListTVC", owner:self, options:nil)
+  }
+  
+  func dismissSelf() {
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
   // MARK: - Table view data source

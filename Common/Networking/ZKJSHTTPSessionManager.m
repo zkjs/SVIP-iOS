@@ -51,7 +51,8 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 - (BOOL)isValidTokenWithObject:(id)responseObject {
   if ([responseObject isKindOfClass:[NSDictionary class]] &&
       responseObject[@"set"] &&
-      [responseObject[@"set"] boolValue] == NO) {
+      [responseObject[@"set"] boolValue] == NO &&
+      [responseObject[@"err"] integerValue] == 400) {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didReceiveInvalidToken)]) {
       [self.delegate didReceiveInvalidToken];
       return NO;
@@ -469,7 +470,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:[self token] forKey:@"token"];
   [dic setObject:@1 forKey:@"status"];
   [dic setObject:reservation_no forKey:@"reservation_no"];
-  [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self POST:@"order/update2" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
 //    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
@@ -641,7 +642,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:[self token] forKey:@"token"];
   [dic setObject:@5 forKey:@"status"];
   [dic setObject:reservation_no forKey:@"reservation_no"];
-  [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self POST:@"order/update2" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
 //    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);

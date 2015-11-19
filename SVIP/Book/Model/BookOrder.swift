@@ -141,8 +141,8 @@ class BookOrder: NSObject {
     remark = aDecoder.decodeObjectForKey("remark") as! String
     nologin = aDecoder.decodeObjectForKey("nologin") as! NSNumber
     room_image_URL = aDecoder.decodeObjectForKey("room_image_URL") as! String
-    map_longitude = aDecoder.decodeObjectForKey("map_longitude") as! double_t
-    map_latitude = aDecoder.decodeObjectForKey("map_latitude") as! double_t
+    map_longitude = aDecoder.decodeObjectForKey("map_longitude") as? double_t
+    map_latitude = aDecoder.decodeObjectForKey("map_latitude") as? double_t
   }
   
   func encodeWithCoder(aCoder: NSCoder!) {

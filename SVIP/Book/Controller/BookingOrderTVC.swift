@@ -98,6 +98,22 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   }
   
   func gotoChatVC() {
+    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID.stringValue, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
+      self.chooseChatterWithData(responseObject)
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+  }
+  
+  func createConversationWithSalesID(salesID: String, salesName: String) {
+    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+    let order = packetOrder()
+    vc.title = order.fullname
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  func packetOrder() -> BookOrder {
     let order = BookOrder()
     order.shopid = shopID
     order.rooms = NSNumber(integer: Int(rooms)!)
@@ -119,60 +135,36 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     order.guest = guests.joinWithSeparator(",")
     order.guesttel = JSHStorage.baseInfo().phone
     order.room_image = roomImage.image
-    
-    
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID.stringValue, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
-      if let head = responseObject["head"] as? [String: AnyObject] {
-        if let set = head["set"] as? NSNumber {
-          if set.boolValue {
-            if let exclusive_salesid = head["exclusive_salesid"] as? String {
-              if let data = responseObject["data"] as? [[String: AnyObject]] {
-                for sale in data {
-                  if let salesid = sale["salesid"] as? String {
-                      if salesid == exclusive_salesid {
-                        if let name = sale["name"] as? String {
-                          self.createGroupWithSalesID(salesid, salesName: name, shopName: order.fullname)
-                        }
-                      }
+    return order
+  }
+  
+  func chooseChatterWithData(data: AnyObject) {
+    if let head = data["head"] as? [String: AnyObject] {
+      if let set = head["set"] as? NSNumber {
+        if set.boolValue {
+          if let exclusive_salesid = head["exclusive_salesid"] as? String {
+            if let data = data["data"] as? [[String: AnyObject]] {
+              for sale in data {
+                if let salesid = sale["salesid"] as? String {
+                  if salesid == exclusive_salesid {
+                    if let name = sale["name"] as? String {
+                      self.createConversationWithSalesID(salesid, salesName: name)
+                    }
                   }
                 }
               }
-            } else if let data = responseObject["data"] as? [[String: AnyObject]] where data.count > 0 {
-              let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
-              let sale = data[randomIndex]
-              if let salesid = sale["salesid"] as? String,
-                 let name = sale["name"] as? String {
-                self.createGroupWithSalesID(salesid, salesName: name, shopName: order.fullname)
-              }
+            }
+          } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
+            let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
+            let sale = data[randomIndex]
+            if let salesid = sale["salesid"] as? String,
+              let name = sale["name"] as? String {
+                self.createConversationWithSalesID(salesid, salesName: name)
             }
           }
         }
       }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
-    
-//    let chatVC = JSHChatVC(chatType: .NewSession)
-//    chatVC.order = order
-//    chatVC.shopID = shopID.stringValue
-//    navigationController?.pushViewController(chatVC, animated: true)
-  }
-  
-  func createGroupWithSalesID(salesID: String, salesName: String, shopName: String) {
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let groupStyleSetting = EMGroupStyleSetting()
-    groupStyleSetting.groupStyle = .eGroupStyle_PrivateMemberCanInvite
-    EaseMob.sharedInstance().chatManager.asyncCreateGroupWithSubject(salesName,
-      description: shopName,
-      invitees: [userID, salesID],
-      initialWelcomeMessage: "下订单",
-      styleSetting: groupStyleSetting,
-      completion: { (group: EMGroup!, error: EMError!) -> Void in
-        if error != nil {
-          print(error)
-        }
-      }, onQueue: nil)
   }
   
   // MARK: - Action

@@ -66,7 +66,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   }
   
   func getlastOrder() {
-    
     ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let lastOrder = responseObject as! NSDictionary
       if let reservation_no = lastOrder["reservation_no"] as? String {
@@ -75,13 +74,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
         } else {
           let order = BookOrder(dictionary: responseObject as! NSDictionary)
           StorageManager.sharedInstance().updateLastOrder(order)
-          //计算距离
-          let currentLocation = CLLocation(latitude: self.latution, longitude: self.longitude)
-          if let latitude = order.map_latitude,
-            let longitude = order.map_longitude {
-              let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
-              self.distance = currentLocation.distanceFromLocation(targetLocation)
-          }
         }
         self.tableView.reloadData()
       }
@@ -257,8 +249,9 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if indexPath.section == 0 && indexPath.row == 1{
       let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
-      let order = StorageManager.sharedInstance().lastOrder()
-      cell.setData(order!)
+      if let order = StorageManager.sharedInstance().lastOrder() {
+        cell.setData(order)
+      }
       cell.selectionStyle = UITableViewCellSelectionStyle.None
       return cell
     }
@@ -459,8 +452,16 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     let coordinate = manager.location!.coordinate
     longitude = coordinate.longitude
     latution = coordinate.latitude
-    
-    
+    //计算距离
+    let currentLocation = CLLocation(latitude: latution, longitude: longitude)
+    if let order = StorageManager.sharedInstance().lastOrder() {
+      //得到最近一张订单后取订单所带的经纬度
+      if let latitude = order.map_latitude,
+        let longitude = order.map_longitude {
+          let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
+          self.distance = currentLocation.distanceFromLocation(targetLocation)
+      }
+    }
     
     //    let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
     //    regeoRequest.searchType = AMapSearchType.ReGeocode

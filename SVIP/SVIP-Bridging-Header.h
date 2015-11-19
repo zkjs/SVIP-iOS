@@ -49,4 +49,6 @@
 #import "XLSegmentedPagerTabStripViewController.h"
 #import "UIImage+Resize.h"
 #import "EaseMob.h"
+#import "ConversationListController.h"
+#import "ChatViewController.h"
 //#import <FIR/FIR.h>

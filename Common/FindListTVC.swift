@@ -14,6 +14,9 @@ class FindListTVC: UITableViewController {
     super.viewDidLoad()
     
     title = "发现"
+    
+    let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem
   }
   
   override func didReceiveMemoryWarning() {
@@ -22,6 +25,10 @@ class FindListTVC: UITableViewController {
   }
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("FindListTVC", owner:self, options:nil)
+  }
+  
+  func dismissSelf() {
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
   // MARK: - Table view data source
