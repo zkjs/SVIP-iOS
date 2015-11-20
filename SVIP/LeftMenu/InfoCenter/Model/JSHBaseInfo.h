@@ -12,11 +12,12 @@
  */
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
 @interface JSHBaseInfo : NSObject <NSCoding>
+
 @property (strong, nonatomic) NSString *avatarStr;
 @property (strong, nonatomic) UIImage *avatarImage;
 @property (strong, nonatomic) NSString *phone;
-//
 @property (strong, nonatomic) NSString *openid;
 @property (strong, nonatomic) NSString *userid;
 @property (strong, nonatomic) NSString *username;
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *sex;//@"0"男     @"1"女
 @property (assign, nonatomic) int tagopen;
+
 - (id)initWithDic:(NSDictionary *)dic;
 
 //- (void)encodeWithCoder:(NSCoder *)coder;

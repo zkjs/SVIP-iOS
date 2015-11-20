@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCPathButtonDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate {
+class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCPathButtonDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate, RESideMenuDelegate {
 
   var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
@@ -23,7 +23,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   let locationManager = CLLocationManager()
   var bluetoothManager = CBCentralManager()
   var beaconRegions = [String: [String: String]]()
-  var myView:MainHeaderView!
+  var myView: MainHeaderView!
   
   @IBOutlet weak var tableView: UITableView!
 
@@ -42,6 +42,8 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     
     navigationController?.navigationBarHidden = false
     tableView.tableFooterView = UIView()
+    
+    sideMenuViewController.delegate = self
     
     let nibName = UINib(nibName: MainViewCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: MainViewCell.reuseIdentifier())
@@ -204,6 +206,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     super.viewWillAppear(animated)
     
     navigationController?.navigationBarHidden = true
+    tableView.reloadData()
   }
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
@@ -283,10 +286,12 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     if section == 0 {
-       myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
-      myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
-      myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-      myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
+      if myView == nil {
+        myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
+        myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
+        myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+        myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
+      }
       setupMainViewUI(myView)
       return myView
     }else {
@@ -737,6 +742,14 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
       if error != nil {
         EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: EMCallStatusChangedReason.eCallReason_Hangup)
       }
+    }
+  }
+  
+  // MARK: - RESideMenuDelegate
+  
+  func sideMenu(sideMenu: RESideMenu!, willShowMenuViewController menuViewController: UIViewController!) {
+    if let vc = menuViewController as? LeftMenuVC {
+      vc.setUI()
     }
   }
 }

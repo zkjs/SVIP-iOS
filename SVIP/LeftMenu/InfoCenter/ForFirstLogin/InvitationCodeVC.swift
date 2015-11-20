@@ -64,6 +64,8 @@ class InvitationCodeVC: UIViewController {
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           
       }
+    } else {
+      LoginManager.sharedInstance().afterAnimation()
     }
   }
   

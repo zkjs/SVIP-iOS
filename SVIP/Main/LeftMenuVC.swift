@@ -31,6 +31,10 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
+      name: "DownloadImageNotification", object: nil)
+    tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     setUI()
     loadData()
     tableView.reloadData()
@@ -56,27 +60,25 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   func setUI() {
-    NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
-      name: "DownloadImageNotification", object: nil)
     avatar.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     if let baseInfo = JSHStorage.baseInfo() {
       if baseInfo.avatarImage != nil {
         avatar.setImage(baseInfo.avatarImage, forState: UIControlState.Normal)
-      }else {
+      } else {
         if let userid = JSHStorage.baseInfo().userid {
           var url = NSURL(string: kBaseURL)
           url = url?.URLByAppendingPathComponent("uploads/users/\(userid).jpg")
-          let data = NSData(contentsOfURL: url!)
-          avatar.imageView?.image = UIImage(data: data!)
-          
-          //avatar.sd_setImageWithURL(url, forState: UIControlState.Normal, placeholderImage: UIImage(named: "ic_camera_nor"), options: [SDWebImageOptions.LowPriority, SDWebImageOptions.RefreshCached, SDWebImageOptions.RetryFailed])
+          if let data = NSData(contentsOfURL: url!) {
+            let image = UIImage(data: data)
+            avatar.setImage(image, forState: UIControlState.Normal)
+          } else {
+            let image = UIImage(named: "img_hotel_zhanwei")
+            avatar.setImage(image, forState: UIControlState.Normal)
+          }
         }
       }
-      
       name.text = baseInfo.username
     }
-    
-    tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
   }
   
   // MARK: - Button Action
@@ -138,8 +140,6 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let imageData = userInfo["avtarImage"] as! NSData
     let image = UIImage(data: imageData)
     avatar.setImage(image, forState: UIControlState.Normal)
-    
-    
   }
   
 }

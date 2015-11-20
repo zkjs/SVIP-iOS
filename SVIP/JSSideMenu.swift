@@ -11,13 +11,6 @@ import UIKit
 class JSSideMenu: RESideMenu {
   
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//    if let nv = contentViewController as? UINavigationController {
-//      if let vc = nv.viewControllers.last {
-//        if vc.isKindOfClass(MainTVC) {
-//          return .LightContent
-//        }
-//      }
-//    }
     return .LightContent
   }
   
