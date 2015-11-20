@@ -73,8 +73,9 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
       }
     }
     
-    let param = ["realname" : headerView.textField.text]
-    ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(param as! [String: String], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    let param = ["realname" :headerView.textField.text!]
+    let paramDic = NSDictionary(dictionary: param)
+    ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(paramDic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {

@@ -435,7 +435,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   [dic setObject:[self token] forKey:@"token"];
   [dic setObject:reservation_no forKey:@"reservation_no"];
   [self POST:@"order/show" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -450,10 +450,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
   [dic setObject:[self userID] forKey:@"userid"];
   [dic setObject:[self token] forKey:@"token"];
-  [dic setObject:@2 forKey:@"status"];
   [dic setObject:reservation_no forKey:@"reservation_no"];
-  [self POST:@"order/update" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+  [self POST:@"order/update2" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -572,7 +571,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
     [formData appendPartWithFormData:[@"0,2,4" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+   DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -584,13 +583,13 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 #pragma mark - 历史订单列表
 - (void)getOrderHistoryListWithPage:(NSString *)page success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self POST:@"order/showlist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  [self POST:@"order/v10list" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
     [formData appendPartWithFormData:[@"3" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"==%@", [responseObject description]);
+    DDLogInfo(@"==%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -785,6 +784,40 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
+}
+
+#pragma mark - ping++支付请求
+- (void)pingPayWithDic:(NSDictionary * )param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
+ 
+  [self POST:@"ping/paycharge" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+
+}
+
+#pragma mark - ping++发起退款申请
+- (void)pingPayrefundWithID:(NSString *) chargeID amount:(NSString *)amount description:(NSString *)description success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"pay/payrefund" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[chargeID dataUsingEncoding:NSUTF8StringEncoding] name:@"id"];
+    [formData appendPartWithFormData:[amount dataUsingEncoding:NSUTF8StringEncoding] name:@"amount"];
+    [formData appendPartWithFormData:[description dataUsingEncoding:NSUTF8StringEncoding] name:@"description"];
+   } success:^(NSURLSessionDataTask *task, id responseObject) {
+    //    DDLogInfo(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+
 }
 
 @end

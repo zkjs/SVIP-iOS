@@ -45,14 +45,13 @@ class OrderListCell: SWTableViewCell {
     hotelImageView.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     hotelnameLabel.text = order.fullname
     roomTypeLabel.text = order.room_type + "x" + order.rooms.stringValue
-    priceLabel.text = "￥" + order.room_rate.stringValue
+    priceLabel.text = "￥" + "\(order.room_rate.stringValue)"
     getDayOfWeek(order.arrival_date)
     daysFromDateString(order.departure_date, toDateString: order.arrival_date)
     rightUtilityButtons = rightButtons() as [AnyObject]
   }
   
   func getDayOfWeek(today:String) {
-    
     let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
     let todayDate = formatter.dateFromString(today)!

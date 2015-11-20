@@ -144,6 +144,11 @@
 #pragma mark - 查看商家客服列表带专属客服
 - (void)getMerchanCustomerServiceListWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+#pragma mark - ping++支付请求
+- (void)pingPayWithDic:(NSDictionary * )param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+#pragma mark - ping++发起退款申请
+- (void)pingPayrefundWithID:(NSString *) chargeID amount:(NSString *)amount description:(NSString *)description success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
 
 @protocol HTTPSessionManagerDelegate <NSObject>

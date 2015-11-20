@@ -12,6 +12,8 @@ class InvoiceTableViewController: UITableViewController, InvoiceTableViewCellDel
   let dataArray: NSMutableArray = NSMutableArray()
   override func viewDidLoad() {
     super.viewDidLoad()
+    let item2 = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Plain, target: self, action: "addInvoce:")
+    navigationItem.rightBarButtonItem = item2
     setUI()
   }
   
@@ -46,13 +48,18 @@ class InvoiceTableViewController: UITableViewController, InvoiceTableViewCellDel
       
     })
   }
+  
+  func addInvoce(sender:UIBarButtonItem) {
+    let vc = InvoiceEditViewController()
+    navigationController?.pushViewController(vc, animated: true)
+  }
   // MARK: - Table view data source
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return dataArray.count + 1
+    return dataArray.count
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -62,13 +69,6 @@ class InvoiceTableViewController: UITableViewController, InvoiceTableViewCellDel
     return 167
   }
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.row == dataArray.count {//最后一行
-      var cell = tableView.dequeueReusableCellWithIdentifier("InvoiceAddCell") as? InvoiceAddCell
-      if cell == nil {
-        cell = NSBundle.mainBundle().loadNibNamed("InvoiceAddCell", owner: self, options: nil).last as? InvoiceAddCell
-      }
-      return cell!
-    }
     var cell = tableView.dequeueReusableCellWithIdentifier("InvoiceTableViewCell") as? InvoiceTableViewCell
     if cell == nil {
       cell = NSBundle.mainBundle().loadNibNamed("InvoiceTableViewCell", owner: self, options: nil).last as? InvoiceTableViewCell

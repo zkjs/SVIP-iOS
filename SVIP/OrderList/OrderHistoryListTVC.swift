@@ -34,7 +34,7 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
+    loadMoreData()
     navigationController?.hidesBarsOnSwipe = true
   }
   
@@ -72,6 +72,13 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     cell.delegate = self
     
     return cell
+  }
+  //设置cell的显示动画
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
+    UIView.animateWithDuration(0.25) { () -> Void in
+      cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+    }
   }
   
   // MARK: - Table view delegate

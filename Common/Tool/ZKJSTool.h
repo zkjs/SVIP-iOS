@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface ZKJSTool : NSObject
-
-#pragma mark - 显示提示信息
+#pragma mark - HUD
+// 显示提示信息
 + (void)showMsg:(NSString *)message;
 
 #pragma mark - 检测手机号码是否合法
@@ -18,5 +18,9 @@
 
 #pragma mark - 检测邮箱格式
 + (BOOL)validateEmail:(NSString *)email;
++ (NSString *)getIPAddress:(BOOL)preferIPv4;
++ (NSDictionary *)getIPAddresses;
+#pragma mark - 动画
+
 
 @end

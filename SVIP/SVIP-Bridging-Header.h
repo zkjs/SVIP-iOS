@@ -46,6 +46,7 @@
 #import "EaseMob.h"
 #import "ConversationListController.h"
 #import "ChatViewController.h"
+#import "Pingpp.h"
 //#import <FIR/FIR.h>
 #import "MBProgressHUD.h"
 #import "CallViewController.h"

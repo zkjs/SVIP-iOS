@@ -34,10 +34,24 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
         super.viewDidLoad()
       
       title = "订单详情"
+      //评价
+      let starRating = EDStarRating()
+      starRating.frame = CGRectMake(20, 550, self.view.bounds.width/1.7, 60)
+      starRating.backgroundColor = UIColor.whiteColor()
+      starRating.starImage = UIImage(named: "ic_star_nor")
+      starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
+      starRating.maxRating = 5
+      starRating.delegate = self
+      starRating.horizontalMargin = 12
+      
+      scrollView.addSubview(starRating)
+      starRating.rating = order.score.floatValue
       navigationController?.navigationBar.tintColor = UIColor.clearColor()
       if order.score == 0 {
+        starRating.editable = true
         scrollView.contentSize = CGSize(width:0,height:850)
       }else {
+        starRating.editable = false
         scrollView.contentSize = CGSize(width:0,height:600)
       }
       
@@ -49,18 +63,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       if orderV != nil {
         scrollView.addSubview(orderV!)
       }
-      //评价
-      let starRating = EDStarRating()
-      starRating.frame = CGRectMake(20, 550, self.view.bounds.width/1.7, 60)
-      starRating.backgroundColor = UIColor.whiteColor()
-      starRating.starImage = UIImage(named: "ic_star_nor")
-      starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
-      starRating.maxRating = 5
-      starRating.delegate = self
-      starRating.horizontalMargin = 12
-      starRating.editable = true
-      scrollView.addSubview(starRating)
-      starRating.rating = order.score.floatValue
+      
 
         // Do any additional setup after loading the view.
     }

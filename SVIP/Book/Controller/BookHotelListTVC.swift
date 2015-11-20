@@ -58,7 +58,9 @@ class BookHotelListTVC: UITableViewController {
     
     self.tableView .registerNib(UINib(nibName: "BookHotelListCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
     self.tableView.tableFooterView = UIView()
-    
+    navigationController?.navigationBar.translucent = false
+    navigationController?.navigationBar.barStyle = UIBarStyle.Black
+    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     // Hanton
     title = NSLocalizedString("CHOOSE_HOTEL", comment: "")
     

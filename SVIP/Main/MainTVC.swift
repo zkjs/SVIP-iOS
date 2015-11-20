@@ -60,7 +60,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     unregisterNotification()
   }
   
-  func getAdvertisementData() {
+  func getAdvertisementData() { 
     ZKJSHTTPSessionManager.sharedInstance().getAdvertisementListWithSuccess({ (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       let advertisement = AdvertisementModel(dic: dic as! [String:AnyObject])
@@ -73,7 +73,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   }
   
   func getlastOrder() {
-    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+     ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let lastOrder = responseObject as! NSDictionary
       if let reservation_no = lastOrder["reservation_no"] as? String {
         if reservation_no == "0" {
@@ -92,8 +92,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   
   func configureDCPathButton() {
     let image = UIImage(named: "ic_zhong_nor")
-    
-    dcPathButton = DCPathButton(centerImage: image, highlightedImage: UIImage(named: "ic_zhong_pre"))
+     dcPathButton = DCPathButton(centerImage: image, highlightedImage: UIImage(named: "ic_zhong_pre"))
     dcPathButton.delegate = self
     view.frame = UIScreen.mainScreen().bounds
     dcPathButton.dcButtonCenter = CGPointMake(view.bounds.width/2, view.bounds.height-40)
@@ -158,6 +157,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       }
     }
   }
+  
   //MARK: - DCPathButtonDelegate
   func pathButton(dcPathButton: DCPathButton!, clickItemButtonAtIndex itemButtonIndex: UInt) {
     
@@ -210,8 +210,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     navigationController?.navigationBarHidden = false
   }
   
-  
-  
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 2
   }
@@ -221,7 +219,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       return 2
     }
     else {
-      
       return AdvertisementArray.count
     }
   }
@@ -240,9 +237,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       }else {
         return height
       }
-      
     }
-    
   }
 
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -251,7 +246,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     }else {
       return 10
     }
-    
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -278,21 +272,22 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       
       return cell
     }
-    
-    
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == 0 && indexPath.row == 1 {
+      let vc = OrderListTVC()
+      navigationController?.pushViewController(vc, animated: true)
+    }
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     if section == 0 {
-     
-      myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
+       myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
       myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
       myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
       myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
       setupMainViewUI(myView)
-      
-      //      self.view.addSubview(myView)
-      
       return myView
     }else {
       return nil
@@ -307,6 +302,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   func setupMainViewUI(myView:MainHeaderView) {
     let image = JSHStorage.baseInfo().avatarImage
     myView.userImageButton.setImage(image, forState: .Normal)
+    myView.userNameLabel.text = JSHStorage.baseInfo().username
     if distance == nil {
       return
     }else {
@@ -317,9 +313,7 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
 //      myView.orderStatusLabel.text = "有订单 距离\(String(format: "%.2f", distance/1000))km"
       myView.orderStatusLabel.text = "有订单 距离\(distanceString)"
       myView.userNameLabel.text = JSHStorage.baseInfo().username
-    }
-    
-    
+    } 
   }
   
   func downloadImage(notification: NSNotification) {
@@ -328,7 +322,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     let image = UIImage(data: imageData)
     myView.userImageButton.setImage(image, forState: UIControlState.Normal)
     self.tableView.reloadData()
-    
   }
   
   func setInfo(sender:UIButton) {
@@ -372,7 +365,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       locationManager.requestAlwaysAuthorization()
       return
     }
-    
     setupBeaconMonitor()
     setupGPSMonitor()
     print("setupCoreLocationService")
