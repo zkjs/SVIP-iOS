@@ -68,12 +68,12 @@ static EaseLocationViewController *defaultLocation = nil;
     
     self.title = NSLocalizedString(@"location.messageType", @"location message");
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/back"] forState:UIControlStateNormal];
-    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
-    
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
+  
     _mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate = self;
     _mapView.mapType = MKMapTypeStandard;
@@ -85,7 +85,7 @@ static EaseLocationViewController *defaultLocation = nil;
         
         UIButton *sendButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
         [sendButton setTitle:NSLocalizedString(@"send", @"Send") forState:UIControlStateNormal];
-        [sendButton setTitleColor:[UIColor colorWithRed:32 / 255.0 green:134 / 255.0 blue:158 / 255.0 alpha:1.0] forState:UIControlStateNormal];
+//        [sendButton setTitleColor:[UIColor colorWithRed:32 / 255.0 green:134 / 255.0 blue:158 / 255.0 alpha:1.0] forState:UIControlStateNormal];
         [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [sendButton addTarget:self action:@selector(sendLocation) forControlEvents:UIControlEventTouchUpInside];
         [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:sendButton]];
@@ -132,7 +132,7 @@ static EaseLocationViewController *defaultLocation = nil;
 
 - (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
 {
-    [self hideHud];
+    [self hideHUD];
     if (error.code == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                             message:[error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey]
@@ -178,8 +178,7 @@ static EaseLocationViewController *defaultLocation = nil;
     if (_isSendLocation) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
-    
-    [self showHudInView:self.view hint:NSLocalizedString(@"location.ongoning", @"locating...")];
+    [self showHUDInView:self.view withLoading:NSLocalizedString(@"location.ongoning", @"locating...")];
 }
 
 -(void)createAnnotationWithCoords:(CLLocationCoordinate2D)coords
@@ -196,7 +195,7 @@ static EaseLocationViewController *defaultLocation = nil;
 
 - (void)removeToLocation:(CLLocationCoordinate2D)locationCoordinate
 {
-    [self hideHud];
+    [self hideHUD];
     
     _currentLocationCoordinate = locationCoordinate;
     float zoomLevel = 0.01;

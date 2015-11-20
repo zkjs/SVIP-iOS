@@ -64,7 +64,6 @@
     NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
     EaseConversationCell *cell = (EaseConversationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
     if (cell == nil) {
         cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -83,7 +82,7 @@
     } else {
         cell.timeLabel.text = [self _latestMessageTimeForConversationModel:model];
     }
-    
+  
     return cell;
 }
 

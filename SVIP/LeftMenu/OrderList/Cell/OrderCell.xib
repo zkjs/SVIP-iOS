@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="242" id="KGk-i7-Jjw" customClass="OrderCell" customModule="SVIP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="503" height="242"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="503" height="241"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_shape01" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-lG-oeF" userLabel="Line Image View">
+                        <rect key="frame" x="160" y="0.0" width="1" height="115"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="img_hotel_anli01" translatesAutoresizingMaskIntoConstraints="NO" id="qWt-h4-AUx" userLabel="Logo Image View">
+                        <rect key="frame" x="116" y="27" width="88" height="88"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="88" id="1H2-Z7-b2T"/>
+                            <constraint firstAttribute="width" constant="88" id="VQh-Az-Zfk"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2015/05/06" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMj-f0-rBu" userLabel="Date Label">
+                        <rect key="frame" x="25" y="47" width="83" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2晚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaP-Kr-A36" userLabel="Count Label">
+                        <rect key="frame" x="25" y="70" width="26" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="¥0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fB-OD-xhL" userLabel="Amount Label">
+                        <rect key="frame" x="89" y="70" width="19" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="长沙芙蓉国温德姆至尊豪廷大酒店" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9m-Me-nUQ" userLabel="Name Label">
+                        <rect key="frame" x="212" y="47" width="100" height="58"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic-yuding" translatesAutoresizingMaskIntoConstraints="NO" id="QuE-m1-vBo" userLabel="Booking Image View">
+                        <rect key="frame" x="181" y="88" width="23" height="23"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="已确定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrk-wv-JaX" userLabel="Count Label">
+                        <rect key="frame" x="60" y="92" width="48" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.98431372549019602" green="0.15686274509803921" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="I9m-Me-nUQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="47" id="1Ej-Ld-8IG"/>
+                    <constraint firstAttribute="bottom" secondItem="QuE-m1-vBo" secondAttribute="bottom" constant="4" id="2WL-X8-5oo"/>
+                    <constraint firstItem="I9m-Me-nUQ" firstAttribute="leading" secondItem="qWt-h4-AUx" secondAttribute="trailing" constant="8" id="36n-yW-MvF"/>
+                    <constraint firstItem="iaP-Kr-A36" firstAttribute="top" secondItem="vMj-f0-rBu" secondAttribute="bottom" constant="3" id="4bc-F8-qHs"/>
+                    <constraint firstAttribute="centerX" secondItem="QuE-m1-vBo" secondAttribute="centerX" constant="-32" id="5Qu-08-BV5"/>
+                    <constraint firstItem="vMj-f0-rBu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="47" id="5ly-xb-QBW"/>
+                    <constraint firstAttribute="bottom" secondItem="qWt-h4-AUx" secondAttribute="bottom" id="HVf-Th-6dW"/>
+                    <constraint firstItem="2fB-OD-xhL" firstAttribute="top" secondItem="vMj-f0-rBu" secondAttribute="bottom" constant="3" id="LVl-nH-utO"/>
+                    <constraint firstItem="8bg-lG-oeF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Of8-2v-Yfy"/>
+                    <constraint firstItem="vMj-f0-rBu" firstAttribute="leading" secondItem="iaP-Kr-A36" secondAttribute="leading" id="Uey-wQ-00x"/>
+                    <constraint firstItem="qWt-h4-AUx" firstAttribute="leading" secondItem="vMj-f0-rBu" secondAttribute="trailing" constant="8" id="ZHY-6r-qtJ"/>
+                    <constraint firstItem="2fB-OD-xhL" firstAttribute="trailing" secondItem="vMj-f0-rBu" secondAttribute="trailing" id="Zmc-te-cNi"/>
+                    <constraint firstAttribute="bottom" secondItem="8bg-lG-oeF" secondAttribute="bottom" id="e9I-bN-G3x"/>
+                    <constraint firstItem="iaP-Kr-A36" firstAttribute="leading" secondItem="Qrk-wv-JaX" secondAttribute="leading" id="fFb-Zj-NU1"/>
+                    <constraint firstAttribute="centerX" secondItem="8bg-lG-oeF" secondAttribute="centerX" id="mUk-wd-A8M"/>
+                    <constraint firstAttribute="trailing" secondItem="I9m-Me-nUQ" secondAttribute="trailing" constant="8" id="o6z-9P-ld8"/>
+                    <constraint firstItem="Qrk-wv-JaX" firstAttribute="top" secondItem="2fB-OD-xhL" secondAttribute="bottom" constant="3" id="rkI-35-XqI"/>
+                    <constraint firstItem="2fB-OD-xhL" firstAttribute="trailing" secondItem="Qrk-wv-JaX" secondAttribute="trailing" id="wbc-sJ-bq3"/>
+                    <constraint firstAttribute="centerX" secondItem="qWt-h4-AUx" secondAttribute="centerX" id="yev-VA-pLc"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="fFb-Zj-NU1"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="amountLabel" destination="2fB-OD-xhL" id="fbm-bJ-X3Q"/>
+                <outlet property="bookingImageView" destination="QuE-m1-vBo" id="reN-n9-rXc"/>
+                <outlet property="countLabel" destination="iaP-Kr-A36" id="eKG-68-v0U"/>
+                <outlet property="dateLabel" destination="vMj-f0-rBu" id="ge6-eF-ubV"/>
+                <outlet property="logoImageView" destination="qWt-h4-AUx" id="96d-uD-O2J"/>
+                <outlet property="nameLabel" destination="I9m-Me-nUQ" id="4St-gx-OZ4"/>
+                <outlet property="statusLabel" destination="Qrk-wv-JaX" id="ph4-ns-qjP"/>
+            </connections>
+            <point key="canvasLocation" x="460.5" y="275"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic-yuding" width="23" height="23"/>
+        <image name="ic_shape01" width="1" height="365"/>
+        <image name="img_hotel_anli01" width="131" height="131"/>
+    </resources>
+</document>

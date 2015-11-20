@@ -12,10 +12,11 @@
 #import "NSDate+Category.h"
 #import "EaseUsersListViewController.h"
 #import "EaseMessageReadManager.h"
+#import "JTSImageViewController.h"
 
 #define KHintAdjustY    50
 
-@interface EaseMessageViewController ()<EaseMessageCellDelegate>
+@interface EaseMessageViewController ()<EaseMessageCellDelegate, UINavigationControllerDelegate>
 {
     UIMenuItem *_copyMenuItem;
     UIMenuItem *_deleteMenuItem;
@@ -54,7 +55,7 @@
         _deleteConversationIfNull = YES;
         _scrollToBottomWhenAppear = YES;
         _messsagesSource = [NSMutableArray array];
-        
+      
         [_conversation markAllMessagesAsRead:YES];
     }
     
@@ -284,6 +285,18 @@
         CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
         [self.tableView setContentOffset:offset animated:animated];
     }
+}
+
+- (void)_showBrowserWithImage:(UIImage *)image {
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = image;
+    imageInfo.referenceRect = self.view.frame;
+    imageInfo.referenceView = super.view;
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOffscreen];
 }
 
 - (BOOL)_canRecord
@@ -600,7 +613,8 @@
                     UIImage *image = [UIImage imageWithContentsOfFile:localPath];
                     if (image)
                     {
-                        [[EaseMessageReadManager defaultManager] showBrowserWithImages:@[image]];
+//                        [[EaseMessageReadManager defaultManager] showBrowserWithImages:@[image]];
+                        [self _showBrowserWithImage:image];
                     }
                     else
                     {
@@ -632,7 +646,7 @@
                 }
                 [weakSelf showHint:NSLocalizedString(@"message.imageFail", @"image for failure!")];
             } onQueue:nil];
-        }else{
+        } else {
             //获取缩略图
             [chatManager asyncFetchMessageThumbnail:model.message progress:nil completion:^(EMMessage *aMessage, EMError *error) {
                 if (!error) {
@@ -890,6 +904,12 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    _imagePicker.navigationBar.tintColor = [UIColor whiteColor];
+    _imagePicker.navigationBar.barTintColor = [UIColor blackColor];
+    _imagePicker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -1189,7 +1209,7 @@
     // 隐藏键盘
     [self.chatToolbar endEditing:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.ext[@"toName"], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
 }
 
 - (void)moreViewVideoCallAction:(EaseChatBarMoreView *)moreView
@@ -1197,7 +1217,7 @@
     // 隐藏键盘
     [self.chatToolbar endEditing:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeVideo]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.ext[@"toName"], @"type":[NSNumber numberWithInt:eCallSessionTypeVideo]}];
 }
 
 #pragma mark - EMLocationViewDelegate
@@ -1402,7 +1422,7 @@
                         }
                         else{
                             model = [[EaseMessageModel alloc] initWithMessage:message];
-                            model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+                            model.avatarImage = [UIImage imageNamed:@"user"];
                             model.failImageName = @"imageDownloadFail";
                         }
                         
@@ -1579,7 +1599,7 @@
         }
         else{
             model = [[EaseMessageModel alloc] initWithMessage:message];
-            model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+            model.avatarImage = [UIImage imageNamed:@"user"];
             model.failImageName = @"imageDownloadFail";
         }
 

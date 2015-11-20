@@ -217,9 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
     let urlStr = url.absoluteString
     if urlStr.hasPrefix("SVIPPAY") {
-        AlipaySDK .defaultService() .processOrderWithPaymentResult(url, standbyCallback: { (_: [NSObject : AnyObject]!) -> Void in
-            // 从本地支付宝App跳回
-        })
+      
     }
 //    else if urlStr.hasPrefix(WXAppId) {
 //        return UMSocialSnsService.handleOpenURL(url)

@@ -15,10 +15,6 @@ private let kRoomSection = 5
 private let kRoomRow = 1
 private let kServiceSection = 6
 private let kServiceRow = 1
-private let partner = PartnerID
-private let seller = SellerID
-private let privateKey = PartnerPrivKey
-
 
 class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   
@@ -131,11 +127,11 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Public
   
   func sendConfirmMessageToChatVC() {
-    let chatVC = JSHChatVC(chatType: .ConfirmOrder)
-    chatVC.shopID = "\(shopID)"
-    chatVC.shopName = self.roomDic["fullname"] as! String
-    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CONFIRM_ORDER", comment: "")
-    navigationController?.pushViewController(chatVC, animated: true)
+//    let chatVC = JSHChatVC(chatType: .ConfirmOrder)
+//    chatVC.shopID = "\(shopID)"
+//    chatVC.shopName = self.roomDic["fullname"] as! String
+//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CONFIRM_ORDER", comment: "")
+//    navigationController?.pushViewController(chatVC, animated: true)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -261,57 +257,6 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     }
   }
   
-  private func payAliOrder(AbookOrder: BookOrder) {
-    let aliOrder = AlipayOrder()
-    aliOrder.partner = partner
-    aliOrder.seller = seller
-    aliOrder.tradeNO = AbookOrder.reservation_no
-    aliOrder.productName = AbookOrder.room_type
-    aliOrder.productDescription = "needtoknow"
-    if let rooms = AbookOrder.rooms {
-      let amount = AbookOrder.room_rate.doubleValue * rooms.doubleValue
-      aliOrder.amount = NSString(format:"%.2f", amount) as String
-      print(aliOrder.amount)
-    }
-    
-    aliOrder.notifyURL = "http://api.zkjinshi.com/alipay/notify"
-    aliOrder.service = "mobile.securitypay.pay"
-    aliOrder.paymentType = "1"
-    aliOrder.inputCharset = "utf-8"
-    aliOrder.itBPay = "30m"
-    aliOrder.showUrl = "m.alipay.com"
-    
-    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    let appScheme = "SVIPPAY"
-    
-    //将商品信息拼接成字符串
-    let orderSpec = aliOrder.description
-    print(orderSpec, terminator: "")
-    
-    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    let signer = CreateRSADataSigner(privateKey)
-    if let signedString = signer.signString(orderSpec) {
-      let orderString = String(format: "%@&sign=\"%@\"&sign_type=\"%@\"", orderSpec, signedString, "RSA")
-      let service = AlipaySDK .defaultService()
-      service .payOrder(orderString, fromScheme: appScheme, callback: { [unowned self] (aDictionary) -> Void in
-        let resultStatus = aDictionary["resultStatus"] as! String
-        let result = aDictionary["result"] as! NSString
-        if self.validateResult(result) && resultStatus == "9000" {
-          //支付成功
-          let total = 1890
-          let payed = 314
-          let remain = total - payed
-          self.paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [total, remain])
-          self.paymentButton.setTitle(NSLocalizedString("PAYED", comment: ""), forState: UIControlState.Disabled)
-          self.paymentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
-          self.paymentButton.enabled = false
-        }else {
-          self.showHint(NSLocalizedString("PAY_FAIL", comment: ""))
-        }
-        })
-    }
-  }
-  
   private func validateResult(result: NSString) -> Bool{
     let range = result .rangeOfString("success=\"")
     if range.length == 0 {
@@ -423,11 +368,11 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     }
     if cancelButton.titleLabel?.text == "取消" {
       ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
-        chatVC.shopID = "\(self.shopID)"
-        chatVC.shopName = self.bkOrder.fullname
-        chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
-        self.navigationController?.pushViewController(chatVC, animated: true)
+//        let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
+//        chatVC.shopID = "\(self.shopID)"
+//        chatVC.shopName = self.bkOrder.fullname
+//        chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
+//        self.navigationController?.pushViewController(chatVC, animated: true)
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           ZKJSTool.showMsg(error.localizedDescription)
       })

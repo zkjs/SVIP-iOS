@@ -7,9 +7,7 @@
 //
 
 import UIKit
-private let partner = PartnerID
-private let seller = SellerID
-private let privateKey = PartnerPrivKey
+
 class BookPayVC: UIViewController {
   @IBOutlet private weak var name: UILabel!
   @IBOutlet private weak var price: UILabel!
@@ -164,11 +162,11 @@ class BookPayVC: UIViewController {
 //          chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_ORDER_PAID", comment: "")
 //          chatVC.navigationItem.hidesBackButton = true
 //          self.navigationController?.pushViewController(chatVC, animated: true)
-        }else {
-          self.showHint("支付失败")
-        }
-        })
-    }
+//        }else {
+//          self.showHint("支付失败")
+//        }
+//        })
+//    }
     //将签名成功字符串格式化为订单字符串,请严格按照该格式
 //    NSString *orderString = nil;
 //    if (signedString != nil) {
