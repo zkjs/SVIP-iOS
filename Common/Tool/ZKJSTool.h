@@ -26,6 +26,8 @@
 + (BOOL)validateMobile:(NSString *)mobileNum;
 //检测邮箱格式
 + (BOOL)validateEmail:(NSString *)email;
++ (NSString *)getIPAddress:(BOOL)preferIPv4;
++ (NSDictionary *)getIPAddresses;
 #pragma mark - 动画
 
 

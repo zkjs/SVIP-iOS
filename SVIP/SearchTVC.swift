@@ -2,7 +2,7 @@
 //  SearchTVC.swift
 //  SVIP
 //
-//  Created by AlexBang on 15/11/12.
+//  Created by AlexBang on 15/11/18.
 //  Copyright © 2015年 zkjinshi. All rights reserved.
 //
 
@@ -12,12 +12,6 @@ class SearchTVC: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-      let searchView = NSBundle.mainBundle().loadNibNamed("SearchBarView", owner: self, options: nil).first as? SearchBarView
-      searchView?.frame = CGRectMake(0, 0, 200, 35)
-      navigationItem.titleView?.sizeToFit()
-      searchView?.searchBar.layer.borderColor = navigationController?.navigationBar.barTintColor?.CGColor
-      navigationItem.titleView = searchView
-       
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -25,7 +19,6 @@ class SearchTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -49,4 +49,6 @@
 #import "XLSegmentedPagerTabStripViewController.h"
 #import "UIImage+Resize.h"
 #import "EaseMob.h"
+#import "Pingpp.h"
+#import "NSDate+DateTools.h"
 //#import <FIR/FIR.h>

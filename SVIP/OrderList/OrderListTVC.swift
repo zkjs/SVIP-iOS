@@ -26,6 +26,9 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
+    navigationController?.navigationBar.translucent = false
+    navigationController?.navigationBar.barStyle = UIBarStyle.Black
+    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -68,6 +71,13 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     cell.delegate = self
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
+  }
+  //设置cell的显示动画
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
+    UIView.animateWithDuration(0.25) { () -> Void in
+      cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+    }
   }
   
   // MARK: - Table view delegate

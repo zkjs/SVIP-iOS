@@ -176,9 +176,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
         let status = dict["status"]
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let startDate = dateFormatter.dateFromString(arrival_date!)
-        let endDate = dateFormatter.dateFromString(departure_date!)
-        let dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
+//        let startDate = dateFormatter.dateFromString(arrival_date!)
+//        let endDate = dateFormatter.dateFromString(departure_date!)
+//        let dayInt = NSDate.daysFromDate(startDate!, toDate: endDate!)
         
         let alertMessage = "您有新账单需要支付\n订单号: \(reservation_no!)"
         let alertView = UIAlertController(title: "账单", message: alertMessage, preferredStyle: .Alert)
@@ -193,7 +193,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
           order.arrival_date = arrival_date
           order.departure_date = departure_date
           order.created = created
-          order.dayInt = String(dayInt)
+//          order.dayInt = dayInt
           order.reservation_no = reservation_no
           order.status = NSNumber(integer: Int(status!)!)
           order.remark = remark

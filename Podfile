@@ -30,6 +30,7 @@ target 'SVIP' do
   pod 'EDStarRating'
   pod 'DCPathButton'
   pod 'XLPagerTabStrip', :inhibit_warnings => true
+  pod 'Pingpp', '~> 2.1.0'
 end
 
 target 'SVIPTests' do

@@ -64,7 +64,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    title = "设置"
     loadData()
   }
   

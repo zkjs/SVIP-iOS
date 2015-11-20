@@ -391,8 +391,6 @@
 		FAF2E0831BF21A16008DD5BC /* RestaurantTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0811BF21A16008DD5BC /* RestaurantTVC.xib */; };
 		FAF2E0881BF21E39008DD5BC /* HotelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0861BF21E39008DD5BC /* HotelCell.swift */; };
 		FAF2E0891BF21E39008DD5BC /* HotelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0871BF21E39008DD5BC /* HotelCell.xib */; };
-		FAF35D101BF43EC100918BCF /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D0E1BF43EC100918BCF /* SearchTVC.swift */; };
-		FAF35D111BF43EC100918BCF /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D0F1BF43EC100918BCF /* SearchTVC.xib */; };
 		FAF35D141BF43EE600918BCF /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D131BF43EE600918BCF /* SearchBarView.swift */; };
 		FAF35D161BF43F0100918BCF /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D151BF43F0100918BCF /* SearchBarView.xib */; };
 		FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */; };
@@ -401,6 +399,12 @@
 		FAF35D201BF4843100918BCF /* FloatingWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D1E1BF4843100918BCF /* FloatingWindowVC.swift */; };
 		FAF35D211BF4843100918BCF /* FloatingWindowVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D1F1BF4843100918BCF /* FloatingWindowVC.xib */; };
 		FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40DE91BF0807E002C77A6 /* OrderModel.swift */; };
+		FAF414871BFC626800D3BED4 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF414851BFC626800D3BED4 /* SearchTVC.swift */; };
+		FAF414881BFC626800D3BED4 /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF414861BFC626800D3BED4 /* SearchTVC.xib */; };
+		FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */; };
+		FAF4148E1BFC64B600D3BED4 /* HotCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */; };
+		FAF414911BFC64F400D3BED4 /* RecentCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148F1BFC64F300D3BED4 /* RecentCityCell.swift */; };
+		FAF414921BFC64F400D3BED4 /* RecentCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF414901BFC64F400D3BED4 /* RecentCityCell.xib */; };
 		FAF684471BF983270090D461 /* LeisureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF684451BF983270090D461 /* LeisureCell.swift */; };
 		FAF684481BF983270090D461 /* LeisureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF684461BF983270090D461 /* LeisureCell.xib */; };
 		FAF6844B1BF983460090D461 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF684491BF983460090D461 /* RestaurantCell.swift */; };
@@ -468,11 +472,11 @@
 		404C18491B53675300F11122 /* CompressingLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompressingLogFileManager.m; sourceTree = "<group>"; };
 		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		404FACD21B84792700352023 /* NSDate+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Days.swift"; sourceTree = "<group>"; };
-		405266331B41279B00B277BE /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTVC.swift; sourceTree = "<group>"; };
-		4052663A1B4127B400B277BE /* OrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OrderDetailVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		4052663B1B4127B400B277BE /* OrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailVC.xib; sourceTree = "<group>"; };
-		4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BookingOrderDetailVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOrderDetailVC.xib; sourceTree = "<group>"; };
+		405266331B41279B00B277BE /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderListTVC.swift; path = ../OrderListTVC.swift; sourceTree = "<group>"; };
+		4052663A1B4127B400B277BE /* OrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = OrderDetailVC.swift; path = ../OrderDetailVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		4052663B1B4127B400B277BE /* OrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderDetailVC.xib; path = ../OrderDetailVC.xib; sourceTree = "<group>"; };
+		4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BookingOrderDetailVC.swift; path = ../BookingOrderDetailVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookingOrderDetailVC.xib; path = ../BookingOrderDetailVC.xib; sourceTree = "<group>"; };
 		405266441B4127F600B277BE /* MessageCenterTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCenterTVC.swift; path = MessageCenter/MessageCenterTVC.swift; sourceTree = "<group>"; };
 		4052664E1B41283900B277BE /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		4052664F1B41283900B277BE /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
@@ -672,7 +676,7 @@
 		4058E48E1BA0211B00EF6D76 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MessageDisplayKitString.strings"; sourceTree = "<group>"; };
 		405B78231B9D3F1D009AD0E2 /* ZKJSHTTPChatSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPChatSessionManager.h; sourceTree = "<group>"; };
 		405B78241B9D3F1D009AD0E2 /* ZKJSHTTPChatSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPChatSessionManager.m; sourceTree = "<group>"; };
-		405BC0FB1B42495F00081C0A /* DotLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLine.swift; sourceTree = "<group>"; };
+		405BC0FB1B42495F00081C0A /* DotLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DotLine.swift; path = ../DotLine.swift; sourceTree = "<group>"; };
 		40641EF81B3E569700CF150D /* SVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641EFC1B3E569700CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40641EFD1B3E569700CF150D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -723,7 +727,7 @@
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryListTVC.swift; sourceTree = "<group>"; };
+		40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderHistoryListTVC.swift; path = ../OrderHistoryListTVC.swift; sourceTree = "<group>"; };
 		40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Decompression.swift"; sourceTree = "<group>"; };
 		40DA7A011B463E850097CE3D /* JSHChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSHChatVC.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		40DA7A021B463E850097CE3D /* JSHChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSHChatVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1076,8 +1080,6 @@
 		FAF2E0811BF21A16008DD5BC /* RestaurantTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTVC.xib; sourceTree = "<group>"; };
 		FAF2E0861BF21E39008DD5BC /* HotelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelCell.swift; sourceTree = "<group>"; };
 		FAF2E0871BF21E39008DD5BC /* HotelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelCell.xib; sourceTree = "<group>"; };
-		FAF35D0E1BF43EC100918BCF /* SearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTVC.swift; sourceTree = "<group>"; };
-		FAF35D0F1BF43EC100918BCF /* SearchTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTVC.xib; sourceTree = "<group>"; };
 		FAF35D131BF43EE600918BCF /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		FAF35D151BF43F0100918BCF /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
 		FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementModel.swift; sourceTree = "<group>"; };
@@ -1086,14 +1088,20 @@
 		FAF35D1E1BF4843100918BCF /* FloatingWindowVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingWindowVC.swift; sourceTree = "<group>"; };
 		FAF35D1F1BF4843100918BCF /* FloatingWindowVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingWindowVC.xib; sourceTree = "<group>"; };
 		FAF40DE91BF0807E002C77A6 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		FAF414851BFC626800D3BED4 /* SearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTVC.swift; sourceTree = "<group>"; };
+		FAF414861BFC626800D3BED4 /* SearchTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTVC.xib; sourceTree = "<group>"; };
+		FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityCell.swift; sourceTree = "<group>"; };
+		FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCityCell.xib; sourceTree = "<group>"; };
+		FAF4148F1BFC64F300D3BED4 /* RecentCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentCityCell.swift; sourceTree = "<group>"; };
+		FAF414901BFC64F400D3BED4 /* RecentCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentCityCell.xib; sourceTree = "<group>"; };
 		FAF684451BF983270090D461 /* LeisureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeisureCell.swift; sourceTree = "<group>"; };
 		FAF684461BF983270090D461 /* LeisureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeisureCell.xib; sourceTree = "<group>"; };
 		FAF684491BF983460090D461 /* RestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		FAF6844A1BF983460090D461 /* RestaurantCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantCell.xib; sourceTree = "<group>"; };
-		FAF695041BE7514A007682DC /* OrderDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
-		FAF695051BE7514A007682DC /* OrderDetailsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailsVC.xib; sourceTree = "<group>"; };
-		FAF695081BE755A0007682DC /* OrderContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderContentView.swift; sourceTree = "<group>"; };
-		FAF6950A1BE755AF007682DC /* OrderContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderContentView.xib; sourceTree = "<group>"; };
+		FAF695041BE7514A007682DC /* OrderDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderDetailsVC.swift; path = ../OrderDetailsVC.swift; sourceTree = "<group>"; };
+		FAF695051BE7514A007682DC /* OrderDetailsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderDetailsVC.xib; path = ../OrderDetailsVC.xib; sourceTree = "<group>"; };
+		FAF695081BE755A0007682DC /* OrderContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderContentView.swift; path = ../OrderContentView.swift; sourceTree = "<group>"; };
+		FAF6950A1BE755AF007682DC /* OrderContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderContentView.xib; path = ../OrderContentView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1194,19 +1202,9 @@
 		405266311B41279B00B277BE /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
+				FAF249511BFEBCFF001E7E41 /* Controller */,
 				405266631B41470F00B277BE /* HeaderView */,
 				405266531B4128E900B277BE /* Cell */,
-				405266331B41279B00B277BE /* OrderListTVC.swift */,
-				40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */,
-				4052663A1B4127B400B277BE /* OrderDetailVC.swift */,
-				4052663B1B4127B400B277BE /* OrderDetailVC.xib */,
-				FAF695041BE7514A007682DC /* OrderDetailsVC.swift */,
-				FAF695051BE7514A007682DC /* OrderDetailsVC.xib */,
-				FAF695081BE755A0007682DC /* OrderContentView.swift */,
-				FAF6950A1BE755AF007682DC /* OrderContentView.xib */,
-				4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */,
-				4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */,
-				405BC0FB1B42495F00081C0A /* DotLine.swift */,
 			);
 			name = OrderList;
 			path = ../OrderList;
@@ -1217,18 +1215,10 @@
 			children = (
 				4052664E1B41283900B277BE /* MainVC.swift */,
 				4052664F1B41283900B277BE /* MainVC.xib */,
-				FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */,
-				FAF2E0601BF1868A008DD5BC /* MainTVC.xib */,
-				FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */,
-				FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */,
-				FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */,
-				FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */,
+				FAF414891BFC635900D3BED4 /* MainVC */,
 				FAF212D71BF73F83002C1C73 /* ActivationCell.swift */,
 				FAF212D81BF73F83002C1C73 /* ActivationCell.xib */,
-				FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */,
-				FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */,
-				FAF212D31BF71DD5002C1C73 /* CityVC.swift */,
-				FAF212D41BF71DD5002C1C73 /* CityVC.xib */,
+				FAF4148A1BFC638700D3BED4 /* CityVC */,
 				FAF35D171BF469DF00918BCF /* Model */,
 			);
 			path = Main;
@@ -2668,6 +2658,25 @@
 			path = ../Common;
 			sourceTree = "<group>";
 		};
+		FAF249511BFEBCFF001E7E41 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				405266331B41279B00B277BE /* OrderListTVC.swift */,
+				40D599DD1BA2BED300AF79B3 /* OrderHistoryListTVC.swift */,
+				4052663A1B4127B400B277BE /* OrderDetailVC.swift */,
+				4052663B1B4127B400B277BE /* OrderDetailVC.xib */,
+				FAF695041BE7514A007682DC /* OrderDetailsVC.swift */,
+				FAF695051BE7514A007682DC /* OrderDetailsVC.xib */,
+				FAF695081BE755A0007682DC /* OrderContentView.swift */,
+				FAF6950A1BE755AF007682DC /* OrderContentView.xib */,
+				4052663E1B4127C500B277BE /* BookingOrderDetailVC.swift */,
+				4052663F1B4127C500B277BE /* BookingOrderDetailVC.xib */,
+				405BC0FB1B42495F00081C0A /* DotLine.swift */,
+			);
+			name = Controller;
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
 		FAF2E0751BF217C8008DD5BC /* Hotel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2709,8 +2718,8 @@
 		FAF35D121BF43EC700918BCF /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				FAF35D0E1BF43EC100918BCF /* SearchTVC.swift */,
-				FAF35D0F1BF43EC100918BCF /* SearchTVC.xib */,
+				FAF414851BFC626800D3BED4 /* SearchTVC.swift */,
+				FAF414861BFC626800D3BED4 /* SearchTVC.xib */,
 				FAF35D131BF43EE600918BCF /* SearchBarView.swift */,
 				FAF35D151BF43F0100918BCF /* SearchBarView.xib */,
 			);
@@ -2723,6 +2732,34 @@
 				FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		FAF414891BFC635900D3BED4 /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */,
+				FAF2E0601BF1868A008DD5BC /* MainTVC.xib */,
+				FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */,
+				FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */,
+				FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */,
+				FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */,
+				FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */,
+				FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */,
+			);
+			name = MainVC;
+			sourceTree = "<group>";
+		};
+		FAF4148A1BFC638700D3BED4 /* CityVC */ = {
+			isa = PBXGroup;
+			children = (
+				FAF212D31BF71DD5002C1C73 /* CityVC.swift */,
+				FAF212D41BF71DD5002C1C73 /* CityVC.xib */,
+				FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */,
+				FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */,
+				FAF4148F1BFC64F300D3BED4 /* RecentCityCell.swift */,
+				FAF414901BFC64F400D3BED4 /* RecentCityCell.xib */,
+			);
+			name = CityVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2898,6 +2935,8 @@
 				FAEFA56A1BE8B01D002C07E8 /* OrderHistoryCell.xib in Resources */,
 				FAF2E06E1BF1CBCB008DD5BC /* MainViewCell.xib in Resources */,
 				4058E5001BA0211B00EF6D76 /* RecordingSignal004@2x.png in Resources */,
+				FAF4148E1BFC64B600D3BED4 /* HotCityCell.xib in Resources */,
+				FAF414881BFC626800D3BED4 /* SearchTVC.xib in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				FAF684481BF983270090D461 /* LeisureCell.xib in Resources */,
 				4058E5061BA0211B00EF6D76 /* SECoreTextView.bundle in Resources */,
@@ -2918,6 +2957,7 @@
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				4058E4F61BA0211B00EF6D76 /* ReceiverVoiceNodePlaying000@2x.png in Resources */,
 				40E9EF5A1BF9D159007C0A90 /* MWPhotoBrowser.bundle in Resources */,
+				FAF414921BFC64F400D3BED4 /* RecentCityCell.xib in Resources */,
 				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
 				4058E5181BA0211B00EF6D76 /* SenderVoiceNodePlaying001@2x.png in Resources */,
 				4058E5011BA0211B00EF6D76 /* RecordingSignal005@2x.png in Resources */,
@@ -2929,7 +2969,6 @@
 				4058E4F91BA0211B00EF6D76 /* ReceiverVoiceNodePlaying003@2x.png in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				4058E4EC1BA0211B00EF6D76 /* keyboard_HL@2x.png in Resources */,
-				FAF35D111BF43EC100918BCF /* SearchTVC.xib in Resources */,
 				4058E4E11BA0211B00EF6D76 /* face_HL@2x.png in Resources */,
 				4058E4F21BA0211B00EF6D76 /* multiMedia_HL@2x.png in Resources */,
 				4058E51A1BA0211B00EF6D76 /* SenderVoiceNodePlaying003@2x.png in Resources */,
@@ -3019,6 +3058,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */,
 				40E9EF621BF9D159007C0A90 /* NSString+Valid.m in Sources */,
 				40E9EF5B1BF9D159007C0A90 /* EaseSDKHelper.m in Sources */,
 				40E9EF7F1BF9D159007C0A90 /* EaseImageView.m in Sources */,
@@ -3045,7 +3085,6 @@
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				FAF2E0771BF2188D008DD5BC /* HotelPageVC.swift in Sources */,
 				405266371B41279B00B277BE /* OrderListTVC.swift in Sources */,
-				FAF35D041BF42B9000918BCF /* ChatTVC.swift in Sources */,
 				FAF212D91BF73F83002C1C73 /* ActivationCell.swift in Sources */,
 				4058E4B71BA0211B00EF6D76 /* SEConstants.m in Sources */,
 				40E9EF751BF9D159007C0A90 /* EaseMessageTimeCell.m in Sources */,
@@ -3059,7 +3098,6 @@
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
 				40E9EF2A1BF9D159007C0A90 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				40E9EF461BF9D159007C0A90 /* UIButton+EMWebCache.m in Sources */,
-				FAF35D101BF43EC100918BCF /* SearchTVC.swift in Sources */,
 				4058E4B31BA0211B00EF6D76 /* FLAnimatedImage.m in Sources */,
 				FAF35D141BF43EE600918BCF /* SearchBarView.swift in Sources */,
 				B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */,
@@ -3190,6 +3228,7 @@
 				40E9EF651BF9D159007C0A90 /* EaseChineseToPinyin.m in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
+				FAF414871BFC626800D3BED4 /* SearchTVC.swift in Sources */,
 				40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */,
 				4058E4BB1BA0211B00EF6D76 /* SETextAttachment.m in Sources */,
 				40E9EF691BF9D159007C0A90 /* EaseEmojiEmoticons.m in Sources */,
@@ -3264,6 +3303,7 @@
 				4058E4A41BA0211B00EF6D76 /* XHMessageTableViewController.m in Sources */,
 				40E9EF811BF9D159007C0A90 /* EaseFaceView.m in Sources */,
 				4058E4AF1BA0211B00EF6D76 /* XHEmotion.m in Sources */,
+				FAF414911BFC64F400D3BED4 /* RecentCityCell.swift in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
 				40E9EF3C1BF9D159007C0A90 /* DACircularProgressView.m in Sources */,
 				40E9EF841BF9D159007C0A90 /* EaseRecordView.m in Sources */,

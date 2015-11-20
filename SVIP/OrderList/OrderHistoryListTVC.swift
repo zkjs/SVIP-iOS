@@ -18,23 +18,22 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
   override func viewDidLoad() {
     super.viewDidLoad()
     ZKJSTool.showLoading()
-    loadMoreData()
-    
     title = NSLocalizedString("ORDER_HISTORY", comment: "")
-    
     let cellNib = UINib(nibName: OrderHistoryCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderHistoryCell.reuseIdentifier())
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
-    
+    navigationController?.navigationBar.translucent = false
+    navigationController?.navigationBar.barStyle = UIBarStyle.Black
+    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     //tableView.separatorStyle = .None
     tableView.contentInset = UIEdgeInsets(top: -OrderListHeaderView.height(), left: 0.0, bottom: 0.0, right: 0.0)
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
+    loadMoreData()
     navigationController?.hidesBarsOnSwipe = true
   }
   
@@ -72,6 +71,13 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     cell.delegate = self
     
     return cell
+  }
+  //设置cell的显示动画
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
+    UIView.animateWithDuration(0.25) { () -> Void in
+      cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+    }
   }
   
   // MARK: - Table view delegate

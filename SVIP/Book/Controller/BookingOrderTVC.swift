@@ -111,7 +111,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     dateFormatter.dateFormat = "yyyy-MM-dd"
     order.arrival_date = dateFormatter.stringFromDate(startDate)
     order.departure_date = dateFormatter.stringFromDate(endDate)
-    order.dayInt = String(duration)
+//    order.dayInt = String(duration)
     var guests = [String]()
     for index in 0..<roomCount {
       guests.append(nameTextFields[index].text!)

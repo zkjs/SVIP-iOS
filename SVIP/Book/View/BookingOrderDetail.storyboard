@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--BookingOrderDetailTVC-->
@@ -342,7 +343,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAW-s1-HtZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付状态" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAW-s1-HtZ">
                                                     <rect key="frame" x="15" y="11" width="68" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.23137254900000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
@@ -362,26 +363,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4c1-Dd-dTk">
-                                                    <rect key="frame" x="300" y="50" width="60" height="30"/>
-                                                    <state key="normal" title="立即支付">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="payOrder:" destination="BwC-8R-pXn" eventType="touchUpInside" id="fXJ-aF-gEC"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="需要支付**元, 还要支付**元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVg-0t-PF3">
                                                     <rect key="frame" x="15" y="18" width="213" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已支付" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMo-IU-HRj">
+                                                    <rect key="frame" x="268" y="51" width="80" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="mMG-1M-aqv"/>
+                                                        <constraint firstAttribute="height" constant="21" id="quo-GF-mri"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.01176470588" green="0.66274509800000003" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="4c1-Dd-dTk" secondAttribute="bottom" constant="8" id="5fv-lq-qUa"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yMo-IU-HRj" secondAttribute="trailing" constant="19" id="0Nq-7x-3KO"/>
                                                 <constraint firstItem="AVg-0t-PF3" firstAttribute="top" secondItem="FOe-gt-bv3" secondAttribute="top" constant="18" id="Qvx-zj-vhU"/>
-                                                <constraint firstAttribute="trailing" secondItem="4c1-Dd-dTk" secondAttribute="trailing" constant="15" id="ibg-KU-kuM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="yMo-IU-HRj" secondAttribute="bottom" constant="8" id="qd9-0x-ml6"/>
                                                 <constraint firstItem="AVg-0t-PF3" firstAttribute="leading" secondItem="FOe-gt-bv3" secondAttribute="leading" constant="15" id="rZv-qc-2dj"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -632,7 +634,7 @@
                         <outlet property="invoiceFooterLabel" destination="71q-wx-elq" id="WRb-8a-UyI"/>
                         <outlet property="invoiceInfoLabel" destination="mhP-ec-WI9" id="Sd2-Wv-qqy"/>
                         <outlet property="okButton" destination="f6c-Um-N55" id="9CK-a3-qxX"/>
-                        <outlet property="paymentButton" destination="4c1-Dd-dTk" id="XYi-KN-kjc"/>
+                        <outlet property="payStatusLabel" destination="yMo-IU-HRj" id="Xyr-R4-FYg"/>
                         <outlet property="paymentLabel" destination="AVg-0t-PF3" id="t8H-Kn-olJ"/>
                         <outlet property="receiptLabel" destination="U9y-th-Efq" id="ETv-n7-wl0"/>
                         <outlet property="remarkInfoLabel" destination="2le-ss-SX1" id="ef1-ab-9Uz"/>
