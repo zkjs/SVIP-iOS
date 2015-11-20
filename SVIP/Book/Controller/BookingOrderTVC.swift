@@ -46,6 +46,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    tableView.contentInset = UIEdgeInsetsMake(-36.0, 0.0, 0.0, 0.0)
+    
     roomTypePromptLabel.text = NSLocalizedString("CHOOSE_ROOM_TYPE", comment: "")
     roomCountInfoLabel.text = NSLocalizedString("ROOM_COUNT", comment: "")
     dateInfoLabel.text = NSLocalizedString("START_END_DATE", comment: "")

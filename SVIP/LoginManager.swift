@@ -68,12 +68,11 @@ class LoginManager: NSObject {
   }
   
   func showResideMenu(haspushed pushedVC: UIViewController?) {
-    let nc = UINavigationController(rootViewController: MainTVC())
-    nc.navigationBar.tintColor = UIColor.blackColor()
+    let nc = BaseNC(rootViewController: MainTVC())
     if pushedVC != nil {
       nc.pushViewController(pushedVC!, animated: false)
     }
-    let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: RightMenuVC())
+    let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: LeftMenuVC(), rightMenuViewController: nil)
     menu.contentViewScaleValue = 1
     menu.bouncesHorizontally = false
     menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5

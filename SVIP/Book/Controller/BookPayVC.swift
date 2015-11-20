@@ -61,12 +61,11 @@ class BookPayVC: UIViewController {
   }
   
   @IBAction private func payInHotel(sender: UIButton) {
-    // Hanton
-    let chatVC = JSHChatVC(chatType: .OldSession)
-    chatVC.order = bkOrder
-    chatVC.shopID = bkOrder.shopid.stringValue
-    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_PAY_WHEN_CHECKIN", comment: "")
-    navigationController?.pushViewController(chatVC, animated: true)
+//    let chatVC = JSHChatVC(chatType: .OldSession)
+//    chatVC.order = bkOrder
+//    chatVC.shopID = bkOrder.shopid.stringValue
+//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_PAY_WHEN_CHECKIN", comment: "")
+//    navigationController?.pushViewController(chatVC, animated: true)
   }
   
   //MARK:- ALIPAY
@@ -113,12 +112,12 @@ class BookPayVC: UIViewController {
         let result = aDictionary["result"] as! NSString
         if self.validateResult(result) && resultStatus == "9000" {
           //支付成功,跳到聊天
-          let chatVC = JSHChatVC(chatType: .OldSession)
-          chatVC.order = self.bkOrder
-          chatVC.shopID = self.bkOrder.shopid.stringValue
-          chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_ORDER_PAID", comment: "")
-          chatVC.navigationItem.hidesBackButton = true
-          self.navigationController?.pushViewController(chatVC, animated: true)
+//          let chatVC = JSHChatVC(chatType: .OldSession)
+//          chatVC.order = self.bkOrder
+//          chatVC.shopID = self.bkOrder.shopid.stringValue
+//          chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_ORDER_PAID", comment: "")
+//          chatVC.navigationItem.hidesBackButton = true
+//          self.navigationController?.pushViewController(chatVC, animated: true)
         }else {
           self.showHint("支付失败")
         }

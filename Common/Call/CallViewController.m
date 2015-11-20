@@ -580,8 +580,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self _stopRing];
     if(error){
         _statusLabel.text = NSLocalizedString(@"call.connectFailed", @"Connect failed");
-        [self _insertMessageWithStr:NSLocalizedString(@"call.failed", @"Call failed")];
-        
+//        [self _insertMessageWithStr:NSLocalizedString(@"call.failed", @"Call failed")];
+      
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error", @"Error") message:error.description delegate:self cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
         errorAlert.tag = kAlertViewTag_Close;
         [errorAlert show];
@@ -604,7 +604,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 str = NSLocalizedString(@"call.in", @"In the call...");
             }
         }
-        [self _insertMessageWithStr:str];
+//        [self _insertMessageWithStr:str];
         [self _close];
     }
     else if (callSession.status == eCallSessionStatusAccepted)

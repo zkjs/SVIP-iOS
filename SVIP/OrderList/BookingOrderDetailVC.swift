@@ -134,11 +134,11 @@ class BookingOrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-    let chatVC = JSHChatVC(chatType: .OldSession)
-    chatVC.shopID = order.shopid.stringValue
-    chatVC.shopName = order.fullname
-    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
-    navigationController?.pushViewController(chatVC, animated: true)
+//    let chatVC = JSHChatVC(chatType: .OldSession)
+//    chatVC.shopID = order.shopid.stringValue
+//    chatVC.shopName = order.fullname
+//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
+//    navigationController?.pushViewController(chatVC, animated: true)
   }
   
   @IBAction func payBookingOrder(sender: AnyObject) {
@@ -148,33 +148,11 @@ class BookingOrderDetailVC: UIViewController {
   }
 
   @IBAction func cancelOrder(sender: AnyObject) {
-    let chatVC = JSHChatVC(chatType: .CancelOrder)
-    chatVC.shopID = order.shopid.stringValue
-    chatVC.shopName = order.fullname
-    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
-    navigationController?.pushViewController(chatVC, animated: true)
-    
-//    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-//    let token = JSHAccountManager.sharedJSHAccountManager().token
-//    ZKJSTool.showLoading("正在取消订单...")
-//    ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithUserID(userID, token: token, reservation_no: order.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-////      hideHUD()
-//      ZKJSTool.showMsg("已成功取消订单")
-//      
-//      let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-//        Int64(1 * Double(NSEC_PER_SEC)))
-//      dispatch_after(delayTime, dispatch_get_main_queue()) {
-//        self.delegate?.didCancelOrder(self.order)
-////        if self.navigationController?.viewControllers.first is BookingOrderDetailVC {
-////          self.dismissSelf()
-////        } else {
-//          self.navigationController?.popViewControllerAnimated(true)
-////        }
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//      hideHUD()
-//      ZKJSTool.showMsg(error.description)
-//    }
+//    let chatVC = JSHChatVC(chatType: .CancelOrder)
+//    chatVC.shopID = order.shopid.stringValue
+//    chatVC.shopName = order.fullname
+//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
+//    navigationController?.pushViewController(chatVC, animated: true)
   }
   
 }

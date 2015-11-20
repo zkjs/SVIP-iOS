@@ -645,27 +645,27 @@ class MainVC: UIViewController, UINavigationControllerDelegate, CRMotionViewDele
   
   @IBAction func tappedMainButton(sender: AnyObject) {
     print("Tap Main Button")
-    let beacon = StorageManager.sharedInstance().lastBeacon()
-    let order = StorageManager.sharedInstance().lastOrder()
+//    let beacon = StorageManager.sharedInstance().lastBeacon()
+//    let order = StorageManager.sharedInstance().lastOrder()
     
-    let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
-    switch ruleType {
-    case .InRegion_NoOrder, .OutOfRegion_NoOrder:
-      sideMenuViewController.presentRightMenuViewController()
-    case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
-      let chatVC = JSHChatVC(chatType: .Service)
-      chatVC.shopID = order?.shopid.stringValue
-      chatVC.shopName = order?.fullname
-      chatVC.order = order
-      chatVC.condition = String(ruleType.rawValue)
-      navigationController?.pushViewController(chatVC, animated: true)
-    case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
-      let chatVC = JSHChatVC(chatType: .Service)
-      chatVC.shopID = order?.shopid.stringValue
-      chatVC.shopName = order?.fullname
-      chatVC.order = order
-      chatVC.condition = String(ruleType.rawValue)
-      navigationController?.pushViewController(chatVC, animated: true)
+//    let ruleType = RuleEngine.sharedInstance().getRuleType(order, beacon: beacon)
+//    switch ruleType {
+//    case .InRegion_NoOrder, .OutOfRegion_NoOrder:
+//      sideMenuViewController.presentRightMenuViewController()
+//    case .InRegion_HasOrder_Checkin, .InRegion_HasOrder_UnCheckin:
+//      let chatVC = JSHChatVC(chatType: .Service)
+//      chatVC.shopID = order?.shopid.stringValue
+//      chatVC.shopName = order?.fullname
+//      chatVC.order = order
+//      chatVC.condition = String(ruleType.rawValue)
+//      navigationController?.pushViewController(chatVC, animated: true)
+//    case .OutOfRegion_HasOrder_Checkin, .OutOfRegion_HasOrder_UnCheckin:
+//      let chatVC = JSHChatVC(chatType: .Service)
+//      chatVC.shopID = order?.shopid.stringValue
+//      chatVC.shopName = order?.fullname
+//      chatVC.order = order
+//      chatVC.condition = String(ruleType.rawValue)
+//      navigationController?.pushViewController(chatVC, animated: true)
     }
 
 #if DEBUG

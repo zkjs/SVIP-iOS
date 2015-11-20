@@ -82,11 +82,11 @@ class OrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-    let chatVC = JSHChatVC(chatType: .OldSession)
-    chatVC.shopID = order.shopid.stringValue
-    chatVC.shopName = order.fullname
-    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
-    navigationController?.pushViewController(chatVC, animated: true)
+//    let chatVC = JSHChatVC(chatType: .OldSession)
+//    chatVC.shopID = order.shopid.stringValue
+//    chatVC.shopName = order.fullname
+//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
+//    navigationController?.pushViewController(chatVC, animated: true)
   }
   
   // MARK: - Private Method

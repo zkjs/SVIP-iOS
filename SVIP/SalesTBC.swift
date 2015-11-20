@@ -16,34 +16,42 @@ class SalesTBC: UITabBarController {
     setupView()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
   func setupView() {
+    title = "服务中心"
+    
     let vc1 = ConversationListController()
     vc1.tabBarItem.title = "聊天"
     vc1.tabBarItem.image = UIImage(named: "ic_liaotian_nor")
-    vc1.tabBarItem.tag = 0
-    let nv1 = BaseNC()
-    nv1.viewControllers = [vc1]
     
     let vc2 = MailListTVC()
     vc2.tabBarItem.title = "通讯录"
     vc2.tabBarItem.image = UIImage(named: "ic_tongxunlu_nor")
-    let nv2 = BaseNC()
-    nv2.viewControllers = [vc2]
     
     let vc3 = FindListTVC()
     vc3.tabBarItem.title = "发现"
     vc3.tabBarItem.image = UIImage(named: "ic_faxian_nor")
-    let nv3 = BaseNC()
-    nv3.viewControllers = [vc3]
     
-    viewControllers = [nv1, nv2, nv3]
+    viewControllers = [vc1, vc2, vc3]
     
     tabBar.tintColor = UIColor(hexString: "#ff9800")
+    
+    view.backgroundColor = UIColor.whiteColor()
+  }
+  
+  // MARK: - UITabBarControllerDelegate
+  
+  override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+    let index = Int((tabBar.items?.indexOf(item))!)
+    switch index {
+    case 0:
+      title = "服务中心"
+    case 1:
+      title = "通讯录"
+    case 2:
+      title = "发现"
+    default:
+      break
+    }
   }
   
 }

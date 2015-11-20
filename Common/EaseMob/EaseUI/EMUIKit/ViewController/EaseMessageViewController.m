@@ -16,7 +16,7 @@
 
 #define KHintAdjustY    50
 
-@interface EaseMessageViewController ()<EaseMessageCellDelegate>
+@interface EaseMessageViewController ()<EaseMessageCellDelegate, UINavigationControllerDelegate>
 {
     UIMenuItem *_copyMenuItem;
     UIMenuItem *_deleteMenuItem;
@@ -904,6 +904,12 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    _imagePicker.navigationBar.tintColor = [UIColor whiteColor];
+    _imagePicker.navigationBar.barTintColor = [UIColor blackColor];
+    _imagePicker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {

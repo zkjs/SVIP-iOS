@@ -94,6 +94,8 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    tableView.contentInset = UIEdgeInsetsMake(-36.0, 0.0, 0.0, 0.0)
+    
     title = NSLocalizedString("CONFIRM_ORDER", comment: "")
     roomCountInfoLabel.text = NSLocalizedString("ROOM_COUNT", comment: "")
     dateInfoLabel.text = NSLocalizedString("START_END_DATE", comment: "")
@@ -128,11 +130,11 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Public
   
   func sendConfirmMessageToChatVC() {
-    let chatVC = JSHChatVC(chatType: .ConfirmOrder)
-    chatVC.shopID = "\(shopID)"
-    chatVC.shopName = self.roomDic["fullname"] as! String
-    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CONFIRM_ORDER", comment: "")
-    navigationController?.pushViewController(chatVC, animated: true)
+//    let chatVC = JSHChatVC(chatType: .ConfirmOrder)
+//    chatVC.shopID = "\(shopID)"
+//    chatVC.shopName = self.roomDic["fullname"] as! String
+//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CONFIRM_ORDER", comment: "")
+//    navigationController?.pushViewController(chatVC, animated: true)
   }
   
   // MARK: - Private
@@ -375,11 +377,11 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   
   @IBAction func cancelOrder(sender: AnyObject) {
     ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
-      chatVC.shopID = "\(self.shopID)"
-      chatVC.shopName = self.bkOrder.fullname
-      chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
-      self.navigationController?.pushViewController(chatVC, animated: true)
+//      let chatVC = JSHChatVC(chatType: ChatType.CancelOrder)
+//      chatVC.shopID = "\(self.shopID)"
+//      chatVC.shopName = self.bkOrder.fullname
+//      chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
+//      self.navigationController?.pushViewController(chatVC, animated: true)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.showHint(error.localizedDescription)
     })

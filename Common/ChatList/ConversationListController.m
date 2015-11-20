@@ -36,17 +36,6 @@
   [self networkStateView];
   
   [self removeEmptyConversationsFromDB];
-  
-  UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc]
-                                        initWithImage:[UIImage imageNamed:@"ic_fanhui"]
-                                        style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:@selector(dismissSelf)];
-  self.navigationItem.leftBarButtonItem = leftBarButtonItem;
-}
-
-- (void)dismissSelf {
-  [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)removeEmptyConversationsFromDB

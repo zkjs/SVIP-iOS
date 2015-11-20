@@ -342,14 +342,12 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   
   @IBAction func pushToHotel(sender: AnyObject) {
     let vc = HotelPageVC()
-    let nav = UINavigationController(rootViewController: vc)
-    navigationController?.presentViewController(nav, animated: true, completion: { () -> Void in
-    })
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   @IBAction func pushToSale(sender: AnyObject) {
     let vc = SalesTBC()
-    navigationController?.presentViewController(vc, animated: true, completion: nil)
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   private func setupNotification() {
