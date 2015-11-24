@@ -103,7 +103,7 @@
 "ROOM_COUNT" = "房间数量";
 "START_END_DATE" = "入住/离店时间";
 "SEND_ORDER" = "发送订单给客服";
-"DEPARTURE_DATE_PROMPT" = "共%d晚，在%, 13点前退房";
+"DEPARTURE_DATE_PROMPT" = "共%d晚，在%@13点前退房";
 "ROOM_TYPE" = "选择房型";
 "ORDER_STATUS_BOOKING" = "可取消";
 "ORDER_STATUS_CANCEL" = "已取消";
