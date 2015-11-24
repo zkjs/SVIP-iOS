@@ -20,8 +20,9 @@ class InvitationCodeVC: UIViewController {
     }
   }
   
-  var code = ""
-  var salesid = ""
+  lazy var code = ""
+  lazy var salesid = ""
+  lazy var shopid = ""
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("InvitationCodeVC", owner:self, options:nil)
@@ -51,7 +52,7 @@ class InvitationCodeVC: UIViewController {
   
   func nextStep() {
     if code.isEmpty == false {
-      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID:salesid, shopID:shopid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
             if set.boolValue {
@@ -116,6 +117,9 @@ extension InvitationCodeVC: UITextFieldDelegate {
             }
             if let salesid = data["salesid"] as? String {
               self.salesid = salesid
+            }
+            if let shopid = data["shopid"] as? NSNumber {
+              self.shopid = shopid.stringValue
             }
           } else {
             let alertView = UIAlertController(title: "邀请码不正确，请重新输入", message: "", preferredStyle: .Alert)

@@ -11,6 +11,7 @@
 #import "Networkcfg.h"
 #import "CocoaLumberjack.h"
 #import "JSHAccountManager.h"
+#import "JSHStorage.h"
 
 static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
@@ -46,6 +47,14 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 - (NSString *)token {
   return [JSHAccountManager sharedJSHAccountManager].token;
+}
+
+- (NSString *)userName {
+  return [JSHStorage baseInfo].username;
+}
+
+- (NSString *)phone {
+  return [JSHStorage baseInfo].phone;
 }
 
 - (BOOL)isValidTokenWithObject:(id)responseObject {
@@ -721,11 +730,15 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 #pragma mark - 超级身份输入\绑定 邀请码动作
-- (void)pairInvitationCodeWith:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)pairInvitationCodeWith:(NSString *)code salesID:(NSString *)salesID shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"invitation/bdcode" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[[self userName] dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
+    [formData appendPartWithFormData:[[self phone] dataUsingEncoding:NSUTF8StringEncoding] name:@"phone"];
     [formData appendPartWithFormData:[code dataUsingEncoding:NSUTF8StringEncoding] name:@"code"];
+    [formData appendPartWithFormData:[salesID dataUsingEncoding:NSUTF8StringEncoding] name:@"user_salesid"];
+    [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
 //    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
