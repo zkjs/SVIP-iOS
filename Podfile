@@ -1,35 +1,30 @@
 platform :ios, '8.0'
 
+inhibit_all_warnings!
+
 target 'SVIP' do
   pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'
-#  pod 'FIR.im'
   pod 'HexColors'
   pod 'JCTagListView'
   pod 'AMapSearch'
-  pod 'CocoaLumberjack', :inhibit_warnings => true
-#  pod 'MagicalRecord'
+  pod 'CocoaLumberjack'
   pod 'SKTagView', :git => 'https://github.com/hanton/SKTagView', :branch => 'master'
-  pod 'MIBadgeButton', :inhibit_warnings => true
+  pod 'MIBadgeButton'
   pod 'SWTableViewCell'
   pod 'MJRefresh'
   pod 'MJExtension', '~> 2.5.7'
   pod 'YXTMotionView', :git => 'https://github.com/hanton/YXTMotionView.git', :branch => 'master'
-  pod 'SocketRocket', :inhibit_warnings => true
+  pod 'SocketRocket'
   pod 'PKYStepper'
   pod 'DateTools'
-#  pod 'MessageDisplayKit', :inhibit_warnings => true, :git => 'https://github.com/hanton/MessageDisplayKit.git', :branch => 'ZKJS'
-#  pod 'FXBlurView'
-#  pod 'EstimoteSDK'
   pod 'MBProgressHUD'
-#  pod 'Colours'
   pod 'AFNetworking'
   pod 'SSKeychain', '~> 1.2.3'
-#  pod 'SDWebImage', '~> 3.7'
-  pod 'JTSImageViewController', :inhibit_warnings => true
+  pod 'JTSImageViewController'
   pod 'RESideMenu', '~> 4.0.7'
   pod 'EDStarRating'
   pod 'DCPathButton'
-  pod 'XLPagerTabStrip', :inhibit_warnings => true
+  pod 'XLPagerTabStrip'
   pod 'Pingpp', '~> 2.1.0'
 end
 
