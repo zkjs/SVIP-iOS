@@ -7,11 +7,15 @@
 //
 
 import UIKit
+
 typealias SelectionBlock = (NSDate, NSDate) -> ()
+
 class BookDateSelectionViewController: UIViewController, TSQCalendarViewDelegate {
+  
   var selection: SelectionBlock?
   var startDate: NSDate?
   var endDate: NSDate?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     initSubviews()
@@ -34,8 +38,13 @@ class BookDateSelectionViewController: UIViewController, TSQCalendarViewDelegate
       if selection != nil {
         selection!(calendarView.startDate, calendarView.endDate)
       }
-      self.navigationController?.popViewControllerAnimated(true)
+      // 延迟一秒，让用户看清楚离店时间动画
+      let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.4 * Double(NSEC_PER_SEC)))
+      dispatch_after(delayTime, dispatch_get_main_queue()) {
+        self.navigationController?.popViewControllerAnimated(true)
+      }
     }
   }
+  
 }
 

@@ -137,16 +137,8 @@
                                                     <color key="textColor" red="0.23137254900000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="oLr-b0-9up">
-                                                    <rect key="frame" x="266" y="8" width="94" height="29"/>
-                                                    <animations/>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <connections>
-                                                        <action selector="roomCountChanged:" destination="ilo-Oz-hcb" eventType="valueChanged" id="9ad-eL-Si0"/>
-                                                    </connections>
-                                                </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gff-xh-ybZ">
-                                                    <rect key="frame" x="250" y="12" width="8" height="21"/>
+                                                    <rect key="frame" x="352" y="12" width="8" height="21"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Eod-87-nfC"/>
@@ -164,10 +156,8 @@
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="gff-xh-ybZ" firstAttribute="baseline" secondItem="qSI-wg-3hF" secondAttribute="baseline" id="4ZU-cn-gTf"/>
-                                                <constraint firstAttribute="trailing" secondItem="oLr-b0-9up" secondAttribute="trailing" constant="15" id="DXp-aD-WkG"/>
-                                                <constraint firstItem="oLr-b0-9up" firstAttribute="top" secondItem="xH9-0g-jOU" secondAttribute="top" constant="8" id="PQu-Wx-p3h"/>
                                                 <constraint firstItem="qSI-wg-3hF" firstAttribute="top" secondItem="xH9-0g-jOU" secondAttribute="top" constant="12" id="Rhe-o2-KjZ"/>
-                                                <constraint firstItem="oLr-b0-9up" firstAttribute="leading" secondItem="gff-xh-ybZ" secondAttribute="trailing" constant="8" id="hGS-EQ-rie"/>
+                                                <constraint firstAttribute="trailing" secondItem="gff-xh-ybZ" secondAttribute="trailing" constant="15" id="cPU-8n-8PG"/>
                                                 <constraint firstItem="qSI-wg-3hF" firstAttribute="leading" secondItem="xH9-0g-jOU" secondAttribute="leading" constant="15" id="oYp-9s-GGj"/>
                                             </constraints>
                                         </tableViewCellContentView>
