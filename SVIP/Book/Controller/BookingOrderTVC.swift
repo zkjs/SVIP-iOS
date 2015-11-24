@@ -10,6 +10,7 @@ import UIKit
 
 private let kRoomSection = 0
 private let kRoomRow = 0
+private let kRoomCountRow = 1
 private let kDateSection = 1
 private let kDateRow = 1
 private let kNameSection = 2
@@ -54,15 +55,16 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     sendOrderButton.setTitle(NSLocalizedString("SEND_ORDER", comment: ""), forState: UIControlState.Normal)
 
     title = NSLocalizedString("FILL_BOOKING_FORM", comment: "")
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("DONE", comment: ""),
-                                                             style: UIBarButtonItemStyle.Done,
-                                                             target: self,
-                                                             action: "gotoChatVC")
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("DONE", comment: ""),
+//                                                             style: UIBarButtonItemStyle.Done,
+//                                                             target: self,
+//                                                             action: "gotoChatVC")
     
     dateFormatter.dateFormat = "M-dd"
     startDateLabel.text = dateFormatter.stringFromDate(startDate)
     endDateLabel.text = dateFormatter.stringFromDate(endDate)
-    dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, self.endDateLabel.text!])
+    dateFormatter.dateFormat = "M月d号"
+    dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, dateFormatter.stringFromDate(endDate)])
     rooms = "1"
     
     loadRoomTypes()
@@ -136,7 +138,6 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     dateFormatter.dateFormat = "yyyy-MM-dd"
     order.arrival_date = dateFormatter.stringFromDate(startDate)
     order.departure_date = dateFormatter.stringFromDate(endDate)
-//    order.dayInt = String(duration)
     var guests = [String]()
     for index in 0..<roomCount {
       guests.append(nameTextFields[index].text!)
@@ -176,15 +177,20 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     }
   }
   
-  // MARK: - Action
-  
-  @IBAction func roomCountChanged(sender: UIStepper) {
-    rooms = Int(sender.value).description
-    roomCountLabel.text = rooms
-    let count = Int(sender.value)
-    roomCount = count
-    tableView.reloadData()
+  func chooseRoomCount() {
+    let alertView = UIAlertController(title: "选择房间数", message: "", preferredStyle: .ActionSheet)
+    for i in 1...3 {
+      alertView.addAction(UIAlertAction(title: "\(i)间", style: .Default, handler: { [unowned self] (action: UIAlertAction!) -> Void in
+        self.rooms = "\(i)"
+        self.roomCountLabel.text = self.rooms
+        self.roomCount = i
+        }))
+    }
+    alertView.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+    presentViewController(alertView, animated: true, completion: nil)
   }
+  
+  // MARK: - Action
   
   @IBAction func sendBookingOrder(sender: AnyObject) {
     gotoChatVC()
@@ -214,7 +220,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     print(indexPath)
     
-    if indexPath.section == kRoomSection && indexPath.row == kRoomRow {  // 房型
+    if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
+      // 房型
       let vc = BookVC()
       vc.shopid = shopID
       vc.dataArray = roomTypes
@@ -232,8 +239,14 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         }
       }
       navigationController?.pushViewController(vc, animated: true)
-    } else if indexPath.section == kDateSection && indexPath.row == kDateRow {  // 入住/离店时间
+    } else if indexPath.section == kRoomSection && indexPath.row == kRoomCountRow {
+      // 房间数量
+      chooseRoomCount()
+    } else if indexPath.section == kDateSection && indexPath.row == kDateRow {
+      // 入住/离店时间
       let vc = BookDateSelectionViewController()
+      vc.startDate = startDate
+      vc.endDate = endDate
       vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
         self.startDateLabel.text = self.dateFormatter.stringFromDate(startDate)
         self.endDateLabel.text = self.dateFormatter.stringFromDate(endDate)
@@ -243,7 +256,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
         self.dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, self.endDateLabel.text!])
       }
       navigationController?.pushViewController(vc, animated: true)
-    } else if indexPath.section == kNameSection {  // 入住人
+    } else if indexPath.section == kNameSection {
+      // 入住人
       let vc = NameTVC()
       vc.selection = { [unowned self] (name: String, idInt: Int) ->() in
         self.nameTextFields[indexPath.row].text = name
