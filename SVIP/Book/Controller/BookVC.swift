@@ -13,25 +13,22 @@ typealias RoomSelectionBlock = (RoomGoods) -> ()
 class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 
   @IBOutlet private var layoutConstaintArray: [NSLayoutConstraint]!
-  @IBOutlet private weak var searchBar: UIView!
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var selectionView: UIView!
   @IBOutlet private weak var selectionViewBottomConstraint: NSLayoutConstraint!
-//  @IBOutlet private weak var tableViewBottomConstraint: NSLayoutConstraint!
   @IBOutlet private var leftSelectButtonArray: [BookItemButton]!
   @IBOutlet private var rightSelectButtonArray: [BookItemButton]!
   @IBOutlet weak var okButton: UIButton!
   
-//Data
+  //Data
   var shopid: NSNumber!
   var dataArray = NSMutableArray()
   var selection: RoomSelectionBlock?  // Hanton
   private var filtedArray = NSMutableArray()
   private var selectedRow : Int = 0
   
-//MARK:- FUNCTION
+  //MARK:- FUNCTION
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-//    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     super.init(nibName: "BookVC", bundle: nibBundleOrNil)
   }
 
@@ -48,13 +45,9 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   private func setUI() {
-    // Hanton
     title = NSLocalizedString("ROOM_TYPE", comment: "")
     
     tableView.contentInset = UIEdgeInsetsMake(0, 0, 135, 0)
-    
-    let tap = UITapGestureRecognizer(target: self, action: Selector("searchMap:"))
-    searchBar .addGestureRecognizer(tap)
     
     for button in leftSelectButtonArray {
       button .addTarget(self, action: NSSelectorFromString("categorySelect:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -68,37 +61,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   private func loadData() {
-//    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsPage(1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      if let arr = responseObject as? Array<AnyObject> {
-//        for dict in arr {
-//          if let myDict = dict as? NSDictionary {
-//            let goods = RoomGoods(dic: myDict)
-//            self.dataArray.addObject(goods)
-//          }
-//        }
-//        let button = self.leftSelectButtonArray.last
-//        self.categorySelect(button!)
-//      }
-//    }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//    }
-    
-    // Hanton
     let button = self.leftSelectButtonArray.last
     self.categorySelect(button!)
-//    ZKJSHTTPSessionManager .sharedInstance() .getShopGoodsWithShopID(shopid, page: 1, categoryID: nil, key: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//          if let arr = responseObject as? NSArray {
-//            for dict in arr {
-//              if let myDict = dict as? NSDictionary {
-//                let goods = RoomGoods(dic: myDict)
-//                self.dataArray.addObject(goods)
-//              }
-//            }
-//            let button = self.leftSelectButtonArray.last
-//            self.categorySelect(button!)
-//          }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//      
-//    }
   }
   
   private func filtArray(keyString: String?)->NSMutableArray {
@@ -125,7 +89,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     super.updateViewConstraints()
   }
 
-//MARK:- BUTTON ACTION
+  //MARK:- BUTTON ACTION
+  
   func categorySelect(sender: UIButton) {
     for button in leftSelectButtonArray {
       button.selected = false
@@ -147,30 +112,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     }
     sender.selected  = true
   }
-  /*
-  var goodsid: String?
-  var name: String?
-  var unit: String?
-  var goods_brief: String?
-  var goods_desc: String?
-  var cat_id: String?
-  var goods_img: String?
-  var market_price: String?
-  var cat_name: String?
-  */
-  /*  
-  var userid: String!
-  var token: String!
-  var shopid: String!
-  var room_typeid: String!
-  var guest: String!
-  var guesttel: String!
-  var rooms: String!
-  var room_type: String!
-  var room_rate: String!
-  var arrival_date: String!
-  var departure_date: String!
-  */
+
   @IBAction private func book(sender: UIButton) {
     if self.filtedArray.count == 0 {
       return
@@ -181,20 +123,15 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         goods.meat = button.titleLabel?.text
       }
     }
-//    let bookConfirmVC = BookConfirmVC.new()
-//    bookConfirmVC.goods = goods
-//    self.navigationController! .pushViewController(bookConfirmVC, animated: true)
+
     if selection != nil {
       selection!(goods)
     }
     self.navigationController?.popViewControllerAnimated(true)
   }
   
-  func searchMap(sender: UIView) {
-    //jump
-    print("jump to map VC")
-  }
-//MARK:- TABLEVIEW
+  //MARK:- TABLEVIEW
+  
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
   }
@@ -225,7 +162,9 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     newCell?.selected = true
     self.selectedRow = indexPath.row
   }
-//MARK:- SCROLLVIEW
+  
+  //MARK:- SCROLLVIEW
+  
   func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
     selectionViewBottomConstraint.constant = 0
     constraintAnimation(selectionView)
