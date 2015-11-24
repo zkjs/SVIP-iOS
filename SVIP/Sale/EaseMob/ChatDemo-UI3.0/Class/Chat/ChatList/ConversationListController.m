@@ -9,6 +9,7 @@
 #import "ConversationListController.h"
 #import "ChatViewController.h"
 #import "Networkcfg.h"
+#import "JSHStorage.h"
 
 @interface ConversationListController ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource,UISearchDisplayDelegate, UISearchBarDelegate>
 
@@ -106,14 +107,17 @@
 {
   EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
   if (model.conversation.conversationType == eConversationTypeChat) {
-    EMMessage *latestOtherMessage = conversation.latestMessageFromOthers;
-    if (latestOtherMessage == nil) {
-      NSString *shopName = conversation.latestMessage.ext[@"shopName"];
-      NSString *toName = conversation.latestMessage.ext[@"toName"];
+    EMMessage *latestMessage = conversation.latestMessage;
+    NSString *userName = [JSHStorage baseInfo].username;
+    if ([userName isEqualToString:latestMessage.ext[@"fromName"]]) {
+      // 最后一条消息的发送者为自己
+      NSString *shopName = latestMessage.ext[@"shopName"];
+      NSString *toName = latestMessage.ext[@"toName"];
       model.title = [NSString stringWithFormat:@"%@-%@", shopName, toName];
     } else {
-      NSString *shopName = conversation.latestMessage.ext[@"shopName"];
-      NSString *fromName = conversation.latestMessage.ext[@"fromName"];
+      // 最后一条消息的发送者为对方
+      NSString *shopName = latestMessage.ext[@"shopName"];
+      NSString *fromName = latestMessage.ext[@"fromName"];
       model.title = [NSString stringWithFormat:@"%@-%@", shopName, fromName];
     }
     NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", conversation.chatter];
