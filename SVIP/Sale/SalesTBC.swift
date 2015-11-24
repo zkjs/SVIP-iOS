@@ -41,17 +41,7 @@ class SalesTBC: UITabBarController {
   // MARK: - UITabBarControllerDelegate
   
   override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-    let index = Int((tabBar.items?.indexOf(item))!)
-    switch index {
-    case 0:
-      title = "服务中心"
-    case 1:
-      title = "通讯录"
-    case 2:
-      title = "发现"
-    default:
-      break
-    }
+    title = item.title
   }
   
 }
