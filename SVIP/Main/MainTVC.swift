@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCPathButtonDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate, RESideMenuDelegate {
+class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCPathButtonDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate {
 
   var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
@@ -745,11 +745,14 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
     }
   }
   
-  // MARK: - RESideMenuDelegate
+}
+
+extension MainTVC: RESideMenuDelegate {
   
   func sideMenu(sideMenu: RESideMenu!, willShowMenuViewController menuViewController: UIViewController!) {
     if let vc = menuViewController as? LeftMenuVC {
       vc.setUI()
     }
   }
+  
 }
