@@ -15,6 +15,7 @@ class MainTVC: UIViewController {
   var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
   var height:CGFloat!
+  var originY:CGFloat!
   var distance:CLLocationDistance!
   var longitude:double_t!
   var latution:double_t!
@@ -58,6 +59,7 @@ class MainTVC: UIViewController {
     tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
     let nibName2 = UINib(nibName: ActivationCell.nibName(), bundle: nil)
     tableView.registerNib(nibName2, forCellReuseIdentifier: ActivationCell.reuseIdentifier())
+//    tableView.tableFooterView = UIView()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -278,12 +280,12 @@ extension MainTVC: UIWebViewDelegate {
   
   func webViewDidFinishLoad(webView: UIWebView) {
     height = CGFloat ( (webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight")! as NSString).floatValue)
+     tableView.contentInset = UIEdgeInsetsMake(0, 0, height - originY,0)
     var frame = myFooterView.frame
     frame.size.height = height
+    print(frame)
     myFooterView.frame = frame
-//    var size = tableView.contentSize
-//    size.height += height - 500.0 + 66
-//    tableView.contentSize = size
+   
     tableView.reloadData()
   }
   
