@@ -21,7 +21,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.backgroundColor = UIColor(hexString: "EFEFF4")
+    tableView.backgroundColor = UIColor.hx_colorWithHexString("EFEFF4")
     tableView.separatorStyle = .None
     
     // Cell

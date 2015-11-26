@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,23 +16,42 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBi-AW-phh">
-                        <rect key="frame" x="-109" y="8" width="601" height="230"/>
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="110"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="600" id="Dca-P1-5JY"/>
                             <constraint firstAttribute="height" constant="230" id="J04-tC-dL3"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Dca-P1-5JY"/>
+                                <exclude reference="J04-tC-dL3"/>
+                            </mask>
+                        </variation>
                     </webView>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="LBi-AW-phh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="33N-Lw-GFh"/>
+                    <constraint firstItem="LBi-AW-phh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5lk-cC-zpd"/>
+                    <constraint firstItem="LBi-AW-phh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9wq-e2-SDg"/>
+                    <constraint firstAttribute="trailing" secondItem="LBi-AW-phh" secondAttribute="trailing" id="SPG-p2-Rfo"/>
                     <constraint firstItem="LBi-AW-phh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ebE-ao-aNJ"/>
+                    <constraint firstAttribute="bottom" secondItem="LBi-AW-phh" secondAttribute="bottom" id="zGy-m9-8y4"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="33N-Lw-GFh"/>
+                        <exclude reference="ebE-ao-aNJ"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="webView" destination="LBi-AW-phh" id="fk5-rF-ngd"/>
             </connections>
-            <point key="canvasLocation" x="483.5" y="460.5"/>
+            <point key="canvasLocation" x="393.5" y="689.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -44,7 +44,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
     
     let attString = NSAttributedString(string: NSLocalizedString("PROFILE_NICKNAME", comment: ""),
                                         attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
-                                        NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
+                                        NSForegroundColorAttributeName : UIColor.hx_colorWithHexString("8d8d8d")])
     username.attributedPlaceholder = attString
     
     if let baseInfo = JSHStorage.baseInfo() {

@@ -55,9 +55,9 @@
   [_phoneField addLeftImageView:@"use_img"];
   [_codeField addLeftImageView:@"pasw_img"];
   
-  NSAttributedString *attString1 = [[NSAttributedString alloc] initWithString:@"130-0000-0000" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorWithHexString:@"8d8d8d"]}];
+  NSAttributedString *attString1 = [[NSAttributedString alloc] initWithString:@"130-0000-0000" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"8d8d8d"]}];
   _phoneField.attributedPlaceholder = attString1;
-  NSAttributedString *attString2 = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"VERIFIED_CODE", nil) attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor colorWithHexString:NSLocalizedString(@"8d8d8d", nil)]}];
+  NSAttributedString *attString2 = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"VERIFIED_CODE", nil) attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"8d8d8d"]}];
   _codeField.attributedPlaceholder = attString2;
   
   [_OKButton setTitle:NSLocalizedString(@"REGISTER", nil) forState:UIControlStateNormal];

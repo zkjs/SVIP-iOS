@@ -10,6 +10,7 @@
 #import "CustomMessageCell.h"
 //#import "ContactListSelectViewController.h"
 #import "Networkcfg.h"
+#import "MJRefresh.h"
 
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 {
@@ -513,6 +514,25 @@
     }
     [self.menuController setTargetRect:showInView.frame inView:showInView.superview];
     [self.menuController setMenuVisible:YES animated:YES];
+}
+
+#pragma mark - public refresh
+
+- (void)tableViewDidFinishTriggerHeader:(BOOL)isHeader reload:(BOOL)reload
+{
+  __weak EaseRefreshTableViewController *weakSelf = self;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (reload) {
+      [weakSelf.tableView reloadData];
+    }
+    
+    if (isHeader) {
+      [weakSelf.tableView.mj_header endRefreshing];
+    }
+    else{
+      [weakSelf.tableView.mj_footer endRefreshing];
+    }
+  });
 }
 
 @end

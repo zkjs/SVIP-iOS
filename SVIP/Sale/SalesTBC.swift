@@ -33,7 +33,7 @@ class SalesTBC: UITabBarController {
     
     viewControllers = [vc1, vc2, vc3]
     
-    tabBar.tintColor = UIColor(hexString: "#ff9800")
+    tabBar.tintColor = UIColor.hx_colorWithHexString("#ff9800")
     
     view.backgroundColor = UIColor.whiteColor()
   }

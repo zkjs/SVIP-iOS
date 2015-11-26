@@ -8,11 +8,17 @@
 
 #import "CustomMessageCell.h"
 #import "EMBubbleView+Gif.h"
+#import "EMBubbleView+Card.h"
 #import "EMGifImage.h"
 #import "UIImageView+HeadImage.h"
 
 #import "EaseMob.h"
 #import "EaseUI.h"
+
+typedef NS_ENUM(NSInteger, eTextTxtType) {
+  eTextTxtText,
+  eTextTxtCard
+};
 
 @interface CustomMessageCell ()
 
@@ -22,77 +28,85 @@
 
 + (void)initialize
 {
-    // UIAppearance Proxy Defaults
+  // UIAppearance Proxy Defaults
 }
 
 #pragma mark - IModelCell
 
 - (BOOL)isCustomBubbleView:(id<IMessageModel>)model
 {
-    BOOL flag = NO;
-    switch (model.bodyType) {
-        case eMessageBodyType_Text:
-        {
-            if ([model.message.ext objectForKey:@"em_emotion"]) {
-                flag = YES;
-            }
-        }
-            break;
-        default:
-            break;
+  BOOL flag = NO;
+  switch (model.bodyType) {
+    case eMessageBodyType_Text:
+    {
+      if ([model.message.ext objectForKey:@"em_emotion"]) {
+        flag = YES;
+      } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+        flag = YES;
+      }
     }
-    return flag;
+      break;
+    default:
+      break;
+  }
+  return flag;
 }
 
 - (void)setCustomModel:(id<IMessageModel>)model
 {
-    if ([model.message.ext objectForKey:@"em_emotion"]) {
-        UIImage *image = [EMGifImage imageNamed:[model.message.ext objectForKey:@"em_emotion"]];
-        if (!image) {
-            image = model.image;
-            if (!image) {
-                image = [UIImage imageNamed:model.failImageName];
-            }
-        }
-        _bubbleView.imageView.image = image;
-        [self.avatarView imageWithUsername:model.nickname placeholderImage:nil];
+  if ([model.message.ext objectForKey:@"em_emotion"]) {
+    UIImage *image = [EMGifImage imageNamed:[model.message.ext objectForKey:@"em_emotion"]];
+    if (!image) {
+      image = model.image;
+      if (!image) {
+        image = [UIImage imageNamed:model.failImageName];
+      }
     }
+    _bubbleView.imageView.image = image;
+    [self.avatarView imageWithUsername:model.nickname placeholderImage:nil];
+  }
 }
 
 - (void)setCustomBubbleView:(id<IMessageModel>)model
 {
-    if ([model.message.ext objectForKey:@"em_emotion"]) {
-        [_bubbleView setupGifBubbleView];
-        
-        _bubbleView.imageView.image = [UIImage imageNamed:@"imageDownloadFail"];
-    }
+  if ([model.message.ext objectForKey:@"em_emotion"]) {
+    [_bubbleView setupGifBubbleView];
+    _bubbleView.imageView.image = [UIImage imageNamed:@"imageDownloadFail"];
+  } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+    [_bubbleView setupCardBubbleView];
+    _bubbleView.imageView.image = [UIImage imageNamed:@"imageDownloadFail"];
+  }
 }
 
 - (void)updateCustomBubbleViewMargin:(UIEdgeInsets)bubbleMargin model:(id<IMessageModel>)model
 {
-    if ([model.message.ext objectForKey:@"em_emotion"]) {
-        [_bubbleView updateGifMargin:bubbleMargin];
-    }
+  if ([model.message.ext objectForKey:@"em_emotion"]) {
+    [_bubbleView updateGifMargin:bubbleMargin];
+  } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+    [_bubbleView updateCardMargin:bubbleMargin];
+  }
 }
 
 + (NSString *)cellIdentifierWithModel:(id<IMessageModel>)model
 {
-    if ([model.message.ext objectForKey:@"em_emotion"]) {
-        return model.isSender?@"EaseMessageCellSendGif":@"EaseMessageCellRecvGif";
-    } else {
-        NSString *identifier = [EaseBaseMessageCell cellIdentifierWithModel:model];
-        return identifier;
-    }
+  if ([model.message.ext objectForKey:@"em_emotion"]) {
+    return model.isSender?@"EaseMessageCellSendGif":@"EaseMessageCellRecvGif";
+  } else {
+    NSString *identifier = [EaseBaseMessageCell cellIdentifierWithModel:model];
+    return identifier;
+  }
 }
 
 + (CGFloat)cellHeightWithModel:(id<IMessageModel>)model
 {
-    if ([model.message.ext objectForKey:@"em_emotion"]) {
-        return 100;
-    } else {
-        CGFloat height = [EaseBaseMessageCell cellHeightWithModel:model];
-        return height;
-    }
+  if ([model.message.ext objectForKey:@"em_emotion"]) {
+    return 100;
+  } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+    return 200;
+  } else {
+    CGFloat height = [EaseBaseMessageCell cellHeightWithModel:model];
+    return height;
+  }
 }
 
 @end

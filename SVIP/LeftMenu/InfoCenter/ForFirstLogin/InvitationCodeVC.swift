@@ -46,7 +46,7 @@ class InvitationCodeVC: UIViewController {
     
     let attString = NSAttributedString(string: "没有请为空",
       attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
-        NSForegroundColorAttributeName : UIColor(hexString: "8d8d8d")])
+        NSForegroundColorAttributeName : UIColor.hx_colorWithHexString("8d8d8d")])
     codeTextField.attributedPlaceholder = attString
   }
   

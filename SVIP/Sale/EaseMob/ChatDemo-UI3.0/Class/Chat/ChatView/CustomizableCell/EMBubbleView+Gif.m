@@ -10,7 +10,6 @@
 
 @implementation EaseBubbleView (Gif)
 
-
 #pragma mark - private
 
 - (void)_setupImageBubbleMarginConstraints

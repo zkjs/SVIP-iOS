@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCPathButtonDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate {
+class MainTVC: UIViewController {
 
   var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
@@ -28,6 +28,10 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - View Lifecycle
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("MainTVC", owner:self, options:nil)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,8 +58,15 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     tableView.tableFooterView = UIView()
   }
   
-  override func loadView() {
-    NSBundle.mainBundle().loadNibNamed("MainTVC", owner:self, options:nil)
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.navigationBarHidden = true
+    tableView.reloadData()
+  }
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.navigationBarHidden = false
   }
   
   deinit {
@@ -68,7 +79,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       let advertisement = AdvertisementModel(dic: dic as! [String:AnyObject])
       self.AdvertisementArray.append(advertisement)
       self.tableView.reloadData()
-      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -90,27 +100,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
-  }
-  
-  func configureDCPathButton() {
-    let image = UIImage(named: "ic_zhong_nor")
-     dcPathButton = DCPathButton(centerImage: image, highlightedImage: UIImage(named: "ic_zhong_pre"))
-    dcPathButton.delegate = self
-    view.frame = UIScreen.mainScreen().bounds
-    dcPathButton.dcButtonCenter = CGPointMake(view.bounds.width/2, view.bounds.height-40)
-    dcPathButton.allowSounds = true
-    dcPathButton.allowCenterButtonRotation = true
-    dcPathButton.bloomRadius = 90
-    let guester = UILongPressGestureRecognizer(target: self, action: "long:")
-    guester.minimumPressDuration = 1.5
-    dcPathButton.addGestureRecognizer(guester)
-    
-    let itemButton_1 = DCPathItemButton(image: UIImage(named: "ic_canyin"), highlightedImage: UIImage(named: "ic_canyin"), backgroundImage: UIImage(named: "ic_canyin"), backgroundHighlightedImage: UIImage(named: "ic_canyin"))
-    let itemButton_2 = DCPathItemButton(image: UIImage(named: "ic_jiudian"), highlightedImage: UIImage(named: "ic_jiudian"), backgroundImage: UIImage(named: "ic_jiudian"), backgroundHighlightedImage: UIImage(named: "ic_jiudian"))
-    let itemButton_3 = DCPathItemButton(image: UIImage(named: "ic_xiuxian"), highlightedImage: UIImage(named: "ic_xiuxian"), backgroundImage: UIImage(named: "ic_xiuxian"), backgroundHighlightedImage: UIImage(named: "ic_xiuxian"))
-    dcPathButton.addPathItems([itemButton_1, itemButton_2, itemButton_3])
-    self.view.addSubview(dcPathButton)
-    
   }
   
   func long(sender:UILongPressGestureRecognizer) {
@@ -157,145 +146,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
           }
         }
       }
-    }
-  }
-  
-  //MARK: - DCPathButtonDelegate
-  func pathButton(dcPathButton: DCPathButton!, clickItemButtonAtIndex itemButtonIndex: UInt) {
-    
-    switch itemButtonIndex {
-    case(0):
-      let vc = RestaurantTVC()
-      self.navigationController?.pushViewController(vc, animated: true)
-    case(1):
-      let vc = FloatingWindowVC()
-      vc.view.frame = CGRectMake(0.0, 0.0, view.frame.width, view.frame.height)
-      self.addChildViewController(vc)
-      self.view.addSubview(vc.view)
-    case(2):
-      let vc = LeisureTVC()
-      self.navigationController?.pushViewController(vc, animated: true)
-    default:
-      break
-    }
-  }
-  
-  private func setupBluetoothManager() {
-    bluetoothManager = CBCentralManager(delegate: self, queue: nil)
-  }
-  
-  private func testGPSBasedNotification() {
-    // 测试基于经纬度的位置提醒
-    let localNotification = UILocalNotification()
-    localNotification.alertBody = "欢迎来到中科院先进所.."
-    localNotification.regionTriggersOnce = false
-    let coordinate = CLLocationCoordinate2D(latitude: 22.599119, longitude: 113.985428)
-    let region = CLCircularRegion(center: coordinate, radius: 100, identifier: "Test_Location_Notification")
-    region.notifyOnEntry = true
-    region.notifyOnExit = false
-    localNotification.region = region
-    UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-  }
-  
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    navigationController?.navigationBarHidden = true
-    tableView.reloadData()
-  }
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    navigationController?.navigationBarHidden = false
-  }
-  
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
-  }
-  
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 0 {
-      return 2
-    }
-    else {
-      return AdvertisementArray.count
-    }
-  }
-  
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.section == 0 && indexPath.row == 0{
-      
-      return ActivationCell.height()
-    }
-    if indexPath.section == 0 && indexPath.row == 1 {
-      return MainViewCell.height()
-    }
-    else {
-      if height == nil {
-        return 0
-      }else {
-        return height
-      }
-    }
-  }
-
-  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if section == 0 {
-      return 265
-    }else {
-      return 10
-    }
-  }
-  
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.section == 0 && indexPath.row == 1{
-      let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
-      if let order = StorageManager.sharedInstance().lastOrder() {
-        cell.setData(order)
-      }
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
-      return cell
-    }
-    if indexPath.section == 0 && indexPath.row == 0 {
-      let cell = tableView.dequeueReusableCellWithIdentifier("ActivationCell", forIndexPath: indexPath) as! ActivationCell
-      
-      return cell
-    }
-    else {
-      let cell = tableView.dequeueReusableCellWithIdentifier("WebViewCell", forIndexPath:indexPath) as! WebViewCell
-      let ad = AdvertisementArray[indexPath.row]
-      let url = NSURL(string: ad.url!)
-      let request = NSURLRequest(URL: url!)
-      cell.webView.loadRequest(request)
-      height = CGFloat ( (cell.webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight")! as NSString).floatValue)
-      
-      return cell
-    }
-  }
-  
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath.section == 0 && indexPath.row == 1 {
-      let vc = OrderListTVC()
-      navigationController?.pushViewController(vc, animated: true)
-    }
-  }
-  
-  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if section == 0 {
-      if myView == nil {
-        myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
-        myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
-        myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-        myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
-      }
-      setupMainViewUI(myView)
-      return myView
-    }else {
-      return nil
     }
   }
   
@@ -353,6 +203,118 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
       name: "DownloadImageNotification", object: nil)
     //NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSmartPanel", name: "UIApplicationDidBecomeActiveNotification", object: nil)
   }
+  
+  private func initTCPSessionManager() {
+    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+  }
+  
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension MainTVC: UITableViewDelegate, UITableViewDataSource {
+  
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 2
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
+      return 2
+    }
+    else {
+      return AdvertisementArray.count
+    }
+  }
+  
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    if indexPath.section == 0 && indexPath.row == 0 {
+      return ActivationCell.height()
+    } else if indexPath.section == 0 && indexPath.row == 1 {
+      return MainViewCell.height()
+    } else {
+      if self.height == nil {
+        return 0.0
+      } else {
+        return height
+      }
+    }
+  }
+  
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 265
+    } else {
+      return 10
+    }
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    if indexPath.section == 0 && indexPath.row == 0 {
+      let cell = tableView.dequeueReusableCellWithIdentifier("ActivationCell", forIndexPath: indexPath) as! ActivationCell
+      return cell
+    } else if indexPath.section == 0 && indexPath.row == 1 {
+      let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
+      if let order = StorageManager.sharedInstance().lastOrder() {
+        cell.setData(order)
+      }
+      cell.selectionStyle = .None
+      return cell
+    } else {
+      let cell = tableView.dequeueReusableCellWithIdentifier("WebViewCell", forIndexPath:indexPath) as! WebViewCell
+      let ad = AdvertisementArray[indexPath.row]
+      let url = NSURL(string: ad.url!)
+      let request = NSURLRequest(URL: url!)
+//      cell.webView.delegate = self
+      cell.webView.loadRequest(request)
+      height = cell.webView.scrollView.contentSize.height
+      print(height)
+      return cell
+    }
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == 0 && indexPath.row == 1 {
+      let vc = OrderListTVC()
+      navigationController?.pushViewController(vc, animated: true)
+    }
+  }
+  
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    if section == 0 {
+      if myView == nil {
+        myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
+        myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
+        myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+        myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
+      }
+      setupMainViewUI(myView)
+      return myView
+    } else {
+      return nil
+    }
+  }
+  
+}
+
+// MARK: - UIWebViewDelegate
+
+extension MainTVC: UIWebViewDelegate {
+  
+  func webViewDidFinishLoad(webView: UIWebView) {
+//    var frame = webView.frame
+//    frame.size = webView.sizeThatFits(CGSizeZero)
+//    webView.frame = frame
+//    height = webView.scrollView.contentSize.height
+    print(height)
+    tableView.reloadData()
+  }
+  
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension MainTVC: CLLocationManagerDelegate {
   
   private func setupCoreLocationService() {
     if CLLocationManager.authorizationStatus() == .Denied {
@@ -430,12 +392,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     }
   }
   
-  private func initTCPSessionManager() {
-    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-  }
-  
-  // MARK: - CLLocationManagerDelegate
-  
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status != CLAuthorizationStatus.AuthorizedAlways {
       //      let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
@@ -465,14 +421,6 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
           self.distance = currentLocation.distanceFromLocation(targetLocation)
       }
     }
-    
-    //    let regeoRequest: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
-    //    regeoRequest.searchType = AMapSearchType.ReGeocode
-    //    regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
-    //    regeoRequest.radius = 10000
-    //    regeoRequest.requireExtension = true
-    //    print("regeoRequest :\(regeoRequest)")
-    //    locationSearch.AMapReGoecodeSearch(regeoRequest)
     
     postGPSLocation(coordinate)
   }
@@ -607,33 +555,12 @@ class MainTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DCP
     //    notification.alertBody = alertMessage
     //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
-  // MARK: - CBCentralManagerDelegate
-  
-  func centralManagerDidUpdateState(central: CBCentralManager) {
-    switch central.state {
-    case .PoweredOn:
-      print(".PoweredOn")
-    case .PoweredOff:
-      print(".PoweredOff")
-      //      let alertView = UIAlertController(title: "请打开蓝牙", message: "我们将为您提供免登记办理入住手续等贴心服务需要使用蓝牙功能", preferredStyle: .Alert)
-      //      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-      //      presentViewController(alertView, animated: true, completion: nil)
-    case .Resetting:
-      print(".Resetting")
-    case .Unauthorized:
-      print(".Unauthorized")
-    case .Unknown:
-      print(".Unknown")
-    case .Unsupported:
-      print(".Unsupported")
-    }
-  }
   
 }
 
+// MARK: - ICallManagerDelegate, EMCallManagerDelegate
+
 extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
-  
-  // MARK: - Private
   
   func registerNotification() {
     unregisterNotification()
@@ -703,8 +630,6 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
     EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
   }
   
-  // MARK: - ICallManagerDelegate
-  
   func callSessionStatusChanged(callSession: EMCallSession!, changeReason reason: EMCallStatusChangedReason, error: EMError!) {
     if callSession.status == EMCallSessionStatus.eCallSessionStatusConnected {
       var error: EMError? = nil
@@ -747,11 +672,88 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
   
 }
 
+// MARK: - CBCentralManagerDelegate
+
+extension MainTVC: CBCentralManagerDelegate {
+  
+  private func setupBluetoothManager() {
+    bluetoothManager = CBCentralManager(delegate: self, queue: nil)
+  }
+  
+  func centralManagerDidUpdateState(central: CBCentralManager) {
+    switch central.state {
+    case .PoweredOn:
+      print(".PoweredOn")
+    case .PoweredOff:
+      print(".PoweredOff")
+      //      let alertView = UIAlertController(title: "请打开蓝牙", message: "我们将为您提供免登记办理入住手续等贴心服务需要使用蓝牙功能", preferredStyle: .Alert)
+      //      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+      //      presentViewController(alertView, animated: true, completion: nil)
+    case .Resetting:
+      print(".Resetting")
+    case .Unauthorized:
+      print(".Unauthorized")
+    case .Unknown:
+      print(".Unknown")
+    case .Unsupported:
+      print(".Unsupported")
+    }
+  }
+  
+}
+
+// MARK: - RESideMenuDelegate
+
 extension MainTVC: RESideMenuDelegate {
   
   func sideMenu(sideMenu: RESideMenu!, willShowMenuViewController menuViewController: UIViewController!) {
     if let vc = menuViewController as? LeftMenuVC {
       vc.setUI()
+    }
+  }
+  
+}
+
+// MARK: - DCPathButtonDelegate
+
+extension MainTVC: DCPathButtonDelegate {
+  
+  func configureDCPathButton() {
+    let image = UIImage(named: "ic_zhong_nor")
+    dcPathButton = DCPathButton(centerImage: image, highlightedImage: UIImage(named: "ic_zhong_pre"))
+    dcPathButton.delegate = self
+    view.frame = UIScreen.mainScreen().bounds
+    dcPathButton.dcButtonCenter = CGPointMake(view.bounds.width/2, view.bounds.height-30)
+    dcPathButton.allowSounds = true
+    dcPathButton.allowCenterButtonRotation = true
+    dcPathButton.bloomRadius = 90
+    let guester = UILongPressGestureRecognizer(target: self, action: "long:")
+    guester.minimumPressDuration = 1.5
+    dcPathButton.addGestureRecognizer(guester)
+    
+    let itemButton_1 = DCPathItemButton(image: UIImage(named: "ic_canyin"), highlightedImage: UIImage(named: "ic_canyin"), backgroundImage: UIImage(named: "ic_canyin"), backgroundHighlightedImage: UIImage(named: "ic_canyin"))
+    let itemButton_2 = DCPathItemButton(image: UIImage(named: "ic_jiudian"), highlightedImage: UIImage(named: "ic_jiudian"), backgroundImage: UIImage(named: "ic_jiudian"), backgroundHighlightedImage: UIImage(named: "ic_jiudian"))
+    let itemButton_3 = DCPathItemButton(image: UIImage(named: "ic_xiuxian"), highlightedImage: UIImage(named: "ic_xiuxian"), backgroundImage: UIImage(named: "ic_xiuxian"), backgroundHighlightedImage: UIImage(named: "ic_xiuxian"))
+    dcPathButton.addPathItems([itemButton_1, itemButton_2, itemButton_3])
+    view.addSubview(dcPathButton)
+  }
+  
+  func pathButton(dcPathButton: DCPathButton!, clickItemButtonAtIndex itemButtonIndex: UInt) {
+    
+    switch itemButtonIndex {
+    case(0):
+      let vc = RestaurantTVC()
+      navigationController?.pushViewController(vc, animated: true)
+    case(1):
+      let vc = FloatingWindowVC()
+      vc.view.frame = CGRectMake(0.0, 0.0, view.frame.width, view.frame.height)
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+    case(2):
+      let vc = LeisureTVC()
+      self.navigationController?.pushViewController(vc, animated: true)
+    default:
+      break
     }
   }
   

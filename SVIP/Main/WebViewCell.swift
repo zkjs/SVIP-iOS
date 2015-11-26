@@ -9,12 +9,16 @@
 import UIKit
 
 class WebViewCell: UITableViewCell {
-
+  
   @IBOutlet weak var webView: UIWebView!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    
+    webView.scrollView.bounces = false
+    webView.scrollView.scrollEnabled = false
+  }
+  
   class func reuseIdentifier() -> String {
     return "WebViewCell"
   }
@@ -22,9 +26,10 @@ class WebViewCell: UITableViewCell {
   class func nibName() -> String {
     return "WebViewCell"
   }
+  
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-
-    }
     
+  }
+  
 }
