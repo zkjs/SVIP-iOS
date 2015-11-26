@@ -37,6 +37,9 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("CityVC", owner:self, options:nil)
+  }
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
     return UIStatusBarStyle.LightContent
   }

@@ -29,7 +29,7 @@ class MainViewCell: UITableViewCell{
   }
   
   class func height() -> CGFloat {
-    return 130
+    return 150
   }
   
   func setData(order:BookOrder) {

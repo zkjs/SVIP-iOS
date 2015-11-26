@@ -7,29 +7,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchBarView" customModule="SVIP" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="578" height="149"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchHeaderView" customModule="SVIP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hf4-4j-zui">
-                    <rect key="frame" x="180" y="0.0" width="240" height="44"/>
+                <searchBar contentMode="redraw" misplaced="YES" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="Q5l-fc-jgu">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="Iue-fw-DMv"/>
-                        <constraint firstAttribute="width" constant="240" id="VPN-Cy-YhB"/>
+                        <constraint firstAttribute="height" constant="45" id="Gg3-ka-PqO"/>
                     </constraints>
                     <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
                 </searchBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Hf4-4j-zui" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="27D-Fi-esJ"/>
-                <constraint firstItem="Hf4-4j-zui" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="e5J-s0-rMr"/>
+                <constraint firstItem="Q5l-fc-jgu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4gA-aI-010"/>
+                <constraint firstItem="Q5l-fc-jgu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jsm-as-2dW"/>
+                <constraint firstAttribute="trailing" secondItem="Q5l-fc-jgu" secondAttribute="trailing" id="xc2-Fq-TkZ"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="searchBar" destination="Hf4-4j-zui" id="wFT-KS-CCJ"/>
-            </connections>
-            <point key="canvasLocation" x="440" y="218.5"/>
         </view>
     </objects>
 </document>

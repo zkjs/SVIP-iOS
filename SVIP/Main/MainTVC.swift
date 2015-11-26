@@ -23,7 +23,8 @@ class MainTVC: UIViewController {
   let locationManager = CLLocationManager()
   var bluetoothManager = CBCentralManager()
   var beaconRegions = [String: [String: String]]()
-  var myView: MainHeaderView!
+  var myView:MainHeaderView!
+  var myFooterView: MainFooterView!
   
   @IBOutlet weak var tableView: UITableView!
 
@@ -45,7 +46,9 @@ class MainTVC: UIViewController {
     registerNotification()
     
     navigationController?.navigationBarHidden = false
-    tableView.tableFooterView = UIView()
+
+    myFooterView = NSBundle.mainBundle().loadNibNamed("MainFooterView", owner: self, options: nil).first as! MainFooterView
+    tableView.tableFooterView = myFooterView
     
     sideMenuViewController.delegate = self
     
@@ -55,7 +58,6 @@ class MainTVC: UIViewController {
     tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
     let nibName2 = UINib(nibName: ActivationCell.nibName(), bundle: nil)
     tableView.registerNib(nibName2, forCellReuseIdentifier: ActivationCell.reuseIdentifier())
-    tableView.tableFooterView = UIView()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -78,7 +80,11 @@ class MainTVC: UIViewController {
       let dic = responseObject as! NSDictionary
       let advertisement = AdvertisementModel(dic: dic as! [String:AnyObject])
       self.AdvertisementArray.append(advertisement)
-      self.tableView.reloadData()
+      let ad = self.AdvertisementArray[0]
+      let url = NSURL(string: ad.url!)
+      let request = NSURLRequest(URL: url!)
+      self.myFooterView.webView.delegate = self
+      self.myFooterView.webView.loadRequest(request)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -215,60 +221,35 @@ class MainTVC: UIViewController {
 extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
+    return 1
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 0 {
-      return 2
-    }
-    else {
-      return AdvertisementArray.count
-    }
+   return 2
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.section == 0 && indexPath.row == 0 {
+    if indexPath.row == 0{
       return ActivationCell.height()
-    } else if indexPath.section == 0 && indexPath.row == 1 {
+    }else  {
       return MainViewCell.height()
-    } else {
-      if self.height == nil {
-        return 0.0
-      } else {
-        return height
-      }
     }
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if section == 0 {
-      return 265
-    } else {
-      return 10
-    }
+    return 265
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.section == 0 && indexPath.row == 0 {
-      let cell = tableView.dequeueReusableCellWithIdentifier("ActivationCell", forIndexPath: indexPath) as! ActivationCell
-      return cell
-    } else if indexPath.section == 0 && indexPath.row == 1 {
+    if indexPath.row == 1{
       let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
       if let order = StorageManager.sharedInstance().lastOrder() {
         cell.setData(order)
       }
-      cell.selectionStyle = .None
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
       return cell
-    } else {
-      let cell = tableView.dequeueReusableCellWithIdentifier("WebViewCell", forIndexPath:indexPath) as! WebViewCell
-      let ad = AdvertisementArray[indexPath.row]
-      let url = NSURL(string: ad.url!)
-      let request = NSURLRequest(URL: url!)
-//      cell.webView.delegate = self
-      cell.webView.loadRequest(request)
-      height = cell.webView.scrollView.contentSize.height
-      print(height)
+    }else {
+      let cell = tableView.dequeueReusableCellWithIdentifier("ActivationCell", forIndexPath: indexPath) as! ActivationCell
       return cell
     }
   }
@@ -281,18 +262,12 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if section == 0 {
-      if myView == nil {
-        myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
-        myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
-        myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-        myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
-      }
+      myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
+      myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
+      myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+      myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
       setupMainViewUI(myView)
       return myView
-    } else {
-      return nil
-    }
   }
   
 }
@@ -302,11 +277,13 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
 extension MainTVC: UIWebViewDelegate {
   
   func webViewDidFinishLoad(webView: UIWebView) {
-//    var frame = webView.frame
-//    frame.size = webView.sizeThatFits(CGSizeZero)
-//    webView.frame = frame
-//    height = webView.scrollView.contentSize.height
-    print(height)
+    height = CGFloat ( (webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight")! as NSString).floatValue)
+    var frame = myFooterView.frame
+    frame.size.height = height
+    myFooterView.frame = frame
+//    var size = tableView.contentSize
+//    size.height += height - 500.0 + 66
+//    tableView.contentSize = size
     tableView.reloadData()
   }
   
@@ -421,7 +398,7 @@ extension MainTVC: CLLocationManagerDelegate {
           self.distance = currentLocation.distanceFromLocation(targetLocation)
       }
     }
-    
+       
     postGPSLocation(coordinate)
   }
   

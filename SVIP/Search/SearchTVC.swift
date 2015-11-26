@@ -12,12 +12,9 @@ class SearchTVC: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+      let nibName = UINib(nibName: SearchCell.nibName(), bundle: nil)
+      tableView.registerNib(nibName, forCellReuseIdentifier: SearchCell.reuseIdentifier())
+      tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +26,40 @@ class SearchTVC: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 10
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return SearchCell.height()
+  }
+  
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 44
+  }
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(SearchCell.reuseIdentifier(), forIndexPath: indexPath) as! SearchCell
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
+    cell.tag = indexPath.row
         return cell
     }
-    */
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let vc = SearchResultVC(nibName:"SearchResultVC", bundle:nil)
+    let cell = tableView.cellForRowAtIndexPath(indexPath) as! SearchCell
+    vc.titleStr = cell.textLabel?.text
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let searchHeadView = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: self, options: nil).first as! SearchHeaderView
+    return searchHeadView
+  }
+  
 
     /*
     // Override to support conditional editing of the table view.

@@ -13,7 +13,7 @@ class SearchBarView: UIView,UISearchBarDelegate {
   @IBOutlet weak var searchBar: UISearchBar! {
     didSet {
       searchBar.delegate = self
-      searchBar.layer.borderColor = UIColor.whiteColor().CGColor
+//      searchBar.layer.borderColor = UIColor.whiteColor().CGColor
       searchBar.layer.cornerRadius = 8
       searchBar.layer.masksToBounds = true
       searchBar.layer.borderWidth = 8

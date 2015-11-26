@@ -1,68 +1,53 @@
 //
-//  HotelTVC.swift
+//  CustomerServiceTVC.swift
 //  SVIP
 //
-//  Created by AlexBang on 15/11/10.
+//  Created by AlexBang on 15/11/23.
 //  Copyright © 2015年 zkjinshi. All rights reserved.
 //
 
 import UIKit
-@objc enum HotelTVCType: Int {
-  case chat
-  case customerService
-}
-class HotelTVC: UITableViewController,XLPagerTabStripChildItem {
-    var shops = [NSDictionary]()
-  var dataArray = NSMutableArray()
-  lazy var type = HotelTVCType.chat
-  
+
+class CustomerServiceTVC: UITableViewController {
+  var shopID = NSNumber(integer: 0)
+  var servicerArr = [ServicerModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-      title = "酒店"
+      title = "我的专属客服"
+      let nibName = UINib(nibName: CustomerServiceCell.nibName(), bundle: nil)
+      tableView.registerNib(nibName, forCellReuseIdentifier: CustomerServiceCell.reuseIdentifier())
       tableView.tableFooterView = UIView()
-      tableView.showsVerticalScrollIndicator = false
-      let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
       loadData()
+
+
     }
-  
-  override func loadView() {
-    NSBundle.mainBundle().loadNibNamed("HotelTVC", owner:self, options:nil)
+  func loadData() {
+    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID.stringValue, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+      let dic = responsObject as! NSDictionary
+     if  let array = dic["data"] as? NSArray {
+      for dic in array {
+        let servicer = ServicerModel(dic: dic as![String:AnyObject])
+        self.servicerArr.append(servicer)
+      }
+      self.tableView.reloadData()
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      
+    }
   }
-  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("CustomerServiceTVC", owner:self, options:nil)
+  }
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
-    self.tableView.reloadData()
+    tableView.reloadData()
   }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  
-  private func loadData() {
-    ZKJSHTTPSessionManager .sharedInstance() .getAllShopInfoWithPage(1, key: nil, isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let array = responseObject as? NSArray {
-        for dic in array {
-          let hotelData = Hotel(dic: dic as! NSDictionary)
-          self.dataArray .addObject(hotelData)
-        }
-        self.tableView .reloadData()
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        self.showHint("加载数据失败")
-    }
-  }
 
-  // MARK: - XLPagerTabStripChildItem Delegate
-  
-  func titleForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> String! {
-    return "酒店"
-  }
-  
-  func colorForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> UIColor! {
-    return UIColor.whiteColor()
-  }
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -72,38 +57,21 @@ class HotelTVC: UITableViewController,XLPagerTabStripChildItem {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataArray.count
+        return servicerArr.count
     }
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return HotelCell.height()
+    return CustomerServiceCell.height()
   }
 
   
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(CustomerServiceCell.reuseIdentifier(), forIndexPath: indexPath) as! CustomerServiceCell
+      let servicer = servicerArr[indexPath.row]
+      cell.setData(servicer)
       cell.selectionStyle = UITableViewCellSelectionStyle.None
-      let shop = dataArray[indexPath.row]
-      cell.setData(shop as! Hotel)
-
         return cell
     }
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView .deselectRowAtIndexPath(indexPath, animated: true)
-    if type == .chat {
-      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
-      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-      vc.shopID = NSNumber(integer: Int((dataArray[indexPath.row] as! Hotel).shopid))
-      self.navigationController?.pushViewController(vc, animated: true)
-    }else if type == .customerService {
-      let vc = CustomerServiceTVC()
-      vc.shopID = NSNumber(integer: Int((dataArray[indexPath.row] as! Hotel).shopid))
-      self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-
-  }
   
-
 
     /*
     // Override to support conditional editing of the table view.

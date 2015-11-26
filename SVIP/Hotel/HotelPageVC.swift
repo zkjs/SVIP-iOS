@@ -26,11 +26,11 @@ class HotelPageVC: XLSegmentedPagerTabStripViewController {
   // MARK: - Private
   
   private func setupSubViews() {
-//    let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_sousuo"), style: UIBarButtonItemStyle.Plain, target: self, action: "search:")
-//    navigationItem.rightBarButtonItem = rightBarButtonItem
-//    navigationController?.navigationBar.translucent = false
-//    navigationController?.navigationBar.barStyle = UIBarStyle.Black
-//    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+    let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_sousuo"), style: UIBarButtonItemStyle.Plain, target: self, action: "search:")
+    navigationItem.rightBarButtonItem = rightBarButtonItem
+    navigationController?.navigationBar.translucent = false
+    navigationController?.navigationBar.barStyle = UIBarStyle.Black
+    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     
     segmentedControl.sizeToFit()
   }

@@ -44,7 +44,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let title1 = NSLocalizedString("SETTINGS", comment: "")
     let menu1 = ["logo": "ic_shezhi",
                  "text": title1]
-    let title2 = NSLocalizedString("IN_ROOM_CHECK_IN", comment: "")
+    let title2 = NSLocalizedString("特权", comment: "")
     let menu2 = ["logo": "ic_mianqiantai",
                  "text": title2]
     let title3 = NSLocalizedString("行程", comment: "")
@@ -119,8 +119,8 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
       case .Setting:
         vc = SettingTableViewController(style: .Grouped)
       case .InRoomCheckin:
-        print(".InRoomCheckin")
-        vc = SkipCheckInSettingViewController()
+        vc = PrivilegeVC()
+        //vc = SkipCheckInSettingViewController()
       case .BookingOrder:
         vc = OrderListTVC()
       case .HistoryOrder:

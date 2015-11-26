@@ -26,6 +26,10 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("FloatingWindowVC", owner: self, options: nil)
   }
+
+  override func didReceiveMemoryWarning() {
+      super.didReceiveMemoryWarning()     
+  }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -47,7 +51,7 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
     view.removeFromSuperview()
   }
   
-  @IBAction func DeterminetheCustomerService(sender: AnyObject) {
+  @IBAction func DeterminetheCustomerService(sender: AnyObject) {   
     self.view.removeFromSuperview()
   }
   
