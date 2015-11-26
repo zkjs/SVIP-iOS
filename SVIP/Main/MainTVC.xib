@@ -16,25 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TRu-bX-agy">
-                    <rect key="frame" x="0.0" y="-20" width="600" height="560"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="622" id="8B5-hx-HSs"/>
-                        <constraint firstAttribute="width" constant="600" id="bHO-BT-w8w"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="8B5-hx-HSs"/>
-                            <exclude reference="bHO-BT-w8w"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="rBx-tG-rdK"/>
-                        <outlet property="delegate" destination="-1" id="xO4-aV-7s9"/>
-                    </connections>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJJ-pl-oJ3">
                     <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                     <subviews>
@@ -83,6 +64,25 @@
                         </mask>
                     </variation>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TRu-bX-agy">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="622" id="8B5-hx-HSs"/>
+                        <constraint firstAttribute="width" constant="600" id="bHO-BT-w8w"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="8B5-hx-HSs"/>
+                            <exclude reference="bHO-BT-w8w"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="rBx-tG-rdK"/>
+                        <outlet property="delegate" destination="-1" id="xO4-aV-7s9"/>
+                    </connections>
+                </tableView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -97,7 +97,7 @@
                 <constraint firstItem="TRu-bX-agy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kUe-6c-SnG"/>
                 <constraint firstItem="aJJ-pl-oJ3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oMD-e0-ulf"/>
                 <constraint firstAttribute="trailing" secondItem="TRu-bX-agy" secondAttribute="trailing" id="qwc-Yy-Cmk"/>
-                <constraint firstItem="TRu-bX-agy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-20" id="vRm-yW-ogR"/>
+                <constraint firstItem="TRu-bX-agy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vRm-yW-ogR"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-22" id="vlU-Eq-vWD"/>
             </constraints>
             <variation key="default">
@@ -109,7 +109,7 @@
                     <exclude reference="gCv-pJ-o00"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="314" y="416"/>
+            <point key="canvasLocation" x="338" y="415"/>
         </view>
     </objects>
     <resources>

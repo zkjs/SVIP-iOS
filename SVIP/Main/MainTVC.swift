@@ -15,7 +15,7 @@ class MainTVC: UIViewController {
   var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
   var height:CGFloat!
-  var originY:CGFloat!
+  var originHeight:CGFloat!
   var distance:CLLocationDistance!
   var longitude:double_t!
   var latution:double_t!
@@ -50,6 +50,7 @@ class MainTVC: UIViewController {
 
     myFooterView = NSBundle.mainBundle().loadNibNamed("MainFooterView", owner: self, options: nil).first as! MainFooterView
     tableView.tableFooterView = myFooterView
+    originHeight = myFooterView.frame.size.height
     
     sideMenuViewController.delegate = self
     
@@ -280,15 +281,14 @@ extension MainTVC: UIWebViewDelegate {
   
   func webViewDidFinishLoad(webView: UIWebView) {
     height = CGFloat ( (webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight")! as NSString).floatValue)
-     tableView.contentInset = UIEdgeInsetsMake(0, 0, height - originY,0)
+    // 更新Footer高度
     var frame = myFooterView.frame
     frame.size.height = height
     print(frame)
     myFooterView.frame = frame
-   
+    tableView.contentInset = UIEdgeInsetsMake(0, 0, height - originHeight,0)
     tableView.reloadData()
   }
-  
 }
 
 // MARK: - CLLocationManagerDelegate
