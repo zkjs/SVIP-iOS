@@ -424,7 +424,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     #else
       let cert = "SVIP"
     #endif
-    EaseMob.sharedInstance().registerSDKWithAppKey("zkjs#svip", apnsCertName: cert)
+    let appKey = "zkjs#svip"
+    EaseMob.sharedInstance().registerSDKWithAppKey(appKey, apnsCertName: cert, otherConfig: [kSDKConfigEnableConsoleLogger: NSNumber(bool: false)])
     EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
   }
   

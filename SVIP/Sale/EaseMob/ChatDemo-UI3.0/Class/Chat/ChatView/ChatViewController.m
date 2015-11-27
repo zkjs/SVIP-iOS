@@ -11,6 +11,7 @@
 //#import "ContactListSelectViewController.h"
 #import "Networkcfg.h"
 #import "MJRefresh.h"
+#import "SVIP-Swift.h"
 
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 {
@@ -81,6 +82,10 @@
             self.title = [self.conversation.ext objectForKey:@"groupSubject"];
         }
     }
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - setup subviews
@@ -516,13 +521,52 @@
     [self.menuController setMenuVisible:YES animated:YES];
 }
 
+- (void)_sendFirstMessage {
+  if ([self.firstMessage length] != 0) {
+    if ([self.firstMessage isEqualToString:@"Card"]) {
+      NSString *senderID = [JSHStorage baseInfo].userid;
+      NSMutableDictionary *content = [NSMutableDictionary dictionary];
+      content[@"room_typeid"] = self.order.room_typeid;
+      content[@"room_type"] = self.order.room_type;
+      content[@"rooms"] = self.order.rooms;
+      content[@"arrival_date"] = self.order.arrival_date;
+      content[@"departure_date"] = self.order.departure_date;
+      content[@"manInStay"] = self.order.guest;
+      content[@"content"] = NSLocalizedString(@"BOOKING_CARD_TITLE", nil);
+      content[@"userid"] = senderID;
+      content[@"image"] = self.order.room_image_URL;
+      content[@"shopid"] = self.conversation.ext[@"shopId"];
+      content[@"fullname"] = self.order.fullname;
+      content[@"dayNum"] = self.order.dayInt;
+      content[@"guest"] = self.conversation.ext[@"fromName"];
+      content[@"guesttel"] = self.order.guesttel;
+      NSError *error;
+      NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
+                                                         options:0
+                                                           error:&error];
+      if (!jsonData) {
+        NSLog(@"Got an error: %@", error);
+      } else {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:self.conversation.ext];
+        ext[@"extType"] = @(1);
+        [self sendTextMessage:jsonString withExt:ext];
+        [self sendTextMessage:@"你好，帮我预定这间房" withExt:self.conversation.ext];
+      }
+    } else {
+      [self sendTextMessage:self.firstMessage withExt:self.conversation.ext];
+    }
+  }
+}
+
 #pragma mark - public refresh
 
 - (void)tableViewDidFinishTriggerHeader:(BOOL)isHeader reload:(BOOL)reload
 {
-  __weak EaseRefreshTableViewController *weakSelf = self;
+  __weak ChatViewController *weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
     if (reload) {
+      [weakSelf _sendFirstMessage];
       [weakSelf.tableView reloadData];
     }
     

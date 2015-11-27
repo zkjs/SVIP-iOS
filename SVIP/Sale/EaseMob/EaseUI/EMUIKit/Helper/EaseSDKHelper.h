@@ -16,6 +16,11 @@
 #define KNOTIFICATION_CALL @"callOutWithChatter"
 #define KNOTIFICATION_CALL_CLOSE @"callControllerClose"
 
+typedef NS_ENUM(NSInteger, eTextTxtType) {
+  eTextTxtText,
+  eTextTxtCard
+};
+
 @interface EaseSDKHelper : NSObject
 
 @property (nonatomic) BOOL isShowingimagePicker;

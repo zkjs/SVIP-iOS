@@ -11,7 +11,7 @@ import CoreLocation
 import CoreBluetooth
 
 class MainTVC: UIViewController {
-
+  
   var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
   var height:CGFloat!
@@ -28,7 +28,7 @@ class MainTVC: UIViewController {
   var myFooterView: MainFooterView!
   
   @IBOutlet weak var tableView: UITableView!
-
+  
   // MARK: - View Lifecycle
   
   override func loadView() {
@@ -47,7 +47,7 @@ class MainTVC: UIViewController {
     registerNotification()
     
     navigationController?.navigationBarHidden = false
-
+    
     myFooterView = NSBundle.mainBundle().loadNibNamed("MainFooterView", owner: self, options: nil).first as! MainFooterView
     tableView.tableFooterView = myFooterView
     originHeight = myFooterView.frame.size.height
@@ -60,7 +60,7 @@ class MainTVC: UIViewController {
     tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
     let nibName2 = UINib(nibName: ActivationCell.nibName(), bundle: nil)
     tableView.registerNib(nibName2, forCellReuseIdentifier: ActivationCell.reuseIdentifier())
-//    tableView.tableFooterView = UIView()
+    //    tableView.tableFooterView = UIView()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -78,7 +78,7 @@ class MainTVC: UIViewController {
     unregisterNotification()
   }
   
-  func getAdvertisementData() { 
+  func getAdvertisementData() {
     ZKJSHTTPSessionManager.sharedInstance().getAdvertisementListWithSuccess({ (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       let advertisement = AdvertisementModel(dic: dic as! [String:AnyObject])
@@ -94,7 +94,7 @@ class MainTVC: UIViewController {
   }
   
   func getlastOrder() {
-     ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let lastOrder = responseObject as! NSDictionary
       if let reservation_no = lastOrder["reservation_no"] as? String {
         if reservation_no == "0" {
@@ -174,10 +174,10 @@ class MainTVC: UIViewController {
       let formatter = MKDistanceFormatter()
       formatter.units = .Metric
       let distanceString = formatter.stringFromDistance(distance)
-//      myView.orderStatusLabel.text = "有订单 距离\(String(format: "%.2f", distance/1000))km"
+      //      myView.orderStatusLabel.text = "有订单 距离\(String(format: "%.2f", distance/1000))km"
       myView.orderStatusLabel.text = "有订单 距离\(distanceString)"
       myView.userNameLabel.text = JSHStorage.baseInfo().username
-    } 
+    }
   }
   
   func downloadImage(notification: NSNotification) {
@@ -228,7 +228,7 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-   return 2
+    return 2
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -265,12 +265,12 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-      myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
-      myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
-      myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-      myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
-      setupMainViewUI(myView)
-      return myView
+    myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
+    myView.leftButton.addTarget(self, action: "leftPage:", forControlEvents: UIControlEvents.TouchUpInside)
+    myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+    myView.choiceCityButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
+    setupMainViewUI(myView)
+    return myView
   }
   
 }
@@ -400,7 +400,7 @@ extension MainTVC: CLLocationManagerDelegate {
           self.distance = currentLocation.distanceFromLocation(targetLocation)
       }
     }
-       
+    
     postGPSLocation(coordinate)
   }
   
@@ -554,6 +554,8 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
   func unregisterNotification() {
     EaseMob.sharedInstance().chatManager.removeDelegate(self)
     EaseMob.sharedInstance().callManager.removeDelegate(self)
+    
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
   func canRecord() -> Bool {
@@ -597,7 +599,7 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
         EaseMob.sharedInstance().callManager.removeDelegate(self)
         
         let callVC = CallViewController(session: callSession, isIncoming: false)
-        callVC.modalPresentationStyle = .FullScreen
+        callVC.modalPresentationStyle = .OverFullScreen
         presentViewController(callVC, animated: true, completion: nil)
       } else if error != nil {
         showAlertWithTitle(NSLocalizedString("error", comment: "error"), message: NSLocalizedString("ok", comment:"OK"))
@@ -610,41 +612,37 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
   }
   
   func callSessionStatusChanged(callSession: EMCallSession!, changeReason reason: EMCallStatusChangedReason, error: EMError!) {
-    if callSession.status == EMCallSessionStatus.eCallSessionStatusConnected {
+    if callSession.status == .eCallSessionStatusConnected {
       var error: EMError? = nil
-      repeat {
-        if let isShowPicker = NSUserDefaults.standardUserDefaults().objectForKey("isShowPicker") as? NSNumber {
-          if isShowPicker.boolValue == true {
-            error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-            break;
-          }
-          
-          if canRecord() == false {
-            error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-            break;
-          }
-          
-          if callSession.type == EMCallSessionType.eCallSessionTypeVideo &&
-            (UIApplication.sharedApplication().applicationState != UIApplicationState.Active || CallViewController.canVideo() == false) {
-              error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-              break;
-          }
-          
-          if isShowPicker.boolValue == false {
-            EaseMob.sharedInstance().callManager.removeDelegate(self)
-            let callVC = CallViewController(session: callSession, isIncoming: true)
-            callVC.modalPresentationStyle = UIModalPresentationStyle.FullScreen
-            presentViewController(callVC, animated: true, completion: nil)
-            if ((navigationController?.topViewController?.isKindOfClass(ChatViewController)) != nil) {
-              let chatVC = navigationController?.topViewController as! ChatViewController
-              chatVC.isViewDidAppear = false
-            }
-          }
-        }
-      } while 1 > 0
+      let isShowPicker = NSUserDefaults.standardUserDefaults().objectForKey("isShowPicker")
+      if isShowPicker != nil && isShowPicker!.boolValue == true {
+        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+        return
+      }
       
-      if error != nil {
-        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: EMCallStatusChangedReason.eCallReason_Hangup)
+      if canRecord() == false {
+        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+        return
+      }
+      
+      if callSession.type == EMCallSessionType.eCallSessionTypeVideo &&
+        (UIApplication.sharedApplication().applicationState != UIApplicationState.Active || CallViewController.canVideo() == false) {
+          error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+          EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+          return
+      }
+      
+      if isShowPicker == nil || isShowPicker!.boolValue == false {
+        EaseMob.sharedInstance().callManager.removeDelegate(self)
+        let callVC = CallViewController(session: callSession, isIncoming: true)
+        callVC.modalPresentationStyle = .OverFullScreen
+        presentViewController(callVC, animated: true, completion: nil)
+        if ((navigationController?.topViewController?.isKindOfClass(ChatViewController)) == true) {
+          let chatVC = navigationController?.topViewController as! ChatViewController
+          chatVC.isViewDidAppear = false
+        }
       }
     }
   }

@@ -121,6 +121,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     "toName": salesName,
     "fromName": userName]
     vc.conversation.ext = ext
+    vc.firstMessage = "Card"
+    vc.order = order
     navigationController?.pushViewController(vc, animated: true)
   }
   

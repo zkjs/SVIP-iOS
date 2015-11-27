@@ -8,6 +8,9 @@
 
 #import "EaseUI.h"
 
+#define kCardWidth 250
+#define kCardHeight 150
+
 @interface EaseBubbleView (Card)
 
 - (void)setupCardBubbleView;

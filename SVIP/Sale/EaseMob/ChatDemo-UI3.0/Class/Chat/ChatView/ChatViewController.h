@@ -8,8 +8,13 @@
 
 #import "EaseUI.h"
 
+@class BookOrder;
+
 #define KNOTIFICATIONNAME_DELETEALLMESSAGE @"RemoveAllMessages"
 
 @interface ChatViewController : EaseMessageViewController
+
+@property (strong, nonatomic) BookOrder *order;
+@property (strong, nonatomic) NSString *firstMessage;
 
 @end

@@ -833,5 +833,22 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 }
 
+#pragma mark - 查询用户(服务员)简单信息
+- (void)getUserInfoWithChatterID:(NSString *)chatterID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"v10/user" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[chatterID dataUsingEncoding:NSUTF8StringEncoding] name:@"find_userid"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    //    DDLogInfo(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+  
+}
 
 @end

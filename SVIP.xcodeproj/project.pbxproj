@@ -1045,7 +1045,6 @@
 		FAF7F56B1C03189400C84601 /* ServicerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicerModel.swift; sourceTree = "<group>"; };
 		FAF7F56D1C031F4100C84601 /* IntegralVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegralVC.swift; sourceTree = "<group>"; };
 		FAF7F56E1C031F4100C84601 /* IntegralVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralVC.xib; sourceTree = "<group>"; };
-		FBCB4BA09F07FAAFB08A1E11 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1186,7 +1185,6 @@
 				40E3A1831BFEFA8200516EC4 /* Search */,
 				40E39FE01BFEFA0C00516EC4 /* Sale */,
 				B20812B71B8DD8650070D96F /* Helper */,
-				40E3A1621BFEFA6400516EC4 /* Hotel */,
 				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
 				B2564D351B4BFAED0098608F /* Register */,
@@ -1329,6 +1327,7 @@
 				40E3A0F01BFEFA0C00516EC4 /* FindListTVC.xib */,
 				40E3A0F11BFEFA0C00516EC4 /* MailListTVC.swift */,
 				40E3A0F21BFEFA0C00516EC4 /* MailListTVC.xib */,
+				40E3A1621BFEFA6400516EC4 /* Hotel */,
 				40E3A0F31BFEFA0C00516EC4 /* SalesTBC.swift */,
 			);
 			path = Sale;
@@ -1918,7 +1917,8 @@
 				40E3A1631BFEFA6400516EC4 /* Controller */,
 				40E3A16D1BFEFA6400516EC4 /* View */,
 			);
-			path = Hotel;
+			name = Hotel;
+			path = ../Hotel;
 			sourceTree = "<group>";
 		};
 		40E3A1631BFEFA6400516EC4 /* Controller */ = {

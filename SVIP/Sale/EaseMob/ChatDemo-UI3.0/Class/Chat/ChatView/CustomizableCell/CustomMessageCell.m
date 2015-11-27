@@ -8,17 +8,13 @@
 
 #import "CustomMessageCell.h"
 #import "EMBubbleView+Gif.h"
-#import "EMBubbleView+Card.h"
 #import "EMGifImage.h"
 #import "UIImageView+HeadImage.h"
 
 #import "EaseMob.h"
 #import "EaseUI.h"
-
-typedef NS_ENUM(NSInteger, eTextTxtType) {
-  eTextTxtText,
-  eTextTxtCard
-};
+#import "EMBubbleView+Card.h"
+#import "SVIP-Swift.h"
 
 @interface CustomMessageCell ()
 
@@ -64,6 +60,20 @@ typedef NS_ENUM(NSInteger, eTextTxtType) {
     }
     _bubbleView.imageView.image = image;
     [self.avatarView imageWithUsername:model.nickname placeholderImage:nil];
+  } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+    NSLog(@"%@", model.text);
+    NSError *jsonError;
+    NSData *objectData = [model.text dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&jsonError];
+    BookOrder *order = [[BookOrder alloc] initWithDictionary:json];
+    NSURL *imageURL = [NSURL URLWithString:order.room_image_URL];
+    
+    [_bubbleView.locationImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"imageDownloadFail"]];
+    NSString *roomInfo = order.roomInfo;
+    NSString *cardInfo = [NSString stringWithFormat:@" %@", roomInfo];
+    _bubbleView.locationLabel.text = cardInfo;
   }
 }
 
@@ -74,7 +84,6 @@ typedef NS_ENUM(NSInteger, eTextTxtType) {
     _bubbleView.imageView.image = [UIImage imageNamed:@"imageDownloadFail"];
   } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
     [_bubbleView setupCardBubbleView];
-    _bubbleView.imageView.image = [UIImage imageNamed:@"imageDownloadFail"];
   }
 }
 
@@ -90,7 +99,9 @@ typedef NS_ENUM(NSInteger, eTextTxtType) {
 + (NSString *)cellIdentifierWithModel:(id<IMessageModel>)model
 {
   if ([model.message.ext objectForKey:@"em_emotion"]) {
-    return model.isSender?@"EaseMessageCellSendGif":@"EaseMessageCellRecvGif";
+    return model.isSender ? @"EaseMessageCellSendGif" : @"EaseMessageCellRecvGif";
+  } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+    return model.isSender ? @"EaseMessageCellSendCard" : @"EaseMessageCellRecvCard";
   } else {
     NSString *identifier = [EaseBaseMessageCell cellIdentifierWithModel:model];
     return identifier;
@@ -102,7 +113,7 @@ typedef NS_ENUM(NSInteger, eTextTxtType) {
   if ([model.message.ext objectForKey:@"em_emotion"]) {
     return 100;
   } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
-    return 200;
+    return kCardHeight;
   } else {
     CGFloat height = [EaseBaseMessageCell cellHeightWithModel:model];
     return height;

@@ -38,16 +38,12 @@ class BookOrder: NSObject {
   var room_rate: NSNumber!
   var arrival_date: String!
   var departure_date: String!
-//  var dayInt: String!
   var phone: NSNumber!
   var userid:String!
   var star:String!
   var map_longitude: double_t!
   var map_latitude: double_t!
-  //for alipay
   var reservation_no: String!
-
-  // Hanton
   var created: String!
   var status: NSNumber!
   var pay_status: NSNumber!
@@ -69,6 +65,44 @@ class BookOrder: NSObject {
         return NSNumber(integer: days)
       } else {
         return NSNumber(integer: 0)
+      }
+    }
+  }
+  
+  var arrivalDateShortStyle: String? {
+    get {
+      if let arrivalDateString = arrival_date {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let arrivalDate = dateFormatter.dateFromString(arrivalDateString)!
+        dateFormatter.dateFormat = "M/dd"
+        return dateFormatter.stringFromDate(arrivalDate)
+      } else {
+        return nil
+      }
+    }
+  }
+  
+  var departureDateShortStyle: String? {
+    get {
+      if let departureDateString = departure_date {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let departureDate = dateFormatter.dateFromString(departureDateString)!
+        dateFormatter.dateFormat = "M/dd"
+        return dateFormatter.stringFromDate(departureDate)
+      } else {
+        return nil
+      }
+    }
+  }
+  
+  var roomInfo: String {
+    get {
+      if let arrivalDateShortStyle = arrivalDateShortStyle {
+        return "\(room_type) | \(arrivalDateShortStyle) | \(dayInt)晚"
+      } else {
+        return "\(room_type) | \(dayInt)晚"
       }
     }
   }
@@ -103,7 +137,6 @@ class BookOrder: NSObject {
   override init() {}
   
   init(dictionary: NSDictionary) {
-   
     arrival_date = dictionary["arrival_date"] as? String
     created = dictionary["created"] as? String
     departure_date = dictionary["departure_date"] as? String
@@ -125,20 +158,13 @@ class BookOrder: NSObject {
     userid = dictionary["userid"] as? String
     map_longitude = dictionary["map_longitude"] as? double_t
     map_latitude = dictionary["map_latitude"] as? double_t
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-//    var startDate: NSDate?
-//    var endDate: NSDate?
-//    if arrival_date != nil {
-//      startDate = dateFormatter.dateFromString(arrival_date)
-//    }
-//    if departure_date != nil {
-//      endDate = dateFormatter.dateFromString(departure_date)
-//    }
-//    if startDate != nil && endDate != nil {
-//      dayInt = String(NSDate.daysFromDate(startDate!, toDate: endDate!))
-//    }
-    room_image_URL = dictionary["room_image_URL"] as? String ?? ""
+    if let imageURL = dictionary["room_image_URL"] as? String {
+      room_image_URL = kBaseURL + imageURL
+    } else if let imageURL = dictionary["image"] as? String {
+      room_image_URL = kBaseURL + imageURL
+    } else {
+      room_image_URL = ""
+    }
   }
   
   init (coder aDecoder: NSCoder!) {
@@ -153,7 +179,6 @@ class BookOrder: NSObject {
     room_rate = aDecoder.decodeObjectForKey("room_rate") as! NSNumber
     arrival_date = aDecoder.decodeObjectForKey("arrival_date") as! String
     departure_date = aDecoder.decodeObjectForKey("departure_date") as! String
-//    dayInt = aDecoder.decodeObjectForKey("dayInt") as! String
     phone = aDecoder.decodeObjectForKey("phone") as! NSNumber
     reservation_no = aDecoder.decodeObjectForKey("reservation_no") as! String
     created = aDecoder.decodeObjectForKey("created") as! String
@@ -177,7 +202,6 @@ class BookOrder: NSObject {
     aCoder.encodeObject(room_rate, forKey:"room_rate")
     aCoder.encodeObject(arrival_date, forKey:"arrival_date")
     aCoder.encodeObject(departure_date, forKey:"departure_date")
-//    aCoder.encodeObject(dayInt, forKey:"dayInt")
     aCoder.encodeObject(phone, forKey:"phone")
     aCoder.encodeObject(reservation_no, forKey:"reservation_no")
     aCoder.encodeObject(created, forKey:"created")
