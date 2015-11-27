@@ -33,7 +33,7 @@ class MainViewCell: UITableViewCell{
   }
   
   func setData(order:BookOrder) {
-    orderStyleLabel.text = "\(order.room_type!) | \(order.dayInt)晚 | \(order.arrival_date!) | " + "￥" + order.room_rate.stringValue
+    orderStyleLabel.text = "\(order.room_type!) | \(order.dayInt)晚 | \(order.departureDateShortStyle!) | " + "￥" + order.room_rate.stringValue
     hotelNameLabel.text = order.fullname
     let url = NSURL(string: kBaseURL)
     let urlStr = url?.URLByAppendingPathComponent("uploads/shops/\(order.shopid).png")

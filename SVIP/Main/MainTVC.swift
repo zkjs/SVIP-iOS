@@ -11,10 +11,11 @@ import CoreLocation
 import CoreBluetooth
 
 class MainTVC: UIViewController {
-  
+
   var localBaseInfo :JSHBaseInfo?
   var order = BookOrder()
   var height:CGFloat!
+  var request:NSURLRequest?
   var originHeight:CGFloat!
   var distance:CLLocationDistance!
   var longitude:double_t!
@@ -26,9 +27,10 @@ class MainTVC: UIViewController {
   var beaconRegions = [String: [String: String]]()
   var myView:MainHeaderView!
   var myFooterView: MainFooterView!
+  var didMainURLLoad = false
   
   @IBOutlet weak var tableView: UITableView!
-  
+
   // MARK: - View Lifecycle
   
   override func loadView() {
@@ -47,9 +49,10 @@ class MainTVC: UIViewController {
     registerNotification()
     
     navigationController?.navigationBarHidden = false
-    
+
     myFooterView = NSBundle.mainBundle().loadNibNamed("MainFooterView", owner: self, options: nil).first as! MainFooterView
     tableView.tableFooterView = myFooterView
+    myFooterView.webView.delegate = self
     originHeight = myFooterView.frame.size.height
     
     sideMenuViewController.delegate = self
@@ -60,7 +63,7 @@ class MainTVC: UIViewController {
     tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
     let nibName2 = UINib(nibName: ActivationCell.nibName(), bundle: nil)
     tableView.registerNib(nibName2, forCellReuseIdentifier: ActivationCell.reuseIdentifier())
-    //    tableView.tableFooterView = UIView()
+//    tableView.tableFooterView = UIView()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -68,26 +71,30 @@ class MainTVC: UIViewController {
     
     navigationController?.navigationBarHidden = true
     tableView.reloadData()
+    if request != nil {
+      self.myFooterView.webView.loadRequest(request!)
+    }
+    
   }
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     navigationController?.navigationBarHidden = false
+    didMainURLLoad = false
   }
   
   deinit {
     unregisterNotification()
   }
   
-  func getAdvertisementData() {
+  func getAdvertisementData() { 
     ZKJSHTTPSessionManager.sharedInstance().getAdvertisementListWithSuccess({ (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
       let advertisement = AdvertisementModel(dic: dic as! [String:AnyObject])
       self.AdvertisementArray.append(advertisement)
       let ad = self.AdvertisementArray[0]
       let url = NSURL(string: ad.url!)
-      let request = NSURLRequest(URL: url!)
-      self.myFooterView.webView.delegate = self
-      self.myFooterView.webView.loadRequest(request)
+       self.request = NSURLRequest(URL: url!)
+      self.myFooterView.webView.loadRequest(self.request!)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -105,8 +112,7 @@ class MainTVC: UIViewController {
         }
         self.tableView.reloadData()
       }
-      
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+    }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
   }
@@ -177,7 +183,7 @@ class MainTVC: UIViewController {
       //      myView.orderStatusLabel.text = "有订单 距离\(String(format: "%.2f", distance/1000))km"
       myView.orderStatusLabel.text = "有订单 距离\(distanceString)"
       myView.userNameLabel.text = JSHStorage.baseInfo().username
-    }
+    } 
   }
   
   func downloadImage(notification: NSNotification) {
@@ -199,7 +205,13 @@ class MainTVC: UIViewController {
   
   @IBAction func pushToHotel(sender: AnyObject) {
     let vc = HotelPageVC()
-    navigationController?.pushViewController(vc, animated: true)
+    let transiton = CATransition()
+   // transiton.duration = 0.5
+    transiton.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    transiton.type = "push"
+    transiton.subtype = kCATransitionFromLeft
+    vc.view.layer.addAnimation(transiton, forKey: nil)
+    navigationController?.pushViewController(vc, animated: false)
   }
   
   @IBAction func pushToSale(sender: AnyObject) {
@@ -228,7 +240,7 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 2
+   return 2
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -284,10 +296,28 @@ extension MainTVC: UIWebViewDelegate {
     // 更新Footer高度
     var frame = myFooterView.frame
     frame.size.height = height
-    print(frame)
     myFooterView.frame = frame
     tableView.contentInset = UIEdgeInsetsMake(0, 0, height - originHeight,0)
     tableView.reloadData()
+    didMainURLLoad = true
+  }
+  
+  func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    if(navigationType == UIWebViewNavigationType.Other && didMainURLLoad == true)//判断是否是点击链接
+    {
+      let urlString = request
+      print(urlString)
+      let vc = WebViewVC()
+      vc.url = urlString
+      navigationController?.pushViewController(vc, animated: true)
+      return false;
+    }
+    else{
+    
+      return true
+    }
+   
+//    return true
   }
 }
 
@@ -398,6 +428,8 @@ extension MainTVC: CLLocationManagerDelegate {
         let longitude = order.map_longitude {
           let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
           self.distance = currentLocation.distanceFromLocation(targetLocation)
+          print(self.distance)
+          self.tableView.reloadData()//不加这句话会导致位置距离变为0
       }
     }
     
@@ -724,8 +756,8 @@ extension MainTVC: DCPathButtonDelegate {
     case(1):
       let vc = FloatingWindowVC()
       vc.view.frame = CGRectMake(0.0, 0.0, view.frame.width, view.frame.height)
-      self.addChildViewController(vc)
       self.view.addSubview(vc.view)
+      self.addChildViewController(vc)
     case(2):
       let vc = LeisureTVC()
       self.navigationController?.pushViewController(vc, animated: true)

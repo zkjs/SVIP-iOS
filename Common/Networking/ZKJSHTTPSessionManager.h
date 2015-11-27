@@ -148,11 +148,13 @@
 - (void)pingPayWithDic:(NSDictionary * )param success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 #pragma mark - ping++发起退款申请
-- (void)pingPayrefundWithID:(NSString *)chargeID amount:(NSString *)amount description:(NSString *)description success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (void)pingPayrefundWithID:(NSString *) chargeID amount:(NSString *)amount description:(NSString *)description success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 #pragma mark - 查询用户(服务员)简单信息
 - (void)getUserInfoWithChatterID:(NSString *)chatterID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+#pragma mark - 添加/删除/显示好友
+- (void)managerFreindListWithFuid:(NSString *)fuid set:(NSString *)set success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
 
 @protocol HTTPSessionManagerDelegate <NSObject>

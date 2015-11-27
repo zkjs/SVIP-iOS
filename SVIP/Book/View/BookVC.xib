@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookVC" customModule="SVIP" customModuleProvider="target">
@@ -358,6 +358,11 @@
                     <exclude reference="lAp-Va-ite"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="MEZ-6x-mif"/>
+                    <exclude reference="Mi1-vv-Ps6"/>
+                    <exclude reference="fGH-wz-t0D"/>
+                    <exclude reference="hed-qb-bVC"/>
+                    <exclude reference="jxO-5Z-rEo"/>
                     <exclude reference="APe-CE-T1O"/>
                     <exclude reference="PjM-pL-WuX"/>
                     <exclude reference="UUU-bI-IFz"/>
@@ -367,11 +372,6 @@
                     <exclude reference="j0M-nq-zoD"/>
                     <exclude reference="ng4-hE-F0w"/>
                     <exclude reference="wJt-oR-x66"/>
-                    <exclude reference="MEZ-6x-mif"/>
-                    <exclude reference="Mi1-vv-Ps6"/>
-                    <exclude reference="fGH-wz-t0D"/>
-                    <exclude reference="hed-qb-bVC"/>
-                    <exclude reference="jxO-5Z-rEo"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -380,6 +380,11 @@
                     <include reference="lAp-Va-ite"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="MEZ-6x-mif"/>
+                    <include reference="Mi1-vv-Ps6"/>
+                    <include reference="fGH-wz-t0D"/>
+                    <include reference="hed-qb-bVC"/>
+                    <exclude reference="jxO-5Z-rEo"/>
                     <include reference="APe-CE-T1O"/>
                     <exclude reference="PjM-pL-WuX"/>
                     <exclude reference="UUU-bI-IFz"/>
@@ -389,11 +394,6 @@
                     <exclude reference="j0M-nq-zoD"/>
                     <exclude reference="ng4-hE-F0w"/>
                     <include reference="wJt-oR-x66"/>
-                    <include reference="MEZ-6x-mif"/>
-                    <include reference="Mi1-vv-Ps6"/>
-                    <include reference="fGH-wz-t0D"/>
-                    <include reference="hed-qb-bVC"/>
-                    <exclude reference="jxO-5Z-rEo"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="349" y="365"/>
