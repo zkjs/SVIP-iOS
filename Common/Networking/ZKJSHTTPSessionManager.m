@@ -830,7 +830,6 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
-
 }
 
 #pragma mark - 查询用户(服务员)简单信息
@@ -848,7 +847,6 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
-  
 }
 
 @end

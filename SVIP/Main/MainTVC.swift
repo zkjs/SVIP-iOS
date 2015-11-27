@@ -100,7 +100,7 @@ class MainTVC: UIViewController {
         if reservation_no == "0" {
           StorageManager.sharedInstance().updateLastOrder(nil)
         } else {
-          let order = BookOrder(dictionary: responseObject as! NSDictionary)
+          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
           StorageManager.sharedInstance().updateLastOrder(order)
         }
         self.tableView.reloadData()

@@ -134,13 +134,27 @@ class BookOrder: NSObject {
     return output
   }
   
-  override init() {}
+  override init() {
+    super.init()
+  }
   
-  init(dictionary: NSDictionary) {
+  init(dictionary: [String: AnyObject]) {
+    super.init()
+    initWithDict(dictionary)
+  }
+  
+  init(json: String) {
+    super.init()
+    if let dictionary = ZKJSTool.convertJSONStringToDictionary(json) as? [String: AnyObject] {
+      initWithDict(dictionary)
+    }
+  }
+  
+  func initWithDict(dictionary: [String: AnyObject]) {
     arrival_date = dictionary["arrival_date"] as? String
     created = dictionary["created"] as? String
     departure_date = dictionary["departure_date"] as? String
-    phone = dictionary["phone"] as? NSNumber 
+    phone = dictionary["phone"] as? NSNumber
     guest = dictionary["guest"] as? String
     guesttel = dictionary["guesttel"] as? String
     remark = dictionary["remark"] as? String ?? ""
@@ -168,7 +182,6 @@ class BookOrder: NSObject {
   }
   
   init (coder aDecoder: NSCoder!) {
-    
     shopid = aDecoder.decodeObjectForKey("shopid") as! NSNumber
     fullname = aDecoder.decodeObjectForKey("fullname") as! String
     room_typeid = aDecoder.decodeObjectForKey("room_typeid") as? String ?? ""
@@ -191,7 +204,6 @@ class BookOrder: NSObject {
   }
   
   func encodeWithCoder(aCoder: NSCoder!) {
-    
     aCoder.encodeObject(shopid, forKey:"shopid")
     aCoder.encodeObject(fullname, forKey:"fullname")
     aCoder.encodeObject(room_typeid, forKey:"room_typeid")

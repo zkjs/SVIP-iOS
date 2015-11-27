@@ -62,14 +62,9 @@
     [self.avatarView imageWithUsername:model.nickname placeholderImage:nil];
   } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
     NSLog(@"%@", model.text);
-    NSError *jsonError;
-    NSData *objectData = [model.text dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&jsonError];
-    BookOrder *order = [[BookOrder alloc] initWithDictionary:json];
+
+    BookOrder *order = [[BookOrder alloc] initWithJson:model.text];
     NSURL *imageURL = [NSURL URLWithString:order.room_image_URL];
-    
     [_bubbleView.locationImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"imageDownloadFail"]];
     NSString *roomInfo = order.roomInfo;
     NSString *cardInfo = [NSString stringWithFormat:@" %@", roomInfo];
