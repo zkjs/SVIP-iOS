@@ -730,13 +730,16 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 #pragma mark - 超级身份输入\绑定 邀请码动作
-- (void)pairInvitationCodeWith:(NSString *)code salesID:(NSString *)salesID shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)pairInvitationCodeWith:(NSString *)code salesID:(NSString *)salesID salesName:(NSString *)salesName salesPhone:(NSString *)salesPhone shopID:(NSString *)shopID shopName:(NSString *)shopName success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"invitation/bdcode" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[[self userName] dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
     [formData appendPartWithFormData:[[self phone] dataUsingEncoding:NSUTF8StringEncoding] name:@"phone"];
     [formData appendPartWithFormData:[code dataUsingEncoding:NSUTF8StringEncoding] name:@"code"];
+    [formData appendPartWithFormData:[salesName dataUsingEncoding:NSUTF8StringEncoding] name:@"sales_name"];
+    [formData appendPartWithFormData:[salesPhone dataUsingEncoding:NSUTF8StringEncoding] name:@"sales_phone"];
+    [formData appendPartWithFormData:[shopName dataUsingEncoding:NSUTF8StringEncoding] name:@"shop_name"];
     [formData appendPartWithFormData:[salesID dataUsingEncoding:NSUTF8StringEncoding] name:@"user_salesid"];
     [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {

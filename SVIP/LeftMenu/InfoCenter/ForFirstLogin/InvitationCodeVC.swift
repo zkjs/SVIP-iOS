@@ -23,6 +23,8 @@ class InvitationCodeVC: UIViewController {
   lazy var code = ""
   lazy var salesid = ""
   lazy var shopid = ""
+  lazy var sales_phone = ""
+  lazy var sales_name = ""
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("InvitationCodeVC", owner:self, options:nil)
@@ -52,7 +54,8 @@ class InvitationCodeVC: UIViewController {
   
   func nextStep() {
     if code.isEmpty == false {
-      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID:salesid, shopID:shopid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopid) ?? ""
+      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopName, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
             if set.boolValue {
@@ -61,10 +64,9 @@ class InvitationCodeVC: UIViewController {
             }
           }
         }
-        
-        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           
-      }
+      })
     } else {
       LoginManager.sharedInstance().afterAnimation()
     }
@@ -109,11 +111,15 @@ extension InvitationCodeVC: UITextFieldDelegate {
         if let set = data["set"] as? NSNumber {
           if set.boolValue {
             self.code = self.codeTextField.text!
-            self.saleNameTextField.text = data["username"] as? String
-            if let avatar = data["user_avatar"] as? String {
+            self.sales_name = data["sales_name"] as? String ?? ""
+            self.saleNameTextField.text = self.sales_name
+            if let avatar = data["sales_avatar"] as? String {
               var url = NSURL(string: kBaseURL)
               url = url?.URLByAppendingPathComponent(avatar)
               self.saleAvatarImageView.sd_setImageWithURL(url)
+            }
+            if let sales_phone = data["sales_phone"] as? String {
+              self.sales_phone = sales_phone
             }
             if let salesid = data["salesid"] as? String {
               self.salesid = salesid
