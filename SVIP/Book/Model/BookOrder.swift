@@ -54,33 +54,6 @@ class BookOrder: NSObject {
   var room_image: UIImage!
   var room_image_URL: String!
   
-  var arrivalDateShortStyle: String? {
-    get {
-      if let arrivalDateString = arrival_date {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let arrivalDate = dateFormatter.dateFromString(arrivalDateString)!
-        dateFormatter.dateFormat = "M/dd"
-        return dateFormatter.stringFromDate(arrivalDate)
-      } else {
-        return nil
-      }
-    }
-  }
-  var departureDateShortStyle: String? {
-    get {
-      if let departureDateString = departure_date {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let departureDate = dateFormatter.dateFromString(departureDateString)!
-        dateFormatter.dateFormat = "M/dd"
-        return dateFormatter.stringFromDate(departureDate)
-      } else {
-        return nil
-      }
-    }
-  }
-  
   var dayInt: NSNumber {
     get {
       if let arrivalDate = arrival_date, let departureDate = departure_date {
