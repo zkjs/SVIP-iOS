@@ -851,13 +851,13 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 #pragma mark - 添加/删除/显示好友
 - (void)managerFreindListWithFuid:(NSString *)fuid set:(NSString *)set success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    [self POST:@" hxim/friend" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [self POST:@"user/friend" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
       [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
       [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
       [formData appendPartWithFormData:[fuid dataUsingEncoding:NSUTF8StringEncoding] name:@"fuid"];
        [formData appendPartWithFormData:[set dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
-      //    DDLogInfo(@"%@", [responseObject description]);
+          DDLogInfo(@"%@", [responseObject description]);
       if ([self isValidTokenWithObject:responseObject]) {
         success(task, responseObject);
       }

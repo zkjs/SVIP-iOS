@@ -273,6 +273,8 @@
 		B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
+		FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B28B51C09453500E8B1C0 /* MailListCell.swift */; };
+		FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5B28B61C09453500E8B1C0 /* MailListCell.xib */; };
 		FAF101C71C046AAE00FC3672 /* TMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF101C61C046AAE00FC3672 /* TMReachability.m */; };
 		FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF212D31BF71DD5002C1C73 /* CityVC.swift */; };
 		FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF212D41BF71DD5002C1C73 /* CityVC.xib */; };
@@ -1008,6 +1010,8 @@
 		B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAddCell.swift; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
+		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
+		FA5B28B61C09453500E8B1C0 /* MailListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListCell.xib; sourceTree = "<group>"; };
 		FAF101C51C046AAE00FC3672 /* TMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMReachability.h; sourceTree = "<group>"; };
 		FAF101C61C046AAE00FC3672 /* TMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMReachability.m; sourceTree = "<group>"; };
 		FAF212D31BF71DD5002C1C73 /* CityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityVC.swift; sourceTree = "<group>"; };
@@ -1333,6 +1337,8 @@
 				40E3A0F21BFEFA0C00516EC4 /* MailListTVC.xib */,
 				40E3A1621BFEFA6400516EC4 /* Hotel */,
 				40E3A0F31BFEFA0C00516EC4 /* SalesTBC.swift */,
+				FA5B28B51C09453500E8B1C0 /* MailListCell.swift */,
+				FA5B28B61C09453500E8B1C0 /* MailListCell.xib */,
 			);
 			path = Sale;
 			sourceTree = "<group>";
@@ -2989,6 +2995,7 @@
 				40817D081B8EAB8800EF188F /* NewItemCell.xib in Resources */,
 				40E3A0F61BFEFA0C00516EC4 /* callRing.mp3 in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
+				FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */,
 				FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */,
@@ -3093,6 +3100,7 @@
 				40E3A0FD1BFEFA0C00516EC4 /* EaseUI.m in Sources */,
 				40E39E411BFEF43800516EC4 /* OrderDetailVC.swift in Sources */,
 				FAF7F55E1C0309D500C84601 /* CustomerServiceTVC.swift in Sources */,
+				FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */,
 				B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */,
 				40E3A1041BFEFA0C00516EC4 /* EMCDDeviceManagerBase.m in Sources */,
 				40E3A10B1BFEFA0C00516EC4 /* MWCaptionView.m in Sources */,

@@ -17,10 +17,21 @@ class MailListTVC: UITableViewController {
     
     let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
     self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    let nibName = UINib(nibName: MailListCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName, forCellReuseIdentifier: MailListCell.reuseIdentifier())
+   loadFriendListData()
   }
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MailListTVC", owner:self, options:nil)
+  }
+  
+  func loadFriendListData() {
+    ZKJSHTTPSessionManager.sharedInstance().managerFreindListWithFuid(nil, set: "showFriend", success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
+      
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   func dismissSelf() {
@@ -31,23 +42,24 @@ class MailListTVC: UITableViewController {
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     // #warning Incomplete implementation, return the number of sections
-    return 0
+    return 1
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-    return 0
+    return 10
   }
   
-  /*
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return MailListCell.height()
+  }
+  
+  
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-  let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-  
-  // Configure the cell...
-  
+  let cell = tableView.dequeueReusableCellWithIdentifier(MailListCell.reuseIdentifier(), forIndexPath: indexPath) as! MailListCell
   return cell
   }
-  */
+  
   
   /*
   // Override to support conditional editing of the table view.
