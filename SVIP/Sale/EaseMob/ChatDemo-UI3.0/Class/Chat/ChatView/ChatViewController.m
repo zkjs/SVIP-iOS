@@ -257,7 +257,9 @@
 
 - (void)sendTextMessage:(NSString *)text
 {
-  [self sendTextMessage:text withExt:self.conversation.ext];
+  NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:self.conversation.ext];
+  ext[@"extType"] = @(0);
+  [self sendTextMessage:text withExt:[ext copy]];
 }
 
 - (void)sendLocationMessageLatitude:(double)latitude
@@ -551,10 +553,10 @@
         NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:self.conversation.ext];
         ext[@"extType"] = @(1);
         [self sendTextMessage:jsonString withExt:ext];
-        [self sendTextMessage:@"你好，帮我预定这间房" withExt:self.conversation.ext];
+        [self sendTextMessage:@"你好，帮我预定这间房"];
       }
     } else {
-      [self sendTextMessage:self.firstMessage withExt:self.conversation.ext];
+      [self sendTextMessage:self.firstMessage];
     }
   }
 }
