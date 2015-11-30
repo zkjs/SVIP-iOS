@@ -133,7 +133,7 @@
 - (void)getSaleInfoWithCode:(NSString *)code success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure ;
 
 #pragma mark - 超级身份输入\绑定 邀请码动作
-- (void)pairInvitationCodeWith:(NSString *)code salesID:(NSString *)salesID salesName:(NSString *)salesName salesPhone:(NSString *)salesPhone shopID:(NSString *)shopID shopName:(NSString *)shopName success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (void)pairInvitationCodeWith:(NSString *)code salesID:(NSString *)salesID phone:(NSString *)phone salesName:(NSString *)salesName salesPhone:(NSString *)salesPhone shopID:(NSString *)shopID shopName:(NSString *)shopName success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 #pragma mark - 提交订单评价
 - (void)submitEvaluationWithScore:(NSString *)score content:(NSString *)content reservation_no:(NSString *)reservation_no success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;

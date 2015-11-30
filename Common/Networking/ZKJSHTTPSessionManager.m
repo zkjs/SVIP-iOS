@@ -50,10 +50,11 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 - (NSString *)userName {
-  return [JSHStorage baseInfo].username;
+  return [JSHAccountManager sharedJSHAccountManager].username;
 }
 
 - (NSString *)phone {
+  NSLog(@"%@",[JSHStorage baseInfo].phone);
   return [JSHStorage baseInfo].phone;
 }
 
@@ -332,7 +333,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 - (void)getUserInfoWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/select?&userid=%@&token=%@", [self userID], [self token]];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -730,12 +731,12 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 #pragma mark - 超级身份输入\绑定 邀请码动作
-- (void)pairInvitationCodeWith:(NSString *)code salesID:(NSString *)salesID salesName:(NSString *)salesName salesPhone:(NSString *)salesPhone shopID:(NSString *)shopID shopName:(NSString *)shopName success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)pairInvitationCodeWith:(NSString *)code salesID:(NSString *)salesID phone:(NSString *)phone salesName:(NSString *)salesName salesPhone:(NSString *)salesPhone shopID:(NSString *)shopID shopName:(NSString *)shopName success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"invitation/bdcode" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[[self userName] dataUsingEncoding:NSUTF8StringEncoding] name:@"username"];
-    [formData appendPartWithFormData:[[self phone] dataUsingEncoding:NSUTF8StringEncoding] name:@"phone"];
+    [formData appendPartWithFormData:[phone dataUsingEncoding:NSUTF8StringEncoding] name:@"phone"];
     [formData appendPartWithFormData:[code dataUsingEncoding:NSUTF8StringEncoding] name:@"code"];
     [formData appendPartWithFormData:[salesName dataUsingEncoding:NSUTF8StringEncoding] name:@"sales_name"];
     [formData appendPartWithFormData:[salesPhone dataUsingEncoding:NSUTF8StringEncoding] name:@"sales_phone"];
@@ -743,7 +744,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[salesID dataUsingEncoding:NSUTF8StringEncoding] name:@"user_salesid"];
     [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }

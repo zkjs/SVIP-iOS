@@ -100,6 +100,7 @@
               baseInfo.openid = _wechatInfoDic[@"openid"];
               baseInfo.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_wechatInfoDic[@"profile_image_url"]]]];
               baseInfo.username = _wechatInfoDic[@"screen_name"];
+              baseInfo.phone = _phoneField.text;
               [JSHStorage saveBaseInfo:baseInfo];
             }];
           } else {

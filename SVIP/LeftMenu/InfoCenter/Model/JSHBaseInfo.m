@@ -25,7 +25,10 @@
 {
   self = [super init];
   if (self) {
+   
     _phone = dic[@"phone"];
+    NSLog(@"%@",_phone);
+    
     if ([_phone isKindOfClass:[NSNull class]]) {
       _phone = nil;
     }

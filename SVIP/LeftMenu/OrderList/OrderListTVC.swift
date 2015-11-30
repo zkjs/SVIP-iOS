@@ -17,7 +17,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+     showHUDInView(view, withLoading: "")
     loadMoreData()
     title = NSLocalizedString("ORDRE_LIST", comment: "")
     let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
@@ -139,7 +139,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           let order = OrderModel(dic: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
-        print(self.orders.count)
+        self.hideHUD()
         self.tableView.reloadData()
         self.tableView.mj_footer.endRefreshing()
         self.orderPage++

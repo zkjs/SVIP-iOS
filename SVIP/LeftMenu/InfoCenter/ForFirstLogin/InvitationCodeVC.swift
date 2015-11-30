@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+@objc enum InvitationCodeVCType: Int {
+  case first
+  case second
+}
 class InvitationCodeVC: UIViewController {
-  
+  lazy var type = InvitationCodeVCType.first
   @IBOutlet weak var codeTextField: UITextField!
   @IBOutlet weak var saleNameTextField: UILabel!
   @IBOutlet weak var saleAvatarImageView: UIImageView! {
@@ -55,12 +58,22 @@ class InvitationCodeVC: UIViewController {
   func nextStep() {
     if code.isEmpty == false {
       let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopid) ?? ""
-      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopName, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      let phone = JSHStorage.baseInfo().phone
+      
+      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone,salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopName, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
-            if set.boolValue {
+            if set.boolValue == true {
               self.sendInvitationCodeNotification()
-              LoginManager.sharedInstance().afterAnimation()
+              if self.type == InvitationCodeVCType.first {
+               LoginManager.sharedInstance().afterAnimation()
+              }else {
+                self.navigationController?.popViewControllerAnimated(true)
+              }
+            } else {
+              
+              ZKJSTool.showMsg("您已经绑定过邀请码")
+            
             }
           }
         }
@@ -68,7 +81,7 @@ class InvitationCodeVC: UIViewController {
           
       })
     } else {
-      LoginManager.sharedInstance().afterAnimation()
+       LoginManager.sharedInstance().afterAnimation()
     }
   }
   
@@ -118,8 +131,8 @@ extension InvitationCodeVC: UITextFieldDelegate {
               url = url?.URLByAppendingPathComponent(avatar)
               self.saleAvatarImageView.sd_setImageWithURL(url)
             }
-            if let sales_phone = data["sales_phone"] as? String {
-              self.sales_phone = sales_phone
+            if let sales_phone = data["sales_phone"] as? NSNumber {
+              self.sales_phone = sales_phone.stringValue
             }
             if let salesid = data["salesid"] as? String {
               self.salesid = salesid

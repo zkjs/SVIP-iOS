@@ -23,5 +23,6 @@
 
 #pragma mark - JSON String to Dictionary
 + (NSDictionary *)convertJSONStringToDictionary:(NSString *)jsonString;
-
+#pragma mark - 判断日期是否过期
++(int)compareOneDay:(NSString *)oneDay withAnotherDay:(NSString *)anotherDay;
 @end

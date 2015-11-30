@@ -10,6 +10,8 @@ import UIKit
 
 class MailListCell: UITableViewCell {
 
+  @IBOutlet weak var contactNameLabel: UILabel!
+  @IBOutlet weak var contactImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -24,6 +26,14 @@ class MailListCell: UITableViewCell {
   
   class func height() -> CGFloat {
     return 80
+  }
+  
+  func setData(contact:ContactModel) {
+    contactNameLabel.text = contact.fname
+    let url = NSURL(string: kBaseURL)
+    let urlStr = url?.URLByAppendingPathComponent("uploads/users/\(contact.userid).jpg")
+    contactImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+
   }
 
 

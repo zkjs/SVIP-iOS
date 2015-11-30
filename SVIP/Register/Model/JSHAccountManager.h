@@ -15,8 +15,9 @@
 @property (readonly, nonatomic) NSString *userid;
 @property (readonly, nonatomic) NSString *token;
 @property (readonly, nonatomic) NSString *username;
-
+@property (readonly, nonatomic) NSString *phone;
 - (void)saveAccountWithDic:(NSDictionary *)dic;
 - (void)saveUserName:(NSString *)userName;
+- (void)saveUserPhone:(NSString *)phone;
 
 @end

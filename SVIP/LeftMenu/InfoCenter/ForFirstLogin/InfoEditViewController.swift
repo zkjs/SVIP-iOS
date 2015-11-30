@@ -9,7 +9,7 @@
 import UIKit
 
 class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
-  
+  var phone : String!
   @IBOutlet weak var bgImgeView: UIImageView!
   @IBOutlet weak var avatarButton: UIButton!
   @IBOutlet weak var username: UITextField!
@@ -72,9 +72,10 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       return
     }
     showHUDInView(view, withLoading: "")
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(username.text, realname: nil, imageData: avatarData, imageName: " ", sex: sexstr, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(username.text, realname: "", imageData: avatarData, imageName: " ", sex: sexstr, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let dic = responseObject as! NSDictionary
-      if dic["set"]!.boolValue! {
+      let data = dic["set"] as! NSNumber
+      if data.boolValue == true{
         // 打开TCP连接
         ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT);
         // 保存用户名

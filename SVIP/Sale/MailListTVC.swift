@@ -9,7 +9,7 @@
 import UIKit
 
 class MailListTVC: UITableViewController {
-  
+  var contactArray = [ContactModel]()
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -19,6 +19,7 @@ class MailListTVC: UITableViewController {
     self.navigationItem.leftBarButtonItem = leftBarButtonItem
     let nibName = UINib(nibName: MailListCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: MailListCell.reuseIdentifier())
+    tableView.tableFooterView = UIView()
    loadFriendListData()
   }
   
@@ -27,8 +28,14 @@ class MailListTVC: UITableViewController {
   }
   
   func loadFriendListData() {
-    ZKJSHTTPSessionManager.sharedInstance().managerFreindListWithFuid(nil, set: "showFriend", success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
-      
+    ZKJSHTTPSessionManager.sharedInstance().managerFreindListWithFuid("", set: "showFriend", success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
+      if let array = responsObjects as? NSArray {
+        for dic in array {
+          let contact = ContactModel(dic: dic as! [String: AnyObject])
+          self.contactArray.append(contact)
+        }
+        self.tableView.reloadData()
+      }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -47,7 +54,7 @@ class MailListTVC: UITableViewController {
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-    return 10
+    return contactArray.count
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -57,6 +64,8 @@ class MailListTVC: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
   let cell = tableView.dequeueReusableCellWithIdentifier(MailListCell.reuseIdentifier(), forIndexPath: indexPath) as! MailListCell
+    let contact = contactArray[indexPath.row]
+    cell.setData(contact)
   return cell
   }
   

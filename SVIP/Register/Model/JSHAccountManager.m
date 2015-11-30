@@ -52,4 +52,10 @@
   [_defaults synchronize];
 }
 
+- (void)saveUserPhone:(NSString *)phone {
+  _phone = phone;
+  [_defaults setObject:_username forKey:@"phone"];
+  [_defaults synchronize];
+}
+
 @end

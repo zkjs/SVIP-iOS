@@ -47,6 +47,7 @@ class MainTVC: UIViewController {
     configureDCPathButton()
     getAdvertisementData()
     registerNotification()
+   
     
     navigationController?.navigationBarHidden = false
 
@@ -270,8 +271,13 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
     if indexPath.section == 0 && indexPath.row == 1 {
       let vc = OrderListTVC()
+      navigationController?.pushViewController(vc, animated: true)
+    }else {
+      let vc = InvitationCodeVC()
+      vc.type = InvitationCodeVCType.first
       navigationController?.pushViewController(vc, animated: true)
     }
   }

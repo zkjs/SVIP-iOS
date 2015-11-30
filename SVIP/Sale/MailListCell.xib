@@ -29,7 +29,7 @@
                             <constraint firstAttribute="height" constant="21" id="q2U-Hl-55X"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -40,6 +40,10 @@
                     <constraint firstItem="KfT-96-7YO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="mSd-Y0-8Tt"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contactImageView" destination="KfT-96-7YO" id="a65-Xb-GS4"/>
+                <outlet property="contactNameLabel" destination="pjO-8L-ObY" id="7lP-BN-K5p"/>
+            </connections>
             <point key="canvasLocation" x="629.5" y="561"/>
         </tableViewCell>
     </objects>
