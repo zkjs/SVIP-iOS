@@ -46,6 +46,22 @@ class HotelPageVC: XLSegmentedPagerTabStripViewController {
     let child3 = LeisureTVC()
     return [child1, child2,child3]
   }
+  
+  private func showLogin() {
+    let vc = LoginVC()
+    navigationController?.presentViewController(vc, animated: true, completion: nil)
+  }
 
 
+}
+
+// MARK: - HTTPSessionManagerDelegate
+
+extension HotelPageVC: HTTPSessionManagerDelegate {
+  
+  func didReceiveInvalidToken() {
+    showLogin()
+    ZKJSTool.showMsg("账号在别处登录，请重新重录")
+  }
+  
 }
