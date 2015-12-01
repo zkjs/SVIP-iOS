@@ -72,6 +72,7 @@ class InvitationCodeVC: UIViewController {
               }
             } else {
               ZKJSTool.showMsg("您已经绑定过邀请码")
+              self.navigationController?.popViewControllerAnimated(true)
             }
           }
         }

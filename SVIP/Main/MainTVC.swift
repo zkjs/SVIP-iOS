@@ -277,7 +277,7 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
       navigationController?.pushViewController(vc, animated: true)
     }else {
       let vc = InvitationCodeVC()
-      vc.type = InvitationCodeVCType.first
+      vc.type = InvitationCodeVCType.second
       navigationController?.pushViewController(vc, animated: true)
     }
   }
@@ -811,5 +811,6 @@ extension MainTVC: DCPathButtonDelegate {
       break
     }
   }
-  
 }
+
+

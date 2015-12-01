@@ -273,6 +273,8 @@
 		B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
+		FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02C5821C0D42D100D0D439 /* LoginVC.swift */; };
+		FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02C5831C0D42D100D0D439 /* LoginVC.xib */; };
 		FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B28B51C09453500E8B1C0 /* MailListCell.swift */; };
 		FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5B28B61C09453500E8B1C0 /* MailListCell.xib */; };
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
@@ -1011,6 +1013,8 @@
 		B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAddCell.swift; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
+		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
 		FA5B28B61C09453500E8B1C0 /* MailListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListCell.xib; sourceTree = "<group>"; };
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
@@ -1192,6 +1196,7 @@
 			isa = PBXGroup;
 			children = (
 				404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */,
+				FA02C5811C0D42B300D0D439 /* Login */,
 				40E3A1831BFEFA8200516EC4 /* Search */,
 				40E39FE01BFEFA0C00516EC4 /* Sale */,
 				B20812B71B8DD8650070D96F /* Helper */,
@@ -2731,6 +2736,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA02C5811C0D42B300D0D439 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA02C5821C0D42D100D0D439 /* LoginVC.swift */,
+				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		FAF35D171BF469DF00918BCF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2946,6 +2960,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */,
 				40E39E351BFEF43800516EC4 /* OrderCell.xib in Resources */,
 				40817D1A1B8EDA7300EF188F /* NewItemFooterView.xib in Resources */,
 				40E3A1801BFEFA6400516EC4 /* LeisureCell.xib in Resources */,
@@ -3131,6 +3146,7 @@
 				40E3A10E1BFEFA0C00516EC4 /* MWPhoto.m in Sources */,
 				FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */,
 				40E3A1421BFEFA0C00516EC4 /* EaseEmotionManager.m in Sources */,
+				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
 				B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */,
 				40E3A1501BFEFA0C00516EC4 /* EaseBubbleView+Text.m in Sources */,

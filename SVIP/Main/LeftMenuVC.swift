@@ -13,6 +13,7 @@ enum LeftButton: Int {
   case InRoomCheckin
   case BookingOrder
   case HistoryOrder
+  
 }
 
 let LeftMenuProportion = 0.75
@@ -53,10 +54,13 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let title4 = NSLocalizedString("ORDER_HISTORY", comment: "")
     let menu4 = ["logo": "ic_zuji",
                  "text": title4]
+   
+    
     dataArray.append(menu1)
     dataArray.append(menu2)
     dataArray.append(menu3)
     dataArray.append(menu4)
+    
   }
   
   func setUI() {
@@ -125,6 +129,7 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         vc = OrderListTVC()
       case .HistoryOrder:
         vc = OrderHistoryListTVC()
+    
       }
       if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
         self.sideMenuViewController.hideMenuViewController()
@@ -140,6 +145,23 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let imageData = userInfo["avtarImage"] as! NSData
     let image = UIImage(data: imageData)
     avatar.setImage(image, forState: UIControlState.Normal)
+  }
+  
+  @IBAction func loginout(sender: AnyObject) {
+    ZKJSHTTPSessionManager.sharedInstance().logoutWithSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+      if let data = responsObject {
+        if let set = data["set"] {
+          if set?.boolValue == true {
+            let window =  UIApplication.sharedApplication().keyWindow
+            window?.rootViewController = JSHHotelRegisterVC()
+          
+          }
+        }
+      }
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
+
   }
   
 }
