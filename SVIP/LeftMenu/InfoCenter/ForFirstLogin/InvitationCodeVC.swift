@@ -71,9 +71,7 @@ class InvitationCodeVC: UIViewController {
                 self.navigationController?.popViewControllerAnimated(true)
               }
             } else {
-              
               ZKJSTool.showMsg("您已经绑定过邀请码")
-            
             }
           }
         }
@@ -86,33 +84,22 @@ class InvitationCodeVC: UIViewController {
   }
   
   func sendInvitationCodeNotification() {
+    // 发送环信透传消息
+    let userID = JSHStorage.baseInfo().userid
+    let userName = JSHStorage.baseInfo().username
+    let phone = JSHStorage.baseInfo().phone
     let timestamp = Int64(NSDate().timeIntervalSince1970)
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHAccountManager.sharedJSHAccountManager().username
-    let dictionary = [
-      "userid": userID,
-      "username": userName,
-      "date": NSNumber(longLong: timestamp),
-    ]
-    do {
-      let jsonData = try NSJSONSerialization.dataWithJSONObject(
-        dictionary,
-        options: NSJSONWritingOptions(rawValue: 0))
-      guard let jsonString = NSString(data: jsonData,
-        encoding: NSASCIIStringEncoding) else { return }
-      let dictionary: [String: AnyObject] = [
-        "type": MessageIMType.UserDefine.rawValue,
-        "fromid": userID,
-        "toid": salesid,
-        "pushalert": "\(userName)已使用邀请码\(code)",
-        "childtype": MessageUserDefineType.InvitationCode.rawValue,
-        "content": jsonString,
-        "timestamp": NSNumber(longLong: timestamp)
-      ]
-      ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-    } catch let error as NSError {
-      print(error)
-    }
+    let cmdChat = EMChatCommand()
+    cmdChat.cmd = "sureOrder"
+    let body = EMCommandMessageBody(chatObject: cmdChat)
+    let message = EMMessage(receiver: salesid, bodies: [body])
+    message.ext = [
+      "userId": userID,
+      "userName": userName,
+      "mobileNo": phone,
+      "date": NSNumber(longLong: timestamp)]
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
   }
 }
 

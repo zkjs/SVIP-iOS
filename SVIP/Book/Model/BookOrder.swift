@@ -174,21 +174,53 @@ class BookOrder: NSObject {
     arrival_date = dictionary["arrival_date"] as? String
     created = dictionary["created"] as? String
     departure_date = dictionary["departure_date"] as? String
-    phone = dictionary["phone"] as? NSNumber
+    if let phone = dictionary["phone"] as? NSNumber {
+      self.phone = phone
+    } else if let phone = dictionary["phone"] as? String {
+      self.phone = NSNumber(integer: Int(phone)!)
+    }
     guest = dictionary["guest"] as? String
     guesttel = dictionary["guesttel"] as? String
     remark = dictionary["remark"] as? String ?? ""
     reservation_no = dictionary["reservation_no"] as? String
-    room_rate = dictionary["room_rate"] as? NSNumber
+    if let room_rate = dictionary["room_rate"] as? NSNumber {
+      self.room_rate = room_rate
+    } else if let room_rate = dictionary["room_rate"] as? String {
+      self.room_rate = NSNumber(double: Double(room_rate)!)
+    }
     room_type = dictionary["room_type"] as? String
     room_typeid = dictionary["room_typeid"] as? String
-    rooms = dictionary["rooms"] as? NSNumber
-    shopid = dictionary["shopid"] as? NSNumber
+    if let rooms = dictionary["rooms"] as? NSNumber {
+      self.rooms = rooms
+    } else if let rooms = dictionary["rooms"] as? String {
+      self.rooms = NSNumber(integer: Int(rooms)!)
+    }
+    if let shopid = dictionary["shopid"] as? NSNumber {
+      self.shopid = shopid
+    } else if let shopid = dictionary["shopid"] as? String {
+      self.shopid = NSNumber(integer: Int(shopid)!)
+    }
     fullname = dictionary["fullname"] as? String
-    status = dictionary["status"] as? NSNumber
-    pay_status = dictionary["pay_status"] as? NSNumber
-    payment = dictionary["payment"] as? NSNumber
-    nologin = dictionary["nologin"] as? NSNumber
+    if let status = dictionary["status"] as? NSNumber {
+      self.status = status
+    } else if let status = dictionary["status"] as? String {
+      self.status = NSNumber(integer: Int(status)!)
+    }
+    if let pay_status = dictionary["pay_status"] as? NSNumber {
+      self.pay_status = pay_status
+    } else if let pay_status = dictionary["pay_status"] as? String {
+      self.pay_status = NSNumber(integer: Int(pay_status)!)
+    }
+    if let payment = dictionary["payment"] as? NSNumber {
+      self.payment = payment
+    } else if let payment = dictionary["payment"] as? String {
+      self.payment = NSNumber(integer: Int(payment)!)
+    }
+    if let nologin = dictionary["nologin"] as? NSNumber {
+      self.nologin = nologin
+    } else if let nologin = dictionary["nologin"] as? String {
+      self.nologin = NSNumber(integer: Int(nologin)!)
+    }
     userid = dictionary["userid"] as? String
     map_longitude = dictionary["map_longitude"] as? double_t
     map_latitude = dictionary["map_latitude"] as? double_t
