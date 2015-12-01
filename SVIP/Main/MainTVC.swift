@@ -596,6 +596,46 @@ extension MainTVC: IChatManagerDelegate, EMCallManagerDelegate {
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
+  func showOrderWithNO(orderNo: String) {
+    let alertView = UIAlertController(title: "订单已生成", message: "请处理你的订单", preferredStyle: .Alert)
+    let showOrderAction = UIAlertAction(title: "查看", style: .Default, handler: { [unowned self] (action: UIAlertAction) -> Void in
+      let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+      vc.reservation_no = orderNo
+      self.navigationController?.pushViewController(vc, animated: true)
+      })
+    let cancelAction = UIAlertAction(title: "忽略", style: .Cancel, handler: nil)
+    alertView.addAction(showOrderAction)
+    alertView.addAction(cancelAction)
+    presentViewController(alertView, animated: true, completion: nil)
+  }
+  
+  func didReceiveCmdMessage(cmdMessage: EMMessage!) {
+    if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
+      if chatObject.cmd == "sureOrder" {
+        // 确定或取消订单
+        if let orderNo = cmdMessage.ext["orderNo"] as? String {
+          self.showOrderWithNO(orderNo)
+        }
+      }
+    }
+  }
+  
+  func didReceiveOfflineCmdMessages(offlineCmdMessages: [AnyObject]!) {
+    for cmdMessage in offlineCmdMessages {
+      if let cmdMessage = cmdMessage as? EMMessage {
+        if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
+          if chatObject.cmd == "sureOrder" {
+            // 确定或取消订单
+            if let orderNo = cmdMessage.ext["orderNo"] as? String {
+              self.showOrderWithNO(orderNo)
+            }
+          }
+        }
+      }
+    }
+  }
+  
   func canRecord() -> Bool {
     var bCanRecord = true
     let audioSession = AVAudioSession.sharedInstance()

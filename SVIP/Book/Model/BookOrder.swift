@@ -8,6 +8,26 @@
 
 import UIKit
 
+// http://doc.zkjinshi.com/index.php?action=artikel&cat=17&id=67&artlang=zh&highlight=pay_status
+// status 订单状态 默认0可取消订单 1已取消订单 2已确认订单 3已经完成的订单 4正在入住中 5已删除订单 int
+enum OrderStatus: Int {
+  case Pending = 0
+  case Canceled = 1
+  case Confirmed = 2
+  case Finised = 3
+  case Checkin = 4
+  case Deleted = 5
+}
+
+// pay_status 支付状态 0未支付,1已支付,3支付一部分,4已退款, 5已挂账   int
+enum PayStatus: Int {
+  case Unpaid = 0
+  case Paid = 1
+  case PayPartial = 3
+  case Refund = 4
+  case OnAccount = 5
+}
+
 class BookOrder: NSObject {
   /*
   set=1是酒店订单  //set=0是普通订单

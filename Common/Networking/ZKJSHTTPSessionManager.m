@@ -460,6 +460,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
   [dic setObject:[self userID] forKey:@"userid"];
   [dic setObject:[self token] forKey:@"token"];
+  [dic setObject:@2 forKey:@"status"];
   [dic setObject:reservation_no forKey:@"reservation_no"];
   [self POST:@"order/update2" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
     DDLogInfo(@"%@", [responseObject description]);

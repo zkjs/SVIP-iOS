@@ -37,7 +37,7 @@
 #pragma mark - 显示提示信息
 
 + (void)showMsg:(NSString *)message {
-  MBProgressHUD * hud = [MBProgressHUD HUDForView:[UIApplication sharedApplication].keyWindow];
+  MBProgressHUD * hud = [self Hud];
   hud.removeFromSuperViewOnHide = YES;
   hud.labelText = message;
   hud.mode = MBProgressHUDModeText;
