@@ -89,8 +89,8 @@ class InvitationCodeVC: UIViewController {
   
   func sendInvitationCodeNotification() {
     // 发送环信透传消息
-    let userID = JSHStorage.baseInfo().userid
-    let userName = JSHStorage.baseInfo().username
+    let userID = JSHAccountManager.sharedJSHAccountManager().userid
+    let userName = JSHAccountManager.sharedJSHAccountManager().username
     let phone = JSHStorage.baseInfo().phone
     let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
     let cmdChat = EMChatCommand()
