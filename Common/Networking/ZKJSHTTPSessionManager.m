@@ -50,12 +50,12 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 - (NSString *)userName {
-  if ([JSHStorage baseInfo].username == nil) {
-  return  [JSHAccountManager sharedJSHAccountManager].username;
-  }else {
+  if ([JSHStorage baseInfo].username) {
     return [JSHStorage baseInfo].username;
+  } else if ([JSHAccountManager sharedJSHAccountManager].userid) {
+    return [JSHAccountManager sharedJSHAccountManager].userid;
   }
-  
+  return @"";
 }
 
 - (NSString *)phone {

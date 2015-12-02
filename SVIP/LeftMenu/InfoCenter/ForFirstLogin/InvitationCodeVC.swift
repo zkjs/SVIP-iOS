@@ -7,12 +7,14 @@
 //
 
 import UIKit
+
 @objc enum InvitationCodeVCType: Int {
   case first
   case second
 }
+
 class InvitationCodeVC: UIViewController {
-  lazy var type = InvitationCodeVCType.first
+  
   @IBOutlet weak var codeTextField: UITextField!
   @IBOutlet weak var saleNameTextField: UILabel!
   @IBOutlet weak var saleAvatarImageView: UIImageView! {
@@ -23,6 +25,7 @@ class InvitationCodeVC: UIViewController {
     }
   }
   
+  lazy var type = InvitationCodeVCType.first
   lazy var code = ""
   lazy var salesid = ""
   lazy var shopid = ""
@@ -89,9 +92,9 @@ class InvitationCodeVC: UIViewController {
     let userID = JSHStorage.baseInfo().userid
     let userName = JSHStorage.baseInfo().username
     let phone = JSHStorage.baseInfo().phone
-    let timestamp = Int64(NSDate().timeIntervalSince1970)
+    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
     let cmdChat = EMChatCommand()
-    cmdChat.cmd = "sureOrder"
+    cmdChat.cmd = "inviteAdd"
     let body = EMCommandMessageBody(chatObject: cmdChat)
     let message = EMMessage(receiver: salesid, bodies: [body])
     message.ext = [
@@ -102,6 +105,7 @@ class InvitationCodeVC: UIViewController {
     message.messageType = .eMessageTypeChat
     EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
   }
+  
 }
 
 extension InvitationCodeVC: UITextFieldDelegate {

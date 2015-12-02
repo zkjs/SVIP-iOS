@@ -177,7 +177,7 @@ class BookOrder: NSObject {
     if let phone = dictionary["phone"] as? NSNumber {
       self.phone = phone
     } else if let phone = dictionary["phone"] as? String {
-      self.phone = NSNumber(integer: Int(phone)!)
+      self.phone = NSNumber(longLong: Int64(phone)!)
     }
     guest = dictionary["guest"] as? String
     guesttel = dictionary["guesttel"] as? String
