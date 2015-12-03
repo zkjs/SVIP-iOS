@@ -63,7 +63,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     dateFormatter.dateFormat = "M-dd"
     startDateLabel.text = dateFormatter.stringFromDate(startDate)
     endDateLabel.text = dateFormatter.stringFromDate(endDate)
-    dateFormatter.dateFormat = "M月d号"
+    dateFormatter.dateFormat = "M月d日"
     dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, dateFormatter.stringFromDate(endDate)])
     rooms = "1"
     
