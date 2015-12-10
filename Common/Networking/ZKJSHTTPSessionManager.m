@@ -101,7 +101,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     if (openID) {
       [formData appendPartWithFormData:[openID dataUsingEncoding:NSUTF8StringEncoding] name:@"openID"];
     }
-    [formData appendPartWithFormData:[phoneOS dataUsingEncoding:NSUTF8StringEncoding] name:@"phone_os"];
+    [formData appendPartWithFormData:[[NSString stringWithFormat:@"ios%@", phoneOS] dataUsingEncoding:NSUTF8StringEncoding] name:@"phone_os"];
     [formData appendPartWithFormData:[os dataUsingEncoding:NSUTF8StringEncoding] name:@"os"];
     [formData appendPartWithFormData:[userStatus dataUsingEncoding:NSUTF8StringEncoding] name:@"userstatus"];
     [formData appendPartWithFormData:[deviceUUID dataUsingEncoding:NSUTF8StringEncoding] name:@"bluetooth_key"];
