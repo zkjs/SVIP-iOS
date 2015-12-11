@@ -155,6 +155,11 @@
 
 #pragma mark - 添加/删除/显示好友
 - (void)managerFreindListWithFuid:(NSString *)fuid set:(NSString *)set success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+#pragma mark - 获取我的专属客服是否存在(邀请码是否激活)
+- (void)InvitationCodeActivatedSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+#pragma mark -获取(涉及商家的)城市列表
+- (void)getCityListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
 
 @protocol HTTPSessionManagerDelegate <NSObject>

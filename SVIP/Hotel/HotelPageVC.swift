@@ -9,9 +9,10 @@
 import UIKit
 
 class HotelPageVC: XLSegmentedPagerTabStripViewController {
+  
   override func viewDidLoad() {
      super.viewDidLoad()
-
+   
     setupSubViews()
   }
   
@@ -45,6 +46,11 @@ class HotelPageVC: XLSegmentedPagerTabStripViewController {
     let child2 = RestaurantTVC()
     let child3 = LeisureTVC()
     return [child1, child2,child3]
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(true)
+    navigationController?.navigationBarHidden = false
   }
   
   private func showLogin() {

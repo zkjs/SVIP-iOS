@@ -26,6 +26,7 @@ target 'SVIP' do
   pod 'DCPathButton'
   pod 'XLPagerTabStrip'
   pod 'Pingpp', '~> 2.1.0'
+  pod 'WMPageController'
 #  use_frameworks!
 #  pod 'ReachabilitySwift', git: 'https://github.com/ashleymills/Reachability.swift'
 end

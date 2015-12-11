@@ -51,10 +51,12 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     let title8 = NSLocalizedString("INVOICE_LIST", comment: "")
     let title9 = NSLocalizedString("PERSONAL_TAGS", comment: "")
     let title10 = NSLocalizedString("ABOUT_US", comment: "")
+    let title11 = NSLocalizedString("LOGIN_OUT", comment: "")
     titleSection2.append(title7)
     titleSection2.append(title8)
     titleSection2.append(title9)
     titleSection2.append(title10)
+    titleSection2.append(title11)
     textArray.append(titleSection2)
   }
   
@@ -70,6 +72,7 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    navigationController?.navigationBarHidden = false
     
     refreshDataAndUI()//每次出现都加在一次数据，并且刷新tableview
   }
@@ -183,10 +186,40 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
       self.navigationController?.pushViewController(PersonalLabelViewController(), animated: true)
     case NSIndexPath(forRow: 3, inSection: 1):
       self.navigationController?.pushViewController(AboutUsViewController(), animated: true)
+    case NSIndexPath(forRow: 4, inSection: 1):
+      let alertController = UIAlertController(title: "确定要登出吗？", message: "", preferredStyle: .ActionSheet)
+      
+      let logoutAction = UIAlertAction(title: "登出", style:.Destructive, handler: { (action: UIAlertAction) -> Void in
+        self.logout()
+      })
+      alertController.addAction(logoutAction)
+      
+      let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+      alertController.addAction(cancelAction)
+      
+      presentViewController(alertController, animated: true, completion: nil)
+
     default:
       break
     }
   }
+  
+  func logout() {
+    
+    ZKJSHTTPSessionManager.sharedInstance().logoutWithSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+      if let data = responsObject {
+        if let set = data["set"] {
+          if set?.boolValue == true {
+            let window =  UIApplication.sharedApplication().keyWindow
+            window?.rootViewController = JSHHotelRegisterVC()
+            
+          }
+        }
+      }
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+    }
+  }
+
   
   //MARK:- ACTIONSHEET
   

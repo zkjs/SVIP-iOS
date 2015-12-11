@@ -15,29 +15,68 @@
                 <rect key="frame" x="0.0" y="0.0" width="350" height="117"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的VIP身份尚未激活，点击激活" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSW-xw-7mF">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的VIP身份尚未激活" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSW-xw-7mF">
                         <rect key="frame" x="70" y="18" width="210" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="210" id="PXY-BM-X43"/>
+                            <constraint firstAttribute="width" constant="210" id="iiL-28-Shg"/>
+                            <constraint firstAttribute="height" constant="20" id="sBY-fV-uZT"/>
                             <constraint firstAttribute="height" constant="20" id="y8H-Lq-gQz"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PXY-BM-X43"/>
+                                <exclude reference="y8H-Lq-gQz"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCE-0W-AmR">
+                        <rect key="frame" x="102" y="46" width="147" height="37"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="37" id="Pyv-h0-W11"/>
+                            <constraint firstAttribute="width" constant="147" id="x7m-PL-Xek"/>
+                        </constraints>
+                        <state key="normal" title="立即激活">
+                            <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSl-wc-nah">
+                        <rect key="frame" x="18" y="88" width="314" height="77"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="77" id="2DL-eF-Ggi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="iSW-xw-7mF" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Iao-xU-7E8"/>
+                    <constraint firstItem="iSW-xw-7mF" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9GV-Ln-EOj"/>
+                    <constraint firstItem="dSl-wc-nah" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="9n9-t9-J9R"/>
+                    <constraint firstItem="gCE-0W-AmR" firstAttribute="top" secondItem="iSW-xw-7mF" secondAttribute="bottom" constant="8" id="HfJ-nJ-mzt"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dSl-wc-nah" secondAttribute="trailing" constant="10" id="Lgi-Va-qbg"/>
+                    <constraint firstItem="iSW-xw-7mF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="MhD-pT-Tcr"/>
+                    <constraint firstItem="dSl-wc-nah" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Onb-8j-a2f"/>
+                    <constraint firstItem="dSl-wc-nah" firstAttribute="top" secondItem="gCE-0W-AmR" secondAttribute="bottom" constant="5" id="PLq-Lh-6ur"/>
                     <constraint firstAttribute="bottomMargin" secondItem="iSW-xw-7mF" secondAttribute="bottom" constant="71" id="QH8-qq-al0"/>
                     <constraint firstItem="iSW-xw-7mF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="bR4-c4-0B1"/>
+                    <constraint firstItem="gCE-0W-AmR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="hAo-jU-TDW"/>
                     <constraint firstAttribute="bottomMargin" secondItem="iSW-xw-7mF" secondAttribute="bottom" constant="10" id="rI4-ru-ber"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="QH8-qq-al0"/>
+                        <exclude reference="bR4-c4-0B1"/>
                         <exclude reference="rI4-ru-ber"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="VIPStatusLabel" destination="iSW-xw-7mF" id="Zkc-vP-W6I"/>
+            </connections>
             <point key="canvasLocation" x="467" y="437"/>
         </tableViewCell>
     </objects>

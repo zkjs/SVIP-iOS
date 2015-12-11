@@ -23,6 +23,15 @@ class FindListTVC: UITableViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+//  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+//    super.init(nibName: "FindListTVC", bundle: nil)
+//  }
+//  
+//  required init?(coder aDecoder: NSCoder) {
+//    super.init(coder: aDecoder)
+//    
+//  }
+  
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("FindListTVC", owner:self, options:nil)
   }

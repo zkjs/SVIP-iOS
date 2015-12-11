@@ -68,6 +68,17 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
         // Do any additional setup after loading the view.
     }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.hidesBarsOnSwipe = true
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = false
+  }
+  
   func setupUI(orderV:OrderContentView) {
     let userid = JSHAccountManager.sharedJSHAccountManager().userid
     let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"

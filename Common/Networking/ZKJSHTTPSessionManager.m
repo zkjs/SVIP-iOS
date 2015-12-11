@@ -50,7 +50,12 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 - (NSString *)userName {
-  return [JSHAccountManager sharedJSHAccountManager].username;
+  if ([JSHStorage baseInfo].username == nil) {
+  return  [JSHAccountManager sharedJSHAccountManager].username;
+  }else {
+    return [JSHStorage baseInfo].username;
+  }
+  
 }
 
 - (NSString *)phone {
@@ -871,5 +876,39 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
       failure(task, error);
     }];
   }
+
+#pragma mark - 获取我的专属客服是否存在(邀请码是否激活)
+- (void)InvitationCodeActivatedSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"user/mysemp" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+
+}
+
+#pragma mark -获取(涉及商家的)城市列表
+- (void)getCityListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"arrive/citylist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+  
+}
+
 
 @end

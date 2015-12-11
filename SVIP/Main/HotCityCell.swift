@@ -24,7 +24,7 @@ class HotCityCell: UITableViewCell {
   }
   
   class func height() -> CGFloat {
-    return 100
+    return 50
   }
   
   override func setSelected(selected: Bool, animated: Bool) {

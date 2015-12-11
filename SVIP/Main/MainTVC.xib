@@ -16,56 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJJ-pl-oJ3">
-                    <rect key="frame" x="0.0" y="540" width="600" height="60"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3f-1z-8CY">
-                            <rect key="frame" x="395" y="5" width="50" height="50"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="CRh-ce-fum"/>
-                                <constraint firstAttribute="width" constant="50" id="qzd-AT-5vl"/>
-                            </constraints>
-                            <state key="normal" image="ic_lianxiren_nor"/>
-                            <connections>
-                                <action selector="pushToSale:" destination="-1" eventType="touchUpInside" id="K86-uO-QmD"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUU-fm-K2g">
-                            <rect key="frame" x="155" y="5" width="50" height="50"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="BdN-0b-GLy"/>
-                                <constraint firstAttribute="height" constant="50" id="nrt-YK-UDy"/>
-                            </constraints>
-                            <state key="normal" title="Button" image="ic_hotel_pre"/>
-                            <connections>
-                                <action selector="pushToHotel:" destination="-1" eventType="touchUpInside" id="vMo-tg-2yv"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="N3f-1z-8CY" firstAttribute="top" secondItem="aJJ-pl-oJ3" secondAttribute="top" constant="20" id="0ef-0j-gIe"/>
-                        <constraint firstItem="nUU-fm-K2g" firstAttribute="centerX" secondItem="aJJ-pl-oJ3" secondAttribute="centerX" constant="-120" id="6ZF-xV-ZdI"/>
-                        <constraint firstAttribute="height" constant="60" id="GT1-Wq-81t"/>
-                        <constraint firstItem="nUU-fm-K2g" firstAttribute="top" secondItem="aJJ-pl-oJ3" secondAttribute="top" constant="20" id="RRz-Au-3as"/>
-                        <constraint firstItem="N3f-1z-8CY" firstAttribute="centerY" secondItem="aJJ-pl-oJ3" secondAttribute="centerY" id="cdD-pg-eM1"/>
-                        <constraint firstAttribute="width" constant="600" id="s2k-UG-kCK"/>
-                        <constraint firstItem="N3f-1z-8CY" firstAttribute="centerX" secondItem="aJJ-pl-oJ3" secondAttribute="centerX" constant="120" id="usQ-cZ-q1W"/>
-                        <constraint firstItem="nUU-fm-K2g" firstAttribute="centerY" secondItem="aJJ-pl-oJ3" secondAttribute="centerY" id="vyL-hD-BOg"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="s2k-UG-kCK"/>
-                            <exclude reference="RRz-Au-3as"/>
-                            <exclude reference="0ef-0j-gIe"/>
-                        </mask>
-                    </variation>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TRu-bX-agy">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="560"/>
                     <animations/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -87,16 +39,15 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="TRu-bX-agy" secondAttribute="bottom" constant="40" id="1d0-mT-khO"/>
+                <constraint firstAttribute="trailing" secondItem="TRu-bX-agy" secondAttribute="trailing" id="49V-Eo-ooa"/>
                 <constraint firstAttribute="trailing" secondItem="TRu-bX-agy" secondAttribute="trailing" id="BCY-vm-Od8"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OQx-20-cqc"/>
-                <constraint firstAttribute="bottom" secondItem="aJJ-pl-oJ3" secondAttribute="bottom" id="OVO-3M-LWF"/>
-                <constraint firstAttribute="trailing" secondItem="aJJ-pl-oJ3" secondAttribute="trailing" id="Vz5-lR-1gX"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ejx-BG-9iZ"/>
-                <constraint firstItem="aJJ-pl-oJ3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gCv-pJ-o00"/>
-                <constraint firstItem="aJJ-pl-oJ3" firstAttribute="top" secondItem="TRu-bX-agy" secondAttribute="bottom" id="gLz-Wf-AtC"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kUe-6c-SnG"/>
-                <constraint firstItem="aJJ-pl-oJ3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oMD-e0-ulf"/>
+                <constraint firstItem="TRu-bX-agy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oel-17-Eze"/>
                 <constraint firstAttribute="trailing" secondItem="TRu-bX-agy" secondAttribute="trailing" id="qwc-Yy-Cmk"/>
+                <constraint firstItem="TRu-bX-agy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tyW-dP-EKk"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vRm-yW-ogR"/>
                 <constraint firstItem="TRu-bX-agy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-22" id="vlU-Eq-vWD"/>
             </constraints>
@@ -104,16 +55,12 @@
                 <mask key="constraints">
                     <exclude reference="ejx-BG-9iZ"/>
                     <exclude reference="kUe-6c-SnG"/>
+                    <exclude reference="oel-17-Eze"/>
                     <exclude reference="qwc-Yy-Cmk"/>
                     <exclude reference="vlU-Eq-vWD"/>
-                    <exclude reference="gCv-pJ-o00"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="338" y="415"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_hotel_pre" width="22" height="22"/>
-        <image name="ic_lianxiren_nor" width="21" height="21"/>
-    </resources>
 </document>

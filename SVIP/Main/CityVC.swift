@@ -8,27 +8,32 @@
 
 import UIKit
 
-class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+typealias sendValueClosure=(string:String)->Void
 
+class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+  var myView:CityHeaderView!
+  var cityArray = [String]()
+  //声明一个闭包
+  var testClosure:sendValueClosure?
+  var city:String!
+  
   @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-      title = "长沙"
-      let item1 = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style: UIBarButtonItemStyle.Plain, target: self, action: "popTotopView:")
-      self.navigationItem.leftBarButtonItem = item1
+     navigationController?.navigationBarHidden = false
+      getCityListData()
       
-      let item2 = UIBarButtonItem(image: UIImage(named: "ic_sousuo"), style: UIBarButtonItemStyle.Plain, target: self, action: "search:")
-      let item3 = UIBarButtonItem(image: UIImage(named: "ic_tianjia"), style: UIBarButtonItemStyle.Plain, target: self, action: "more:")
-      navigationItem.setRightBarButtonItems([item3,item2], animated: true)
+      let leftBarBtn = UIBarButtonItem(title: "|想去哪里", style: .Plain, target: self,
+        action: nil)
+      self.navigationItem.leftBarButtonItem = leftBarBtn
+     // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.hx_colorWithHexString("ffc56e")]
+      let item2 = UIBarButtonItem(image: UIImage(named: "ic_quxiao_b"), style: UIBarButtonItemStyle.Plain, target: self, action: "cancle:")
+      navigationItem.rightBarButtonItem = item2
+      
       let nibName = UINib(nibName: HotCityCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName, forCellReuseIdentifier: HotCityCell.reuseIdentifier())
-      let nibName1 = UINib(nibName: RecentCityCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName1, forCellReuseIdentifier: RecentCityCell.reuseIdentifier())
+      tableView.registerNib(nibName, forCellReuseIdentifier: HotCityCell.reuseIdentifier())                                                            
       tableView.tableFooterView = UIView()
-      navigationController?.navigationBar.translucent = false
-      navigationController?.navigationBar.barStyle = UIBarStyle.Black
-      navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-      
+      self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
 
         // Do any additional setup after loading the view.
     }
@@ -40,100 +45,84 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("CityVC", owner:self, options:nil)
   }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(true)
+    
+    tableView.reloadData()
+    
+    
+  }
+  
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
     return UIStatusBarStyle.LightContent
   }
   
-  
-  func popTotopView(sender:UIBarButtonItem) {
-    navigationController?.popViewControllerAnimated(true)
+  func cancle(sender:UIBarButtonItem) {
+    self.dismissViewControllerAnimated(true) { () -> Void in
+     }
+  }
+  func getCityListData() {
+    ZKJSHTTPSessionManager.sharedInstance().getCityListSuccess({ (task: NSURLSessionDataTask!, responsObject: AnyObject!) -> Void in
+      if let array = responsObject as? NSArray {
+        for dic in array {
+          let string = dic["city"] as! String
+          self.cityArray.append(string)
+        }
+        self.tableView.reloadData()
+      }
+      
+      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
-  func search(sender:UIBarButtonItem) {
-    
-  }
-  
-  func more(sender:UIBarButtonItem) {
-    
-  }
   
   //MARK -TableView Data Source
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
+    return 1
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 2 {
-      return 10
-    }else {
-      return 1
-    }
+    return cityArray.count
   }
+  
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if section == 0 {
-      return 50
-    }else {
-     return 20
-    }
+    return 50
     
   }
+  
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.section == 0 {
-      return HotCityCell.height()
-    }
-    if indexPath.section == 1 {
-      return RecentCityCell.height()
-    }
-    else
-    {
-      return 50
-    }
+    return 50
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.section == 0 {
+    
       let cell = tableView.dequeueReusableCellWithIdentifier(HotCityCell.reuseIdentifier(), forIndexPath: indexPath) as! HotCityCell
-      
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
+     cell.textLabel?.text = cityArray[indexPath.row]
       return cell
-    }
-    if indexPath.section == 1 {
-      let cell = tableView.dequeueReusableCellWithIdentifier(RecentCityCell.reuseIdentifier(), forIndexPath: indexPath) as! RecentCityCell
-      return cell
-    }else {
-      let cell = tableView.dequeueReusableCellWithIdentifier(RecentCityCell.reuseIdentifier(), forIndexPath: indexPath) as! RecentCityCell
-      return cell
-    }
+  
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if section == 0 {
-      let search = UISearchBar()
-      search.backgroundColor = UIColor.blackColor()
-     
-      return search
-    }else {
-      return nil
+    myView = NSBundle.mainBundle().loadNibNamed("CityHeaderView", owner: self, options: nil).first as! CityHeaderView
+      return myView
     }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    /**
+    先判断闭包是否存在，然后再调用
+    */
+    let string = cityArray[indexPath.row]
+    if (testClosure != nil){
+      testClosure!(string: string)
+    }
+
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
     
     
     
     
   }
-  
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == 0 {
-      return "最近访问的城市"
-    }
-    if section == 1 {
-      return "热门城市"
-    }
-    else {
-      return "A"
-    }
-  }
-  
-    
-
-
-
-}

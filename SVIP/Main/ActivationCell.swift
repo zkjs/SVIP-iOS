@@ -10,6 +10,7 @@ import UIKit
 
 class ActivationCell: UITableViewCell {
   
+  @IBOutlet weak var VIPStatusLabel: UILabel!
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -23,7 +24,7 @@ class ActivationCell: UITableViewCell {
   }
   
   class func height() -> CGFloat {
-    return 40
+    return 90
   }
   
   override func setSelected(selected: Bool, animated: Bool) {

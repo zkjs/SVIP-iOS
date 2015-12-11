@@ -14,10 +14,10 @@ class MailListTVC: UITableViewController {
     super.viewDidLoad()
     
     title = "通讯录"
-    
     let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissSelf")
     self.navigationItem.leftBarButtonItem = leftBarButtonItem
     let nibName = UINib(nibName: MailListCell.nibName(), bundle: nil)
+    tableView.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height)
     tableView.registerNib(nibName, forCellReuseIdentifier: MailListCell.reuseIdentifier())
     tableView.tableFooterView = UIView()
    loadFriendListData()
@@ -26,6 +26,18 @@ class MailListTVC: UITableViewController {
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MailListTVC", owner:self, options:nil)
   }
+  
+//  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+//    super.init(nibName: "MailListTVC", bundle: nil)
+//  }
+//  
+//  required init?(coder aDecoder: NSCoder) {
+//    super.init(coder: aDecoder)
+//
+//  }
+
+  
+  
   
   func loadFriendListData() {
     ZKJSHTTPSessionManager.sharedInstance().managerFreindListWithFuid("", set: "showFriend", success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in

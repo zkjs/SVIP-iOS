@@ -24,14 +24,13 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.title = @"服务中心";
+  //self.title = @"服务中心";
   
   [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
   
   self.showRefreshHeader = YES;
   self.delegate = self;
   self.dataSource = self;
-  
   [self tableViewDidTriggerHeaderRefresh];
   
   self.tableView.frame = self.view.bounds;
@@ -40,6 +39,8 @@
   
   [self removeEmptyConversationsFromDB];
 }
+
+
 
 - (void)removeEmptyConversationsFromDB
 {

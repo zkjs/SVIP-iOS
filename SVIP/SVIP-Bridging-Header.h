@@ -47,3 +47,6 @@
 #import "CallViewController.h"
 #import "EaseUI.h"
 #import "TMReachability.h"
+#import "BaseViewController.h"
+#import "WMPageController.h"
+#import <AVFoundation/AVFoundation.h>

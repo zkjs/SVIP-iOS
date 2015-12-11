@@ -1,31 +1,35 @@
 //
-//  RecentCityCell.swift
+//  OrderCell.swift
 //  SVIP
 //
-//  Created by AlexBang on 15/11/18.
+//  Created by AlexBang on 15/12/8.
 //  Copyright © 2015年 zkjinshi. All rights reserved.
 //
 
 import UIKit
 
-class RecentCityCell: UITableViewCell {
+class OrderCustomCell: UITableViewCell {
 
-  @IBOutlet weak var JCTagView: JCTagListView!
+  @IBOutlet weak var hotelnameLaben: UILabel!
+  @IBOutlet weak var priceLabel: UILabel!
+  @IBOutlet weak var hotelImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+  
   class func reuseIdentifier() -> String {
-    return "RecentCityCell"
+    return "OrderCustomCell"
   }
   
   class func nibName() -> String {
-    return "RecentCityCell"
+    return "OrderCustomCell"
   }
   
   class func height() -> CGFloat {
-    return 200
+    return 300
   }
+
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

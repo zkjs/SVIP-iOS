@@ -119,8 +119,14 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
+    navigationController?.hidesBarsOnSwipe = true
     loadData()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = false
   }
   
   // MARK: - Private

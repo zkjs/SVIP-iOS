@@ -11,18 +11,19 @@ import UIKit
   case chat
   case customerService
 }
-class HotelTVC: UITableViewController,XLPagerTabStripChildItem {
+class HotelTVC: UITableViewController {
     var shops = [NSDictionary]()
   var dataArray = NSMutableArray()
   lazy var type = HotelTVCType.chat
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      title = "酒店"
       tableView.tableFooterView = UIView()
       tableView.showsVerticalScrollIndicator = false
       let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
       tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
+      let item1 = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style:.Plain, target: self, action: "popTotopView:")
+      self.navigationItem.leftBarButtonItem = item1
       loadData()
     }
   
@@ -32,13 +33,19 @@ class HotelTVC: UITableViewController,XLPagerTabStripChildItem {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
-    self.tableView.reloadData()
+    self.hidesBottomBarWhenPushed = false
+    navigationController?.navigationBarHidden = false
   }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+      
         // Dispose of any resources that can be recreated.
     }
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    //self.hidesBottomBarWhenPushed = false
+  }
   
   private func loadData() {
     ZKJSHTTPSessionManager .sharedInstance() .getAllShopInfoWithPage(1, key: nil, isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -54,15 +61,7 @@ class HotelTVC: UITableViewController,XLPagerTabStripChildItem {
     }
   }
 
-  // MARK: - XLPagerTabStripChildItem Delegate
-  
-  func titleForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> String! {
-    return "酒店"
-  }
-  
-  func colorForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> UIColor! {
-    return UIColor.whiteColor()
-  }
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -70,8 +70,6 @@
 		40E39E431BFEF43800516EC4 /* OrderHistoryListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E39E301BFEF43800516EC4 /* OrderHistoryListTVC.swift */; };
 		40E39E441BFEF43800516EC4 /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E39E311BFEF43800516EC4 /* OrderListTVC.swift */; };
 		40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */; };
-		40E39FBD1BFEF59700516EC4 /* RecentCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148F1BFC64F300D3BED4 /* RecentCityCell.swift */; };
-		40E39FBE1BFEF59700516EC4 /* RecentCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF414901BFC64F400D3BED4 /* RecentCityCell.xib */; };
 		40E3A0F51BFEFA0C00516EC4 /* EMGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E39FE91BFEFA0C00516EC4 /* EMGifImage.m */; };
 		40E3A0F61BFEFA0C00516EC4 /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 40E39FEB1BFEFA0C00516EC4 /* callRing.mp3 */; };
 		40E3A0F71BFEFA0C00516EC4 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E39FED1BFEFA0C00516EC4 /* CallViewController.m */; };
@@ -278,6 +276,11 @@
 		FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B28B51C09453500E8B1C0 /* MailListCell.swift */; };
 		FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5B28B61C09453500E8B1C0 /* MailListCell.xib */; };
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
+		FAF02EED1C15246E00B86B28 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EEC1C15246E00B86B28 /* BaseViewController.m */; };
+		FAF02EF31C155B1400B86B28 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF11C155B1400B86B28 /* SettingVC.swift */; };
+		FAF02EF41C155B1400B86B28 /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF21C155B1400B86B28 /* SettingVC.xib */; };
+		FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF51C159DB000B86B28 /* SalesVC.swift */; };
+		FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF61C159DB000B86B28 /* SalesVC.xib */; };
 		FAF101C71C046AAE00FC3672 /* TMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF101C61C046AAE00FC3672 /* TMReachability.m */; };
 		FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF212D31BF71DD5002C1C73 /* CityVC.swift */; };
 		FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF212D41BF71DD5002C1C73 /* CityVC.xib */; };
@@ -289,6 +292,10 @@
 		FAF2495D1BFF0F1C001E7E41 /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2495C1BFF0F1C001E7E41 /* SearchHeaderView.xib */; };
 		FAF249601BFF1008001E7E41 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2495E1BFF1008001E7E41 /* SearchResultVC.swift */; };
 		FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2495F1BFF1008001E7E41 /* SearchResultVC.xib */; };
+		FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF253F01C12C5C800768A4D /* CustonCell.swift */; };
+		FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F11C12C5C800768A4D /* CustonCell.xib */; };
+		FAF253F61C12CE8100768A4D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF253F51C12CE8100768A4D /* HomeHeaderView.swift */; };
+		FAF253F81C12CE8A00768A4D /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */; };
 		FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */; };
 		FAF2E0621BF1868A008DD5BC /* MainTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0601BF1868A008DD5BC /* MainTVC.xib */; };
 		FAF2E06D1BF1CBCB008DD5BC /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */; };
@@ -304,6 +311,7 @@
 		FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */; };
 		FAF47D951C05B1DE00F522C8 /* MainFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF47D941C05B1DE00F522C8 /* MainFooterView.swift */; };
 		FAF47D971C05B1E900F522C8 /* MainFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF47D961C05B1E900F522C8 /* MainFooterView.xib */; };
+		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
 		FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */; };
 		FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */; };
 		FAF7F55A1C02EB4400C84601 /* PrivilegeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5581C02EB4300C84601 /* PrivilegeCVCell.swift */; };
@@ -315,6 +323,16 @@
 		FAF7F56C1C03189400C84601 /* ServicerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F56B1C03189400C84601 /* ServicerModel.swift */; };
 		FAF7F56F1C031F4100C84601 /* IntegralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F56D1C031F4100C84601 /* IntegralVC.swift */; };
 		FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F56E1C031F4100C84601 /* IntegralVC.xib */; };
+		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
+		FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA518F1C16C62900BF04F2 /* HomeVC.xib */; };
+		FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */; };
+		FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA51971C16D80400BF04F2 /* OrderCustomCell.xib */; };
+		FAFA519B1C16F32000BF04F2 /* CityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA519A1C16F32000BF04F2 /* CityHeaderView.swift */; };
+		FAFA519D1C16F32900BF04F2 /* CityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA519C1C16F32900BF04F2 /* CityHeaderView.xib */; };
+		FAFA51A01C16FFF200BF04F2 /* UnActivationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA519E1C16FFF200BF04F2 /* UnActivationCell.swift */; };
+		FAFA51A11C16FFF200BF04F2 /* UnActivationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA519F1C16FFF200BF04F2 /* UnActivationCell.xib */; };
+		FAFB96301C1981AA0031EE09 /* ComprehensiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFB962E1C1981AA0031EE09 /* ComprehensiveVC.swift */; };
+		FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFB962F1C1981AA0031EE09 /* ComprehensiveVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1018,6 +1036,12 @@
 		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
 		FA5B28B61C09453500E8B1C0 /* MailListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListCell.xib; sourceTree = "<group>"; };
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		FAF02EEB1C15246E00B86B28 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		FAF02EEC1C15246E00B86B28 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		FAF02EF11C155B1400B86B28 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		FAF02EF21C155B1400B86B28 /* SettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
+		FAF02EF51C159DB000B86B28 /* SalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
+		FAF02EF61C159DB000B86B28 /* SalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesVC.xib; sourceTree = "<group>"; };
 		FAF101C51C046AAE00FC3672 /* TMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMReachability.h; sourceTree = "<group>"; };
 		FAF101C61C046AAE00FC3672 /* TMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMReachability.m; sourceTree = "<group>"; };
 		FAF212D31BF71DD5002C1C73 /* CityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityVC.swift; sourceTree = "<group>"; };
@@ -1030,6 +1054,10 @@
 		FAF2495C1BFF0F1C001E7E41 /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
 		FAF2495E1BFF1008001E7E41 /* SearchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		FAF2495F1BFF1008001E7E41 /* SearchResultVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultVC.xib; sourceTree = "<group>"; };
+		FAF253F01C12C5C800768A4D /* CustonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustonCell.swift; sourceTree = "<group>"; };
+		FAF253F11C12C5C800768A4D /* CustonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustonCell.xib; sourceTree = "<group>"; };
+		FAF253F51C12CE8100768A4D /* HomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
 		FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		FAF2E0601BF1868A008DD5BC /* MainTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTVC.xib; sourceTree = "<group>"; };
 		FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
@@ -1044,10 +1072,9 @@
 		FAF40DE91BF0807E002C77A6 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityCell.swift; sourceTree = "<group>"; };
 		FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCityCell.xib; sourceTree = "<group>"; };
-		FAF4148F1BFC64F300D3BED4 /* RecentCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentCityCell.swift; sourceTree = "<group>"; };
-		FAF414901BFC64F400D3BED4 /* RecentCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentCityCell.xib; sourceTree = "<group>"; };
 		FAF47D941C05B1DE00F522C8 /* MainFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFooterView.swift; sourceTree = "<group>"; };
 		FAF47D961C05B1E900F522C8 /* MainFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainFooterView.xib; sourceTree = "<group>"; };
+		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeVC.swift; sourceTree = "<group>"; };
 		FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivilegeVC.xib; sourceTree = "<group>"; };
 		FAF7F5581C02EB4300C84601 /* PrivilegeCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeCVCell.swift; sourceTree = "<group>"; };
@@ -1059,6 +1086,16 @@
 		FAF7F56B1C03189400C84601 /* ServicerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicerModel.swift; sourceTree = "<group>"; };
 		FAF7F56D1C031F4100C84601 /* IntegralVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegralVC.swift; sourceTree = "<group>"; };
 		FAF7F56E1C031F4100C84601 /* IntegralVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralVC.xib; sourceTree = "<group>"; };
+		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		FAFA518F1C16C62900BF04F2 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
+		FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCustomCell.swift; sourceTree = "<group>"; };
+		FAFA51971C16D80400BF04F2 /* OrderCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCustomCell.xib; sourceTree = "<group>"; };
+		FAFA519A1C16F32000BF04F2 /* CityHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityHeaderView.swift; sourceTree = "<group>"; };
+		FAFA519C1C16F32900BF04F2 /* CityHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityHeaderView.xib; sourceTree = "<group>"; };
+		FAFA519E1C16FFF200BF04F2 /* UnActivationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnActivationCell.swift; sourceTree = "<group>"; };
+		FAFA519F1C16FFF200BF04F2 /* UnActivationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnActivationCell.xib; sourceTree = "<group>"; };
+		FAFB962E1C1981AA0031EE09 /* ComprehensiveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComprehensiveVC.swift; sourceTree = "<group>"; };
+		FAFB962F1C1981AA0031EE09 /* ComprehensiveVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComprehensiveVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1163,6 +1200,8 @@
 				FAF414891BFC635900D3BED4 /* MainVC */,
 				FAF212D71BF73F83002C1C73 /* ActivationCell.swift */,
 				FAF212D81BF73F83002C1C73 /* ActivationCell.xib */,
+				FAFA519E1C16FFF200BF04F2 /* UnActivationCell.swift */,
+				FAFA519F1C16FFF200BF04F2 /* UnActivationCell.xib */,
 				FAF4148A1BFC638700D3BED4 /* CityVC */,
 				FAF35D171BF469DF00918BCF /* Model */,
 			);
@@ -1204,6 +1243,7 @@
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
 				B2564D351B4BFAED0098608F /* Register */,
 				B2A6420F1B47C2A700AF0F28 /* Book */,
+				FAF02EF01C155AD500B86B28 /* Setting */,
 				4052664D1B41283900B277BE /* Main */,
 				B20812611B8DD7950070D96F /* LeftMenu */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
@@ -1347,6 +1387,8 @@
 				FAA05E2C1C0995BF008605B7 /* ContactModel.swift */,
 				40E3A1621BFEFA6400516EC4 /* Hotel */,
 				40E3A0F31BFEFA0C00516EC4 /* SalesTBC.swift */,
+				FAF02EF51C159DB000B86B28 /* SalesVC.swift */,
+				FAF02EF61C159DB000B86B28 /* SalesVC.xib */,
 			);
 			path = Sale;
 			sourceTree = "<group>";
@@ -1932,6 +1974,8 @@
 			isa = PBXGroup;
 			children = (
 				40E3A16C1BFEFA6400516EC4 /* HotelPageVC.swift */,
+				FAFB962E1C1981AA0031EE09 /* ComprehensiveVC.swift */,
+				FAFB962F1C1981AA0031EE09 /* ComprehensiveVC.xib */,
 				40E3A1631BFEFA6400516EC4 /* Controller */,
 				40E3A16D1BFEFA6400516EC4 /* View */,
 			);
@@ -2745,6 +2789,29 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		FAF02EF01C155AD500B86B28 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				FAF02EF11C155B1400B86B28 /* SettingVC.swift */,
+				FAF02EF21C155B1400B86B28 /* SettingVC.xib */,
+			);
+			name = Setting;
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FAF253F41C12CE5600768A4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FAF253F01C12C5C800768A4D /* CustonCell.swift */,
+				FAF253F11C12C5C800768A4D /* CustonCell.xib */,
+				FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */,
+				FAFA51971C16D80400BF04F2 /* OrderCustomCell.xib */,
+				FAF253F51C12CE8100768A4D /* HomeHeaderView.swift */,
+				FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		FAF35D171BF469DF00918BCF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2756,8 +2823,13 @@
 		FAF414891BFC635900D3BED4 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				FAF02EEB1C15246E00B86B28 /* BaseViewController.h */,
+				FAF02EEC1C15246E00B86B28 /* BaseViewController.m */,
+				FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */,
 				FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */,
 				FAF2E0601BF1868A008DD5BC /* MainTVC.xib */,
+				FAFA518E1C16C62900BF04F2 /* HomeVC.swift */,
+				FAFA518F1C16C62900BF04F2 /* HomeVC.xib */,
 				FAF3D4551C07F22800C6B107 /* WebViewVC.swift */,
 				FAF3D4561C07F22800C6B107 /* WebViewVC.xib */,
 				FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */,
@@ -2768,6 +2840,7 @@
 				FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */,
 				FAF47D941C05B1DE00F522C8 /* MainFooterView.swift */,
 				FAF47D961C05B1E900F522C8 /* MainFooterView.xib */,
+				FAF253F41C12CE5600768A4D /* View */,
 			);
 			name = MainVC;
 			sourceTree = "<group>";
@@ -2779,8 +2852,8 @@
 				FAF212D41BF71DD5002C1C73 /* CityVC.xib */,
 				FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */,
 				FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */,
-				FAF4148F1BFC64F300D3BED4 /* RecentCityCell.swift */,
-				FAF414901BFC64F400D3BED4 /* RecentCityCell.xib */,
+				FAFA519A1C16F32000BF04F2 /* CityHeaderView.swift */,
+				FAFA519C1C16F32900BF04F2 /* CityHeaderView.xib */,
 			);
 			name = CityVC;
 			sourceTree = "<group>";
@@ -2968,10 +3041,10 @@
 				40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				FAF35D1D1BF46D8700918BCF /* WebViewCell.xib in Resources */,
-				40E39FBE1BFEF59700516EC4 /* RecentCityCell.xib in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
 				40E3A1821BFEFA6400516EC4 /* RestaurantCell.xib in Resources */,
+				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
 				40E3A1601BFEFA0C00516EC4 /* MailListTVC.xib in Resources */,
 				40E3A1891BFEFA8300516EC4 /* SearchBarView.xib in Resources */,
 				B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */,
@@ -2981,6 +3054,8 @@
 				40E39E331BFEF43800516EC4 /* BookingOrderDetailVC.xib in Resources */,
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
 				B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */,
+				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
+				FAF02EF41C155B1400B86B28 /* SettingVC.xib in Resources */,
 				40E3A1791BFEFA6400516EC4 /* LeisureTVC.xib in Resources */,
 				FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */,
 				FAF7F55B1C02EB4400C84601 /* PrivilegeCVCell.xib in Resources */,
@@ -3003,6 +3078,7 @@
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				40E39E3C1BFEF43800516EC4 /* OrderListHeaderView.xib in Resources */,
 				40E39E401BFEF43800516EC4 /* OrderDetailsVC.xib in Resources */,
+				FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */,
 				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
 				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				40E39E391BFEF43800516EC4 /* OrderListCell.xib in Resources */,
@@ -3010,21 +3086,26 @@
 				B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				B21250CE1B74AFF00056835D /* LeftMenuVC.xib in Resources */,
+				FAFA519D1C16F32900BF04F2 /* CityHeaderView.xib in Resources */,
 				40817D081B8EAB8800EF188F /* NewItemCell.xib in Resources */,
 				40E3A0F61BFEFA0C00516EC4 /* callRing.mp3 in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
+				FAF253F81C12CE8A00768A4D /* HomeHeaderView.xib in Resources */,
 				FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */,
 				FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */,
 				FAF212DA1BF73F83002C1C73 /* ActivationCell.xib in Resources */,
+				FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				40E39E421BFEF43800516EC4 /* OrderDetailVC.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
 				B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
 				40E3A1771BFEFA6400516EC4 /* HotelTVC.xib in Resources */,
+				FAFA51A11C16FFF200BF04F2 /* UnActivationCell.xib in Resources */,
 				FAF47D971C05B1E900F522C8 /* MainFooterView.xib in Resources */,
+				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
 				FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */,
 				FAF3D4581C07F22800C6B107 /* WebViewVC.xib in Resources */,
 				40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */,
@@ -3094,9 +3175,9 @@
 				40E3A1491BFEFA0C00516EC4 /* EaseUserCell.m in Sources */,
 				40E3A10A1BFEFA0C00516EC4 /* MBProgressHUD+Add.m in Sources */,
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
+				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
 				FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */,
 				B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */,
-				40E39FBD1BFEF59700516EC4 /* RecentCityCell.swift in Sources */,
 				40E3A0FC1BFEFA0C00516EC4 /* EMBubbleView+Gif.m in Sources */,
 				FAF47D951C05B1DE00F522C8 /* MainFooterView.swift in Sources */,
 				40E3A1071BFEFA0C00516EC4 /* EMVoiceConverter.mm in Sources */,
@@ -3107,6 +3188,7 @@
 				FAF7F5681C030E8B00C84601 /* CustomerServiceCell.swift in Sources */,
 				404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */,
 				40E3A1551BFEFA0C00516EC4 /* EaseChatToolbarItem.m in Sources */,
+				FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */,
 				B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */,
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
 				40E3A1581BFEFA0C00516EC4 /* EaseFaceView.m in Sources */,
@@ -3171,6 +3253,7 @@
 				40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
 				40E3A14D1BFEFA0C00516EC4 /* EaseBubbleView+File.m in Sources */,
+				FAFA519B1C16F32000BF04F2 /* CityHeaderView.swift in Sources */,
 				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
 				40E3A1271BFEFA0C00516EC4 /* PSTCollectionViewController.m in Sources */,
 				40E3A0FE1BFEFA0C00516EC4 /* EMAudioPlayerUtil.m in Sources */,
@@ -3213,12 +3296,14 @@
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				40E3A1281BFEFA0C00516EC4 /* PSTCollectionViewData.m in Sources */,
+				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				40E3A1381BFEFA0C00516EC4 /* NSObject+EaseMob.m in Sources */,
 				B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */,
 				40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */,
 				40E3A1331BFEFA0C00516EC4 /* EaseConversationModel.m in Sources */,
 				40E3A10F1BFEFA0C00516EC4 /* MWPhotoBrowser.m in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
+				FAF02EED1C15246E00B86B28 /* BaseViewController.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
 				40E3A1061BFEFA0C00516EC4 /* wav.mm in Sources */,
 				40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */,
@@ -3226,6 +3311,7 @@
 				40E3A17A1BFEFA6400516EC4 /* RestaurantTVC.swift in Sources */,
 				40E39E321BFEF43800516EC4 /* BookingOrderDetailVC.swift in Sources */,
 				B20812AE1B8DD7950070D96F /* PersonalLabelViewController.swift in Sources */,
+				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
 				B20812CD1B8DD8650070D96F /* RuleEngine.swift in Sources */,
 				40E39E381BFEF43800516EC4 /* OrderListCell.swift in Sources */,
 				40E3A1101BFEFA0C00516EC4 /* MWTapDetectingImageView.m in Sources */,
@@ -3272,9 +3358,11 @@
 				40E3A14C1BFEFA0C00516EC4 /* EaseMessageTimeCell.m in Sources */,
 				40E3A1161BFEFA0C00516EC4 /* EMSDWebImageDecoder.m in Sources */,
 				FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */,
+				FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */,
 				40E3A0FF1BFEFA0C00516EC4 /* EMAudioRecorderUtil.m in Sources */,
 				40E3A11B1BFEFA0C00516EC4 /* MKAnnotationView+EMWebCache.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
+				FAFB96301C1981AA0031EE09 /* ComprehensiveVC.swift in Sources */,
 				40E39E341BFEF43800516EC4 /* OrderCell.swift in Sources */,
 				40E3A13F1BFEFA0C00516EC4 /* EaseEmoji.m in Sources */,
 				40E39E361BFEF43800516EC4 /* OrderHistoryCell.swift in Sources */,
@@ -3285,6 +3373,7 @@
 				40E3A0F71BFEFA0C00516EC4 /* CallViewController.m in Sources */,
 				B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */,
 				40E3A12F1BFEFA0C00516EC4 /* PSTGridLayoutRow.m in Sources */,
+				FAFA51A01C16FFF200BF04F2 /* UnActivationCell.swift in Sources */,
 				FAF7F56F1C031F4100C84601 /* IntegralVC.swift in Sources */,
 				40817D1E1B8EDD4B00EF188F /* NewItemFooterView.swift in Sources */,
 				40E3A1781BFEFA6400516EC4 /* LeisureTVC.swift in Sources */,
@@ -3296,7 +3385,9 @@
 				40E3A15D1BFEFA0C00516EC4 /* FindListTVC.swift in Sources */,
 				40E3A1451BFEFA0C00516EC4 /* EaseMessageViewController.m in Sources */,
 				40E3A13B1BFEFA0C00516EC4 /* UIViewController+HUD.m in Sources */,
+				FAF02EF31C155B1400B86B28 /* SettingVC.swift in Sources */,
 				40E3A1171BFEFA0C00516EC4 /* EMSDWebImageDownloader.m in Sources */,
+				FAF253F61C12CE8100768A4D /* HomeHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40E39E3B1BFEF43800516EC4 /* OrderListHeaderView.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,

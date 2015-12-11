@@ -20,20 +20,26 @@ class PrivilegeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
   @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-      let item1 = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style: UIBarButtonItemStyle.Plain, target: self, action: "popTotopView:")
-      navigationController?.navigationItem.leftBarButtonItem = item1
-      navigationController?.navigationBar.translucent = false
-      navigationController?.navigationBar.barStyle = UIBarStyle.Black
-      navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+      let item1 = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style:.Plain, target: self, action: "popTotopView:")
+      self.navigationItem.leftBarButtonItem = item1
       setupUI()
 
         // Do any additional setup after loading the view.
     }
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.navigationBarHidden = false
+    
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
+  func popTotopView(sender:UIBarButtonItem) {
+    self.navigationController?.popViewControllerAnimated(true)
+  }
   func setupUI() {
     let nibName = UINib(nibName: "PrivilegeCVCell", bundle: nil)
     collectionView.registerNib(nibName, forCellWithReuseIdentifier: "PrivilegeCVCell")
