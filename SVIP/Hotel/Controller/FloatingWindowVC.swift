@@ -10,7 +10,7 @@ import UIKit
 
 class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate {
   let Identifier = "SettingVCCell"
-  var myView:MainHeaderView!
+  var myView:FloatHeaderView!
   var dataArray = Array<[String: String]>()
   @IBOutlet weak var tableView: UITableView!
 
@@ -20,27 +20,26 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     tableView.tableFooterView = UIView()
     loadData()
+    tableView.scrollEnabled = false
     navigationController?.navigationBarHidden = true
     view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
   }
   
   func loadData() {
-    let title1 = NSLocalizedString("特权", comment: "")
-    let menu1 = ["logo": "ic_tequan-1",
+    let title1 = NSLocalizedString("专属客服为您服务", comment: "")
+    let menu1 = ["logo": "ic_v_orange",
       "text": title1]
-    let title2 = NSLocalizedString("行程", comment: "")
-    let menu2 = ["logo": "ic_xingcheng-1",
+    let title2 = NSLocalizedString("免前台入住酒店", comment: "")
+    let menu2 = ["logo": "ic_xiuxian_orange",
       "text": title2]
-    let title3 = NSLocalizedString("已消费", comment: "")
-    let menu3 = ["logo": "ic_yixiaofei-1",
+    let title3 = NSLocalizedString("个性化服务,一次定制,次次贴心", comment: "")
+    let menu3 = ["logo": "ic_liwu_orange",
       "text": title3]
-    let title4 = NSLocalizedString("设置", comment: "")
-    let menu4 = ["logo": "ic_shezhi-1",
-      "text": title4]
+    
     dataArray.append(menu1)
     dataArray.append(menu2)
     dataArray.append(menu3)
-    dataArray.append(menu4)
+    
     //分割线往左移
     if tableView.respondsToSelector("setSeparatorInset:") {
       self.tableView.separatorInset = UIEdgeInsetsZero
@@ -51,6 +50,12 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
       name: "DownloadImageNotification", object: nil)
     
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    view.endEditing(true)
+    super.touchesBegan(touches, withEvent: event)
+    self.view.removeFromSuperview()
   }
 
   // MARK: - Table view data source
@@ -64,7 +69,7 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 100
+    return 200
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -78,14 +83,13 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
     cell.textLabel?.text = dic["text"]
     cell.imageView?.image = UIImage(named:dic["logo"]!)
     cell.textLabel?.textColor = UIColor.lightGrayColor()
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
   }
   
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
-    myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-    
+    myView = NSBundle.mainBundle().loadNibNamed("FloatHeaderView", owner: self, options: nil).first as! FloatHeaderView
     return myView
   }
   

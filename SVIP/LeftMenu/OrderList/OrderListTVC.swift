@@ -67,6 +67,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     let cell: OrderListCell = tableView.dequeueReusableCellWithIdentifier(OrderListCell.reuseIdentifier()) as! OrderListCell
     let order = orders[indexPath.row] as! OrderModel
+    print(order.room_type)
     cell.setOrder(order)
     cell.delegate = self
     cell.selectionStyle = UITableViewCellSelectionStyle.None

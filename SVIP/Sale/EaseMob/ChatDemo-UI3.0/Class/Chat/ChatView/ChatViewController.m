@@ -32,7 +32,7 @@
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
-    
+  self.title = self.chatter;
     [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];
     [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];
     
@@ -75,6 +75,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  self.navigationController.navigationBarHidden = NO;
     [super viewWillAppear:animated];
     if (self.conversation.conversationType == eConversationTypeGroupChat) {
         if ([[self.conversation.ext objectForKey:@"groupSubject"] length])

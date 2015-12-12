@@ -31,16 +31,24 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙 芙蓉国温德姆至尊豪庭大酒店" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpY-wF-2Tf">
-                        <rect key="frame" x="8" y="168" width="250" height="34"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙 芙蓉国温德姆至尊豪庭大酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpY-wF-2Tf">
+                        <rect key="frame" x="0.0" y="148" width="250" height="34"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="250" id="2Ch-rx-gzx"/>
+                            <constraint firstAttribute="height" constant="34" id="Fdc-bb-dUq"/>
                             <constraint firstAttribute="height" constant="34" id="NaL-dN-lYH"/>
+                            <constraint firstAttribute="width" constant="250" id="kYq-6n-mTV"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2Ch-rx-gzx"/>
+                                <exclude reference="NaL-dN-lYH"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeK-ou-nP1">
                         <rect key="frame" x="28" y="231" width="300" height="21"/>
@@ -49,7 +57,7 @@
                             <constraint firstAttribute="width" constant="300" id="sMz-Yr-eDW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lee-ik-Vb3">
@@ -59,7 +67,7 @@
                             <constraint firstAttribute="width" constant="300" id="SiR-ib-BxR"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -72,7 +80,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="BVq-D6-ypL" secondAttribute="trailing" id="Ieb-4v-WWr"/>
                     <constraint firstItem="BVq-D6-ypL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ih2-mi-UB5"/>
                     <constraint firstItem="lee-ik-Vb3" firstAttribute="top" secondItem="BeK-ou-nP1" secondAttribute="bottom" constant="7" id="MhE-Rk-3Df"/>
+                    <constraint firstItem="bpY-wF-2Tf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ndi-8v-ogd"/>
                     <constraint firstAttribute="trailing" secondItem="BVq-D6-ypL" secondAttribute="trailing" id="O2J-qf-Aoo"/>
+                    <constraint firstItem="bpY-wF-2Tf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="148" id="SmC-CQ-gNx"/>
                     <constraint firstItem="bpY-wF-2Tf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="aLz-JF-Sc8"/>
                     <constraint firstAttribute="trailingMargin" secondItem="BVq-D6-ypL" secondAttribute="trailing" id="kK5-8W-rDf"/>
                     <constraint firstItem="BeK-ou-nP1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="mlP-xb-Uo3"/>
@@ -94,6 +104,8 @@
                         <exclude reference="nQu-gO-A60"/>
                         <exclude reference="olf-FQ-ft4"/>
                         <exclude reference="p07-hy-8F9"/>
+                        <exclude reference="aLz-JF-Sc8"/>
+                        <exclude reference="pxO-9d-XAj"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

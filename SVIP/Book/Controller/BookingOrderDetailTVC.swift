@@ -234,7 +234,12 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     //设置statusLabel
     statusLabel.text = status[bkOrder.status.integerValue]
     //设置roomCountLabel
-    roomCountLabel.text = bkOrder.rooms.stringValue
+    if bkOrder.rooms != nil {
+      roomCountLabel.text = bkOrder.rooms.stringValue
+    }
+    
+    
+    
     //设置startDateLabel
     startDateLabel.text = arrivalDateStr
     //设置endDateLabel
@@ -277,58 +282,65 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
      //订单已经提交，客人跟客服聊天的窗口
     }
     
-    let mutDic = NSMutableDictionary()
-    mutDic.setObject(self.roomDic["reservation_no"] as! String, forKey: "reservation_no")
-    //设置入住人
-    let users = NSMutableArray()
-    for var i = 0 ; i < roomCount; i++ {
-      if self.nameTextFields[i].text!.isEmpty {//判断入住人信息是否已选择
-        ZKJSTool.showMsg(NSLocalizedString("CHOOSE_CLIENT", comment: ""))
-        return
-      } else {
-        users.addObject("\(self.nameTextFields[i].tag)")
+    if bkOrder.pay_status == 0 {
+      let mutDic = NSMutableDictionary()
+      mutDic.setObject(self.roomDic["reservation_no"] as! String, forKey: "reservation_no")
+      //设置入住人
+      let users = NSMutableArray()
+      for var i = 0 ; i < roomCount; i++ {
+        if self.nameTextFields[i].text!.isEmpty {//判断入住人信息是否已选择
+          ZKJSTool.showMsg(NSLocalizedString("CHOOSE_CLIENT", comment: ""))
+          return
+        } else {
+          users.addObject("\(self.nameTextFields[i].tag)")
+        }
       }
-    }
-    mutDic.setObject(users.componentsJoinedByString(","), forKey: "users")
-    
-    if receiptLabel.text == NSLocalizedString("CHOOSE_INVOICE", comment: "") {//判断发票信息是否已选择
-      ZKJSTool.showMsg(NSLocalizedString("CHOOSE_INVOICE", comment: ""))
-      return
-    }else {
-      mutDic.setObject(receiptLabel.text!, forKey: "invoice[invoice_title]")
-    }
-    
-    mutDic.setObject(1, forKey: "invoice[invoice_get_id]")
-    
-    let privilegeIDs = NSMutableArray()
-    for tag in serviceTagView.seletedTags {
-      for dic in privilegeArr {
-        if let privilege_name = dic["privilege_name"] as? String,
-          let tag = tag as? String {
-          if privilege_name == tag {
-            privilegeIDs.addObject(dic["id"]!)
+      mutDic.setObject(users.componentsJoinedByString(","), forKey: "users")
+      
+      if receiptLabel.text == NSLocalizedString("CHOOSE_INVOICE", comment: "") {//判断发票信息是否已选择
+        ZKJSTool.showMsg(NSLocalizedString("CHOOSE_INVOICE", comment: ""))
+        return
+      }else {
+        mutDic.setObject(receiptLabel.text!, forKey: "invoice[invoice_title]")
+      }
+      
+      mutDic.setObject(1, forKey: "invoice[invoice_get_id]")
+      
+      let privilegeIDs = NSMutableArray()
+      for tag in serviceTagView.seletedTags {
+        for dic in privilegeArr {
+          if let privilege_name = dic["privilege_name"] as? String,
+            let tag = tag as? String {
+              if privilege_name == tag {
+                privilegeIDs.addObject(dic["id"]!)
+              }
           }
         }
       }
-    }
-    if privilegeIDs.count != 0 {
-      mutDic.setObject(privilegeIDs.componentsJoinedByString(","), forKey: "privilege")
+      if privilegeIDs.count != 0 {
+        mutDic.setObject(privilegeIDs.componentsJoinedByString(","), forKey: "privilege")
+      }
+      
+      if roomTagView.seletedTags.count != 0 {
+        mutDic.setObject(roomTagView.seletedTags.componentsJoinedByString(","), forKey: "room_tags")
+      }
+      
+      if !remarkTextView.text.isEmpty {
+        mutDic.setObject(remarkTextView.text, forKey: "remark")
+      }
+      
+      let payVC = BookPayVC()
+      payVC.bkOrder = bkOrder
+      self.navigationController? .pushViewController(payVC, animated: true)
     }
     
-    if roomTagView.seletedTags.count != 0 {
-      mutDic.setObject(roomTagView.seletedTags.componentsJoinedByString(","), forKey: "room_tags")
-    }
     
-    if !remarkTextView.text.isEmpty {
-      mutDic.setObject(remarkTextView.text, forKey: "remark")
-    }
-    
-    ZKJSHTTPSessionManager.sharedInstance().modifyOrderWithReservation_no(bkOrder.reservation_no, param: mutDic as [NSObject : AnyObject], success: {[unowned self]  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      self.navigationController?.popViewControllerAnimated(true)
-      ZKJSTool.showMsg("订单已确认")
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        ZKJSTool.showMsg(error.localizedDescription)
-    })
+//    ZKJSHTTPSessionManager.sharedInstance().modifyOrderWithReservation_no(bkOrder.reservation_no, param: mutDic as [NSObject : AnyObject], success: {[unowned self]  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      self.navigationController?.popViewControllerAnimated(true)
+//      ZKJSTool.showMsg("订单已确认")
+//      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        ZKJSTool.showMsg(error.localizedDescription)
+//    })
   }
   
   @IBAction func cancelOrder(sender: AnyObject) {
