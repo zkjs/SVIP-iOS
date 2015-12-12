@@ -9,12 +9,14 @@
 import UIKit
 import CoreLocation
 import CoreBluetooth
-class HomeVC: UIViewController,CBCentralManagerDelegate{
-  var myView:HomeHeaderView!
-  var currentCity:String!
+class HomeVC: UIViewController, CBCentralManagerDelegate {
+  
   let Identifier = "SettingVCCell"
   let titles = ["订单状态","最近浏览","服务精选","酒店精选"]
   let locationManager = CLLocationManager()
+  
+  var myView:HomeHeaderView!
+  var currentCity:String!
   var activate = true
   var longitude:double_t!
   var latution:double_t!
@@ -22,35 +24,34 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
   var beaconRegions = [String: [String: String]]()
   var nowDate = NSDate()
   var compareNumber:NSNumber!
+  
   @IBOutlet weak var tableView: UITableView!
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      getlastOrder()
-      memberActivation()
-      setupCoreLocationService()
-      setupBluetoothManager()
-      initTCPSessionManager()
-      
-     
-
-      tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
-      let nibName = UINib(nibName: CustonCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName, forCellReuseIdentifier: CustonCell.reuseIdentifier())
-      let NibName = UINib(nibName: OrderCustomCell.nibName(), bundle: nil)
-      tableView.registerNib(NibName, forCellReuseIdentifier: OrderCustomCell.reuseIdentifier())
-      
-      myView = NSBundle.mainBundle().loadNibNamed("HomeHeaderView", owner: self, options: nil).first as! HomeHeaderView
-      myView.frame = CGRectMake(0, 0, view.bounds.size.width, 550)
-      
-      tableView.tableHeaderView = myView
-      myView.LocationButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
-      myView.usernameLabel.text =  JSHStorage.baseInfo().username
-      setupUI()
-
-        // Do any additional setup after loading the view.
-     
-    }
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    getlastOrder()
+    memberActivation()
+    setupCoreLocationService()
+    setupBluetoothManager()
+    initTCPSessionManager()
+    
+    tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
+    let nibName = UINib(nibName: CustonCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName, forCellReuseIdentifier: CustonCell.reuseIdentifier())
+    let NibName = UINib(nibName: OrderCustomCell.nibName(), bundle: nil)
+    tableView.registerNib(NibName, forCellReuseIdentifier: OrderCustomCell.reuseIdentifier())
+    
+    myView = NSBundle.mainBundle().loadNibNamed("HomeHeaderView", owner: self, options: nil).first as! HomeHeaderView
+    myView.frame = CGRectMake(0, 0, view.bounds.size.width, 550)
+    tableView.tableHeaderView = myView
+    myView.LocationButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
+    myView.usernameLabel.text =  JSHStorage.baseInfo().username
+    setupUI()
+  }
   
   //定义一个带字符串参数的闭包
   func myClosure(testStr:String)->Void{
@@ -82,9 +83,10 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
     myView.backgroundImage.layer.addAnimation(animation, forKey: "scale-layer")
     //tableView.reloadData()
   }
+  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-   // navigationController?.navigationBarHidden = false
+    // navigationController?.navigationBarHidden = false
   }
   
   func setupUI() {
@@ -155,8 +157,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
   }
   
   func positioningCity() {
-     let loc = CLLocation(latitude: latution, longitude: longitude)
-     let geocoder = CLGeocoder()
+    let loc = CLLocation(latitude: latution, longitude: longitude)
+    let geocoder = CLGeocoder()
     geocoder.reverseGeocodeLocation(loc) { (array:[CLPlacemark]?, error:NSError?) -> Void in
       if array?.count > 0 {
         let placemark = array![0]
@@ -198,11 +200,11 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
       print(".Unsupported")
     }
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 4
@@ -220,36 +222,36 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
     return titles[section]
   }
   
-//  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//    let  headerCell = tableView.dequeueReusableCellWithIdentifier(Identifier)
-//    headerCell!.backgroundColor = UIColor.whiteColor()
-//    
-//    switch (section) {
-//    case 0:
-//      headerCell?.textLabel!.text = titles[0]
-//      //return sectionHeaderView
-//    case 1:
-//       headerCell?.textLabel!.text = titles[1]
-//      //return sectionHeaderView
-//    case 2:
-//      headerCell?.textLabel!.text = titles[2]
-//      //return sectionHeaderView
-//    default:
-//       headerCell?.textLabel!.text = titles[3]
-//    }
-//    
-//    return headerCell
-//  }
+  //  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  //    let  headerCell = tableView.dequeueReusableCellWithIdentifier(Identifier)
+  //    headerCell!.backgroundColor = UIColor.whiteColor()
+  //
+  //    switch (section) {
+  //    case 0:
+  //      headerCell?.textLabel!.text = titles[0]
+  //      //return sectionHeaderView
+  //    case 1:
+  //       headerCell?.textLabel!.text = titles[1]
+  //      //return sectionHeaderView
+  //    case 2:
+  //      headerCell?.textLabel!.text = titles[2]
+  //      //return sectionHeaderView
+  //    default:
+  //       headerCell?.textLabel!.text = titles[3]
+  //    }
+  //
+  //    return headerCell
+  //  }
   
-//  func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//    let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
-//    footerView.backgroundColor = UIColor.whiteColor()
-//    
-//    return footerView
-//  }
+  //  func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+  //    let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+  //    footerView.backgroundColor = UIColor.whiteColor()
+  //
+  //    return footerView
+  //  }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+    
     if indexPath.section == 0 {
       let cell = tableView.dequeueReusableCellWithIdentifier("CustonCell", forIndexPath: indexPath) as! CustonCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -261,18 +263,18 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
       let cell = tableView.dequeueReusableCellWithIdentifier("OrderCustomCell", forIndexPath: indexPath) as! OrderCustomCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
       return cell
-    } 
+    }
     
     
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-   
+    
   }
   
   
-
+  
 }
 
 
@@ -299,13 +301,13 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     setupBeaconMonitor()
     setupGPSMonitor()
-}
+  }
   
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status != CLAuthorizationStatus.AuthorizedAlways {
-            let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-            presentViewController(alertView, animated: true, completion: nil)
+      let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
+      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+      presentViewController(alertView, animated: true, completion: nil)
     }
     
   }
@@ -321,13 +323,13 @@ extension HomeVC: CLLocationManagerDelegate {
     longitude = coordinate.longitude
     latution = coordinate.latitude
     positioningCity()
-//    //计算距离
-//    let currentLocation = CLLocation(latitude: latution, longitude: longitude)
-//    if let order = StorageManager.sharedInstance().lastOrder() {
-//      //得到最近一张订单后取订单所带的经纬度
-//      if let latitude = order.map_latitude,
-//        let longitude = order.map_longitude {
-//          let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
+    //    //计算距离
+    //    let currentLocation = CLLocation(latitude: latution, longitude: longitude)
+    //    if let order = StorageManager.sharedInstance().lastOrder() {
+    //      //得到最近一张订单后取订单所带的经纬度
+    //      if let latitude = order.map_latitude,
+    //        let longitude = order.map_longitude {
+    //          let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
     
     postGPSLocation(coordinate)
   }
@@ -453,7 +455,7 @@ extension HomeVC: CLLocationManagerDelegate {
     //    notification.alertBody = alertMessage
     //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
-
+  
   private func setupBeaconMonitor() {
     removeAllMonitoredRegions()
     
@@ -491,7 +493,7 @@ extension HomeVC: CLLocationManagerDelegate {
         }
       }
     }
-}
+  }
   
   private func setupGPSMonitor() {
     if #available(iOS 9.0, *) {
@@ -501,7 +503,7 @@ extension HomeVC: CLLocationManagerDelegate {
       locationManager.startMonitoringSignificantLocationChanges()
     }
     
-}
+  }
   
   private func removeAllMonitoredRegions() {
     for monitoredRegion in locationManager.monitoredRegions {
@@ -510,7 +512,7 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
   
-  }
+}
 
 
 
