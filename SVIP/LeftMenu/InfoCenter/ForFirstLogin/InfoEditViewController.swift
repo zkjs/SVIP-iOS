@@ -77,7 +77,7 @@ class InfoEditViewController: UIViewController, UIActionSheetDelegate,UINavigati
       let data = dic["set"] as! NSNumber
       if data.boolValue == true{
         // 打开TCP连接
-        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT);
+//        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT);
         // 保存用户名
         JSHAccountManager.sharedJSHAccountManager().saveUserName(self.username.text!)
         

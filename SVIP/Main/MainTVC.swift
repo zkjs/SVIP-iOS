@@ -43,7 +43,7 @@ class MainTVC: UIViewController {
     setupNotification()
     setupCoreLocationService()
     setupBluetoothManager()
-    initTCPSessionManager()
+//    initTCPSessionManager()
     getAdvertisementData()
     registerNotification()
     memberActivation()
@@ -490,9 +490,9 @@ extension MainTVC: CLLocationManagerDelegate {
         StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
         if UIApplication.sharedApplication().applicationState == .Background {
           NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
-          ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+//          ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
         } else {
-          sendEnterRegionPacketWithBeacon(beaconRegion)
+//          sendEnterRegionPacketWithBeacon(beaconRegion)
         }
       }
     }
@@ -504,9 +504,9 @@ extension MainTVC: CLLocationManagerDelegate {
       StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
       if UIApplication.sharedApplication().applicationState == .Background {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendExitBeaconRegionPacket")
-        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+//        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
       } else {
-        sendExitRegionPacketWithBeacon(beaconRegion)
+//        sendExitRegionPacketWithBeacon(beaconRegion)
       }
     }
   }

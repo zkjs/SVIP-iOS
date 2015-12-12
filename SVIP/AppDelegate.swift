@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     setupLogger()
     setupWindow()
     setupNotification()
-    setupTCPSessionManager()
+//    setupTCPSessionManager()
     fetchShops()
     fetchBeaconRegions()
 //    setupUMSocial()//UM
@@ -84,14 +84,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func applicationDidEnterBackground(application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    ZKJSTCPSessionManager.sharedInstance().deinitNetworkCommunication()
+//    ZKJSTCPSessionManager.sharedInstance().deinitNetworkCommunication()
     EaseMob.sharedInstance().applicationDidEnterBackground(application)
     print("applicationDidEnterBackground")
   }
 
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
+//    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     EaseMob.sharedInstance().applicationWillEnterForeground(application)
     print("applicationWillEnterForeground")
   }
