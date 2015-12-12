@@ -57,10 +57,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
      
     }
   
-  override func loadView() {
-    NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
-  }
-  
   //定义一个带字符串参数的闭包
   func myClosure(testStr:String)->Void{
     myView.currentCityLabe.text = testStr
