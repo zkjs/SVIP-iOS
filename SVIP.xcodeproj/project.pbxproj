@@ -275,6 +275,10 @@
 		FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02C5831C0D42D100D0D439 /* LoginVC.xib */; };
 		FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B28B51C09453500E8B1C0 /* MailListCell.swift */; };
 		FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5B28B61C09453500E8B1C0 /* MailListCell.xib */; };
+		FA6BC8361C1A748500D409E4 /* CustomServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */; };
+		FA6BC8371C1A748500D409E4 /* CustomServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */; };
+		FA6BC8391C1AAA4400D409E4 /* FloatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6BC8381C1AAA4400D409E4 /* FloatHeaderView.swift */; };
+		FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */; };
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
 		FAF02EED1C15246E00B86B28 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EEC1C15246E00B86B28 /* BaseViewController.m */; };
 		FAF02EF31C155B1400B86B28 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF11C155B1400B86B28 /* SettingVC.swift */; };
@@ -298,19 +302,11 @@
 		FAF253F81C12CE8A00768A4D /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */; };
 		FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */; };
 		FAF2E0621BF1868A008DD5BC /* MainTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0601BF1868A008DD5BC /* MainTVC.xib */; };
-		FAF2E06D1BF1CBCB008DD5BC /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */; };
-		FAF2E06E1BF1CBCB008DD5BC /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */; };
 		FAF2E0721BF1E551008DD5BC /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */; };
 		FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */; };
 		FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */; };
-		FAF35D1C1BF46D8700918BCF /* WebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */; };
-		FAF35D1D1BF46D8700918BCF /* WebViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */; };
-		FAF3D4571C07F22800C6B107 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3D4551C07F22800C6B107 /* WebViewVC.swift */; };
-		FAF3D4581C07F22800C6B107 /* WebViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF3D4561C07F22800C6B107 /* WebViewVC.xib */; };
 		FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40DE91BF0807E002C77A6 /* OrderModel.swift */; };
 		FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */; };
-		FAF47D951C05B1DE00F522C8 /* MainFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF47D941C05B1DE00F522C8 /* MainFooterView.swift */; };
-		FAF47D971C05B1E900F522C8 /* MainFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF47D961C05B1E900F522C8 /* MainFooterView.xib */; };
 		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
 		FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */; };
 		FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */; };
@@ -1035,6 +1031,10 @@
 		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
 		FA5B28B61C09453500E8B1C0 /* MailListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListCell.xib; sourceTree = "<group>"; };
+		FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomServiceVC.swift; sourceTree = "<group>"; };
+		FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomServiceVC.xib; sourceTree = "<group>"; };
+		FA6BC8381C1AAA4400D409E4 /* FloatHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatHeaderView.swift; sourceTree = "<group>"; };
+		FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatHeaderView.xib; sourceTree = "<group>"; };
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		FAF02EEB1C15246E00B86B28 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		FAF02EEC1C15246E00B86B28 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -1060,20 +1060,12 @@
 		FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
 		FAF2E05F1BF1868A008DD5BC /* MainTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		FAF2E0601BF1868A008DD5BC /* MainTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTVC.xib; sourceTree = "<group>"; };
-		FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
-		FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
 		FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHeaderView.xib; sourceTree = "<group>"; };
 		FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementModel.swift; sourceTree = "<group>"; };
-		FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewCell.swift; sourceTree = "<group>"; };
-		FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewCell.xib; sourceTree = "<group>"; };
-		FAF3D4551C07F22800C6B107 /* WebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
-		FAF3D4561C07F22800C6B107 /* WebViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewVC.xib; sourceTree = "<group>"; };
 		FAF40DE91BF0807E002C77A6 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityCell.swift; sourceTree = "<group>"; };
 		FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCityCell.xib; sourceTree = "<group>"; };
-		FAF47D941C05B1DE00F522C8 /* MainFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFooterView.swift; sourceTree = "<group>"; };
-		FAF47D961C05B1E900F522C8 /* MainFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainFooterView.xib; sourceTree = "<group>"; };
 		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeVC.swift; sourceTree = "<group>"; };
 		FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivilegeVC.xib; sourceTree = "<group>"; };
@@ -1988,6 +1980,8 @@
 			children = (
 				40E3A1641BFEFA6400516EC4 /* FloatingWindowVC.swift */,
 				40E3A1651BFEFA6400516EC4 /* FloatingWindowVC.xib */,
+				FA6BC8381C1AAA4400D409E4 /* FloatHeaderView.swift */,
+				FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */,
 				40E3A1661BFEFA6400516EC4 /* HotelTVC.swift */,
 				40E3A1671BFEFA6400516EC4 /* HotelTVC.xib */,
 				40E3A1681BFEFA6400516EC4 /* LeisureTVC.swift */,
@@ -2830,16 +2824,10 @@
 				FAF2E0601BF1868A008DD5BC /* MainTVC.xib */,
 				FAFA518E1C16C62900BF04F2 /* HomeVC.swift */,
 				FAFA518F1C16C62900BF04F2 /* HomeVC.xib */,
-				FAF3D4551C07F22800C6B107 /* WebViewVC.swift */,
-				FAF3D4561C07F22800C6B107 /* WebViewVC.xib */,
-				FAF2E06B1BF1CBCB008DD5BC /* MainViewCell.swift */,
-				FAF2E06C1BF1CBCB008DD5BC /* MainViewCell.xib */,
-				FAF35D1A1BF46D8700918BCF /* WebViewCell.swift */,
-				FAF35D1B1BF46D8700918BCF /* WebViewCell.xib */,
 				FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */,
 				FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */,
-				FAF47D941C05B1DE00F522C8 /* MainFooterView.swift */,
-				FAF47D961C05B1E900F522C8 /* MainFooterView.xib */,
+				FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */,
+				FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */,
 				FAF253F41C12CE5600768A4D /* View */,
 			);
 			name = MainVC;
@@ -3040,7 +3028,7 @@
 				40E3A17E1BFEFA6400516EC4 /* HotelCell.xib in Resources */,
 				40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
-				FAF35D1D1BF46D8700918BCF /* WebViewCell.xib in Resources */,
+				FA6BC8371C1A748500D409E4 /* CustomServiceVC.xib in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
 				40E3A1821BFEFA6400516EC4 /* RestaurantCell.xib in Resources */,
@@ -3063,8 +3051,8 @@
 				FAF7F55F1C0309D500C84601 /* CustomerServiceTVC.xib in Resources */,
 				FAF2E0621BF1868A008DD5BC /* MainTVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
+				FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
-				FAF2E06E1BF1CBCB008DD5BC /* MainViewCell.xib in Resources */,
 				40E3A17B1BFEFA6400516EC4 /* RestaurantTVC.xib in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				40E39E3E1BFEF43800516EC4 /* OrderContentView.xib in Resources */,
@@ -3104,10 +3092,8 @@
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
 				40E3A1771BFEFA6400516EC4 /* HotelTVC.xib in Resources */,
 				FAFA51A11C16FFF200BF04F2 /* UnActivationCell.xib in Resources */,
-				FAF47D971C05B1E900F522C8 /* MainFooterView.xib in Resources */,
 				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
 				FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */,
-				FAF3D4581C07F22800C6B107 /* WebViewVC.xib in Resources */,
 				40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */,
 				40E3A1751BFEFA6400516EC4 /* FloatingWindowVC.xib in Resources */,
 				B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */,
@@ -3171,6 +3157,7 @@
 			files = (
 				FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
+				FA6BC8361C1A748500D409E4 /* CustomServiceVC.swift in Sources */,
 				40E3A1401BFEFA0C00516EC4 /* EaseEmojiEmoticons.m in Sources */,
 				40E3A1491BFEFA0C00516EC4 /* EaseUserCell.m in Sources */,
 				40E3A10A1BFEFA0C00516EC4 /* MBProgressHUD+Add.m in Sources */,
@@ -3179,7 +3166,6 @@
 				FAF2E0611BF1868A008DD5BC /* MainTVC.swift in Sources */,
 				B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */,
 				40E3A0FC1BFEFA0C00516EC4 /* EMBubbleView+Gif.m in Sources */,
-				FAF47D951C05B1DE00F522C8 /* MainFooterView.swift in Sources */,
 				40E3A1071BFEFA0C00516EC4 /* EMVoiceConverter.mm in Sources */,
 				40E3A1201BFEFA0C00516EC4 /* UIImage+EMWebP.m in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
@@ -3248,7 +3234,6 @@
 				40E3A10D1BFEFA0C00516EC4 /* MWGridViewController.m in Sources */,
 				40E3A0FA1BFEFA0C00516EC4 /* ChatViewController.m in Sources */,
 				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,
-				FAF3D4571C07F22800C6B107 /* WebViewVC.swift in Sources */,
 				B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */,
 				40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
@@ -3262,7 +3247,6 @@
 				40E3A14E1BFEFA0C00516EC4 /* EaseBubbleView+Image.m in Sources */,
 				40E39E3F1BFEF43800516EC4 /* OrderDetailsVC.swift in Sources */,
 				B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */,
-				FAF35D1C1BF46D8700918BCF /* WebViewCell.swift in Sources */,
 				40E3A12D1BFEFA0C00516EC4 /* PSTGridLayoutInfo.m in Sources */,
 				40E3A0F81BFEFA0C00516EC4 /* UIImageView+HeadImage.m in Sources */,
 				40E3A1391BFEFA0C00516EC4 /* NSString+Valid.m in Sources */,
@@ -3379,9 +3363,9 @@
 				40E3A1781BFEFA6400516EC4 /* LeisureTVC.swift in Sources */,
 				B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */,
 				40E3A15C1BFEFA0C00516EC4 /* EaseConversationCell.m in Sources */,
-				FAF2E06D1BF1CBCB008DD5BC /* MainViewCell.swift in Sources */,
 				40E3A1141BFEFA0C00516EC4 /* EMSDImageCache.m in Sources */,
 				40E3A17C1BFEFA6400516EC4 /* HotelPageVC.swift in Sources */,
+				FA6BC8391C1AAA4400D409E4 /* FloatHeaderView.swift in Sources */,
 				40E3A15D1BFEFA0C00516EC4 /* FindListTVC.swift in Sources */,
 				40E3A1451BFEFA0C00516EC4 /* EaseMessageViewController.m in Sources */,
 				40E3A13B1BFEFA0C00516EC4 /* UIViewController+HUD.m in Sources */,

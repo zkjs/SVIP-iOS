@@ -17,10 +17,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P7R-Mo-VzT">
-                    <rect key="frame" x="50" y="100" width="500" height="300"/>
+                    <rect key="frame" x="25" y="100" width="550" height="344"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="H2G-PB-Nta"/>
+                        <constraint firstAttribute="height" constant="344" id="H2G-PB-Nta"/>
                     </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="NK1-5q-tU7"/>
@@ -32,8 +32,8 @@
             <constraints>
                 <constraint firstItem="P7R-Mo-VzT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="PKd-fd-fku"/>
                 <constraint firstItem="P7R-Mo-VzT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PLJ-fD-Wcw"/>
-                <constraint firstAttribute="trailing" secondItem="P7R-Mo-VzT" secondAttribute="trailing" constant="50" id="YZw-3B-OKc"/>
-                <constraint firstItem="P7R-Mo-VzT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="dkz-kP-T9K"/>
+                <constraint firstAttribute="trailing" secondItem="P7R-Mo-VzT" secondAttribute="trailing" constant="25" id="YZw-3B-OKc"/>
+                <constraint firstItem="P7R-Mo-VzT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="dkz-kP-T9K"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

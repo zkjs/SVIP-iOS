@@ -587,7 +587,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
     [formData appendPartWithFormData:[@"0,2,4" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-   DDLogInfo(@"%@", [responseObject description]);
+  // DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -621,7 +621,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+   // DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -799,7 +799,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[shopID dataUsingEncoding:NSUTF8StringEncoding] name:@"shopid"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+   // DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }

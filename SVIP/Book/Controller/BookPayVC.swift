@@ -26,6 +26,18 @@ class BookPayVC: UIViewController {
     super.init(coder: aDecoder)
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.hidesBarsOnSwipe = true
+   
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = false
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 

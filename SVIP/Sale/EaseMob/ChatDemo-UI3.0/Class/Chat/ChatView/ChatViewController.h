@@ -13,7 +13,7 @@
 #define KNOTIFICATIONNAME_DELETEALLMESSAGE @"RemoveAllMessages"
 
 @interface ChatViewController : EaseMessageViewController
-
+@property(strong,nonatomic)NSString * chatter;
 @property (strong, nonatomic) BookOrder *order;
 @property (strong, nonatomic) NSString *firstMessage;
 

@@ -95,7 +95,7 @@
                         <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份精选了很多优质服务，您可以直接向商家等服务员沟通，让您尊享个性化服务" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1P-bo-axP">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份精选了很多优质服务，您可以直接向服务员沟通,尊享个性化服务" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1P-bo-axP">
                     <rect key="frame" x="45" y="453" width="510" height="77"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="77" id="lkh-lJ-JCQ"/>

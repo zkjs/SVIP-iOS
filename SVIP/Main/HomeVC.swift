@@ -22,6 +22,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
   var beaconRegions = [String: [String: String]]()
   var nowDate = NSDate()
   var compareNumber:NSNumber!
+  var hourLabel = String()
   @IBOutlet weak var tableView: UITableView!
   
     override func viewDidLoad() {
@@ -51,6 +52,10 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
         // Do any additional setup after loading the view.
      
     }
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
+  }
   
   //定义一个带字符串参数的闭包
   func myClosure(testStr:String)->Void{
@@ -88,27 +93,39 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
   }
   
   func setupUI() {
+    
+    ///判断时间是否是早晨9点到下午4点
+    let nowDate = NSDate();///获取当前时间
+    let hourFormatter = NSDateFormatter();
+    hourFormatter.dateFormat = "HH";
+    let time = hourFormatter.stringFromDate(nowDate);
+    if(time <= "11" || time > "01" ){
+      hourLabel = "上午好"
+    }else{
+      hourLabel = "下午好"
+    }
     let order = StorageManager.sharedInstance().lastOrder()
     let beacon = StorageManager.sharedInstance().lastBeacon()
-    
     let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
+    //根据日期判断是不是这张订单已过期
     let dateString = formatter.stringFromDate(nowDate)
     compareNumber = NSNumber(int: ZKJSTool.compareOneDay(order?.departure_date, withAnotherDay:dateString ))
     if beacon == nil  && order == nil {
-      self.myView.activateLabel.text = "上午好，您没有任何行程"
-      self.myView.connectButton.setTitle("开始行程", forState: UIControlState.Normal)
+      self.myView.activateLabel.text = "\(hourLabel)，您没有任何预定"
+      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
     }
     if beacon == nil && order != nil {
-      self.myView.activateLabel.text = "上午好，您有1任何行程"
+      self.myView.activateLabel.text = "\(hourLabel), 您有1任何行程"
       self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
     }
     if beacon != nil && order == nil {
       self.myView.activateLabel.text = "\(order?.fullname)"
-      self.myView.connectButton.setTitle("立即预定", forState: UIControlState.Normal)
+      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
+      self.myView.custonLabel.text = "专属客服为您24小时服务，如影随行"
     }
     if beacon != nil && order != nil {
-      self.myView.activateLabel.text = "\(order?.fullname)"
+      self.myView.activateLabel.text = (order?.fullname)! + "欢迎您"
       self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
     }
     
@@ -117,15 +134,20 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
   }
   
   func skip(sender:UIButton) {
-    if(( sender.titleLabel?.text = "立即查看") != nil) {
-      self.tabBarController?.selectedIndex = 1
+    if( sender.titleLabel?.text == "立即查看") {
+      let vc = CustomServiceVC()
+      //let nv = UINavigationController(rootViewController: vc)
+      vc.view.frame = CGRectMake(0.0, 0.0, view.frame.width, view.frame.height)
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+//      let vc = OrderListTVC()
+//      self.navigationController?.pushViewController(vc, animated: true)
     }
-    if(( sender.titleLabel?.text = "开始行程") != nil) {
-      self.tabBarController?.selectedIndex = 1
+    if( sender.titleLabel?.text == "开始预定") {
+      let vc = CustomServiceVC()
+      self.addChildViewController(vc)
     }
-    if(( sender.titleLabel?.text = "立即预定") != nil) {
-      
-    }
+    
   }
   
   func getlastOrder() {

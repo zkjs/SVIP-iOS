@@ -26,7 +26,7 @@ class MainTVC: UIViewController {
   var bluetoothManager = CBCentralManager()
   var beaconRegions = [String: [String: String]]()
   var myView:HomeHeaderView!
-  var myFooterView: MainFooterView!
+//  var myFooterView: MainFooterView!
   var didMainURLLoad = false
   var activate = true
   @IBOutlet weak var tableView: UITableView!
@@ -48,17 +48,13 @@ class MainTVC: UIViewController {
     registerNotification()
     memberActivation()
    
-    myFooterView = NSBundle.mainBundle().loadNibNamed("MainFooterView", owner: self, options: nil).first as! MainFooterView
-    tableView.tableFooterView = myFooterView
-    myFooterView.webView.delegate = self
-    originHeight = myFooterView.frame.size.height
+   
     
    // sideMenuViewController.delegate = self
     
     let nibName = UINib(nibName: CustonCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: CustonCell.reuseIdentifier())
-    let nibName1 = UINib(nibName: WebViewCell.nibName(), bundle: nil)
-    tableView.registerNib(nibName1, forCellReuseIdentifier: WebViewCell.reuseIdentifier())
+   
     let nibName2 = UINib(nibName: ActivationCell.nibName(), bundle: nil)
     tableView.registerNib(nibName2, forCellReuseIdentifier: ActivationCell.reuseIdentifier())
 //    tableView.tableFooterView = UIView()
@@ -70,7 +66,7 @@ class MainTVC: UIViewController {
     navigationController?.navigationBarHidden = true
     tableView.reloadData()
     if request != nil {
-      self.myFooterView.webView.loadRequest(request!)
+   
     }
     
   }
@@ -92,7 +88,7 @@ class MainTVC: UIViewController {
       let ad = self.AdvertisementArray[0]
       let url = NSURL(string: ad.url!)
        self.request = NSURLRequest(URL: url!)
-      self.myFooterView.webView.loadRequest(self.request!)
+      
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -255,16 +251,7 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.row == 0 {
-      if activate == true {
-        return 0
-      }else {
-        return ActivationCell.height()
-      }
-      
-    }else  {
-      return MainViewCell.height()
-    }
+    return 100
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -272,20 +259,18 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.row == 0 {
+   
       let cell = tableView.dequeueReusableCellWithIdentifier("ActivationCell", forIndexPath: indexPath) as! ActivationCell
       return cell
      
-    }else {
+   
       
-      let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
-      if let order = StorageManager.sharedInstance().lastOrder() {
-        cell.setData(order)
-      }
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
-      return cell
-      
-    }
+//      let cell = tableView.dequeueReusableCellWithIdentifier("MainViewCell", forIndexPath:indexPath) as! MainViewCell
+//      if let order = StorageManager.sharedInstance().lastOrder() {
+//        cell.setData(order)
+//      }
+//      cell.selectionStyle = UITableViewCellSelectionStyle.None
+//      return cell
     
   }
   
@@ -316,33 +301,33 @@ extension MainTVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MainTVC: UIWebViewDelegate {
   
-  func webViewDidFinishLoad(webView: UIWebView) {
-    height = CGFloat ( (webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight")! as NSString).floatValue)
-    // 更新Footer高度
-    var frame = myFooterView.frame
-    frame.size.height = height
-    myFooterView.frame = frame
-    tableView.contentInset = UIEdgeInsetsMake(0, 0, height - originHeight,0)
-    tableView.reloadData()
-    didMainURLLoad = true
-  }
-  
-  func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-    if(navigationType == UIWebViewNavigationType.Other && didMainURLLoad == true)//判断是否是点击链接
-    {
-      let urlString = request
-      let vc = WebViewVC()
-      vc.url = urlString
-      navigationController?.pushViewController(vc, animated: true)
-      return false;
-    }
-    else{
-    
-      return true
-    }
-   
-//    return true
-  }
+//  func webViewDidFinishLoad(webView: UIWebView) {
+//    height = CGFloat ( (webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight")! as NSString).floatValue)
+//    // 更新Footer高度
+//    var frame = myFooterView.frame
+//    frame.size.height = height
+//    myFooterView.frame = frame
+//    tableView.contentInset = UIEdgeInsetsMake(0, 0, height - originHeight,0)
+//    tableView.reloadData()
+//    didMainURLLoad = true
+//  }
+//  
+//  func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+//    if(navigationType == UIWebViewNavigationType.Other && didMainURLLoad == true)//判断是否是点击链接
+//    {
+//      let urlString = request
+//      let vc = WebViewVC()
+//      vc.url = urlString
+//      navigationController?.pushViewController(vc, animated: true)
+//      return false;
+//    }
+//    else{
+//    
+//      return true
+//    }
+//   
+////    return true
+//  }
 }
 
 // MARK: - CLLocationManagerDelegate
