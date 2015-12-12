@@ -383,33 +383,34 @@ extension HomeVC: CLLocationManagerDelegate {
   }
   private func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
+    print(region)
     if let beaconRegion = beaconRegions[region.identifier] {
       let lastSendDate = NSUserDefaults.standardUserDefaults().objectForKey(region.identifier) as? NSDate
       print(region.identifier + " Last Send Date: \(lastSendDate)" + " Now: \(NSDate())")
       // 如果10分钟内再次触发该区域，则不发推送
       if lastSendDate == nil || NSDate().timeIntervalSinceDate(lastSendDate!) >= 60 * 10 {
         StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
-        if UIApplication.sharedApplication().applicationState == .Background {
-          NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
+//        if UIApplication.sharedApplication().applicationState == .Background {
+//          NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
 //          ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-        } else {
-//          sendEnterRegionPacketWithBeacon(beaconRegion)
-        }
+//        } else {
+          sendEnterRegionPacketWithBeacon(beaconRegion)
+//        }
       }
     }
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion!) {
-    let beaconRegions = StorageManager.sharedInstance().beaconRegions()
-    if let beaconRegion = beaconRegions[region.identifier] {
-      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
-      if UIApplication.sharedApplication().applicationState == .Background {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendExitBeaconRegionPacket")
+//    let beaconRegions = StorageManager.sharedInstance().beaconRegions()
+//    if let beaconRegion = beaconRegions[region.identifier] {
+//      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
+//      if UIApplication.sharedApplication().applicationState == .Background {
+//        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendExitBeaconRegionPacket")
 //        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-      } else {
+//      } else {
 //        sendExitRegionPacketWithBeacon(beaconRegion)
-      }
-    }
+//      }
+//    }
   }
   
   private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
@@ -449,32 +450,55 @@ extension HomeVC: CLLocationManagerDelegate {
     //    guard let UUID = beacon["uuid"] else { return }
     //    guard let major = beacon["major"] else { return }
     //    guard let minor = beacon["minor"] else { return }
-    #if DEBUG
-      let appid = "SVIP_DEBUG"
-    #else
-      let appid = "SVIP"
-    #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970)
+//    #if DEBUG
+//      let appid = "SVIP_DEBUG"
+//    #else
+//      let appid = "SVIP"
+//    #endif
+//    let timestamp = Int64(NSDate().timeIntervalSince1970)
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
     let userName = JSHStorage.baseInfo().username ?? ""
-    let deviceToken = JSHStorage.deviceToken()
-    let dictionary: [String: AnyObject] = [
-      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-      "devtoken": deviceToken,
-      "appid": appid,
-      "userid": userID,
-      "shopid": shopID,
-      "locid": locid,
-      "locdesc": locdesc,
-      "username": userName,
-      "timestamp": NSNumber(longLong: timestamp)
-    ]
-    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
+//    let deviceToken = JSHStorage.deviceToken()
+//    let dictionary: [String: AnyObject] = [
+//      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
+//      "devtoken": deviceToken,
+//      "appid": appid,
+//      "userid": userID,
+//      "shopid": shopID,
+//      "locid": locid,
+//      "locdesc": locdesc,
+//      "username": userName,
+//      "timestamp": NSNumber(longLong: timestamp)
+//    ]
+//    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
     
     //    let notification = UILocalNotification()
     //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
     //    notification.alertBody = alertMessage
     //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    
+    let topic = locid
+    let extra = ["locdesc": locdesc,
+      "locid": locid,
+      "shopid": shopID,
+      "userid": userID,
+      "username": userName]
+    let json = ZKJSTool.convertJSONStringFromDictionary(extra)
+    let data = json.dataUsingEncoding(NSUTF8StringEncoding)
+    let option = YBPublish2Option()
+    let alert = "\(userName) 到达 \(locdesc)"
+    let badge = NSNumber(integer: 1)
+    let sound = "default"
+    let apnOption = YBApnOption(alert: alert, badge: badge, sound: sound, contentAvailable: nil, extra: extra)
+    option.apnOption = apnOption
+    
+    YunBaService.publish2(topic, data: data, option: option) { (success: Bool, error: NSError!) -> Void in
+      if success {
+        print("[result] publish2 data(\(json)) to topic(\(topic)) succeed")
+      } else {
+        print("[result] publish data(\(json)) to topic(\(topic)) failed: \(error), recovery suggestion: \(error.localizedRecoverySuggestion)")
+      }
+    }
   }
 
   private func setupBeaconMonitor() {

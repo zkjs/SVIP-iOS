@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    setupUMSocial()//UM
     networkState()
     setupBackgroundFetch()
+    setupYunBa()
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
     
     ZKJSHTTPSessionManager.sharedInstance().delegate = self
@@ -427,6 +428,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     let appKey = "zkjs#svip"
     EaseMob.sharedInstance().registerSDKWithAppKey(appKey, apnsCertName: cert, otherConfig: [kSDKConfigEnableConsoleLogger: NSNumber(bool: false)])
     EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+  
+  func setupYunBa() {
+    let appKey = "566563014407a3cd028aa72f"
+    YunBaService.setupWithAppkey(appKey)
+    //    NSNotificationCenter.defaultCenter().addObserver(self, selector: "onMessageReceived:", name: kYBDidReceiveMessageNotification, object: nil)
   }
   
 }

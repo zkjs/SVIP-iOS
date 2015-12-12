@@ -198,6 +198,8 @@
 		40E3A18A1BFEFA8300516EC4 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A1861BFEFA8200516EC4 /* SearchTVC.swift */; };
 		40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A1871BFEFA8200516EC4 /* SearchTVC.xib */; };
 		40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E3A22F1BFF01C300516EC4 /* libopencore-amrnb.a */; };
+		40EE89651C1C090D009FAF47 /* libYunBa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EE89631C1C090D009FAF47 /* libYunBa.a */; };
+		40EE89661C1C0921009FAF47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */; };
 		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
 		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
 		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
@@ -934,6 +936,8 @@
 		40E3A28D1BFF01C300516EC4 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		40E3A28E1BFF01C300516EC4 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		40E3A28F1BFF01C300516EC4 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		40EE89631C1C090D009FAF47 /* libYunBa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYunBa.a; sourceTree = "<group>"; };
+		40EE89641C1C090D009FAF47 /* YunBaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YunBaService.h; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
 		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
@@ -1095,6 +1099,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40EE89661C1C0921009FAF47 /* SystemConfiguration.framework in Frameworks */,
 				404A2F421BA94C7B006475D7 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1109,6 +1114,7 @@
 				404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */,
 				40C4B71B1BFACDD000CB2DA5 /* openssl.framework in Frameworks */,
 				B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */,
+				40EE89651C1C090D009FAF47 /* libYunBa.a in Frameworks */,
 				B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */,
 				C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */,
 			);
@@ -1280,6 +1286,7 @@
 		40641F861B3E79A300CF150D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				40EE89621C1C090D009FAF47 /* YunBaSDK */,
 				40641F871B3E79A300CF150D /* Category */,
 				404C18471B53675300F11122 /* Compressor */,
 				40641F8F1B3E79A300CF150D /* Networking */,
@@ -2492,6 +2499,15 @@
 			path = PSTCollectionView;
 			sourceTree = "<group>";
 		};
+		40EE89621C1C090D009FAF47 /* YunBaSDK */ = {
+			isa = PBXGroup;
+			children = (
+				40EE89631C1C090D009FAF47 /* libYunBa.a */,
+				40EE89641C1C090D009FAF47 /* YunBaService.h */,
+			);
+			path = YunBaSDK;
+			sourceTree = "<group>";
+		};
 		B20812611B8DD7950070D96F /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -3611,6 +3627,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SVIP/Sale/EaseMob/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/SVIP/Sale/EaseMob/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/Common/YunBaSDK",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;
@@ -3669,6 +3686,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SVIP/Sale/EaseMob/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/SVIP/Sale/EaseMob/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/Common/YunBaSDK",
 				);
 				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;

@@ -21,8 +21,10 @@
 + (NSString *)getIPAddress:(BOOL)preferIPv4;
 + (NSDictionary *)getIPAddresses;
 
-#pragma mark - JSON String to Dictionary
+#pragma mark - JSON String <=> Dictionary
 + (NSDictionary *)convertJSONStringToDictionary:(NSString *)jsonString;
++ (NSString *)convertJSONStringFromDictionary:(NSDictionary *)dictionary;
+
 #pragma mark - 判断日期是否过期
 +(int)compareOneDay:(NSString *)oneDay withAnotherDay:(NSString *)anotherDay;
 @end

@@ -50,3 +50,4 @@
 #import "BaseViewController.h"
 #import "WMPageController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "YunBaService.h"

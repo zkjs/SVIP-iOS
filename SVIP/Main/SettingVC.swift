@@ -62,6 +62,29 @@ class SettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
      navigationController?.navigationBarHidden = true
+    
+//    let topic = "1"
+//    let extra = ["locdesc": "大糖糖",
+//      "locid": "1",
+//      "shopid": "120",
+//      "userid": "55d67f785e6cb",
+//      "username": "Hanton"]
+//    let json = ZKJSTool.convertJSONStringFromDictionary(extra)
+//    let data = json.dataUsingEncoding(NSUTF8StringEncoding)
+//    let option = YBPublish2Option()
+//    let alert = "XXX 到达 什么地方"
+//    let badge = NSNumber(integer: 1)
+//    let sound = "default"
+//    let apnOption = YBApnOption(alert: alert, badge: badge, sound: sound, contentAvailable: nil, extra: extra)
+//    option.apnOption = apnOption
+//    
+//    YunBaService.publish2(topic, data: data, option: option) { (success: Bool, error: NSError!) -> Void in
+//      if success {
+//        print("[result] publish2 data(\(json)) to topic(\(topic)) succeed")
+//      } else {
+//        print("[result] publish data(\(json)) to topic(\(topic)) failed: \(error), recovery suggestion: \(error.localizedRecoverySuggestion)")
+//      }
+//    }
   }
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
