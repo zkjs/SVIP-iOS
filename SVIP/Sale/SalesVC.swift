@@ -14,10 +14,10 @@ class SalesVC: WMPageController{
         super.viewDidLoad()
       navigationController?.navigationBar.translucent = false
       let rightBarButtonItem1 = UIBarButtonItem(image: UIImage(named: "sl_dengdai"), style: UIBarButtonItemStyle.Plain, target: self, action: "search:")
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem1
+    super.navigationItem.rightBarButtonItem = rightBarButtonItem1
       
       let rightBarButtonItem2 = UIBarButtonItem(image: UIImage(named: "ic_tianjia"), style: UIBarButtonItemStyle.Plain, target: self, action: "add:")
-      self.navigationItem.rightBarButtonItem = rightBarButtonItem2
+      super.navigationItem.rightBarButtonItem = rightBarButtonItem2
       let leftBarButtonItem = UIBarButtonItem(title: "服务中心", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
       navigationItem.leftBarButtonItem = leftBarButtonItem
     }

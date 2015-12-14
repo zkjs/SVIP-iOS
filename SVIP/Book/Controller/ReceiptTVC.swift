@@ -37,9 +37,14 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
+    navigationController?.hidesBarsOnSwipe = true
     tableView.tableHeaderView = headerView
     tableView.tableFooterView = footerView
+  }
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = false
   }
   
   func loadData() {

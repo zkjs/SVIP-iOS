@@ -10,6 +10,8 @@ import UIKit
 
 class HomeHeaderView: UIView {
 
+  @IBOutlet weak var dynamicLabel: UILabel!
+  @IBOutlet weak var greetLabel: UILabel!
   @IBOutlet weak var custonLabel: UILabel! {
     didSet {
       custonLabel.numberOfLines = 0
@@ -32,15 +34,6 @@ class HomeHeaderView: UIView {
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-    
-      UIView.animateWithDuration(160, delay: 2, usingSpringWithDamping: 0.03, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-        var point = self.locationImage.center
-        point.y -= 6
-        self.locationImage.center = point
-        
-        }) { (finished:Bool) -> Void in
-      }
-    }
-  
+  }
 
 }

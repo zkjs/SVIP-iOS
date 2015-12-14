@@ -8,10 +8,9 @@
 
 import UIKit
 enum PrivilegeButton: Int {
-  case Setting = 3
-  case InRoomCheckin = 0
-  case BookingOrder = 1
-  case HistoryOrder = 2
+  case Setting = 2
+  case AccountInformation = 0
+  case OrderManagement = 1
   
 }
 class SettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
@@ -31,21 +30,15 @@ class SettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
   
   func loadData() {
-    let title1 = NSLocalizedString("特权", comment: "")
-    let menu1 = ["logo": "ic_tequan-1",
-      "text": title1]
-    let title2 = NSLocalizedString("行程", comment: "")
-    let menu2 = ["logo": "ic_xingcheng-1",
-      "text": title2]
-    let title3 = NSLocalizedString("已消费", comment: "")
-    let menu3 = ["logo": "ic_yixiaofei-1",
-      "text": title3]
+    let title1 = NSLocalizedString("账户信息", comment: "")
+    let menu1 = ["text": title1]
+    let title2 = NSLocalizedString("订单管理", comment: "")
+    let menu2 = ["text": title2]
+    
     let title4 = NSLocalizedString("设置", comment: "")
-    let menu4 = ["logo": "ic_shezhi-1",
-      "text": title4]
+    let menu4 = ["text": title4]
     dataArray.append(menu1)
     dataArray.append(menu2)
-    dataArray.append(menu3)
     dataArray.append(menu4)
     //分割线往左移
     if tableView.respondsToSelector("setSeparatorInset:") {
@@ -99,45 +92,43 @@ class SettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     return self.dataArray.count
   }
   
-  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 425
-  }
   
    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 48
+  }
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 30
   }
   
   
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let dic = dataArray[indexPath.row]
     let cell = tableView.dequeueReusableCellWithIdentifier(Identifier, forIndexPath: indexPath)
-    
     cell.textLabel?.text = dic["text"]
-    cell.imageView?.image = UIImage(named:dic["logo"]!)
     cell.textLabel?.textColor = UIColor.lightGrayColor()
     return cell
   }
   
   
-  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
-    myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-    setupMainViewUI(myView)
-    return myView
-  }
-  
-  func setInfo(sender:UIButton) {
-    let vc = SettingTableViewController(style: .Grouped)
-    navigationController?.pushViewController(vc, animated: true)
-  }
-  
-  func downloadImage(notification: NSNotification) {
-    let userInfo = notification.userInfo as! [String:AnyObject]
-    let imageData = userInfo["avtarImage"] as! NSData
-    let image = UIImage(data: imageData)
-    myView.userImageButton.setImage(image, forState: UIControlState.Normal)
-    self.tableView.reloadData()
-  }
+//  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    myView = NSBundle.mainBundle().loadNibNamed("MainHeaderView", owner: self, options: nil).first as! MainHeaderView
+//    myView.userImageButton.addTarget(self, action: "setInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+//    setupMainViewUI(myView)
+//    return myView
+//  }
+//  
+//  func setInfo(sender:UIButton) {
+//    let vc = SettingTableViewController(style: .Grouped)
+//    navigationController?.pushViewController(vc, animated: true)
+//  }
+//  
+//  func downloadImage(notification: NSNotification) {
+//    let userInfo = notification.userInfo as! [String:AnyObject]
+//    let imageData = userInfo["avtarImage"] as! NSData
+//    let image = UIImage(data: imageData)
+//    myView.userImageButton.setImage(image, forState: UIControlState.Normal)
+//    self.tableView.reloadData()
+//  }
 
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -145,12 +136,10 @@ class SettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     if let buttonIndex = PrivilegeButton(rawValue: indexPath.row) {
       var vc = UIViewController()
       switch buttonIndex {
-      case .InRoomCheckin:
+      case .AccountInformation:
         vc = PrivilegeVC()
-      case .BookingOrder:
+      case .OrderManagement:
         vc = OrderListTVC()
-      case .HistoryOrder:
-        vc = OrderHistoryListTVC()
       case .Setting:
         vc = SettingTableViewController(style: .Grouped)
       }

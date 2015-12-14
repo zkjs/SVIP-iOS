@@ -308,6 +308,10 @@
 		FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40DE91BF0807E002C77A6 /* OrderModel.swift */; };
 		FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */; };
 		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
+		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
+		FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */; };
+		FAF7CB9D1C1EA60700A4B082 /* AccountInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7CB9B1C1EA60700A4B082 /* AccountInfoCell.swift */; };
+		FAF7CB9E1C1EA60700A4B082 /* AccountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7CB9C1C1EA60700A4B082 /* AccountInfoCell.xib */; };
 		FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */; };
 		FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */; };
 		FAF7F55A1C02EB4400C84601 /* PrivilegeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5581C02EB4300C84601 /* PrivilegeCVCell.swift */; };
@@ -1067,6 +1071,10 @@
 		FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityCell.swift; sourceTree = "<group>"; };
 		FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCityCell.xib; sourceTree = "<group>"; };
 		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
+		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		FAF7CB9B1C1EA60700A4B082 /* AccountInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoCell.swift; sourceTree = "<group>"; };
+		FAF7CB9C1C1EA60700A4B082 /* AccountInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoCell.xib; sourceTree = "<group>"; };
 		FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeVC.swift; sourceTree = "<group>"; };
 		FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivilegeVC.xib; sourceTree = "<group>"; };
 		FAF7F5581C02EB4300C84601 /* PrivilegeCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeCVCell.swift; sourceTree = "<group>"; };
@@ -2788,6 +2796,8 @@
 			children = (
 				FAF02EF11C155B1400B86B28 /* SettingVC.swift */,
 				FAF02EF21C155B1400B86B28 /* SettingVC.xib */,
+				FAF7CB9B1C1EA60700A4B082 /* AccountInfoCell.swift */,
+				FAF7CB9C1C1EA60700A4B082 /* AccountInfoCell.xib */,
 			);
 			name = Setting;
 			path = Main;
@@ -2798,6 +2808,8 @@
 			children = (
 				FAF253F01C12C5C800768A4D /* CustonCell.swift */,
 				FAF253F11C12C5C800768A4D /* CustonCell.xib */,
+				FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */,
+				FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */,
 				FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */,
 				FAFA51971C16D80400BF04F2 /* OrderCustomCell.xib */,
 				FAF253F51C12CE8100768A4D /* HomeHeaderView.swift */,
@@ -3028,6 +3040,7 @@
 				40E3A17E1BFEFA6400516EC4 /* HotelCell.xib in Resources */,
 				40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
+				FAF7CB9E1C1EA60700A4B082 /* AccountInfoCell.xib in Resources */,
 				FA6BC8371C1A748500D409E4 /* CustomServiceVC.xib in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
@@ -3084,6 +3097,7 @@
 				FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */,
 				FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */,
 				FAF212DA1BF73F83002C1C73 /* ActivationCell.xib in Resources */,
+				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
 				FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				40E39E421BFEF43800516EC4 /* OrderDetailVC.xib in Resources */,
@@ -3303,6 +3317,7 @@
 				B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */,
 				40E3A14F1BFEFA0C00516EC4 /* EaseBubbleView+Location.m in Sources */,
 				40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */,
+				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
 				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				40E3A1051BFEFA0C00516EC4 /* amrFileCodec.mm in Sources */,
@@ -3381,6 +3396,7 @@
 				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
 				40E3A1221BFEFA0C00516EC4 /* UIImageView+EMWebCache.m in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
+				FAF7CB9D1C1EA60700A4B082 /* AccountInfoCell.swift in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,
 				40E3A12A1BFEFA0C00516EC4 /* PSTCollectionViewItemKey.m in Sources */,
@@ -3573,7 +3589,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3615,7 +3631,7 @@
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "985c2331-f32e-47ba-a8d9-6ae4a9cf0c8f";
+				PROVISIONING_PROFILE = "0174be54-d4a9-4550-8144-51b54c3e3105";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3673,7 +3689,7 @@
 				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkjinshi.SVIP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "330a391c-b4c1-4fd6-8556-8f9616f714c8";
+				PROVISIONING_PROFILE = "5987ced2-81ae-4718-a596-d369f500d59b";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVIP/SVIP-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";

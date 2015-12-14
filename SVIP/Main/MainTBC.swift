@@ -32,10 +32,9 @@ class MainTBC: BaseViewController{
       vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
    
       //智键
-      let vc3 = UIViewController()
-//      let nc3 = BaseNC(rootViewController: vc3)
-      self.addCenterButtonWithImage(UIImage(named: "ic_zhijian"), highlightImage: nil)
-      self.button.addTarget(self, action: "press:", forControlEvents: UIControlEvents.TouchUpInside)
+//      let vc3 = UIViewController()
+//      self.addCenterButtonWithImage(UIImage(named: "ic_zhijian"), highlightImage: nil)
+//      self.button.addTarget(self, action: "press:", forControlEvents: UIControlEvents.TouchUpInside)
         
       //服务中心
       let vc4 = SalesVC()
@@ -57,7 +56,7 @@ class MainTBC: BaseViewController{
       vc5.tabBarItem.image = UIImage(named: "ic_wo")
       vc5.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
       
-      viewControllers = [vc1, vc2, vc3, vc4, vc5]
+      viewControllers = [vc1, vc2, vc4, vc5]
       tabBar.tintColor = UIColor.hx_colorWithHexString("ffc56e")
       
 

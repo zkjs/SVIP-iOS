@@ -22,6 +22,7 @@ class CustomServiceVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBarHidden = true
@@ -41,7 +42,6 @@ class CustomServiceVC: UIViewController {
 
   @IBAction func checkin(sender: AnyObject) {
    // registerNotification()
-   
      let order = StorageManager.sharedInstance().lastOrder()
      let shopID = order?.shopid
     ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID!.stringValue, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in

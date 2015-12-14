@@ -24,7 +24,7 @@ class HotelTVC: UITableViewController {
       tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
       let item1 = UIBarButtonItem(image: UIImage(named: "ic_fanhui"), style:.Plain, target: self, action: "popTotopView:")
       self.navigationItem.leftBarButtonItem = item1
-      loadData()
+     // loadData()
     }
   
   override func loadView() {
@@ -81,8 +81,8 @@ class HotelTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
-      let shop = dataArray[indexPath.row]
-      cell.setData(shop as! Hotel)
+     // let shop = dataArray[indexPath.row]
+      //cell.setData(shop as! Hotel)
 
         return cell
     }
