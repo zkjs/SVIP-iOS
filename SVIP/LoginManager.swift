@@ -42,16 +42,18 @@ class LoginManager: NSObject {
   
   //动画结束
   func afterAnimation() {
-    if JSHAccountManager.sharedJSHAccountManager().userid != nil {
-      //已注册
-      fetchUserInfo({[unowned self] () -> () in
-//        self.hideHUD()
-        self.showResideMenu(haspushed: nil)
-      })
-    }else {
-      //未注册
-      showRegister()
-    }
+    showResideMenu(haspushed: nil)
+    
+//    if JSHAccountManager.sharedJSHAccountManager().userid != nil {
+//      //已注册
+//      fetchUserInfo({[unowned self] () -> () in
+////        self.hideHUD()
+//        self.showResideMenu(haspushed: nil)
+//      })
+//    }else {
+//      //未注册
+//      showRegister()
+//    }
   }
   
   func easeMobAutoLogin() {

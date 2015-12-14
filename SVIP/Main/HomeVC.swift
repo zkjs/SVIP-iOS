@@ -32,8 +32,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      getlastOrder()
-      memberActivation()
+//      getlastOrder()
+//      memberActivation()
       setupCoreLocationService()
       setupBluetoothManager()
 //      initTCPSessionManager()
@@ -108,7 +108,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
       }
     }
     
-    myView.usernameLabel.text =  JSHStorage.baseInfo().username + "  \(self.sexString)"
+//    myView.usernameLabel.text =  JSHStorage.baseInfo().username + "  \(self.sexString)"
 //    let order = StorageManager.sharedInstance().lastOrder()
 //    let beacon = StorageManager.sharedInstance().lastBeacon()
 //    

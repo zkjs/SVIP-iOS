@@ -151,6 +151,7 @@
 		4077DE001C1EAF9900E13D6B /* EaseChatBarMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DD841C1EAF9900E13D6B /* EaseChatBarMoreView.m */; };
 		4077DE011C1EAF9900E13D6B /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DD871C1EAF9900E13D6B /* EaseRecordView.m */; };
 		4077DE021C1EAF9900E13D6B /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DD8A1C1EAF9900E13D6B /* EaseConversationCell.m */; };
+		4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE031C1EB74B00E13D6B /* AccountManager.swift */; };
 		40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D031B8EAB2300EF188F /* ReceiptTVC.swift */; };
 		40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D051B8EAB8800EF188F /* NewItemCell.swift */; };
 		40817D081B8EAB8800EF188F /* NewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D061B8EAB8800EF188F /* NewItemCell.xib */; };
@@ -694,6 +695,7 @@
 		4077DD871C1EAF9900E13D6B /* EaseRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseRecordView.m; sourceTree = "<group>"; };
 		4077DD891C1EAF9900E13D6B /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
 		4077DD8A1C1EAF9900E13D6B /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
+		4077DE031C1EB74B00E13D6B /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		40817D031B8EAB2300EF188F /* ReceiptTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptTVC.swift; sourceTree = "<group>"; };
 		40817D051B8EAB8800EF188F /* NewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemCell.swift; sourceTree = "<group>"; };
 		40817D061B8EAB8800EF188F /* NewItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewItemCell.xib; sourceTree = "<group>"; };
@@ -2713,6 +2715,7 @@
 				B20812C21B8DD8650070D96F /* RuleEngine.swift */,
 				B20812C31B8DD8650070D96F /* StorageManager.swift */,
 				B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */,
+				4077DE031C1EB74B00E13D6B /* AccountManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -3323,6 +3326,7 @@
 				4077DD961C1EAF9900E13D6B /* ContactSelectionViewController.m in Sources */,
 				FAF212D91BF73F83002C1C73 /* ActivationCell.swift in Sources */,
 				4077DDA71C1EAF9900E13D6B /* EMCDDeviceManager+Microphone.m in Sources */,
+				4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */,
 				40E39E431BFEF43800516EC4 /* OrderHistoryListTVC.swift in Sources */,
 				FAF7F5681C030E8B00C84601 /* CustomerServiceCell.swift in Sources */,
 				4077DDDA1C1EAF9900E13D6B /* EaseMessageModel.m in Sources */,
