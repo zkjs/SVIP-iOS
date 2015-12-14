@@ -57,10 +57,7 @@ class MainTBC: UITabBarController {
   }
   
   override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-
-    }else {
-      vc.view.removeFromSuperview()
-    }
+    
   }
   
 }
