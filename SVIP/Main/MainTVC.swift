@@ -232,10 +232,6 @@ class MainTVC: UIViewController {
     //NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSmartPanel", name: "UIApplicationDidBecomeActiveNotification", object: nil)
   }
   
-  private func initTCPSessionManager() {
-    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-  }
-  
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -488,92 +484,40 @@ extension MainTVC: CLLocationManagerDelegate {
       // 如果10分钟内再次触发该区域，则不发推送
       if lastSendDate == nil || NSDate().timeIntervalSinceDate(lastSendDate!) >= 60 * 10 {
         StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
-        if UIApplication.sharedApplication().applicationState == .Background {
-          NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendEnterBeaconRegionPacket")
-//          ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-        } else {
 //          sendEnterRegionPacketWithBeacon(beaconRegion)
-        }
       }
     }
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion!) {
-    let beaconRegions = StorageManager.sharedInstance().beaconRegions()
-    if let beaconRegion = beaconRegions[region.identifier] {
-      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
-      if UIApplication.sharedApplication().applicationState == .Background {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ShouldSendExitBeaconRegionPacket")
-//        ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
-      } else {
-//        sendExitRegionPacketWithBeacon(beaconRegion)
-      }
-    }
+
   }
   
   private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
-    let shopID = beacon["shopid"]
-    let locid = beacon["locid"]
-    //    let uuid = beacon["uuid"]
-    //    let major = beacon["major"]
-    //    let minor = beacon["minor"]
-    #if DEBUG
-      let appid = "SVIP_DEBUG"
-    #else
-      let appid = "SVIP"
-    #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970)
-    let dictionary: [String: AnyObject] = [
-      "type": MessagePushType.PushLeaveLoc.rawValue,
-      "devtoken": JSHStorage.deviceToken(),
-      "appid": appid,
-      "userid": JSHAccountManager.sharedJSHAccountManager().userid,
-      "shopid": shopID!,
-      "locid": locid!,
-      "username": JSHStorage.baseInfo().username ?? "",
-      "timestamp": NSNumber(longLong: timestamp)
-    ]
-    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-    
-    //    let notification = UILocalNotification()
-    //    let alertMessage = "Exit \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
-    //    notification.alertBody = alertMessage
-    //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+//    let shopID = beacon["shopid"]
+//    let locid = beacon["locid"]
+//    let uuid = beacon["uuid"]
+//    let major = beacon["major"]
+//    let minor = beacon["minor"]
+//
+//    let notification = UILocalNotification()
+//    let alertMessage = "Exit \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
+//    notification.alertBody = alertMessage
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
   private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
-    guard let shopID = beacon["shopid"] else { return }
-    guard let locid = beacon["locid"] else { return }
-    guard let locdesc = beacon["locdesc"] else { return }
-    //    guard let UUID = beacon["uuid"] else { return }
-    //    guard let major = beacon["major"] else { return }
-    //    guard let minor = beacon["minor"] else { return }
-    #if DEBUG
-      let appid = "SVIP_DEBUG"
-    #else
-      let appid = "SVIP"
-    #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970)
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHStorage.baseInfo().username ?? ""
-    let deviceToken = JSHStorage.deviceToken()
-    let dictionary: [String: AnyObject] = [
-      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-      "devtoken": deviceToken,
-      "appid": appid,
-      "userid": userID,
-      "shopid": shopID,
-      "locid": locid,
-      "locdesc": locdesc,
-      "username": userName,
-      "timestamp": NSNumber(longLong: timestamp)
-    ]
-    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-    
-    //    let notification = UILocalNotification()
-    //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
-    //    notification.alertBody = alertMessage
-    //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+//    guard let shopID = beacon["shopid"] else { return }
+//    guard let locid = beacon["locid"] else { return }
+//    guard let locdesc = beacon["locdesc"] else { return }
+//    guard let UUID = beacon["uuid"] else { return }
+//    guard let major = beacon["major"] else { return }
+//    guard let minor = beacon["minor"] else { return }
+//
+//    let notification = UILocalNotification()
+//    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
+//    notification.alertBody = alertMessage
+//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
 }

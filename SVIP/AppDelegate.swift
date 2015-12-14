@@ -21,7 +21,7 @@ let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
 let UMURL = ""
  var reach: TMReachability?
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegate, TCPSessionManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegate {
   var loginManager: LoginManager?
   var window: UIWindow?
   var deviceToken = ""
@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     setupLogger()
     setupWindow()
     setupNotification()
-//    setupTCPSessionManager()
     fetchShops()
     fetchBeaconRegions()
 //    setupUMSocial()//UM
@@ -85,14 +84,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func applicationDidEnterBackground(application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-//    ZKJSTCPSessionManager.sharedInstance().deinitNetworkCommunication()
     EaseMob.sharedInstance().applicationDidEnterBackground(application)
     print("applicationDidEnterBackground")
   }
 
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-//    ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     EaseMob.sharedInstance().applicationWillEnterForeground(application)
     print("applicationWillEnterForeground")
   }
@@ -188,50 +185,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     }
   }
   
-  // MARK: - TCPSessionManagerDelegate
-  func didOpenTCPSocket() {
-    // App在后台，只需要发一个进入区域的包
-    print("didOpenTCPSocket")
-    if NSUserDefaults.standardUserDefaults().boolForKey("ShouldSendEnterBeaconRegionPacket") {
-      if let beaconRegion = StorageManager.sharedInstance().lastBeacon() {
-        sendEnterRegionPacketWithBeacon(beaconRegion)
-      }
-      NSUserDefaults.standardUserDefaults().setBool(false, forKey: "ShouldSendEnterBeaconRegionPacket")
-    } else if NSUserDefaults.standardUserDefaults().boolForKey("ShouldSendExitBeaconRegionPacket") {
-      if let beaconRegion = StorageManager.sharedInstance().lastBeacon() {
-        sendExitRegionPacketWithBeacon(beaconRegion)
-      }
-      NSUserDefaults.standardUserDefaults().setBool(false, forKey: "ShouldSendExitBeaconRegionPacket")
-    }
-    
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHStorage.baseInfo().username ?? ""
-    if userID != nil {
-      ZKJSTCPSessionManager.sharedInstance().clientLogin(userID, name: userName, deviceToken: deviceToken)
-    }
-  }
-  
-  func didReceivePacket(dictionary: [NSObject : AnyObject]!) {
-    let type = dictionary["type"] as! NSNumber
-    if type.integerValue == MessageServiceChatType.CustomerServiceTextChat.rawValue {
-      NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceTextChatNotification", object: self, userInfo: dictionary)
-    } else if type.integerValue == MessageServiceChatType.CustomerServiceMediaChat.rawValue {
-      NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceMediaChatNotification", object: self, userInfo: dictionary)
-    } else if type.integerValue == MessageServiceChatType.CustomerServiceImgChat.rawValue {
-      NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceImgChatNotification", object: self, userInfo: dictionary)
-    } else if type.integerValue == MessageServiceChatType.CustomerServiceTextChat_RSP.rawValue ||
-              type.integerValue == MessageServiceChatType.CustomerServiceMediaChat_RSP.rawValue ||
-              type.integerValue == MessageServiceChatType.CustomerServiceImgChat_RSP.rawValue ||
-              type.integerValue == MessageServiceChatType.RequestWaiter_C2S_RSP.rawValue {
-        NSNotificationCenter.defaultCenter().postNotificationName("MessageServiceChatCustomerServiceRSPNotification", object: self, userInfo: dictionary)
-    } else if type.integerValue == MessagePaymentType.ShopOrderStatus_IOS.rawValue {
-//      println("Booking Order is ready...")
-//      let alertView = UIAlertController(title: "订单", message: "您的订单已确认", preferredStyle: .Alert)
-//      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-//      window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
-    }
-  }
-  
   // MARK: - HTTPSessionManagerDelegate
   func didReceiveInvalidToken() {
     window?.rootViewController = JSHHotelRegisterVC()
@@ -281,11 +234,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func setupNotification() {
     UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
     UIApplication.sharedApplication().registerForRemoteNotifications()
-  }
-  
-  func setupTCPSessionManager() {
-    ZKJSTCPSessionManager.sharedInstance().delegate = self
-    print("setupTCPSessionManager")
   }
   
   func fetchShops() {
@@ -352,71 +300,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   func setupBackgroundFetch() {
     UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-  }
-  
-  func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
-    guard let shopID = beacon["shopid"] else { return }
-    guard let locid = beacon["locid"] else { return }
-    guard let locdesc = beacon["locdesc"] else { return }
-//    guard let UUID = beacon["uuid"] else { return }
-//    guard let major = beacon["major"] else { return }
-//    guard let minor = beacon["minor"] else { return }
-    #if DEBUG
-      let appid = "SVIP_DEBUG"
-      #else
-      let appid = "SVIP"
-    #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970)
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHStorage.baseInfo().username ?? ""
-    let deviceToken = JSHStorage.deviceToken()
-    let dictionary: [String: AnyObject] = [
-      "type": MessagePushType.PushLoc_IOS_A2M.rawValue,
-      "devtoken": deviceToken,
-      "appid": appid,
-      "userid": userID,
-      "shopid": shopID,
-      "locid": locid,
-      "locdesc": locdesc,
-      "username": userName,
-      "timestamp": NSNumber(longLong: timestamp)
-    ]
-    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-    
-//    let notification = UILocalNotification()
-//    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
-//    notification.alertBody = alertMessage
-//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-  }
-  
-  func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
-    let shopID = beacon["shopid"]
-    let locid = beacon["locid"]
-//    let uuid = beacon["uuid"]
-//    let major = beacon["major"]
-//    let minor = beacon["minor"]
-    #if DEBUG
-      let appid = "SVIP_DEBUG"
-      #else
-      let appid = "SVIP"
-    #endif
-    let timestamp = Int64(NSDate().timeIntervalSince1970)
-    let dictionary: [String: AnyObject] = [
-      "type": MessagePushType.PushLeaveLoc.rawValue,
-      "devtoken": JSHStorage.deviceToken(),
-      "appid": appid,
-      "userid": JSHAccountManager.sharedJSHAccountManager().userid,
-      "shopid": shopID!,
-      "locid": locid!,
-      "username": JSHStorage.baseInfo().username ?? "",
-      "timestamp": NSNumber(longLong: timestamp)
-    ]
-    ZKJSTCPSessionManager.sharedInstance().sendPacketFromDictionary(dictionary)
-    
-//    let notification = UILocalNotification()
-//    let alertMessage = "Exit \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
-//    notification.alertBody = alertMessage
-//    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
   func setupEaseMobWithApplication(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {

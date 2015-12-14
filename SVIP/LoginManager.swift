@@ -48,8 +48,6 @@ class LoginManager: NSObject {
 //        self.hideHUD()
         self.showResideMenu(haspushed: nil)
       })
-      // 打开TCP连接
-//      ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
     }else {
       //未注册
       showRegister()
@@ -143,8 +141,6 @@ class LoginManager: NSObject {
             LoginManager.sharedInstance().fetchUserInfo({ () -> () in
               LoginManager.sharedInstance().showResideMenu(haspushed: nil)
             })
-            // 打开TCP连接
-//            ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
           }
         }
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
