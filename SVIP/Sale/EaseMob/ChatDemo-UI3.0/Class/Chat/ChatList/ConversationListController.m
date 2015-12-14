@@ -7,15 +7,23 @@
 //
 
 #import "ConversationListController.h"
+
 #import "ChatViewController.h"
 #import "Networkcfg.h"
 #import "JSHStorage.h"
-
+#import "ZKJSHTTPSessionManager.h"
+#import "SVIP-Swift.h"
 #import "EaseUI.h"
+#import "ContactSelectionViewController.h"
+#import "EMSearchBar.h"
+#import "EMSearchDisplayController.h"
+#import "RealtimeSearchUtil.h"
 
-@interface ConversationListController ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource,UISearchDisplayDelegate, UISearchBarDelegate>
+@interface ConversationListController ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource,UISearchDisplayDelegate, UISearchBarDelegate, EMChooseViewDelegate>
 
 @property (nonatomic, strong) UIView *networkStateView;
+@property (nonatomic, strong) EMSearchBar *searchBar;
+@property (strong, nonatomic) EMSearchDisplayController *searchController;
 
 @end
 
@@ -24,18 +32,22 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  //self.title = @"服务中心";
+//  [self setupRightBarButton];
   
   [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
   
   self.showRefreshHeader = YES;
   self.delegate = self;
   self.dataSource = self;
+  
   [self tableViewDidTriggerHeaderRefresh];
   
-  self.tableView.frame = self.view.bounds;
+  [self.view addSubview:self.searchBar];
+  self.tableView.frame = CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height);
   
   [self networkStateView];
+  
+  [self searchController];
   
   [self removeEmptyConversationsFromDB];
 }
@@ -86,6 +98,65 @@
   return _networkStateView;
 }
 
+- (UISearchBar *)searchBar
+{
+  if (!_searchBar) {
+    _searchBar = [[EMSearchBar alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    _searchBar.delegate = self;
+    _searchBar.placeholder = NSLocalizedString(@"search", @"Search");
+    _searchBar.backgroundColor = [UIColor colorWithRed:0.747 green:0.756 blue:0.751 alpha:1.000];
+  }
+  
+  return _searchBar;
+}
+
+- (EMSearchDisplayController *)searchController
+{
+  if (_searchController == nil) {
+    _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    _searchController.delegate = self;
+    _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _searchController.searchResultsTableView.tableFooterView = [[UIView alloc] init];
+    
+    __weak ConversationListController *weakSelf = self;
+    [_searchController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
+      NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
+      EaseConversationCell *cell = (EaseConversationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+      
+      // Configure the cell...
+      if (cell == nil) {
+        cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+      }
+            
+      id<IConversationModel> model = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
+      cell.model = model;
+      
+      cell.detailLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTitleForConversationModel:model];
+      cell.detailLabel.attributedText = [EaseEmotionEscape attStringFromTextForChatting:cell.detailLabel.text];
+      cell.timeLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTimeForConversationModel:model];
+      return cell;
+    }];
+    
+    [_searchController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
+      return [EaseConversationCell cellHeightWithModel:nil];
+    }];
+    
+    [_searchController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
+      [weakSelf.searchController.searchBar endEditing:YES];
+      id<IConversationModel> model = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
+      EMConversation *conversation = model.conversation;
+      ChatViewController *chatController;
+      chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
+      chatController.hidesBottomBarWhenPushed = YES;
+      [weakSelf.searchController setActive:NO];
+      [weakSelf.navigationController pushViewController:chatController animated:YES];
+    }];
+  }
+  
+  return _searchController;
+}
+
 #pragma mark - EaseConversationListViewControllerDelegate
 
 - (void)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
@@ -125,6 +196,39 @@
     }
     NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", conversation.chatter];
     model.avatarURLPath = [kBaseURL stringByAppendingString:url];
+  } else if (model.conversation.conversationType == eConversationTypeGroupChat) {
+    if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"]) {
+      NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+      for (EMGroup *group in groupArray) {
+        if ([group.groupId isEqualToString:conversation.chatter]) {
+          model.title = group.groupSubject;
+          model.avatarImage = [UIImage imageNamed:@"img_hotel_zhanwei"];
+          
+          NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
+          [ext setObject:group.groupSubject forKey:@"groupSubject"];
+          [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
+          conversation.ext = ext;
+          break;
+        }
+      }
+    } else {
+      NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+      for (EMGroup *group in groupArray) {
+        if ([group.groupId isEqualToString:conversation.chatter]) {
+          NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
+          [ext setObject:group.groupSubject forKey:@"groupSubject"];
+          [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
+          NSString *groupSubject = [ext objectForKey:@"groupSubject"];
+          NSString *conversationSubject = [conversation.ext objectForKey:@"groupSubject"];
+          if (groupSubject && conversationSubject && ![groupSubject isEqualToString:conversationSubject]) {
+            conversation.ext = ext;
+          }
+          break;
+        }
+      }
+      model.title = [conversation.ext objectForKey:@"groupSubject"];
+      model.avatarImage = [UIImage imageNamed:@"img_hotel_zhanwei"];
+    }
   }
   return model;
 }
@@ -182,6 +286,47 @@
   return latestMessageTime;
 }
 
+#pragma mark - UISearchBarDelegate
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+  [searchBar setShowsCancelButton:YES animated:YES];
+  
+  return YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+  __weak typeof(self) weakSelf = self;
+  [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataArray searchText:(NSString *)searchText collationStringSelector:@selector(title) resultBlock:^(NSArray *results) {
+    if (results) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.searchController.resultsSource removeAllObjects];
+        [weakSelf.searchController.resultsSource addObjectsFromArray:results];
+        [weakSelf.searchController.searchResultsTableView reloadData];
+      });
+    }
+  }];
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+  return YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+  [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+  searchBar.text = @"";
+  [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
+  [searchBar resignFirstResponder];
+  [searchBar setShowsCancelButton:NO animated:YES];
+}
+
 #pragma mark - public
 
 -(void)refreshDataSource
@@ -193,11 +338,9 @@
 - (void)isConnect:(BOOL)isConnect{
   if (!isConnect) {
     self.tableView.tableHeaderView = _networkStateView;
-  }
-  else{
+  } else {
     self.tableView.tableHeaderView = nil;
   }
-  
 }
 
 - (void)networkChanged:(EMConnectionState)connectionState

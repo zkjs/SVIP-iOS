@@ -57,6 +57,7 @@ CGFloat const EaseConversationCellPadding = 10;
 {
     _avatarView = [[EaseImageView alloc] init];
     _avatarView.translatesAutoresizingMaskIntoConstraints = NO;
+    _avatarView.imageCornerRadius = 20;
     [self.contentView addSubview:_avatarView];
     
     _timeLabel = [[UILabel alloc] init];
@@ -154,7 +155,7 @@ CGFloat const EaseConversationCellPadding = 10;
 - (void)setModel:(id<IConversationModel>)model
 {
     _model = model;
-    
+  
     if ([_model.title length] > 0) {
         self.titleLabel.text = _model.title;
     }

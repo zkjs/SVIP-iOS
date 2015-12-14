@@ -33,8 +33,7 @@
 {
   BOOL flag = NO;
   switch (model.bodyType) {
-    case eMessageBodyType_Text:
-    {
+    case eMessageBodyType_Text: {
       if ([model.message.ext objectForKey:@"em_emotion"]) {
         flag = YES;
       } else if ([[model.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {

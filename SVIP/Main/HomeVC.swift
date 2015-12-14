@@ -395,6 +395,8 @@ extension HomeVC: CLLocationManagerDelegate {
 //          ZKJSTCPSessionManager.sharedInstance().initNetworkCommunicationWithIP(HOST, port: PORT)
 //        } else {
           sendEnterRegionPacketWithBeacon(beaconRegion)
+        
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: region.identifier)
 //        }
       }
     }
