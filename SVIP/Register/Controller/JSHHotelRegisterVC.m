@@ -94,15 +94,15 @@
           if (succeeded) {
             //注册
             [self.view endEditing:true];
-            [[LoginManager sharedInstance] signup:_phoneField.text openID:nil success:^{
-              JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] init];
-              baseInfo.sex = [_wechatInfoDic[@"gender"] boolValue] ? NSLocalizedString(@"MAN", nil) : NSLocalizedString(@"WOMAN", nil);
-              baseInfo.openid = _wechatInfoDic[@"openid"];
-              baseInfo.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_wechatInfoDic[@"profile_image_url"]]]];
-              baseInfo.username = _wechatInfoDic[@"screen_name"];
-              baseInfo.phone = _phoneField.text;
-              [JSHStorage saveBaseInfo:baseInfo];
-            }];
+//            [[LoginManager sharedInstance] signup:_phoneField.text openID:nil success:^{
+//              JSHBaseInfo *baseInfo = [[JSHBaseInfo alloc] init];
+//              baseInfo.sex = [_wechatInfoDic[@"gender"] boolValue] ? NSLocalizedString(@"MAN", nil) : NSLocalizedString(@"WOMAN", nil);
+//              baseInfo.openid = _wechatInfoDic[@"openid"];
+//              baseInfo.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_wechatInfoDic[@"profile_image_url"]]]];
+//              baseInfo.username = _wechatInfoDic[@"screen_name"];
+//              baseInfo.phone = _phoneField.text;
+//              [JSHStorage saveBaseInfo:baseInfo];
+//            }];
           } else {
             _codeField.text = @"";
             [ZKJSTool showMsg:NSLocalizedString(@"WRONG_VERIFIED_CODE", nil)];

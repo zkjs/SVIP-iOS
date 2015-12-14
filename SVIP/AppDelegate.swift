@@ -19,23 +19,23 @@ let UMAppKey = "55c31431e0f55a65c1002597"
 let WXAppId = "wxe09e14fcb69825cc"
 let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
 let UMURL = ""
- var reach: TMReachability?
+var reach: TMReachability?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegate {
+  
   var loginManager: LoginManager?
   var window: UIWindow?
   var deviceToken = ""
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    
-    setupLogger()
     setupWindow()
     setupNotification()
-    fetchShops()
+//    fetchShops()
     fetchBeaconRegions()
 //    setupUMSocial()//UM
     networkState()
-    setupBackgroundFetch()
+//    setupBackgroundFetch()
     setupYunBa()
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
     
@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     
     reach!.startNotifier()
   }
+  
   func reachabilityChanged(notification: NSNotification) {
     if reach!.isReachableViaWiFi() || reach!.isReachableViaWWAN() {
       print("Service avalaible!!!")
@@ -144,54 +145,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
     print(userInfo)
-    
     // 广告推送
-    if let childType = userInfo["childtype"] as? NSNumber {
-      if childType.integerValue == MessageUserDefineType.ClientArrivalPushAd.rawValue {
-        if let aps = userInfo["aps"] as? [String: AnyObject] {
-          if let alertMessage = aps["alert"] as? String {
-            let alertView = UIAlertController(title: "到店通知", message: alertMessage, preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .Cancel, handler: nil))
-            window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
-          }
-        }
-        // 缓存发送时间，因为iBeacon信号不稳定，避免10分钟内重复发送
-        guard let shopID = userInfo["shopid"] as? String else { return }
-        guard let locid = userInfo["locid"] as? String else { return }
-        let regionKey = "\(shopID)-\(locid)"
-        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: regionKey)
-        print("\(regionKey) saved at \(NSDate())")
-      }
-    }
   }
   
-  // MARK: - Background Fetch
-  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
-    
-    let fetchStart = NSDate()
-    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print("Background Fetch: \(responseObject)")
-      let shops = responseObject as! [(NSDictionary)]
-      StorageManager.sharedInstance().saveShopsInfo(shops)
-      completionHandler(.NewData)
-      
-      let fetchEnd = NSDate()
-      print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        completionHandler(.Failed)
-        let fetchEnd = NSDate()
-        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
-    }
-  }
+//  // MARK: - Background Fetch
+//  
+//  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+//    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
+//    
+//    if AccountManager.sharedInstance().isLogin() == false {
+//      completionHandler(.Failed)
+//      return
+//    }
+//    
+//    let fetchStart = NSDate()
+//    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      print("Background Fetch: \(responseObject)")
+//      let shops = responseObject as! [(NSDictionary)]
+//      StorageManager.sharedInstance().saveShopsInfo(shops)
+//      completionHandler(.NewData)
+//      
+//      let fetchEnd = NSDate()
+//      print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        completionHandler(.Failed)
+//        let fetchEnd = NSDate()
+//        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+//    }
+//  }
   
   // MARK: - HTTPSessionManagerDelegate
+  
   func didReceiveInvalidToken() {
-    window?.rootViewController = JSHHotelRegisterVC()
-    ZKJSTool.showMsg("账号在别处登录，请重新重录")
+//    window?.rootViewController = JSHHotelRegisterVC()
+//    ZKJSTool.showMsg("账号在别处登录，请重新重录")
   }
   
-    //UM
+  //UM
+  
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
     let urlStr = url.absoluteString
     if urlStr.hasPrefix("SVIPPAY") {
@@ -207,14 +198,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   func setupWindow() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    
     setupLoginManager()
     window?.makeKeyAndVisible()
   }
   
   func setupLoginManager() {
     loginManager = LoginManager.sharedInstance()
-    loginManager?.appWindow = self.window
+    loginManager?.appWindow = window
     loginManager?.showAnimation()
   }
   
@@ -236,16 +226,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     UIApplication.sharedApplication().registerForRemoteNotifications()
   }
   
-  func fetchShops() {
-    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: {  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      let shops = responseObject as! [(NSDictionary)]
-      StorageManager.sharedInstance().saveShopsInfo(shops)
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
-  }
+//  func fetchShops() {
+//    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: {  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      let shops = responseObject as! [(NSDictionary)]
+//      StorageManager.sharedInstance().saveShopsInfo(shops)
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
+//  }
   
   func fetchBeaconRegions() {
+    if AccountManager.sharedInstance().isLogin() == false {
+      return
+    }
+    
     ZKJSHTTPSessionManager.sharedInstance().getBeaconRegionListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       var beaconRegions = [String: [String: String]]()
       
@@ -298,9 +292,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    UMSocialWechatHandler.setWXAppId(WXAppId, appSecret: WXAppSecret, url: UMURL)
   }
   
-  func setupBackgroundFetch() {
-    UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-  }
+//  func setupBackgroundFetch() {
+//    UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+//  }
   
   func setupEaseMobWithApplication(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
     #if DEBUG
@@ -309,8 +303,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
       let cert = "SVIP"
     #endif
     let appKey = "zkjs#svip"
-    EaseMob.sharedInstance().registerSDKWithAppKey(appKey, apnsCertName: cert, otherConfig: [kSDKConfigEnableConsoleLogger: NSNumber(bool: false)])
-    EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    
+    EaseSDKHelper.shareHelper().easemobApplication(application,
+      didFinishLaunchingWithOptions: launchOptions,
+      appkey: appKey,
+      apnsCertName: cert,
+      otherConfig: [kSDKConfigEnableConsoleLogger: NSNumber(bool: false)])
   }
   
   func setupYunBa() {

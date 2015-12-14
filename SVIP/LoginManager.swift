@@ -42,112 +42,57 @@ class LoginManager: NSObject {
   
   //动画结束
   func afterAnimation() {
-    showResideMenu(haspushed: nil)
-    
-//    if JSHAccountManager.sharedJSHAccountManager().userid != nil {
-//      //已注册
-//      fetchUserInfo({[unowned self] () -> () in
-////        self.hideHUD()
-//        self.showResideMenu(haspushed: nil)
-//      })
-//    }else {
-//      //未注册
-//      showRegister()
+//    let nc = BaseNC(rootViewController: MainTBC())
+//    appWindow.rootViewController = nc
+    appWindow.rootViewController = MainTBC()
+  }
+  
+//  func signup(phone: String?, openID: String?, success:() ->()) {
+//    var idstr :String?
+//    if phone == nil && openID != nil {
+//      idstr = openID
 //    }
-  }
-  
-  func easeMobAutoLogin() {
-    // 自动登录
-    let isAutoLogin = EaseMob.sharedInstance().chatManager.isAutoLoginEnabled
-    if isAutoLogin == false {
-      let userID = JSHAccountManager.sharedJSHAccountManager().userid
-      EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(userID, password: "123456", completion: { (responseObject: [NSObject : AnyObject]!, error: EMError!) -> Void in
-        EaseMob.sharedInstance().chatManager.enableAutoLogin!()
-        }, onQueue: nil)
-    }
-  }
-  
-  func showResideMenu(haspushed pushedVC: UIViewController?) {
-    let nc = BaseNC(rootViewController: MainTBC())
-    if pushedVC != nil {
-      nc.pushViewController(pushedVC!, animated: false)
-    }
-    let menu = JSSideMenu(contentViewController: nc, leftMenuViewController: nil, rightMenuViewController: nil)
-    menu.contentViewScaleValue = 1
-    menu.bouncesHorizontally = false
-    menu.contentViewInPortraitOffsetCenterX = 277 - appWindow.bounds.size.width*0.5
-    appWindow.rootViewController = menu
-  }
-  
-  func showRegister() {
-    appWindow.rootViewController = JSHHotelRegisterVC()
-  }
-  
-  //获取用户信息保存本地
-  func fetchUserInfo(afterFetch: () -> ()) {
-    let oldImage = JSHStorage.baseInfo().avatarImage  //单独将本地头像提出来，为了从服务器取头像数据滞后于显示的问题
-    ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let dic = responseObject as? [NSObject : AnyObject] {
-        let baseInfo = JSHBaseInfo(dic: dic)
-        if baseInfo.avatarImage == nil {
-          baseInfo.avatarImage = oldImage
-        }
-        //本地存储
-        JSHStorage.saveBaseInfo(baseInfo)
-        self.easeMobAutoLogin()
-        afterFetch()
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      print("\(error.description)")
-    }
-  }
-  
-  func signup(phone: String?, openID: String?, success:() ->()) {
-    var idstr :String?
-    if phone == nil && openID != nil {
-      idstr = openID
-    }
-    if phone != nil && openID == nil {
-      idstr = phone
-    }
-    if let str = idstr {
-      ZKJSHTTPSessionManager.sharedInstance().verifyIsRegisteredWithID(str, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        if let dic = responseObject as? NSDictionary {
-          let newRegister = !dic["set"]!.boolValue!
-          if newRegister {//新注册
-            ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: openID, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
-              if let dic = responseObject as? [NSObject : AnyObject] {
-                let set = dic["set"]!.boolValue!
-                if set {//注册成功
-                  //回调
-                  success()
-                  //save account data
-                  JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
-                  self.easeMobAutoLogin()
-                  //编辑个人信息
-                  print("here goes to edit info ")
-                  let nv = BaseNC(rootViewController: InfoEditViewController())
-                  nv.navigationBar.tintColor = UIColor.whiteColor()
-                  nv.navigationBar.setBackgroundImage(UIImage(named: "avator"), forBarMetrics: UIBarMetrics.Default)
-                  nv.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-                  self.appWindow.rootViewController = nv
-                }
-              }
-              }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-                
-            })
-          } else {//已注册
-            //save account data
-            JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic as [NSObject : AnyObject])
-            //获取用户信息
-            LoginManager.sharedInstance().fetchUserInfo({ () -> () in
-              LoginManager.sharedInstance().showResideMenu(haspushed: nil)
-            })
-          }
-        }
-        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      })
-    }
-  }
+//    if phone != nil && openID == nil {
+//      idstr = phone
+//    }
+//    if let str = idstr {
+//      ZKJSHTTPSessionManager.sharedInstance().verifyIsRegisteredWithID(str, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//        if let dic = responseObject as? NSDictionary {
+//          let newRegister = !dic["set"]!.boolValue!
+//          if newRegister {//新注册
+//            ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: openID, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
+//              if let dic = responseObject as? [NSObject : AnyObject] {
+//                let set = dic["set"]!.boolValue!
+//                if set {//注册成功
+//                  //回调
+//                  success()
+//                  //save account data
+//                  JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic)
+//                  self.easeMobAutoLogin()
+//                  //编辑个人信息
+//                  print("here goes to edit info ")
+//                  let nv = BaseNC(rootViewController: InfoEditViewController())
+//                  nv.navigationBar.tintColor = UIColor.whiteColor()
+//                  nv.navigationBar.setBackgroundImage(UIImage(named: "avator"), forBarMetrics: UIBarMetrics.Default)
+//                  nv.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+//                  self.appWindow.rootViewController = nv
+//                }
+//              }
+//              }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//                
+//            })
+//          } else {//已注册
+//            //save account data
+//            JSHAccountManager.sharedJSHAccountManager().saveAccountWithDic(dic as [NSObject : AnyObject])
+//            //获取用户信息
+//            LoginManager.sharedInstance().fetchUserInfo({ () -> () in
+//              LoginManager.sharedInstance().showResideMenu(haspushed: nil)
+//            })
+//          }
+//        }
+//        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//      })
+//    }
+//  }
   
 }

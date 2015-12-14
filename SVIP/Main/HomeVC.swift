@@ -8,49 +8,44 @@
 
 import UIKit
 import CoreLocation
-import CoreBluetooth
-class HomeVC: UIViewController,CBCentralManagerDelegate{
-  var myView:HomeHeaderView!
-  var currentCity:String!
+
+class HomeVC: UIViewController {
+  
   let Identifier = "SettingVCCell"
   let titles = ["订单状态","最近浏览","服务精选","酒店精选"]
   let locationManager = CLLocationManager()
-  var activate = true
-  var longitude:double_t!
-  var latution:double_t!
-  var bluetoothManager = CBCentralManager()
+  
+  var myView: HomeHeaderView!
+  var currentCity: String!
+  var activate =  true
+  var longitude: double_t!
+  var latution: double_t!
   var beaconRegions = [String: [String: String]]()
   var nowDate = NSDate()
-  var compareNumber:NSNumber!
+  var compareNumber: NSNumber!
   var hourLabel = String()
   var sexString = String()//性别
+  
   @IBOutlet weak var tableView: UITableView!
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
   }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    //      getlastOrder()
+    //      memberActivation()
+    setupCoreLocationService()
+    //      initTCPSessionManager()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//      getlastOrder()
-//      memberActivation()
-      setupCoreLocationService()
-      setupBluetoothManager()
-//      initTCPSessionManager()
-      
-     
-
-      tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
-      let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName, forCellReuseIdentifier: HomeCell.reuseIdentifier())
-      let NibName = UINib(nibName: OrderCustomCell.nibName(), bundle: nil)
-      tableView.registerNib(NibName, forCellReuseIdentifier: OrderCustomCell.reuseIdentifier())
-      //myView.LocationButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
-      
-
-        // Do any additional setup after loading the view.
-     
-    }
+    tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
+    let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName, forCellReuseIdentifier: HomeCell.reuseIdentifier())
+    let NibName = UINib(nibName: OrderCustomCell.nibName(), bundle: nil)
+    tableView.registerNib(NibName, forCellReuseIdentifier: OrderCustomCell.reuseIdentifier())
+    //myView.LocationButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
+  }
   
   //定义一个带字符串参数的闭包
   func myClosure(testStr:String)->Void{
@@ -71,13 +66,13 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     
-    
     //tableView.reloadData()
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-   // navigationController?.navigationBarHidden = false
+    
+    // navigationController?.navigationBarHidden = false
   }
   
   func setupUI() {
@@ -108,33 +103,33 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
       }
     }
     
-//    myView.usernameLabel.text =  JSHStorage.baseInfo().username + "  \(self.sexString)"
-//    let order = StorageManager.sharedInstance().lastOrder()
-//    let beacon = StorageManager.sharedInstance().lastBeacon()
-//    
-//    let formatter = NSDateFormatter()
-//    formatter.dateFormat = "yyyy-MM-dd"
-//    //根据日期判断是不是这张订单已过期
-//    let dateString = formatter.stringFromDate(nowDate)
-//    compareNumber = NSNumber(int: ZKJSTool.compareOneDay(order?.departure_date, withAnotherDay:dateString ))
-//    if beacon == nil  && order == nil {
-//      self.myView.activateLabel.text = "\(hourLabel)，您没有任何预定"
-//      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
-//    }
-//    if beacon == nil && order != nil {
-//      self.myView.activateLabel.text = "\(hourLabel), 您有1任何行程"
-//      self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
-//    }
-//    if beacon != nil && order == nil {
-//      self.myView.activateLabel.text = "\(order?.fullname)"
-//      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
-//      self.myView.custonLabel.text = "专属客服为您24小时服务，如影随行"
-//    }
-//    if beacon != nil && order != nil {
-//      self.myView.activateLabel.text = (order?.fullname)! + "欢迎您"
-//      self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
-//    }
-//    myView.connectButton.addTarget(self, action: "skip:", forControlEvents: UIControlEvents.TouchUpInside)
+    //    myView.usernameLabel.text =  JSHStorage.baseInfo().username + "  \(self.sexString)"
+    //    let order = StorageManager.sharedInstance().lastOrder()
+    //    let beacon = StorageManager.sharedInstance().lastBeacon()
+    //
+    //    let formatter = NSDateFormatter()
+    //    formatter.dateFormat = "yyyy-MM-dd"
+    //    //根据日期判断是不是这张订单已过期
+    //    let dateString = formatter.stringFromDate(nowDate)
+    //    compareNumber = NSNumber(int: ZKJSTool.compareOneDay(order?.departure_date, withAnotherDay:dateString ))
+    //    if beacon == nil  && order == nil {
+    //      self.myView.activateLabel.text = "\(hourLabel)，您没有任何预定"
+    //      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
+    //    }
+    //    if beacon == nil && order != nil {
+    //      self.myView.activateLabel.text = "\(hourLabel), 您有1任何行程"
+    //      self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
+    //    }
+    //    if beacon != nil && order == nil {
+    //      self.myView.activateLabel.text = "\(order?.fullname)"
+    //      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
+    //      self.myView.custonLabel.text = "专属客服为您24小时服务，如影随行"
+    //    }
+    //    if beacon != nil && order != nil {
+    //      self.myView.activateLabel.text = (order?.fullname)! + "欢迎您"
+    //      self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
+    //    }
+    //    myView.connectButton.addTarget(self, action: "skip:", forControlEvents: UIControlEvents.TouchUpInside)
     
   }
   
@@ -144,9 +139,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
       vc.view.frame = CGRectMake(0.0, 0.0, view.frame.width, view.frame.height)
       self.addChildViewController(vc)
       self.view.addSubview(vc.view)
-     // self.tabBarController?.selectedIndex = 1
-//      let vc = OrderListTVC()
-//      self.navigationController?.pushViewController(vc, animated: true)
+      // self.tabBarController?.selectedIndex = 1
+      //      let vc = OrderListTVC()
+      //      self.navigationController?.pushViewController(vc, animated: true)
     }
     if( sender.titleLabel?.text == "开始预定") {
       let vc = CustomServiceVC()
@@ -184,51 +179,22 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
     }
   }
   
-//  func positioningCity() {
-//     let loc = CLLocation(latitude: latution, longitude: longitude)
-//     let geocoder = CLGeocoder()
-//    geocoder.reverseGeocodeLocation(loc) { (array:[CLPlacemark]?, error:NSError?) -> Void in
-//      if array?.count > 0 {
-//        let placemark = array![0]
-//        var city = placemark.locality
-//        if (city == nil) {
-//          city = placemark.administrativeArea
-//        }
-//        self.currentCity = city
-//        self.myView.currentCityLabe.text = city
-//        
-//      }
-//    }
-//  }
-  
-  private func setupBluetoothManager() {
-    bluetoothManager = CBCentralManager(delegate: self, queue: nil)
-  }
-  
-  func centralManagerDidUpdateState(central: CBCentralManager) {
-    switch central.state {
-    case .PoweredOn:
-      print(".PoweredOn")
-    case .PoweredOff:
-      print(".PoweredOff")
-      //      let alertView = UIAlertController(title: "请打开蓝牙", message: "我们将为您提供免登记办理入住手续等贴心服务需要使用蓝牙功能", preferredStyle: .Alert)
-      //      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-      //      presentViewController(alertView, animated: true, completion: nil)
-    case .Resetting:
-      print(".Resetting")
-    case .Unauthorized:
-      print(".Unauthorized")
-    case .Unknown:
-      print(".Unknown")
-    case .Unsupported:
-      print(".Unsupported")
-    }
-  }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  //  func positioningCity() {
+  //     let loc = CLLocation(latitude: latution, longitude: longitude)
+  //     let geocoder = CLGeocoder()
+  //    geocoder.reverseGeocodeLocation(loc) { (array:[CLPlacemark]?, error:NSError?) -> Void in
+  //      if array?.count > 0 {
+  //        let placemark = array![0]
+  //        var city = placemark.locality
+  //        if (city == nil) {
+  //          city = placemark.administrativeArea
+  //        }
+  //        self.currentCity = city
+  //        self.myView.currentCityLabe.text = city
+  //
+  //      }
+  //    }
+  //  }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
@@ -237,6 +203,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 4
   }
+  
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 338
   }
@@ -245,19 +212,13 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
     return HomeCell.height()
   }
   
-  
-  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-    
-      let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
-     // if let order = StorageManager.sharedInstance().lastOrder() {
-       // cell.setData(order)
-     // }
-      return cell
-    
-    
+    let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
+    // if let order = StorageManager.sharedInstance().lastOrder() {
+    // cell.setData(order)
+    // }
+    return cell
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -277,11 +238,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate{
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-   
+    
   }
   
-  
-
 }
 
 
@@ -305,15 +264,15 @@ extension HomeVC: CLLocationManagerDelegate {
       locationManager.requestAlwaysAuthorization()
       return
     }
-    setupBeaconMonitor()
+//    setupBeaconMonitor()
     setupGPSMonitor()
-}
+  }
   
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     if status != CLAuthorizationStatus.AuthorizedAlways {
-            let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-            presentViewController(alertView, animated: true, completion: nil)
+      let alertView = UIAlertController(title: "无法获取位置", message: "我们将为您提供免登记办理入住手续，该项服务需要使用定位功能，需要您前往设置中心打开定位服务", preferredStyle: .Alert)
+      alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+      presentViewController(alertView, animated: true, completion: nil)
     }
     
   }
@@ -329,16 +288,17 @@ extension HomeVC: CLLocationManagerDelegate {
     longitude = coordinate.longitude
     latution = coordinate.latitude
     //positioningCity()
-//    //计算距离
-//    let currentLocation = CLLocation(latitude: latution, longitude: longitude)
-//    if let order = StorageManager.sharedInstance().lastOrder() {
-//      //得到最近一张订单后取订单所带的经纬度
-//      if let latitude = order.map_latitude,
-//        let longitude = order.map_longitude {
-//          let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
+    //    //计算距离
+    //    let currentLocation = CLLocation(latitude: latution, longitude: longitude)
+    //    if let order = StorageManager.sharedInstance().lastOrder() {
+    //      //得到最近一张订单后取订单所带的经纬度
+    //      if let latitude = order.map_latitude,
+    //        let longitude = order.map_longitude {
+    //          let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
     
-    postGPSLocation(coordinate)
+//    postGPSLocation(coordinate)
   }
+  
   private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -356,7 +316,6 @@ extension HomeVC: CLLocationManagerDelegate {
       if state != CLRegionState.Inside {
         StorageManager.sharedInstance().updateLastBeacon(nil)
       }
-      
     }
   }
   
@@ -366,6 +325,7 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     
   }
+  
   private func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     print(region)
@@ -382,11 +342,11 @@ extension HomeVC: CLLocationManagerDelegate {
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion!) {
-
+    
   }
   
   private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
-
+    
   }
   
   private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
@@ -431,7 +391,7 @@ extension HomeVC: CLLocationManagerDelegate {
       }
     }
   }
-
+  
   private func setupBeaconMonitor() {
     removeAllMonitoredRegions()
     
@@ -469,7 +429,7 @@ extension HomeVC: CLLocationManagerDelegate {
         }
       }
     }
-}
+  }
   
   private func setupGPSMonitor() {
     if #available(iOS 9.0, *) {
@@ -478,8 +438,7 @@ extension HomeVC: CLLocationManagerDelegate {
     } else {
       locationManager.startMonitoringSignificantLocationChanges()
     }
-    
-}
+  }
   
   private func removeAllMonitoredRegions() {
     for monitoredRegion in locationManager.monitoredRegions {
@@ -488,7 +447,7 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
   
-  }
+}
 
 
 
