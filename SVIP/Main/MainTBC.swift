@@ -47,17 +47,18 @@ class MainTBC: UITabBarController {
     vc3.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     
     //我的设置
-    let vc4 = SettingVC()
-    let nc4 = BaseNC(rootViewController: vc4)
+    let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
+    let vc4 = storyboard.instantiateViewControllerWithIdentifier("MeTVC") as! MeTVC
     vc4.tabBarItem.image = UIImage(named: "ic_wo")
     vc4.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+    let nc4 = BaseNC(rootViewController: vc4)
     
     viewControllers = [nc1, nc2, nc3, nc4]
     tabBar.tintColor = UIColor.ZKJS_mainColor()
   }
   
   override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-    
+    item.title = ""
   }
-  
+
 }

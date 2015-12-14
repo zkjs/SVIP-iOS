@@ -207,6 +207,13 @@
 		40E3A18A1BFEFA8300516EC4 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A1861BFEFA8200516EC4 /* SearchTVC.swift */; };
 		40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A1871BFEFA8200516EC4 /* SearchTVC.xib */; };
 		40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E3A22F1BFF01C300516EC4 /* libopencore-amrnb.a */; };
+		40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D791C1EEE58009C0311 /* MeTVC.swift */; };
+		40EE4D801C1EEF70009C0311 /* MeTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */; };
+		40EE4D821C1EFD29009C0311 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D811C1EFD29009C0311 /* AccountTVC.swift */; };
+		40EE4D861C1EFD46009C0311 /* AccountTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D851C1EFD46009C0311 /* AccountTVC.storyboard */; };
+		40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D871C1F0836009C0311 /* SettingTVC.swift */; };
+		40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */; };
+		40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */; };
 		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
 		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
 		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
@@ -969,6 +976,13 @@
 		40E3A28D1BFF01C300516EC4 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		40E3A28E1BFF01C300516EC4 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		40E3A28F1BFF01C300516EC4 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		40EE4D791C1EEE58009C0311 /* MeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeTVC.swift; path = SVIP/Me/MeTVC.swift; sourceTree = SOURCE_ROOT; };
+		40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MeTVC.storyboard; path = SVIP/Me/MeTVC.storyboard; sourceTree = SOURCE_ROOT; };
+		40EE4D811C1EFD29009C0311 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTVC.swift; path = SVIP/Me/AccountTVC.swift; sourceTree = SOURCE_ROOT; };
+		40EE4D851C1EFD46009C0311 /* AccountTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AccountTVC.storyboard; path = SVIP/Me/AccountTVC.storyboard; sourceTree = SOURCE_ROOT; };
+		40EE4D871C1F0836009C0311 /* SettingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTVC.swift; path = SVIP/Me/SettingTVC.swift; sourceTree = SOURCE_ROOT; };
+		40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
+		40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTVC.xib; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
 		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
@@ -1273,6 +1287,7 @@
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
 				B2564D351B4BFAED0098608F /* Register */,
 				B2A6420F1B47C2A700AF0F28 /* Book */,
+				40EE4D781C1EEE34009C0311 /* Me */,
 				FAF02EF01C155AD500B86B28 /* Setting */,
 				4052664D1B41283900B277BE /* Main */,
 				B20812611B8DD7950070D96F /* LeftMenu */,
@@ -2045,6 +2060,7 @@
 				40E39E2F1BFEF43800516EC4 /* OrderDetailVC.xib */,
 				40E39E301BFEF43800516EC4 /* OrderHistoryListTVC.swift */,
 				40E39E311BFEF43800516EC4 /* OrderListTVC.swift */,
+				40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */,
 			);
 			path = OrderList;
 			sourceTree = "<group>";
@@ -2609,6 +2625,19 @@
 			path = PSTCollectionView;
 			sourceTree = "<group>";
 		};
+		40EE4D781C1EEE34009C0311 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				40EE4D791C1EEE58009C0311 /* MeTVC.swift */,
+				40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */,
+				40EE4D811C1EFD29009C0311 /* AccountTVC.swift */,
+				40EE4D851C1EFD46009C0311 /* AccountTVC.storyboard */,
+				40EE4D871C1F0836009C0311 /* SettingTVC.swift */,
+				40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
 		B20812611B8DD7950070D96F /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -3170,16 +3199,20 @@
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
 				FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
+				40EE4D801C1EEF70009C0311 /* MeTVC.storyboard in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				40E39E3E1BFEF43800516EC4 /* OrderContentView.xib in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
 				B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
 				B2F0377D1B93F3D4006FF396 /* PhoneSettingSecondViewController.xib in Resources */,
+				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				4056A8131BC9004C00D42393 /* server.der in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
+				40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */,
 				40E39E3C1BFEF43800516EC4 /* OrderListHeaderView.xib in Resources */,
+				40EE4D861C1EFD46009C0311 /* AccountTVC.storyboard in Resources */,
 				40E39E401BFEF43800516EC4 /* OrderDetailsVC.xib in Resources */,
 				FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */,
 				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
@@ -3270,6 +3303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */,
+				40EE4D821C1EFD29009C0311 /* AccountTVC.swift in Sources */,
 				4077DDCB1C1EAF9900E13D6B /* PSTCollectionView.m in Sources */,
 				4077DD971C1EAF9900E13D6B /* ContactView.m in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
@@ -3404,6 +3438,7 @@
 				B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */,
 				4077DDF91C1EAF9900E13D6B /* EaseBubbleView.m in Sources */,
 				4077DDDD1C1EAF9900E13D6B /* NSDateFormatter+Category.m in Sources */,
+				40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */,
 				40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
@@ -3449,6 +3484,7 @@
 				4077DDBD1C1EAF9900E13D6B /* EMSDWebImageDownloader.m in Sources */,
 				4077DD951C1EAF9900E13D6B /* ChatGroupDetailViewController.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
+				40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,
 				4077DDC41C1EAF9900E13D6B /* UIImage+EMGIF.m in Sources */,
 				FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */,
