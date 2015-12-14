@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="星空_设置" translatesAutoresizingMaskIntoConstraints="NO" id="D7T-rY-N6j">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="register" translatesAutoresizingMaskIntoConstraints="NO" id="D7T-rY-N6j">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <animations/>
                 </imageView>
@@ -171,6 +171,10 @@
                         <action selector="CodeButtonClicked:" destination="-1" eventType="touchUpInside" id="G6A-cq-ZkS"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1L-s8-5Qk">
+                    <rect key="frame" x="8" y="22" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -204,6 +208,6 @@
         <image name="ic_weibo_pre" width="26" height="21"/>
         <image name="ic_weixin" width="27" height="22"/>
         <image name="ic_weixin_pre" width="27" height="22"/>
-        <image name="星空_设置" width="375" height="667"/>
+        <image name="register" width="1500" height="1500"/>
     </resources>
 </document>

@@ -24,7 +24,7 @@ class ComprehensiveVC: UIViewController {
       let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
       tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
       let item1 = UIBarButtonItem(image: UIImage(named: "ic_dingwei_orange"), style:.Plain, target: self, action: "popTotopView:")
-      self.navigationItem.leftBarButtonItem = item1
+      navigationController?.navigationItem.leftBarButtonItem = item1
       loadData()
         // Do any additional setup after loading the view.
     }

@@ -393,7 +393,6 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Table view delegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    print(indexPath)
     
     if indexPath.section == kReceiptSection && indexPath.row == kReceiptRow {  // 房型
       let vc = ReceiptTVC()

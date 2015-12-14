@@ -59,7 +59,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 }
 
 - (NSString *)phone {
-  NSLog(@"%@",[JSHStorage baseInfo].phone);
+  
   return [JSHStorage baseInfo].phone;
 }
 
@@ -120,7 +120,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 - (void)verifyIsRegisteredWithID:(NSString *)__id success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/getuser?id=%@", __id];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+    DDLogInfo(@"这是登录信息%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -358,7 +358,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     urlString = [NSString stringWithFormat:@"user/selectshop?web=0&page=%ld&key=%@&desc=%@", (long)page, key, order];
   }
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }

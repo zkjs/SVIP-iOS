@@ -20,6 +20,7 @@ class LoginVC: UIViewController {
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("LoginVC", owner:self, options:nil)
   }
+  
   func login() {
     ZKJSHTTPSessionManager.sharedInstance().verifyIsRegisteredWithID("phone", success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
       if let data = responsObjects {

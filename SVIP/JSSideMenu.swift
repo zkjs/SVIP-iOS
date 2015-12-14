@@ -11,7 +11,7 @@ import UIKit
 class JSSideMenu: RESideMenu {
   
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return .LightContent
+    return .Default
   }
   
 }
