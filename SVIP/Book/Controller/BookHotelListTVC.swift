@@ -12,8 +12,8 @@ class BookHotelListCell: UITableViewCell {
   
   var hotelData: Hotel? {
     didSet {
-      avatar .sd_setImageWithURL(NSURL(string: hotelData!.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: [.LowPriority, .RetryFailed], completed: nil)
-      hotel.text = hotelData!.fullname
+      avatar .sd_setImageWithURL(NSURL(string: hotelData!.shoplogo), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: [.LowPriority, .RetryFailed], completed: nil)
+      hotel.text = hotelData!.shopname
     }
   }
   
@@ -116,8 +116,9 @@ class BookHotelListTVC: UITableViewController {
       vc.shopID = (dataArray[indexPath.row] as? Hotel)!.shopid
       self.navigationController?.pushViewController(vc, animated: true)
     case .PhoneCall:
-      let hotel = dataArray[indexPath.row] as? Hotel
-      UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(hotel!.phone)")!)
+      break
+     // let hotel = dataArray[indexPath.row] as? Hotel
+     // UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(hotel!.phone)")!)
     }
   }
 }

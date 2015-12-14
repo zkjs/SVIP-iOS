@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTBC: BaseViewController{
+class MainTBC: UITabBarController{
   var heightDifference:CGFloat!
   var  isUnSelected = false
   let vc = FloatingWindowVC()

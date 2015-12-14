@@ -194,9 +194,9 @@ class MainTVC: UIViewController {
   }
   
   func downloadImage(notification: NSNotification) {
-    let userInfo = notification.userInfo as! [String:AnyObject]
-    let imageData = userInfo["avtarImage"] as! NSData
-    let image = UIImage(data: imageData)
+//    let userInfo = notification.userInfo as! [String:AnyObject]
+//    let imageData = userInfo["avtarImage"] as! NSData
+   // let image = UIImage(data: imageData)
    // myView.userImageButton.setImage(image, forState: UIControlState.Normal)
     self.tableView.reloadData()
   }
@@ -211,7 +211,7 @@ class MainTVC: UIViewController {
   }
   
   @IBAction func pushToHotel(sender: AnyObject) {
-    let vc = HotelPageVC()
+    let vc = ComprehensiveVC()
     let transiton = CATransition()
    // transiton.duration = 0.5
     transiton.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)

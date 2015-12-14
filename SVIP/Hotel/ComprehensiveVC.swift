@@ -23,7 +23,9 @@ class ComprehensiveVC: UIViewController {
       tableView.showsVerticalScrollIndicator = false
       let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
       tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
-      let item1 = UIBarButtonItem(image: UIImage(named: "ic_dingwei_orange"), style:.Plain, target: self, action: "popTotopView:")
+      
+      let image = UIImage(named: "ic_dingwei_orange")
+      let item1 = UIBarButtonItem(image: image, style:.Plain, target: self, action: nil)
       navigationController?.navigationItem.leftBarButtonItem = item1
       loadData()
         // Do any additional setup after loading the view.
@@ -45,17 +47,29 @@ class ComprehensiveVC: UIViewController {
   }
   
   private func loadData() {
-    ZKJSHTTPSessionManager .sharedInstance() .getAllShopInfoWithPage(1, key: nil, isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//    ZKJSHTTPSessionManager .sharedInstance() .getAllShopInfoWithPage(1, key: nil, isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let array = responseObject as? NSArray {
+//        for dic in array {
+//          let hotelData = Hotel(dic: dic as! NSDictionary)
+//          self.dataArray .addObject(hotelData)
+//        }
+//        self.tableView .reloadData()
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        self.showHint("加载数据失败")
+//    }
+    ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
-        for dic in array {
-          let hotelData = Hotel(dic: dic as! NSDictionary)
-          self.dataArray .addObject(hotelData)
-        }
-        self.tableView .reloadData()
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        self.showHint("加载数据失败")
+                for dic in array {
+                  let hotelData = Hotel(dic: dic as! NSDictionary)
+                  self.dataArray .addObject(hotelData)
+                }
+                self.tableView .reloadData()
+              }
+      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+        
     }
+    
   }
   
   
@@ -86,14 +100,16 @@ class ComprehensiveVC: UIViewController {
   
    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
+    let hotel = self.dataArray[indexPath.row] as! Hotel
     if type == .chat {
       let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-      vc.shopID = NSNumber(integer: Int((dataArray[indexPath.row] as! Hotel).shopid))
+      
+      vc.shopID = hotel.shopid
       self.navigationController?.pushViewController(vc, animated: true)
     }else if type == .customerService {
       let vc = CustomerServiceTVC()
-      vc.shopID = NSNumber(integer: Int((dataArray[indexPath.row] as! Hotel).shopid))
+      vc.shopID = hotel.shopid
       self.navigationController?.pushViewController(vc, animated: true)
     }
     

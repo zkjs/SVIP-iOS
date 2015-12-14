@@ -30,7 +30,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var dateInfoLabel: UILabel!
   @IBOutlet weak var sendOrderButton: UIButton!
   
-  var shopID = NSNumber(integer: 0)
+  var shopID = String()
   var dateFormatter = NSDateFormatter()
   var roomCount = 1
   var duration = 1
@@ -73,7 +73,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Private
   
   func loadRoomTypes() {
-    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(shopID.stringValue, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(shopID, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? NSArray {
         for dict in arr {
           if let myDict = dict as? NSDictionary {
@@ -102,7 +102,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   }
   
   func gotoChatVC() {
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID.stringValue, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -128,11 +128,11 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   func packetOrder() -> BookOrder {
     let order = BookOrder()
-    order.shopid = shopID
+    order.shopid = NSNumber(integer: Int(shopID)!)
     order.rooms = NSNumber(integer: Int(rooms)!)
     order.room_typeid = roomTypeID
     order.room_type = roomType.text! + breakfast
-    if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID.stringValue) {
+    if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID) {
       order.fullname = shopName
     }
     order.room_image_URL = roomImageURL
@@ -225,7 +225,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
       // 房型
       let vc = BookVC()
-      vc.shopid = shopID
+      vc.shopid = NSNumber(integer: Int(shopID)!)
       vc.dataArray = roomTypes
       vc.selection = { [unowned self] (goods: RoomGoods) -> () in
         self.roomType.text = goods.room! + goods.type!
