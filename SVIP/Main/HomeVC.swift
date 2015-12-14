@@ -390,6 +390,10 @@ extension HomeVC: CLLocationManagerDelegate {
   }
   
   private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
+    if AccountManager.sharedInstance().isLogin() == false {
+      return
+    }
+    
     guard let shopID = beacon["shopid"] else { return }
     guard let locid = beacon["locid"] else { return }
     guard let locdesc = beacon["locdesc"] else { return }
