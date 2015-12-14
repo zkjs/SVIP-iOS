@@ -82,8 +82,8 @@ class PrivilegeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
       case .Integra:
       vc = IntegralVC()
       case .ExclusiveCustomeService:
-       let hotelVC = HotelTVC()
-        hotelVC.type = HotelTVCType.customerService
+       let hotelVC = ComprehensiveVC()
+        hotelVC.type = ComprehensiveType.customerService
         self.navigationController?.pushViewController(hotelVC, animated: true)
         return
       case .moreConstruction:

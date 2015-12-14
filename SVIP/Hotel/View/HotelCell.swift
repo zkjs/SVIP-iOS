@@ -10,8 +10,8 @@ import UIKit
 
 class HotelCell: UITableViewCell {
 
-  @IBOutlet weak var priceLabel: UILabel!
-  @IBOutlet weak var hotelStarLabel: UILabel!
+  
+  @IBOutlet weak var customLabel: UILabel!
   @IBOutlet weak var hotelNameLabel: UILabel!
   @IBOutlet weak var hotelImageView: UIImageView!
 //    {
@@ -33,13 +33,12 @@ class HotelCell: UITableViewCell {
   }
   
   class func height() -> CGFloat {
-    return 80
+    return 321
   }
   func setData(hotel:Hotel) {
-    hotelNameLabel.text = hotel.fullname
-    let shopID = hotel.shopid
+    hotelNameLabel.text = hotel.shopname
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    let urlString = "\(kBaseURL)uploads/shops/\(shopID.stringValue).png"
+    let urlString = "\(kBaseURL)\(hotel.shoplogo)"
     let logoURL = NSURL(string: urlString)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
   }

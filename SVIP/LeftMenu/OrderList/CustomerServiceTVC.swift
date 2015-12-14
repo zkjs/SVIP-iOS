@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomerServiceTVC: UITableViewController {
-  var shopID = NSNumber(integer: 0)
+  var shopID = String()
   var servicerArr = [ServicerModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class CustomerServiceTVC: UITableViewController {
 
     }
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID.stringValue, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
      if  let array = dic["data"] as? NSArray {
       for dic in array {

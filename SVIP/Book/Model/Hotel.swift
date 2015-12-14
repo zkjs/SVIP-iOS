@@ -9,23 +9,20 @@
 import UIKit
 
 class Hotel: NSObject {
-  var shopid: NSNumber!
-  var logo: String!
-  var logoURL: String! {
-    get {
-      let str = kBaseURL
-      let str2 = "\(str)\(logo)"
-      return str2
-    }
-  }
-  var fullname: String!
-  var phone: String!
+  var shopid: String!
+  var shoplogo: String!
+  var saleid:String!
+  var shopdesc: String!
+  var shopname: String!
+  var shopbusiness: String!
   
   init(dic: NSDictionary) {
-    let shopidString = dic["shopid"] as! String
-    shopid = NSNumber(integer: Int(shopidString)!)
-    logo = dic["logo"] as! String
-    fullname = dic["fullname"] as? String
-    phone = dic["phone"] as? String
+    
+    shopid = dic["shopid"] as! String
+    shoplogo = dic["shoplogo"] as! String
+    saleid = dic["saleid"] as? String
+    shopdesc = dic["shopdesc"] as? String
+    shopname = dic["shopname"] as? String
+    shopbusiness = dic["shopbusiness"] as? String
   }
 }
