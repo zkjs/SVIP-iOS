@@ -9,16 +9,22 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+  
   @IBOutlet weak var phoneTextField: UITextField!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      login()
-
-        // Do any additional setup after loading the view.
-    }
+  
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("LoginVC", owner:self, options:nil)
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.navigationBarHidden = true
   }
   
   func login() {
@@ -37,23 +43,49 @@ class LoginVC: UIViewController {
         
     }
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-  @IBAction func login(sender: AnyObject) {
+  
+  func signup() {
+    guard let phone = phoneTextField.text else { return }
+    ZKJSHTTPSessionManager.sharedInstance().verifyIsRegisteredWithID(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if let data = responseObject {
+        if let set = data["set"] as? NSNumber {
+          if set.boolValue == true {
+            //已注册
+            //save account data
+            //获取用户信息
+          } else {
+            
+          }
+        }
+//        if newRegister {
+//          //新注册
+//          ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: nil, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
+//            if let dic = responseObject as? [NSObject : AnyObject] {
+//              let set = dic["set"]!.boolValue!
+//              if set {
+//                //注册成功
+//                //save account data
+//                //self.easeMobAutoLogin()
+//                //编辑个人信息
+//              }
+//            }
+//            }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//              
+//          })
+//        } else {
+//          
+//        }
+      }
+      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+    })
   }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  
+  @IBAction func login(sender: AnyObject) {
+    login()
+  }
+  
+  @IBAction func dismiss(sender: AnyObject) {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
+  
 }

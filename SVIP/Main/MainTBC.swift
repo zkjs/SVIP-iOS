@@ -16,7 +16,10 @@ class MainTBC: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     view.backgroundColor = UIColor.whiteColor()
+    
+    delegate = self
     
     //首页
     let vc1 = HomeVC()
@@ -56,9 +59,20 @@ class MainTBC: UITabBarController {
     viewControllers = [nc1, nc2, nc3, nc4]
     tabBar.tintColor = UIColor.ZKJS_mainColor()
   }
-  
-  override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-    item.title = ""
-  }
 
+}
+
+// MARK: - UITabBarControllerDelegate
+
+extension MainTBC: UITabBarControllerDelegate {
+  
+  func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    if AccountManager.sharedInstance().isLogin() == false {
+      let nc = BaseNC(rootViewController: LoginVC())
+      presentViewController(nc, animated: true, completion: nil)
+      return true
+    }
+    return true
+  }
+  
 }
