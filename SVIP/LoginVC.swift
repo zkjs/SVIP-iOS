@@ -103,6 +103,7 @@ class LoginVC: UIViewController {
             // 缓存userid和token
             AccountManager.sharedInstance().saveAccountInfo(data)
             // 获取用户信息
+            self.getUserInfo()
           }
         }
       }
@@ -176,7 +177,7 @@ class LoginVC: UIViewController {
     if view.center == originCenter {
       if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
         let center = view.center
-        let moveUp = keyboardSize.height - (CGRectGetHeight(view.frame) - CGRectGetMaxY(codeTextField.frame)) + 20.0
+        let moveUp = max(0, keyboardSize.height - (CGRectGetHeight(view.frame) - CGRectGetMaxY(codeTextField.frame))) + 40.0
         view.center = CGPointMake(center.x, center.y - moveUp)
       }
     }

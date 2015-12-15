@@ -31,7 +31,7 @@ extension UIColor {
   }
   
   class func ZKJS_whiteColor() -> UIColor {
-    return UIColor.hx_colorWithHexString("ffffff")
+    return UIColor.hx_colorWithHexString("f8f8f8")
   }
   
 }

@@ -21,7 +21,6 @@ target 'SVIP' do
   pod 'SSKeychain', '~> 1.2.3'
   pod 'JTSImageViewController'
   pod 'EDStarRating'
-  pod 'DCPathButton'
   pod 'XLPagerTabStrip'
   pod 'Pingpp', '~> 2.1.0'
   pod 'WMPageController'
