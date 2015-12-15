@@ -146,9 +146,9 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   }
   
   @IBAction func loginout(sender: AnyObject) {
-    let alertController = UIAlertController(title: "确定要登出吗？", message: "", preferredStyle: .ActionSheet)
+    let alertController = UIAlertController(title: "确定要退出登录吗？", message: "", preferredStyle: .ActionSheet)
     
-    let logoutAction = UIAlertAction(title: "登出", style:.Destructive, handler: { (action: UIAlertAction) -> Void in
+    let logoutAction = UIAlertAction(title: "退出登录", style:.Destructive, handler: { (action: UIAlertAction) -> Void in
      self.logout()
     })
     alertController.addAction(logoutAction)

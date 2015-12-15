@@ -17,13 +17,8 @@ class InvitationCodeVC: UIViewController {
   
   @IBOutlet weak var codeTextField: UITextField!
   @IBOutlet weak var saleNameTextField: UILabel!
-  @IBOutlet weak var saleAvatarImageView: UIImageView! {
-    didSet {
-      let width = saleAvatarImageView.frame.width
-      saleAvatarImageView.clipsToBounds = true
-      saleAvatarImageView.layer.cornerRadius = width / 2.0
-    }
-  }
+  @IBOutlet weak var saleAvatarImageView: UIImageView!
+  @IBOutlet weak var okButton: UIButton!
   
   lazy var type = InvitationCodeVCType.first
   lazy var code = ""
@@ -47,30 +42,23 @@ class InvitationCodeVC: UIViewController {
   }
   
   func setupUI() {
-    title = "邀请码"
-    let right = UIBarButtonItem(image: UIImage(named: "ic_qianwang"), style: UIBarButtonItemStyle.Plain, target: self, action: "nextStep")
-    navigationItem.rightBarButtonItem = right
-    navigationItem.hidesBackButton = true
-    
-    let attString = NSAttributedString(string: "没有请为空",
-      attributes: [NSFontAttributeName : UIFont.systemFontOfSize(14),
-        NSForegroundColorAttributeName : UIColor.hx_colorWithHexString("8d8d8d")])
-    codeTextField.attributedPlaceholder = attString
+
   }
   
-  func nextStep() {
+  @IBAction func nextStep(sender: AnyObject) {
     if code.isEmpty == false {
-      let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopid) ?? ""
-      let phone = JSHStorage.baseInfo().phone
+      let phone = AccountManager.sharedInstance().phone
       
-      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone,salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopName, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      showHUDInView(view, withLoading: "")
+      
+      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
             if set.boolValue == true {
               self.sendInvitationCodeNotification()
               if self.type == InvitationCodeVCType.first {
-               LoginManager.sharedInstance().afterAnimation()
-              }else {
+                self.dismissViewControllerAnimated(true, completion: nil)
+              } else {
                 self.navigationController?.popViewControllerAnimated(true)
               }
             } else {
@@ -83,15 +71,15 @@ class InvitationCodeVC: UIViewController {
           
       })
     } else {
-       LoginManager.sharedInstance().afterAnimation()
+      self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
   
   func sendInvitationCodeNotification() {
     // 发送环信透传消息
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHAccountManager.sharedJSHAccountManager().username
-    let phone = JSHStorage.baseInfo().phone
+    let userID = AccountManager.sharedInstance().userID
+    let userName = AccountManager.sharedInstance().userName
+    let phone = AccountManager.sharedInstance().phone
     let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
     let cmdChat = EMChatCommand()
     cmdChat.cmd = "inviteAdd"
@@ -111,11 +99,13 @@ class InvitationCodeVC: UIViewController {
 extension InvitationCodeVC: UITextFieldDelegate {
   
   func textFieldDidEndEditing(textField: UITextField) {
-    ZKJSHTTPSessionManager.sharedInstance().getSaleInfoWithCode(codeTextField.text, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    guard let code = codeTextField.text else { return }
+    ZKJSHTTPSessionManager.sharedInstance().getSaleInfoWithCode(code, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject {
         if let set = data["set"] as? NSNumber {
           if set.boolValue {
-            self.code = self.codeTextField.text!
+            self.okButton.setTitle("确定", forState: .Normal)
+            self.code = code
             self.sales_name = data["sales_name"] as? String ?? ""
             self.saleNameTextField.text = self.sales_name
             if let avatar = data["sales_avatar"] as? String {
@@ -145,9 +135,7 @@ extension InvitationCodeVC: UITextFieldDelegate {
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-    if textField == codeTextField {
-      view.endEditing(true)
-    }
+    textField.resignFirstResponder()
     return true
   }
   

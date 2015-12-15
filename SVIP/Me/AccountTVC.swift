@@ -94,7 +94,7 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
         break
       }
       if set {
-        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: sex, company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: sex, email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
           if let dic = responseObject as? NSDictionary {
             let set = dic["set"]!.boolValue!
             if set {
@@ -143,21 +143,21 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
       let persent = CGFloat(100 - i++) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      if let dic = responseObject as? NSDictionary {
-        if dic["set"]?.boolValue == true {
-          let baseInfo = JSHStorage.baseInfo()
-          baseInfo.avatarImage = UIImage(data: imageData)
-          JSHStorage.saveBaseInfo(baseInfo)
-          self.refreshDataAndUI()
-          picker .dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-          })
-        }
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
+//    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+//      if let dic = responseObject as? NSDictionary {
+//        if dic["set"]?.boolValue == true {
+//          let baseInfo = JSHStorage.baseInfo()
+//          baseInfo.avatarImage = UIImage(data: imageData)
+//          JSHStorage.saveBaseInfo(baseInfo)
+//          self.refreshDataAndUI()
+//          picker .dismissViewControllerAnimated(true, completion: { () -> Void in
+//            
+//          })
+//        }
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
   }
 
 }

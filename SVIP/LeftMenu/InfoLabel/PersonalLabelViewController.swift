@@ -120,22 +120,22 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
     }
     
     let tagopen = NSNumber(int: publicSwitch.on ? 1 : 0)
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: nil, company: nil, occupation: nil, email: nil, tagopen: tagopen,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let dic = responseObject as? NSDictionary {
-        let set = dic["set"]!.boolValue!
-        if set {
-//          ZKJSTool.showMsg("保存成功")
-//          self.navigationController?.popViewControllerAnimated(true)
-          let baseinfo = JSHStorage.baseInfo()
-          baseinfo.tagopen = tagopen.intValue
-          JSHStorage.saveBaseInfo(baseinfo)
-        }else {
-//          ZKJSTool.showMsg("保存失败")
-        }
-      }
-    }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: nil, company: nil, occupation: nil, email: nil, tagopen: tagopen,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let dic = responseObject as? NSDictionary {
+//        let set = dic["set"]!.boolValue!
+//        if set {
+////          ZKJSTool.showMsg("保存成功")
+////          self.navigationController?.popViewControllerAnimated(true)
+//          let baseinfo = JSHStorage.baseInfo()
+//          baseinfo.tagopen = tagopen.intValue
+//          JSHStorage.saveBaseInfo(baseinfo)
+//        }else {
+////          ZKJSTool.showMsg("保存失败")
+//        }
+//      }
+//    }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
     
-    })
+//    })
   }
   //MARK:- LabelSelectViewDelegate
   func labelSelectView(labelSelectView: LabelSelectView,  didSelected dic: NSDictionary, index:Int) {

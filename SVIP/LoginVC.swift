@@ -59,6 +59,9 @@ class LoginVC: UIViewController {
   @IBAction func confirm(sender: AnyObject) {
     guard let phone = phoneTextField.text else { return }
     guard let code = codeTextField.text else { return }
+    
+    showHUDInView(view, withLoading: "")
+    
     ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
       if success {
         self.loginWithPhone(phone)
@@ -104,6 +107,7 @@ class LoginVC: UIViewController {
             AccountManager.sharedInstance().saveAccountInfo(data)
             // 获取用户信息
             self.getUserInfo()
+            self.navigationController?.pushViewController(InfoEditVC(), animated: true)
           }
         }
       }
@@ -120,7 +124,6 @@ class LoginVC: UIViewController {
     ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject as? [String : AnyObject] {
         AccountManager.sharedInstance().saveBaseInfo(data)
-        self.dismissSelf()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
@@ -217,7 +220,7 @@ extension LoginVC: UITextFieldDelegate {
         okButton.alpha = 0.5
       }
       
-      if (range.location + string.characters.count <= 6) {
+      if (range.location + string.characters.count <= 4) {
         return true;
       }
     }

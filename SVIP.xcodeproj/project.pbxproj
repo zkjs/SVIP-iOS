@@ -173,6 +173,8 @@
 		40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
+		40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C9E11C2037B200E992AB /* InfoEditVC.swift */; };
+		40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D9C9E21C2037B200E992AB /* InfoEditVC.xib */; };
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
 		40E39E321BFEF43800516EC4 /* BookingOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E39E1D1BFEF43800516EC4 /* BookingOrderDetailVC.swift */; };
 		40E39E331BFEF43800516EC4 /* BookingOrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E39E1E1BFEF43800516EC4 /* BookingOrderDetailVC.xib */; };
@@ -274,8 +276,6 @@
 		B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E81B7EE229000DBD81 /* TSQCalendarRowCell.m */; };
 		B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */; };
 		B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */; };
-		B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */; };
-		B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */; };
 		B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */; };
 		B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */; };
 		B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */; };
@@ -714,6 +714,8 @@
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Decompression.swift"; sourceTree = "<group>"; };
+		40D9C9E11C2037B200E992AB /* InfoEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditVC.swift; sourceTree = "<group>"; };
+		40D9C9E21C2037B200E992AB /* InfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditVC.xib; sourceTree = "<group>"; };
 		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
 		40E39E1D1BFEF43800516EC4 /* BookingOrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderDetailVC.swift; sourceTree = "<group>"; };
 		40E39E1E1BFEF43800516EC4 /* BookingOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOrderDetailVC.xib; sourceTree = "<group>"; };
@@ -1063,8 +1065,6 @@
 		B2F4A9E91B7EE229000DBD81 /* TSQCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQCalendarView.h; sourceTree = "<group>"; };
 		B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQCalendarView.m; sourceTree = "<group>"; };
 		B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateSelectionViewController.swift; sourceTree = "<group>"; };
-		B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditViewController.swift; sourceTree = "<group>"; };
-		B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditViewController.xib; sourceTree = "<group>"; };
 		B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
 		B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
 		B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewController.swift; sourceTree = "<group>"; };
@@ -2657,7 +2657,6 @@
 		B20812621B8DD7950070D96F /* InfoCenter */ = {
 			isa = PBXGroup;
 			children = (
-				B2FB432B1B8EB49600C9BEBB /* ForFirstLogin */,
 				B20812691B8DD7950070D96F /* Model */,
 				B208127C1B8DD7950070D96F /* SettingEditViewController.swift */,
 				B208127D1B8DD7950070D96F /* SettingEditViewController.xib */,
@@ -2881,15 +2880,16 @@
 			path = TimesSquare;
 			sourceTree = "<group>";
 		};
-		B2FB432B1B8EB49600C9BEBB /* ForFirstLogin */ = {
+		B2FB432B1B8EB49600C9BEBB /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				B2FB432C1B8EB49600C9BEBB /* InfoEditViewController.swift */,
-				B2FB432D1B8EB49600C9BEBB /* InfoEditViewController.xib */,
+				40D9C9E11C2037B200E992AB /* InfoEditVC.swift */,
+				40D9C9E21C2037B200E992AB /* InfoEditVC.xib */,
 				40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */,
 				40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */,
 			);
-			path = ForFirstLogin;
+			name = Register;
+			path = LeftMenu/InfoCenter/ForFirstLogin;
 			sourceTree = "<group>";
 		};
 		B2FB43321B8EF75700C9BEBB /* Invoice */ = {
@@ -2926,6 +2926,7 @@
 			children = (
 				FA02C5821C0D42D100D0D439 /* LoginVC.swift */,
 				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
+				B2FB432B1B8EB49600C9BEBB /* Register */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -3204,7 +3205,6 @@
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				40E39E3E1BFEF43800516EC4 /* OrderContentView.xib in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
-				B2FB432F1B8EB49600C9BEBB /* InfoEditViewController.xib in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
 				B2F0377D1B93F3D4006FF396 /* PhoneSettingSecondViewController.xib in Resources */,
 				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
@@ -3229,6 +3229,7 @@
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				FAF253F81C12CE8A00768A4D /* HomeHeaderView.xib in Resources */,
 				FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */,
+				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
 				FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */,
 				FAF212DA1BF73F83002C1C73 /* ActivationCell.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
@@ -3403,7 +3404,6 @@
 				B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */,
 				40E39E3F1BFEF43800516EC4 /* OrderDetailsVC.swift in Sources */,
 				4077DDF31C1EAF9900E13D6B /* EaseBubbleView+File.m in Sources */,
-				B2FB432E1B8EB49600C9BEBB /* InfoEditViewController.swift in Sources */,
 				4077DDEC1C1EAF9900E13D6B /* EaseRefreshTableViewController.m in Sources */,
 				B2F0377A1B93F3D4006FF396 /* PhoneSettingFirstViewController.swift in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
@@ -3452,6 +3452,7 @@
 				B20812CD1B8DD8650070D96F /* RuleEngine.swift in Sources */,
 				40E39E381BFEF43800516EC4 /* OrderListCell.swift in Sources */,
 				4077DDA41C1EAF9900E13D6B /* EMAudioPlayerUtil.m in Sources */,
+				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
 				B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */,
 				40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */,
 				4077DD941C1EAF9900E13D6B /* EMBubbleView+Gif.m in Sources */,

@@ -135,33 +135,33 @@ class SettingEditViewController: UIViewController {
       }
     }
     
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(username, realname:realname, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, email:email, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let dic = responseObject as? NSDictionary {
-        let set = dic["set"]!.boolValue!
-        if set {
-           let baseInfo = JSHStorage.baseInfo()
-          switch self.type {
-          case VCType.realname:
-            baseInfo.real_name = realname
-             if (self.testClosure != nil){
-              self.testClosure!(string: realname!)
-            }
-          case VCType.username:
-            baseInfo.username = username
-          case VCType.company:
-            baseInfo.company = company
-          case VCType.email:
-            baseInfo.email = email
-            if (self.testClosure != nil){
-              self.testClosure!(string: email!)
-            }
-          }
-          JSHStorage.saveBaseInfo(baseInfo)
-        }
-      }
-      self.navigationController?.popViewControllerAnimated(true)
-      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-      
-    }
+//    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(username, realname:realname, imageData: nil, imageName: nil, sex: nil, company: company, occupation: nil, email:email, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let dic = responseObject as? NSDictionary {
+//        let set = dic["set"]!.boolValue!
+//        if set {
+//           let baseInfo = JSHStorage.baseInfo()
+//          switch self.type {
+//          case VCType.realname:
+//            baseInfo.real_name = realname
+//             if (self.testClosure != nil){
+//              self.testClosure!(string: realname!)
+//            }
+//          case VCType.username:
+//            baseInfo.username = username
+//          case VCType.company:
+//            baseInfo.company = company
+//          case VCType.email:
+//            baseInfo.email = email
+//            if (self.testClosure != nil){
+//              self.testClosure!(string: email!)
+//            }
+//          }
+//          JSHStorage.saveBaseInfo(baseInfo)
+//        }
+//      }
+//      self.navigationController?.popViewControllerAnimated(true)
+//      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+//      
+//    }
   }
 }

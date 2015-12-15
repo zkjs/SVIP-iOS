@@ -30,7 +30,6 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - DateTools (1.7.0)
-  - DCPathButton (2.1.3)
   - EaseMobSDKFull (2.2.1)
   - EDStarRating (1.1)
   - FLAnimatedImage (1.0.10)
@@ -68,7 +67,6 @@ DEPENDENCIES:
   - AMapSearch
   - CocoaLumberjack
   - DateTools
-  - DCPathButton
   - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - EDStarRating
   - FLAnimatedImage (~> 1.0)
@@ -108,7 +106,6 @@ SPEC CHECKSUMS:
   AMapSearch: aa7621ae8aec9cb8df116710b26e3fe3d09dc0ff
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
   EaseMobSDKFull: 4a18d6ad47b4ccca564833963511bddd151e1654
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
