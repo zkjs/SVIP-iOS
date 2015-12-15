@@ -290,8 +290,6 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
     ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         if dic["set"]?.boolValue == true {
-          NSNotificationCenter.defaultCenter().postNotificationName("DownloadImageNotification",
-            object: self, userInfo: ["avtarImage":imageData])
           let baseInfo = JSHStorage.baseInfo()
           baseInfo.avatarImage = UIImage(data: imageData)
           JSHStorage.saveBaseInfo(baseInfo)

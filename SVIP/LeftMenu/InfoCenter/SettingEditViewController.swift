@@ -13,9 +13,13 @@ enum VCType {
   case company
   case email
 }
+typealias sendRealName = (string:String)->Void
 class SettingEditViewController: UIViewController {
   let type: VCType
   let editDic: NSDictionary
+  //声明一个闭包
+  var testClosure:sendRealName?
+  var realName:String!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var promptLabel: UILabel!
   required init(type: VCType) {
@@ -135,16 +139,22 @@ class SettingEditViewController: UIViewController {
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
-          let baseInfo = JSHStorage.baseInfo()
+           let baseInfo = JSHStorage.baseInfo()
           switch self.type {
           case VCType.realname:
             baseInfo.real_name = realname
+             if (self.testClosure != nil){
+              self.testClosure!(string: realname!)
+            }
           case VCType.username:
             baseInfo.username = username
           case VCType.company:
             baseInfo.company = company
           case VCType.email:
             baseInfo.email = email
+            if (self.testClosure != nil){
+              self.testClosure!(string: email!)
+            }
           }
           JSHStorage.saveBaseInfo(baseInfo)
         }

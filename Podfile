@@ -27,6 +27,7 @@ target 'SVIP' do
   pod 'XLPagerTabStrip'
   pod 'Pingpp', '~> 2.1.0'
   pod 'WMPageController'
+  pod 'FLAnimatedImage', '~> 1.0'
 #  use_frameworks!
 #  pod 'ReachabilitySwift', git: 'https://github.com/ashleymills/Reachability.swift'
 end

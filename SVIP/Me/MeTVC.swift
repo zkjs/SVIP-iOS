@@ -10,12 +10,26 @@ import UIKit
 
 class MeTVC: UITableViewController {
   
+  @IBOutlet weak var userImage: UIImageView!
+  @IBOutlet weak var usernameLabel: UILabel!
+  var localBaseInfo :JSHBaseInfo?
   override func viewDidLoad() {
     super.viewDidLoad()
     
     title = "我"
-    
     tableView.tableFooterView = UIView()
+  }
+  
+  
+  func setupUI() {
+    localBaseInfo = JSHStorage.baseInfo()
+    userImage.image = localBaseInfo?.avatarImage
+    usernameLabel.text = localBaseInfo?.username
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    setupUI()
   }
   
   // MARK: - Table view delegate

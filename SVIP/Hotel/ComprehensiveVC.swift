@@ -25,8 +25,10 @@ class ComprehensiveVC: UIViewController {
       tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
       
       let image = UIImage(named: "ic_dingwei_orange")
-      let item1 = UIBarButtonItem(image: image, style:.Plain, target: self, action: nil)
-      navigationController?.navigationItem.leftBarButtonItem = item1
+      let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: nil)
+      item1.title = "想去哪里享受尊贵服务"
+      super.navigationItem.leftBarButtonItem = item1
+      super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
       loadData()
         // Do any additional setup after loading the view.
     }
@@ -70,6 +72,7 @@ class ComprehensiveVC: UIViewController {
         
     }
     
+        
   }
   
   
@@ -86,7 +89,12 @@ class ComprehensiveVC: UIViewController {
   }
   
    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return HotelCell.height()
+    if indexPath.row == 0 {
+      return HotelCell.height()
+    } else {
+      return 385
+    }
+    
   }
   
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

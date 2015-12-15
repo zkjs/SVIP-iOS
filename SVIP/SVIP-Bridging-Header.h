@@ -51,3 +51,4 @@
 #import "WMPageController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "YunBaService.h"
+#import "FLAnimatedImage.h"

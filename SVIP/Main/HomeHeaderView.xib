@@ -64,33 +64,61 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4r-ak-Q7I">
-                    <rect key="frame" x="294" y="308" width="60" height="60"/>
+                    <rect key="frame" x="370" y="308" width="60" height="60"/>
                     <color key="backgroundColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="60" id="MIk-h9-BQ8"/>
                         <constraint firstAttribute="height" constant="60" id="bZC-bV-adB"/>
                         <constraint firstAttribute="width" constant="60" id="p8K-h7-EfR"/>
+                        <constraint firstAttribute="height" constant="60" id="qI4-Gw-fWI"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="bZC-bV-adB"/>
+                            <exclude reference="p8K-h7-EfR"/>
+                        </mask>
+                    </variation>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hB-ce-Gyx">
-                    <rect key="frame" x="312" y="325" width="25" height="27"/>
+                    <rect key="frame" x="388" y="325" width="25" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="0lo-xr-Tqo"/>
                         <constraint firstAttribute="width" constant="25" id="e06-j3-sfi"/>
+                        <constraint firstAttribute="width" constant="25" id="vhv-vK-xqA"/>
+                        <constraint firstAttribute="height" constant="27" id="wIp-wE-S5U"/>
                     </constraints>
                     <state key="normal" image="ic_zhijian_white"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="0lo-xr-Tqo"/>
+                            <exclude reference="e06-j3-sfi"/>
+                        </mask>
+                    </variation>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="4hB-ce-Gyx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="325" id="1IU-rF-IZu"/>
+                <constraint firstItem="4hB-ce-Gyx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="100" id="3N7-8t-xk5"/>
                 <constraint firstItem="4hB-ce-Gyx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="312" id="AER-yz-qyo"/>
                 <constraint firstItem="JNH-Co-neS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CKw-MU-zpG"/>
                 <constraint firstItem="x4r-ak-Q7I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="308" id="EiX-KN-EkH"/>
+                <constraint firstItem="x4r-ak-Q7I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="308" id="FpH-ML-pDE"/>
+                <constraint firstItem="x4r-ak-Q7I" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="100" id="Lrf-R3-zQX"/>
                 <constraint firstItem="4hB-ce-Gyx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="325" id="Mav-n6-XYJ"/>
                 <constraint firstAttribute="trailing" secondItem="JNH-Co-neS" secondAttribute="trailing" id="YI0-yi-60F"/>
                 <constraint firstItem="JNH-Co-neS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="d7l-v6-2hq"/>
                 <constraint firstItem="x4r-ak-Q7I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="294" id="loq-6b-DlY"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="EiX-KN-EkH"/>
+                    <exclude reference="loq-6b-DlY"/>
+                    <exclude reference="AER-yz-qyo"/>
+                    <exclude reference="Mav-n6-XYJ"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="LocationButton" destination="x4r-ak-Q7I" id="cfy-hG-sf5"/>
                 <outlet property="backgroundImage" destination="dU1-0M-DHr" id="sfu-0b-Gkn"/>
