@@ -246,7 +246,6 @@
 		B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */; };
 		B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D4A1B4BFC370098608F /* JSHTextField.m */; };
 		B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D4D1B4BFC470098608F /* JSHRoundRectButton.m */; };
-		B263DA211B944E9500BB1970 /* JSSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B263DA201B944E9500BB1970 /* JSSideMenu.swift */; };
 		B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */; };
 		B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */; };
 		B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27004091B608ABF00B1BEA7 /* Hotel.swift */; };
@@ -1028,7 +1027,6 @@
 		B2564D4A1B4BFC370098608F /* JSHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHTextField.m; sourceTree = "<group>"; };
 		B2564D4C1B4BFC470098608F /* JSHRoundRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHRoundRectButton.h; sourceTree = "<group>"; };
 		B2564D4D1B4BFC470098608F /* JSHRoundRectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHRoundRectButton.m; sourceTree = "<group>"; };
-		B263DA201B944E9500BB1970 /* JSSideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSideMenu.swift; sourceTree = "<group>"; };
 		B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookHotelListTVC.swift; sourceTree = "<group>"; };
 		B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookHotelListCell.xib; sourceTree = "<group>"; };
 		B27004091B608ABF00B1BEA7 /* Hotel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
@@ -1296,7 +1294,6 @@
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
-				B263DA201B944E9500BB1970 /* JSSideMenu.swift */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
 				405826481BA11CC5005A2C8E /* PrefixHeader.pch */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
@@ -3549,7 +3546,6 @@
 				4077DDD51C1EAF9900E13D6B /* PSTGridLayoutRow.m in Sources */,
 				4077DDB71C1EAF9900E13D6B /* MWTapDetectingView.m in Sources */,
 				4077DDC21C1EAF9900E13D6B /* NSData+EMImageContentType.m in Sources */,
-				B263DA211B944E9500BB1970 /* JSSideMenu.swift in Sources */,
 				40E39E441BFEF43800516EC4 /* OrderListTVC.swift in Sources */,
 				4077DDDF1C1EAF9900E13D6B /* NSString+Valid.m in Sources */,
 				FAF7F55A1C02EB4400C84601 /* PrivilegeCVCell.swift in Sources */,

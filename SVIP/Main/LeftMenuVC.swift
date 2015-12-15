@@ -87,10 +87,10 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   @IBAction func tapAvatarImage(sender: AnyObject) {
     let vc = SettingTableViewController(style: .Grouped)
-    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-      self.sideMenuViewController.hideMenuViewController()
-      navi.pushViewController(vc, animated: true)
-    }
+//    if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+//      self.sideMenuViewController.hideMenuViewController()
+//      navi.pushViewController(vc, animated: true)
+//    }
   }
   
   // MARK: - Table view data source
@@ -129,10 +129,10 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         vc = OrderHistoryListTVC()
     
       }
-      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-        self.sideMenuViewController.hideMenuViewController()
-        navi.pushViewController(vc, animated: true)
-      }
+//      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+//        self.sideMenuViewController.hideMenuViewController()
+//        navi.pushViewController(vc, animated: true)
+//      }
     } else {
       print("在枚举LeftButton中未找到\(indexPath.row)")
     }

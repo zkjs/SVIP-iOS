@@ -4,7 +4,6 @@
 
 #import "AFNetworking.h"
 #import "NSString+ZKJS.h"
-#import "YXTMotionView.h"
 #import "MJRefresh.h"
 #import "ZKJSHTTPSessionManager.h"
 #import "ZKJSTool.h"
@@ -28,7 +27,6 @@
 #import <CommonCrypto/CommonDigest.h>
 //#import "UMSocial.h"
 //#import "UMSocialWechatHandler.h"
-#import "RESideMenu.h"
 #import "JSHHotelRegisterVC.h"
 #import "AMapSearchAPI.h"
 #import "NSString+JSH.h"

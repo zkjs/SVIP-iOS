@@ -89,10 +89,10 @@ class PrivilegeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
       case .moreConstruction:
         break
       }
-      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
-        self.sideMenuViewController.hideMenuViewController()
-        navi.pushViewController(vc, animated: true)
-      }
+//      if let navi = self.sideMenuViewController.contentViewController as? UINavigationController {
+//        self.sideMenuViewController.hideMenuViewController()
+//        navi.pushViewController(vc, animated: true)
+//      }
     } else {
       print("在枚举LeftButton中未找到\(indexPath.row)")
     }
