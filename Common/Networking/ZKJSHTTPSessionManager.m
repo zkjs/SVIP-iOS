@@ -10,8 +10,7 @@
 #import "NSString+ZKJS.h"
 #import "Networkcfg.h"
 #import "CocoaLumberjack.h"
-#import "JSHAccountManager.h"
-#import "JSHStorage.h"
+#import "SVIP-Swift.h"
 
 static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
@@ -42,25 +41,19 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 #pragma mark - Private
 
 - (NSString *)userID {
-  return [JSHAccountManager sharedJSHAccountManager].userid;
+  return [AccountManager sharedInstance].userID;
 }
 
 - (NSString *)token {
-  return [JSHAccountManager sharedJSHAccountManager].token;
+  return [AccountManager sharedInstance].token;
 }
 
 - (NSString *)userName {
-  if ([JSHStorage baseInfo].username) {
-    return [JSHStorage baseInfo].username;
-  } else if ([JSHAccountManager sharedJSHAccountManager].userid) {
-    return [JSHAccountManager sharedJSHAccountManager].userid;
-  }
-  return @"";
+  return [AccountManager sharedInstance].userName;
 }
 
 - (NSString *)phone {
-  
-  return [JSHStorage baseInfo].phone;
+  return [AccountManager sharedInstance].phone;
 }
 
 - (BOOL)isValidTokenWithObject:(id)responseObject {

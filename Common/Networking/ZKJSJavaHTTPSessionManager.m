@@ -52,16 +52,8 @@
   return [AccountManager sharedInstance].token;
 }
 
-- (NSString *)shopID {
-  return [AccountManager sharedInstance].shopID;
-}
-
 - (NSString *)userName {
   return [AccountManager sharedInstance].userName;
-}
-
-- (NSString *)shopName {
-  return [AccountManager sharedInstance].shopName;
 }
 
 #pragma mark - 查询所有的酒店列表

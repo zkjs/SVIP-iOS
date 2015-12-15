@@ -205,7 +205,6 @@ class SettingTableViewController: UITableViewController, UIActionSheetDelegate, 
   }
   
   func logout() {
-    
     ZKJSHTTPSessionManager.sharedInstance().logoutWithSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       if let data = responsObject {
         if let set = data["set"] {

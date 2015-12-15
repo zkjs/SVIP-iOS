@@ -170,7 +170,7 @@
 		40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */; };
 		40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */; };
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
-		40D0D3E91C1FA0000015C00D /* RoundRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D0D3E81C1FA0000015C00D /* RoundRectButton.swift */; };
+		40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
 		40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */; };
@@ -711,7 +711,7 @@
 		40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
 		40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationCodeVC.xib; sourceTree = "<group>"; };
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
-		40D0D3E81C1FA0000015C00D /* RoundRectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundRectButton.swift; path = Login/RoundRectButton.swift; sourceTree = "<group>"; };
+		40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTBouncyTextField.swift; sourceTree = "<group>"; };
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Decompression.swift"; sourceTree = "<group>"; };
@@ -2861,6 +2861,7 @@
 			children = (
 				FAF101C51C046AAE00FC3672 /* TMReachability.h */,
 				FAF101C61C046AAE00FC3672 /* TMReachability.m */,
+				40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */,
 				B2F4A9E01B7EE229000DBD81 /* TimesSquare */,
 			);
 			path = Vendor;
@@ -2928,7 +2929,6 @@
 			children = (
 				FA02C5821C0D42D100D0D439 /* LoginVC.swift */,
 				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
-				40D0D3E81C1FA0000015C00D /* RoundRectButton.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -3331,7 +3331,6 @@
 				4077DDB81C1EAF9900E13D6B /* MWZoomingScrollView.m in Sources */,
 				4077DDCE1C1EAF9900E13D6B /* PSTCollectionViewData.m in Sources */,
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
-				40D0D3E91C1FA0000015C00D /* RoundRectButton.swift in Sources */,
 				B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */,
 				4077DDF81C1EAF9900E13D6B /* EaseBubbleView+Voice.m in Sources */,
 				40E39E411BFEF43800516EC4 /* OrderDetailVC.swift in Sources */,
@@ -3461,6 +3460,7 @@
 				40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */,
 				4077DD941C1EAF9900E13D6B /* EMBubbleView+Gif.m in Sources */,
 				4077DDF11C1EAF9900E13D6B /* EaseMessageCell.m in Sources */,
+				40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */,
 				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
 				4077DDC11C1EAF9900E13D6B /* MKAnnotationView+EMWebCache.m in Sources */,
 				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,

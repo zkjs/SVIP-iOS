@@ -70,7 +70,7 @@ extension MainTBC: UITabBarControllerDelegate {
     if AccountManager.sharedInstance().isLogin() == false {
       let nc = BaseNC(rootViewController: LoginVC())
       presentViewController(nc, animated: true, completion: nil)
-      return true
+      return false
     }
     return true
   }
