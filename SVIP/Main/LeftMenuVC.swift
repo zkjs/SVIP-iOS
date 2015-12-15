@@ -33,8 +33,6 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
-      name: "DownloadImageNotification", object: nil)
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     setUI()
     loadData()

@@ -210,8 +210,6 @@
 		40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E3A22F1BFF01C300516EC4 /* libopencore-amrnb.a */; };
 		40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D791C1EEE58009C0311 /* MeTVC.swift */; };
 		40EE4D801C1EEF70009C0311 /* MeTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */; };
-		40EE4D821C1EFD29009C0311 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D811C1EFD29009C0311 /* AccountTVC.swift */; };
-		40EE4D861C1EFD46009C0311 /* AccountTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D851C1EFD46009C0311 /* AccountTVC.storyboard */; };
 		40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D871C1F0836009C0311 /* SettingTVC.swift */; };
 		40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */; };
 		40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */; };
@@ -337,6 +335,8 @@
 		FAF7F56C1C03189400C84601 /* ServicerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F56B1C03189400C84601 /* ServicerModel.swift */; };
 		FAF7F56F1C031F4100C84601 /* IntegralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F56D1C031F4100C84601 /* IntegralVC.swift */; };
 		FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F56E1C031F4100C84601 /* IntegralVC.xib */; };
+		FAF813B61C1FB81E008D96E2 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */; };
+		FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */; };
 		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
 		FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA518F1C16C62900BF04F2 /* HomeVC.xib */; };
 		FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */; };
@@ -980,8 +980,6 @@
 		40E3A28F1BFF01C300516EC4 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		40EE4D791C1EEE58009C0311 /* MeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeTVC.swift; path = SVIP/Me/MeTVC.swift; sourceTree = SOURCE_ROOT; };
 		40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MeTVC.storyboard; path = SVIP/Me/MeTVC.storyboard; sourceTree = SOURCE_ROOT; };
-		40EE4D811C1EFD29009C0311 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTVC.swift; path = SVIP/Me/AccountTVC.swift; sourceTree = SOURCE_ROOT; };
-		40EE4D851C1EFD46009C0311 /* AccountTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AccountTVC.storyboard; path = SVIP/Me/AccountTVC.storyboard; sourceTree = SOURCE_ROOT; };
 		40EE4D871C1F0836009C0311 /* SettingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTVC.swift; path = SVIP/Me/SettingTVC.swift; sourceTree = SOURCE_ROOT; };
 		40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
 		40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTVC.xib; sourceTree = "<group>"; };
@@ -1129,6 +1127,8 @@
 		FAF7F56B1C03189400C84601 /* ServicerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicerModel.swift; sourceTree = "<group>"; };
 		FAF7F56D1C031F4100C84601 /* IntegralVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegralVC.swift; sourceTree = "<group>"; };
 		FAF7F56E1C031F4100C84601 /* IntegralVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralVC.xib; sourceTree = "<group>"; };
+		FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
+		FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountTVC.storyboard; sourceTree = "<group>"; };
 		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		FAFA518F1C16C62900BF04F2 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCustomCell.swift; sourceTree = "<group>"; };
@@ -2632,8 +2632,8 @@
 			children = (
 				40EE4D791C1EEE58009C0311 /* MeTVC.swift */,
 				40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */,
-				40EE4D811C1EFD29009C0311 /* AccountTVC.swift */,
-				40EE4D851C1EFD46009C0311 /* AccountTVC.storyboard */,
+				FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */,
+				FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */,
 				40EE4D871C1F0836009C0311 /* SettingTVC.swift */,
 				40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */,
 			);
@@ -3185,6 +3185,7 @@
 				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
 				40E3A1601BFEFA0C00516EC4 /* MailListTVC.xib in Resources */,
+				FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */,
 				40E3A1891BFEFA8300516EC4 /* SearchBarView.xib in Resources */,
 				B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */,
 				FAF249591BFF08CA001E7E41 /* SearchCell.xib in Resources */,
@@ -3215,7 +3216,6 @@
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */,
 				40E39E3C1BFEF43800516EC4 /* OrderListHeaderView.xib in Resources */,
-				40EE4D861C1EFD46009C0311 /* AccountTVC.storyboard in Resources */,
 				40E39E401BFEF43800516EC4 /* OrderDetailsVC.xib in Resources */,
 				FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */,
 				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
@@ -3306,7 +3306,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */,
-				40EE4D821C1EFD29009C0311 /* AccountTVC.swift in Sources */,
 				4077DDCB1C1EAF9900E13D6B /* PSTCollectionView.m in Sources */,
 				4077DD971C1EAF9900E13D6B /* ContactView.m in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
@@ -3511,6 +3510,7 @@
 				4077DDCD1C1EAF9900E13D6B /* PSTCollectionViewController.m in Sources */,
 				FAF249581BFF08CA001E7E41 /* SearchCell.swift in Sources */,
 				B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */,
+				FAF813B61C1FB81E008D96E2 /* AccountTVC.swift in Sources */,
 				B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */,
 				FAFA51A01C16FFF200BF04F2 /* UnActivationCell.swift in Sources */,
 				FAF7F56F1C031F4100C84601 /* IntegralVC.swift in Sources */,

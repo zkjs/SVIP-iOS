@@ -47,8 +47,6 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
     if tableView.respondsToSelector("setLayoutMargins:") {
       self.tableView.layoutMargins = UIEdgeInsetsZero
     }
-    NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
-      name: "DownloadImageNotification", object: nil)
     
   }
   

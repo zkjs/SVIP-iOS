@@ -25,6 +25,9 @@ class HomeVC: UIViewController {
   var compareNumber: NSNumber!
   var hourLabel = String()
   var sexString = String()//性别
+  var urlArray = NSMutableArray()
+  var homeUrl = String()
+  var count = 0
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -38,6 +41,7 @@ class HomeVC: UIViewController {
     //      memberActivation()
     setupCoreLocationService()
     //      initTCPSessionManager()
+    
 
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
@@ -65,14 +69,37 @@ class HomeVC: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
-    
+    loadData()
+    count++
     //tableView.reloadData()
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
+    if self.urlArray.count < self.count {
+      self.count = 0
+    }else {
+      self.homeUrl = self.urlArray[self.count] as! String
+    }
     // navigationController?.navigationBarHidden = false
+  }
+  
+  func  loadData() {
+    ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      if let array = responseObject as? NSArray {
+        for dic in array {
+          let url = dic["url"] as! String
+          self.urlArray .addObject(url)
+        }
+        self.tableView .reloadData()
+        self.homeUrl = self.urlArray[self.count] as! String
+      }
+      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
+   
+    
+
   }
   
   func setupUI() {
@@ -80,16 +107,17 @@ class HomeVC: UIViewController {
     let hourFormatter = NSDateFormatter();
     hourFormatter.dateFormat = "HH";
     let time = hourFormatter.stringFromDate(nowDate);
-    if(time <= "09" || time > "00" ){
+    
+    if(time <= "09" && time > "00" ){
       hourLabel = "早上好"
     }
-    if(time <= "11" || time > "09" ){
+    if(time <= "11" && time > "09" ){
       hourLabel = "上午好"
     }
-    if(time <= "12" || time > "11" ){
+    if(time <= "12" && time > "11" ){
       hourLabel = "中午好"
     }
-    if(time <= "18" || time > "13" ){
+    if(time <= "18" && time > "13" ){
       hourLabel = "下午好"
     } else{
       hourLabel = "晚上好"
@@ -223,6 +251,10 @@ class HomeVC: UIViewController {
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     myView = NSBundle.mainBundle().loadNibNamed("HomeHeaderView", owner: self, options: nil).first as! HomeHeaderView
+    if urlArray.count != 0 {
+      myView.backgroundImage.sd_setImageWithURL(NSURL(string: self.homeUrl), placeholderImage: nil)
+    }
+    
     myView.backgroundImage.layer.masksToBounds = true
     let animation = CABasicAnimation(keyPath:"transform.scale")
     //动画选项设定

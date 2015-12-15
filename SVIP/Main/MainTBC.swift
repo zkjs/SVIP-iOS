@@ -31,7 +31,7 @@ class MainTBC: UITabBarController {
     //酒店餐饮休闲
     let vc2 = ComprehensiveVC()
     let nc2 = BaseNC(rootViewController: vc2)
-    vc2.tabBarItem.image = UIImage(named: "ic_jiudian_nor")
+    vc2.tabBarItem.image = UIImage(named: "ic_jiudian_gary")
     vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     
     //服务中心
@@ -46,7 +46,7 @@ class MainTBC: UITabBarController {
     vc3.progressColor = UIColor.ZKJS_mainColor()
     vc3.viewControllerClasses  = vcClasses
     vc3.titles = titles
-    vc3.tabBarItem.image = UIImage(named: "ic_xiaoxi_nor")
+    vc3.tabBarItem.image = UIImage(named: "ic_xiaoxi_gary")
     vc3.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     
     //我的设置

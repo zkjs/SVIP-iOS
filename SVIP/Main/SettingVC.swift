@@ -47,9 +47,7 @@ class SettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     if tableView.respondsToSelector("setLayoutMargins:") {
       self.tableView.layoutMargins = UIEdgeInsetsZero
     }
-    NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:",
-      name: "DownloadImageNotification", object: nil)
-    
+        
   }
   
   override func viewWillAppear(animated: Bool) {
