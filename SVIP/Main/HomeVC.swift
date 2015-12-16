@@ -38,7 +38,7 @@ class HomeVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     //      getlastOrder()
-    //      memberActivation()
+    memberActivation()
     setupCoreLocationService()
     //      initTCPSessionManager()
     
@@ -123,12 +123,16 @@ class HomeVC: UIViewController {
       hourLabel = "晚上好"
     }
     myView.greetLabel.text = hourLabel
-    if  let int = JSHStorage.baseInfo().sex {
-      if int == "0" {
-        self.sexString = "女士"
+     let sex = AccountManager.sharedInstance().sex
+      if sex == "0" {
+        self.sexString = "先生"
       } else {
-        self.sexString  = "先生"
+        self.sexString  = "女士"
       }
+    myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+    let loginStats = AccountManager.sharedInstance().isLogin()
+    if loginStats == false {
+      
     }
     
     //    myView.usernameLabel.text =  JSHStorage.baseInfo().username + "  \(self.sexString)"
@@ -161,24 +165,7 @@ class HomeVC: UIViewController {
     
   }
   
-  func skip(sender:UIButton) {
-    if( sender.titleLabel?.text == "立即查看") {
-      let vc = CustomServiceVC()
-      vc.view.frame = CGRectMake(0.0, 0.0, view.frame.width, view.frame.height)
-      self.addChildViewController(vc)
-      self.view.addSubview(vc.view)
-      // self.tabBarController?.selectedIndex = 1
-      //      let vc = OrderListTVC()
-      //      self.navigationController?.pushViewController(vc, animated: true)
-    }
-    if( sender.titleLabel?.text == "开始预定") {
-      let vc = CustomServiceVC()
-      vc.view.frame = CGRectMake(0.0, 0.0, view.frame.width, view.frame.height)
-      self.addChildViewController(vc)
-      self.view.addSubview(vc.view)
-    }
-    
-  }
+  
   
   func getlastOrder() {
     ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in

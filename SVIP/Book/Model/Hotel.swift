@@ -15,6 +15,7 @@ class Hotel: NSObject {
   var shopdesc: String!
   var shopname: String!
   var shopbusiness: String!
+  var bgImgUrl: String!
   
   init(dic: NSDictionary) {
     
@@ -24,5 +25,6 @@ class Hotel: NSObject {
     shopdesc = dic["shopdesc"] as? String
     shopname = dic["shopname"] as? String
     shopbusiness = dic["shopbusiness"] as? String
+    bgImgUrl = dic["bgImgUrl"] as? String
   }
 }

@@ -46,7 +46,6 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       
       scrollView.addSubview(starRating)
       starRating.rating = order.score.floatValue
-      navigationController?.navigationBar.tintColor = UIColor.clearColor()
       if order.score == 0 {
         starRating.editable = true
         scrollView.contentSize = CGSize(width:0,height:850)
@@ -70,14 +69,11 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.hidesBarsOnSwipe = true
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
-    navigationController?.hidesBarsOnSwipe = false
-  }
+    }
   
   func setupUI(orderV:OrderContentView) {
     let userid = JSHAccountManager.sharedJSHAccountManager().userid

@@ -20,7 +20,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     super.viewDidLoad()
     
     showHUDInView(view, withLoading: "")
-    //    loadMoreData()
+    loadMoreData()
     title = NSLocalizedString("ORDRE_LIST", comment: "")
     
     let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
@@ -45,7 +45,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: OrderListCell = tableView.dequeueReusableCellWithIdentifier(OrderListCell.reuseIdentifier()) as! OrderListCell
     let order = orders[indexPath.row] as! OrderModel
-    print(order.room_type)
     cell.setOrder(order)
     cell.delegate = self
     cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -65,17 +64,18 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
     let order = orders[indexPath.row] as! OrderModel
-    //    if Int(order.status) == 0 {  // 0 未确认可取消订单
-    //      let bookingOrderDetailVC = BookingOrderDetailVC(order: order)
-    //      bookingOrderDetailVC.delegate = self
-    //      navigationController?.pushViewController(bookingOrderDetailVC, animated: true)
-    //    } else {
-    //      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
-    //    }
-    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
-    vc.reservation_no = order.reservation_no
-    navigationController?.pushViewController(vc, animated: true)
+        if order.status == 0 || order.status == 2 || order.status == 4 {  // 0 未确认可取消订单
+          let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+          vc.reservation_no = order.reservation_no
+          navigationController?.pushViewController(vc, animated: true)
+        } else {
+          let vc = OrderDetailsVC()
+          let order = orders[indexPath.row]
+          vc.order = order as! OrderModel
+          navigationController?.pushViewController(vc, animated: true)
+        }
+    
   }
   
   // MARK: - BookingOrderDetailVCDelegate
@@ -112,7 +112,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   func loadMoreData() -> Void {
     let page = String(orderPage)
-    ZKJSHTTPSessionManager.sharedInstance().getOrderListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.tableView.mj_footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {

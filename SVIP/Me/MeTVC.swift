@@ -12,7 +12,7 @@ class MeTVC: UITableViewController {
   
   @IBOutlet weak var userImage: UIImageView!
   @IBOutlet weak var usernameLabel: UILabel!
-  var localBaseInfo :JSHBaseInfo?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -22,9 +22,9 @@ class MeTVC: UITableViewController {
   
   
   func setupUI() {
-    localBaseInfo = JSHStorage.baseInfo()
-    userImage.image = localBaseInfo?.avatarImage
-    usernameLabel.text = localBaseInfo?.username
+    
+    userImage.image = AccountManager.sharedInstance().avatarImage
+    usernameLabel.text = AccountManager.sharedInstance().userName
   }
   
   override func viewWillAppear(animated: Bool) {

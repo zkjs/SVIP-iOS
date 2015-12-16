@@ -127,7 +127,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 - (void)logoutWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/logout?userid=%@", [self userID]];
   [self POST:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+  //  DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }
@@ -578,7 +578,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
-    [formData appendPartWithFormData:[@"0,2,4" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
+    [formData appendPartWithFormData:[@"0,2,3,4" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
   // DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
@@ -596,9 +596,9 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     [formData appendPartWithFormData:[page dataUsingEncoding:NSUTF8StringEncoding] name:@"page"];
-    [formData appendPartWithFormData:[@"3" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
+    [formData appendPartWithFormData:[@"0,2,3,4" dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    DDLogInfo(@"==%@", [responseObject description]);
+    NSLog(@"==%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }

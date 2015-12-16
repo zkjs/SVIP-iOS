@@ -17,10 +17,10 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background" translatesAutoresizingMaskIntoConstraints="NO" id="dU1-0M-DHr">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="徐先生" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em2-Hz-coW">
-                            <rect key="frame" x="18" y="234" width="300" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em2-Hz-coW">
+                            <rect key="frame" x="18" y="234" width="150" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="300" id="IA2-49-54N"/>
+                                <constraint firstAttribute="width" constant="150" id="IA2-49-54N"/>
                                 <constraint firstAttribute="height" constant="21" id="QVK-hm-Dzo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -47,19 +47,38 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndh-Ec-eXe">
+                            <rect key="frame" x="136" y="229" width="100" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="4ol-KN-wAP"/>
+                                <constraint firstAttribute="height" constant="30" id="72R-Fo-kP4"/>
+                            </constraints>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7I-4C-mFs">
+                            <rect key="frame" x="18" y="229" width="100" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="JjS-iE-sWu"/>
+                                <constraint firstAttribute="height" constant="30" id="sSk-9r-xPm"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="yhH-3u-nJI" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" constant="270" id="3lH-dY-NHi"/>
                         <constraint firstAttribute="height" constant="338" id="6kc-Rz-T8e"/>
+                        <constraint firstItem="Z7I-4C-mFs" firstAttribute="top" secondItem="E8H-WK-rmy" secondAttribute="bottom" constant="19" id="6sf-Ue-LQI"/>
                         <constraint firstItem="dU1-0M-DHr" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" id="9X2-NB-zWD"/>
                         <constraint firstItem="yhH-3u-nJI" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="ANJ-xw-mJg"/>
                         <constraint firstItem="dU1-0M-DHr" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" id="JaO-gg-FPy"/>
                         <constraint firstItem="E8H-WK-rmy" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="Lqf-jY-Ecb"/>
+                        <constraint firstItem="Ndh-Ec-eXe" firstAttribute="top" secondItem="E8H-WK-rmy" secondAttribute="bottom" constant="19" id="Xee-fx-ad0"/>
                         <constraint firstAttribute="bottom" secondItem="dU1-0M-DHr" secondAttribute="bottom" id="eft-yK-fOq"/>
+                        <constraint firstItem="Ndh-Ec-eXe" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="136" id="gsj-Ne-Ntk"/>
                         <constraint firstItem="em2-Hz-coW" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" constant="234" id="kPM-Ks-WFw"/>
                         <constraint firstAttribute="trailing" secondItem="dU1-0M-DHr" secondAttribute="trailing" id="ojV-Ty-yK7"/>
                         <constraint firstItem="em2-Hz-coW" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="qei-AY-3cn"/>
+                        <constraint firstItem="Z7I-4C-mFs" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="tAv-Fb-Obq"/>
                         <constraint firstItem="E8H-WK-rmy" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" constant="184" id="wQf-5t-g8h"/>
                     </constraints>
                 </view>
@@ -121,6 +140,7 @@
             </variation>
             <connections>
                 <outlet property="LocationButton" destination="x4r-ak-Q7I" id="cfy-hG-sf5"/>
+                <outlet property="activateButton" destination="Ndh-Ec-eXe" id="YMB-5C-4I7"/>
                 <outlet property="backgroundImage" destination="dU1-0M-DHr" id="sfu-0b-Gkn"/>
                 <outlet property="dynamicLabel" destination="yhH-3u-nJI" id="MZa-QK-ldP"/>
                 <outlet property="greetLabel" destination="E8H-WK-rmy" id="n8B-Pi-eL1"/>
