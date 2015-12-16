@@ -23,7 +23,7 @@ class OrderModel: NSObject {
   var guesttel: NSNumber!
   var nologin: NSNumber!
   var rooms: NSNumber!
-  var status: String!
+  var status: NSNumber!
   var pay_status: NSNumber!
   var score: NSNumber!
   
@@ -45,7 +45,7 @@ class OrderModel: NSObject {
     guesttel = dic["guesttel"] as? NSNumber ?? NSNumber(double: 0.0)
     nologin = dic["nologin"] as? NSNumber ?? NSNumber(double: 0.0)
     rooms = dic["rooms"] as? NSNumber ?? NSNumber(double: 0.0)
-    status = dic["status"] as? String ?? ""
+    status = dic["status"] as? NSNumber ?? NSNumber(double: 0.0)
     pay_status = dic["pay_status"] as? NSNumber ?? NSNumber(double: 0.0)
     score = dic["score"] as? NSNumber ?? NSNumber(double: 0.0)
   }

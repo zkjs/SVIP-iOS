@@ -11,6 +11,17 @@ import UIKit
 class HotelCell: UITableViewCell {
 
   
+  @IBOutlet weak var userImageButton: UIButton! {
+    didSet {
+      userImageButton.layer.masksToBounds = true
+      userImageButton.layer.cornerRadius = 24
+    }
+  }
+  @IBOutlet weak var addressLabel: UILabel! {
+    didSet {
+      addressLabel.numberOfLines = 0
+    }
+  }
   @IBOutlet weak var customLabel: UILabel!
   @IBOutlet weak var hotelNameLabel: UILabel!
   @IBOutlet weak var hotelImageView: UIImageView!
@@ -38,8 +49,7 @@ class HotelCell: UITableViewCell {
   func setData(hotel:Hotel) {
     hotelNameLabel.text = hotel.shopname
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    let urlString = "\(kBaseURL)\(hotel.shoplogo)"
-    let logoURL = NSURL(string: urlString)
+    let logoURL = NSURL(string: hotel.bgImgUrl)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
   }
 

@@ -14,7 +14,6 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
   @IBOutlet weak var sexTextField: UITextField!
   @IBOutlet weak var surnameTextField: UITextField!
   @IBOutlet weak var userImage: UIImageView!
-  var localBaseInfo :JSHBaseInfo?
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -34,11 +33,11 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
   }
   
   func loadUserData() {
-    localBaseInfo = JSHStorage.baseInfo()
-    userImage.image = localBaseInfo?.avatarImage
-    surnameTextField.text = localBaseInfo?.real_name
-    emailTextFiled.text = localBaseInfo?.email
-    sexTextField.text = localBaseInfo?.sex
+    
+    userImage.image = AccountManager.sharedInstance().avatarImage
+    surnameTextField.text = AccountManager.sharedInstance().userName
+    emailTextFiled.text = AccountManager.sharedInstance().email
+    sexTextField.text = AccountManager.sharedInstance().sexName
   }
   
   // MARK: - Table view delegate
@@ -47,34 +46,65 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     switch indexPath {
     case NSIndexPath(forRow: 0, inSection: 0):
-    UIActionSheet(title:NSLocalizedString("CHOOSE_PHOTO", comment: ""),
-    delegate:self,
-    cancelButtonTitle:NSLocalizedString("CANCEL", comment: ""),
-    destructiveButtonTitle:NSLocalizedString("TAKE_PHOTO", comment: ""),
-    otherButtonTitles:NSLocalizedString("PHOTO_LIBRARY", comment: "")) .showInView(self.view)
+      UIActionSheet(title:NSLocalizedString("CHOOSE_PHOTO", comment: ""),
+        delegate:self,
+        cancelButtonTitle:NSLocalizedString("CANCEL", comment: ""),
+        destructiveButtonTitle:NSLocalizedString("TAKE_PHOTO", comment: ""),
+        otherButtonTitles:NSLocalizedString("PHOTO_LIBRARY", comment: "")) .showInView(self.view)
     case NSIndexPath(forRow: 1, inSection: 0):
       let vc = SettingEditViewController(type:VCType.realname)
-    self.navigationController?.pushViewController(vc, animated: true)
+      self.navigationController?.pushViewController(vc, animated: true)
       vc.testClosure = myClosure
     case NSIndexPath(forRow: 2, inSection: 0):
-    let sheet = UIActionSheet(title: NSLocalizedString("SEX", comment: ""),
-      delegate: self,
-      cancelButtonTitle: NSLocalizedString("CANCEL", comment: ""),
-      destructiveButtonTitle: NSLocalizedString("MAN", comment: ""),
-      otherButtonTitles: NSLocalizedString("WOMAN", comment: ""))
-    sheet.tag = 888
-    sheet.showInView(self.view)
+      let alertController = UIAlertController(title: "确定要登出吗？", message: "", preferredStyle: .ActionSheet)
+      
+      let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
+        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: "0", company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+          if let dic = responseObject as? NSDictionary {
+            let set = dic["set"]!.boolValue!
+            if set {
+              self.showHint(NSLocalizedString("SAVED", comment: ""))
+             AccountManager.sharedInstance().saveSex("0")
+              self.refreshDataAndUI()
+            }
+          }
+          }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+            
+        }
+      })
+      alertController.addAction(manAction)
+      
+      let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
+        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: "1", company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+          if let dic = responseObject as? NSDictionary {
+            let set = dic["set"]!.boolValue!
+            if set {
+              self.showHint(NSLocalizedString("SAVED", comment: ""))
+              AccountManager.sharedInstance().saveSex("1")
+              self.refreshDataAndUI()
+            }
+          }
+          }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+            
+        }
+      })
+      alertController.addAction(womanAction)
+      
+      let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+      alertController.addAction(cancelAction)
+      
+      presentViewController(alertController, animated: true, completion: nil)
     case NSIndexPath(forRow: 3, inSection: 0):
-    self.navigationController?.pushViewController(SettingEditViewController(type:VCType.email), animated: true)
-    //section == 1
+      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.email), animated: true)
+      //section == 1
     case NSIndexPath(forRow: 5, inSection: 0):
-    self.navigationController?.pushViewController(PhoneSettingFirstViewController(), animated: true)
+      self.navigationController?.pushViewController(PhoneSettingFirstViewController(), animated: true)
     case NSIndexPath(forRow: 6, inSection: 0):
-    self.navigationController?.pushViewController(InvoiceTableViewController(), animated: true)
+      self.navigationController?.pushViewController(InvoiceTableViewController(), animated: true)
     default:
-    break
-  }
-
+      break
+    }
+    
   }
   
   //MARK:- ACTIONSHEET
@@ -82,8 +112,10 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
   func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {//两个actionSheet，通过tag区分
     if actionSheet.tag == 888 {//选择性别
       var set = false
+      print(buttonIndex)
       var sex = JSHStorage.baseInfo().sex
       switch buttonIndex {
+        
       case 0:
         sex = NSLocalizedString("MAN", comment: "")
         set = true
@@ -159,5 +191,5 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
 //        
 //    }
   }
-
+  
 }
