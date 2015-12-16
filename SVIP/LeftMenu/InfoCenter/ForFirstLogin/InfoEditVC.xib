@@ -24,7 +24,7 @@
                         <constraint firstAttribute="width" constant="96" id="2n2-Le-NCp"/>
                         <constraint firstAttribute="height" constant="96" id="wAa-OJ-n4o"/>
                     </constraints>
-                    <state key="normal" image="img_shezhitoux"/>
+                    <state key="normal" image="ic_shenfen"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="48"/>
@@ -113,6 +113,6 @@
         </view>
     </objects>
     <resources>
-        <image name="img_shezhitoux" width="102" height="102"/>
+        <image name="ic_shenfen" width="96" height="96"/>
     </resources>
 </document>

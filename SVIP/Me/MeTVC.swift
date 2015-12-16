@@ -16,20 +16,25 @@ class MeTVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = "我"
     tableView.tableFooterView = UIView()
-  }
-  
-  
-  func setupUI() {
-    
-    userImage.image = AccountManager.sharedInstance().avatarImage
-    usernameLabel.text = AccountManager.sharedInstance().userName
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    
+    navigationController?.navigationBarHidden = true
     setupUI()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.navigationBarHidden = false
+  }
+  
+  func setupUI() {
+    userImage.image = AccountManager.sharedInstance().avatarImage
+    usernameLabel.text = AccountManager.sharedInstance().userName
   }
   
   // MARK: - Table view delegate

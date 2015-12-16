@@ -116,6 +116,12 @@ class AccountManager: NSObject {
     userDefaults.setObject(sex, forKey: "sex")
   }
   
+  func saveEmail(email: String) {
+    self.email = email
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(email, forKey: "email")
+  }
+  
   func clearAccountCache() {
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(nil, forKey: "userID")

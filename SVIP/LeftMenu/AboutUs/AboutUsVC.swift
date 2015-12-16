@@ -8,33 +8,35 @@
 
 import UIKit
 
-class AboutUsViewController: UIViewController, UIWebViewDelegate {
+class AboutUsVC: UIViewController {
   
   var webView: UIWebView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     initSubviews()
-  }
-  
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    hideHUD()
   }
   
   func initSubviews() {
     webView = UIWebView(frame: view.bounds)
-    let url = NSURL(string: "http://www.zkjinshi.com")
+    let url = NSURL(string: "http://www.zkjinshi.com/about_us/")
     webView.loadRequest(NSURLRequest(URL: url!))
     webView.scrollView.bounces = false
     webView.delegate = self
     view.addSubview(webView)
   }
   
+}
+
+extension AboutUsVC: UIWebViewDelegate {
+  
   func webViewDidStartLoad(webView: UIWebView) {
     showHUDInView(view, withLoading: "")
   }
+  
   func webViewDidFinishLoad(webView: UIWebView) {
     hideHUD()
   }
+  
 }

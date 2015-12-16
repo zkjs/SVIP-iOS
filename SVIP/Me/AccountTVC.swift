@@ -8,20 +8,35 @@
 
 import UIKit
 
-class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class AccountTVC: UITableViewController, UINavigationControllerDelegate{
   
   @IBOutlet weak var emailTextFiled: UITextField!
   @IBOutlet weak var sexTextField: UITextField!
   @IBOutlet weak var surnameTextField: UITextField!
   @IBOutlet weak var userImage: UIImageView!
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     title = "账户信息"
-    self.refreshDataAndUI()
+    
     tableView.tableFooterView = UIView()
   }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    refreshDataAndUI()
+  }
+
   private func refreshDataAndUI() {
+    let attributeString = NSAttributedString(string:"立即补全信息",
+      attributes:[NSForegroundColorAttributeName: UIColor.ZKJS_mainColor(), NSFontAttributeName: UIFont.systemFontOfSize(14.0)])
+    surnameTextField.attributedPlaceholder = attributeString
+    sexTextField.attributedPlaceholder = attributeString
+    emailTextFiled.attributedPlaceholder = attributeString
+    
     loadUserData()
     tableView.reloadData()
   }
@@ -33,7 +48,6 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
   }
   
   func loadUserData() {
-    
     userImage.image = AccountManager.sharedInstance().avatarImage
     surnameTextField.text = AccountManager.sharedInstance().userName
     emailTextFiled.text = AccountManager.sharedInstance().email
@@ -44,152 +58,114 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+    let photo = NSIndexPath(forRow: 0, inSection: 0)
+    let name = NSIndexPath(forRow: 1, inSection: 0)
+    let sex = NSIndexPath(forRow: 2, inSection: 0)
+    let email = NSIndexPath(forRow: 3, inSection: 0)
+    let phone = NSIndexPath(forRow: 5, inSection: 0)
+    let invoice = NSIndexPath(forRow: 6, inSection: 0)
+    
     switch indexPath {
-    case NSIndexPath(forRow: 0, inSection: 0):
-      UIActionSheet(title:NSLocalizedString("CHOOSE_PHOTO", comment: ""),
-        delegate:self,
-        cancelButtonTitle:NSLocalizedString("CANCEL", comment: ""),
-        destructiveButtonTitle:NSLocalizedString("TAKE_PHOTO", comment: ""),
-        otherButtonTitles:NSLocalizedString("PHOTO_LIBRARY", comment: "")) .showInView(self.view)
-    case NSIndexPath(forRow: 1, inSection: 0):
-      let vc = SettingEditViewController(type:VCType.realname)
-      self.navigationController?.pushViewController(vc, animated: true)
-      vc.testClosure = myClosure
-    case NSIndexPath(forRow: 2, inSection: 0):
-      let alertController = UIAlertController(title: "确定要登出吗？", message: "", preferredStyle: .ActionSheet)
-      
-      let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
-        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "0", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-          if let dic = responseObject as? NSDictionary {
-            let set = dic["set"]!.boolValue!
-            if set {
-              self.showHint(NSLocalizedString("SAVED", comment: ""))
-             AccountManager.sharedInstance().saveSex("0")
-              self.refreshDataAndUI()
-            }
-          }
-          }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-            
-        }
-      })
-      alertController.addAction(manAction)
-      
-      let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
-        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "1", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-          if let dic = responseObject as? NSDictionary {
-            let set = dic["set"]!.boolValue!
-            if set {
-              self.showHint(NSLocalizedString("SAVED", comment: ""))
-              AccountManager.sharedInstance().saveSex("1")
-              self.refreshDataAndUI()
-            }
-          }
-          }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-            
-        }
-      })
-      alertController.addAction(womanAction)
-      
-      let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
-      alertController.addAction(cancelAction)
-      
-      presentViewController(alertController, animated: true, completion: nil)
-    case NSIndexPath(forRow: 3, inSection: 0):
-      self.navigationController?.pushViewController(SettingEditViewController(type:VCType.email), animated: true)
-      //section == 1
-    case NSIndexPath(forRow: 5, inSection: 0):
-      self.navigationController?.pushViewController(PhoneSettingFirstViewController(), animated: true)
-    case NSIndexPath(forRow: 6, inSection: 0):
-      self.navigationController?.pushViewController(InvoiceTableViewController(), animated: true)
+    case photo:
+      choosePhoto()
+    case name:
+      navigationController?.pushViewController(NameVC(), animated: true)
+    case sex:
+      chooseSex()
+    case email:
+      navigationController?.pushViewController(EmailVC(), animated: true)
+    case phone:
+      navigationController?.pushViewController(PhoneFirstVC(), animated: true)
+    case invoice:
+      navigationController?.pushViewController(InvoiceTableViewController(), animated: true)
     default:
       break
     }
-    
   }
   
-  //MARK:- ACTIONSHEET
-  
-  func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {//两个actionSheet，通过tag区分
-    if actionSheet.tag == 888 {//选择性别
-      var set = false
-      print(buttonIndex)
-      var sex = JSHStorage.baseInfo().sex
-      switch buttonIndex {
-        
-      case 0:
-        sex = NSLocalizedString("MAN", comment: "")
-        set = true
-      case 2:
-        sex = NSLocalizedString("WOMAN", comment: "")
-        set = true
-      default:
-        break
-      }
-      if set {
-        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: sex, email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-          if let dic = responseObject as? NSDictionary {
-            let set = dic["set"]!.boolValue!
-            if set {
-              self.showHint(NSLocalizedString("SAVED", comment: ""))
-              let baseInfo = JSHStorage.baseInfo()
-              baseInfo.sex = sex
-              JSHStorage.saveBaseInfo(baseInfo)
-              self.refreshDataAndUI()
-            }
-          }
-          }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-            
-        }
-      }
-      return
-    }
-    switch buttonIndex {//莫名其妙的buttonIndex：照相0，取消1，照片库2
-    case 0:
+  func choosePhoto() {
+    let alertController = UIAlertController(title: "请选择图片", message: "", preferredStyle: .ActionSheet)
+    let takePhotoAction = UIAlertAction(title: "拍照", style:.Default, handler: { (action: UIAlertAction) -> Void in
       let picker = UIImagePickerController()
       picker.sourceType = UIImagePickerControllerSourceType.Camera
       picker.delegate = self
       picker.allowsEditing = true
-      self.presentViewController(picker, animated: true, completion: { () -> Void in
-        
-      })
-    case 2:
+      self.presentViewController(picker, animated: true, completion: nil)
+    })
+    alertController.addAction(takePhotoAction)
+    let choosePhotoAction = UIAlertAction(title: "从相册中选择", style:.Default, handler: { (action: UIAlertAction) -> Void in
       let picker = UIImagePickerController()
       picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
       picker.delegate = self
       picker.allowsEditing = true
-      self.presentViewController(picker, animated: true, completion: { () -> Void in
-        
-      })
-    default:
-      break
-    }
+      self.presentViewController(picker, animated: true, completion: nil)
+    })
+    alertController.addAction(choosePhotoAction)
+    let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+    alertController.addAction(cancelAction)
+    presentViewController(alertController, animated: true, completion: nil)
   }
   
-  //MARK:- UIImagePickerControllerDelegate
+  func chooseSex() {
+    let alertController = UIAlertController(title: "请选择性别", message: "", preferredStyle: .ActionSheet)
+    let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "0", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        if let dic = responseObject as? NSDictionary {
+          let set = dic["set"]!.boolValue!
+          if set {
+            AccountManager.sharedInstance().saveSex("0")
+            self.refreshDataAndUI()
+          }
+        }
+        }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+          
+      }
+    })
+    alertController.addAction(manAction)
+    let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "1", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        if let dic = responseObject as? NSDictionary {
+          let set = dic["set"]!.boolValue!
+          if set {
+            AccountManager.sharedInstance().saveSex("1")
+            self.refreshDataAndUI()
+          }
+        }
+        }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+          
+      }
+    })
+    alertController.addAction(womanAction)
+    let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+    alertController.addAction(cancelAction)
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension AccountTVC: UIImagePickerControllerDelegate {
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-    //    let dic = editingInfo
     var imageData = UIImageJPEGRepresentation(image, 1.0)!
     var i = 0
     while imageData.length / 1024 > 80 {
       let persent = CGFloat(100 - i++) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
-//    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: imageData, imageName: "abc", sex: nil, company: nil, occupation: nil, email: nil, tagopen: nil,success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-//      if let dic = responseObject as? NSDictionary {
-//        if dic["set"]?.boolValue == true {
-//          let baseInfo = JSHStorage.baseInfo()
-//          baseInfo.avatarImage = UIImage(data: imageData)
-//          JSHStorage.saveBaseInfo(baseInfo)
-//          self.refreshDataAndUI()
-//          picker .dismissViewControllerAnimated(true, completion: { () -> Void in
-//            
-//          })
-//        }
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: imageData, sex: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      if let dic = responseObject as? NSDictionary {
+        if dic["set"]?.boolValue == true {
+          AccountManager.sharedInstance().saveAvatarImageData(imageData)
+          self.refreshDataAndUI()
+          picker .dismissViewControllerAnimated(true, completion: nil)
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
 }

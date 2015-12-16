@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400959E51C210D6900D3DA61 /* NameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959E31C210D6900D3DA61 /* NameVC.swift */; };
+		400959E61C210D6A00D3DA61 /* NameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959E41C210D6900D3DA61 /* NameVC.xib */; };
+		400959E91C21221F00D3DA61 /* EmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959E71C21221F00D3DA61 /* EmailVC.swift */; };
+		400959EA1C21221F00D3DA61 /* EmailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959E81C21221F00D3DA61 /* EmailVC.xib */; };
+		400959ED1C21238C00D3DA61 /* PhoneFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959EB1C21238C00D3DA61 /* PhoneFirstVC.swift */; };
+		400959EE1C21238C00D3DA61 /* PhoneFirstVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959EC1C21238C00D3DA61 /* PhoneFirstVC.xib */; };
+		400959F11C2123A400D3DA61 /* InvoiceTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959EF1C2123A400D3DA61 /* InvoiceTVC.swift */; };
+		400959F21C2123A400D3DA61 /* InvoiceTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959F01C2123A400D3DA61 /* InvoiceTVC.xib */; };
+		400959F51C213B3900D3DA61 /* PhoneSecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959F31C213B3900D3DA61 /* PhoneSecondVC.swift */; };
+		400959F61C213B3900D3DA61 /* PhoneSecondVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959F41C213B3900D3DA61 /* PhoneSecondVC.xib */; };
 		404A2F421BA94C7B006475D7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405352161BA66251007157FC /* NotificationCenter.framework */; };
 		404A2F471BA94C7B006475D7 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404A2F461BA94C7B006475D7 /* TodayViewController.swift */; };
 		404A2F491BA94C7B006475D7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A2F481BA94C7B006475D7 /* MainInterface.storyboard */; };
@@ -215,10 +225,6 @@
 		40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D871C1F0836009C0311 /* SettingTVC.swift */; };
 		40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */; };
 		40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */; };
-		B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B208126B1B8DD7950070D96F /* JSHBaseInfo.m */; };
-		B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127C1B8DD7950070D96F /* SettingEditViewController.swift */; };
-		B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208127D1B8DD7950070D96F /* SettingEditViewController.xib */; };
-		B20812A61B8DD7950070D96F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208127F1B8DD7950070D96F /* SettingTableViewController.swift */; };
 		B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812861B8DD7950070D96F /* LabelButton.swift */; };
 		B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812871B8DD7950070D96F /* LabelSelectView.swift */; };
 		B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */; };
@@ -236,9 +242,7 @@
 		B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812C31B8DD8650070D96F /* StorageManager.swift */; };
 		B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */; };
 		B21250B11B74586F0056835D /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250B01B74586F0056835D /* LoginManager.swift */; };
-		B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21250BA1B7484F80056835D /* LeftMenuVC.swift */; };
 		B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */; };
-		B21250CE1B74AFF00056835D /* LeftMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250CD1B74AFF00056835D /* LeftMenuVC.xib */; };
 		B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */; };
 		B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D381B4BFAED0098608F /* JSHAnimationVC.m */; };
 		B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D3A1B4BFAED0098608F /* JSHHotelRegisterVC.m */; };
@@ -254,7 +258,7 @@
 		B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C21B4A59AA00A9F858 /* UIImageEffects.m */; };
 		B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */; };
 		B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */; };
-		B28967BD1B9E796300DF5D79 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */; };
+		B28967BD1B9E796300DF5D79 /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28967BC1B9E796300DF5D79 /* AboutUsVC.swift */; };
 		B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */; };
 		B2A6421F1B47C2A700AF0F28 /* BookPayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642121B47C2A700AF0F28 /* BookPayVC.swift */; };
 		B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A642131B47C2A700AF0F28 /* BookVC.swift */; };
@@ -267,10 +271,6 @@
 		B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A6421C1B47C2A700AF0F28 /* BookVC.xib */; };
 		B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3C1B73493D00CA5158 /* libc++.dylib */; };
 		B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */; };
-		B2F0377A1B93F3D4006FF396 /* PhoneSettingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F037761B93F3D4006FF396 /* PhoneSettingFirstViewController.swift */; };
-		B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F037771B93F3D4006FF396 /* PhoneSettingFirstViewController.xib */; };
-		B2F0377C1B93F3D4006FF396 /* PhoneSettingSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F037781B93F3D4006FF396 /* PhoneSettingSecondViewController.swift */; };
-		B2F0377D1B93F3D4006FF396 /* PhoneSettingSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F037791B93F3D4006FF396 /* PhoneSettingSecondViewController.xib */; };
 		B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E41B7EE229000DBD81 /* TSQCalendarCell.m */; };
 		B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E61B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m */; };
 		B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E81B7EE229000DBD81 /* TSQCalendarRowCell.m */; };
@@ -294,8 +294,6 @@
 		FA6BC8391C1AAA4400D409E4 /* FloatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6BC8381C1AAA4400D409E4 /* FloatHeaderView.swift */; };
 		FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */; };
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
-		FAF02EF31C155B1400B86B28 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF11C155B1400B86B28 /* SettingVC.swift */; };
-		FAF02EF41C155B1400B86B28 /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF21C155B1400B86B28 /* SettingVC.xib */; };
 		FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF51C159DB000B86B28 /* SalesVC.swift */; };
 		FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF61C159DB000B86B28 /* SalesVC.xib */; };
 		FAF101C71C046AAE00FC3672 /* TMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF101C61C046AAE00FC3672 /* TMReachability.m */; };
@@ -321,8 +319,6 @@
 		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
 		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
 		FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */; };
-		FAF7CB9D1C1EA60700A4B082 /* AccountInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7CB9B1C1EA60700A4B082 /* AccountInfoCell.swift */; };
-		FAF7CB9E1C1EA60700A4B082 /* AccountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7CB9C1C1EA60700A4B082 /* AccountInfoCell.xib */; };
 		FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */; };
 		FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */; };
 		FAF7F55A1C02EB4400C84601 /* PrivilegeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5581C02EB4300C84601 /* PrivilegeCVCell.swift */; };
@@ -390,6 +386,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		400959E31C210D6900D3DA61 /* NameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameVC.swift; sourceTree = "<group>"; };
+		400959E41C210D6900D3DA61 /* NameVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameVC.xib; sourceTree = "<group>"; };
+		400959E71C21221F00D3DA61 /* EmailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailVC.swift; sourceTree = "<group>"; };
+		400959E81C21221F00D3DA61 /* EmailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailVC.xib; sourceTree = "<group>"; };
+		400959EB1C21238C00D3DA61 /* PhoneFirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneFirstVC.swift; sourceTree = "<group>"; };
+		400959EC1C21238C00D3DA61 /* PhoneFirstVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneFirstVC.xib; sourceTree = "<group>"; };
+		400959EF1C2123A400D3DA61 /* InvoiceTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTVC.swift; sourceTree = "<group>"; };
+		400959F01C2123A400D3DA61 /* InvoiceTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceTVC.xib; sourceTree = "<group>"; };
+		400959F31C213B3900D3DA61 /* PhoneSecondVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSecondVC.swift; sourceTree = "<group>"; };
+		400959F41C213B3900D3DA61 /* PhoneSecondVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSecondVC.xib; sourceTree = "<group>"; };
 		404A2F411BA94C7B006475D7 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		404A2F451BA94C7B006475D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404A2F461BA94C7B006475D7 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -985,11 +991,6 @@
 		40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
 		40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTVC.xib; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B208126A1B8DD7950070D96F /* JSHBaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHBaseInfo.h; sourceTree = "<group>"; };
-		B208126B1B8DD7950070D96F /* JSHBaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHBaseInfo.m; sourceTree = "<group>"; };
-		B208127C1B8DD7950070D96F /* SettingEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingEditViewController.swift; sourceTree = "<group>"; };
-		B208127D1B8DD7950070D96F /* SettingEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingEditViewController.xib; sourceTree = "<group>"; };
-		B208127F1B8DD7950070D96F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		B20812861B8DD7950070D96F /* LabelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
 		B20812871B8DD7950070D96F /* LabelSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelSelectView.swift; sourceTree = "<group>"; };
 		B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelFooter.xib; sourceTree = "<group>"; };
@@ -1011,9 +1012,7 @@
 		B20812C51B8DD8650070D96F /* SVIP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SVIP.xcdatamodel; sourceTree = "<group>"; };
 		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
 		B21250B01B74586F0056835D /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		B21250BA1B7484F80056835D /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftMenuVC.swift; path = ../Main/LeftMenuVC.swift; sourceTree = "<group>"; };
 		B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListRightMenuCell.xib; sourceTree = "<group>"; };
-		B21250CD1B74AFF00056835D /* LeftMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LeftMenuVC.xib; path = ../Main/LeftMenuVC.xib; sourceTree = "<group>"; };
 		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
 		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimationVC.m; sourceTree = "<group>"; };
@@ -1037,7 +1036,7 @@
 		B277F8C31B4A59AA00A9F858 /* BlurDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurDatePickerView.h; sourceTree = "<group>"; };
 		B277F8C41B4A59AA00A9F858 /* BlurDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurDatePickerView.m; sourceTree = "<group>"; };
 		B277F8C71B4A5D3900A9F858 /* BookDateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateButton.swift; sourceTree = "<group>"; };
-		B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		B28967BC1B9E796300DF5D79 /* AboutUsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutUsVC.swift; path = ../LeftMenu/AboutUs/AboutUsVC.swift; sourceTree = "<group>"; };
 		B2A642111B47C2A700AF0F28 /* BookConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookConfirmVC.swift; sourceTree = "<group>"; };
 		B2A642121B47C2A700AF0F28 /* BookPayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BookPayVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B2A642131B47C2A700AF0F28 /* BookVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookVC.swift; sourceTree = "<group>"; };
@@ -1050,10 +1049,6 @@
 		B2A6421C1B47C2A700AF0F28 /* BookVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookVC.xib; sourceTree = "<group>"; };
 		B2B2EC3C1B73493D00CA5158 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		B2F037761B93F3D4006FF396 /* PhoneSettingFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSettingFirstViewController.swift; sourceTree = "<group>"; };
-		B2F037771B93F3D4006FF396 /* PhoneSettingFirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSettingFirstViewController.xib; sourceTree = "<group>"; };
-		B2F037781B93F3D4006FF396 /* PhoneSettingSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSettingSecondViewController.swift; sourceTree = "<group>"; };
-		B2F037791B93F3D4006FF396 /* PhoneSettingSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSettingSecondViewController.xib; sourceTree = "<group>"; };
 		B2F4A9E11B7EE229000DBD81 /* TimesSquare-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TimesSquare-Prefix.pch"; sourceTree = "<group>"; };
 		B2F4A9E21B7EE229000DBD81 /* TimesSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimesSquare.h; sourceTree = "<group>"; };
 		B2F4A9E31B7EE229000DBD81 /* TSQCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQCalendarCell.h; sourceTree = "<group>"; };
@@ -1083,8 +1078,6 @@
 		FA6BC8381C1AAA4400D409E4 /* FloatHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatHeaderView.swift; sourceTree = "<group>"; };
 		FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatHeaderView.xib; sourceTree = "<group>"; };
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
-		FAF02EF11C155B1400B86B28 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
-		FAF02EF21C155B1400B86B28 /* SettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
 		FAF02EF51C159DB000B86B28 /* SalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
 		FAF02EF61C159DB000B86B28 /* SalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesVC.xib; sourceTree = "<group>"; };
 		FAF101C51C046AAE00FC3672 /* TMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMReachability.h; sourceTree = "<group>"; };
@@ -1112,8 +1105,6 @@
 		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
-		FAF7CB9B1C1EA60700A4B082 /* AccountInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoCell.swift; sourceTree = "<group>"; };
-		FAF7CB9C1C1EA60700A4B082 /* AccountInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoCell.xib; sourceTree = "<group>"; };
 		FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeVC.swift; sourceTree = "<group>"; };
 		FAF7F5551C02E88F00C84601 /* PrivilegeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivilegeVC.xib; sourceTree = "<group>"; };
 		FAF7F5581C02EB4300C84601 /* PrivilegeCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeCVCell.swift; sourceTree = "<group>"; };
@@ -1182,6 +1173,35 @@
 				DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		400959E11C210C8D00D3DA61 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */,
+				FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */,
+				400959E31C210D6900D3DA61 /* NameVC.swift */,
+				400959E41C210D6900D3DA61 /* NameVC.xib */,
+				400959E71C21221F00D3DA61 /* EmailVC.swift */,
+				400959E81C21221F00D3DA61 /* EmailVC.xib */,
+				400959EB1C21238C00D3DA61 /* PhoneFirstVC.swift */,
+				400959EC1C21238C00D3DA61 /* PhoneFirstVC.xib */,
+				400959F31C213B3900D3DA61 /* PhoneSecondVC.swift */,
+				400959F41C213B3900D3DA61 /* PhoneSecondVC.xib */,
+				400959EF1C2123A400D3DA61 /* InvoiceTVC.swift */,
+				400959F01C2123A400D3DA61 /* InvoiceTVC.xib */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		400959E21C210CB100D3DA61 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				40EE4D871C1F0836009C0311 /* SettingTVC.swift */,
+				40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */,
+				B28967BC1B9E796300DF5D79 /* AboutUsVC.swift */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 		404A2F431BA94C7B006475D7 /* Today */ = {
@@ -1288,9 +1308,12 @@
 				B2564D351B4BFAED0098608F /* Register */,
 				B2A6420F1B47C2A700AF0F28 /* Book */,
 				40EE4D781C1EEE34009C0311 /* Me */,
-				FAF02EF01C155AD500B86B28 /* Setting */,
 				4052664D1B41283900B277BE /* Main */,
-				B20812611B8DD7950070D96F /* LeftMenu */,
+				FAF7F5531C02E83200C84601 /* Privilege */,
+				40E39E1C1BFEF43800516EC4 /* OrderList */,
+				B2FB43321B8EF75700C9BEBB /* Invoice */,
+				B20812851B8DD7950070D96F /* InfoLabel */,
+				B20812901B8DD7950070D96F /* SkipCheckIn */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
@@ -2061,7 +2084,8 @@
 				40E39E311BFEF43800516EC4 /* OrderListTVC.swift */,
 				40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */,
 			);
-			path = OrderList;
+			name = OrderList;
+			path = LeftMenu/OrderList;
 			sourceTree = "<group>";
 		};
 		40E39E1F1BFEF43800516EC4 /* Cell */ = {
@@ -2629,49 +2653,10 @@
 			children = (
 				40EE4D791C1EEE58009C0311 /* MeTVC.swift */,
 				40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */,
-				FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */,
-				FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */,
-				40EE4D871C1F0836009C0311 /* SettingTVC.swift */,
-				40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */,
+				400959E21C210CB100D3DA61 /* Setting */,
+				400959E11C210C8D00D3DA61 /* Account */,
 			);
 			path = Me;
-			sourceTree = "<group>";
-		};
-		B20812611B8DD7950070D96F /* LeftMenu */ = {
-			isa = PBXGroup;
-			children = (
-				B21250BA1B7484F80056835D /* LeftMenuVC.swift */,
-				B21250CD1B74AFF00056835D /* LeftMenuVC.xib */,
-				FAF7F5531C02E83200C84601 /* Privilege */,
-				40E39E1C1BFEF43800516EC4 /* OrderList */,
-				B28967B81B9E78C900DF5D79 /* AboutUs */,
-				B2F037751B93F3D4006FF396 /* Phone */,
-				B2FB43321B8EF75700C9BEBB /* Invoice */,
-				B20812621B8DD7950070D96F /* InfoCenter */,
-				B20812851B8DD7950070D96F /* InfoLabel */,
-				B20812901B8DD7950070D96F /* SkipCheckIn */,
-			);
-			path = LeftMenu;
-			sourceTree = "<group>";
-		};
-		B20812621B8DD7950070D96F /* InfoCenter */ = {
-			isa = PBXGroup;
-			children = (
-				B20812691B8DD7950070D96F /* Model */,
-				B208127C1B8DD7950070D96F /* SettingEditViewController.swift */,
-				B208127D1B8DD7950070D96F /* SettingEditViewController.xib */,
-				B208127F1B8DD7950070D96F /* SettingTableViewController.swift */,
-			);
-			path = InfoCenter;
-			sourceTree = "<group>";
-		};
-		B20812691B8DD7950070D96F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B208126A1B8DD7950070D96F /* JSHBaseInfo.h */,
-				B208126B1B8DD7950070D96F /* JSHBaseInfo.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		B20812851B8DD7950070D96F /* InfoLabel */ = {
@@ -2683,7 +2668,8 @@
 				B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */,
 				B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */,
 			);
-			path = InfoLabel;
+			name = InfoLabel;
+			path = LeftMenu/InfoLabel;
 			sourceTree = "<group>";
 		};
 		B20812901B8DD7950070D96F /* SkipCheckIn */ = {
@@ -2691,7 +2677,8 @@
 			children = (
 				B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */,
 			);
-			path = SkipCheckIn;
+			name = SkipCheckIn;
+			path = LeftMenu/SkipCheckIn;
 			sourceTree = "<group>";
 		};
 		B20812B71B8DD8650070D96F /* Helper */ = {
@@ -2758,14 +2745,6 @@
 				B2564D4D1B4BFC470098608F /* JSHRoundRectButton.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		B28967B81B9E78C900DF5D79 /* AboutUs */ = {
-			isa = PBXGroup;
-			children = (
-				B28967BC1B9E796300DF5D79 /* AboutUsViewController.swift */,
-			);
-			path = AboutUs;
 			sourceTree = "<group>";
 		};
 		B2A6420F1B47C2A700AF0F28 /* Book */ = {
@@ -2841,17 +2820,6 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
-		B2F037751B93F3D4006FF396 /* Phone */ = {
-			isa = PBXGroup;
-			children = (
-				B2F037761B93F3D4006FF396 /* PhoneSettingFirstViewController.swift */,
-				B2F037771B93F3D4006FF396 /* PhoneSettingFirstViewController.xib */,
-				B2F037781B93F3D4006FF396 /* PhoneSettingSecondViewController.swift */,
-				B2F037791B93F3D4006FF396 /* PhoneSettingSecondViewController.xib */,
-			);
-			path = Phone;
-			sourceTree = "<group>";
-		};
 		B2F4A9DF1B7EE229000DBD81 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2903,7 +2871,8 @@
 				B2FB433C1B8F101400C9BEBB /* InvoiceEditViewController.swift */,
 				B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */,
 			);
-			path = Invoice;
+			name = Invoice;
+			path = LeftMenu/Invoice;
 			sourceTree = "<group>";
 		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
@@ -2929,18 +2898,6 @@
 				B2FB432B1B8EB49600C9BEBB /* Register */,
 			);
 			name = Login;
-			sourceTree = "<group>";
-		};
-		FAF02EF01C155AD500B86B28 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				FAF02EF11C155B1400B86B28 /* SettingVC.swift */,
-				FAF02EF21C155B1400B86B28 /* SettingVC.xib */,
-				FAF7CB9B1C1EA60700A4B082 /* AccountInfoCell.swift */,
-				FAF7CB9C1C1EA60700A4B082 /* AccountInfoCell.xib */,
-			);
-			name = Setting;
-			path = Main;
 			sourceTree = "<group>";
 		};
 		FAF253F41C12CE5600768A4D /* View */ = {
@@ -3002,7 +2959,7 @@
 				FAF7F5611C030A0B00C84601 /* View */,
 			);
 			name = Privilege;
-			path = OrderList;
+			path = LeftMenu/OrderList;
 			sourceTree = "<group>";
 		};
 		FAF7F5601C0309F000C84601 /* Controller */ = {
@@ -3175,7 +3132,6 @@
 				40E3A17E1BFEFA6400516EC4 /* HotelCell.xib in Resources */,
 				40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
-				FAF7CB9E1C1EA60700A4B082 /* AccountInfoCell.xib in Resources */,
 				FA6BC8371C1A748500D409E4 /* CustomServiceVC.xib in Resources */,
 				4077DDD71C1EAF9900E13D6B /* MWPhotoBrowser.bundle in Resources */,
 				4077DD8D1C1EAF9900E13D6B /* callRing.mp3 in Resources */,
@@ -3185,7 +3141,6 @@
 				40E3A1601BFEFA0C00516EC4 /* MailListTVC.xib in Resources */,
 				FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */,
 				40E3A1891BFEFA8300516EC4 /* SearchBarView.xib in Resources */,
-				B2F0377B1B93F3D4006FF396 /* PhoneSettingFirstViewController.xib in Resources */,
 				FAF249591BFF08CA001E7E41 /* SearchCell.xib in Resources */,
 				FAF7F5691C030E8B00C84601 /* CustomerServiceCell.xib in Resources */,
 				FAF2495D1BFF0F1C001E7E41 /* SearchHeaderView.xib in Resources */,
@@ -3193,7 +3148,6 @@
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
 				B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
-				FAF02EF41C155B1400B86B28 /* SettingVC.xib in Resources */,
 				FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */,
 				FAF7F55B1C02EB4400C84601 /* PrivilegeCVCell.xib in Resources */,
 				40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */,
@@ -3202,11 +3156,11 @@
 				FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */,
 				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
 				40EE4D801C1EEF70009C0311 /* MeTVC.storyboard in Resources */,
+				400959E61C210D6A00D3DA61 /* NameVC.xib in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				40E39E3E1BFEF43800516EC4 /* OrderContentView.xib in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
-				B2F0377D1B93F3D4006FF396 /* PhoneSettingSecondViewController.xib in Resources */,
 				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				4056A8131BC9004C00D42393 /* server.der in Resources */,
@@ -3215,15 +3169,16 @@
 				40E39E3C1BFEF43800516EC4 /* OrderListHeaderView.xib in Resources */,
 				40E39E401BFEF43800516EC4 /* OrderDetailsVC.xib in Resources */,
 				FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */,
+				400959EE1C21238C00D3DA61 /* PhoneFirstVC.xib in Resources */,
 				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
 				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				40E39E391BFEF43800516EC4 /* OrderListCell.xib in Resources */,
 				40E3A15E1BFEFA0C00516EC4 /* FindListTVC.xib in Resources */,
 				B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
-				B21250CE1B74AFF00056835D /* LeftMenuVC.xib in Resources */,
 				FAFA519D1C16F32900BF04F2 /* CityHeaderView.xib in Resources */,
 				40817D081B8EAB8800EF188F /* NewItemCell.xib in Resources */,
+				400959F21C2123A400D3DA61 /* InvoiceTVC.xib in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
@@ -3233,12 +3188,13 @@
 				FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */,
 				FAF212DA1BF73F83002C1C73 /* ActivationCell.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
+				400959EA1C21221F00D3DA61 /* EmailVC.xib in Resources */,
 				FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				40E39E421BFEF43800516EC4 /* OrderDetailVC.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
-				B20812A41B8DD7950070D96F /* SettingEditViewController.xib in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
+				400959F61C213B3900D3DA61 /* PhoneSecondVC.xib in Resources */,
 				FAFA51A11C16FFF200BF04F2 /* UnActivationCell.xib in Resources */,
 				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
 				FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */,
@@ -3399,13 +3355,12 @@
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
 				4077DDFD1C1EAF9900E13D6B /* EaseTextView.m in Sources */,
 				4077DE001C1EAF9900E13D6B /* EaseChatBarMoreView.m in Sources */,
+				400959ED1C21238C00D3DA61 /* PhoneFirstVC.swift in Sources */,
 				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
-				B20812991B8DD7950070D96F /* JSHBaseInfo.m in Sources */,
 				40E39E3F1BFEF43800516EC4 /* OrderDetailsVC.swift in Sources */,
 				4077DDF31C1EAF9900E13D6B /* EaseBubbleView+File.m in Sources */,
 				4077DDEC1C1EAF9900E13D6B /* EaseRefreshTableViewController.m in Sources */,
-				B2F0377A1B93F3D4006FF396 /* PhoneSettingFirstViewController.swift in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
 				4077DDAD1C1EAF9900E13D6B /* EMVoiceConverter.mm in Sources */,
 				40817D1C1B8EDCED00EF188F /* NewItemHeaderView.swift in Sources */,
@@ -3426,11 +3381,11 @@
 				B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */,
 				40E39E3D1BFEF43800516EC4 /* OrderContentView.swift in Sources */,
 				40E3A15F1BFEFA0C00516EC4 /* MailListTVC.swift in Sources */,
-				B21250BC1B7484F80056835D /* LeftMenuVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
 				B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
+				400959F11C2123A400D3DA61 /* InvoiceTVC.swift in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				4077DE011C1EAF9900E13D6B /* EaseRecordView.m in Sources */,
 				4077DE021C1EAF9900E13D6B /* EaseConversationCell.m in Sources */,
@@ -3453,7 +3408,6 @@
 				40E39E381BFEF43800516EC4 /* OrderListCell.swift in Sources */,
 				4077DDA41C1EAF9900E13D6B /* EMAudioPlayerUtil.m in Sources */,
 				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
-				B20812A31B8DD7950070D96F /* SettingEditViewController.swift in Sources */,
 				40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */,
 				4077DD941C1EAF9900E13D6B /* EMBubbleView+Gif.m in Sources */,
 				4077DDF11C1EAF9900E13D6B /* EaseMessageCell.m in Sources */,
@@ -3464,13 +3418,12 @@
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				4077DD921C1EAF9900E13D6B /* CustomMessageCell.m in Sources */,
 				4077DDE21C1EAF9900E13D6B /* EaseChineseToPinyin.m in Sources */,
-				B2F0377C1B93F3D4006FF396 /* PhoneSettingSecondViewController.swift in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
 				4077DDEB1C1EAF9900E13D6B /* EaseMessageViewController.m in Sources */,
 				4077DDC81C1EAF9900E13D6B /* UIImageView+EMWebCache.m in Sources */,
 				4077DDC61C1EAF9900E13D6B /* UIImage+EMWebP.m in Sources */,
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
-				B20812A61B8DD7950070D96F /* SettingTableViewController.swift in Sources */,
+				400959E91C21221F00D3DA61 /* EmailVC.swift in Sources */,
 				40E3A1881BFEFA8300516EC4 /* SearchBarView.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				4077DDFF1C1EAF9900E13D6B /* EaseFacialView.m in Sources */,
@@ -3495,7 +3448,8 @@
 				4077DDFB1C1EAF9900E13D6B /* EaseChatToolbarItem.m in Sources */,
 				4077DDF01C1EAF9900E13D6B /* EaseBaseMessageCell.m in Sources */,
 				4077DDB01C1EAF9900E13D6B /* MBProgressHUD+Add.m in Sources */,
-				B28967BD1B9E796300DF5D79 /* AboutUsViewController.swift in Sources */,
+				B28967BD1B9E796300DF5D79 /* AboutUsVC.swift in Sources */,
+				400959E51C210D6900D3DA61 /* NameVC.swift in Sources */,
 				4077DDF61C1EAF9900E13D6B /* EaseBubbleView+Text.m in Sources */,
 				FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */,
 				FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */,
@@ -3520,7 +3474,6 @@
 				4077DD9E1C1EAF9900E13D6B /* EMSearchBar.m in Sources */,
 				FA6BC8391C1AAA4400D409E4 /* FloatHeaderView.swift in Sources */,
 				40E3A15D1BFEFA0C00516EC4 /* FindListTVC.swift in Sources */,
-				FAF02EF31C155B1400B86B28 /* SettingVC.swift in Sources */,
 				4077DD9D1C1EAF9900E13D6B /* BaseTableViewCell.m in Sources */,
 				FAF253F61C12CE8100768A4D /* HomeHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
@@ -3535,11 +3488,11 @@
 				4077DDE41C1EAF9900E13D6B /* EaseMessageReadManager.m in Sources */,
 				4077DDCA1C1EAF9900E13D6B /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				4077DDB61C1EAF9900E13D6B /* MWTapDetectingImageView.m in Sources */,
-				FAF7CB9D1C1EA60700A4B082 /* AccountInfoCell.swift in Sources */,
 				4077DDA31C1EAF9900E13D6B /* EaseUI.m in Sources */,
 				4077DDB21C1EAF9900E13D6B /* MWGridCell.m in Sources */,
 				4077DDFA1C1EAF9900E13D6B /* EaseChatToolbar.m in Sources */,
 				4077DDA91C1EAF9900E13D6B /* EMCDDeviceManager+Remind.m in Sources */,
+				400959F51C213B3900D3DA61 /* PhoneSecondVC.swift in Sources */,
 				4077DD8E1C1EAF9900E13D6B /* CallViewController.m in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,

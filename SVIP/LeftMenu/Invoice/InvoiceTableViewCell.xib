@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,6 +16,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="默认发票" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lax-YG-O1C">
                         <rect key="frame" x="169" y="8" width="68" height="21"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="BCd-pf-Mfa"/>
                         </constraints>
@@ -25,6 +26,7 @@
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入发票抬头" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="0jz-wj-bvu">
                         <rect key="frame" x="20" y="37" width="356" height="30"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="3c7-mN-sfz"/>
                         </constraints>
@@ -33,6 +35,7 @@
                     </textField>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="获取方式：离店时自取" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u3V-iR-m2P">
                         <rect key="frame" x="20" y="75" width="356" height="30"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Yvb-rv-8LZ"/>
                         </constraints>
@@ -41,12 +44,14 @@
                     </textField>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackline" translatesAutoresizingMaskIntoConstraints="NO" id="pOe-gw-HqV">
                         <rect key="frame" x="0.0" y="113" width="396" height="1"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="J8y-CI-Y40"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjU-g1-UwA">
                         <rect key="frame" x="0.0" y="113" width="198" height="44"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="b1z-5U-sGg"/>
                         </constraints>
@@ -67,6 +72,7 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHd-Dn-ygK">
                         <rect key="frame" x="198" y="113" width="198" height="44"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="tZL-Tx-vWb"/>
                         </constraints>
@@ -87,12 +93,14 @@
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackline" translatesAutoresizingMaskIntoConstraints="NO" id="K5f-oG-RBD">
                         <rect key="frame" x="198" y="113" width="1" height="44"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="Uvp-xt-UeG"/>
                             <constraint firstAttribute="width" constant="1" id="gap-AD-8zj"/>
                         </constraints>
                     </imageView>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="pOe-gw-HqV" firstAttribute="top" secondItem="u3V-iR-m2P" secondAttribute="bottom" constant="8" id="0vm-Ca-2R1"/>
                     <constraint firstItem="K5f-oG-RBD" firstAttribute="top" secondItem="u3V-iR-m2P" secondAttribute="bottom" constant="8" id="Atx-Ce-iOd"/>
@@ -115,6 +123,7 @@
                     <constraint firstItem="AHd-Dn-ygK" firstAttribute="width" secondItem="wjU-g1-UwA" secondAttribute="width" id="z6y-Di-KM8"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                     <integer key="value" value="1"/>
