@@ -109,6 +109,19 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",emailRegex];
     return [emailTest evaluateWithObject:email];
 }
+
+#pragma mark - 获取手机分辨率
++ (int)getResolution {
+  //得到当前屏幕的尺寸：
+  CGRect rect_screen = [[UIScreen mainScreen]bounds];
+  CGSize size_screen = rect_screen.size;
+  if (size_screen.width <= 375) {
+    return 720;
+  }else {
+    return 1080;
+  }
+  
+}
 #pragma mark - 获取手机设备地址
 
 + (NSString *)getIPAddress:(BOOL)preferIPv4

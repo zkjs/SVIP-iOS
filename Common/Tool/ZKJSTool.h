@@ -27,4 +27,7 @@
 
 #pragma mark - 判断日期是否过期
 +(int)compareOneDay:(NSString *)oneDay withAnotherDay:(NSString *)anotherDay;
+
+#pragma mark - 获取手机分辨率
++ (int)getResolution;
 @end

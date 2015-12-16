@@ -9,8 +9,15 @@
 import UIKit
 
 class HomeCell: UITableViewCell {
-
-  @IBOutlet weak var nextLabel: UILabel!
+  var resolution:Int32!
+  
+  
+  @IBOutlet weak var pushImage: UIImageView!
+  @IBOutlet weak var nextLabel: UILabel! {
+    didSet {
+      nextLabel.numberOfLines = 0
+    }
+  }
   @IBOutlet weak var subjectLabel: UILabel!
   @IBOutlet weak var backImageView: UIImageView! {
     didSet {
@@ -41,5 +48,15 @@ class HomeCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+  
+  func setData(pushInfo:PushInfoModel) {
+    resolution =  ZKJSTool.getResolution()
+    let  BaseURL = "\(pushInfo.iconbaseurl)" + "ios/" + "\(resolution)/" + "\(pushInfo.iconfilename)"
+    let url = NSURL(string: BaseURL)
+    pushImage.sd_setImageWithURL(url, placeholderImage: nil)
+    subjectLabel.text = pushInfo.title
+    nextLabel.text = pushInfo.desc
+ 
+  }
     
 }

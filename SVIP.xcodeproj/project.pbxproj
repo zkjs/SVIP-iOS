@@ -311,9 +311,9 @@
 		FAF253F81C12CE8A00768A4D /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */; };
 		FAF2E0721BF1E551008DD5BC /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */; };
 		FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */; };
-		FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */; };
 		FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40DE91BF0807E002C77A6 /* OrderModel.swift */; };
 		FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */; };
+		FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */; };
 		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
 		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
 		FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */; };
@@ -1094,10 +1094,10 @@
 		FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
 		FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHeaderView.xib; sourceTree = "<group>"; };
-		FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementModel.swift; sourceTree = "<group>"; };
 		FAF40DE91BF0807E002C77A6 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityCell.swift; sourceTree = "<group>"; };
 		FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCityCell.xib; sourceTree = "<group>"; };
+		FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushInfoModel.swift; sourceTree = "<group>"; };
 		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
@@ -1283,7 +1283,6 @@
 				FAF212D81BF73F83002C1C73 /* ActivationCell.xib */,
 				FAFA519E1C16FFF200BF04F2 /* UnActivationCell.swift */,
 				FAFA519F1C16FFF200BF04F2 /* UnActivationCell.xib */,
-				FAF4148A1BFC638700D3BED4 /* CityVC */,
 				FAF35D171BF469DF00918BCF /* Model */,
 			);
 			path = Main;
@@ -2148,6 +2147,7 @@
 		40E3A1621BFEFA6400516EC4 /* Hotel */ = {
 			isa = PBXGroup;
 			children = (
+				FAF4148A1BFC638700D3BED4 /* CityVC */,
 				FAFB962E1C1981AA0031EE09 /* ComprehensiveVC.swift */,
 				FAFB962F1C1981AA0031EE09 /* ComprehensiveVC.xib */,
 				40E3A1631BFEFA6400516EC4 /* Controller */,
@@ -2919,7 +2919,7 @@
 		FAF35D171BF469DF00918BCF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FAF35D181BF46A0600918BCF /* AdvertisementModel.swift */,
+				FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2950,6 +2950,7 @@
 				FAFA519C1C16F32900BF04F2 /* CityHeaderView.xib */,
 			);
 			name = CityVC;
+			path = ../Main;
 			sourceTree = "<group>";
 		};
 		FAF7F5531C02E83200C84601 /* Privilege */ = {
@@ -3352,6 +3353,7 @@
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
 				FAFA519B1C16F32000BF04F2 /* CityHeaderView.swift in Sources */,
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
+				FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */,
 				4077DDFD1C1EAF9900E13D6B /* EaseTextView.m in Sources */,
 				4077DE001C1EAF9900E13D6B /* EaseChatBarMoreView.m in Sources */,
 				400959ED1C21238C00D3DA61 /* PhoneFirstVC.swift in Sources */,
@@ -3440,7 +3442,6 @@
 				40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,
 				4077DDC41C1EAF9900E13D6B /* UIImage+EMGIF.m in Sources */,
-				FAF35D191BF46A0600918BCF /* AdvertisementModel.swift in Sources */,
 				4077DE071C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m in Sources */,
 				40E3A1741BFEFA6400516EC4 /* FloatingWindowVC.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,

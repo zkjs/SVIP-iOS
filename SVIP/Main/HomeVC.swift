@@ -14,7 +14,8 @@ class HomeVC: UIViewController {
   let Identifier = "SettingVCCell"
   let titles = ["订单状态","最近浏览","服务精选","酒店精选"]
   let locationManager = CLLocationManager()
-  
+  //var pushInfo = PushInfoModel()
+  var pushInfoArray = [PushInfoModel]()
   var myView: HomeHeaderView!
   var currentCity: String!
   var activate =  true
@@ -37,41 +38,34 @@ class HomeVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    //      getlastOrder()
-    memberActivation()
+    title = "首页"
+    
+    
     setupCoreLocationService()
     //      initTCPSessionManager()
     
-
+    
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: HomeCell.reuseIdentifier())
     let NibName = UINib(nibName: OrderCustomCell.nibName(), bundle: nil)
     tableView.registerNib(NibName, forCellReuseIdentifier: OrderCustomCell.reuseIdentifier())
-    //myView.LocationButton.addTarget(self, action: "choiceCity:", forControlEvents: UIControlEvents.TouchUpInside)
   }
   
-  //定义一个带字符串参数的闭包
-  func myClosure(testStr:String)->Void{
-    myView.currentCityLabe.text = testStr
-  }
-  
-  func choiceCity(sender:UIButton) {
-    let vc = CityVC()
-    vc.testClosure = myClosure
-    if currentCity != nil {
-      vc.city = self.currentCity
-    }
-    let nav = UINavigationController(rootViewController: vc)
-    navigationController?.presentViewController(nav, animated: true, completion: nil)
-  }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     loadData()
+    memberActivation()
     count++
-    //tableView.reloadData()
+    tableView.reloadData()
+    getPushInfoData()
+    let islogin = AccountManager.sharedInstance().isLogin()
+    if islogin == true {
+      getlastOrder()
+      
+    }
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -107,7 +101,8 @@ class HomeVC: UIViewController {
     let hourFormatter = NSDateFormatter();
     hourFormatter.dateFormat = "HH";
     let time = hourFormatter.stringFromDate(nowDate);
-    
+    let beacon = StorageManager.sharedInstance().lastBeacon()
+    let order = StorageManager.sharedInstance().lastOrder()
     if(time <= "09" && time > "00" ){
       hourLabel = "早上好"
     }
@@ -119,7 +114,8 @@ class HomeVC: UIViewController {
     }
     if(time <= "18" && time > "13" ){
       hourLabel = "下午好"
-    } else{
+    }
+    if(time <= "24" && time > "18" ){
       hourLabel = "晚上好"
     }
     myView.greetLabel.text = hourLabel
@@ -129,54 +125,53 @@ class HomeVC: UIViewController {
       } else {
         self.sexString  = "女士"
       }
-    myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+    
     let loginStats = AccountManager.sharedInstance().isLogin()
+    
     if loginStats == false {
       
+      self.myView.loginButton.setTitle("立即登录", forState: UIControlState.Normal)
+      self.myView.loginButton.tintColor = UIColor.ZKJS_mainColor()
+      self.myView.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
+      self.myView.dynamicLabel.text = "使用超级身份，享受超凡个性服务"
+      
     }
-    
-    //    myView.usernameLabel.text =  JSHStorage.baseInfo().username + "  \(self.sexString)"
-    //    let order = StorageManager.sharedInstance().lastOrder()
-    //    let beacon = StorageManager.sharedInstance().lastBeacon()
-    //
-    //    let formatter = NSDateFormatter()
-    //    formatter.dateFormat = "yyyy-MM-dd"
-    //    //根据日期判断是不是这张订单已过期
-    //    let dateString = formatter.stringFromDate(nowDate)
-    //    compareNumber = NSNumber(int: ZKJSTool.compareOneDay(order?.departure_date, withAnotherDay:dateString ))
-    //    if beacon == nil  && order == nil {
-    //      self.myView.activateLabel.text = "\(hourLabel)，您没有任何预定"
-    //      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
-    //    }
-    //    if beacon == nil && order != nil {
-    //      self.myView.activateLabel.text = "\(hourLabel), 您有1任何行程"
-    //      self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
-    //    }
-    //    if beacon != nil && order == nil {
-    //      self.myView.activateLabel.text = "\(order?.fullname)"
-    //      self.myView.connectButton.setTitle("开始预定", forState: UIControlState.Normal)
-    //      self.myView.custonLabel.text = "专属客服为您24小时服务，如影随行"
-    //    }
-    //    if beacon != nil && order != nil {
-    //      self.myView.activateLabel.text = (order?.fullname)! + "欢迎您"
-    //      self.myView.connectButton.setTitle("立即查看", forState: UIControlState.Normal)
-    //    }
-    //    myView.connectButton.addTarget(self, action: "skip:", forControlEvents: UIControlEvents.TouchUpInside)
+    if loginStats == true && activate == false {
+      myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+      self.myView.activateButton.setTitle("立即激活", forState: UIControlState.Normal)
+      self.myView.activateButton.tintColor = UIColor.ZKJS_mainColor()
+      self.myView.activateButton.addTarget(self, action: "activated:", forControlEvents: UIControlEvents.TouchUpInside)
+      self.myView.dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
+    }
+    if loginStats == true && activate == true {
+      myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+      self.myView.dynamicLabel.text = "使用超级身份，享受超凡个性服务"
+    }
+    if loginStats == true && activate == true && beacon != nil {
+      myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+      self.myView.dynamicLabel.text = "欢迎光临\(order?.fullname)"
+    }
     
   }
   
+  func login(sender:UIButton) {
+    let vc = LoginVC()
+    self.presentViewController(vc, animated: true, completion: nil)
+  }
   
+  func activated(sender:UIButton) {
+    //激活页面
+  }
   
-  func getlastOrder() {
-    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      let lastOrder = responseObject as! NSDictionary
-      if let reservation_no = lastOrder["reservation_no"] as? String {
-        if reservation_no == "0" {
-          StorageManager.sharedInstance().updateLastOrder(nil)
-        } else {
-          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
-          StorageManager.sharedInstance().updateLastOrder(order)
+  func getPushInfoData() {
+    ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      if let array = responseObject as? NSArray {
+        var datasource = [PushInfoModel]()
+        for dic in array {
+         let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+         datasource.append(pushInfo)
         }
+        self.pushInfoArray = datasource
         self.tableView.reloadData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -184,11 +179,44 @@ class HomeVC: UIViewController {
     }
   }
   
+  
+  
+  
+  func getlastOrder() {
+    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      print(responseObject)
+      if let array = responseObject as? NSArray {
+        for dic in array {
+          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+          self.pushInfoArray.insert(pushInfo, atIndex: 0)
+        }
+        self.tableView.reloadData()
+      }
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
+//    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      let lastOrder = responseObject as! NSDictionary
+//      if let reservation_no = lastOrder["reservation_no"] as? String {
+//        if reservation_no == "0" {
+//          StorageManager.sharedInstance().updateLastOrder(nil)
+//        } else {
+//          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
+//          StorageManager.sharedInstance().updateLastOrder(order)
+//        }
+//        self.tableView.reloadData()
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
+  }
+  
   // Member Activate
   func memberActivation() {
     ZKJSHTTPSessionManager.sharedInstance().InvitationCodeActivatedSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
       self.activate = dic["set"] as! Bool
+      self.setupUI()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
@@ -216,7 +244,7 @@ class HomeVC: UIViewController {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return pushInfoArray.count
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -230,9 +258,8 @@ class HomeVC: UIViewController {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
     cell.selectionStyle = UITableViewCellSelectionStyle.None
-    // if let order = StorageManager.sharedInstance().lastOrder() {
-    // cell.setData(order)
-    // }
+    let pushInfo = self.pushInfoArray[indexPath.row]
+    cell.setData(pushInfo)
     return cell
   }
   

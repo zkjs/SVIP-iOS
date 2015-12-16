@@ -240,7 +240,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     
     ZKJSHTTPSessionManager.sharedInstance().getBeaconRegionListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       var beaconRegions = [String: [String: String]]()
-      
       for beaconInfo in responseObject as! NSArray {
         var shopID = ""
         var UUID = ""
