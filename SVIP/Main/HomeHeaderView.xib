@@ -53,6 +53,7 @@
                                 <constraint firstAttribute="width" constant="100" id="4ol-KN-wAP"/>
                                 <constraint firstAttribute="height" constant="30" id="72R-Fo-kP4"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7I-4C-mFs">
                             <rect key="frame" x="18" y="229" width="100" height="30"/>
@@ -60,7 +61,7 @@
                                 <constraint firstAttribute="width" constant="100" id="JjS-iE-sWu"/>
                                 <constraint firstAttribute="height" constant="30" id="sSk-9r-xPm"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -144,6 +145,7 @@
                 <outlet property="backgroundImage" destination="dU1-0M-DHr" id="sfu-0b-Gkn"/>
                 <outlet property="dynamicLabel" destination="yhH-3u-nJI" id="MZa-QK-ldP"/>
                 <outlet property="greetLabel" destination="E8H-WK-rmy" id="n8B-Pi-eL1"/>
+                <outlet property="loginButton" destination="Z7I-4C-mFs" id="lRd-Wh-T9z"/>
                 <outlet property="usernameLabel" destination="em2-Hz-coW" id="CGn-F9-NfS"/>
             </connections>
             <point key="canvasLocation" x="573" y="507.5"/>

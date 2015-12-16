@@ -86,8 +86,9 @@ class LoginVC: UIViewController {
             // 缓存userid和token
             AccountManager.sharedInstance().saveAccountInfo(data)
             // 获取用户信息
-            self.getUserInfo()
-            self.dismissSelf()
+            self.getUserInfo() {
+              self.dismissSelf()
+            }
           } else {
             // 未注册要先注册一下
             self.signupWithPhone(phone)
@@ -106,8 +107,9 @@ class LoginVC: UIViewController {
             // 缓存userid和token
             AccountManager.sharedInstance().saveAccountInfo(data)
             // 获取用户信息
-            self.getUserInfo()
-            self.navigationController?.pushViewController(InfoEditVC(), animated: true)
+            self.getUserInfo() {
+              self.navigationController?.pushViewController(InfoEditVC(), animated: true)
+            }
           }
         }
       }
@@ -120,10 +122,11 @@ class LoginVC: UIViewController {
     dismissViewControllerAnimated(true, completion: nil)
   }
   
-  private func getUserInfo() {
+  private func getUserInfo(closure: () -> Void) {
     ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject as? [String : AnyObject] {
         AccountManager.sharedInstance().saveBaseInfo(data)
+        closure()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         

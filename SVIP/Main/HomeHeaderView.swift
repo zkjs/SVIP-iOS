@@ -17,6 +17,7 @@ class HomeHeaderView: UIView {
       custonLabel.numberOfLines = 0
     }
   }
+  @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var activateButton: UIButton!
   @IBOutlet weak var connectButton: UIButton!
   @IBOutlet weak var activateLabel: UILabel!

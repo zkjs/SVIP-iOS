@@ -7,11 +7,14 @@
 //
 
 import UIKit
-
+import CoreLocation
 typealias sendValueClosure=(string:String)->Void
 
 class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   var myView:CityHeaderView!
+  let locationManager:CLLocationManager = CLLocationManager()
+  var longitude: double_t!
+  var latution: double_t!
   var cityArray = [String]()
   //声明一个闭包
   var testClosure:sendValueClosure?
@@ -23,8 +26,9 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
      navigationController?.navigationBarHidden = false
       getCityListData()
       
-      let leftBarBtn = UIBarButtonItem(title: "|想去哪里", style: .Plain, target: self,
+      let leftBarBtn = UIBarButtonItem(title: "想去哪里", style: .Plain, target: self,
         action: nil)
+      leftBarBtn.tintColor = UIColor.ZKJS_navegationTextColor()
       self.navigationItem.leftBarButtonItem = leftBarBtn
      // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.hx_colorWithHexString("ffc56e")]
       let item2 = UIBarButtonItem(image: UIImage(named: "ic_quxiao_b"), style: UIBarButtonItemStyle.Plain, target: self, action: "cancle:")
@@ -48,6 +52,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
+    setupCoreLocationService()
     
     tableView.reloadData()
     
@@ -107,7 +112,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     myView = NSBundle.mainBundle().loadNibNamed("CityHeaderView", owner: self, options: nil).first as! CityHeaderView
-      return myView
+    return myView
     }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -121,8 +126,47 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     self.dismissViewControllerAnimated(true, completion: nil)
   }
-    
-    
-    
-    
+  
+  func setupUI() {
+    let loc = CLLocation(latitude: latution, longitude: longitude)
+    let geocoder = CLGeocoder()
+    geocoder.reverseGeocodeLocation(loc) { (array:[CLPlacemark]?, error:NSError?) -> Void in
+      if array?.count > 0 {
+        let placemark = array![0]
+        var city = placemark.locality
+        if (city == nil) {
+          city = placemark.administrativeArea
+        }
+        self.myView.locationCityLabel.text = city
+        
+      }
+    }
   }
+  }
+
+extension CityVC: CLLocationManagerDelegate {
+  
+  private func setupCoreLocationService() {
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.startUpdatingLocation()
+  }
+  
+  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    let alertView = UIAlertController(title: "无法定位您所在城市", message: "需要您前往设置中心打开定位服务", preferredStyle: .Alert)
+    alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+    presentViewController(alertView, animated: true, completion: nil)
+
+  }
+  
+  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    let location:CLLocation = locations[locations.count - 1]
+    if location.horizontalAccuracy > 0 {
+       latution = location.coordinate.latitude
+       longitude = location.coordinate.longitude
+      locationManager.stopUpdatingLocation()
+    }
+    setupUI()
+  }
+  
+}

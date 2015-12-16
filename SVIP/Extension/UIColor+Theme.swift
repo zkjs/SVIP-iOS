@@ -33,5 +33,8 @@ extension UIColor {
   class func ZKJS_whiteColor() -> UIColor {
     return UIColor.hx_colorWithHexString("f8f8f8")
   }
+  class func ZKJS_navegationTextColor() -> UIColor {
+  return UIColor.hx_colorWithHexString("#949494")
+  }
   
 }
