@@ -17,6 +17,8 @@ class MeTVC: UITableViewController {
     super.viewDidLoad()
     
     tableView.tableFooterView = UIView()
+    
+    automaticallyAdjustsScrollViewInsets = false
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -35,6 +37,16 @@ class MeTVC: UITableViewController {
   func setupUI() {
     userImage.image = AccountManager.sharedInstance().avatarImage
     usernameLabel.text = AccountManager.sharedInstance().userName
+  }
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+    if indexPath.row == 0 {
+      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_white"))
+    } else {
+      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+    }
+    return cell
   }
   
   // MARK: - Table view delegate
