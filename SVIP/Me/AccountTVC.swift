@@ -59,7 +59,7 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
       let alertController = UIAlertController(title: "确定要登出吗？", message: "", preferredStyle: .ActionSheet)
       
       let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
-        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: "0", company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "0", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
           if let dic = responseObject as? NSDictionary {
             let set = dic["set"]!.boolValue!
             if set {
@@ -75,7 +75,7 @@ class AccountTVC: UITableViewController ,UIActionSheetDelegate, UIImagePickerCon
       alertController.addAction(manAction)
       
       let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
-        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, realname: nil, imageData: nil, imageName: nil, sex: "1", company: nil, occupation: nil, email:nil, tagopen:nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "1", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
           if let dic = responseObject as? NSDictionary {
             let set = dic["set"]!.boolValue!
             if set {
