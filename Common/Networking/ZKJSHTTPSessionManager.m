@@ -238,7 +238,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
                         @"set" : @0
                         };
   [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-//    DDLogInfo(@"%@", [responseObject description]);
+    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }

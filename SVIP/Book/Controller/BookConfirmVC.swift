@@ -76,9 +76,8 @@ class BookConfirmVC: UIViewController {
       order.room_rate = NSNumber(integer: Int(selectedGoods.price!)!)
       order.rooms = NSNumber(integer: 1)
       order.shopid = NSNumber(integer: Int(selectedGoods.shopid!)!)
-      let localBaseInfo = JSHStorage.baseInfo()
-      order.guest = localBaseInfo.username
-      order.guesttel = localBaseInfo.phone
+      order.guest = AccountManager.sharedInstance().userName
+      order.guesttel = AccountManager.sharedInstance().phone
     }
   }
   

@@ -115,7 +115,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     let order = packetOrder()
     vc.title = order.fullname
     // 扩展字段
-    let userName = JSHStorage.baseInfo().username
+    let userName = AccountManager.sharedInstance().userName
     let ext = ["shopId": order.shopid.stringValue,
     "shopName": order.fullname,
     "toName": salesName,
@@ -145,7 +145,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
       guests.append(nameTextFields[index].text!)
     }
     order.guest = guests.joinWithSeparator(",")
-    order.guesttel = JSHStorage.baseInfo().phone
+    order.guesttel = AccountManager.sharedInstance().phone
     order.room_image = roomImage.image
     return order
   }

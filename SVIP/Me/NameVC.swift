@@ -24,6 +24,14 @@ class NameVC: UIViewController {
     nameTextField.text = AccountManager.sharedInstance().userName
   }
   
+  // MARK: - Gesture
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    super.touchesBegan(touches, withEvent: event)
+    
+    view.endEditing(true)
+  }
+  
   @IBAction func done(sender: AnyObject) {
     guard let userName = nameTextField.text else { return }
     if nameTextField.text?.isEmpty == true {

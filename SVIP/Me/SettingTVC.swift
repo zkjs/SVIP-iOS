@@ -44,7 +44,7 @@ class SettingTVC: UITableViewController {
     let logout = NSIndexPath(forRow: 1, inSection: 0)
     switch indexPath {
     case aboutUs:
-      self.navigationController?.pushViewController(AboutUsViewController(), animated: true)
+      self.navigationController?.pushViewController(AboutUsVC(), animated: true)
     case logout:
       let alertController = UIAlertController(title: "确定要退出登录吗？", message: "", preferredStyle: .ActionSheet)
       let logoutAction = UIAlertAction(title: "退出登录", style:.Destructive, handler: { (action: UIAlertAction) -> Void in

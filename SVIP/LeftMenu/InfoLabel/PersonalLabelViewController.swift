@@ -54,10 +54,8 @@ class PersonalLabelViewController: UIViewController, LabelSelectViewDelegate {
     self.selectedLabel.text = NSLocalizedString("CHOSEN", comment: "")
     self.toSelectLabel.text = NSLocalizedString("TO_CHOOSE", comment: "")
 
-    let baseinfo = JSHStorage.baseInfo()
-    self.username.text = baseinfo.username
-    self.avatar.image = baseinfo.avatarImage
-    self.publicSwitch.on = baseinfo.tagopen == 1 ? true : false
+    self.username.text = AccountManager.sharedInstance().userName
+    self.avatar.image = AccountManager.sharedInstance().avatarImage
     
     selectedLabelView.delegate = self
     toSelectLabelView.delegate = self

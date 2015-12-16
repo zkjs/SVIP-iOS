@@ -514,7 +514,7 @@
 - (void)_sendFirstMessage {
   if ([self.firstMessage length] != 0) {
     if ([self.firstMessage isEqualToString:@"Card"]) {
-      NSString *senderID = [JSHStorage baseInfo].userid;
+      NSString *senderID = [AccountManager sharedInstance].userID;
       NSMutableDictionary *content = [NSMutableDictionary dictionary];
       content[@"room_typeid"] = self.order.room_typeid;
       content[@"room_type"] = self.order.room_type;

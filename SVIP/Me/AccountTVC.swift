@@ -78,7 +78,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate{
     case phone:
       navigationController?.pushViewController(PhoneFirstVC(), animated: true)
     case invoice:
-      navigationController?.pushViewController(InvoiceTableViewController(), animated: true)
+      navigationController?.pushViewController(InvoiceVC(), animated: true)
     default:
       break
     }

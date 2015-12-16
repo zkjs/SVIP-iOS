@@ -7,32 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSHBaseInfo.h"
 
 @interface JSHStorage : NSObject
-
-/*保留为以后扩展
-+ (NSString *)cacheDirectory;
-+ (NSString *)documentDirectory;
-+ (NSString *)libraryDirectory;
-+ (NSString *)homeDirectory;
-+ (NSString *)temporaryDirectory;
-
-+ (NSString *)imageCachesFolder;
-+ (NSString *)dataCachesFolder;
-
-//创建并返回目录
-+ (NSString *)creatCacheSubFolder:(NSString *)folder;
-+ (NSString *)creatDocumentSubFolder:(NSString *)folder;
-+ (NSString *)creatFolder:(NSString *)folder path:(NSString *)path;
-
-//读登陆列表
-+ (NSArray *)readLoginList;
-//写登陆信息进列表（NSUserDefault）
-+ (void)saveLoginListWithUsername:(NSString *)username password:(NSString *)password;
-
-+ (BOOL)isNewVersion;
-*/
 
 
 //JSH具体业务
@@ -45,9 +21,7 @@
 + (JSHUserInfo *)userInfo;
 + (void)saveUserInfo:(JSHUserInfo *)userInfo;
 */
-//baseInfo
-+ (JSHBaseInfo *)baseInfo;
-+ (void)saveBaseInfo:(JSHBaseInfo *)baseInfo;
+
 + (void)saveBaseInfoAvatar:(UIImage *)avatar;//或者存image，或者存url，此处为存image做该方法
 
 //likeArray

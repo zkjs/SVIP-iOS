@@ -13,10 +13,15 @@
 		400959EA1C21221F00D3DA61 /* EmailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959E81C21221F00D3DA61 /* EmailVC.xib */; };
 		400959ED1C21238C00D3DA61 /* PhoneFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959EB1C21238C00D3DA61 /* PhoneFirstVC.swift */; };
 		400959EE1C21238C00D3DA61 /* PhoneFirstVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959EC1C21238C00D3DA61 /* PhoneFirstVC.xib */; };
-		400959F11C2123A400D3DA61 /* InvoiceTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959EF1C2123A400D3DA61 /* InvoiceTVC.swift */; };
-		400959F21C2123A400D3DA61 /* InvoiceTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959F01C2123A400D3DA61 /* InvoiceTVC.xib */; };
 		400959F51C213B3900D3DA61 /* PhoneSecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959F31C213B3900D3DA61 /* PhoneSecondVC.swift */; };
 		400959F61C213B3900D3DA61 /* PhoneSecondVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959F41C213B3900D3DA61 /* PhoneSecondVC.xib */; };
+		400959F91C21483A00D3DA61 /* InvoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959F71C21483A00D3DA61 /* InvoiceCell.swift */; };
+		400959FA1C21483A00D3DA61 /* InvoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959F81C21483A00D3DA61 /* InvoiceCell.xib */; };
+		400959FD1C2148BA00D3DA61 /* InvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959FB1C2148BA00D3DA61 /* InvoiceVC.swift */; };
+		400959FE1C2148BA00D3DA61 /* InvoiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400959FC1C2148BA00D3DA61 /* InvoiceVC.xib */; };
+		40095A001C2149B900D3DA61 /* InvoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959FF1C2149B900D3DA61 /* InvoiceModel.swift */; };
+		40095A031C215C0F00D3DA61 /* InvoiceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */; };
+		40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40095A021C215C0F00D3DA61 /* InvoiceDetailVC.xib */; };
 		404A2F421BA94C7B006475D7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405352161BA66251007157FC /* NotificationCenter.framework */; };
 		404A2F471BA94C7B006475D7 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404A2F461BA94C7B006475D7 /* TodayViewController.swift */; };
 		404A2F491BA94C7B006475D7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A2F481BA94C7B006475D7 /* MainInterface.storyboard */; };
@@ -276,13 +281,6 @@
 		B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9E81B7EE229000DBD81 /* TSQCalendarRowCell.m */; };
 		B2F4A9EE1B7EE229000DBD81 /* TSQCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */; };
 		B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */; };
-		B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */; };
-		B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */; };
-		B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */; };
-		B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB433C1B8F101400C9BEBB /* InvoiceEditViewController.swift */; };
-		B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */; };
-		B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */; };
-		B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
 		FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02C5821C0D42D100D0D439 /* LoginVC.swift */; };
@@ -392,10 +390,15 @@
 		400959E81C21221F00D3DA61 /* EmailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailVC.xib; sourceTree = "<group>"; };
 		400959EB1C21238C00D3DA61 /* PhoneFirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneFirstVC.swift; sourceTree = "<group>"; };
 		400959EC1C21238C00D3DA61 /* PhoneFirstVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneFirstVC.xib; sourceTree = "<group>"; };
-		400959EF1C2123A400D3DA61 /* InvoiceTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTVC.swift; sourceTree = "<group>"; };
-		400959F01C2123A400D3DA61 /* InvoiceTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceTVC.xib; sourceTree = "<group>"; };
 		400959F31C213B3900D3DA61 /* PhoneSecondVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSecondVC.swift; sourceTree = "<group>"; };
 		400959F41C213B3900D3DA61 /* PhoneSecondVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSecondVC.xib; sourceTree = "<group>"; };
+		400959F71C21483A00D3DA61 /* InvoiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceCell.swift; sourceTree = "<group>"; };
+		400959F81C21483A00D3DA61 /* InvoiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceCell.xib; sourceTree = "<group>"; };
+		400959FB1C2148BA00D3DA61 /* InvoiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceVC.swift; sourceTree = "<group>"; };
+		400959FC1C2148BA00D3DA61 /* InvoiceVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceVC.xib; sourceTree = "<group>"; };
+		400959FF1C2149B900D3DA61 /* InvoiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceModel.swift; sourceTree = "<group>"; };
+		40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceDetailVC.swift; sourceTree = "<group>"; };
+		40095A021C215C0F00D3DA61 /* InvoiceDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceDetailVC.xib; sourceTree = "<group>"; };
 		404A2F411BA94C7B006475D7 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		404A2F451BA94C7B006475D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404A2F461BA94C7B006475D7 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -1060,13 +1063,6 @@
 		B2F4A9E91B7EE229000DBD81 /* TSQCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQCalendarView.h; sourceTree = "<group>"; };
 		B2F4A9EA1B7EE229000DBD81 /* TSQCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQCalendarView.m; sourceTree = "<group>"; };
 		B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateSelectionViewController.swift; sourceTree = "<group>"; };
-		B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
-		B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
-		B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewController.swift; sourceTree = "<group>"; };
-		B2FB433C1B8F101400C9BEBB /* InvoiceEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceEditViewController.swift; sourceTree = "<group>"; };
-		B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceEditViewController.xib; sourceTree = "<group>"; };
-		B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceAddCell.xib; sourceTree = "<group>"; };
-		B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAddCell.swift; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
 		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -1188,8 +1184,12 @@
 				400959EC1C21238C00D3DA61 /* PhoneFirstVC.xib */,
 				400959F31C213B3900D3DA61 /* PhoneSecondVC.swift */,
 				400959F41C213B3900D3DA61 /* PhoneSecondVC.xib */,
-				400959EF1C2123A400D3DA61 /* InvoiceTVC.swift */,
-				400959F01C2123A400D3DA61 /* InvoiceTVC.xib */,
+				400959FB1C2148BA00D3DA61 /* InvoiceVC.swift */,
+				400959FC1C2148BA00D3DA61 /* InvoiceVC.xib */,
+				40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */,
+				40095A021C215C0F00D3DA61 /* InvoiceDetailVC.xib */,
+				40095A061C21643800D3DA61 /* View */,
+				40095A071C21643F00D3DA61 /* Model */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -1202,6 +1202,23 @@
 				B28967BC1B9E796300DF5D79 /* AboutUsVC.swift */,
 			);
 			name = Setting;
+			sourceTree = "<group>";
+		};
+		40095A061C21643800D3DA61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				400959F71C21483A00D3DA61 /* InvoiceCell.swift */,
+				400959F81C21483A00D3DA61 /* InvoiceCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		40095A071C21643F00D3DA61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				400959FF1C2149B900D3DA61 /* InvoiceModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		404A2F431BA94C7B006475D7 /* Today */ = {
@@ -1311,7 +1328,6 @@
 				4052664D1B41283900B277BE /* Main */,
 				FAF7F5531C02E83200C84601 /* Privilege */,
 				40E39E1C1BFEF43800516EC4 /* OrderList */,
-				B2FB43321B8EF75700C9BEBB /* Invoice */,
 				B20812851B8DD7950070D96F /* InfoLabel */,
 				B20812901B8DD7950070D96F /* SkipCheckIn */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
@@ -2860,21 +2876,6 @@
 			path = LeftMenu/InfoCenter/ForFirstLogin;
 			sourceTree = "<group>";
 		};
-		B2FB43321B8EF75700C9BEBB /* Invoice */ = {
-			isa = PBXGroup;
-			children = (
-				B2FB43331B8EF75700C9BEBB /* InvoiceTableViewCell.swift */,
-				B2FB43341B8EF75700C9BEBB /* InvoiceTableViewCell.xib */,
-				B2FB43421B8F3FFE00C9BEBB /* InvoiceAddCell.swift */,
-				B2FB43401B8F3F0D00C9BEBB /* InvoiceAddCell.xib */,
-				B2FB43351B8EF75700C9BEBB /* InvoiceTableViewController.swift */,
-				B2FB433C1B8F101400C9BEBB /* InvoiceEditViewController.swift */,
-				B2FB433D1B8F101400C9BEBB /* InvoiceEditViewController.xib */,
-			);
-			name = Invoice;
-			path = LeftMenu/Invoice;
-			sourceTree = "<group>";
-		};
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3136,17 +3137,16 @@
 				4077DDD71C1EAF9900E13D6B /* MWPhotoBrowser.bundle in Resources */,
 				4077DD8D1C1EAF9900E13D6B /* callRing.mp3 in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
-				B2FB43371B8EF75700C9BEBB /* InvoiceTableViewCell.xib in Resources */,
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
 				40E3A1601BFEFA0C00516EC4 /* MailListTVC.xib in Resources */,
 				FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */,
 				40E3A1891BFEFA8300516EC4 /* SearchBarView.xib in Resources */,
 				FAF249591BFF08CA001E7E41 /* SearchCell.xib in Resources */,
+				400959FE1C2148BA00D3DA61 /* InvoiceVC.xib in Resources */,
 				FAF7F5691C030E8B00C84601 /* CustomerServiceCell.xib in Resources */,
 				FAF2495D1BFF0F1C001E7E41 /* SearchHeaderView.xib in Resources */,
 				40E39E331BFEF43800516EC4 /* BookingOrderDetailVC.xib in Resources */,
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
-				B2FB433F1B8F101400C9BEBB /* InvoiceEditViewController.xib in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
 				FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */,
 				FAF7F55B1C02EB4400C84601 /* PrivilegeCVCell.xib in Resources */,
@@ -3159,6 +3159,7 @@
 				400959E61C210D6A00D3DA61 /* NameVC.xib in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				40E39E3E1BFEF43800516EC4 /* OrderContentView.xib in Resources */,
+				40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
 				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
@@ -3170,7 +3171,6 @@
 				40E39E401BFEF43800516EC4 /* OrderDetailsVC.xib in Resources */,
 				FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */,
 				400959EE1C21238C00D3DA61 /* PhoneFirstVC.xib in Resources */,
-				B2FB43411B8F3F0D00C9BEBB /* InvoiceAddCell.xib in Resources */,
 				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				40E39E391BFEF43800516EC4 /* OrderListCell.xib in Resources */,
 				40E3A15E1BFEFA0C00516EC4 /* FindListTVC.xib in Resources */,
@@ -3178,7 +3178,6 @@
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FAFA519D1C16F32900BF04F2 /* CityHeaderView.xib in Resources */,
 				40817D081B8EAB8800EF188F /* NewItemCell.xib in Resources */,
-				400959F21C2123A400D3DA61 /* InvoiceTVC.xib in Resources */,
 				B2A642241B47C2A700AF0F28 /* BookPayVC.xib in Resources */,
 				FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
@@ -3191,6 +3190,7 @@
 				400959EA1C21221F00D3DA61 /* EmailVC.xib in Resources */,
 				FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
+				400959FA1C21483A00D3DA61 /* InvoiceCell.xib in Resources */,
 				40E39E421BFEF43800516EC4 /* OrderDetailVC.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
@@ -3268,7 +3268,6 @@
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
 				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
 				4077DDEF1C1EAF9900E13D6B /* EaseUserCell.m in Sources */,
-				B2FB43431B8F3FFE00C9BEBB /* InvoiceAddCell.swift in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				4077DD961C1EAF9900E13D6B /* ContactSelectionViewController.m in Sources */,
 				FAF212D91BF73F83002C1C73 /* ActivationCell.swift in Sources */,
@@ -3299,6 +3298,7 @@
 				B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */,
 				4077DDE61C1EAF9900E13D6B /* EaseEmojiEmoticons.m in Sources */,
 				4077DD981C1EAF9900E13D6B /* CreateGroupViewController.m in Sources */,
+				40095A031C215C0F00D3DA61 /* InvoiceDetailVC.swift in Sources */,
 				4077DDA01C1EAF9900E13D6B /* EMRemarkImageView.m in Sources */,
 				4077DDD01C1EAF9900E13D6B /* PSTCollectionViewItemKey.m in Sources */,
 				4077DDD41C1EAF9900E13D6B /* PSTGridLayoutItem.m in Sources */,
@@ -3311,7 +3311,6 @@
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				4077DDD31C1EAF9900E13D6B /* PSTGridLayoutInfo.m in Sources */,
 				4077DDF21C1EAF9900E13D6B /* EaseMessageTimeCell.m in Sources */,
-				B2FB43381B8EF75700C9BEBB /* InvoiceTableViewController.swift in Sources */,
 				4077DDBE1C1EAF9900E13D6B /* EMSDWebImageDownloaderOperation.m in Sources */,
 				40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */,
 				4077DDA61C1EAF9900E13D6B /* EMCDDeviceManager+Media.m in Sources */,
@@ -3368,6 +3367,7 @@
 				4077DDB11C1EAF9900E13D6B /* MWCaptionView.m in Sources */,
 				4077DDA51C1EAF9900E13D6B /* EMAudioRecorderUtil.m in Sources */,
 				4077DDC71C1EAF9900E13D6B /* UIImageView+EMHighlightedWebCache.m in Sources */,
+				400959FD1C2148BA00D3DA61 /* InvoiceVC.swift in Sources */,
 				4077DDFC1C1EAF9900E13D6B /* EaseImageView.m in Sources */,
 				B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */,
 				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
@@ -3378,18 +3378,17 @@
 				4077DDD21C1EAF9900E13D6B /* PSTCollectionViewUpdateItem.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				40E3A1611BFEFA0C00516EC4 /* SalesTBC.swift in Sources */,
-				B2FB433E1B8F101400C9BEBB /* InvoiceEditViewController.swift in Sources */,
 				40E39E3D1BFEF43800516EC4 /* OrderContentView.swift in Sources */,
 				40E3A15F1BFEFA0C00516EC4 /* MailListTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
 				B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
-				400959F11C2123A400D3DA61 /* InvoiceTVC.swift in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				4077DE011C1EAF9900E13D6B /* EaseRecordView.m in Sources */,
 				4077DE021C1EAF9900E13D6B /* EaseConversationCell.m in Sources */,
 				B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */,
+				40095A001C2149B900D3DA61 /* InvoiceModel.swift in Sources */,
 				4077DDF91C1EAF9900E13D6B /* EaseBubbleView.m in Sources */,
 				4077DDDD1C1EAF9900E13D6B /* NSDateFormatter+Category.m in Sources */,
 				40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */,
@@ -3470,7 +3469,6 @@
 				4077DDBF1C1EAF9900E13D6B /* EMSDWebImageManager.m in Sources */,
 				40817D1E1B8EDD4B00EF188F /* NewItemFooterView.swift in Sources */,
 				4077DD931C1EAF9900E13D6B /* EMBubbleView+Card.m in Sources */,
-				B2FB43361B8EF75700C9BEBB /* InvoiceTableViewCell.swift in Sources */,
 				4077DD9E1C1EAF9900E13D6B /* EMSearchBar.m in Sources */,
 				FA6BC8391C1AAA4400D409E4 /* FloatHeaderView.swift in Sources */,
 				40E3A15D1BFEFA0C00516EC4 /* FindListTVC.swift in Sources */,
@@ -3485,6 +3483,7 @@
 				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
 				4077DDF71C1EAF9900E13D6B /* EaseBubbleView+Video.m in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
+				400959F91C21483A00D3DA61 /* InvoiceCell.swift in Sources */,
 				4077DDE41C1EAF9900E13D6B /* EaseMessageReadManager.m in Sources */,
 				4077DDCA1C1EAF9900E13D6B /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				4077DDB61C1EAF9900E13D6B /* MWTapDetectingImageView.m in Sources */,

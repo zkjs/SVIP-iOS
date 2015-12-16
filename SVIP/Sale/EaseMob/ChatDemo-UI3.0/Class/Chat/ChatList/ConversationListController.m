@@ -182,7 +182,7 @@
   EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
   if (model.conversation.conversationType == eConversationTypeChat) {
     EMMessage *latestMessage = conversation.latestMessage;
-    NSString *userName = [JSHStorage baseInfo].username;
+    NSString *userName = [AccountManager sharedInstance].userName;
     if ([userName isEqualToString:latestMessage.ext[@"fromName"]]) {
       // 最后一条消息的发送者为自己
       NSString *shopName = latestMessage.ext[@"shopName"];

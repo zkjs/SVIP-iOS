@@ -152,27 +152,6 @@
 //    [NSKeyedArchiver archiveRootObject:userInfo toFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kUserInfo]];
 //}
 
-//baseInfo
-+ (JSHBaseInfo *)baseInfo{
-//    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kBaseInfo]];
-    JSHBaseInfo *baseInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kBaseInfo]];
-    if (baseInfo == nil) {
-        baseInfo = [[JSHBaseInfo alloc] init];
-        baseInfo.phone = @"请编辑个人信息";//根据该字段判断是否是正常值还是缺省值
-    }
-    return baseInfo;
-}
-+ (void)saveBaseInfo:(JSHBaseInfo *)baseInfo{
-    NSString *path = [[JSHStorage cacheDirectory] stringByAppendingPathComponent:kBaseInfo];
-    [NSKeyedArchiver archiveRootObject:baseInfo toFile:path];
-}
-
-+ (void)saveBaseInfoAvatar:(UIImage *)avatar{
-    JSHBaseInfo *baseInfo = [self baseInfo];
-    baseInfo.avatarImage = avatar;
-    [self saveBaseInfo:baseInfo];
-}
-
 //likeArray
 + (NSArray *)likeArray {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[[JSHStorage cacheDirectory] stringByAppendingPathComponent:kLikeArray]];

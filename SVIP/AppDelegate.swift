@@ -40,9 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
     
     ZKJSHTTPSessionManager.sharedInstance().delegate = self
-    
-    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isFirstRun")
-    
+        
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
     
@@ -177,8 +175,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   // MARK: - HTTPSessionManagerDelegate
   
   func didReceiveInvalidToken() {
-//    window?.rootViewController = JSHHotelRegisterVC()
-//    ZKJSTool.showMsg("账号在别处登录，请重新重录")
+    window?.rootViewController?.presentViewController(LoginVC(), animated: true, completion: nil)
+    ZKJSTool.showMsg("账号在别处登录，请重新重录")
   }
   
   //UM

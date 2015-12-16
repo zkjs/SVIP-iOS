@@ -24,13 +24,21 @@ class EmailVC: UIViewController {
     emailTextField.text = AccountManager.sharedInstance().email
   }
   
+  // MARK: - Gesture
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    super.touchesBegan(touches, withEvent: event)
+    
+    view.endEditing(true)
+  }
+  
   @IBAction func done(sender: AnyObject) {
     guard let email = emailTextField.text else { return }
     if ZKJSTool.validateEmail(email) == false {
       showHint("邮箱格式有误")
       return
     }
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(email, imageData: nil, sex: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: nil, email: email, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       AccountManager.sharedInstance().saveEmail(email)
       self.navigationController?.popViewControllerAnimated(true)
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

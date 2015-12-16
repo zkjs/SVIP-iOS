@@ -101,7 +101,7 @@ class AccountManager: NSObject {
   func saveUserName(userName: String) {
     self.userName = userName
     let userDefaults = NSUserDefaults()
-    userDefaults.setObject(userName, forKey: "name")
+    userDefaults.setObject(userName, forKey: "userName")
   }
   
   func saveAvatarImageData(imageData: NSData) {

@@ -380,7 +380,7 @@ extension HomeVC: CLLocationManagerDelegate {
     //    guard let major = beacon["major"] else { return }
     //    guard let minor = beacon["minor"] else { return }
     let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = JSHStorage.baseInfo().username ?? ""
+    let userName = AccountManager.sharedInstance().userName ?? ""
     
     //    let notification = UILocalNotification()
     //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
