@@ -8,15 +8,18 @@
 
 import UIKit
 import CoreLocation
+
 @objc enum ComprehensiveType: Int {
   case chat
   case customerService
 }
+
 class ComprehensiveVC: UIViewController {
+  
   var shops = [NSDictionary]()
   var item2 = UIBarButtonItem()
   var dataArray = [Hotel]()
-   let locationManager:CLLocationManager = CLLocationManager()
+  let locationManager:CLLocationManager = CLLocationManager()
   var longitude: double_t!
   var latution: double_t!
   var cityArray = [String]()
@@ -24,27 +27,28 @@ class ComprehensiveVC: UIViewController {
   var orderPage = 1
   
   @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      title = "商家"
-      showHUDInView(view, withLoading: "正在加载中...")
-      setupCoreLocationService()
-      tableView.tableFooterView = UIView()
-      tableView.showsVerticalScrollIndicator = false
-      let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
-      tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
-      tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "refreshData")  // 下拉刷新
-      tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")  // 上拉加载
-      let image = UIImage(named: "ic_dingwei_orange")
-      let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: nil)
-      
-      
-      item2 = UIBarButtonItem(title: "想去哪里,享受尊贵服务", style: UIBarButtonItemStyle.Done, target: self, action: "choiceCity:")
-      item2.tintColor = UIColor.ZKJS_navegationTextColor()
-      super.navigationItem.leftBarButtonItems = [item1,item2]
-      super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
-        // Do any additional setup after loading the view.
-    }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    showHUDInView(view, withLoading: "正在加载中...")
+    setupCoreLocationService()
+    tableView.tableFooterView = UIView()
+    tableView.showsVerticalScrollIndicator = false
+    let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
+    tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "refreshData")  // 下拉刷新
+    tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")  // 上拉加载
+    let image = UIImage(named: "ic_dingwei_orange")
+    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: nil)
+    
+    
+    item2 = UIBarButtonItem(title: "想去哪里,享受尊贵服务", style: UIBarButtonItemStyle.Done, target: self, action: "choiceCity:")
+    item2.tintColor = UIColor.ZKJS_navegationTextColor()
+    super.navigationItem.leftBarButtonItems = [item1,item2]
+    super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
+    // Do any additional setup after loading the view.
+  }
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("ComprehensiveVC", owner:self, options:nil)
@@ -69,7 +73,6 @@ class ComprehensiveVC: UIViewController {
   func refreshData() {
     orderPage = 1
     getDataWithPage(1)
-    
   }
   
   func choiceCity(sender:UIBarButtonItem) {
@@ -110,38 +113,35 @@ class ComprehensiveVC: UIViewController {
     }
   }
   
-  
   // MARK: - Table view data source
   
-   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     // #warning Incomplete implementation, return the number of sections
     return 1
   }
   
-   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
     return dataArray.count
   }
   
-   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.row == 0 {
       return HotelCell.height()
     } else {
       return 385
     }
-    
   }
   
-   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     let shop = dataArray[indexPath.row]
     cell.setData(shop)
-    
     return cell
   }
   
-   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     let hotel = self.dataArray[indexPath.row]
     if type == .chat {
@@ -150,7 +150,7 @@ class ComprehensiveVC: UIViewController {
       
       vc.shopID = hotel.shopid
       self.navigationController?.pushViewController(vc, animated: true)
-    }else if type == .customerService {
+    } else if type == .customerService {
       let vc = CustomerServiceTVC()
       vc.shopID = hotel.shopid
       self.navigationController?.pushViewController(vc, animated: true)
@@ -173,25 +173,9 @@ class ComprehensiveVC: UIViewController {
       }
     }
   }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  
 }
+
 extension ComprehensiveVC: CLLocationManagerDelegate {
   
   private func setupCoreLocationService() {
@@ -215,5 +199,6 @@ extension ComprehensiveVC: CLLocationManagerDelegate {
       locationManager.stopUpdatingLocation()
     }
     setupUI()
-}
+  }
+  
 }

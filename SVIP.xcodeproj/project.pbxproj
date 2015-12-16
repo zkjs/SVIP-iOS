@@ -230,11 +230,6 @@
 		40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D871C1F0836009C0311 /* SettingTVC.swift */; };
 		40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */; };
 		40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */; };
-		B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812861B8DD7950070D96F /* LabelButton.swift */; };
-		B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812871B8DD7950070D96F /* LabelSelectView.swift */; };
-		B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */; };
-		B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */; };
-		B20812AE1B8DD7950070D96F /* PersonalLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */; };
 		B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */; };
 		B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */; };
 		B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */; };
@@ -994,11 +989,6 @@
 		40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
 		40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTVC.xib; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B20812861B8DD7950070D96F /* LabelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
-		B20812871B8DD7950070D96F /* LabelSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelSelectView.swift; sourceTree = "<group>"; };
-		B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelFooter.xib; sourceTree = "<group>"; };
-		B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalLabelHeader.xib; sourceTree = "<group>"; };
-		B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalLabelViewController.swift; sourceTree = "<group>"; };
 		B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingViewController.swift; sourceTree = "<group>"; };
 		B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionBinaryTransformer.swift; sourceTree = "<group>"; };
 		B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionTransformer.swift; sourceTree = "<group>"; };
@@ -1318,6 +1308,7 @@
 				FA02C5811C0D42B300D0D439 /* Login */,
 				40E3A1831BFEFA8200516EC4 /* Search */,
 				40E39FE01BFEFA0C00516EC4 /* Sale */,
+				40E3A1621BFEFA6400516EC4 /* Hotel */,
 				B20812B71B8DD8650070D96F /* Helper */,
 				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
@@ -1327,7 +1318,6 @@
 				4052664D1B41283900B277BE /* Main */,
 				FAF7F5531C02E83200C84601 /* Privilege */,
 				40E39E1C1BFEF43800516EC4 /* OrderList */,
-				B20812851B8DD7950070D96F /* InfoLabel */,
 				B20812901B8DD7950070D96F /* SkipCheckIn */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
@@ -2136,7 +2126,6 @@
 				FA5B28B51C09453500E8B1C0 /* MailListCell.swift */,
 				FA5B28B61C09453500E8B1C0 /* MailListCell.xib */,
 				FAA05E2C1C0995BF008605B7 /* ContactModel.swift */,
-				40E3A1621BFEFA6400516EC4 /* Hotel */,
 				40E3A0F31BFEFA0C00516EC4 /* SalesTBC.swift */,
 				FAF02EF51C159DB000B86B28 /* SalesVC.swift */,
 				FAF02EF61C159DB000B86B28 /* SalesVC.xib */,
@@ -2153,8 +2142,7 @@
 				40E3A1631BFEFA6400516EC4 /* Controller */,
 				40E3A16D1BFEFA6400516EC4 /* View */,
 			);
-			name = Hotel;
-			path = ../Hotel;
+			path = Hotel;
 			sourceTree = "<group>";
 		};
 		40E3A1631BFEFA6400516EC4 /* Controller */ = {
@@ -2675,19 +2663,6 @@
 			path = Me;
 			sourceTree = "<group>";
 		};
-		B20812851B8DD7950070D96F /* InfoLabel */ = {
-			isa = PBXGroup;
-			children = (
-				B20812861B8DD7950070D96F /* LabelButton.swift */,
-				B20812871B8DD7950070D96F /* LabelSelectView.swift */,
-				B20812881B8DD7950070D96F /* PersonalLabelFooter.xib */,
-				B20812891B8DD7950070D96F /* PersonalLabelHeader.xib */,
-				B208128A1B8DD7950070D96F /* PersonalLabelViewController.swift */,
-			);
-			name = InfoLabel;
-			path = LeftMenu/InfoLabel;
-			sourceTree = "<group>";
-		};
 		B20812901B8DD7950070D96F /* SkipCheckIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -3155,7 +3130,6 @@
 				FAF7F55F1C0309D500C84601 /* CustomerServiceTVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
 				FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */,
-				B20812AD1B8DD7950070D96F /* PersonalLabelHeader.xib in Resources */,
 				40EE4D801C1EEF70009C0311 /* MeTVC.storyboard in Resources */,
 				400959E61C210D6A00D3DA61 /* NameVC.xib in Resources */,
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
@@ -3175,7 +3149,6 @@
 				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				40E39E391BFEF43800516EC4 /* OrderListCell.xib in Resources */,
 				40E3A15E1BFEFA0C00516EC4 /* FindListTVC.xib in Resources */,
-				B20812AC1B8DD7950070D96F /* PersonalLabelFooter.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FAFA519D1C16F32900BF04F2 /* CityHeaderView.xib in Resources */,
 				40817D081B8EAB8800EF188F /* NewItemCell.xib in Resources */,
@@ -3324,7 +3297,6 @@
 				4077DDC31C1EAF9900E13D6B /* UIButton+EMWebCache.m in Sources */,
 				4077DDAC1C1EAF9900E13D6B /* wav.mm in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
-				B20812AB1B8DD7950070D96F /* LabelSelectView.swift in Sources */,
 				FAF249601BFF1008001E7E41 /* SearchResultVC.swift in Sources */,
 				4077DD8F1C1EAF9900E13D6B /* UIImageView+HeadImage.m in Sources */,
 				4077DDF51C1EAF9900E13D6B /* EaseBubbleView+Location.m in Sources */,
@@ -3401,7 +3373,6 @@
 				FAF7F56C1C03189400C84601 /* ServicerModel.swift in Sources */,
 				40E39E321BFEF43800516EC4 /* BookingOrderDetailVC.swift in Sources */,
 				4077DD8C1C1EAF9900E13D6B /* EMGifImage.m in Sources */,
-				B20812AE1B8DD7950070D96F /* PersonalLabelViewController.swift in Sources */,
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
 				4077DD901C1EAF9900E13D6B /* ConversationListController.m in Sources */,
 				4077DDEA1C1EAF9900E13D6B /* EaseLocationViewController.m in Sources */,
@@ -3415,7 +3386,6 @@
 				40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */,
 				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
 				4077DDC11C1EAF9900E13D6B /* MKAnnotationView+EMWebCache.m in Sources */,
-				B20812AA1B8DD7950070D96F /* LabelButton.swift in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				4077DD921C1EAF9900E13D6B /* CustomMessageCell.m in Sources */,
 				4077DDE21C1EAF9900E13D6B /* EaseChineseToPinyin.m in Sources */,

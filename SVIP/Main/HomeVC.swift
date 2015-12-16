@@ -38,12 +38,8 @@ class HomeVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "首页"
-    
     
     setupCoreLocationService()
-    //      initTCPSessionManager()
-    
     
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
