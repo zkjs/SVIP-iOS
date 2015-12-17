@@ -187,6 +187,15 @@
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
 		40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
+		40D585CE1C22A8D900C5267D /* SalesDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D585CD1C22A8D900C5267D /* SalesDetailVC.swift */; };
+		40D585D21C22AA4E00C5267D /* SalesDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D585D11C22AA4E00C5267D /* SalesDetailVC.xib */; };
+		40D585D61C22AB0A00C5267D /* SalesDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D585D41C22AB0A00C5267D /* SalesDetailHeaderView.xib */; };
+		40D585D81C22AB2B00C5267D /* SalesDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D585D71C22AB2B00C5267D /* SalesDetailHeaderView.swift */; };
+		40D585DB1C22AD5200C5267D /* PhoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D585D91C22AD5200C5267D /* PhoneCell.swift */; };
+		40D585DC1C22AD5200C5267D /* PhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D585DA1C22AD5200C5267D /* PhoneCell.xib */; };
+		40D585DF1C22AD6700C5267D /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D585DD1C22AD6700C5267D /* RatingCell.swift */; };
+		40D585E01C22AD6700C5267D /* RatingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D585DE1C22AD6700C5267D /* RatingCell.xib */; };
+		40D585E21C22B0D100C5267D /* SalesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D585E11C22B0D100C5267D /* SalesModel.swift */; };
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
 		40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C9E11C2037B200E992AB /* InfoEditVC.swift */; };
 		40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D9C9E21C2037B200E992AB /* InfoEditVC.xib */; };
@@ -211,11 +220,8 @@
 		40E39E431BFEF43800516EC4 /* OrderHistoryListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E39E301BFEF43800516EC4 /* OrderHistoryListTVC.swift */; };
 		40E39E441BFEF43800516EC4 /* OrderListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E39E311BFEF43800516EC4 /* OrderListTVC.swift */; };
 		40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */; };
-		40E3A15D1BFEFA0C00516EC4 /* FindListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A0EF1BFEFA0C00516EC4 /* FindListTVC.swift */; };
-		40E3A15E1BFEFA0C00516EC4 /* FindListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A0F01BFEFA0C00516EC4 /* FindListTVC.xib */; };
 		40E3A15F1BFEFA0C00516EC4 /* MailListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A0F11BFEFA0C00516EC4 /* MailListTVC.swift */; };
 		40E3A1601BFEFA0C00516EC4 /* MailListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A0F21BFEFA0C00516EC4 /* MailListTVC.xib */; };
-		40E3A1611BFEFA0C00516EC4 /* SalesTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A0F31BFEFA0C00516EC4 /* SalesTBC.swift */; };
 		40E3A1741BFEFA6400516EC4 /* FloatingWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A1641BFEFA6400516EC4 /* FloatingWindowVC.swift */; };
 		40E3A1751BFEFA6400516EC4 /* FloatingWindowVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A1651BFEFA6400516EC4 /* FloatingWindowVC.xib */; };
 		40E3A17D1BFEFA6400516EC4 /* HotelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A16E1BFEFA6400516EC4 /* HotelCell.swift */; };
@@ -717,6 +723,15 @@
 		40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTBouncyTextField.swift; sourceTree = "<group>"; };
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40D585CD1C22A8D900C5267D /* SalesDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesDetailVC.swift; sourceTree = "<group>"; };
+		40D585D11C22AA4E00C5267D /* SalesDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesDetailVC.xib; sourceTree = "<group>"; };
+		40D585D41C22AB0A00C5267D /* SalesDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesDetailHeaderView.xib; sourceTree = "<group>"; };
+		40D585D71C22AB2B00C5267D /* SalesDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesDetailHeaderView.swift; sourceTree = "<group>"; };
+		40D585D91C22AD5200C5267D /* PhoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCell.swift; sourceTree = "<group>"; };
+		40D585DA1C22AD5200C5267D /* PhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneCell.xib; sourceTree = "<group>"; };
+		40D585DD1C22AD6700C5267D /* RatingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
+		40D585DE1C22AD6700C5267D /* RatingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingCell.xib; sourceTree = "<group>"; };
+		40D585E11C22B0D100C5267D /* SalesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesModel.swift; sourceTree = "<group>"; };
 		40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Decompression.swift"; sourceTree = "<group>"; };
 		40D9C9E11C2037B200E992AB /* InfoEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditVC.swift; sourceTree = "<group>"; };
 		40D9C9E21C2037B200E992AB /* InfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditVC.xib; sourceTree = "<group>"; };
@@ -740,11 +755,8 @@
 		40E39E2F1BFEF43800516EC4 /* OrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailVC.xib; sourceTree = "<group>"; };
 		40E39E301BFEF43800516EC4 /* OrderHistoryListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryListTVC.swift; sourceTree = "<group>"; };
 		40E39E311BFEF43800516EC4 /* OrderListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTVC.swift; sourceTree = "<group>"; };
-		40E3A0EF1BFEFA0C00516EC4 /* FindListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindListTVC.swift; sourceTree = "<group>"; };
-		40E3A0F01BFEFA0C00516EC4 /* FindListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindListTVC.xib; sourceTree = "<group>"; };
 		40E3A0F11BFEFA0C00516EC4 /* MailListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListTVC.swift; sourceTree = "<group>"; };
 		40E3A0F21BFEFA0C00516EC4 /* MailListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListTVC.xib; sourceTree = "<group>"; };
-		40E3A0F31BFEFA0C00516EC4 /* SalesTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesTBC.swift; sourceTree = "<group>"; };
 		40E3A1641BFEFA6400516EC4 /* FloatingWindowVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingWindowVC.swift; sourceTree = "<group>"; };
 		40E3A1651BFEFA6400516EC4 /* FloatingWindowVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingWindowVC.xib; sourceTree = "<group>"; };
 		40E3A16E1BFEFA6400516EC4 /* HotelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelCell.swift; sourceTree = "<group>"; };
@@ -2071,6 +2083,30 @@
 			path = conversationList;
 			sourceTree = "<group>";
 		};
+		4090602E1C22495F001D2525 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA5B28B51C09453500E8B1C0 /* MailListCell.swift */,
+				FA5B28B61C09453500E8B1C0 /* MailListCell.xib */,
+				40D585D71C22AB2B00C5267D /* SalesDetailHeaderView.swift */,
+				40D585D41C22AB0A00C5267D /* SalesDetailHeaderView.xib */,
+				40D585D91C22AD5200C5267D /* PhoneCell.swift */,
+				40D585DA1C22AD5200C5267D /* PhoneCell.xib */,
+				40D585DD1C22AD6700C5267D /* RatingCell.swift */,
+				40D585DE1C22AD6700C5267D /* RatingCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4090602F1C224965001D2525 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAA05E2C1C0995BF008605B7 /* ContactModel.swift */,
+				40D585E11C22B0D100C5267D /* SalesModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		40E39E1C1BFEF43800516EC4 /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
@@ -2118,17 +2154,15 @@
 		40E39FE01BFEFA0C00516EC4 /* Sale */ = {
 			isa = PBXGroup;
 			children = (
-				4077DC591C1EAF9900E13D6B /* EaseMob */,
-				40E3A0EF1BFEFA0C00516EC4 /* FindListTVC.swift */,
-				40E3A0F01BFEFA0C00516EC4 /* FindListTVC.xib */,
-				40E3A0F11BFEFA0C00516EC4 /* MailListTVC.swift */,
-				40E3A0F21BFEFA0C00516EC4 /* MailListTVC.xib */,
-				FA5B28B51C09453500E8B1C0 /* MailListCell.swift */,
-				FA5B28B61C09453500E8B1C0 /* MailListCell.xib */,
-				FAA05E2C1C0995BF008605B7 /* ContactModel.swift */,
-				40E3A0F31BFEFA0C00516EC4 /* SalesTBC.swift */,
 				FAF02EF51C159DB000B86B28 /* SalesVC.swift */,
 				FAF02EF61C159DB000B86B28 /* SalesVC.xib */,
+				4077DC591C1EAF9900E13D6B /* EaseMob */,
+				40E3A0F11BFEFA0C00516EC4 /* MailListTVC.swift */,
+				40E3A0F21BFEFA0C00516EC4 /* MailListTVC.xib */,
+				40D585CD1C22A8D900C5267D /* SalesDetailVC.swift */,
+				40D585D11C22AA4E00C5267D /* SalesDetailVC.xib */,
+				4090602E1C22495F001D2525 /* View */,
+				4090602F1C224965001D2525 /* Model */,
 			);
 			path = Sale;
 			sourceTree = "<group>";
@@ -3105,6 +3139,7 @@
 			files = (
 				FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */,
 				40E39E351BFEF43800516EC4 /* OrderCell.xib in Resources */,
+				40D585E01C22AD6700C5267D /* RatingCell.xib in Resources */,
 				40817D1A1B8EDA7300EF188F /* NewItemFooterView.xib in Resources */,
 				40E3A17E1BFEFA6400516EC4 /* HotelCell.xib in Resources */,
 				40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */,
@@ -3119,6 +3154,7 @@
 				40E3A1891BFEFA8300516EC4 /* SearchBarView.xib in Resources */,
 				FAF249591BFF08CA001E7E41 /* SearchCell.xib in Resources */,
 				400959FE1C2148BA00D3DA61 /* InvoiceVC.xib in Resources */,
+				40D585D61C22AB0A00C5267D /* SalesDetailHeaderView.xib in Resources */,
 				FAF7F5691C030E8B00C84601 /* CustomerServiceCell.xib in Resources */,
 				FAF2495D1BFF0F1C001E7E41 /* SearchHeaderView.xib in Resources */,
 				40E39E331BFEF43800516EC4 /* BookingOrderDetailVC.xib in Resources */,
@@ -3137,6 +3173,7 @@
 				40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
+				40D585D21C22AA4E00C5267D /* SalesDetailVC.xib in Resources */,
 				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				4056A8131BC9004C00D42393 /* server.der in Resources */,
@@ -3148,7 +3185,6 @@
 				400959EE1C21238C00D3DA61 /* PhoneFirstVC.xib in Resources */,
 				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				40E39E391BFEF43800516EC4 /* OrderListCell.xib in Resources */,
-				40E3A15E1BFEFA0C00516EC4 /* FindListTVC.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FAFA519D1C16F32900BF04F2 /* CityHeaderView.xib in Resources */,
 				40817D081B8EAB8800EF188F /* NewItemCell.xib in Resources */,
@@ -3168,6 +3204,7 @@
 				40E39E421BFEF43800516EC4 /* OrderDetailVC.xib in Resources */,
 				4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */,
 				B2A642261B47C2A700AF0F28 /* BookRoomCell.xib in Resources */,
+				40D585DC1C22AD5200C5267D /* PhoneCell.xib in Resources */,
 				400959F61C213B3900D3DA61 /* PhoneSecondVC.xib in Resources */,
 				FAFA51A11C16FFF200BF04F2 /* UnActivationCell.xib in Resources */,
 				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
@@ -3291,7 +3328,9 @@
 				FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */,
 				B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */,
 				4077DDDC1C1EAF9900E13D6B /* NSDate+Category.m in Sources */,
+				40D585DB1C22AD5200C5267D /* PhoneCell.swift in Sources */,
 				FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */,
+				40D585E21C22B0D100C5267D /* SalesModel.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				4077DDB41C1EAF9900E13D6B /* MWPhoto.m in Sources */,
 				4077DDC31C1EAF9900E13D6B /* UIButton+EMWebCache.m in Sources */,
@@ -3331,6 +3370,7 @@
 				400959ED1C21238C00D3DA61 /* PhoneFirstVC.swift in Sources */,
 				B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
+				40D585CE1C22A8D900C5267D /* SalesDetailVC.swift in Sources */,
 				40E39E3F1BFEF43800516EC4 /* OrderDetailsVC.swift in Sources */,
 				4077DDF31C1EAF9900E13D6B /* EaseBubbleView+File.m in Sources */,
 				4077DDEC1C1EAF9900E13D6B /* EaseRefreshTableViewController.m in Sources */,
@@ -3351,7 +3391,6 @@
 				4077DD991C1EAF9900E13D6B /* GroupSettingViewController.m in Sources */,
 				4077DDD21C1EAF9900E13D6B /* PSTCollectionViewUpdateItem.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
-				40E3A1611BFEFA0C00516EC4 /* SalesTBC.swift in Sources */,
 				40E39E3D1BFEF43800516EC4 /* OrderContentView.swift in Sources */,
 				40E3A15F1BFEFA0C00516EC4 /* MailListTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,
@@ -3390,6 +3429,8 @@
 				4077DD921C1EAF9900E13D6B /* CustomMessageCell.m in Sources */,
 				4077DDE21C1EAF9900E13D6B /* EaseChineseToPinyin.m in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
+				40D585DF1C22AD6700C5267D /* RatingCell.swift in Sources */,
+				40D585D81C22AB2B00C5267D /* SalesDetailHeaderView.swift in Sources */,
 				4077DDEB1C1EAF9900E13D6B /* EaseMessageViewController.m in Sources */,
 				4077DDC81C1EAF9900E13D6B /* UIImageView+EMWebCache.m in Sources */,
 				4077DDC61C1EAF9900E13D6B /* UIImage+EMWebP.m in Sources */,
@@ -3442,7 +3483,6 @@
 				4077DD931C1EAF9900E13D6B /* EMBubbleView+Card.m in Sources */,
 				4077DD9E1C1EAF9900E13D6B /* EMSearchBar.m in Sources */,
 				FA6BC8391C1AAA4400D409E4 /* FloatHeaderView.swift in Sources */,
-				40E3A15D1BFEFA0C00516EC4 /* FindListTVC.swift in Sources */,
 				4077DD9D1C1EAF9900E13D6B /* BaseTableViewCell.m in Sources */,
 				FAF253F61C12CE8100768A4D /* HomeHeaderView.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Nhk-Q1-4ZU" customClass="SalesDetailHeaderView" customModule="SVIP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="441" height="309"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黄小洋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bou-a4-vqt">
+                    <rect key="frame" x="8" y="219" width="270" height="22"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="JH0-Db-DcU"/>
+                        <constraint firstAttribute="width" constant="270" id="YEs-VH-zSc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙芙蓉国温德姆豪庭至尊大酒店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpa-qc-xjS">
+                    <rect key="frame" x="8" y="251" width="278" height="17"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="7Z2-hf-MRJ"/>
+                        <constraint firstAttribute="width" constant="278" id="igT-Bn-odH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近 10月1日 22:00 在线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0A-uf-FVm">
+                    <rect key="frame" x="8" y="276" width="270" height="15"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="Kao-2y-0kk"/>
+                        <constraint firstAttribute="width" constant="270" id="UVw-P3-Qhc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jn2-Gl-cfG">
+                    <rect key="frame" x="181" y="70" width="80" height="80"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="5d5-WJ-J9b"/>
+                        <constraint firstAttribute="height" constant="80" id="TuD-Yb-LgL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="40"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="g0A-uf-FVm" firstAttribute="leading" secondItem="Nhk-Q1-4ZU" secondAttribute="leading" constant="8" id="FXb-xp-kFf"/>
+                <constraint firstItem="bou-a4-vqt" firstAttribute="leading" secondItem="Nhk-Q1-4ZU" secondAttribute="leading" constant="8" id="K4A-9p-bWP"/>
+                <constraint firstItem="gpa-qc-xjS" firstAttribute="leading" secondItem="Nhk-Q1-4ZU" secondAttribute="leading" constant="8" id="Pci-s6-1Ob"/>
+                <constraint firstItem="g0A-uf-FVm" firstAttribute="top" secondItem="gpa-qc-xjS" secondAttribute="bottom" constant="8" id="U1I-eO-4l6"/>
+                <constraint firstAttribute="bottom" secondItem="g0A-uf-FVm" secondAttribute="bottom" constant="18" id="Wcl-Ym-2Ot"/>
+                <constraint firstItem="jn2-Gl-cfG" firstAttribute="top" secondItem="Nhk-Q1-4ZU" secondAttribute="top" constant="70" id="bCd-a5-4pl"/>
+                <constraint firstItem="gpa-qc-xjS" firstAttribute="top" secondItem="bou-a4-vqt" secondAttribute="bottom" constant="10" id="ona-9l-rEE"/>
+                <constraint firstItem="jn2-Gl-cfG" firstAttribute="centerX" secondItem="Nhk-Q1-4ZU" secondAttribute="centerX" id="ty2-W4-h5N"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="avatarImageView" destination="jn2-Gl-cfG" id="esB-56-8KY"/>
+                <outlet property="lastLoginLabel" destination="g0A-uf-FVm" id="Ijj-fb-cJy"/>
+                <outlet property="nameLabel" destination="bou-a4-vqt" id="fwN-Uq-uv2"/>
+                <outlet property="shopNameLabel" destination="gpa-qc-xjS" id="ucp-vz-S4X"/>
+            </connections>
+            <point key="canvasLocation" x="242.5" y="326.5"/>
+        </view>
+    </objects>
+</document>

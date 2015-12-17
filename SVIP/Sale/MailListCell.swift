@@ -9,12 +9,15 @@
 import UIKit
 
 class MailListCell: UITableViewCell {
-
+  
+  @IBOutlet weak var shopNameLabel: UILabel!
   @IBOutlet weak var contactNameLabel: UILabel!
   @IBOutlet weak var contactImageView: UIImageView!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+  
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
   
   class func reuseIdentifier() -> String {
     return "MailListCell"
@@ -29,18 +32,17 @@ class MailListCell: UITableViewCell {
   }
   
   func setData(contact:ContactModel) {
+    shopNameLabel.text = contact.shop_name
     contactNameLabel.text = contact.fname
     let url = NSURL(string: kBaseURL)
     let urlStr = url?.URLByAppendingPathComponent("uploads/users/\(contact.userid).jpg")
     contactImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "img_hotel_zhanwei"))
-
   }
-
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
     
+    // Configure the view for the selected state
+  }
+  
 }

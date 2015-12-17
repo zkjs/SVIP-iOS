@@ -38,8 +38,6 @@ class LoginVC: UIViewController {
     super.viewWillAppear(animated)
     
     navigationController?.navigationBarHidden = true
-    
-    originCenter = view.center
   }
   
   deinit {
@@ -134,6 +132,9 @@ class LoginVC: UIViewController {
   }
   
   private func setupView() {
+    let screenSize = UIScreen.mainScreen().bounds
+    originCenter = CGPointMake(screenSize.midX, screenSize.midY)
+    
     phoneTextField.alwaysBouncePlaceholder = true
     phoneTextField.abbreviatedPlaceholder = "手机号"
     

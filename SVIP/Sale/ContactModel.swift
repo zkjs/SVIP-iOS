@@ -17,7 +17,7 @@ class ContactModel: NSObject {
   var shop_name: String!
   var shopid: String!
   var teamid: String!
-  var userid: NSNumber!
+  var userid: String!
   
   init(dic:[String:AnyObject]) {
     created = dic["created"] as? String
@@ -28,7 +28,6 @@ class ContactModel: NSObject {
     shop_name = dic["shop_name"] as? String
     shopid = dic["shopid"] as? String
     teamid = dic["teamid"] as? String
-    userid = dic["userid"] as? NSNumber
-   
+    userid = dic["userid"] as? String
   }
 }

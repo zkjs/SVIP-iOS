@@ -19,7 +19,7 @@
 #import "EMSearchDisplayController.h"
 #import "RealtimeSearchUtil.h"
 
-@interface ConversationListController ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource,UISearchDisplayDelegate, UISearchBarDelegate, EMChooseViewDelegate>
+@interface ConversationListController ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource,UISearchDisplayDelegate, UISearchBarDelegate, EMChooseViewDelegate, XLPagerTabStripChildItem>
 
 @property (nonatomic, strong) UIView *networkStateView;
 @property (nonatomic, strong) EMSearchBar *searchBar;
@@ -33,7 +33,7 @@
   [super viewDidLoad];
   
 //  [self setupRightBarButton];
-  
+    
   [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
   
   self.showRefreshHeader = YES;
@@ -364,6 +364,16 @@
 
 - (void)didFinishedReceiveOfflineMessages{
   NSLog(NSLocalizedString(@"message.endReceiveOffine", @"End to receive offline messages"));
+}
+
+#pragma mark - XLPagerTabStripChildItem Delegate 
+
+-(NSString *)titleForPagerTabStripViewController:(XLPagerTabStripViewController *)pagerTabStripViewController {
+  return @"聊天";
+}
+
+-(UIColor *)colorForPagerTabStripViewController:(XLPagerTabStripViewController *)pagerTabStripViewController {
+  return [UIColor ZKJS_mainColor];
 }
 
 @end

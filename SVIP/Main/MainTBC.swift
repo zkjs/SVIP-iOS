@@ -37,15 +37,15 @@ class MainTBC: UITabBarController {
     //服务中心
     let vc3 = SalesVC()
     let nc3 = BaseNC(rootViewController: vc3)
-    let titles = ["聊天","通讯录"]
-    let vcClasses: [UIViewController.Type] = [ConversationListController.self, MailListTVC.self]
-    vc3.menuItemWidth = 60
-    vc3.menuViewStyle = WMMenuViewStyleLine
-    vc3.titleSizeSelected = 15.0
-    vc3.pageAnimatable = true
-    vc3.progressColor = UIColor.ZKJS_mainColor()
-    vc3.viewControllerClasses  = vcClasses
-    vc3.titles = titles
+//    let titles = ["聊天","通讯录"]
+//    let vcClasses: [UIViewController.Type] = [ConversationListController.self, MailListTVC.self]
+//    vc3.menuItemWidth = 60
+//    vc3.menuViewStyle = WMMenuViewStyleLine
+//    vc3.titleSizeSelected = 15.0
+//    vc3.pageAnimatable = true
+//    vc3.progressColor = UIColor.ZKJS_mainColor()
+//    vc3.viewControllerClasses  = vcClasses
+//    vc3.titles = titles
     vc3.tabBarItem.image = UIImage(named: "ic_xiaoxi_gary")
     vc3.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     

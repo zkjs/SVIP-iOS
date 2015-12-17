@@ -839,21 +839,21 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 #pragma mark - 添加/删除/显示好友
 - (void)managerFreindListWithFuid:(NSString *)fuid set:(NSString *)set success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    [self POST:@"user/friend" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-      [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
-      [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
-      [formData appendPartWithFormData:[fuid dataUsingEncoding:NSUTF8StringEncoding] name:@"fuid"];
-       [formData appendPartWithFormData:[set dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-          DDLogInfo(@"%@", [responseObject description]);
-      if ([self isValidTokenWithObject:responseObject]) {
-        success(task, responseObject);
-      }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-      DDLogInfo(@"%@", error.description);
-      failure(task, error);
-    }];
-  }
+  [self POST:@"user/friend" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[fuid dataUsingEncoding:NSUTF8StringEncoding] name:@"fuid"];
+    [formData appendPartWithFormData:[set dataUsingEncoding:NSUTF8StringEncoding] name:@"set"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    DDLogInfo(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
 
 #pragma mark - 获取我的专属客服是否存在(邀请码是否激活)
 - (void)InvitationCodeActivatedSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
@@ -885,8 +885,23 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     DDLogInfo(@"%@", error.description);
     failure(task, error);
   }];
-  
 }
 
+#pragma mark -用户查询服务员信息
+- (void)getSalesWithID:(NSString *)salesid success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  [self POST:@"user/getsales" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
+    [formData appendPartWithFormData:[salesid dataUsingEncoding:NSUTF8StringEncoding] name:@"sid"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+    //    DDLogInfo(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    DDLogInfo(@"%@", error.description);
+    failure(task, error);
+  }];
+}
 
 @end
