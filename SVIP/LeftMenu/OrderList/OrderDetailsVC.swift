@@ -81,9 +81,8 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     }
   
   func setupUI(orderV:OrderContentView) {
-    let userid = JSHAccountManager.sharedJSHAccountManager().userid
     let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"
-
+//    let userid = JSHAccountManager.sharedJSHAccountManager().userid
 //    let urlString = "\(kBaseURL)uploads/users/\(userid).jpg"
 //    userImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     userImageView.image = AccountManager.sharedInstance().avatarImage
