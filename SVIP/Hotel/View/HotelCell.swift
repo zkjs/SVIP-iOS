@@ -44,11 +44,14 @@ class HotelCell: UITableViewCell {
   }
   
   class func height() -> CGFloat {
-    return 321
+    return 385
   }
+  
+  
   func setData(hotel:Hotel) {
     hotelNameLabel.text = hotel.shopname
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
+    addressLabel.text = hotel.shopaddress
     let logoURL = NSURL(string: hotel.bgImgUrl)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
   }

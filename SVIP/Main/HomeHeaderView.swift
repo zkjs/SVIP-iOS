@@ -10,20 +10,18 @@ import UIKit
 
 class HomeHeaderView: UIView {
 
-  @IBOutlet weak var dynamicLabel: UILabel!
-  @IBOutlet weak var greetLabel: UILabel!
-  @IBOutlet weak var custonLabel: UILabel! {
+  @IBOutlet weak var dynamicLabel: UILabel!{
     didSet {
-      custonLabel.numberOfLines = 0
+      dynamicLabel.numberOfLines = 0
     }
   }
+  @IBOutlet weak var greetLabel: UILabel!
+  
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var activateButton: UIButton!
-  @IBOutlet weak var connectButton: UIButton!
-  @IBOutlet weak var activateLabel: UILabel!
-  @IBOutlet weak var locationImage: UIImageView!
+  
   @IBOutlet weak var usernameLabel: UILabel!
-  @IBOutlet weak var currentCityLabe: UILabel!
+
   @IBOutlet weak var LocationButton: UIButton!{
     didSet {
       LocationButton.layer.masksToBounds = true

@@ -16,24 +16,22 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   var longitude: double_t!
   var latution: double_t!
   var cityArray = [String]()
-  //声明一个闭包
-  var testClosure:sendValueClosure?
-  var city:String!
+//  //声明一个闭包
+//  var testClosure:sendValueClosure?
+//  var city:String!
   
   @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
      navigationController?.navigationBarHidden = false
       getCityListData()
-      
+      let image = UIImage(named: "ic_fanhui_orange")
+      let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "miss:")
+      item1.tintColor = UIColor.ZKJS_mainColor()
       let leftBarBtn = UIBarButtonItem(title: "想去哪里", style: .Plain, target: self,
-        action: nil)
+        action:nil)
       leftBarBtn.tintColor = UIColor.ZKJS_navegationTextColor()
-      self.navigationItem.leftBarButtonItem = leftBarBtn
-     // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.hx_colorWithHexString("ffc56e")]
-      let item2 = UIBarButtonItem(image: UIImage(named: "ic_quxiao_b"), style: UIBarButtonItemStyle.Plain, target: self, action: "cancle:")
-      navigationItem.rightBarButtonItem = item2
-      
+      self.navigationItem.leftBarButtonItems = [item1,leftBarBtn]
       let nibName = UINib(nibName: HotCityCell.nibName(), bundle: nil)
       tableView.registerNib(nibName, forCellReuseIdentifier: HotCityCell.reuseIdentifier())                                                            
       tableView.tableFooterView = UIView()
@@ -46,6 +44,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("CityVC", owner:self, options:nil)
   }
@@ -53,20 +52,17 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
     setupCoreLocationService()
-    
     tableView.reloadData()
-    
-    
+  }
+  
+  func miss(sender:UIBarButtonItem) {
+    self.dismissViewControllerAnimated(true, completion: nil)
   }
   
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
     return UIStatusBarStyle.LightContent
   }
   
-  func cancle(sender:UIBarButtonItem) {
-    self.dismissViewControllerAnimated(true) { () -> Void in
-     }
-  }
   func getCityListData() {
     ZKJSHTTPSessionManager.sharedInstance().getCityListSuccess({ (task: NSURLSessionDataTask!, responsObject: AnyObject!) -> Void in
       if let array = responsObject as? NSArray {
@@ -116,15 +112,17 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    /**
-    先判断闭包是否存在，然后再调用
-    */
-    let string = cityArray[indexPath.row]
-    if (testClosure != nil){
-      testClosure!(string: string)
-    }
-
-    self.dismissViewControllerAnimated(true, completion: nil)
+//    /**
+//    先判断闭包是否存在，然后再调用
+//    */
+//    let string = cityArray[indexPath.row]
+//    if (testClosure != nil){
+//      testClosure!(string: string)
+//    }
+    let vc = MerchantsVC()
+    vc.city = cityArray[indexPath.row]
+    print(vc.city)
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   func setupUI() {
