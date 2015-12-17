@@ -17,6 +17,7 @@ class OrderListCell: SWTableViewCell {
       statsLabel.layer.cornerRadius = 10
       statsLabel.layer.borderWidth = 1
       statsLabel.layer.borderColor = UIColor.ZKJS_whiteColor().CGColor
+      statsLabel.layer.masksToBounds = true
     }
   }
     @IBOutlet weak var locationLabel: UILabel!

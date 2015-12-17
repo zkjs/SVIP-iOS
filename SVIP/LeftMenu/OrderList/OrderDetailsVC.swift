@@ -30,6 +30,11 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     }
   }
   var orderV = UIView()
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("OrderDetailsVC", owner:self, options:nil)
+  }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -79,8 +84,9 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     let userid = JSHAccountManager.sharedJSHAccountManager().userid
     let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"
 
-    let urlString = "\(kBaseURL)uploads/users/\(userid).jpg"
-    userImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+//    let urlString = "\(kBaseURL)uploads/users/\(userid).jpg"
+//    userImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    userImageView.image = AccountManager.sharedInstance().avatarImage
     usernameLabel.text = order.guest
     orderV.hotelNameLabel.text = order.fullname
     orderV.bedStulyLabel.text = order.room_type + "x" + order.rooms.stringValue
