@@ -67,10 +67,15 @@ class MainTBC: UITabBarController {
 extension MainTBC: UITabBarControllerDelegate {
   
   func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-    if AccountManager.sharedInstance().isLogin() == false {
-      let nc = BaseNC(rootViewController: LoginVC())
-      presentViewController(nc, animated: true, completion: nil)
-      return false
+    if let nc = viewController as? BaseNC {
+      let vc = nc.topViewController
+      if vc is SalesVC || vc is MeTVC {
+        if AccountManager.sharedInstance().isLogin() == false {
+          let nc = BaseNC(rootViewController: LoginVC())
+          presentViewController(nc, animated: true, completion: nil)
+          return false
+        }
+      }
     }
     return true
   }

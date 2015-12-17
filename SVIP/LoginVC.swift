@@ -37,6 +37,7 @@ class LoginVC: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
+    AccountManager.sharedInstance().clearAccountCache()
     navigationController?.navigationBarHidden = true
   }
   
@@ -124,6 +125,7 @@ class LoginVC: UIViewController {
     ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject as? [String : AnyObject] {
         AccountManager.sharedInstance().saveBaseInfo(data)
+        self.easeMobAutoLogin()
         closure()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -147,6 +149,19 @@ class LoginVC: UIViewController {
     codeButton.enabled = false
     codeButton.alpha = 0.5
   }
+  
+  private func easeMobAutoLogin() {
+    // 自动登录
+    let isAutoLogin = EaseMob.sharedInstance().chatManager.isAutoLoginEnabled
+    if isAutoLogin == false {
+      let userID = AccountManager.sharedInstance().userID
+      EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(userID, password: "123456", completion: { (responseObject: [NSObject : AnyObject]!, error: EMError!) -> Void in
+        EaseMob.sharedInstance().chatManager.enableAutoLogin!()
+        }, onQueue: nil)
+    }
+  }
+
+  // MARK: Button Action
   
   @IBAction func tappedCodeButton(sender: AnyObject) {
     guard let phone = phoneTextField.text else { return }

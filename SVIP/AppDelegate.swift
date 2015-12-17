@@ -311,7 +311,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func setupYunBa() {
     let appKey = "566563014407a3cd028aa72f"
     YunBaService.setupWithAppkey(appKey)
-    //    NSNotificationCenter.defaultCenter().addObserver(self, selector: "onMessageReceived:", name: kYBDidReceiveMessageNotification, object: nil)
   }
   
 }

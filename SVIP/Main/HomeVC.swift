@@ -53,14 +53,13 @@ class HomeVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     loadData()
-    memberActivation()
     count++
     tableView.reloadData()
     getPushInfoData()
     let islogin = AccountManager.sharedInstance().isLogin()
     if islogin == true {
+      memberActivation()
       getlastOrder()
-      
     }
   }
   

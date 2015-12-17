@@ -16,6 +16,12 @@ class SalesDetailVC: UIViewController {
   var sales: SalesModel? = nil
   
   
+  // MARK: - View Lifecycle
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("SalesDetailVC", owner:self, options:nil)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -31,11 +37,14 @@ class SalesDetailVC: UIViewController {
     navigationController?.navigationBar.translucent = true
     navigationController?.view.backgroundColor = UIColor.clearColor()
     automaticallyAdjustsScrollViewInsets = false
+    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     
+    navigationController?.navigationBarHidden = false
+    navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
     navigationController?.navigationBar.translucent = false
   }
   
@@ -47,16 +56,24 @@ class SalesDetailVC: UIViewController {
     tableView.registerNib(ratingNib, forCellReuseIdentifier: RatingCell.reuseIdentifier())
     
     tableView.tableFooterView = UIView()
-    
-    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
   }
   
   func loadData() {
     ZKJSHTTPSessionManager.sharedInstance().getSalesWithID(salesid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let data = responseObject as? [String: AnyObject] {
-        self.sales = SalesModel(dictionary: data)
-        self.tableView.reloadData()
+        if let set = data["set"] as? NSNumber {
+          if set.boolValue == false {
+            if let err = data["err"] as? NSNumber {
+              if err.integerValue == 404 {
+                self.showHint("此销售不存在")
+              }
+            }
+          } else {
+            self.sales = SalesModel(dictionary: data)
+            self.tableView.reloadData()
+          }
+        }
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
@@ -64,7 +81,17 @@ class SalesDetailVC: UIViewController {
   }
   
   @IBAction func chat(sender: AnyObject) {
-    
+    guard let sales = self.sales else { return }
+    let vc = ChatViewController(conversationChatter: sales.userid, conversationType: .eConversationTypeChat)
+    vc.title = sales.username
+    // 扩展字段
+    let userName = AccountManager.sharedInstance().userName
+    let ext = ["shopId": sales.shopid.stringValue,
+      "shopName": sales.shop_name,
+      "toName": sales.username,
+      "fromName": userName]
+    vc.conversation.ext = ext
+    navigationController?.pushViewController(vc, animated: true)
   }
   
 }
@@ -117,13 +144,14 @@ extension SalesDetailVC: UITableViewDataSource, UITableViewDelegate {
         cell.setData(data)
       }
       return cell
+    } else if indexPath.section == 1 {
+      let cell = tableView.dequeueReusableCellWithIdentifier(RatingCell.reuseIdentifier(), forIndexPath: indexPath) as! RatingCell
+      if let data = sales {
+        cell.setData(data)
+      }
+      return cell
     }
-    
-    let cell = tableView.dequeueReusableCellWithIdentifier(RatingCell.reuseIdentifier(), forIndexPath: indexPath) as! RatingCell
-    if let data = sales {
-      cell.setData(data)
-    }
-    return cell
+    return UITableViewCell()
   }
   
 }
