@@ -31,10 +31,10 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="rBT-WC-9iY">
-                    <rect key="frame" x="155" y="80" width="290" height="25"/>
+                    <rect key="frame" x="155" y="80" width="290" height="44"/>
                     <animations/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="Ja6-1t-Qd4"/>
+                        <constraint firstAttribute="height" constant="44" id="Ja6-1t-Qd4"/>
                         <constraint firstAttribute="width" constant="290" id="VCt-SN-e8x"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

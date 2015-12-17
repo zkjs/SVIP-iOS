@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入原手机" textAlignment="natural" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="dBx-i2-6zq">
-                    <rect key="frame" x="155" y="100" width="290" height="44"/>
+                    <rect key="frame" x="155" y="80" width="290" height="44"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="GpJ-2n-swk"/>
@@ -55,7 +55,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9I-uH-ic4">
-                    <rect key="frame" x="369" y="162" width="76" height="44"/>
+                    <rect key="frame" x="369" y="142" width="76" height="44"/>
                     <animations/>
                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -75,7 +75,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="ecg-eA-7cr">
-                    <rect key="frame" x="155" y="162" width="206" height="44"/>
+                    <rect key="frame" x="155" y="142" width="206" height="44"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="290" id="4Nc-kw-rh1"/>
@@ -103,7 +103,7 @@
                 <constraint firstItem="Z9I-uH-ic4" firstAttribute="top" secondItem="dBx-i2-6zq" secondAttribute="bottom" constant="18" id="V6i-iY-CmG"/>
                 <constraint firstItem="dBx-i2-6zq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bGN-1O-Rkp"/>
                 <constraint firstItem="Z9I-uH-ic4" firstAttribute="leading" secondItem="ecg-eA-7cr" secondAttribute="trailing" constant="8" id="cK1-gI-TlG"/>
-                <constraint firstItem="dBx-i2-6zq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="eai-Pc-upu"/>
+                <constraint firstItem="dBx-i2-6zq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="eai-Pc-upu"/>
                 <constraint firstItem="ecg-eA-7cr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-42" id="fy6-U0-hb2"/>
                 <constraint firstItem="ecg-eA-7cr" firstAttribute="top" secondItem="dBx-i2-6zq" secondAttribute="bottom" constant="18" id="j8C-Vc-2Az"/>
                 <constraint firstAttribute="trailing" secondItem="4SP-UZ-huy" secondAttribute="trailing" id="jMI-Ri-rgu"/>

@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新手机" textAlignment="natural" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="CGW-jL-9w7">
-                    <rect key="frame" x="155" y="100" width="290" height="44"/>
+                    <rect key="frame" x="155" y="80" width="290" height="44"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="290" id="Kw2-Wg-crI"/>
@@ -55,7 +55,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ec-5F-dd9">
-                    <rect key="frame" x="369" y="162" width="76" height="44"/>
+                    <rect key="frame" x="369" y="142" width="76" height="44"/>
                     <animations/>
                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -75,7 +75,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="EE1-5G-VzE">
-                    <rect key="frame" x="155" y="163" width="206" height="44"/>
+                    <rect key="frame" x="155" y="143" width="206" height="44"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="PUI-s0-ETr"/>
@@ -107,7 +107,7 @@
                 <constraint firstAttribute="trailing" secondItem="CZV-ZR-NtN" secondAttribute="trailing" id="S53-yd-nBs"/>
                 <constraint firstItem="3ec-5F-dd9" firstAttribute="leading" secondItem="EE1-5G-VzE" secondAttribute="trailing" constant="8" id="Xfd-Jc-9JL"/>
                 <constraint firstItem="CZV-ZR-NtN" firstAttribute="leading" secondItem="wNc-2E-wlr" secondAttribute="leading" id="sAS-Zy-vep"/>
-                <constraint firstItem="CGW-jL-9w7" firstAttribute="top" secondItem="wNc-2E-wlr" secondAttribute="top" constant="100" id="xKC-0e-zlg"/>
+                <constraint firstItem="CGW-jL-9w7" firstAttribute="top" secondItem="wNc-2E-wlr" secondAttribute="top" constant="80" id="xKC-0e-zlg"/>
             </constraints>
         </view>
     </objects>

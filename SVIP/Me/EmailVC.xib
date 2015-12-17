@@ -31,13 +31,13 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="xxx@zkjinshi.com" textAlignment="natural" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="DUi-4w-iuN">
-                    <rect key="frame" x="155" y="80" width="290" height="25"/>
+                    <rect key="frame" x="155" y="80" width="290" height="44"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="290" id="D3K-ZU-JQa"/>
                         <constraint firstAttribute="width" constant="290" id="Ngw-BU-xZx"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="PvY-KC-ykV"/>
-                        <constraint firstAttribute="height" constant="25" id="zSB-F4-sCB"/>
+                        <constraint firstAttribute="height" constant="44" id="zSB-F4-sCB"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
