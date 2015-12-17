@@ -19,8 +19,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    showHUDInView(view, withLoading: "")
-    loadMoreData()
     title = NSLocalizedString("ORDRE_LIST", comment: "")
     
     let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
@@ -30,6 +28,13 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer.hidden = true
     
     tableView.tableFooterView = UIView()
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    showHUDInView(view, withLoading: "")
+    loadMoreData()
   }
   
   // MARK: - Table view data source

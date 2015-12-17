@@ -67,6 +67,7 @@ class BookOrder: NSObject {
   var created: String!
   var status: NSNumber!
   var pay_status: NSNumber!
+  var pay_id: NSNumber!
   var payment:NSNumber!
   var remark: String!
   var fullname: String!
@@ -130,6 +131,7 @@ class BookOrder: NSObject {
   override var description: String {
     var output = ""
     output += "pay_status:\(pay_status)"
+    output += "pay_id:\(pay_id)"
     output += "payment:\(payment)"
     output += "shopid: \(shopid)\n"
     output += "fullname: \(fullname)\n"

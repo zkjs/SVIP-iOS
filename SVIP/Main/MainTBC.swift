@@ -104,6 +104,7 @@ extension MainTBC: EMCallManagerDelegate {
   func showOrderAlertWithOrderInfo(order: [String: AnyObject]) {
     let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+    vc.type = .Present
     if let orderNo = order["orderNo"] as? String {
       vc.reservation_no = orderNo
       let alertMessage = "您的订单\(orderNo)已新增，请查看详情"
