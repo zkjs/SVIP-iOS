@@ -170,12 +170,22 @@ class ComprehensiveVC: UIViewController {
     } else {
       let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
+      cell.userImageButton.tag = indexPath.row
       let shop = dataArray[indexPath.row]
       cell.setData(shop)
+      cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
       return cell
     }
     
     
+  }
+  
+  func pushToDetail(sender:UIButton) {
+    let vc = SalesDetailVC()
+    let hotel = dataArray[sender.tag]
+    vc.salesid = hotel.salesid
+    vc.hidesBottomBarWhenPushed = true
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

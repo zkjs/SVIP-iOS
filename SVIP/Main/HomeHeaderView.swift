@@ -15,6 +15,8 @@ class HomeHeaderView: UIView {
       dynamicLabel.numberOfLines = 0
     }
   }
+
+  @IBOutlet weak var privilegeButton: UIButton!
   @IBOutlet weak var greetLabel: UILabel!
   
   @IBOutlet weak var loginButton: UIButton!

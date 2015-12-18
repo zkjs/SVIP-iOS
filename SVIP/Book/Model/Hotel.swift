@@ -11,7 +11,7 @@ import UIKit
 class Hotel: NSObject {
   var shopid: String!
   var shoplogo: String!
-  var saleid:String!
+  var salesid:String!
   var shopdesc: String!
   var shopname: String!
   var shopbusiness: String!
@@ -24,7 +24,7 @@ class Hotel: NSObject {
     
     shopid = dic["shopid"] as! String
     shoplogo = dic["shoplogo"] as! String
-    saleid = dic["saleid"] as? String
+    salesid = dic["salesid"] as? String
     shopdesc = dic["shopdesc"] as? String
     shopname = dic["shopname"] as? String
     shopbusiness = dic["shopbusiness"] as? String

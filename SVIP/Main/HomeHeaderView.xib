@@ -146,6 +146,7 @@
                 <outlet property="dynamicLabel" destination="yhH-3u-nJI" id="MZa-QK-ldP"/>
                 <outlet property="greetLabel" destination="E8H-WK-rmy" id="n8B-Pi-eL1"/>
                 <outlet property="loginButton" destination="Z7I-4C-mFs" id="lRd-Wh-T9z"/>
+                <outlet property="privilegeButton" destination="4hB-ce-Gyx" id="cjW-E3-hoX"/>
                 <outlet property="usernameLabel" destination="em2-Hz-coW" id="CGn-F9-NfS"/>
             </connections>
             <point key="canvasLocation" x="573" y="507.5"/>
