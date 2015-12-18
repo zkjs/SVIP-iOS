@@ -71,7 +71,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
-                                        <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="8Fa-mf-vvL">
                                         <rect key="frame" x="0.0" y="100" width="600" height="44"/>
