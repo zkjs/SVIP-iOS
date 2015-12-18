@@ -231,7 +231,7 @@ extension LoginVC: UITextFieldDelegate {
       }
     } else if textField == codeTextField {
       // 只有当验证码填全时，才让登录按钮可按
-      if (range.location + string.characters.count >= 4) {
+      if (range.location + string.characters.count >= 6) {
         okButton.enabled = true
         okButton.alpha = 1.0
       } else {
@@ -239,7 +239,7 @@ extension LoginVC: UITextFieldDelegate {
         okButton.alpha = 0.5
       }
       
-      if (range.location + string.characters.count <= 4) {
+      if (range.location + string.characters.count <= 6) {
         return true;
       }
     }

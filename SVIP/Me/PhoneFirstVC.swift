@@ -124,7 +124,7 @@ extension PhoneFirstVC: UITextFieldDelegate {
         okButton.alpha = 0.5
       }
       
-      if (range.location + string.characters.count <= 4) {
+      if (range.location + string.characters.count <= 6) {
         return true;
       }
     }

@@ -52,7 +52,7 @@
   NSString *timestamp = [self getTimestamp];
   NSString *mainSig = [self getMainSig:[NSString stringWithFormat:@"%@%@%@", mainAccount, mainToken, timestamp]];
   NSString *requestURL = [NSString stringWithFormat:@"https://%@:%d/%@/Accounts/%@/SMS/TemplateSMS?sig=%@", serverIP, serverPort, serverVersion, mainAccount, mainSig];
-  NSString *verifyCode = [NSString stringWithFormat:@"%d%d%d%d", arc4random() % 9 + 1, arc4random() % 10, arc4random() % 10, arc4random() % 10];
+  NSString *verifyCode = [NSString stringWithFormat:@"%d%d%d%d%d%d", arc4random() % 9 + 1, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10];
   NSString *verifyTime = @"5";
   NSArray *datas = @[verifyCode, verifyTime];
   NSDictionary *parameters = @{
@@ -74,12 +74,12 @@
 
 // 检查短信验证码
 - (void)verifySmsCode:(NSString *)code mobilePhoneNumber:(NSString *)phone callback:(void (^)(BOOL succeeded, NSError *error))callback {
-//  NSString *verifycode = self.phoneSMS[phone];
-//  if ([code isEqualToString:verifycode]) {
+  NSString *verifycode = self.phoneSMS[phone];
+  if ([code isEqualToString:verifycode]) {
     callback(YES, nil);
-//  } else {
-//    callback(NO, nil);
-//  }
+  } else {
+    callback(NO, nil);
+  }
 }
 
 #pragma mark - Private Methods
