@@ -12,6 +12,7 @@ typealias RoomSelectionBlock = (RoomGoods) -> ()
 
 class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 
+  @IBOutlet weak var confirmButton: UIButton!
   @IBOutlet private var layoutConstaintArray: [NSLayoutConstraint]!
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var selectionView: UIView!
@@ -25,6 +26,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   //Data
   var shopid: NSNumber!
   var dataArray = NSMutableArray()
+  var roomTypes = NSMutableArray()
   var selection: RoomSelectionBlock?  // Hanton
   private var filtedArray = NSMutableArray()
   private var selectedRow : Int = 0
@@ -40,111 +42,64 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(shopid)
     // Do any additional setup after loading the view.
     setUI()
     loadData()
+    loadRoomTypes()
   }
   
   override func viewWillAppear(animated: Bool) {
      super.viewWillAppear(animated)
-    navigationController?.navigationBarHidden = true
+    self.navigationController?.navigationBarHidden = true
+    
+    
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+  super.viewWillDisappear(animated)
+   self.navigationController?.navigationBarHidden = false
+   
+  }
+  
+  func loadRoomTypes() {
+    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
+      if let arr = responseObject as? NSArray {
+        for dict in arr {
+          if let myDict = dict as? NSDictionary {
+            let goods = RoomGoods(dic: myDict)
+            self.roomTypes.addObject(goods)
+          }
+        }
+        self.tableView.reloadData()
+    }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   private func setUI() {
     title = NSLocalizedString("ROOM_TYPE", comment: "")
     
-    tableView.contentInset = UIEdgeInsetsMake(36, 0, 135, 0)
+    automaticallyAdjustsScrollViewInsets = false
+    tableView.contentInset = UIEdgeInsetsMake(0, 0, 135, 0)
     
-    for button in leftSelectButtonArray {
-      button .addTarget(self, action: NSSelectorFromString("categorySelect:"), forControlEvents: UIControlEvents.TouchUpInside)
-    }
-    
-    for button in rightSelectButtonArray {
-      button .addTarget(self, action: Selector("breakfastSelect:"), forControlEvents: UIControlEvents.TouchUpInside)
-    }
-    
-    okButton.setTitle(NSLocalizedString("CONFIRM", comment: ""), forState: UIControlState.Normal)
+
   }
   
   private func loadData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().accordingMerchantNumberInquiryMerchantWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
       self.hotel = Hotel(dic: dic as! [String:AnyObject])
-      self.setupHeaderView()
       self.tableView.reloadData()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
     
-    let button = self.leftSelectButtonArray.last
-    self.categorySelect(button!)
-  }
-  
-  private func filtArray(keyString: String?)->NSMutableArray {
-    if keyString == "全部" {
-      return NSMutableArray(array: dataArray)
-    }
-    let mutArr = NSMutableArray()
-    for tempObject in dataArray {
-      let goods = tempObject as! RoomGoods
-      if goods.room == keyString {
-        mutArr .addObject(goods)
-      }
-    }
-    return mutArr
-  }
-  
-  override func updateViewConstraints() {
-    let buttonCount = layoutConstaintArray.count
-    let screenWidth = UIScreen.mainScreen().bounds.size.width
-    let marginWidth = (Double(screenWidth) - Double(buttonCount) * 30.0) / Double(layoutConstaintArray.count + 1)
-    for constrainst in layoutConstaintArray {
-      constrainst.constant = CGFloat(marginWidth)
-    }
-    super.updateViewConstraints()
-  }
 
-  //MARK:- BUTTON ACTION
-  
-  func categorySelect(sender: UIButton) {
-    for button in leftSelectButtonArray {
-      button.selected = false
-    }
-    sender.selected  = true
-    
-    filtedArray = self .filtArray(sender.titleLabel?.text)
-    tableView .reloadData()
-    self.selectedRow = 0
-    let numberOfRow = self.tableView .numberOfRowsInSection(0)
-    if numberOfRow != 0 {
-      self.tableView .selectRowAtIndexPath(NSIndexPath(forRow: self.selectedRow, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Top)
-    }
   }
   
-  func breakfastSelect(sender: UIButton) {
-    for button in rightSelectButtonArray {
-      button.selected = false
-    }
-    sender.selected  = true
-  }
 
-  @IBAction private func book(sender: UIButton) {
-    if self.filtedArray.count == 0 {
-      return
-    }
-    let goods = self.filtedArray[selectedRow] as! RoomGoods
-    for button in rightSelectButtonArray {
-      if button.selected == true {
-        goods.meat = button.titleLabel?.text
-      }
-    }
-
-    if selection != nil {
-      selection!(goods)
-    }
-    self.navigationController?.popViewControllerAnimated(true)
-  }
   
   //MARK:- TABLEVIEW
   
@@ -153,7 +108,7 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.filtedArray.count
+    return self.roomTypes.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -170,59 +125,46 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
       let arr = NSBundle .mainBundle() .loadNibNamed("BookRoomCell", owner: nil, options: nil) as Array
       cell = (arr[0] as! BookRoomCell)
     }
-    cell!.goods = (filtedArray[indexPath.row] as! RoomGoods)
+    cell!.goods = (roomTypes[indexPath.row] as! RoomGoods)
     return cell!
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     headerView = NSBundle.mainBundle().loadNibNamed("BookHeaderView", owner: self, options: nil).first as! BookHeaderView
+    if hotel.shopid != nil {
+      headerView.backButton.addTarget(self, action: "pop:", forControlEvents: UIControlEvents.TouchUpInside)
+      headerView.hotelNameLabel.text = hotel.shopname
+      let placeholderImage = UIImage(named: "img_hotel_zhanwei")
+      headerView.addressLabel.text = hotel.shopaddress
+      let logoURL = NSURL(string: hotel.bgImgUrl)
+      headerView.backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
+      headerView.explainLabel.text = hotel.shopbusiness
+      headerView.introducesLabel.text = hotel.shopdesc
+      headerView.addressLabel.text = hotel.shopaddress
+    }
     return headerView
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     let oldCell = tableView .cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
     oldCell?.selected = false
     let newCell = tableView .cellForRowAtIndexPath(indexPath)
     newCell?.selected = true
     self.selectedRow = indexPath.row
-  }
-  
-  func setupHeaderView() {
-    
-    headerView.hotelNameLabel.text = hotel.shopname
-    let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    headerView.addressLabel.text = hotel.shopaddress
-    let logoURL = NSURL(string: hotel.bgImgUrl)
-    headerView.backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
-    headerView.explainLabel.text = hotel.shopbusiness
-    headerView.introducesLabel.text = hotel.shopdesc
-    headerView.addressLabel.text = hotel.shopaddress
     
   }
   
-  //MARK:- SCROLLVIEW
-  
-  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-    selectionViewBottomConstraint.constant = 0
-    constraintAnimation(selectionView)
+  func pop(sender:UIButton) {
+    self.navigationController?.popViewControllerAnimated(true)
   }
-
-  func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    if !decelerate {
-      selectionViewBottomConstraint.constant = 0
-      constraintAnimation(selectionView)
-    }
-  }
-
-  func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-    selectionViewBottomConstraint.constant = -135
-    constraintAnimation(selectionView)
-  }
-  
-  private func constraintAnimation(sender: UIView) {
-    UIView .animateWithDuration(0.3, animations: { () -> Void in
-      sender .layoutIfNeeded()
-    })
+  @IBAction func confirm(sender: AnyObject) {
+    let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+    let goods = roomTypes[self.selectedRow] as! RoomGoods
+    vc.goods = goods
+    vc.shopID = String(shopid)
+    navigationController?.pushViewController(vc, animated: true)
   }
 }

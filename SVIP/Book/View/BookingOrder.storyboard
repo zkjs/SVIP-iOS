@@ -356,6 +356,7 @@
                         <outlet property="roomCountInfoLabel" destination="qSI-wg-3hF" id="iKS-zZ-CZR"/>
                         <outlet property="roomCountLabel" destination="gff-xh-ybZ" id="ZmD-DF-n7U"/>
                         <outlet property="roomImage" destination="l9N-hT-03f" id="sTk-BJ-kkh"/>
+                        <outlet property="roomPriceLabel" destination="eFX-zJ-bqv" id="fyX-SL-0Hs"/>
                         <outlet property="roomType" destination="swF-2I-5yI" id="ZQA-Yf-3eO"/>
                         <outlet property="roomTypePromptLabel" destination="8Ev-Un-kJZ" id="I7O-56-lWy"/>
                         <outlet property="sendOrderButton" destination="Wb0-R8-NEU" id="jGH-Zc-XJO"/>

@@ -18,7 +18,11 @@ class BookHeaderView: UIView {
   }
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var addressLabel: UILabel!
-  @IBOutlet weak var introducesLabel: UILabel!
+  @IBOutlet weak var introducesLabel: UILabel! {
+    didSet {
+      introducesLabel.numberOfLines = 0
+    }
+  }
   @IBOutlet weak var explainLabel: UILabel!
   @IBOutlet weak var hotelNameLabel: UILabel!
   @IBOutlet weak var backImageView: UIImageView!
