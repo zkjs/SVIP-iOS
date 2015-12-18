@@ -88,8 +88,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   
   //refreshHomeVCDelegate
   func refreshHomeVC(set: Bool) {
-    print("成功啦啦啦啦！！！")
-    self.tableView.reloadData()
+    getPushInfoData()
   }
   
   func  loadData() {
@@ -502,7 +501,12 @@ extension HomeVC: CLLocationManagerDelegate {
     let json = ZKJSTool.convertJSONStringFromDictionary(extra)
     let data = json.dataUsingEncoding(NSUTF8StringEncoding)
     let option = YBPublish2Option()
-    let alert = "\(userName) 到达 \(locdesc)"
+    let sex = AccountManager.sharedInstance().sex
+    var gender = "先生"
+    if sex == "1" {
+      gender = "女士"
+    }
+    let alert = "\(userName)\(gender) 到达 \(locdesc)"
     let badge = NSNumber(integer: 1)
     let sound = "default"
     let apnOption = YBApnOption(alert: alert, badge: badge, sound: sound, contentAvailable: nil, extra: extra)
