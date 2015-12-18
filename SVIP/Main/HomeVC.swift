@@ -185,8 +185,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       print(responseObject)
       if let array = responseObject as? NSArray {
         for dic in array {
-          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-          self.pushInfoArray.insert(pushInfo, atIndex: 0)
+        let  pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+        self.pushInfoArray.insert(pushInfo, atIndex: 0)
         }
         self.tableView.reloadData()
       }
@@ -267,7 +267,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
     if urlArray.count != 0 {
       myView.backgroundImage.sd_setImageWithURL(NSURL(string: self.homeUrl), placeholderImage: nil)
     }
-    
+    myView.privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
     myView.backgroundImage.layer.masksToBounds = true
     let animation = CABasicAnimation(keyPath:"transform.scale")
     //动画选项设定
@@ -281,8 +281,13 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
     return myView
   }
   
+  func getPrivilege() {
+    let vc = FloatingWindowVC()
+    self.addChildViewController(vc)
+    self.view.addSubview(vc.view)
+  }
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if AccountManager.sharedInstance().isLogin() == true {
+    if AccountManager.sharedInstance().isLogin() == true &&  pushInfoArray.count != 0 {
       if indexPath.row == 0 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
@@ -466,7 +471,7 @@ extension HomeVC: CLLocationManagerDelegate {
         print("[result] publish data(\(json)) to topic(\(topic)) failed: \(error), recovery suggestion: \(error.localizedRecoverySuggestion)")
       }
     }
-    
+    //位置区域变化通知
     ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
       let set = dic["set"] as! NSNumber
@@ -474,6 +479,12 @@ extension HomeVC: CLLocationManagerDelegate {
         print("告诉后台成功")
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
+    //根据酒店区域获取用户特权
+    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+      
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
     

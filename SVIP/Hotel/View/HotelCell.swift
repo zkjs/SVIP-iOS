@@ -54,6 +54,13 @@ class HotelCell: UITableViewCell {
     addressLabel.text = hotel.shopaddress
     let logoURL = NSURL(string: hotel.bgImgUrl)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
+    if let salesid = hotel.salesid {
+      let url = NSURL(string: "http://120.25.241.196/")
+      let urlStr = url?.URLByAppendingPathComponent("uploads/users/\(salesid).jpg")
+      userImageButton.sd_setBackgroundImageWithURL(urlStr, forState: UIControlState.Normal)
+    }
+
+   
   }
 
 

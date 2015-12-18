@@ -61,11 +61,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wN-xA-hbl">
-                        <rect key="frame" x="362" y="307" width="48" height="48"/>
+                        <rect key="frame" x="496" y="294" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="4jw-pW-5Ak"/>
+                            <constraint firstAttribute="width" constant="48" id="5kr-NQ-VcM"/>
                             <constraint firstAttribute="width" constant="48" id="WqB-fm-4gZ"/>
+                            <constraint firstAttribute="height" constant="48" id="yUb-Yd-G2L"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4jw-pW-5Ak"/>
+                                <exclude reference="WqB-fm-4gZ"/>
+                            </mask>
+                        </variation>
                     </button>
                 </subviews>
                 <constraints>
@@ -74,9 +82,11 @@
                     <constraint firstAttribute="trailing" secondItem="TJE-6o-7DQ" secondAttribute="trailing" id="6Dd-pQ-dj1"/>
                     <constraint firstAttribute="trailing" secondItem="A4g-Ev-AfZ" secondAttribute="trailing" id="7nS-6j-nwY"/>
                     <constraint firstItem="A4g-Ev-AfZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="F81-4A-r0N"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="9wN-xA-hbl" secondAttribute="trailing" constant="20" id="KJI-49-zJ5"/>
                     <constraint firstItem="9wN-xA-hbl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="299" id="QON-rc-Yr5"/>
                     <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="top" secondItem="fRo-1M-SDA" secondAttribute="bottom" id="Wio-tQ-9S3"/>
                     <constraint firstItem="A4g-Ev-AfZ" firstAttribute="top" secondItem="TJE-6o-7DQ" secondAttribute="bottom" id="XYx-Ud-Jgp"/>
+                    <constraint firstItem="9wN-xA-hbl" firstAttribute="top" secondItem="Z6Z-Mf-dtv" secondAttribute="bottom" constant="90" id="blD-oD-pjU"/>
                     <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fhB-0Q-Ypg"/>
                     <constraint firstItem="fRo-1M-SDA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="115" id="s39-Nc-ogj"/>
                     <constraint firstItem="9wN-xA-hbl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="100" id="sDW-0E-vtC"/>
@@ -87,6 +97,8 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="3CN-t3-nSN"/>
+                        <exclude reference="QON-rc-Yr5"/>
                         <exclude reference="sDW-0E-vtC"/>
                     </mask>
                 </variation>
