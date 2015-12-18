@@ -70,7 +70,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
     }else {
       self.homeUrl = self.urlArray[self.count] as! String
     }
-     navigationController?.navigationBarHidden = false
+    navigationController?.navigationBarHidden = false
   }
   
   func  loadData() {
@@ -86,9 +86,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
-   
     
-
+    
+    
   }
   
   func setupUI() {
@@ -114,12 +114,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       hourLabel = "晚上好"
     }
     myView.greetLabel.text = hourLabel
-     let sex = AccountManager.sharedInstance().sex
-      if sex == "0" {
-        self.sexString = "先生"
-      } else {
-        self.sexString  = "女士"
-      }
+    let sex = AccountManager.sharedInstance().sex
+    if sex == "0" {
+      self.sexString = "先生"
+    } else {
+      self.sexString  = "女士"
+    }
     
     let loginStats = AccountManager.sharedInstance().isLogin()
     
@@ -166,8 +166,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       if let array = responseObject as? NSArray {
         var datasource = [PushInfoModel]()
         for dic in array {
-         let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-         datasource.append(pushInfo)
+          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+          datasource.append(pushInfo)
         }
         self.pushInfoArray = datasource
         self.tableView.reloadData()
@@ -185,28 +185,32 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       print(responseObject)
       if let array = responseObject as? NSArray {
         for dic in array {
-        let  pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-        self.pushInfoArray.insert(pushInfo, atIndex: 0)
+          let  pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+          if self.pushInfoArray.count == 0 {
+            self.pushInfoArray.append(pushInfo)
+          } else {
+            self.pushInfoArray.insert(pushInfo, atIndex: 0)
+          }
         }
         self.tableView.reloadData()
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
-//    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      let lastOrder = responseObject as! NSDictionary
-//      if let reservation_no = lastOrder["reservation_no"] as? String {
-//        if reservation_no == "0" {
-//          StorageManager.sharedInstance().updateLastOrder(nil)
-//        } else {
-//          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
-//          StorageManager.sharedInstance().updateLastOrder(order)
-//        }
-//        self.tableView.reloadData()
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
+    //    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    //      let lastOrder = responseObject as! NSDictionary
+    //      if let reservation_no = lastOrder["reservation_no"] as? String {
+    //        if reservation_no == "0" {
+    //          StorageManager.sharedInstance().updateLastOrder(nil)
+    //        } else {
+    //          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
+    //          StorageManager.sharedInstance().updateLastOrder(order)
+    //        }
+    //        self.tableView.reloadData()
+    //      }
+    //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+    //
+    //    }
   }
   
   // Member Activate
@@ -295,9 +299,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       } else {
         pushToBookingOrderTVC()
       }
-
+      
     }else {
-       pushToBookingOrderTVC()
+      pushToBookingOrderTVC()
     }
     
   }
@@ -329,7 +333,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       print(".Unsupported")
     }
   }
-
+  
   
 }
 
@@ -378,7 +382,7 @@ extension HomeVC: CLLocationManagerDelegate {
     longitude = coordinate.longitude
     latution = coordinate.latitude
     
-//    postGPSLocation(coordinate)
+    //    postGPSLocation(coordinate)
   }
   
   private func postGPSLocation(coordinate: CLLocationCoordinate2D) {

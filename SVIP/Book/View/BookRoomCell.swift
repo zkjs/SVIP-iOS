@@ -29,33 +29,29 @@ class BookRoomCell: UITableViewCell {
   
   
   //DATA
+  
+  func setData(goods: RoomGoods) {
+    //        var priceStr = ""
+    var room: String! = ""
+    var type: String! = ""
+    //        if let b = myGoods.price {
+    //          priceStr = b
+    //        }
+    if goods.room != nil {
+      room = goods.room
+    }
+    if goods.type != nil {
+      type = goods.type
+    }
+    //        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
+    let tagStr = "  \(room)\(type)"
+    priceTag.text = tagStr
     
-  var goods: RoomGoods? {
-    didSet {
-      if let myGoods = goods {
-//        var priceStr = ""
-        var room: String! = ""
-        var type: String! = ""
-//        if let b = myGoods.price {
-//          priceStr = b
-//        }
-        if myGoods.room != nil {
-          room = myGoods.room
-        }
-        if myGoods.type != nil {
-          type = myGoods.type
-        }
-//        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
-        let tagStr = "  \(room)\(type)"
-        priceTag.text = tagStr
-        
-        let baseUrl = kBaseURL
-        if let goodsImage = myGoods.image {
-          var url = NSURL(string: baseUrl)
-          url = url?.URLByAppendingPathComponent(goodsImage)
-          roomLook.sd_setImageWithURL(url)
-        }
-      }
+    let baseUrl = kBaseURL
+    if let goodsImage = goods.image {
+      var url = NSURL(string: baseUrl)
+      url = url?.URLByAppendingPathComponent(goodsImage)
+      roomLook.sd_setImageWithURL(url)
     }
   }
   
@@ -67,7 +63,7 @@ class BookRoomCell: UITableViewCell {
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     
-//    selectedView.hidden = !selected
+    selectedView.hidden = !selected
   }
   
 }

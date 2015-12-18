@@ -41,6 +41,7 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
       self.showHUDInView(self.view, withLoading: "正在查找...")
       ZKJSJavaHTTPSessionManager.sharedInstance().checkSalesWithPhone(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         self.hideHUD()
+        print(responseObject)
         if let array = responseObject as? [[String: AnyObject]] {
           if let data = array.first {
             if let userid = data["userId"] as? String {

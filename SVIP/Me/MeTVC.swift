@@ -11,7 +11,7 @@ import UIKit
 class MeTVC: UITableViewController {
   
   @IBOutlet weak var userImage: UIImageView!
-  @IBOutlet weak var usernameLabel: UILabel!
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,16 +36,11 @@ class MeTVC: UITableViewController {
   
   func setupUI() {
     userImage.image = AccountManager.sharedInstance().avatarImage
-    usernameLabel.text = AccountManager.sharedInstance().userName
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-    if indexPath.row == 0 {
-      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_white"))
-    } else {
-      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
-    }
+    cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
     return cell
   }
   

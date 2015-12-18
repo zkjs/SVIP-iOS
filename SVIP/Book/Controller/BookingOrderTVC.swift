@@ -109,7 +109,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     order.room_type = roomType.text! + breakfast
     order.fullname = shopName
     
-    order.room_image_URL = roomImageURL
+    order.room_image_URL = goods.image
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     order.arrival_date = dateFormatter.stringFromDate(startDate)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ntE-bq-TRM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ntE-bq-TRM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--MeTVC-->
@@ -18,7 +18,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
-                            <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <sections>
                             <tableViewSection id="uWG-yP-DNx">
@@ -30,8 +29,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmH-Ag-zFq">
+                                                    <rect key="frame" x="16" y="30" width="64" height="20"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background" translatesAutoresizingMaskIntoConstraints="NO" id="O66-ft-dRa">
-                                                    <rect key="frame" x="16" y="16" width="48" height="48"/>
+                                                    <rect key="frame" x="511" y="16" width="48" height="48"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="LwG-BM-r1W"/>
@@ -43,32 +49,28 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王二丫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmH-Ag-zFq">
-                                                    <rect key="frame" x="72" y="30" width="48" height="20"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="dmH-Ag-zFq" firstAttribute="centerY" secondItem="QbN-Gp-HA4" secondAttribute="centerY" id="9mW-rC-m76"/>
                                                 <constraint firstAttribute="trailing" secondItem="O66-ft-dRa" secondAttribute="trailing" constant="16" id="FNa-O8-AZV"/>
                                                 <constraint firstItem="O66-ft-dRa" firstAttribute="leading" secondItem="QbN-Gp-HA4" secondAttribute="leading" constant="16" id="HHF-1e-bfs"/>
+                                                <constraint firstItem="dmH-Ag-zFq" firstAttribute="leading" secondItem="QbN-Gp-HA4" secondAttribute="leading" constant="16" id="KRc-ig-nr9"/>
                                                 <constraint firstItem="dmH-Ag-zFq" firstAttribute="leading" secondItem="O66-ft-dRa" secondAttribute="trailing" constant="8" id="Qmh-Ad-aC3"/>
+                                                <constraint firstAttribute="trailing" secondItem="O66-ft-dRa" secondAttribute="trailing" constant="8" id="dZW-pe-5e8"/>
                                                 <constraint firstItem="O66-ft-dRa" firstAttribute="leading" secondItem="dmH-Ag-zFq" secondAttribute="trailing" constant="16" id="fei-IE-aXR"/>
                                                 <constraint firstItem="O66-ft-dRa" firstAttribute="centerY" secondItem="QbN-Gp-HA4" secondAttribute="centerY" id="war-zN-Wjt"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="Qmh-Ad-aC3"/>
                                                     <exclude reference="FNa-O8-AZV"/>
+                                                    <exclude reference="HHF-1e-bfs"/>
                                                     <exclude reference="fei-IE-aXR"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
-                                        <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="8Fa-mf-vvL">
@@ -128,8 +130,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="userImage" destination="O66-ft-dRa" id="JOk-DR-1TN"/>
-                        <outlet property="usernameLabel" destination="dmH-Ag-zFq" id="ATs-1I-Ews"/>
+                        <outlet property="userImage" destination="O66-ft-dRa" id="mLg-UA-rbi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EL-oO-tQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
