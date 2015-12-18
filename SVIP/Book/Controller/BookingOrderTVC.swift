@@ -29,7 +29,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var roomCountInfoLabel: UILabel!
   @IBOutlet weak var dateInfoLabel: UILabel!
   @IBOutlet weak var sendOrderButton: UIButton!
-  
+  var shopName = String()
   var shopID = String()
   var dateFormatter = NSDateFormatter()
   var roomCount = 1
@@ -47,8 +47,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.contentInset = UIEdgeInsetsMake(-36.0, 0.0, 0.0, 0.0)
-    
+    tableView.contentInset = UIEdgeInsetsMake(36.0, 0.0, 0.0, 0.0)
     roomTypePromptLabel.text = NSLocalizedString("CHOOSE_ROOM_TYPE", comment: "")
     roomCountInfoLabel.text = NSLocalizedString("ROOM_COUNT", comment: "")
     dateInfoLabel.text = NSLocalizedString("START_END_DATE", comment: "")
@@ -132,9 +131,8 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     order.rooms = NSNumber(integer: Int(rooms)!)
     order.room_typeid = roomTypeID
     order.room_type = roomType.text! + breakfast
-    if let shopName = StorageManager.sharedInstance().shopNameWithShopID(shopID) {
-      order.fullname = shopName
-    }
+    order.fullname = shopName
+    
     order.room_image_URL = roomImageURL
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"

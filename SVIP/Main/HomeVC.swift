@@ -8,16 +8,16 @@
 
 import UIKit
 import CoreLocation
-
-class HomeVC: UIViewController {
+import CoreBluetooth
+class HomeVC: UIViewController,CBCentralManagerDelegate {
   
   let Identifier = "SettingVCCell"
   let titles = ["订单状态","最近浏览","服务精选","酒店精选"]
   let locationManager = CLLocationManager()
+  var bluetoothManager = CBCentralManager()
   //var pushInfo = PushInfoModel()
   var pushInfoArray = [PushInfoModel]()
   var myView: HomeHeaderView!
-  var currentCity: String!
   var activate =  true
   var longitude: double_t!
   var latution: double_t!
@@ -40,7 +40,7 @@ class HomeVC: UIViewController {
     super.viewDidLoad()
     
     setupCoreLocationService()
-    
+    setupBluetoothManager()
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: HomeCell.reuseIdentifier())
@@ -70,7 +70,7 @@ class HomeVC: UIViewController {
     }else {
       self.homeUrl = self.urlArray[self.count] as! String
     }
-    // navigationController?.navigationBarHidden = false
+     navigationController?.navigationBarHidden = false
   }
   
   func  loadData() {
@@ -107,7 +107,7 @@ class HomeVC: UIViewController {
     if(time <= "12" && time > "11" ){
       hourLabel = "中午好"
     }
-    if(time <= "18" && time > "13" ){
+    if(time <= "18" && time > "12" ){
       hourLabel = "下午好"
     }
     if(time <= "24" && time > "18" ){
@@ -156,6 +156,9 @@ class HomeVC: UIViewController {
   
   func activated(sender:UIButton) {
     //激活页面
+    let vc = InvitationCodeVC()
+    self.presentViewController(vc, animated: true, completion: nil)
+    
   }
   
   func getPushInfoData() {
@@ -254,6 +257,7 @@ class HomeVC: UIViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     let pushInfo = self.pushInfoArray[indexPath.row]
+    cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
     cell.setData(pushInfo)
     return cell
   }
@@ -278,9 +282,49 @@ class HomeVC: UIViewController {
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
+    if AccountManager.sharedInstance().isLogin() == true {
+      if indexPath.row == 0 {
+        let vc = OrderListTVC()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+      } else {
+        pushToBookingOrderTVC()
+      }
+
+    }else {
+       pushToBookingOrderTVC()
+    }
     
   }
+  
+  func pushToBookingOrderTVC() {
+    let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  private func setupBluetoothManager() {
+    bluetoothManager = CBCentralManager(delegate: self, queue: nil)
+  }
+  // MARK: - CBCentralManagerDelegate
+  
+  func centralManagerDidUpdateState(central: CBCentralManager) {
+    switch central.state {
+    case .PoweredOn:
+      print(".PoweredOn")
+    case .PoweredOff:
+      print(".PoweredOff")
+    case .Resetting:
+      print(".Resetting")
+    case .Unauthorized:
+      print(".Unauthorized")
+    case .Unknown:
+      print(".Unknown")
+    case .Unsupported:
+      print(".Unsupported")
+    }
+  }
+
   
 }
 
@@ -431,6 +475,21 @@ extension HomeVC: CLLocationManagerDelegate {
         print("[result] publish data(\(json)) to topic(\(topic)) failed: \(error), recovery suggestion: \(error.localizedRecoverySuggestion)")
       }
     }
+    
+    ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+      let dic = responsObject as! NSDictionary
+      let set = dic["set"] as! NSNumber
+      if set.boolValue == true {
+//        ZKJSJavaHTTPSessionManager.sharedInstance().getSynchronizedStoreListWithShopID(shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+//          
+//          }, failure: { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+//            
+//        })
+      }
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
+    
   }
   
   private func setupBeaconMonitor() {

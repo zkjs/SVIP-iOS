@@ -55,7 +55,26 @@
 - (NSString *)userName {
   return [AccountManager sharedInstance].userName;
 }
-
+#pragma mark - 区域位置变化通知
+- (void)regionalPositionChangeNoticeWithUserID:(NSString *)userID locID:(NSString *)locID shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSDictionary * dic = @{@"userid":userID,@"shopid":shopID,@"locid":locID};
+  [self POST:@"arrive/notice" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    //NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
+#pragma mark -获取同步的到店列表
+- (void)getSynchronizedStoreListWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * string = [NSString stringWithFormat:@"arrive/users/%@/%@/%@",shopID,[self userID],[self token]];
+  [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    //NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
 #pragma mark - 首页大图
 - (void)getHomeImageWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"firstpage/icons" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
@@ -78,10 +97,11 @@
 }
 
 #pragma mark - 查询所有的酒店列表
-- (void)getShopListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  [self GET:@"shop/list" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+- (void)getShopListWithPage:(NSString *)page size:(NSString *)size success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * string = [NSString stringWithFormat:@"shop/list/%d/%d",page.intValue,size.intValue];
+  [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    // NSLog(@"%@", [responseObject description]);
+    // NSLog(@"酒店列表%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -93,7 +113,7 @@
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    // NSLog(@"%@", [responseObject description]);
+     //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -115,6 +135,17 @@
   NSDictionary * dic = @{@"token":[self token],@"userid":@"5555ec48d6ed3"};
   
   [self POST:@"messages/orders" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    //NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
+
+#pragma mark - 根据商户编号查询商户
+- (void)accordingMerchantNumberInquiryMerchantWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * string = [NSString stringWithFormat:@"shop/getshop/%@",shopID];
+  [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
     //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

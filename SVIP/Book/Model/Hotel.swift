@@ -16,7 +16,10 @@ class Hotel: NSObject {
   var shopname: String!
   var shopbusiness: String!
   var bgImgUrl: String!
-  
+  var shopaddress: String!
+  override init() {
+    super.init()
+  }
   init(dic: NSDictionary) {
     
     shopid = dic["shopid"] as! String
@@ -26,5 +29,6 @@ class Hotel: NSObject {
     shopname = dic["shopname"] as? String
     shopbusiness = dic["shopbusiness"] as? String
     bgImgUrl = dic["bgImgUrl"] as? String
+    shopaddress = dic["shopaddress"] as? String
   }
 }

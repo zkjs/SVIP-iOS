@@ -19,34 +19,40 @@ class ComprehensiveVC: UIViewController {
   var shops = [NSDictionary]()
   var item2 = UIBarButtonItem()
   var dataArray = [Hotel]()
+  var recommendArray = [RecommendModel]()
   let locationManager:CLLocationManager = CLLocationManager()
   var longitude: double_t!
   var latution: double_t!
   var cityArray = [String]()
   lazy var type = ComprehensiveType.chat
   var orderPage = 1
+   var currentCity: String!
   
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    
     showHUDInView(view, withLoading: "正在加载中...")
-    setupCoreLocationService()
     tableView.tableFooterView = UIView()
     tableView.showsVerticalScrollIndicator = false
     let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
+    let nibName1 = UINib(nibName: RecommandCell.nibName(), bundle: nil)
+    tableView.registerNib(nibName1, forCellReuseIdentifier: RecommandCell.reuseIdentifier())
+    
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "refreshData")  // 下拉刷新
-    tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")  // 上拉加载
-    let image = UIImage(named: "ic_dingwei_orange")
-    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: nil)
+    tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMore")  // 上拉加载
+    let image = UIImage(named: "ic_search_orange")
+    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "choiceCity:")
     
     
-    item2 = UIBarButtonItem(title: "想去哪里,享受尊贵服务", style: UIBarButtonItemStyle.Done, target: self, action: "choiceCity:")
+    item2 = UIBarButtonItem(title: "想去哪里,享受尊贵服务", style: UIBarButtonItemStyle.Done, target: self, action: nil)
     item2.tintColor = UIColor.ZKJS_navegationTextColor()
     super.navigationItem.leftBarButtonItems = [item1,item2]
     super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
+    setupCoreLocationService()
     // Do any additional setup after loading the view.
   }
   
@@ -56,89 +62,120 @@ class ComprehensiveVC: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
+    
     self.hidesBottomBarWhenPushed = false
     navigationController?.navigationBarHidden = false
-    getDataWithPage(orderPage)
+    
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    //self.hidesBottomBarWhenPushed = false
   }
   
-  func loadMoreData() {
-    orderPage++
-    getDataWithPage(orderPage)
+  func loadMore() {
+     orderPage++
+     loadShopListData(orderPage)
   }
   func refreshData() {
     orderPage = 1
-    getDataWithPage(1)
+    setupCoreLocationService()
+//    loadRecommandData()
+//    loadShopListData(orderPage)
+    
   }
   
   func choiceCity(sender:UIBarButtonItem) {
     let vc = CityVC()
-    vc.testClosure = myClosure
-    let nav = UINavigationController(rootViewController: vc)
+    let nav = BaseNC(rootViewController: vc)
     navigationController?.presentViewController(nav, animated: true, completion: nil)
   }
   
-  //定义一个带字符串参数的闭包
-  func myClosure(testStr:String)->Void{
-    item2.title = testStr
-    self.getDataWithPage(1)
+
+  func  loadRecommandData() {
+    
+    ZKJSJavaHTTPSessionManager.sharedInstance().getRecommendShopListWithCity(currentCity, success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      if let array = responseObject as? NSArray {
+        self.recommendArray.removeAll()
+          for dic in array {
+            let recommend = RecommendModel(dic: dic as! [String:AnyObject])
+            self.recommendArray.append(recommend)
+          }
+          self.loadShopListData(self.orderPage)
+          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation:.Automatic)
+          self.tableView.mj_header.endRefreshing()
+        }
+      
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+    }
+
   }
   
-  private func getDataWithPage(page: Int) {
-    ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(item2.title, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+  
+  private func loadShopListData(page: Int) {
+    //获取所有商家列表
+    ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
-        if array.count == 0 {
-          self.tableView.mj_footer.endRefreshingWithNoMoreData()
-          self.tableView.mj_header.endRefreshing()
-        } else {
-          if page == 1 {
-            self.dataArray.removeAll()
-          }
+        self.dataArray.removeAll()
           for dic in array {
             let hotel = Hotel(dic: dic as! [String:AnyObject])
             self.dataArray.append(hotel)
           }
           self.hideHUD()
-          self.tableView.reloadData()
-          self.tableView.mj_footer.endRefreshing()
+        
+          self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation:.Automatic)
+        
         }
+        //self.tableView.mj_footer.endRefreshing()
         self.tableView.mj_header.endRefreshing()
-      }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
-  }
+}
   
   // MARK: - Table view data source
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     // #warning Incomplete implementation, return the number of sections
-    return 1
+    return 2
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-    return dataArray.count
+    if section == 0 {
+      return recommendArray.count
+    }
+    else {
+//      print(dataArray.count)
+      return dataArray.count
+    }
+    
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.row == 0 {
-      return HotelCell.height()
+    if indexPath.section == 0 {
+      return RecommandCell.height()
     } else {
-      return 385
+      return HotelCell.height()
     }
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
-    cell.selectionStyle = UITableViewCellSelectionStyle.None
-    let shop = dataArray[indexPath.row]
-    cell.setData(shop)
-    return cell
+    
+    if indexPath.section == 0 {
+      let cell = tableView.dequeueReusableCellWithIdentifier(RecommandCell.reuseIdentifier(), forIndexPath: indexPath) as! RecommandCell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
+      let recommand = self.recommendArray[0]
+      cell.setdata(recommand)
+      return cell
+    } else {
+      let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
+      let shop = dataArray[indexPath.row]
+      cell.setData(shop)
+      return cell
+    }
+    
+    
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -149,6 +186,7 @@ class ComprehensiveVC: UIViewController {
       let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
       
       vc.shopID = hotel.shopid
+      vc.shopName = hotel.shopname
       self.navigationController?.pushViewController(vc, animated: true)
     } else if type == .customerService {
       let vc = CustomerServiceTVC()
@@ -167,9 +205,8 @@ class ComprehensiveVC: UIViewController {
         if (city == nil) {
           city = placemark.administrativeArea
         }
-        self.hideHUD()
-        self.item2.title = city?.stringByReplacingOccurrencesOfString("市", withString:"")
-        self.getDataWithPage(1)
+        self.currentCity = city?.stringByReplacingOccurrencesOfString("市", withString:"")
+        self.loadRecommandData()
       }
     }
   }

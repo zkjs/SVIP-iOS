@@ -19,6 +19,8 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   @IBOutlet private var leftSelectButtonArray: [BookItemButton]!
   @IBOutlet private var rightSelectButtonArray: [BookItemButton]!
   @IBOutlet weak var okButton: UIButton!
+  var hotel = Hotel()
+  var headerView = BookHeaderView!()
   
   //Data
   var shopid: NSNumber!
@@ -38,16 +40,21 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    print(shopid)
     // Do any additional setup after loading the view.
     setUI()
     loadData()
   }
   
+  override func viewWillAppear(animated: Bool) {
+     super.viewWillAppear(animated)
+    navigationController?.navigationBarHidden = true
+  }
+  
   private func setUI() {
     title = NSLocalizedString("ROOM_TYPE", comment: "")
     
-    tableView.contentInset = UIEdgeInsetsMake(0, 0, 135, 0)
+    tableView.contentInset = UIEdgeInsetsMake(36, 0, 135, 0)
     
     for button in leftSelectButtonArray {
       button .addTarget(self, action: NSSelectorFromString("categorySelect:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -61,6 +68,15 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   }
   
   private func loadData() {
+    ZKJSJavaHTTPSessionManager.sharedInstance().accordingMerchantNumberInquiryMerchantWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+      let dic = responsObject as! NSDictionary
+      self.hotel = Hotel(dic: dic as! [String:AnyObject])
+      self.setupHeaderView()
+      self.tableView.reloadData()
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
+    
     let button = self.leftSelectButtonArray.last
     self.categorySelect(button!)
   }
@@ -143,6 +159,10 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 160+8*2
   }
+  
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 387
+  }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     var cell = tableView .dequeueReusableCellWithIdentifier("BookVC") as? BookRoomCell
@@ -154,6 +174,11 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     return cell!
   }
   
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    headerView = NSBundle.mainBundle().loadNibNamed("BookHeaderView", owner: self, options: nil).first as! BookHeaderView
+    return headerView
+  }
+  
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     let oldCell = tableView .cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
@@ -161,6 +186,19 @@ class BookVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     let newCell = tableView .cellForRowAtIndexPath(indexPath)
     newCell?.selected = true
     self.selectedRow = indexPath.row
+  }
+  
+  func setupHeaderView() {
+    
+    headerView.hotelNameLabel.text = hotel.shopname
+    let placeholderImage = UIImage(named: "img_hotel_zhanwei")
+    headerView.addressLabel.text = hotel.shopaddress
+    let logoURL = NSURL(string: hotel.bgImgUrl)
+    headerView.backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
+    headerView.explainLabel.text = hotel.shopbusiness
+    headerView.introducesLabel.text = hotel.shopdesc
+    headerView.addressLabel.text = hotel.shopaddress
+    
   }
   
   //MARK:- SCROLLVIEW
