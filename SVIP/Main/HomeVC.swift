@@ -349,7 +349,7 @@ extension HomeVC: CLLocationManagerDelegate {
       locationManager.requestAlwaysAuthorization()
       return
     }
-//    setupBeaconMonitor()
+    setupBeaconMonitor()
     setupGPSMonitor()
   }
   
@@ -372,14 +372,6 @@ extension HomeVC: CLLocationManagerDelegate {
     let coordinate = manager.location!.coordinate
     longitude = coordinate.longitude
     latution = coordinate.latitude
-    //positioningCity()
-    //    //计算距离
-    //    let currentLocation = CLLocation(latitude: latution, longitude: longitude)
-    //    if let order = StorageManager.sharedInstance().lastOrder() {
-    //      //得到最近一张订单后取订单所带的经纬度
-    //      if let latitude = order.map_latitude,
-    //        let longitude = order.map_longitude {
-    //          let targetLocation = CLLocation(latitude:latitude, longitude:longitude)
     
 //    postGPSLocation(coordinate)
   }
@@ -445,8 +437,8 @@ extension HomeVC: CLLocationManagerDelegate {
     //    guard let UUID = beacon["uuid"] else { return }
     //    guard let major = beacon["major"] else { return }
     //    guard let minor = beacon["minor"] else { return }
-    let userID = JSHAccountManager.sharedJSHAccountManager().userid
-    let userName = AccountManager.sharedInstance().userName ?? ""
+    let userID = AccountManager.sharedInstance().userID
+    let userName = AccountManager.sharedInstance().userName
     
     //    let notification = UILocalNotification()
     //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
@@ -480,11 +472,7 @@ extension HomeVC: CLLocationManagerDelegate {
       let dic = responsObject as! NSDictionary
       let set = dic["set"] as! NSNumber
       if set.boolValue == true {
-//        ZKJSJavaHTTPSessionManager.sharedInstance().getSynchronizedStoreListWithShopID(shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-//          
-//          }, failure: { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-//            
-//        })
+        print("告诉后台成功")
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
