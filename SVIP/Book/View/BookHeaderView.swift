@@ -26,6 +26,12 @@ class BookHeaderView: UIView {
   @IBOutlet weak var explainLabel: UILabel!
   @IBOutlet weak var hotelNameLabel: UILabel!
   @IBOutlet weak var backImageView: UIImageView!
+  
+  
+  class func height() -> CGFloat {
+    return 387.0
+  }
+  
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

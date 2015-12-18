@@ -9,36 +9,58 @@
 import UIKit
 
 class BookRoomCell: UITableViewCell {
+  
   @IBOutlet private weak var roomLook: UIImageView!
   @IBOutlet private weak var priceTag: UILabel!
   @IBOutlet private weak var selectedView: UIImageView!
   
+  
+  class func reuseIdentifier() -> String {
+    return "BookRoomCell"
+  }
+  
+  class func nibName() -> String {
+    return "BookRoomCell"
+  }
+  
+  class func height() -> CGFloat {
+    return 171.0
+  }
+  
+  
   //DATA
+  
+  var showSelectedView = false
+  
   var goods: RoomGoods? {
     didSet {
       if let myGoods = goods {
-        var priceStr = ""
+        if showSelectedView {
+          selectedView.hidden = false
+        } else {
+          selectedView.hidden = true
+        }
+        //        var priceStr = ""
         var room: String! = ""
         var type: String! = ""
-        if let b = myGoods.price {
-          priceStr = b
-        }
+        //        if let b = myGoods.price {
+        //          priceStr = b
+        //        }
         if myGoods.room != nil {
           room = myGoods.room
         }
         if myGoods.type != nil {
           type = myGoods.type
         }
-//        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
+        //        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
         let tagStr = "  \(room)\(type)"
         priceTag.text = tagStr
-
-        let baseUrl = "http://120.25.241.196/"
+        
+        let baseUrl = kBaseURL
         if let goodsImage = myGoods.image {
-          let placeholderImage = UIImage(named: "星空中心")
           var url = NSURL(string: baseUrl)
           url = url?.URLByAppendingPathComponent(goodsImage)
-          roomLook.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.LowPriority, .RetryFailed], completed: nil)
+          roomLook.sd_setImageWithURL(url)
         }
       }
     }
@@ -46,12 +68,13 @@ class BookRoomCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-
+    
   }
-
+  
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
+    
     selectedView.hidden = !selected
-    // Configure the view for the selected state
   }
+  
 }

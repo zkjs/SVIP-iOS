@@ -479,7 +479,11 @@
 #pragma mark - private
 
 - (NSString *)getChatterName {
-  return self.conversation.latestMessageFromOthers.ext[@"fromName"];
+  if (self.conversation.latestMessageFromOthers) {
+    return self.conversation.latestMessageFromOthers.ext[@"fromName"];
+  } else {
+    return self.conversation.latestMessage.ext[@"toName"];
+  }
 }
 
 - (void)_showMenuViewController:(UIView *)showInView

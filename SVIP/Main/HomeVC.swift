@@ -400,7 +400,6 @@ extension HomeVC: CLLocationManagerDelegate {
     if region is CLBeaconRegion {
       didEnterBeaconRegion(region as! CLBeaconRegion)
     }
-    
   }
   
   private func didEnterBeaconRegion(region: CLBeaconRegion!) {

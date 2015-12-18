@@ -28,10 +28,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer.hidden = true
     
     tableView.tableFooterView = UIView()
-  }
-  
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
     
     showHUDInView(view, withLoading: "")
     loadMoreData()
@@ -80,7 +76,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           vc.order = order as! OrderModel
           navigationController?.pushViewController(vc, animated: true)
         }
-    
   }
   
   // MARK: - BookingOrderDetailVCDelegate
