@@ -69,11 +69,12 @@
   
   EaseEmotionManager *manager= [[EaseEmotionManager alloc] initWithType:EMEmotionDefault emotionRow:3 emotionCol:7 emotions:[EaseEmoji allEmoji]];
   [self.faceView setEmotionManagers:@[manager]];
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+  
+  UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+  [backButton setImage:[UIImage imageNamed:@"ic_fanhui_orange"] forState:UIControlStateNormal];
+  [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+  UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+  [self.navigationItem setLeftBarButtonItem:backItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -352,7 +353,8 @@
       [[EaseMob sharedInstance].chatManager removeConversationByChatter:self.conversation.chatter deleteMessages:NO append2Chat:YES];
     }
   }
-  [self.navigationController popViewControllerAnimated:YES];
+  [self.navigationController popToRootViewControllerAnimated:YES];
+//  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)showGroupDetailAction

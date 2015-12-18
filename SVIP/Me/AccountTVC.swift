@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountTVC: UITableViewController, UINavigationControllerDelegate{
+class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   
   @IBOutlet weak var emailTextFiled: UITextField!
   @IBOutlet weak var sexTextField: UITextField!

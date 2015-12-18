@@ -65,7 +65,7 @@ class LoginVC: UIViewController {
       if success {
         self.loginWithPhone(phone)
       } else {
-        ZKJSTool.showMsg("验证码不正确")
+        self.showHint("验证码不正确")
       }
     }
   }

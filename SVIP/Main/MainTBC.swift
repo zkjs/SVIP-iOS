@@ -102,15 +102,16 @@ extension MainTBC: EMCallManagerDelegate {
   }
   
   func showOrderAlertWithOrderInfo(order: [String: AnyObject]) {
-    let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
-    vc.type = .Present
     if let orderNo = order["orderNo"] as? String {
-      vc.reservation_no = orderNo
       let alertMessage = "您的订单\(orderNo)已新增，请查看详情"
       let alertView = UIAlertController(title: "订单新增", message: alertMessage, preferredStyle: .Alert)
       let checkAction = UIAlertAction(title: "查看", style: .Default, handler: { (action: UIAlertAction) -> Void in
-        self.presentViewController(vc, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+        vc.type = .Present
+        vc.reservation_no = orderNo
+        let nc = BaseNC(rootViewController:vc)
+        self.presentViewController(nc, animated: true, completion: nil)
       })
       let cancelAction = UIAlertAction(title: "知道了", style: .Cancel, handler: nil)
       alertView.addAction(cancelAction)

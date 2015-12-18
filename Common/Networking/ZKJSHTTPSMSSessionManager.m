@@ -61,7 +61,7 @@
                                @"templateId": @"50157",
                                @"datas": datas
                                };
-  
+  NSLog(@"%@", verifyCode);
   [self POST:requestURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
     NSLog(@"%@", responseObject[@"statusMsg"]);
     self.phoneSMS[phone] = verifyCode;

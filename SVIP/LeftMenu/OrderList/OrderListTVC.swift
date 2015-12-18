@@ -56,13 +56,13 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     return cell
   }
   
-  //设置cell的显示动画
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
-    UIView.animateWithDuration(0.25) { () -> Void in
-      cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
-    }
-  }
+//  //设置cell的显示动画
+//  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//    cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
+//    UIView.animateWithDuration(0.25) { () -> Void in
+//      cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+//    }
+//  }
   
   // MARK: - Table view delegate
   

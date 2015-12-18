@@ -118,21 +118,24 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     
     bkOrder = BookOrder()
     bkOrder.reservation_no = reservation_no
-    loadData()
   }
   
   // MARK: - Public
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.hidesBarsOnSwipe = true
+    
+    if type == .Present {
+      let dismissItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "dismissSelf")
+      navigationItem.rightBarButtonItem = dismissItem
+    }
     loadData()
   }
   
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    
-    navigationController?.hidesBarsOnSwipe = false
+  // MARK: - Public
+  
+  func dismissSelf() {
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
   // MARK: - Private
@@ -340,11 +343,14 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       mutDic.setObject(remarkTextView.text, forKey: "remark")
     }
     
-    if bkOrder.pay_id.integerValue == 0 {
+    if bkOrder.pay_id.integerValue == 1 {
       // 在线支付
       let payVC = BookPayVC()
+      if type == .Present {
+        payVC.type = .Present
+      }
       payVC.bkOrder = bkOrder
-      self.navigationController?.pushViewController(payVC, animated: true)
+      navigationController?.pushViewController(payVC, animated: true)
     } else {
       // 直接确定订单
       ZKJSHTTPSessionManager.sharedInstance().modifyOrderWithReservation_no(bkOrder.reservation_no, param: mutDic as [NSObject : AnyObject], success: {[unowned self]  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
