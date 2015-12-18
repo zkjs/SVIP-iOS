@@ -26,7 +26,7 @@ class ComprehensiveVC: UIViewController {
   var cityArray = [String]()
   lazy var type = ComprehensiveType.chat
   var orderPage = 1
-   var currentCity: String!
+  var currentCity: String!
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -44,16 +44,17 @@ class ComprehensiveVC: UIViewController {
     
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "refreshData")  // 下拉刷新
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMore")  // 上拉加载
+    let footer = tableView.mj_footer
+    footer.automaticallyHidden = false
+    
     let image = UIImage(named: "ic_search_orange")
     let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "choiceCity:")
-    
     
     item2 = UIBarButtonItem(title: "想去哪里,享受尊贵服务", style: UIBarButtonItemStyle.Done, target: self, action: nil)
     item2.tintColor = UIColor.ZKJS_navegationTextColor()
     super.navigationItem.leftBarButtonItems = [item1,item2]
     super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
     setupCoreLocationService()
-    // Do any additional setup after loading the view.
   }
   
   override func loadView() {
@@ -73,15 +74,11 @@ class ComprehensiveVC: UIViewController {
   }
   
   func loadMore() {
-     orderPage++
-     loadShopListData(orderPage)
+    loadShopListData(orderPage)
   }
   func refreshData() {
     orderPage = 1
     setupCoreLocationService()
-//    loadRecommandData()
-//    loadShopListData(orderPage)
-    
   }
   
   func choiceCity(sender:UIBarButtonItem) {
@@ -90,62 +87,61 @@ class ComprehensiveVC: UIViewController {
     navigationController?.presentViewController(nav, animated: true, completion: nil)
   }
   
-
-  func  loadRecommandData() {
+  
+  func loadRecommandData() {
     
     ZKJSJavaHTTPSessionManager.sharedInstance().getRecommendShopListWithCity(currentCity, success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
         self.recommendArray.removeAll()
-          for dic in array {
-            let recommend = RecommendModel(dic: dic as! [String:AnyObject])
-            self.recommendArray.append(recommend)
-          }
-//          self.loadShopListData(self.orderPage)
-          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation:.Automatic)
-          self.tableView.mj_header.endRefreshing()
+        for dic in array {
+          let recommend = RecommendModel(dic: dic as! [String:AnyObject])
+          self.recommendArray.append(recommend)
         }
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation:.Automatic)
+        self.tableView.mj_header.endRefreshing()
+      }
       
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
     }
-
+    
   }
   
   
   private func loadShopListData(page: Int) {
     //获取所有商家列表
     ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      self.hideHUD()
+      
       if let array = responseObject as? NSArray {
-        self.dataArray.removeAll()
-          for dic in array {
-            let hotel = Hotel(dic: dic as! [String:AnyObject])
-            self.dataArray.append(hotel)
-          }
-          self.hideHUD()
-        
-          self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation:.Automatic)
-        
+        if self.orderPage == 1 {
+          self.dataArray.removeAll()
         }
-        //self.tableView.mj_footer.endRefreshing()
-        self.tableView.mj_header.endRefreshing()
+        
+        for dic in array {
+          let hotel = Hotel(dic: dic as! [String:AnyObject])
+          self.dataArray.append(hotel)
+        }
+        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation:.Automatic)
+        self.orderPage++
+      }
+      self.tableView.mj_footer.endRefreshing()
+      self.tableView.mj_header.endRefreshing()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
-}
+  }
   
   // MARK: - Table view data source
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    // #warning Incomplete implementation, return the number of sections
     return 2
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
     if section == 0 {
       return recommendArray.count
     }
     else {
-//      print(dataArray.count)
       return dataArray.count
     }
     
@@ -195,19 +191,6 @@ class ComprehensiveVC: UIViewController {
     vc.shopid = NSNumber(integer: Int(hotel.shopid)!)
     vc.hidesBottomBarWhenPushed = true
     navigationController?.pushViewController(vc, animated: true)
-//    let hotel = self.dataArray[indexPath.row]
-//    if type == .chat {
-//      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
-//      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-//      
-//      vc.shopID = hotel.shopid
-//      vc.shopName = hotel.shopname
-//      self.navigationController?.pushViewController(vc, animated: true)
-//    } else if type == .customerService {
-//      let vc = CustomerServiceTVC()
-//      vc.shopID = hotel.shopid
-//      self.navigationController?.pushViewController(vc, animated: true)
-//    }
   }
   
   func setupUI() {
