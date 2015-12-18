@@ -9,12 +9,14 @@
 import UIKit
 import CoreLocation
 import CoreBluetooth
-class HomeVC: UIViewController,CBCentralManagerDelegate {
-  
+class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
+  var delegate:refreshHomeVCDelegate?
   let Identifier = "SettingVCCell"
   let titles = ["订单状态","最近浏览","服务精选","酒店精选"]
   let locationManager = CLLocationManager()
   var bluetoothManager = CBCentralManager()
+  var privilege = PrivilegeModel()
+  var floatingVC = FloatingWindowVC()
   //var pushInfo = PushInfoModel()
   var pushInfoArray = [PushInfoModel]()
   var myView: HomeHeaderView!
@@ -51,15 +53,26 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    self.pushInfoArray.removeAll()
+    delegate = self
     navigationController?.navigationBarHidden = true
     loadData()
     count++
-    tableView.reloadData()
-    getPushInfoData()
+   // tableView.reloadData()
     let islogin = AccountManager.sharedInstance().isLogin()
     if islogin == true {
       memberActivation()
       getlastOrder()
+    }
+    getPushInfoData()
+    
+    //根据酒店区域获取用户特权
+    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+      if let data = responsObjcet as? [String: AnyObject] {
+        self.privilege = PrivilegeModel(dic: data)
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
     }
   }
   
@@ -70,7 +83,13 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
     }else {
       self.homeUrl = self.urlArray[self.count] as! String
     }
-    navigationController?.navigationBarHidden = false
+     navigationController?.navigationBarHidden = false
+  }
+  
+  //refreshHomeVCDelegate
+  func refreshHomeVC(set: Bool) {
+    print("成功啦啦啦啦！！！")
+    self.tableView.reloadData()
   }
   
   func  loadData() {
@@ -80,15 +99,16 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
           let url = dic["url"] as! String
           self.urlArray .addObject(url)
         }
-        self.tableView .reloadData()
+        
         self.homeUrl = self.urlArray[self.count] as! String
+        self.tableView .reloadData()
       }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
+   
     
-    
-    
+
   }
   
   func setupUI() {
@@ -114,12 +134,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       hourLabel = "晚上好"
     }
     myView.greetLabel.text = hourLabel
-    let sex = AccountManager.sharedInstance().sex
-    if sex == "0" {
-      self.sexString = "先生"
-    } else {
-      self.sexString  = "女士"
-    }
+     let sex = AccountManager.sharedInstance().sex
+      if sex == "0" {
+        self.sexString = "先生"
+      } else {
+        self.sexString  = "女士"
+      }
     
     let loginStats = AccountManager.sharedInstance().isLogin()
     
@@ -164,12 +184,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
   func getPushInfoData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
-        var datasource = [PushInfoModel]()
+        
         for dic in array {
-          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-          datasource.append(pushInfo)
+         let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+         self.pushInfoArray.append(pushInfo)
         }
-        self.pushInfoArray = datasource
+        //self.pushInfoArray = datasource
         self.tableView.reloadData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -185,32 +205,33 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       print(responseObject)
       if let array = responseObject as? NSArray {
         for dic in array {
-          let  pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+        let  pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
           if self.pushInfoArray.count == 0 {
             self.pushInfoArray.append(pushInfo)
           } else {
             self.pushInfoArray.insert(pushInfo, atIndex: 0)
           }
+          
         }
         self.tableView.reloadData()
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
-    //    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-    //      let lastOrder = responseObject as! NSDictionary
-    //      if let reservation_no = lastOrder["reservation_no"] as? String {
-    //        if reservation_no == "0" {
-    //          StorageManager.sharedInstance().updateLastOrder(nil)
-    //        } else {
-    //          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
-    //          StorageManager.sharedInstance().updateLastOrder(order)
-    //        }
-    //        self.tableView.reloadData()
-    //      }
-    //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-    //
-    //    }
+//    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      let lastOrder = responseObject as! NSDictionary
+//      if let reservation_no = lastOrder["reservation_no"] as? String {
+//        if reservation_no == "0" {
+//          StorageManager.sharedInstance().updateLastOrder(nil)
+//        } else {
+//          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
+//          StorageManager.sharedInstance().updateLastOrder(order)
+//        }
+//        self.tableView.reloadData()
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
   }
   
   // Member Activate
@@ -286,29 +307,48 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
   }
   
   func getPrivilege() {
-    let vc = FloatingWindowVC()
-    self.addChildViewController(vc)
-    self.view.addSubview(vc.view)
+    if privilege.privilegeName == nil {
+      return
+    }
+    floatingVC = FloatingWindowVC()
+    floatingVC.delegate = self
+    floatingVC.privilege = privilege
+    self.view.addSubview(floatingVC.view)
+    self.addChildViewController(floatingVC)
   }
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let pushInfo = pushInfoArray[indexPath.row]
     if AccountManager.sharedInstance().isLogin() == true &&  pushInfoArray.count != 0 {
       if indexPath.row == 0 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
       } else {
-        pushToBookingOrderTVC()
+        if pushInfo.shopid == "" {
+          ZKJSTool.showMsg("抱歉，暂无商家信息")
+          return
+        } else {
+          pushToBookVC(pushInfo.shopid)
+        }
+        
       }
-      
+
     }else {
-      pushToBookingOrderTVC()
+      if pushInfo.shopid == nil {
+        
+        ZKJSTool.showMsg("抱歉，暂无商家信息")
+        return
+      }else {
+        pushToBookVC(pushInfo.shopid)
+      }
     }
     
   }
   
-  func pushToBookingOrderTVC() {
-    let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+  func pushToBookVC(shopid:String) {
+    let vc = BookVC()
+    vc.shopid = NSNumber(integer: Int(shopid)!)
+    vc.hidesBottomBarWhenPushed = true
     navigationController?.pushViewController(vc, animated: true)
   }
   
@@ -333,7 +373,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate {
       print(".Unsupported")
     }
   }
-  
+
   
 }
 
@@ -382,7 +422,7 @@ extension HomeVC: CLLocationManagerDelegate {
     longitude = coordinate.longitude
     latution = coordinate.latitude
     
-    //    postGPSLocation(coordinate)
+//    postGPSLocation(coordinate)
   }
   
   private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
@@ -487,6 +527,10 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     //根据酒店区域获取用户特权
     ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+      if let data = responsObjcet as? [String: AnyObject] {
+        self.privilege = PrivilegeModel(dic: data)
+        
+      }
       
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         

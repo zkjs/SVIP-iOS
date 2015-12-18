@@ -113,7 +113,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   func loadMoreData() -> Void {
     let page = String(orderPage)
     ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      self.tableView.mj_footer.hidden = false
       let orderArray = responseObject as! NSArray
       if orderArray.count != 0 {
         for orderInfo in orderArray {
