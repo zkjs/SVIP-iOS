@@ -66,14 +66,14 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     }
     getPushInfoData()
     
-    //根据酒店区域获取用户特权
-    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-      if let data = responsObjcet as? [String: AnyObject] {
-        self.privilege = PrivilegeModel(dic: data)
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
+//    //根据酒店区域获取用户特权
+//    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+//      if let data = responsObjcet as? [String: AnyObject] {
+//        self.privilege = PrivilegeModel(dic: data)
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
   }
   
   override func viewWillDisappear(animated: Bool) {
