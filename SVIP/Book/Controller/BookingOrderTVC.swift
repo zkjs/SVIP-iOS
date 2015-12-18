@@ -66,7 +66,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     roomType.text = goods.type
-    let baseUrl = "http://120.25.241.196/"
+    let baseUrl = kBaseURL
     let placeholderImage = UIImage(named: "星空中心")
     var url = NSURL(string: baseUrl)
     url = url?.URLByAppendingPathComponent(goods.image!)

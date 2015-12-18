@@ -62,7 +62,9 @@ class LoginVC: UIViewController {
     showHUDInView(view, withLoading: "")
     
     ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
+      self.hideHUD()
       if success {
+        self.showHint("登录成功")
         self.loginWithPhone(phone)
       } else {
         self.showHint("验证码不正确")

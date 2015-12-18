@@ -9,8 +9,6 @@
 import UIKit
 
 class HomeCell: UITableViewCell {
-  var resolution:Int32!
-  
   
   @IBOutlet weak var pushImage: UIImageView!
   @IBOutlet weak var nextLabel: UILabel! {
@@ -27,6 +25,9 @@ class HomeCell: UITableViewCell {
     }
   }
   
+  var resolution:Int32!
+  
+  
   class func reuseIdentifier() -> String {
     return "HomeCell"
   }
@@ -38,16 +39,17 @@ class HomeCell: UITableViewCell {
   class func height() -> CGFloat {
     return 200
   }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    
+    // Configure the view for the selected state
+  }
   
   func setData(pushInfo:PushInfoModel) {
     resolution =  ZKJSTool.getResolution()
@@ -56,7 +58,6 @@ class HomeCell: UITableViewCell {
     pushImage.sd_setImageWithURL(url, placeholderImage: nil)
     subjectLabel.text = pushInfo.title
     nextLabel.text = pushInfo.desc
- 
   }
-    
+  
 }

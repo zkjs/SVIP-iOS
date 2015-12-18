@@ -29,30 +29,23 @@ class BookRoomCell: UITableViewCell {
   
   
   //DATA
-  
-  var showSelectedView = false
-  
+    
   var goods: RoomGoods? {
     didSet {
       if let myGoods = goods {
-        if showSelectedView {
-          selectedView.hidden = false
-        } else {
-          selectedView.hidden = true
-        }
-        //        var priceStr = ""
+//        var priceStr = ""
         var room: String! = ""
         var type: String! = ""
-        //        if let b = myGoods.price {
-        //          priceStr = b
-        //        }
+//        if let b = myGoods.price {
+//          priceStr = b
+//        }
         if myGoods.room != nil {
           room = myGoods.room
         }
         if myGoods.type != nil {
           type = myGoods.type
         }
-        //        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
+//        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
         let tagStr = "  \(room)\(type)"
         priceTag.text = tagStr
         
@@ -74,7 +67,7 @@ class BookRoomCell: UITableViewCell {
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     
-    selectedView.hidden = !selected
+//    selectedView.hidden = !selected
   }
   
 }

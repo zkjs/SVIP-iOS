@@ -102,14 +102,10 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(BookRoomCell.reuseIdentifier(), forIndexPath: indexPath) as! BookRoomCell
-//    if cell == nil {
-//      let arr = NSBundle .mainBundle() .loadNibNamed("BookRoomCell", owner: nil, options: nil) as Array
-//      cell = (arr[0] as! BookRoomCell)
-//    }
     if indexPath.row == selectedRow {
-      cell.showSelectedView = true
+      cell.backgroundColor = UIColor.ZKJS_mainColor()
     } else {
-      cell.showSelectedView = false
+      cell.backgroundColor = UIColor.clearColor()
     }
     cell.goods = (roomTypes[indexPath.row] as! RoomGoods)
     return cell
@@ -133,11 +129,12 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
-    let oldCell = tableView .cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
-    oldCell?.selected = false
-    let newCell = tableView .cellForRowAtIndexPath(indexPath)
-    newCell?.selected = true
+    
     selectedRow = indexPath.row
+    let oldCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
+    let newCell = tableView.cellForRowAtIndexPath(indexPath)
+    oldCell?.backgroundColor = UIColor.clearColor()
+    newCell?.backgroundColor = UIColor.ZKJS_mainColor()
     confirmButton.alpha = 1.0
     confirmButton.enabled = true
   }
