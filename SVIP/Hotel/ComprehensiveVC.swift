@@ -62,7 +62,7 @@ class ComprehensiveVC: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
-    
+    loadShopListData(orderPage)
     self.hidesBottomBarWhenPushed = false
     navigationController?.navigationBarHidden = false
     
@@ -100,7 +100,7 @@ class ComprehensiveVC: UIViewController {
             let recommend = RecommendModel(dic: dic as! [String:AnyObject])
             self.recommendArray.append(recommend)
           }
-          self.loadShopListData(self.orderPage)
+//          self.loadShopListData(self.orderPage)
           self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation:.Automatic)
           self.tableView.mj_header.endRefreshing()
         }
@@ -180,19 +180,24 @@ class ComprehensiveVC: UIViewController {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
+    let vc = BookVC()
     let hotel = self.dataArray[indexPath.row]
-    if type == .chat {
-      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
-      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-      
-      vc.shopID = hotel.shopid
-      vc.shopName = hotel.shopname
-      self.navigationController?.pushViewController(vc, animated: true)
-    } else if type == .customerService {
-      let vc = CustomerServiceTVC()
-      vc.shopID = hotel.shopid
-      self.navigationController?.pushViewController(vc, animated: true)
-    }
+    vc.shopid = NSNumber(integer: Int(hotel.shopid)!)
+    vc.hidesBottomBarWhenPushed = true
+    navigationController?.pushViewController(vc, animated: true)
+//    let hotel = self.dataArray[indexPath.row]
+//    if type == .chat {
+//      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
+//      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+//      
+//      vc.shopID = hotel.shopid
+//      vc.shopName = hotel.shopname
+//      self.navigationController?.pushViewController(vc, animated: true)
+//    } else if type == .customerService {
+//      let vc = CustomerServiceTVC()
+//      vc.shopID = hotel.shopid
+//      self.navigationController?.pushViewController(vc, animated: true)
+//    }
   }
   
   func setupUI() {

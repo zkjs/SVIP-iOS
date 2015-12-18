@@ -17,6 +17,7 @@ private let kNameSection = 2
 
 class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
+  @IBOutlet weak var roomPriceLabel: UILabel!
   @IBOutlet weak var roomImage: UIImageView!
   @IBOutlet weak var roomType: UILabel!
   @IBOutlet weak var startDateLabel: UILabel!
@@ -41,64 +42,39 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   var startDate = NSDate()
   var endDate = NSDate().dateByAddingTimeInterval(60*60*24*1)
   var roomImageURL = ""
-  
+  var goods = RoomGoods!()
   // MARK: - View Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     tableView.contentInset = UIEdgeInsetsMake(36.0, 0.0, 0.0, 0.0)
-    roomTypePromptLabel.text = NSLocalizedString("CHOOSE_ROOM_TYPE", comment: "")
+    
     roomCountInfoLabel.text = NSLocalizedString("ROOM_COUNT", comment: "")
     dateInfoLabel.text = NSLocalizedString("START_END_DATE", comment: "")
     sendOrderButton.setTitle(NSLocalizedString("SEND_ORDER", comment: ""), forState: UIControlState.Normal)
 
     title = NSLocalizedString("FILL_BOOKING_FORM", comment: "")
-//    navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("DONE", comment: ""),
-//                                                             style: UIBarButtonItemStyle.Done,
-//                                                             target: self,
-//                                                             action: "gotoChatVC")
-    
     dateFormatter.dateFormat = "M-dd"
     startDateLabel.text = dateFormatter.stringFromDate(startDate)
     endDateLabel.text = dateFormatter.stringFromDate(endDate)
     dateFormatter.dateFormat = "M月d日"
     dateTips.text = String(format: NSLocalizedString("DEPARTURE_DATE_PROMPT", comment: ""), arguments: [self.duration, dateFormatter.stringFromDate(endDate)])
     rooms = "1"
-    
-    loadRoomTypes()
   }
   
-  // MARK: - Private
-  
-  func loadRoomTypes() {
-    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(shopID, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let arr = responseObject as? NSArray {
-        for dict in arr {
-          if let myDict = dict as? NSDictionary {
-            let goods = RoomGoods(dic: myDict)
-            self.roomTypes.addObject(goods)
-          }
-        }
-        // 默认房型, 图片
-        if let defaultGoods = self.roomTypes.firstObject as? RoomGoods {
-          self.roomType.text = defaultGoods.room! + defaultGoods.type!
-          self.roomTypeID = defaultGoods.goodsid!
-          self.breakfast = defaultGoods.meat!
-          self.roomImageURL = defaultGoods.image!
-          let baseUrl = kBaseURL
-          if let goodsImage = defaultGoods.image {
-            let placeholderImage = UIImage(named: "bg_dingdan")
-            var url = NSURL(string: baseUrl)
-            url = url?.URLByAppendingPathComponent(goodsImage)
-            self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.LowPriority, .RetryFailed], completed: nil)
-          }
-        }
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    roomType.text = goods.type
+    let baseUrl = "http://120.25.241.196/"
+    let placeholderImage = UIImage(named: "星空中心")
+    var url = NSURL(string: baseUrl)
+    url = url?.URLByAppendingPathComponent(goods.image!)
+    print(url)
+    roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage)
+    roomPriceLabel.text = "￥" + goods.price!
   }
+  
   
   func gotoChatVC() {
     ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -221,24 +197,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     print(indexPath)
     
     if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
-      // 房型
-      let vc = BookVC()
-      vc.shopid = NSNumber(integer: Int(shopID)!)
-      vc.dataArray = roomTypes
-      vc.selection = { [unowned self] (goods: RoomGoods) -> () in
-        self.roomType.text = goods.room! + goods.type!
-        self.roomTypeID = goods.goodsid!
-        self.breakfast = goods.meat!
-        self.roomImageURL = goods.image!
-        let baseUrl = kBaseURL
-        if let goodsImage = goods.image {
-          let placeholderImage = UIImage(named: "bg_dingdan")
-          var url = NSURL(string: baseUrl)
-          url = url?.URLByAppendingPathComponent(goodsImage)
-          self.roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.LowPriority, .RetryFailed], completed: nil)
-        }
-      }
-      navigationController?.pushViewController(vc, animated: true)
+      navigationController?.popViewControllerAnimated(true)
     } else if indexPath.section == kRoomSection && indexPath.row == kRoomCountRow {
       // 房间数量
       chooseRoomCount()

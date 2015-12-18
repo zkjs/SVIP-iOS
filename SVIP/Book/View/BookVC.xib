@@ -7,23 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookVC" customModule="SVIP" customModuleProvider="target">
             <connections>
-                <outlet property="okButton" destination="Gzc-MN-USb" id="ZhE-KL-DvY"/>
-                <outlet property="selectionView" destination="kCd-jM-dE4" id="I82-AC-8KL"/>
-                <outlet property="selectionViewBottomConstraint" destination="fGH-wz-t0D" id="5Ty-VG-XPl"/>
+                <outlet property="confirmButton" destination="Pv3-ut-Az0" id="RLo-oF-eEE"/>
                 <outlet property="tableView" destination="lAp-Va-ite" id="FVm-q2-NFB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="layoutConstaintArray" destination="zp0-SA-gsE" collectionClass="NSMutableArray" id="O59-VM-ghg"/>
-                <outletCollection property="layoutConstaintArray" destination="IK0-El-BRf" collectionClass="NSMutableArray" id="9Vs-XP-Qzb"/>
-                <outletCollection property="layoutConstaintArray" destination="Lqa-I8-MNx" collectionClass="NSMutableArray" id="Akp-Vi-cnp"/>
-                <outletCollection property="layoutConstaintArray" destination="aDx-No-Zad" collectionClass="NSMutableArray" id="T6Q-mN-Qff"/>
-                <outletCollection property="layoutConstaintArray" destination="IYk-ph-g5e" collectionClass="NSMutableArray" id="CHB-sc-Wtf"/>
-                <outletCollection property="layoutConstaintArray" destination="Tem-NG-LSV" collectionClass="NSMutableArray" id="vBy-fm-Jye"/>
-                <outletCollection property="leftSelectButtonArray" destination="7YT-lI-6Ku" collectionClass="NSMutableArray" id="hgM-lt-l0a"/>
-                <outletCollection property="leftSelectButtonArray" destination="LDO-6E-qw6" collectionClass="NSMutableArray" id="8mq-Rx-Exf"/>
-                <outletCollection property="leftSelectButtonArray" destination="nRD-RG-GNm" collectionClass="NSMutableArray" id="zQw-Yp-syZ"/>
-                <outletCollection property="leftSelectButtonArray" destination="Cy2-DJ-RW5" collectionClass="NSMutableArray" id="O5S-oV-eta"/>
-                <outletCollection property="rightSelectButtonArray" destination="xa4-zZ-B1i" collectionClass="NSMutableArray" id="VNL-ed-6aU"/>
-                <outletCollection property="rightSelectButtonArray" destination="c9Q-fL-bdf" collectionClass="NSMutableArray" id="HDJ-Hr-oyN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -31,298 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCd-jM-dE4">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YT-lI-6Ku" customClass="BookItemButton" customModule="SVIP" customModuleProvider="target">
-                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="97j-nN-Zmb"/>
-                                <constraint firstAttribute="height" constant="60" id="c6p-l9-Ifm"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="豪华" image="ic_xuanze">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="ic_xuanze2"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="97j-nN-Zmb"/>
-                                    <exclude reference="c6p-l9-Ifm"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="constraints">
-                                    <include reference="97j-nN-Zmb"/>
-                                    <include reference="c6p-l9-Ifm"/>
-                                </mask>
-                            </variation>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDO-6E-qw6" customClass="BookItemButton" customModule="SVIP" customModuleProvider="target">
-                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="NpW-ib-UUu"/>
-                                <constraint firstAttribute="width" constant="30" id="XHJ-3c-3Fh"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="商务" image="ic_xuanze">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="ic_xuanze2"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="NpW-ib-UUu"/>
-                                    <exclude reference="XHJ-3c-3Fh"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="constraints">
-                                    <include reference="NpW-ib-UUu"/>
-                                    <include reference="XHJ-3c-3Fh"/>
-                                </mask>
-                            </variation>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRD-RG-GNm" customClass="BookItemButton" customModule="SVIP" customModuleProvider="target">
-                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="FIt-s0-9oi"/>
-                                <constraint firstAttribute="height" constant="60" id="cOY-wh-t28"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="行政" image="ic_xuanze">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="ic_xuanze2"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="FIt-s0-9oi"/>
-                                    <exclude reference="cOY-wh-t28"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="constraints">
-                                    <include reference="FIt-s0-9oi"/>
-                                    <include reference="cOY-wh-t28"/>
-                                </mask>
-                            </variation>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cy2-DJ-RW5" customClass="BookItemButton" customModule="SVIP" customModuleProvider="target">
-                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="VTJ-e1-cjl"/>
-                                <constraint firstAttribute="height" constant="60" id="enj-k8-jkn"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="全部" image="ic_xuanze">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="ic_xuanze2"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="VTJ-e1-cjl"/>
-                                    <exclude reference="enj-k8-jkn"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="constraints">
-                                    <include reference="VTJ-e1-cjl"/>
-                                    <include reference="enj-k8-jkn"/>
-                                </mask>
-                            </variation>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9Q-fL-bdf" customClass="BookItemButton" customModule="SVIP" customModuleProvider="target">
-                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="9FD-HW-riX"/>
-                                <constraint firstAttribute="height" constant="60" id="A9G-Nn-MCM"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="双早" image="ic_gouxuan">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="ic_gouxuan2"/>
-                            <state key="highlighted" image="ic_gouxuan2"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="9FD-HW-riX"/>
-                                    <exclude reference="A9G-Nn-MCM"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <mask key="constraints">
-                                    <include reference="9FD-HW-riX"/>
-                                    <include reference="A9G-Nn-MCM"/>
-                                </mask>
-                            </variation>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa4-zZ-B1i" customClass="BookItemButton" customModule="SVIP" customModuleProvider="target">
-                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="0T9-Bz-4VQ"/>
-                                <constraint firstAttribute="width" constant="30" id="sUO-0x-q3M"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="单早" image="ic_gouxuan">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="ic_gouxuan2"/>
-                            <state key="highlighted" image="ic_gouxuan2"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="0T9-Bz-4VQ"/>
-                                    <exclude reference="sUO-0x-q3M"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="constraints">
-                                    <include reference="0T9-Bz-4VQ"/>
-                                    <include reference="sUO-0x-q3M"/>
-                                </mask>
-                            </variation>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzc-MN-USb">
-                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                            <animations/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="177" id="2zR-o2-wA6">
-                                    <variation key="heightClass=regular-widthClass=compact" constant="44"/>
-                                </constraint>
-                            </constraints>
-                            <state key="normal" title="确定">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="2zR-o2-wA6"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="constraints">
-                                    <include reference="2zR-o2-wA6"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="book:" destination="-1" eventType="touchUpInside" id="j5l-TX-N7l"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="Gzc-MN-USb" firstAttribute="top" secondItem="c9Q-fL-bdf" secondAttribute="bottom" constant="15" id="4ma-s5-psS"/>
-                        <constraint firstItem="Gzc-MN-USb" firstAttribute="top" secondItem="LDO-6E-qw6" secondAttribute="bottom" constant="15" id="6dT-ly-W3Q"/>
-                        <constraint firstAttribute="height" constant="100" id="GNi-Yg-Jpp">
-                            <variation key="heightClass=regular-widthClass=compact" constant="135"/>
-                        </constraint>
-                        <constraint firstItem="LDO-6E-qw6" firstAttribute="leading" secondItem="7YT-lI-6Ku" secondAttribute="trailing" constant="20" id="IK0-El-BRf">
-                            <variation key="heightClass=regular-widthClass=compact" constant="11"/>
-                        </constraint>
-                        <constraint firstItem="c9Q-fL-bdf" firstAttribute="leading" secondItem="xa4-zZ-B1i" secondAttribute="trailing" constant="21" id="IYk-ph-g5e">
-                            <variation key="heightClass=regular-widthClass=compact" constant="11"/>
-                        </constraint>
-                        <constraint firstItem="nRD-RG-GNm" firstAttribute="leading" secondItem="LDO-6E-qw6" secondAttribute="trailing" constant="21" id="Lqa-I8-MNx">
-                            <variation key="heightClass=regular-widthClass=compact" constant="11"/>
-                        </constraint>
-                        <constraint firstAttribute="trailing" secondItem="c9Q-fL-bdf" secondAttribute="trailing" constant="20" id="Tem-NG-LSV">
-                            <variation key="heightClass=regular-widthClass=compact" constant="11"/>
-                        </constraint>
-                        <constraint firstAttribute="bottom" secondItem="Gzc-MN-USb" secondAttribute="bottom" constant="8" id="Wxy-6z-a97">
-                            <variation key="heightClass=regular-widthClass=compact" constant="15"/>
-                        </constraint>
-                        <constraint firstItem="Cy2-DJ-RW5" firstAttribute="leading" secondItem="nRD-RG-GNm" secondAttribute="trailing" constant="14" id="aDx-No-Zad">
-                            <variation key="heightClass=regular-widthClass=compact" constant="11"/>
-                        </constraint>
-                        <constraint firstItem="Gzc-MN-USb" firstAttribute="top" secondItem="xa4-zZ-B1i" secondAttribute="bottom" constant="15" id="bTs-GL-dTB"/>
-                        <constraint firstItem="Gzc-MN-USb" firstAttribute="top" secondItem="nRD-RG-GNm" secondAttribute="bottom" constant="15" id="evc-2a-yJa"/>
-                        <constraint firstAttribute="trailing" secondItem="Gzc-MN-USb" secondAttribute="trailing" constant="177" id="fiu-Ol-i1L">
-                            <variation key="heightClass=regular-widthClass=compact" constant="40"/>
-                        </constraint>
-                        <constraint firstItem="Gzc-MN-USb" firstAttribute="top" secondItem="Cy2-DJ-RW5" secondAttribute="bottom" constant="15" id="iPg-DS-FvX"/>
-                        <constraint firstItem="Gzc-MN-USb" firstAttribute="leading" secondItem="kCd-jM-dE4" secondAttribute="leading" constant="177" id="sfP-vt-uRw">
-                            <variation key="heightClass=regular-widthClass=compact" constant="40"/>
-                        </constraint>
-                        <constraint firstItem="Gzc-MN-USb" firstAttribute="top" secondItem="7YT-lI-6Ku" secondAttribute="bottom" constant="15" id="tbB-5D-er1"/>
-                        <constraint firstItem="7YT-lI-6Ku" firstAttribute="leading" secondItem="kCd-jM-dE4" secondAttribute="leading" constant="20" id="zp0-SA-gsE">
-                            <variation key="heightClass=regular-widthClass=compact" constant="11"/>
-                        </constraint>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="subviews">
-                            <exclude reference="7YT-lI-6Ku"/>
-                            <exclude reference="LDO-6E-qw6"/>
-                            <exclude reference="nRD-RG-GNm"/>
-                            <exclude reference="Cy2-DJ-RW5"/>
-                            <exclude reference="c9Q-fL-bdf"/>
-                            <exclude reference="xa4-zZ-B1i"/>
-                            <exclude reference="Gzc-MN-USb"/>
-                        </mask>
-                        <mask key="constraints">
-                            <exclude reference="GNi-Yg-Jpp"/>
-                            <exclude reference="zp0-SA-gsE"/>
-                            <exclude reference="aDx-No-Zad"/>
-                            <exclude reference="4ma-s5-psS"/>
-                            <exclude reference="6dT-ly-W3Q"/>
-                            <exclude reference="Wxy-6z-a97"/>
-                            <exclude reference="bTs-GL-dTB"/>
-                            <exclude reference="evc-2a-yJa"/>
-                            <exclude reference="fiu-Ol-i1L"/>
-                            <exclude reference="iPg-DS-FvX"/>
-                            <exclude reference="sfP-vt-uRw"/>
-                            <exclude reference="tbB-5D-er1"/>
-                            <exclude reference="IK0-El-BRf"/>
-                            <exclude reference="IYk-ph-g5e"/>
-                            <exclude reference="Tem-NG-LSV"/>
-                            <exclude reference="Lqa-I8-MNx"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="subviews">
-                            <include reference="7YT-lI-6Ku"/>
-                            <include reference="LDO-6E-qw6"/>
-                            <include reference="nRD-RG-GNm"/>
-                            <include reference="Cy2-DJ-RW5"/>
-                            <include reference="c9Q-fL-bdf"/>
-                            <include reference="xa4-zZ-B1i"/>
-                            <include reference="Gzc-MN-USb"/>
-                        </mask>
-                        <mask key="constraints">
-                            <include reference="GNi-Yg-Jpp"/>
-                            <include reference="zp0-SA-gsE"/>
-                            <include reference="aDx-No-Zad"/>
-                            <include reference="4ma-s5-psS"/>
-                            <include reference="6dT-ly-W3Q"/>
-                            <include reference="Wxy-6z-a97"/>
-                            <include reference="bTs-GL-dTB"/>
-                            <include reference="evc-2a-yJa"/>
-                            <include reference="fiu-Ol-i1L"/>
-                            <include reference="iPg-DS-FvX"/>
-                            <include reference="sfP-vt-uRw"/>
-                            <include reference="tbB-5D-er1"/>
-                            <include reference="IK0-El-BRf"/>
-                            <include reference="IYk-ph-g5e"/>
-                            <include reference="Tem-NG-LSV"/>
-                            <include reference="Lqa-I8-MNx"/>
-                        </mask>
-                    </variation>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="lAp-Va-ite">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <animations/>
@@ -332,37 +26,46 @@
                         <outlet property="delegate" destination="-1" id="OmW-b9-mfb"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pv3-ut-Az0">
+                    <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
+                    <color key="backgroundColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="2pD-9L-bl1">
+                            <variation key="heightClass=regular-widthClass=compact" constant="45"/>
+                        </constraint>
+                    </constraints>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="confirm:" destination="-1" eventType="touchUpInside" id="bsG-Fu-sH9"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Pv3-ut-Az0" firstAttribute="top" secondItem="lAp-Va-ite" secondAttribute="bottom" id="1oK-0i-gsb"/>
+                <constraint firstItem="Pv3-ut-Az0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="33S-f2-Bmu"/>
                 <constraint firstItem="lAp-Va-ite" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="APe-CE-T1O"/>
-                <constraint firstAttribute="trailing" secondItem="kCd-jM-dE4" secondAttribute="trailing" id="MEZ-6x-mif"/>
-                <constraint firstItem="kCd-jM-dE4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mi1-vv-Ps6"/>
+                <constraint firstAttribute="trailing" secondItem="Pv3-ut-Az0" secondAttribute="trailing" id="HIt-nc-JBD"/>
                 <constraint firstItem="lAp-Va-ite" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PjM-pL-WuX"/>
                 <constraint firstAttribute="trailing" secondItem="lAp-Va-ite" secondAttribute="trailing" id="UUU-bI-IFz"/>
                 <constraint firstAttribute="trailing" secondItem="lAp-Va-ite" secondAttribute="trailing" id="eql-KK-6qH"/>
-                <constraint firstAttribute="bottom" secondItem="kCd-jM-dE4" secondAttribute="bottom" id="fGH-wz-t0D"/>
-                <constraint firstItem="kCd-jM-dE4" firstAttribute="top" secondItem="lAp-Va-ite" secondAttribute="bottom" id="hed-qb-bVC"/>
                 <constraint firstAttribute="bottom" secondItem="lAp-Va-ite" secondAttribute="bottom" id="iFW-1F-S4n"/>
                 <constraint firstItem="lAp-Va-ite" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iqO-JX-pqk"/>
                 <constraint firstItem="lAp-Va-ite" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="j0M-nq-zoD"/>
-                <constraint firstItem="kCd-jM-dE4" firstAttribute="top" secondItem="lAp-Va-ite" secondAttribute="bottom" id="jxO-5Z-rEo"/>
                 <constraint firstAttribute="trailing" secondItem="lAp-Va-ite" secondAttribute="trailing" id="ng4-hE-F0w"/>
+                <constraint firstAttribute="bottom" secondItem="Pv3-ut-Az0" secondAttribute="bottom" id="oeI-pT-meF"/>
+                <constraint firstItem="Pv3-ut-Az0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uWP-vD-gYR"/>
                 <constraint firstItem="lAp-Va-ite" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wJt-oR-x66"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <variation key="default">
                 <mask key="subviews">
-                    <exclude reference="kCd-jM-dE4"/>
                     <exclude reference="lAp-Va-ite"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="MEZ-6x-mif"/>
-                    <exclude reference="Mi1-vv-Ps6"/>
-                    <exclude reference="fGH-wz-t0D"/>
-                    <exclude reference="hed-qb-bVC"/>
-                    <exclude reference="jxO-5Z-rEo"/>
                     <exclude reference="APe-CE-T1O"/>
                     <exclude reference="PjM-pL-WuX"/>
                     <exclude reference="UUU-bI-IFz"/>
@@ -372,19 +75,14 @@
                     <exclude reference="j0M-nq-zoD"/>
                     <exclude reference="ng4-hE-F0w"/>
                     <exclude reference="wJt-oR-x66"/>
+                    <exclude reference="1oK-0i-gsb"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
-                    <include reference="kCd-jM-dE4"/>
                     <include reference="lAp-Va-ite"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="MEZ-6x-mif"/>
-                    <include reference="Mi1-vv-Ps6"/>
-                    <include reference="fGH-wz-t0D"/>
-                    <include reference="hed-qb-bVC"/>
-                    <exclude reference="jxO-5Z-rEo"/>
                     <include reference="APe-CE-T1O"/>
                     <exclude reference="PjM-pL-WuX"/>
                     <exclude reference="UUU-bI-IFz"/>
@@ -394,15 +92,10 @@
                     <exclude reference="j0M-nq-zoD"/>
                     <exclude reference="ng4-hE-F0w"/>
                     <include reference="wJt-oR-x66"/>
+                    <include reference="1oK-0i-gsb"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="349" y="365"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_gouxuan" width="21" height="21"/>
-        <image name="ic_gouxuan2" width="21" height="21"/>
-        <image name="ic_xuanze" width="21" height="21"/>
-        <image name="ic_xuanze2" width="21" height="21"/>
-    </resources>
 </document>
