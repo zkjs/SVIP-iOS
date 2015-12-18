@@ -292,6 +292,7 @@
 		FA6BC8371C1A748500D409E4 /* CustomServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */; };
 		FA6BC8391C1AAA4400D409E4 /* FloatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6BC8381C1AAA4400D409E4 /* FloatHeaderView.swift */; };
 		FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */; };
+		FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */; };
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
 		FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF51C159DB000B86B28 /* SalesVC.swift */; };
 		FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF61C159DB000B86B28 /* SalesVC.xib */; };
@@ -1078,6 +1079,7 @@
 		FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomServiceVC.xib; sourceTree = "<group>"; };
 		FA6BC8381C1AAA4400D409E4 /* FloatHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatHeaderView.swift; sourceTree = "<group>"; };
 		FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatHeaderView.xib; sourceTree = "<group>"; };
+		FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeModel.swift; sourceTree = "<group>"; };
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		FAF02EF51C159DB000B86B28 /* SalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
 		FAF02EF61C159DB000B86B28 /* SalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesVC.xib; sourceTree = "<group>"; };
@@ -2937,6 +2939,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */,
+				FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3432,6 +3435,7 @@
 				40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */,
 				FAF7F56C1C03189400C84601 /* ServicerModel.swift in Sources */,
 				40E39E321BFEF43800516EC4 /* BookingOrderDetailVC.swift in Sources */,
+				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
 				4077DD8C1C1EAF9900E13D6B /* EMGifImage.m in Sources */,
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
 				4077DD901C1EAF9900E13D6B /* ConversationListController.m in Sources */,

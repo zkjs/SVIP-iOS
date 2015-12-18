@@ -10,6 +10,8 @@ import UIKit
 
 class FloatHeaderView: UIView {
 
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var detailLabel: UILabel!
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
