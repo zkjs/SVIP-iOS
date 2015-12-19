@@ -15,11 +15,20 @@ import UIKit
 
 class InvitationCodeVC: UIViewController {
   
+  @IBOutlet weak var customLabel: UILabel!
+  @IBOutlet weak var animationView: UIView!
   @IBOutlet weak var codeTextField: UITextField!
   @IBOutlet weak var saleNameTextField: UILabel!
-  @IBOutlet weak var saleAvatarImageView: UIImageView!
+  @IBOutlet weak var saleAvatarImageView: UIImageView!{
+    didSet {
+      saleAvatarImageView.layer.masksToBounds = true
+      saleAvatarImageView.layer.cornerRadius = saleAvatarImageView.frame.width / 2.0
+    }
+  }
   @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var animationViewHeight: NSLayoutConstraint!
   
+  @IBOutlet weak var avatarImageHeight: NSLayoutConstraint!
   lazy var type = InvitationCodeVCType.first
   lazy var code = ""
   lazy var salesid = ""
@@ -34,6 +43,12 @@ class InvitationCodeVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
     setupUI()
   }
 
@@ -42,11 +57,13 @@ class InvitationCodeVC: UIViewController {
   }
   
   func setupUI() {
-
+    animationViewHeight.constant = 0
+    avatarImageHeight.constant = 0
   }
   
   @IBAction func nextStep(sender: AnyObject) {
-    if code.isEmpty == false {
+    
+    if codeTextField.text!.isEmpty == false {
       let phone = AccountManager.sharedInstance().phone
       
       showHUDInView(view, withLoading: "")
@@ -55,6 +72,7 @@ class InvitationCodeVC: UIViewController {
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
             if set.boolValue == true {
+              self.hideHUD()
               self.sendInvitationCodeNotification()
               if self.type == InvitationCodeVCType.first {
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -62,6 +80,7 @@ class InvitationCodeVC: UIViewController {
                 self.navigationController?.popViewControllerAnimated(true)
               }
             } else {
+              self.hideHUD()
               ZKJSTool.showMsg("您已经绑定过邀请码")
               self.navigationController?.popViewControllerAnimated(true)
             }
@@ -99,39 +118,62 @@ class InvitationCodeVC: UIViewController {
 extension InvitationCodeVC: UITextFieldDelegate {
   
   func textFieldDidEndEditing(textField: UITextField) {
+    textField.layer.borderWidth = 0
     guard let code = codeTextField.text else { return }
-    ZKJSHTTPSessionManager.sharedInstance().getSaleInfoWithCode(code, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let data = responseObject {
-        if let set = data["set"] as? NSNumber {
-          if set.boolValue {
-            self.okButton.setTitle("确定", forState: .Normal)
-            self.code = code
-            self.sales_name = data["sales_name"] as? String ?? ""
-            self.saleNameTextField.text = self.sales_name
-            if let avatar = data["sales_avatar"] as? String {
-              var url = NSURL(string: kBaseURL)
-              url = url?.URLByAppendingPathComponent(avatar)
-              self.saleAvatarImageView.sd_setImageWithURL(url)
+    if code.characters.count == 6 {
+      ZKJSHTTPSessionManager.sharedInstance().getSaleInfoWithCode(code, success: { (task: NSURLSessionDataTask!,
+        responseObject: AnyObject!) -> Void in
+        print(responseObject)
+        if let data = responseObject {
+          if let set = data["set"] as? NSNumber {
+            if set.boolValue {
+              self.okButton.setTitle("确定", forState: .Normal)
+              self.code = code
+              self.sales_name = data["sales_name"] as? String ?? ""
+              self.saleNameTextField.text = self.sales_name
+              if let salesid = data["salesid"] as? String {
+                var url = NSURL(string: kBaseURL)
+                url = url?.URLByAppendingPathComponent("uploads/users/\(salesid).jpg")
+                let placeImage = UIImage(named: "ic_zhijian")
+                self.saleAvatarImageView.sd_setImageWithURL(url, placeholderImage: placeImage)
+              }
+              if let sales_phone = data["sales_phone"] as? NSNumber {
+                self.sales_phone = sales_phone.stringValue
+              }
+              if let salesid = data["salesid"] as? String {
+                self.salesid = salesid
+              }
+              if let shopid = data["shopid"] as? NSNumber {
+                self.shopid = shopid.stringValue
+              }
+              self.avatarImageHeight.constant = 48
+              self.animationViewHeight.constant = 74
+              UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+            } else {
+              let alertView = UIAlertController(title: "邀请码不正确，请重新输入", message: "", preferredStyle: .Alert)
+              alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+              self.presentViewController(alertView, animated: true, completion: nil)
             }
-            if let sales_phone = data["sales_phone"] as? NSNumber {
-              self.sales_phone = sales_phone.stringValue
-            }
-            if let salesid = data["salesid"] as? String {
-              self.salesid = salesid
-            }
-            if let shopid = data["shopid"] as? NSNumber {
-              self.shopid = shopid.stringValue
-            }
-          } else {
-            let alertView = UIAlertController(title: "邀请码不正确，请重新输入", message: "", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-            self.presentViewController(alertView, animated: true, completion: nil)
           }
         }
+        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+          
       }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+    } else {
+      self.okButton.setTitle("跳过", forState: .Normal)
+      self.animationViewHeight.constant = 0
+      avatarImageHeight.constant = 0
+      UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+        }, completion: nil)
     }
+    
+  }
+  func textFieldDidBeginEditing(textField: UITextField) {
+    textField.layer.borderWidth = 1
+    textField.layer.borderColor = UIColor.ZKJS_mainColor().CGColor
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {

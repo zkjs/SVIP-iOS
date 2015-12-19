@@ -17,7 +17,7 @@ class MeTVC: UITableViewController {
     super.viewDidLoad()
     
     tableView.tableFooterView = UIView()
-    
+    print(AccountManager.sharedInstance().userID)
     automaticallyAdjustsScrollViewInsets = false
   }
   

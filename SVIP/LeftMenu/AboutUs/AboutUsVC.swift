@@ -8,9 +8,10 @@
 
 import UIKit
 
-class AboutUsVC: UIViewController {
+class WebViewVC: UIViewController {
   
   var webView: UIWebView!
+  var url = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,7 +21,7 @@ class AboutUsVC: UIViewController {
   
   func initSubviews() {
     webView = UIWebView(frame: view.bounds)
-    let url = NSURL(string: "http://www.zkjinshi.com/about_us/")
+    let url = NSURL(string: self.url)  
     webView.loadRequest(NSURLRequest(URL: url!))
     webView.scrollView.bounces = false
     webView.delegate = self
@@ -29,7 +30,7 @@ class AboutUsVC: UIViewController {
   
 }
 
-extension AboutUsVC: UIWebViewDelegate {
+extension WebViewVC: UIWebViewDelegate {
   
   func webViewDidStartLoad(webView: UIWebView) {
     showHUDInView(view, withLoading: "")
