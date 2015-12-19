@@ -91,6 +91,7 @@ class ComprehensiveVC: UIViewController {
   func loadRecommandData() {
     
     ZKJSJavaHTTPSessionManager.sharedInstance().getRecommendShopListWithCity(currentCity, success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      print(responseObject)
       if let array = responseObject as? NSArray {
         self.recommendArray.removeAll()
         for dic in array {
@@ -186,11 +187,19 @@ class ComprehensiveVC: UIViewController {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
-    let vc = BookVC()
-    let hotel = self.dataArray[indexPath.row]
-    vc.shopid = NSNumber(integer: Int(hotel.shopid)!)
-    vc.hidesBottomBarWhenPushed = true
-    navigationController?.pushViewController(vc, animated: true)
+    if indexPath.section == 0{
+      ZKJSTool.showMsg("抱歉，暂无商家信息")
+    }
+    if indexPath.section == 1 && indexPath.row == 0 {
+      ZKJSTool.showMsg("抱歉，暂无商家信息")
+    }
+    if indexPath.section == 1 && indexPath.row != 0 {
+      let vc = BookVC()
+      let hotel = self.dataArray[indexPath.row]
+      vc.shopid = NSNumber(integer: Int(hotel.shopid)!)
+      vc.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(vc, animated: true)
+    }
   }
   
   func setupUI() {

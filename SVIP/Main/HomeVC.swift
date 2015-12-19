@@ -171,6 +171,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   func login(sender:UIButton) {
     let vc = LoginVC()
     self.presentViewController(vc, animated: true, completion: nil)
+ 
   }
   
   func activated(sender:UIButton) {
@@ -306,7 +307,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
   
   func getPrivilege() {
-    if privilege.privilegeName == nil {
+    if privilege.privilegeName == nil{
       return
     }
     floatingVC = FloatingWindowVC()
@@ -321,11 +322,14 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       if indexPath.row == 0 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
+        
         navigationController?.pushViewController(vc, animated: true)
       } else {
         if pushInfo.shopid == "" {
-          ZKJSTool.showMsg("抱歉，暂无商家信息")
-          return
+          let vc = WebViewVC()
+          vc.hidesBottomBarWhenPushed = true
+          vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
+          self.navigationController?.pushViewController(vc, animated: true)
         } else {
           pushToBookVC(pushInfo.shopid)
         }
@@ -529,17 +533,16 @@ extension HomeVC: CLLocationManagerDelegate {
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
-    //根据酒店区域获取用户特权
-    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-      if let data = responsObjcet as? [String: AnyObject] {
-        self.privilege = PrivilegeModel(dic: data)
-        
-      }
-      
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
     
+    if activate == true {
+      //根据酒店区域获取用户特权
+      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+        if let data = responsObjcet as? [String: AnyObject] {
+          self.privilege = PrivilegeModel(dic: data)
+        }
+        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      }
+    }
   }
   
   private func setupBeaconMonitor() {

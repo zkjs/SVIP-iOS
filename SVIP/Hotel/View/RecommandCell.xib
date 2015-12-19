@@ -22,20 +22,20 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwe-fL-hEi">
-                        <rect key="frame" x="193" y="121" width="200" height="44"/>
+                        <rect key="frame" x="173" y="121" width="240" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="Mv0-5x-GmR"/>
-                            <constraint firstAttribute="width" constant="200" id="WIw-Hv-Ug1"/>
+                            <constraint firstAttribute="width" constant="240" id="WIw-Hv-Ug1"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyf-24-GyB">
-                        <rect key="frame" x="148" y="170" width="290" height="45"/>
+                        <rect key="frame" x="143" y="170" width="300" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="NF0-cN-Rvu"/>
-                            <constraint firstAttribute="width" constant="290" id="l25-IJ-zj9"/>
+                            <constraint firstAttribute="width" constant="300" id="l25-IJ-zj9"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
