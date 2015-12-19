@@ -22,8 +22,6 @@ class MainTBC: UITabBarController {
     
     registerNotification()
     
-    delegate = self
-    
     //首页
     let vc1 = HomeVC()
     let nc1 = BaseNC(rootViewController: vc1)
@@ -58,26 +56,6 @@ class MainTBC: UITabBarController {
     unregisterNotification()
   }
 
-}
-
-// MARK: - UITabBarControllerDelegate
-
-extension MainTBC: UITabBarControllerDelegate {
-  
-  func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-    if let nc = viewController as? BaseNC {
-      let vc = nc.topViewController
-      if vc is SalesVC || vc is MeTVC {
-        if AccountManager.sharedInstance().isLogin() == false {
-          let nc = BaseNC(rootViewController: LoginVC())
-          presentViewController(nc, animated: true, completion: nil)
-          return false
-        }
-      }
-    }
-    return true
-  }
-  
 }
 
 extension MainTBC: EMCallManagerDelegate {

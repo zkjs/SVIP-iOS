@@ -20,12 +20,14 @@ class AccountManager: NSObject {
   private(set) var email = ""
   private(set) var phone = ""
   
-  var sexName: String {
+  var sexName: String? {
     get {
       if sex == "0" {
         return "男"
-      } else {
+      } else if sex == "1" {
         return "女"
+      } else {
+        return nil
       }
     }
   }
