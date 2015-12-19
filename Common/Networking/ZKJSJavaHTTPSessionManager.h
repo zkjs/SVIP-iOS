@@ -17,8 +17,6 @@
 #pragma mark - 单例
 + (instancetype)sharedInstance;
 
-#pragma mark - Public
-- (NSString *)domain;
 #pragma mark - 区域位置变化通知
 - (void)regionalPositionChangeNoticeWithUserID:(NSString *)userID locID:(NSString *)locID shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
@@ -52,4 +50,5 @@
 
 #pragma mark - 根据酒店区域获取用户特权
 - (void)getPrivilegeWithShopID:(NSString *)shopID locID:(NSString *)locID Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end

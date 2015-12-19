@@ -10,7 +10,9 @@
 #import <CommonCrypto/CommonDigest.h>
 
 @interface ZKJSHTTPSMSSessionManager ()
+
 @property (nonatomic, strong) NSMutableDictionary *phoneSMS;
+
 @end
 
 @implementation ZKJSHTTPSMSSessionManager

@@ -11,7 +11,6 @@
 
 @import UIKit;
 
-//#define kBaseURL @"http://172.21.7.54/"  // HTTP内网服务器地址
 //#define kBaseURL @"http://api.zkjinshi.com/"  // HTTP外网服务器地址
 #define kBaseURL @"http://tap.zkjinshi.com/" // HTTP服务器测试地址
 
@@ -162,10 +161,13 @@
 
 #pragma mark - 获取我的专属客服是否存在(邀请码是否激活)
 - (void)InvitationCodeActivatedSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 #pragma mark -获取(涉及商家的)城市列表
 - (void)getCityListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 #pragma mark -用户查询服务员信息
 - (void)getSalesWithID:(NSString *)salesid success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end
 
 @protocol HTTPSessionManagerDelegate <NSObject>

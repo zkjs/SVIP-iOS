@@ -34,14 +34,6 @@
   return self;
 }
 
-
-#pragma mark - Public
-
-- (NSString *)domain {
-  return kJavaBaseURL;
-}
-
-
 #pragma mark - Private
 
 - (NSString *)userID {
@@ -55,6 +47,7 @@
 - (NSString *)userName {
   return [AccountManager sharedInstance].userName;
 }
+
 #pragma mark - 区域位置变化通知
 - (void)regionalPositionChangeNoticeWithUserID:(NSString *)userID locID:(NSString *)locID shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSDictionary * dic = @{@"userid":userID,@"shopid":shopID,@"locid":locID};
@@ -65,6 +58,7 @@
     failure(task, error);
   }];
 }
+
 #pragma mark -获取同步的到店列表
 - (void)getSynchronizedStoreListWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"arrive/users/%@/%@/%@",shopID,[self userID],[self token]];
@@ -75,6 +69,7 @@
     failure(task, error);
   }];
 }
+
 #pragma mark - 首页大图
 - (void)getHomeImageWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"firstpage/icons" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
@@ -84,6 +79,7 @@
     failure(task, error);
   }];
 }
+
 #pragma mark - 根据城市名称查询酒店列表
 - (void)getShopListWithCity:(NSString *)city page:(NSString *)page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"shop/list/%@/%@/%@",city,page,size];
