@@ -97,7 +97,7 @@ class ComprehensiveVC: UIViewController {
           let recommend = RecommendModel(dic: dic as! [String:AnyObject])
           self.recommendArray.append(recommend)
         }
-        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation:.Automatic)
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
         self.tableView.mj_header.endRefreshing()
       }
       
@@ -121,7 +121,7 @@ class ComprehensiveVC: UIViewController {
           let hotel = Hotel(dic: dic as! [String:AnyObject])
           self.dataArray.append(hotel)
         }
-        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation:.Automatic)
+        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation:.None)
         self.orderPage++
       }
       self.tableView.mj_footer.endRefreshing()
