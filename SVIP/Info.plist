@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>201512185</string>
+	<string>201512190</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>weixin</string>
@@ -56,7 +56,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>打开&quot;定位服务&quot;来允许&quot;超级身份&quot;确定您的位置, 为您提供精准服务</string>
+	<string>打开"定位服务"来允许"超级身份"确定您的位置, 为您提供精准服务</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

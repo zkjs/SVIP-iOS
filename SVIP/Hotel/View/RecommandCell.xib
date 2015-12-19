@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -17,12 +17,14 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTP-zh-4Rr">
                         <rect key="frame" x="0.0" y="0.0" width="585" height="321"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="321" id="JYm-1h-taN"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwe-fL-hEi">
-                        <rect key="frame" x="173" y="121" width="240" height="44"/>
+                        <rect key="frame" x="8" y="121" width="569" height="44"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="Mv0-5x-GmR"/>
                             <constraint firstAttribute="width" constant="240" id="WIw-Hv-Ug1"/>
@@ -30,9 +32,15 @@
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="WIw-Hv-Ug1"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyf-24-GyB">
-                        <rect key="frame" x="143" y="170" width="300" height="45"/>
+                        <rect key="frame" x="8" y="170" width="569" height="45"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="NF0-cN-Rvu"/>
                             <constraint firstAttribute="width" constant="300" id="l25-IJ-zj9"/>
@@ -40,18 +48,29 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="l25-IJ-zj9"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="Iyf-24-GyB" firstAttribute="top" secondItem="hwe-fL-hEi" secondAttribute="bottom" constant="5" id="3XR-Ca-OHa"/>
+                    <constraint firstAttribute="trailing" secondItem="Iyf-24-GyB" secondAttribute="trailing" constant="8" id="L0h-nc-VTF"/>
+                    <constraint firstItem="Iyf-24-GyB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="VkN-yy-eTU"/>
                     <constraint firstItem="hwe-fL-hEi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="113" id="XeK-Uf-MB1"/>
                     <constraint firstItem="KTP-zh-4Rr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XnO-Ml-IgJ"/>
                     <constraint firstItem="KTP-zh-4Rr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Znn-dW-02r"/>
                     <constraint firstItem="Iyf-24-GyB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fyj-OF-9Tb"/>
                     <constraint firstItem="hwe-fL-hEi" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="oFi-F8-TBK"/>
+                    <constraint firstItem="hwe-fL-hEi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ueb-3n-Det"/>
+                    <constraint firstAttribute="trailing" secondItem="hwe-fL-hEi" secondAttribute="trailing" constant="8" id="v2z-am-N3e"/>
                     <constraint firstAttribute="trailing" secondItem="KTP-zh-4Rr" secondAttribute="trailing" id="voq-mc-FeS"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="backImageView" destination="KTP-zh-4Rr" id="wu5-K6-0Cn"/>
                 <outlet property="contentLabel" destination="hwe-fL-hEi" id="E2i-21-Imc"/>

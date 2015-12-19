@@ -337,11 +337,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       }
 
     }else {
-      if pushInfo.shopid == nil {
-        
-        ZKJSTool.showMsg("抱歉，暂无商家信息")
-        return
-      }else {
+      if pushInfo.shopid.isEmpty == true {
+        let vc = WebViewVC()
+        vc.hidesBottomBarWhenPushed = true
+        vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
+        self.navigationController?.pushViewController(vc, animated: true)
+      } else {
         pushToBookVC(pushInfo.shopid)
       }
     }

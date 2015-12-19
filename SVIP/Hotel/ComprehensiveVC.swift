@@ -187,7 +187,7 @@ class ComprehensiveVC: UIViewController {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
-    if indexPath.section == 0{
+    if indexPath.section == 0 {
       ZKJSTool.showMsg("抱歉，暂无商家信息")
     }
     if indexPath.section == 1 && indexPath.row == 0 {
