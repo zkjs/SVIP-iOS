@@ -56,7 +56,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>我们将为您提供免登记办理入住手续等贴心服务需要使用该功能,请允许</string>
+	<string>打开&quot;定位服务&quot;来允许&quot;超级身份&quot;确定您的位置, 为您提供精准服务</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
