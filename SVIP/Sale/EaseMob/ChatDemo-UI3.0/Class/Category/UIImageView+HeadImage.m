@@ -13,7 +13,6 @@
 
 #import "UIImageView+HeadImage.h"
 #import "EaseUI.h"
-#import "Networkcfg.h"
 #import "ZKJSHTTPSessionManager.h"
 
 @implementation UIImageView (HeadImage)

@@ -43,7 +43,6 @@
 		40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F8B1B3E79A300CF150D /* UIImage+ZKJS.m */; };
 		40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */; };
 		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
-		40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
 		4077DC581C1EAF4B00E13D6B /* libYunBa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4077DC561C1EAF4B00E13D6B /* libYunBa.a */; };
 		4077DD8B1C1EAF9900E13D6B /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DC5F1C1EAF9900E13D6B /* EMAlertView.m */; };
@@ -437,13 +436,10 @@
 		40641F891B3E79A300CF150D /* NSString+ZKJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZKJS.m"; sourceTree = "<group>"; };
 		40641F8A1B3E79A300CF150D /* UIImage+ZKJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZKJS.h"; sourceTree = "<group>"; };
 		40641F8B1B3E79A300CF150D /* UIImage+ZKJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZKJS.m"; sourceTree = "<group>"; };
-		40641F911B3E79A300CF150D /* Networkcfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networkcfg.h; sourceTree = "<group>"; };
 		40641F921B3E79A300CF150D /* ZKJSHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPSessionManager.h; sourceTree = "<group>"; };
 		40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSessionManager.m; sourceTree = "<group>"; };
 		40641F941B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPSMSSessionManager.h; sourceTree = "<group>"; };
 		40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSMSSessionManager.m; sourceTree = "<group>"; };
-		40641F961B3E79A300CF150D /* ZKJSTCPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTCPSessionManager.h; sourceTree = "<group>"; };
-		40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTCPSessionManager.m; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
 		4077DC561C1EAF4B00E13D6B /* libYunBa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYunBa.a; sourceTree = "<group>"; };
@@ -1401,9 +1397,6 @@
 		40641F8F1B3E79A300CF150D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				40641F911B3E79A300CF150D /* Networkcfg.h */,
-				40641F961B3E79A300CF150D /* ZKJSTCPSessionManager.h */,
-				40641F971B3E79A300CF150D /* ZKJSTCPSessionManager.m */,
 				4077DE051C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.h */,
 				4077DE061C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m */,
 				40641F921B3E79A300CF150D /* ZKJSHTTPSessionManager.h */,
@@ -3377,7 +3370,6 @@
 				4077DDDB1C1EAF9900E13D6B /* EaseUserModel.m in Sources */,
 				4077DDBA1C1EAF9900E13D6B /* EMSDImageCache.m in Sources */,
 				FAFBFB7B1C22CF3000A1126B /* BookHeaderView.swift in Sources */,
-				40641FA31B3E79A300CF150D /* ZKJSTCPSessionManager.m in Sources */,
 				4077DDB51C1EAF9900E13D6B /* MWPhotoBrowser.m in Sources */,
 				4077DDAB1C1EAF9900E13D6B /* amrFileCodec.mm in Sources */,
 				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,

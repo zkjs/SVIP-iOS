@@ -10,7 +10,6 @@
 #import "CustomMessageCell.h"
 //#import "ContactListSelectViewController.h"
 #import "ZKJSHTTPSessionManager.h"
-#import "Networkcfg.h"
 #import "MJRefresh.h"
 #import "SVIP-Swift.h"
 #import "EaseUI.h"
