@@ -23,16 +23,26 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
   private func setupView() {
     navigationController?.navigationBar.translucent = false
     
-    let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_tianjia"), style: UIBarButtonItemStyle.Plain, target: self, action: "add:")
-    rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
-    super.navigationItem.rightBarButtonItems = [rightBarButtonItem]
+    if AccountManager.sharedInstance().isLogin() == false {
+      let rightBarButtonItem = UIBarButtonItem(title: "请登录", style: .Plain, target: self, action: "login:")
+      rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
+      super.navigationItem.rightBarButtonItem = rightBarButtonItem
+    } else {
+      let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_tianjia"), style: UIBarButtonItemStyle.Plain, target: self, action: "add:")
+      rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
+      super.navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
     
     segmentedControl.frame.size = CGSizeMake(150.0, 30.0)
     
     containerView.scrollEnabled = false
   }
   
-  func add(sender:UIBarButtonItem) {
+  func login(sender: AnyObject) {
+    presentViewController(LoginVC(), animated: true, completion: nil)
+  }
+  
+  func add(sender: UIBarButtonItem) {
     let alertController = UIAlertController(title: "添加联系人", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let checkAction = UIAlertAction(title: "查询", style: .Default) { (_) in
       let phoneTextField = alertController.textFields![0] as UITextField
@@ -41,7 +51,7 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
       self.showHUDInView(self.view, withLoading: "正在查找...")
       ZKJSJavaHTTPSessionManager.sharedInstance().checkSalesWithPhone(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         self.hideHUD()
-        print(responseObject)
+//        print(responseObject)
         if let array = responseObject as? [[String: AnyObject]] {
           if let data = array.first {
             if let userid = data["userId"] as? String {

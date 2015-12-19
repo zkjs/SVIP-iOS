@@ -11,6 +11,7 @@ import UIKit
 class MeTVC: UITableViewController {
   
   @IBOutlet weak var userImage: UIImageView!
+  @IBOutlet weak var loginLabel: UILabel!
 
   
   override func viewDidLoad() {
@@ -28,14 +29,17 @@ class MeTVC: UITableViewController {
     setupUI()
   }
   
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
     
     navigationController?.navigationBarHidden = false
   }
   
   func setupUI() {
-    userImage.image = AccountManager.sharedInstance().avatarImage
+    if AccountManager.sharedInstance().isLogin() == true {
+      loginLabel.hidden = true
+      userImage.image = AccountManager.sharedInstance().avatarImage
+    }
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -48,6 +52,11 @@ class MeTVC: UITableViewController {
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+    if AccountManager.sharedInstance().isLogin() == false {
+      presentViewController(LoginVC(), animated: true, completion: nil)
+      return
+    }
     
     let accountIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     let orderIndexPath = NSIndexPath(forRow: 1, inSection: 0)
