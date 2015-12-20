@@ -30,4 +30,5 @@
 
 #pragma mark - 获取手机分辨率
 + (int)getResolution;
+
 @end

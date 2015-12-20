@@ -27,14 +27,11 @@
 		404A2F491BA94C7B006475D7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A2F481BA94C7B006475D7 /* MainInterface.storyboard */; };
 		404A2F4C1BA94C7B006475D7 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 404A2F411BA94C7B006475D7 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */; };
-		404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */; };
-		404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18451B535A5F00F11122 /* NSData+AES256.m */; };
 		404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18491B53675300F11122 /* CompressingLogFileManager.m */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
 		404FACD31B84792700352023 /* NSDate+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404FACD21B84792700352023 /* NSDate+Days.swift */; };
 		4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */; };
 		4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */; };
-		4056A8131BC9004C00D42393 /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = 4056A8121BC9004C00D42393 /* server.der */; };
 		40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641EFD1B3E569700CF150D /* AppDelegate.swift */; };
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
@@ -44,6 +41,9 @@
 		40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */; };
 		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
+		4077C7A11C26578F000DD7DC /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077C79D1C26578F000DD7DC /* NSData+AES256.m */; };
+		4077C7A21C26578F000DD7DC /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = 4077C79E1C26578F000DD7DC /* server.der */; };
+		4077C7A31C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077C7A01C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m */; };
 		4077DC581C1EAF4B00E13D6B /* libYunBa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4077DC561C1EAF4B00E13D6B /* libYunBa.a */; };
 		4077DD8B1C1EAF9900E13D6B /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DC5F1C1EAF9900E13D6B /* EMAlertView.m */; };
 		4077DD8C1C1EAF9900E13D6B /* EMGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DC621C1EAF9900E13D6B /* EMGifImage.m */; };
@@ -404,10 +404,6 @@
 		404A2F501BA94C84006475D7 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
 		404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BookingOrderDetailTVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		404C183E1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKJSDiffie-HellmanProtocol.h"; sourceTree = "<group>"; };
-		404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKJSDiffie-HellmanProtocol.m"; sourceTree = "<group>"; };
-		404C18441B535A5F00F11122 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
-		404C18451B535A5F00F11122 /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		404C18481B53675300F11122 /* CompressingLogFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompressingLogFileManager.h; sourceTree = "<group>"; };
 		404C18491B53675300F11122 /* CompressingLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompressingLogFileManager.m; sourceTree = "<group>"; };
 		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -415,7 +411,6 @@
 		405352161BA66251007157FC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrder.storyboard; sourceTree = "<group>"; };
 		4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrderDetail.storyboard; sourceTree = "<group>"; };
-		4056A8121BC9004C00D42393 /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.der; sourceTree = "<group>"; };
 		405826481BA11CC5005A2C8E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		40641EF81B3E569700CF150D /* SVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40641EFC1B3E569700CF150D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -436,6 +431,11 @@
 		40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSMSSessionManager.m; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
+		4077C79C1C26578F000DD7DC /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
+		4077C79D1C26578F000DD7DC /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
+		4077C79E1C26578F000DD7DC /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.der; sourceTree = "<group>"; };
+		4077C79F1C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKJSDiffie-HellmanProtocol.h"; sourceTree = "<group>"; };
+		4077C7A01C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKJSDiffie-HellmanProtocol.m"; sourceTree = "<group>"; };
 		4077DC561C1EAF4B00E13D6B /* libYunBa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYunBa.a; sourceTree = "<group>"; };
 		4077DC571C1EAF4B00E13D6B /* YunBaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YunBaService.h; sourceTree = "<group>"; };
 		4077DC5E1C1EAF9900E13D6B /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
@@ -1011,11 +1011,11 @@
 		B21250B01B74586F0056835D /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListRightMenuCell.xib; sourceTree = "<group>"; };
 		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
-		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimationVC.m; sourceTree = "<group>"; };
-		B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterAnimationView.xib; sourceTree = "<group>"; };
-		B2564D491B4BFC370098608F /* JSHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHTextField.h; sourceTree = "<group>"; };
-		B2564D4A1B4BFC370098608F /* JSHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHTextField.m; sourceTree = "<group>"; };
+		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSHAnimationVC.h; path = Controller/JSHAnimationVC.h; sourceTree = "<group>"; };
+		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSHAnimationVC.m; path = Controller/JSHAnimationVC.m; sourceTree = "<group>"; };
+		B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegisterAnimationView.xib; path = View/RegisterAnimationView.xib; sourceTree = "<group>"; };
+		B2564D491B4BFC370098608F /* JSHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSHTextField.h; path = View/JSHTextField.h; sourceTree = "<group>"; };
+		B2564D4A1B4BFC370098608F /* JSHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSHTextField.m; path = View/JSHTextField.m; sourceTree = "<group>"; };
 		B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookHotelListTVC.swift; sourceTree = "<group>"; };
 		B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookHotelListCell.xib; sourceTree = "<group>"; };
 		B27004091B608ABF00B1BEA7 /* Hotel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hotel.swift; path = ../../Book/Model/Hotel.swift; sourceTree = "<group>"; };
@@ -1230,19 +1230,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		404C183D1B5359E100F11122 /* Cryptography */ = {
-			isa = PBXGroup;
-			children = (
-				4056A8121BC9004C00D42393 /* server.der */,
-				404C183E1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.h */,
-				404C183F1B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m */,
-				404C18441B535A5F00F11122 /* NSData+AES256.h */,
-				404C18451B535A5F00F11122 /* NSData+AES256.m */,
-			);
-			name = Cryptography;
-			path = Networking/Cryptography;
-			sourceTree = "<group>";
-		};
 		404C18471B53675300F11122 /* Compressor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,20 +1287,18 @@
 			isa = PBXGroup;
 			children = (
 				404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */,
+				B2564D351B4BFAED0098608F /* LaunchAnimation */,
 				FA02C5811C0D42B300D0D439 /* Login */,
-				40E3A1831BFEFA8200516EC4 /* Search */,
-				40E39FE01BFEFA0C00516EC4 /* Sale */,
+				4052664D1B41283900B277BE /* Main */,
 				40E3A1621BFEFA6400516EC4 /* Hotel */,
+				40E3A1831BFEFA8200516EC4 /* Search */,
+				B2A6420F1B47C2A700AF0F28 /* Book */,
+				40E39FE01BFEFA0C00516EC4 /* Sale */,
+				40EE4D781C1EEE34009C0311 /* Me */,
 				B20812B71B8DD8650070D96F /* Helper */,
 				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
-				B2564D351B4BFAED0098608F /* LaunchAnimation */,
-				B2A6420F1B47C2A700AF0F28 /* Book */,
-				40EE4D781C1EEE34009C0311 /* Me */,
-				4052664D1B41283900B277BE /* Main */,
 				FAF7F5531C02E83200C84601 /* Privilege */,
-				40E39E1C1BFEF43800516EC4 /* OrderList */,
-				B20812901B8DD7950070D96F /* SkipCheckIn */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
@@ -1360,7 +1345,7 @@
 				404C18471B53675300F11122 /* Compressor */,
 				40641F8F1B3E79A300CF150D /* Networking */,
 				40C4B71A1BFACDD000CB2DA5 /* openssl.framework */,
-				404C183D1B5359E100F11122 /* Cryptography */,
+				4077C79B1C26578F000DD7DC /* Cryptography */,
 				40641F9A1B3E79A300CF150D /* Tool */,
 			);
 			path = Common;
@@ -1397,6 +1382,18 @@
 				40641F9C1B3E79A300CF150D /* ZKJSTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		4077C79B1C26578F000DD7DC /* Cryptography */ = {
+			isa = PBXGroup;
+			children = (
+				4077C79C1C26578F000DD7DC /* NSData+AES256.h */,
+				4077C79D1C26578F000DD7DC /* NSData+AES256.m */,
+				4077C79E1C26578F000DD7DC /* server.der */,
+				4077C79F1C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.h */,
+				4077C7A01C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m */,
+			);
+			path = Cryptography;
 			sourceTree = "<group>";
 		};
 		4077DC551C1EAF4B00E13D6B /* YunBaSDK */ = {
@@ -2106,7 +2103,7 @@
 				40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */,
 			);
 			name = OrderList;
-			path = LeftMenu/OrderList;
+			path = ../LeftMenu/OrderList;
 			sourceTree = "<group>";
 		};
 		40E39E1F1BFEF43800516EC4 /* Cell */ = {
@@ -2676,8 +2673,9 @@
 			children = (
 				40EE4D791C1EEE58009C0311 /* MeTVC.swift */,
 				40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */,
-				400959E21C210CB100D3DA61 /* Setting */,
 				400959E11C210C8D00D3DA61 /* Account */,
+				40E39E1C1BFEF43800516EC4 /* OrderList */,
+				400959E21C210CB100D3DA61 /* Setting */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -2688,7 +2686,7 @@
 				B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */,
 			);
 			name = SkipCheckIn;
-			path = LeftMenu/SkipCheckIn;
+			path = ../SkipCheckIn;
 			sourceTree = "<group>";
 		};
 		B20812B71B8DD8650070D96F /* Helper */ = {
@@ -2713,30 +2711,14 @@
 		B2564D351B4BFAED0098608F /* LaunchAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				B2564D361B4BFAED0098608F /* Controller */,
-				B2564D3F1B4BFAED0098608F /* View */,
-			);
-			name = LaunchAnimation;
-			path = Register;
-			sourceTree = "<group>";
-		};
-		B2564D361B4BFAED0098608F /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 				B2564D371B4BFAED0098608F /* JSHAnimationVC.h */,
 				B2564D381B4BFAED0098608F /* JSHAnimationVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B2564D3F1B4BFAED0098608F /* View */ = {
-			isa = PBXGroup;
-			children = (
 				B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */,
 				B2564D491B4BFC370098608F /* JSHTextField.h */,
 				B2564D4A1B4BFC370098608F /* JSHTextField.m */,
 			);
-			path = View;
+			name = LaunchAnimation;
+			path = Register;
 			sourceTree = "<group>";
 		};
 		B2A6420F1B47C2A700AF0F28 /* Book */ = {
@@ -2934,6 +2916,7 @@
 		FAF7F5531C02E83200C84601 /* Privilege */ = {
 			isa = PBXGroup;
 			children = (
+				B20812901B8DD7950070D96F /* SkipCheckIn */,
 				FAF7F56A1C03187800C84601 /* Model */,
 				FAF7F5601C0309F000C84601 /* Controller */,
 				FAF7F5611C030A0B00C84601 /* View */,
@@ -3157,7 +3140,6 @@
 				40D585D21C22AA4E00C5267D /* SalesDetailVC.xib in Resources */,
 				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
-				4056A8131BC9004C00D42393 /* server.der in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */,
 				40E39E3C1BFEF43800516EC4 /* OrderListHeaderView.xib in Resources */,
@@ -3190,6 +3172,7 @@
 				FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */,
 				40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */,
 				40E3A1751BFEFA6400516EC4 /* FloatingWindowVC.xib in Resources */,
+				4077C7A21C26578F000DD7DC /* server.der in Resources */,
 				B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3267,7 +3250,6 @@
 				FAF7F5681C030E8B00C84601 /* CustomerServiceCell.swift in Sources */,
 				4077DDDA1C1EAF9900E13D6B /* EaseMessageModel.m in Sources */,
 				4077DDDE1C1EAF9900E13D6B /* NSObject+EaseMob.m in Sources */,
-				404C18461B535A5F00F11122 /* NSData+AES256.m in Sources */,
 				FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */,
 				B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */,
 				4077DDB81C1EAF9900E13D6B /* MWZoomingScrollView.m in Sources */,
@@ -3295,7 +3277,6 @@
 				4077DDEE1C1EAF9900E13D6B /* EaseViewController.m in Sources */,
 				4077DDD61C1EAF9900E13D6B /* PSTGridLayoutSection.m in Sources */,
 				4077DDE11C1EAF9900E13D6B /* UIViewController+HUD.m in Sources */,
-				404C18401B5359E100F11122 /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				40E39E3A1BFEF43800516EC4 /* DotLine.swift in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				FAFBFB781C228E3B00A1126B /* RecommandCell.swift in Sources */,
@@ -3404,6 +3385,7 @@
 				4077DDC11C1EAF9900E13D6B /* MKAnnotationView+EMWebCache.m in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				4077DD921C1EAF9900E13D6B /* CustomMessageCell.m in Sources */,
+				4077C7A11C26578F000DD7DC /* NSData+AES256.m in Sources */,
 				4077DDE21C1EAF9900E13D6B /* EaseChineseToPinyin.m in Sources */,
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
 				40D585DF1C22AD6700C5267D /* RatingCell.swift in Sources */,
@@ -3474,6 +3456,7 @@
 				4077DDE41C1EAF9900E13D6B /* EaseMessageReadManager.m in Sources */,
 				4077DDCA1C1EAF9900E13D6B /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				4077DDB61C1EAF9900E13D6B /* MWTapDetectingImageView.m in Sources */,
+				4077C7A31C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				4077DDA31C1EAF9900E13D6B /* EaseUI.m in Sources */,
 				4077DDB21C1EAF9900E13D6B /* MWGridCell.m in Sources */,
 				4077DDFA1C1EAF9900E13D6B /* EaseChatToolbar.m in Sources */,
