@@ -16,7 +16,6 @@
 #import "UIButton+EMWebCache.h"
 #import "BlurDatePickerView.h"
 #import "JSHAnimationVC.h"
-#import "JSHAccountManager.h"
 #import "JSHAnimator.h"
 #import "CocoaLumberjack.h"
 #import "CompressingLogFileManager.h"

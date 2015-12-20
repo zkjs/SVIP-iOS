@@ -249,7 +249,6 @@
 		B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */; };
 		B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */; };
 		B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D381B4BFAED0098608F /* JSHAnimationVC.m */; };
-		B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D3E1B4BFAED0098608F /* JSHAccountManager.m */; };
 		B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D411B4BFAED0098608F /* JSHRegisterAnimationView.m */; };
 		B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */; };
 		B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D4A1B4BFC370098608F /* JSHTextField.m */; };
@@ -1016,8 +1015,6 @@
 		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
 		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimationVC.m; sourceTree = "<group>"; };
-		B2564D3D1B4BFAED0098608F /* JSHAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAccountManager.h; sourceTree = "<group>"; };
-		B2564D3E1B4BFAED0098608F /* JSHAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAccountManager.m; sourceTree = "<group>"; };
 		B2564D401B4BFAED0098608F /* JSHRegisterAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHRegisterAnimationView.h; sourceTree = "<group>"; };
 		B2564D411B4BFAED0098608F /* JSHRegisterAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHRegisterAnimationView.m; sourceTree = "<group>"; };
 		B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterAnimationView.xib; sourceTree = "<group>"; };
@@ -2723,7 +2720,6 @@
 			isa = PBXGroup;
 			children = (
 				B2564D361B4BFAED0098608F /* Controller */,
-				B2564D3C1B4BFAED0098608F /* Model */,
 				B2564D3F1B4BFAED0098608F /* View */,
 			);
 			path = Register;
@@ -2736,15 +2732,6 @@
 				B2564D381B4BFAED0098608F /* JSHAnimationVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B2564D3C1B4BFAED0098608F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B2564D3D1B4BFAED0098608F /* JSHAccountManager.h */,
-				B2564D3E1B4BFAED0098608F /* JSHAccountManager.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		B2564D3F1B4BFAED0098608F /* View */ = {
@@ -3440,7 +3427,6 @@
 				40E3A1881BFEFA8300516EC4 /* SearchBarView.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				4077DDFF1C1EAF9900E13D6B /* EaseFacialView.m in Sources */,
-				B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */,
 				B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */,
 				4077DDE81C1EAF9900E13D6B /* EaseEmotionManager.m in Sources */,
 				4077DD8B1C1EAF9900E13D6B /* EMAlertView.m in Sources */,

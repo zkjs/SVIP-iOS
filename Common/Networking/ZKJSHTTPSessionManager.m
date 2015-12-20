@@ -213,10 +213,8 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 #pragma mark - 获取默认发票
 - (void)getDefaultInvoiceWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString *userid = [JSHAccountManager sharedJSHAccountManager].userid;
-  NSString *token = [JSHAccountManager sharedJSHAccountManager].token;
-  NSDictionary *dic = @{@"userid" : userid,
-                        @"token" : token,
+  NSDictionary *dic = @{@"userid" : [self userID],
+                        @"token" : [self token],
                         @"set" : @1
                         };
   [self POST:@"user/fplist" parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
