@@ -239,7 +239,6 @@
 		B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */; };
 		B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */; };
 		B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B20812BB1B8DD8650070D96F /* JSHAnimator.m */; };
-		B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = B20812BD1B8DD8650070D96F /* JSHStorage.m */; };
 		B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812BE1B8DD8650070D96F /* LogManager.swift */; };
 		B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */ = {isa = PBXBuildFile; fileRef = B20812C01B8DD8650070D96F /* NSString+JSH.m */; };
 		B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812C11B8DD8650070D96F /* Persistence.swift */; };
@@ -1004,8 +1003,6 @@
 		B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionTransformer.swift; sourceTree = "<group>"; };
 		B20812BA1B8DD8650070D96F /* JSHAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimator.h; sourceTree = "<group>"; };
 		B20812BB1B8DD8650070D96F /* JSHAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimator.m; sourceTree = "<group>"; };
-		B20812BC1B8DD8650070D96F /* JSHStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHStorage.h; sourceTree = "<group>"; };
-		B20812BD1B8DD8650070D96F /* JSHStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHStorage.m; sourceTree = "<group>"; };
 		B20812BE1B8DD8650070D96F /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		B20812BF1B8DD8650070D96F /* NSString+JSH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSH.h"; sourceTree = "<group>"; };
 		B20812C01B8DD8650070D96F /* NSString+JSH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSH.m"; sourceTree = "<group>"; };
@@ -2711,8 +2708,6 @@
 				B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */,
 				B20812BA1B8DD8650070D96F /* JSHAnimator.h */,
 				B20812BB1B8DD8650070D96F /* JSHAnimator.m */,
-				B20812BC1B8DD8650070D96F /* JSHStorage.h */,
-				B20812BD1B8DD8650070D96F /* JSHStorage.m */,
 				B20812BE1B8DD8650070D96F /* LogManager.swift */,
 				B20812BF1B8DD8650070D96F /* NSString+JSH.h */,
 				B20812C01B8DD8650070D96F /* NSString+JSH.m */,
@@ -3406,7 +3401,6 @@
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				4077DE011C1EAF9900E13D6B /* EaseRecordView.m in Sources */,
 				4077DE021C1EAF9900E13D6B /* EaseConversationCell.m in Sources */,
-				B20812C91B8DD8650070D96F /* JSHStorage.m in Sources */,
 				40095A001C2149B900D3DA61 /* InvoiceModel.swift in Sources */,
 				4077DDF91C1EAF9900E13D6B /* EaseBubbleView.m in Sources */,
 				4077DDDD1C1EAF9900E13D6B /* NSDateFormatter+Category.m in Sources */,
