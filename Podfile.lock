@@ -29,17 +29,14 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
-  - DateTools (1.7.0)
   - EaseMobSDKFull (2.2.1)
   - EDStarRating (1.1)
-  - FLAnimatedImage (1.0.10)
   - HexColors (3.0.0)
   - JCTagListView (0.0.4)
   - JTSImageViewController (1.5.1)
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
   - MIBadgeButton (0.0.6)
-  - MJExtension (2.5.16)
   - MJRefresh (3.0.5)
   - Pingpp (2.1.4):
     - Pingpp/Alipay (= 2.1.4)
@@ -53,37 +50,28 @@ PODS:
     - Pingpp/Core
   - Pingpp/Wx (2.1.4):
     - Pingpp/Core
-  - PKYStepper (0.0.1)
   - SKTagView (0.7):
     - Masonry
   - SocketRocket (0.4.2)
-  - SSKeychain (1.2.3)
   - SWTableViewCell (0.3.7)
-  - WMPageController (1.3.2)
   - XLPagerTabStrip (2.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - AMapSearch
   - CocoaLumberjack
-  - DateTools
   - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - EDStarRating
-  - FLAnimatedImage (~> 1.0)
   - HexColors
   - JCTagListView
   - JTSImageViewController
   - MBProgressHUD
   - MIBadgeButton
-  - MJExtension (~> 2.5.7)
   - MJRefresh
   - Pingpp (~> 2.1.0)
-  - PKYStepper
   - SKTagView (from `https://github.com/hanton/SKTagView`, branch `master`)
   - SocketRocket
-  - SSKeychain (~> 1.2.3)
   - SWTableViewCell
-  - WMPageController
   - XLPagerTabStrip
 
 EXTERNAL SOURCES:
@@ -105,25 +93,19 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AMapSearch: aa7621ae8aec9cb8df116710b26e3fe3d09dc0ff
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
-  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   EaseMobSDKFull: 4a18d6ad47b4ccca564833963511bddd151e1654
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
-  FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
   HexColors: 8b83e3fe90c0d466dae7b98c9d22da95799f99cb
   JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
-  MJExtension: b8c1321a77d91bcc007b94d38cbf5383c95ea30e
   MJRefresh: 809ed03f2014275056c3d65e2812aef1ba5b0f98
   Pingpp: 08415163eb1791bc07d7d939f1648d2e36a30eda
-  PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
   SKTagView: 33378cfeb717df04f77489605b013506e91d1da5
   SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
-  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
-  WMPageController: 21e1d7ff499d8a3554a5000090af843c2bd0dae8
   XLPagerTabStrip: 2c69b8e3208432a94e713c198ce597faad5a87bb
 
 COCOAPODS: 0.38.2
