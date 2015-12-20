@@ -23,6 +23,7 @@ target 'SVIP' do
   pod 'EDStarRating'
   pod 'XLPagerTabStrip'
   pod 'Pingpp', '~> 2.1.0'
+  pod 'LTNavigationBar'
 #  pod 'WMPageController'
 #  pod 'FLAnimatedImage', '~> 1.0'
 #  use_frameworks!

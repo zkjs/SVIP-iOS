@@ -34,6 +34,7 @@ PODS:
   - HexColors (3.0.0)
   - JCTagListView (0.0.4)
   - JTSImageViewController (1.5.1)
+  - LTNavigationBar (2.1.1)
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
   - MIBadgeButton (0.0.6)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - HexColors
   - JCTagListView
   - JTSImageViewController
+  - LTNavigationBar
   - MBProgressHUD
   - MIBadgeButton
   - MJRefresh
@@ -98,6 +100,7 @@ SPEC CHECKSUMS:
   HexColors: 8b83e3fe90c0d466dae7b98c9d22da95799f99cb
   JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
+  LTNavigationBar: b1c15fdcc32453d84f8b9fc774fff611c184dfbb
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8

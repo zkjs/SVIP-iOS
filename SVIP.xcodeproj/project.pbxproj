@@ -290,6 +290,8 @@
 		FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF51C159DB000B86B28 /* SalesVC.swift */; };
 		FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF61C159DB000B86B28 /* SalesVC.xib */; };
 		FAF101C71C046AAE00FC3672 /* TMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF101C61C046AAE00FC3672 /* TMReachability.m */; };
+		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
+		FAF139271C26947700B84F47 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139261C26947700B84F47 /* loading@3x.gif */; };
 		FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF212D31BF71DD5002C1C73 /* CityVC.swift */; };
 		FAF212D61BF71DD5002C1C73 /* CityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF212D41BF71DD5002C1C73 /* CityVC.xib */; };
 		FAF249581BFF08CA001E7E41 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF249561BFF08CA001E7E41 /* SearchCell.swift */; };
@@ -1064,6 +1066,8 @@
 		FAF02EF61C159DB000B86B28 /* SalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesVC.xib; sourceTree = "<group>"; };
 		FAF101C51C046AAE00FC3672 /* TMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMReachability.h; sourceTree = "<group>"; };
 		FAF101C61C046AAE00FC3672 /* TMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMReachability.m; sourceTree = "<group>"; };
+		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
+		FAF139261C26947700B84F47 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
 		FAF212D31BF71DD5002C1C73 /* CityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityVC.swift; sourceTree = "<group>"; };
 		FAF212D41BF71DD5002C1C73 /* CityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityVC.xib; sourceTree = "<group>"; };
 		FAF249561BFF08CA001E7E41 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
@@ -1313,6 +1317,8 @@
 		40641EFB1B3E569700CF150D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FAF139241C26945600B84F47 /* loading@2x.gif */,
+				FAF139261C26947700B84F47 /* loading@3x.gif */,
 				40641F041B3E569700CF150D /* Images.xcassets */,
 				40641EFC1B3E569700CF150D /* Info.plist */,
 				40641F061B3E569700CF150D /* LaunchScreen.xib */,
@@ -3130,6 +3136,7 @@
 				40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
+				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
 				40D585D21C22AA4E00C5267D /* SalesDetailVC.xib in Resources */,
 				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
@@ -3151,6 +3158,7 @@
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
 				FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
+				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
 				400959EA1C21221F00D3DA61 /* EmailVC.xib in Resources */,
 				FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */,
 				FAFBFB721C224B4500A1126B /* MerchantsVC.xib in Resources */,

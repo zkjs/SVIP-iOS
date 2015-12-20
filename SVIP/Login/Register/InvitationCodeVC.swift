@@ -81,7 +81,7 @@ class InvitationCodeVC: UIViewController {
               }
             } else {
               self.hideHUD()
-              ZKJSTool.showMsg("您已经绑定过邀请码")
+              ZKJSTool.showMsg("该邀请码无效,请重试")
               self.navigationController?.popViewControllerAnimated(true)
             }
           }
@@ -89,7 +89,8 @@ class InvitationCodeVC: UIViewController {
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           
       })
-    } else {
+    }
+    if codeTextField.text!.characters.count < 6 {
       self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
@@ -130,7 +131,7 @@ extension InvitationCodeVC: UITextFieldDelegate {
               self.okButton.setTitle("确定", forState: .Normal)
               self.code = code
               self.sales_name = data["sales_name"] as? String ?? ""
-              self.saleNameTextField.text = self.sales_name
+              self.saleNameTextField.text = "来自\(self.sales_name)的邀请码" 
               if let salesid = data["salesid"] as? String {
                 var url = NSURL(string: kBaseURL)
                 url = url?.URLByAppendingPathComponent("uploads/users/\(salesid).jpg")

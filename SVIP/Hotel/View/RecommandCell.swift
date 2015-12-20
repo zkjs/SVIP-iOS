@@ -29,13 +29,13 @@ class RecommandCell: UITableViewCell {
   class func height() -> CGFloat {
     return 321
   }
-  func setdata(recommand:RecommendModel) {
-    print(recommand.recommend_content)
-    contentLabel.text = recommand.recommend_content
-    titleLabel.text = recommand.recommend_title
+  func setdata(hotel:Hotel) {
+    titleLabel.text = hotel.shopname
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    let logoURL = NSURL(string: recommand.shop_bgimgurl)
+    let logoURL = NSURL(string: hotel.bgImgUrl)
     backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
+    contentLabel.text = hotel.shopdesc
+
   }
 
     override func setSelected(selected: Bool, animated: Bool) {

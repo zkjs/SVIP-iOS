@@ -22,6 +22,8 @@ class MerchantsVC: UIViewController {
       tableView.showsVerticalScrollIndicator = false
       let nibName = UINib(nibName: HotelCell.nibName(), bundle: nil)
       tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
+      let nibName1 = UINib(nibName: RecommandCell.nibName(), bundle: nil)
+      tableView.registerNib(nibName1, forCellReuseIdentifier: RecommandCell.reuseIdentifier())
       
       tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "refreshData")  // 下拉刷新
       tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")  // 上拉加载
@@ -34,6 +36,10 @@ class MerchantsVC: UIViewController {
       super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
         // Do any additional setup after loading the view.
     }
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("MerchantsVC", owner:self, options:nil)
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -102,11 +108,27 @@ class MerchantsVC: UIViewController {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
-    cell.selectionStyle = UITableViewCellSelectionStyle.None
-    let shop = dataArray[indexPath.row]
-    cell.setData(shop)
-    return cell
+    
+    if indexPath.row == 0 {
+      let cell = tableView.dequeueReusableCellWithIdentifier(RecommandCell.reuseIdentifier(), forIndexPath: indexPath) as! RecommandCell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
+      let recommand = self.dataArray[0]
+      cell.setdata(recommand)
+      return cell
+    } else {
+      let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
+      cell.userImageButton.tag = indexPath.row
+      let shop = dataArray[indexPath.row]
+      cell.setData(shop)
+      cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
+      return cell
+    }
+//    let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
+//    cell.selectionStyle = UITableViewCellSelectionStyle.None
+//    let shop = dataArray[indexPath.row]
+//    cell.setData(shop)
+//    return cell
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -115,7 +137,10 @@ class MerchantsVC: UIViewController {
     if type == .chat {
       let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-      
+      if hotel.shopid == "" {
+        ZKJSTool.showMsg("暂无商家信息")
+        return
+      }
       vc.shopID = hotel.shopid
       self.navigationController?.pushViewController(vc, animated: true)
     } else if type == .customerService {

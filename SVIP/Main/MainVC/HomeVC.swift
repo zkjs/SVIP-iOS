@@ -31,6 +31,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   var urlArray = NSMutableArray()
   var homeUrl = String()
   var count = 0
+  var countTimer = 0
+  var timer = NSTimer!()
+  
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -43,11 +46,17 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     
     setupCoreLocationService()
     setupBluetoothManager()
+    
+    self.navigationController!.navigationBar.translucent = true
+    self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+    self.navigationController!.navigationBar.shadowImage = UIImage()
+    
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: HomeCell.reuseIdentifier())
     let NibName = UINib(nibName: OrderCustomCell.nibName(), bundle: nil)
     tableView.registerNib(NibName, forCellReuseIdentifier: OrderCustomCell.reuseIdentifier())
+    tableView.showsVerticalScrollIndicator = false
   }
   
   
@@ -55,7 +64,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     super.viewWillAppear(animated)
     self.pushInfoArray.removeAll()
     delegate = self
-    navigationController?.navigationBarHidden = true
+   // navigationController?.navigationBarHidden = true
     loadData()
     count++
    // tableView.reloadData()
@@ -65,17 +74,20 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       getlastOrder()
     }
     getPushInfoData()
-    
-//    //根据酒店区域获取用户特权
+//    
 //    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+//      self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+//        target:self,selector:Selector("highLight"),
+//        userInfo:nil,repeats:true)
 //      if let data = responsObjcet as? [String: AnyObject] {
 //        self.privilege = PrivilegeModel(dic: data)
 //      }
 //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
 //    }
+
+
   }
-  
+  //TableView Scroller Delegate
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     if self.urlArray.count < self.count {
@@ -84,6 +96,18 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       self.homeUrl = self.urlArray[self.count] as! String
     }
      navigationController?.navigationBarHidden = false
+  }
+  
+  func scrollViewDidScroll(scrollView: UIScrollView) {
+    let color = UIColor.ZKJS_mainColor()
+    let offsetY = scrollView.contentOffset.y
+    if (offsetY > 10) {
+      let alpha = min(1, 1 - ((10 + 64 - offsetY) / 64))
+      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
+      
+    } else {
+      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
+    }
   }
   
   //refreshHomeVCDelegate
@@ -141,7 +165,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       }
     
     let loginStats = AccountManager.sharedInstance().isLogin()
-    
+    let image = AccountManager.sharedInstance().avatarImage
     if loginStats == false {
       
       self.myView.loginButton.setTitle("立即登录", forState: UIControlState.Normal)
@@ -151,17 +175,21 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       
     }
     if loginStats == true && activate == false {
+     
       myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
       self.myView.activateButton.setTitle("立即激活", forState: UIControlState.Normal)
       self.myView.activateButton.tintColor = UIColor.ZKJS_mainColor()
       self.myView.activateButton.addTarget(self, action: "activated:", forControlEvents: UIControlEvents.TouchUpInside)
       self.myView.dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
     }
     if loginStats == true && activate == true {
+      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
       myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
       self.myView.dynamicLabel.text = "使用超级身份，享受超凡个性服务"
     }
     if loginStats == true && activate == true && beacon != nil {
+      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
       myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
       self.myView.dynamicLabel.text = "欢迎光临\(order?.fullname)"
     }
@@ -310,6 +338,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     if privilege.privilegeName == nil{
       return
     }
+    countTimer = 0
+    self.timer.invalidate()
     floatingVC = FloatingWindowVC()
     floatingVC.delegate = self
     floatingVC.privilege = privilege
@@ -537,13 +567,30 @@ extension HomeVC: CLLocationManagerDelegate {
     
     if activate == true {
       //根据酒店区域获取用户特权
+      
       ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+          target:self,selector:Selector("highLight"),
+          userInfo:nil,repeats:true)
         if let data = responsObjcet as? [String: AnyObject] {
           self.privilege = PrivilegeModel(dic: data)
         }
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       }
     }
+  }
+  
+  func highLight() {
+    countTimer++
+    let image = AccountManager.sharedInstance().avatarImage
+    if self.countTimer % 2 == 0 {
+      self.myView.LocationButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+    }
+    else {
+       self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
+    }
+    
+    
   }
   
   private func setupBeaconMonitor() {

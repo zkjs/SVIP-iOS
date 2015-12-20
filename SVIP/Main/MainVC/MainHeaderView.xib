@@ -118,7 +118,7 @@
     </objects>
     <resources>
         <image name="ic_caidan" width="17" height="13"/>
-        <image name="ic_camera_nor" width="22" height="20"/>
+        <image name="ic_camera_nor" width="22" height="19"/>
         <image name="轨迹2-copy" width="165" height="165"/>
     </resources>
 </document>
