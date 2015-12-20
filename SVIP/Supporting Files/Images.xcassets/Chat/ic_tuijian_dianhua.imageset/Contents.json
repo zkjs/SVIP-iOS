@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_tuijian_dianhua.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "ic_tuijian_dianhua.png",
       "scale" : "2x"
     },
     {

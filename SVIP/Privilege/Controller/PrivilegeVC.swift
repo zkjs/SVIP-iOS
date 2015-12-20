@@ -14,7 +14,7 @@ enum collectionViewItem: Int {
   case moreConstruction
 }
 let itemArray = ["免前台","积分","我的专属客服","更多开发中"]
-let imageArray = ["ic_mianqiantai-1","ic_jifen","ic_zhuanshukefu","ic_gengduojianshezhong"]
+let imageArray = ["ic_mianqiantai","ic_jifen","ic_zhuanshukefu","ic_gengduojianshezhong"]
 class PrivilegeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
   
   @IBOutlet weak var collectionView: UICollectionView!
