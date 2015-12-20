@@ -252,7 +252,6 @@
 		B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D411B4BFAED0098608F /* JSHRegisterAnimationView.m */; };
 		B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */; };
 		B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D4A1B4BFC370098608F /* JSHTextField.m */; };
-		B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D4D1B4BFC470098608F /* JSHRoundRectButton.m */; };
 		B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */; };
 		B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */; };
 		B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27004091B608ABF00B1BEA7 /* Hotel.swift */; };
@@ -1020,8 +1019,6 @@
 		B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterAnimationView.xib; sourceTree = "<group>"; };
 		B2564D491B4BFC370098608F /* JSHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHTextField.h; sourceTree = "<group>"; };
 		B2564D4A1B4BFC370098608F /* JSHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHTextField.m; sourceTree = "<group>"; };
-		B2564D4C1B4BFC470098608F /* JSHRoundRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHRoundRectButton.h; sourceTree = "<group>"; };
-		B2564D4D1B4BFC470098608F /* JSHRoundRectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHRoundRectButton.m; sourceTree = "<group>"; };
 		B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookHotelListTVC.swift; sourceTree = "<group>"; };
 		B26C0E231B5FBC9F00F8AE46 /* BookHotelListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookHotelListCell.xib; sourceTree = "<group>"; };
 		B27004091B608ABF00B1BEA7 /* Hotel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hotel.swift; path = ../../Book/Model/Hotel.swift; sourceTree = "<group>"; };
@@ -2742,8 +2739,6 @@
 				B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */,
 				B2564D491B4BFC370098608F /* JSHTextField.h */,
 				B2564D4A1B4BFC370098608F /* JSHTextField.m */,
-				B2564D4C1B4BFC470098608F /* JSHRoundRectButton.h */,
-				B2564D4D1B4BFC470098608F /* JSHRoundRectButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3346,7 +3341,6 @@
 				4077DDB51C1EAF9900E13D6B /* MWPhotoBrowser.m in Sources */,
 				4077DDAB1C1EAF9900E13D6B /* amrFileCodec.mm in Sources */,
 				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,
-				B2564D4E1B4BFC470098608F /* JSHRoundRectButton.m in Sources */,
 				40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */,
 				4077DDE31C1EAF9900E13D6B /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				4077DDBB1C1EAF9900E13D6B /* EMSDWebImageCompat.m in Sources */,
