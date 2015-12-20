@@ -250,8 +250,6 @@
 		B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */; };
 		B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */; };
 		B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D381B4BFAED0098608F /* JSHAnimationVC.m */; };
-		B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D3A1B4BFAED0098608F /* JSHHotelRegisterVC.m */; };
-		B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D3B1B4BFAED0098608F /* JSHHotelRegisterVC.xib */; };
 		B2564D461B4BFAED0098608F /* JSHAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D3E1B4BFAED0098608F /* JSHAccountManager.m */; };
 		B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D411B4BFAED0098608F /* JSHRegisterAnimationView.m */; };
 		B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */; };
@@ -1021,9 +1019,6 @@
 		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
 		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimationVC.m; sourceTree = "<group>"; };
-		B2564D391B4BFAED0098608F /* JSHHotelRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHHotelRegisterVC.h; sourceTree = "<group>"; };
-		B2564D3A1B4BFAED0098608F /* JSHHotelRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHHotelRegisterVC.m; sourceTree = "<group>"; };
-		B2564D3B1B4BFAED0098608F /* JSHHotelRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSHHotelRegisterVC.xib; sourceTree = "<group>"; };
 		B2564D3D1B4BFAED0098608F /* JSHAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAccountManager.h; sourceTree = "<group>"; };
 		B2564D3E1B4BFAED0098608F /* JSHAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAccountManager.m; sourceTree = "<group>"; };
 		B2564D401B4BFAED0098608F /* JSHRegisterAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHRegisterAnimationView.h; sourceTree = "<group>"; };
@@ -2744,9 +2739,6 @@
 			children = (
 				B2564D371B4BFAED0098608F /* JSHAnimationVC.h */,
 				B2564D381B4BFAED0098608F /* JSHAnimationVC.m */,
-				B2564D391B4BFAED0098608F /* JSHHotelRegisterVC.h */,
-				B2564D3A1B4BFAED0098608F /* JSHHotelRegisterVC.m */,
-				B2564D3B1B4BFAED0098608F /* JSHHotelRegisterVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3199,7 +3191,6 @@
 				40E39E401BFEF43800516EC4 /* OrderDetailsVC.xib in Resources */,
 				FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */,
 				400959EE1C21238C00D3DA61 /* PhoneFirstVC.xib in Resources */,
-				B2564D451B4BFAED0098608F /* JSHHotelRegisterVC.xib in Resources */,
 				40E39E391BFEF43800516EC4 /* OrderListCell.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FAFA519D1C16F32900BF04F2 /* CityHeaderView.xib in Resources */,
@@ -3400,7 +3391,6 @@
 				400959FD1C2148BA00D3DA61 /* InvoiceVC.swift in Sources */,
 				4077DDFC1C1EAF9900E13D6B /* EaseImageView.m in Sources */,
 				B20812CB1B8DD8650070D96F /* NSString+JSH.m in Sources */,
-				B2564D441B4BFAED0098608F /* JSHHotelRegisterVC.m in Sources */,
 				4077DDFE1C1EAF9900E13D6B /* EaseFaceView.m in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
 				4077DDC51C1EAF9900E13D6B /* UIImage+EMMultiFormat.m in Sources */,

@@ -16,7 +16,6 @@
 #import "UIButton+EMWebCache.h"
 #import "BlurDatePickerView.h"
 #import "JSHAnimationVC.h"
-#import "JSHStorage.h"
 #import "JSHAccountManager.h"
 #import "JSHAnimator.h"
 #import "CocoaLumberjack.h"
@@ -25,7 +24,6 @@
 #import <CommonCrypto/CommonDigest.h>
 //#import "UMSocial.h"
 //#import "UMSocialWechatHandler.h"
-#import "JSHHotelRegisterVC.h"
 #import "AMapSearchAPI.h"
 #import "NSString+JSH.h"
 #import "TimesSquare.h"//日历选择

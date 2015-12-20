@@ -9,7 +9,6 @@
 #import "JSHAnimationVC.h"
 #import "JSHRegisterAnimationView.h"
 #import "JSHAccountManager.h"
-#import "JSHHotelRegisterVC.h"
 #import "SVIP-swift.h"
 #define kDuration       2.0f
 #define kDelay          0.7f
