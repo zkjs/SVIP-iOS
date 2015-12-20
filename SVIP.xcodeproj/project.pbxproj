@@ -249,7 +249,6 @@
 		B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21250C31B74A1A50056835D /* BookListRightMenuCell.xib */; };
 		B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */; };
 		B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D381B4BFAED0098608F /* JSHAnimationVC.m */; };
-		B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D411B4BFAED0098608F /* JSHRegisterAnimationView.m */; };
 		B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */; };
 		B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B2564D4A1B4BFC370098608F /* JSHTextField.m */; };
 		B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C0E1F1B5FBC1A00F8AE46 /* BookHotelListTVC.swift */; };
@@ -1014,8 +1013,6 @@
 		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
 		B2564D381B4BFAED0098608F /* JSHAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHAnimationVC.m; sourceTree = "<group>"; };
-		B2564D401B4BFAED0098608F /* JSHRegisterAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHRegisterAnimationView.h; sourceTree = "<group>"; };
-		B2564D411B4BFAED0098608F /* JSHRegisterAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHRegisterAnimationView.m; sourceTree = "<group>"; };
 		B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterAnimationView.xib; sourceTree = "<group>"; };
 		B2564D491B4BFC370098608F /* JSHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHTextField.h; sourceTree = "<group>"; };
 		B2564D4A1B4BFC370098608F /* JSHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSHTextField.m; sourceTree = "<group>"; };
@@ -1310,7 +1307,7 @@
 				B20812B71B8DD8650070D96F /* Helper */,
 				404FACD11B84790300352023 /* Extension */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
-				B2564D351B4BFAED0098608F /* Register */,
+				B2564D351B4BFAED0098608F /* LaunchAnimation */,
 				B2A6420F1B47C2A700AF0F28 /* Book */,
 				40EE4D781C1EEE34009C0311 /* Me */,
 				4052664D1B41283900B277BE /* Main */,
@@ -2713,12 +2710,13 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		B2564D351B4BFAED0098608F /* Register */ = {
+		B2564D351B4BFAED0098608F /* LaunchAnimation */ = {
 			isa = PBXGroup;
 			children = (
 				B2564D361B4BFAED0098608F /* Controller */,
 				B2564D3F1B4BFAED0098608F /* View */,
 			);
+			name = LaunchAnimation;
 			path = Register;
 			sourceTree = "<group>";
 		};
@@ -2734,8 +2732,6 @@
 		B2564D3F1B4BFAED0098608F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B2564D401B4BFAED0098608F /* JSHRegisterAnimationView.h */,
-				B2564D411B4BFAED0098608F /* JSHRegisterAnimationView.m */,
 				B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */,
 				B2564D491B4BFC370098608F /* JSHTextField.h */,
 				B2564D4A1B4BFC370098608F /* JSHTextField.m */,
@@ -3277,7 +3273,6 @@
 				4077DDB81C1EAF9900E13D6B /* MWZoomingScrollView.m in Sources */,
 				4077DDCE1C1EAF9900E13D6B /* PSTCollectionViewData.m in Sources */,
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
-				B2564D471B4BFAED0098608F /* JSHRegisterAnimationView.m in Sources */,
 				4077DDF81C1EAF9900E13D6B /* EaseBubbleView+Voice.m in Sources */,
 				40E39E411BFEF43800516EC4 /* OrderDetailVC.swift in Sources */,
 				FAF7F55E1C0309D500C84601 /* CustomerServiceTVC.swift in Sources */,
