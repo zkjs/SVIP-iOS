@@ -18,6 +18,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   var hotel = Hotel()
   var headerView = BookHeaderView!()
   var shopid: NSNumber!
+  var shopName: String!
   var dataArray = NSMutableArray()
   var roomTypes = NSMutableArray()
   var selection: RoomSelectionBlock?
@@ -53,7 +54,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   func loadRoomTypes() {
     ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      print(responseObject)
+      print(responseObject)
       if let arr = responseObject as? NSArray {
         for dict in arr {
           if let myDict = dict as? NSDictionary {
@@ -148,6 +149,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let goods = roomTypes[self.selectedRow] as! RoomGoods
     vc.goods = goods
     vc.shopID = String(shopid)
+    vc.shopName = shopName
     navigationController?.pushViewController(vc, animated: true)
   }
   

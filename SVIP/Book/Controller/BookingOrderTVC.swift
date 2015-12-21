@@ -88,6 +88,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   func createConversationWithSalesID(salesID: String, salesName: String) {
     let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
     let order = packetOrder()
+    print(order)
     vc.title = order.fullname
     // 扩展字段
     let userName = AccountManager.sharedInstance().userName
@@ -105,7 +106,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     let order = BookOrder()
     order.shopid = NSNumber(integer: Int(shopID)!)
     order.rooms = NSNumber(integer: Int(rooms)!)
-    order.room_typeid = roomTypeID
+    order.room_typeid = goods.goodsid
     order.room_type = roomType.text! + breakfast
     order.fullname = shopName
     

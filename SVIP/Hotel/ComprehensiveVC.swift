@@ -193,6 +193,7 @@ class ComprehensiveVC: UIViewController {
         return
       }
       vc.shopid = NSNumber(integer: Int(hotel.shopid)!)
+      vc.shopName = hotel.shopname
       vc.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
     }
