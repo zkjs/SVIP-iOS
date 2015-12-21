@@ -13,6 +13,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   var orders: NSMutableArray = []
   var orderPage = 1
+  var emptyLabel = UILabel()
   
   // MARK: Life cycle
   
@@ -28,6 +29,15 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer.hidden = true
     
     tableView.tableFooterView = UIView()
+    
+    emptyLabel.frame = CGRectMake(0.0, 0.0, 150.0, 30.0)
+    let screenSize = UIScreen.mainScreen().bounds
+    emptyLabel.textAlignment = .Center
+    emptyLabel.text = "暂无更多数据"
+    emptyLabel.textColor = UIColor.ZKJS_promptColor()
+    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY)
+    emptyLabel.hidden = true
+    view.addSubview(emptyLabel)
     
     showHUDInView(view, withLoading: "")
     loadMoreData()
@@ -121,11 +131,13 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           self.orders.addObject(order)
         }
         self.hideHUD()
+        self.emptyLabel.hidden = true
         self.tableView.reloadData()
         self.tableView.mj_footer.endRefreshing()
         self.orderPage++
       } else {
         self.hideHUD()
+        self.emptyLabel.hidden = false
         self.tableView.mj_footer.endRefreshingWithNoMoreData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
