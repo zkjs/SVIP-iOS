@@ -39,7 +39,8 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
   }
   
   func login(sender: AnyObject) {
-    presentViewController(LoginVC(), animated: true, completion: nil)
+    let nc = BaseNC(rootViewController: LoginVC())
+    presentViewController(nc, animated: true, completion: nil)
   }
   
   func add(sender: UIBarButtonItem) {

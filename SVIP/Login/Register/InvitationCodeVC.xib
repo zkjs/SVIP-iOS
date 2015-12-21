@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationCodeVC" customModule="SVIP" customModuleProvider="target">
@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入邀请码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14q-5I-2lT">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入邀请码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14q-5I-2lT">
                     <rect key="frame" x="150" y="174" width="300" height="48"/>
                     <animations/>
                     <constraints>
@@ -82,6 +82,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oej-Bj-wAw">
                             <rect key="frame" x="75" y="13" width="475" height="23"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="23" id="51D-JM-Lqd"/>
                             </constraints>
@@ -91,6 +92,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击确认激活特权，他将成为您的专属客服" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="438-Sg-Mn3">
                             <rect key="frame" x="75" y="40" width="515" height="23"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="23" id="LZe-aL-AWZ"/>
                             </constraints>
@@ -100,12 +102,14 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background" translatesAutoresizingMaskIntoConstraints="NO" id="7nW-1V-jFa">
                             <rect key="frame" x="17" y="13" width="48" height="48"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="AOq-PO-tFJ"/>
                                 <constraint firstAttribute="height" constant="48" id="SgI-Qr-KTa"/>
                             </constraints>
                         </imageView>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="7nW-1V-jFa" firstAttribute="leading" secondItem="vHH-Y4-ZHN" secondAttribute="leading" constant="17" id="5n2-et-b5y"/>
@@ -119,13 +123,6 @@
                         <constraint firstItem="438-Sg-Mn3" firstAttribute="leading" secondItem="7nW-1V-jFa" secondAttribute="trailing" constant="10" id="zAe-zO-eIl"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_duanxin" translatesAutoresizingMaskIntoConstraints="NO" id="kJK-g2-WqB">
-                    <rect key="frame" x="110" y="182" width="16" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="16" id="kIz-Qk-wcR"/>
-                        <constraint firstAttribute="height" constant="16" id="s2E-hG-5ls"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -133,10 +130,8 @@
                 <constraint firstItem="E7G-HY-4Pj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Sk-Aa-hHJ"/>
                 <constraint firstAttribute="trailing" secondItem="vHH-Y4-ZHN" secondAttribute="trailing" id="2bI-XO-oBj"/>
                 <constraint firstAttribute="trailing" secondItem="dIj-fj-8ge" secondAttribute="trailing" id="3Cu-ha-15s"/>
-                <constraint firstItem="kJK-g2-WqB" firstAttribute="top" secondItem="vHH-Y4-ZHN" secondAttribute="bottom" constant="88" id="8RA-ev-UK7"/>
                 <constraint firstItem="vHH-Y4-ZHN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BPR-ro-sGN"/>
                 <constraint firstItem="14q-5I-2lT" firstAttribute="top" secondItem="vHH-Y4-ZHN" secondAttribute="bottom" constant="80" id="Ebt-lS-1KY"/>
-                <constraint firstItem="kJK-g2-WqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="110" id="QSM-Sj-AaC"/>
                 <constraint firstItem="E7G-HY-4Pj" firstAttribute="top" secondItem="14q-5I-2lT" secondAttribute="bottom" constant="8" id="UlR-uD-LOZ"/>
                 <constraint firstAttribute="trailing" secondItem="E7G-HY-4Pj" secondAttribute="trailing" id="Wkn-tj-AxC"/>
                 <constraint firstItem="14q-5I-2lT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cQ1-rg-imF"/>
@@ -147,7 +142,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_duanxin" width="18" height="13"/>
-        <image name="img_background" width="375" height="374"/>
+        <image name="img_background" width="375" height="373"/>
     </resources>
 </document>

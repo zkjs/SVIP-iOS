@@ -18,7 +18,6 @@ class MeTVC: UITableViewController {
     super.viewDidLoad()
     
     tableView.tableFooterView = UIView()
-    print(AccountManager.sharedInstance().userID)
     automaticallyAdjustsScrollViewInsets = false
   }
   
@@ -29,8 +28,8 @@ class MeTVC: UITableViewController {
     setupUI()
   }
   
-  override func viewDidDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
     
     navigationController?.navigationBarHidden = false
   }
@@ -54,7 +53,8 @@ class MeTVC: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
     if AccountManager.sharedInstance().isLogin() == false {
-      presentViewController(LoginVC(), animated: true, completion: nil)
+      let nc = BaseNC(rootViewController: LoginVC())
+      presentViewController(nc, animated: true, completion: nil)
       return
     }
     

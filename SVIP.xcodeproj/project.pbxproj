@@ -304,8 +304,6 @@
 		FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F11C12C5C800768A4D /* CustonCell.xib */; };
 		FAF253F61C12CE8100768A4D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF253F51C12CE8100768A4D /* HomeHeaderView.swift */; };
 		FAF253F81C12CE8A00768A4D /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */; };
-		FAF2E0721BF1E551008DD5BC /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */; };
-		FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */; };
 		FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40DE91BF0807E002C77A6 /* OrderModel.swift */; };
 		FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */; };
 		FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */; };
@@ -1080,8 +1078,6 @@
 		FAF253F11C12C5C800768A4D /* CustonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustonCell.xib; sourceTree = "<group>"; };
 		FAF253F51C12CE8100768A4D /* HomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		FAF253F71C12CE8A00768A4D /* HomeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
-		FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
-		FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHeaderView.xib; sourceTree = "<group>"; };
 		FAF40DE91BF0807E002C77A6 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityCell.swift; sourceTree = "<group>"; };
 		FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCityCell.xib; sourceTree = "<group>"; };
@@ -2894,8 +2890,6 @@
 				FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */,
 				FAFA518E1C16C62900BF04F2 /* HomeVC.swift */,
 				FAFA518F1C16C62900BF04F2 /* HomeVC.xib */,
-				FAF2E0711BF1E551008DD5BC /* MainHeaderView.swift */,
-				FAF2E0731BF1E55B008DD5BC /* MainHeaderView.xib */,
 				FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */,
 			);
 			path = MainVC;
@@ -3170,7 +3164,6 @@
 				40D585DC1C22AD5200C5267D /* PhoneCell.xib in Resources */,
 				400959F61C213B3900D3DA61 /* PhoneSecondVC.xib in Resources */,
 				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
-				FAF2E0741BF1E55B008DD5BC /* MainHeaderView.xib in Resources */,
 				40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */,
 				40E3A1751BFEFA6400516EC4 /* FloatingWindowVC.xib in Resources */,
 				4077C7A21C26578F000DD7DC /* server.der in Resources */,
@@ -3304,7 +3297,6 @@
 				4077DDE91C1EAF9900E13D6B /* EaseConversationListViewController.m in Sources */,
 				4077DD9F1C1EAF9900E13D6B /* EMTextView.m in Sources */,
 				4077DDC01C1EAF9900E13D6B /* EMSDWebImagePrefetcher.m in Sources */,
-				FAF2E0721BF1E551008DD5BC /* MainHeaderView.swift in Sources */,
 				4077DD9A1C1EAF9900E13D6B /* GroupSubjectChangingViewController.m in Sources */,
 				4077DDCF1C1EAF9900E13D6B /* PSTCollectionViewFlowLayout.m in Sources */,
 				4077DD9C1C1EAF9900E13D6B /* RealtimeSearchUtil.m in Sources */,

@@ -57,6 +57,12 @@ class InvitationCodeVC: UIViewController {
   }
   
   func setupUI() {
+    let codeIV = UIImageView(image: UIImage(named: "ic_duanxin"))
+    codeIV.frame = CGRectMake(0.0, 0.0, codeIV.frame.size.width + 10.0, codeIV.frame.size.height)
+    codeIV.contentMode = .Center
+    codeTextField.leftViewMode = .Always
+    codeTextField.leftView = codeIV
+    
     animationViewHeight.constant = 0
     avatarImageHeight.constant = 0
   }

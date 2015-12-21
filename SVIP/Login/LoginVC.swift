@@ -10,8 +10,8 @@ import UIKit
 
 class LoginVC: UIViewController {
   
-  @IBOutlet weak var phoneTextField: LTBouncyTextField!
-  @IBOutlet weak var codeTextField: LTBouncyTextField!
+  @IBOutlet weak var phoneTextField: UITextField!
+  @IBOutlet weak var codeTextField: UITextField!
   @IBOutlet weak var okButton: UIButton!
   @IBOutlet weak var codeButton: UIButton!
   
@@ -69,7 +69,6 @@ class LoginVC: UIViewController {
     ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
       self.hideHUD()
       if success {
-        self.showHint("登录成功")
         self.loginWithPhone(phone)
       } else {
         self.showHint("验证码不正确")
@@ -144,17 +143,26 @@ class LoginVC: UIViewController {
     let screenSize = UIScreen.mainScreen().bounds
     originCenter = CGPointMake(screenSize.midX, screenSize.midY)
     
-    phoneTextField.alwaysBouncePlaceholder = true
-    phoneTextField.abbreviatedPlaceholder = "手机号"
+    let phoneIV = UIImageView(image: UIImage(named: "ic_yonghu"))
+    phoneIV.frame = CGRectMake(0.0, 0.0, phoneIV.frame.size.width + 10.0, phoneIV.frame.size.height)
+    phoneIV.contentMode = .Center
+    phoneTextField.leftViewMode = .Always
+    phoneTextField.leftView = phoneIV
     
-    codeTextField.alwaysBouncePlaceholder = true
-    codeTextField.abbreviatedPlaceholder = "验证码"
+    let codeIV = UIImageView(image: UIImage(named: "ic_mima"))
+    codeIV.frame = CGRectMake(0.0, 0.0, codeIV.frame.size.width + 10.0, phoneIV.frame.size.height)
+    codeIV.contentMode = .Center
+    codeTextField.leftViewMode = .Always
+    codeTextField.leftView = codeIV
     
     okButton.enabled = false
     okButton.alpha = 0.5
     
+    codeButton.layer.borderWidth = 0.6
+    codeButton.layer.borderColor = UIColor.hx_colorWithHexString("C7C7CD").CGColor
+    codeButton.backgroundColor = UIColor.whiteColor()
+    codeButton.setTitleColor(UIColor.hx_colorWithHexString("C7C7CD"), forState: .Normal)
     codeButton.enabled = false
-    codeButton.alpha = 0.5
   }
   
   private func easeMobAutoLogin() {
@@ -206,7 +214,7 @@ class LoginVC: UIViewController {
     if view.center == originCenter {
       if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
         let center = view.center
-        let moveUp = max(0, keyboardSize.height - (CGRectGetHeight(view.frame) - CGRectGetMaxY(codeTextField.frame))) + 40.0
+        let moveUp = max(0, keyboardSize.height - (CGRectGetHeight(view.frame) - CGRectGetMaxY(codeTextField.frame))) + 90.0
         view.center = CGPointMake(center.x, center.y - moveUp)
       }
     }
@@ -226,11 +234,17 @@ extension LoginVC: UITextFieldDelegate {
     if textField == phoneTextField {
       // 只有当手机号码填全时，才能验证码按钮可按
       if (range.location + string.characters.count >= 11) {
+        codeButton.layer.borderWidth = 0.0
+        codeButton.layer.borderColor = UIColor.clearColor().CGColor
+        codeButton.backgroundColor = UIColor.ZKJS_mainColor()
+        codeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         codeButton.enabled = true
-        codeButton.alpha = 1.0
       } else {
+        codeButton.layer.borderWidth = 0.6
+        codeButton.layer.borderColor = UIColor.hx_colorWithHexString("C7C7CD").CGColor
+        codeButton.backgroundColor = UIColor.whiteColor()
+        codeButton.setTitleColor(UIColor.hx_colorWithHexString("C7C7CD"), forState: .Normal)
         codeButton.enabled = false
-        codeButton.alpha = 0.5
       }
       
       if (range.location + string.characters.count <= 11) {

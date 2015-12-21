@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -57,22 +57,27 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndh-Ec-eXe">
-                            <rect key="frame" x="150" y="229" width="100" height="30"/>
+                            <rect key="frame" x="80" y="229" width="150" height="30"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="4ol-KN-wAP"/>
+                                <constraint firstAttribute="width" constant="150" id="4ol-KN-wAP"/>
                                 <constraint firstAttribute="height" constant="30" id="72R-Fo-kP4"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7I-4C-mFs">
-                            <rect key="frame" x="18" y="229" width="100" height="30"/>
+                            <rect key="frame" x="18" y="229" width="30" height="30"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="JjS-iE-sWu"/>
                                 <constraint firstAttribute="height" constant="30" id="sSk-9r-xPm"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="JjS-iE-sWu"/>
+                                </mask>
+                            </variation>
                         </button>
                     </subviews>
                     <animations/>
@@ -88,12 +93,18 @@
                         <constraint firstItem="Ndh-Ec-eXe" firstAttribute="top" secondItem="E8H-WK-rmy" secondAttribute="bottom" constant="19" id="Xee-fx-ad0"/>
                         <constraint firstAttribute="bottom" secondItem="dU1-0M-DHr" secondAttribute="bottom" id="eft-yK-fOq"/>
                         <constraint firstItem="Ndh-Ec-eXe" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="150" id="gsj-Ne-Ntk"/>
+                        <constraint firstItem="Ndh-Ec-eXe" firstAttribute="leading" secondItem="Z7I-4C-mFs" secondAttribute="trailing" constant="32" id="gy0-gW-1e0"/>
                         <constraint firstItem="em2-Hz-coW" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" constant="234" id="kPM-Ks-WFw"/>
                         <constraint firstAttribute="trailing" secondItem="dU1-0M-DHr" secondAttribute="trailing" id="ojV-Ty-yK7"/>
                         <constraint firstItem="em2-Hz-coW" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="qei-AY-3cn"/>
                         <constraint firstItem="Z7I-4C-mFs" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="tAv-Fb-Obq"/>
                         <constraint firstItem="E8H-WK-rmy" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" constant="184" id="wQf-5t-g8h"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="gsj-Ne-Ntk"/>
+                        </mask>
+                    </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4r-ak-Q7I">
                     <rect key="frame" x="390" y="308" width="60" height="60"/>
