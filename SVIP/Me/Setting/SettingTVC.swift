@@ -32,7 +32,12 @@ class SettingTVC: UITableViewController {
         }
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        self.showAlertWithTitle(error.description, message: "")
+//        self.showAlertWithTitle(error.description, message: "")
+//        print(error.description)
+        // Request failed: unacceptable content-type: text/html status code: 200
+        AccountManager.sharedInstance().clearAccountCache()
+        let window =  UIApplication.sharedApplication().keyWindow
+        window?.rootViewController = MainTBC()
     }
   }
   
