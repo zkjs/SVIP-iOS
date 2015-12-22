@@ -11,6 +11,7 @@ import UIKit
 class MailListTVC: UITableViewController {
   
   var contactArray = [ContactModel]()
+  var emptyLabel = UILabel()
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MailListTVC", owner:self, options:nil)
@@ -23,21 +24,40 @@ class MailListTVC: UITableViewController {
     tableView.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height)
     tableView.registerNib(nibName, forCellReuseIdentifier: MailListCell.reuseIdentifier())
     tableView.tableFooterView = UIView()
-    loadFriendListData()
+    
+    emptyLabel.frame = CGRectMake(0.0, 0.0, 150.0, 30.0)
+    let screenSize = UIScreen.mainScreen().bounds
+    emptyLabel.font = UIFont.systemFontOfSize(14)
+    emptyLabel.textAlignment = .Center
+    emptyLabel.text = "暂无联系人"
+    emptyLabel.textColor = UIColor.ZKJS_promptColor()
+    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
+    emptyLabel.hidden = false
+    view.addSubview(emptyLabel)
+    
+//    loadFriendListData()
+    tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "loadFriendListData")  // 下拉刷新
   }
   
   func loadFriendListData() {
     ZKJSHTTPSessionManager.sharedInstance().managerFreindListWithFuid("", set: "showFriend", success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
-      print(responsObjects)
+//      print(responsObjects)
       if let array = responsObjects as? NSArray {
+        self.contactArray.removeAll()
         for dic in array {
           let contact = ContactModel(dic: dic as! [String: AnyObject])
           self.contactArray.append(contact)
         }
+        if self.contactArray.count > 0 {
+          self.emptyLabel.hidden = true
+        } else {
+          self.emptyLabel.hidden = false
+        }
         self.tableView.reloadData()
       }
+      self.tableView.mj_header.endRefreshing()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        self.tableView.mj_header.endRefreshing()
     }
   }
   

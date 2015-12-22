@@ -32,6 +32,7 @@ class SettingTVC: UITableViewController {
         }
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        self.showAlertWithTitle(error.description, message: "")
     }
   }
   

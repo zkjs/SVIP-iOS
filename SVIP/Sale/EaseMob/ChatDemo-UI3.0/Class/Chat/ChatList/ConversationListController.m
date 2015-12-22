@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIView *networkStateView;
 @property (nonatomic, strong) EMSearchBar *searchBar;
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UILabel *emptyLabel;
 
 @end
 
@@ -48,6 +49,17 @@
   [self searchController];
   
   [self removeEmptyConversationsFromDB];
+  
+  // 空数据提示
+  CGRect screenSize = [UIScreen mainScreen].bounds;
+  self.emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 150.0, 30.0)];
+  self.emptyLabel.textAlignment = NSTextAlignmentCenter;
+  self.emptyLabel.font = [UIFont systemFontOfSize:14];
+  self.emptyLabel.text = @"暂无消息";
+  self.emptyLabel.textColor = [UIColor ZKJS_promptColor];
+  self.emptyLabel.center = CGPointMake(screenSize.size.width / 2.0, screenSize.size.height / 2.0 - 100.0);
+  self.emptyLabel.hidden = NO;
+  [self.tableView addSubview:self.emptyLabel];
 }
 
 
@@ -282,6 +294,29 @@
   }
   
   return latestMessageTime;
+}
+
+- (void)tableViewDidFinishTriggerHeader:(BOOL)isHeader reload:(BOOL)reload
+{
+  __weak EaseRefreshTableViewController *weakSelf = self;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (reload) {
+      [weakSelf.tableView reloadData];
+    }
+    
+    if (isHeader) {
+      [weakSelf.tableView.mj_header endRefreshing];
+    }
+    else{
+      [weakSelf.tableView.mj_footer endRefreshing];
+    }
+  });
+  
+  if (self.dataArray.count > 0) {
+    self.emptyLabel.hidden = YES;
+  } else {
+    self.emptyLabel.hidden = NO;
+  }
 }
 
 #pragma mark - UISearchBarDelegate

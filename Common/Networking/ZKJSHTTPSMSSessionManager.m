@@ -49,8 +49,8 @@
   int serverPort = 8883;
   NSString *appID = @"8a48b5514f73ea32014f8d1d3f71344d";
   NSString *serverVersion = @"2013-12-26";
-  NSString *mainAccount = @"61c130b1a87d11e59288ac853d9f54f2";
-  NSString *mainToken = @"4ff5e85f46e73bfd27d15c15b2a9637f";
+  NSString *mainAccount = @"8a48b5514d9861c3014d99cf3572024a";
+  NSString *mainToken = @"137d18e0111643ffb9e06401f214cc8d";
   NSString *timestamp = [self getTimestamp];
   NSString *mainSig = [self getMainSig:[NSString stringWithFormat:@"%@%@%@", mainAccount, mainToken, timestamp]];
   NSString *requestURL = [NSString stringWithFormat:@"https://%@:%d/%@/Accounts/%@/SMS/TemplateSMS?sig=%@", serverIP, serverPort, serverVersion, mainAccount, mainSig];
