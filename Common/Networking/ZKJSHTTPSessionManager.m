@@ -125,7 +125,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 #pragma mark - 登出
 - (void)logoutWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"user/logout?userid=%@", [self userID]];
-  [self POST:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
   //  DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
