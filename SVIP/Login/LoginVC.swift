@@ -67,10 +67,10 @@ class LoginVC: UIViewController {
     }
     
     ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
-      self.hideHUD()
       if success {
         self.loginWithPhone(phone)
       } else {
+        self.hideHUD()
         self.showHint("验证码不正确")
       }
     }
@@ -92,6 +92,7 @@ class LoginVC: UIViewController {
             AccountManager.sharedInstance().saveAccountInfo(data)
             // 获取用户信息
             self.getUserInfo() {
+              self.hideHUD()
               self.dismissSelf()
             }
           } else {
