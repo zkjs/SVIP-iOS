@@ -88,6 +88,7 @@ class ComprehensiveVC: UIViewController {
     navigationController?.presentViewController(nav, animated: true, completion: nil)
   }
   
+  
 //  
 //  func loadRecommandData() {
 //    
@@ -184,8 +185,12 @@ class ComprehensiveVC: UIViewController {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
+    let hotel = dataArray[indexPath.row]
     if indexPath.row == 0 {
-      ZKJSTool.showMsg("抱歉，暂无商家信息")
+      let web = WebViewVC()
+      web.url = hotel.shopaddress
+      web.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(web, animated: true)
     } else {
       let vc = BookVC()
       let hotel = self.dataArray[indexPath.row]

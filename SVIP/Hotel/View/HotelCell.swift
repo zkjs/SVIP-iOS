@@ -17,6 +17,11 @@ class HotelCell: UITableViewCell {
       userImageButton.layer.cornerRadius = 24
     }
   }
+  @IBOutlet weak var descriptionLabel: UILabel! {
+    didSet {
+      descriptionLabel.textColor = UIColor.ZKJS_textColor()
+    }
+  }
   @IBOutlet weak var addressLabel: UILabel! {
     didSet {
       addressLabel.numberOfLines = 0
@@ -44,14 +49,15 @@ class HotelCell: UITableViewCell {
   }
   
   class func height() -> CGFloat {
-    return 385
+    return 400
   }
   
   
   func setData(hotel:Hotel) {
     hotelNameLabel.text = hotel.shopname
+    descriptionLabel.text = hotel.shopaddress
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    addressLabel.text = hotel.shopaddress
+    addressLabel.text = hotel.shopdesc
     let logoURL = NSURL(string: hotel.bgImgUrl)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
     if let salesid = hotel.salesid {

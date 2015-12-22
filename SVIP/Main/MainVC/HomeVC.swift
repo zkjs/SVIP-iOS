@@ -46,7 +46,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     
     setupCoreLocationService()
     setupBluetoothManager()
-    
+    loadData()
     self.navigationController!.navigationBar.translucent = true
     self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
     self.navigationController!.navigationBar.shadowImage = UIImage()
@@ -64,8 +64,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     super.viewWillAppear(animated)
     self.pushInfoArray.removeAll()
     delegate = self
-   // navigationController?.navigationBarHidden = true
-    loadData()
+    navigationController?.navigationBarHidden = true
+    
     count++
    // tableView.reloadData()
     let islogin = AccountManager.sharedInstance().isLogin()
@@ -90,7 +90,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   //TableView Scroller Delegate
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    if self.urlArray.count < self.count {
+    if self.urlArray.count <= self.count {
       self.count = 0
     }else {
       self.homeUrl = self.urlArray[self.count] as! String
@@ -98,17 +98,17 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
      navigationController?.navigationBarHidden = false
   }
   
-  func scrollViewDidScroll(scrollView: UIScrollView) {
-    let color = UIColor.ZKJS_mainColor()
-    let offsetY = scrollView.contentOffset.y
-    if (offsetY > 10) {
-      let alpha = min(1, 1 - ((10 + 64 - offsetY) / 64))
-      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
-      
-    } else {
-      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
-    }
-  }
+//  func scrollViewDidScroll(scrollView: UIScrollView) {
+//    let color = UIColor.ZKJS_mainColor()
+//    let offsetY = scrollView.contentOffset.y
+//    if (offsetY > 10) {
+//      let alpha = min(1, 1 - ((10 + 64 - offsetY) / 64))
+//      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
+//      
+//    } else {
+//      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
+//    }
+//  }
   
   //refreshHomeVCDelegate
   func refreshHomeVC(set: Bool) {
@@ -124,14 +124,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
         }
         
         self.homeUrl = self.urlArray[self.count] as! String
-        self.tableView .reloadData()
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.None)
+//        self.tableView.reloadData()
       }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
-   
-    
-
   }
   
   func setupUI() {
@@ -217,7 +215,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
          self.pushInfoArray.append(pushInfo)
         }
-        //self.pushInfoArray = datasource
         self.tableView.reloadData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -309,18 +306,21 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
     cell.selectionStyle = UITableViewCellSelectionStyle.None
-    let pushInfo = self.pushInfoArray[indexPath.row]
-    cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
-    cell.setData(pushInfo)
+    if self.pushInfoArray.count != 0 {
+       let pushInfo = self.pushInfoArray[indexPath.row]
+      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+      cell.setData(pushInfo)
+    }
     return cell
   }
+  
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     myView = NSBundle.mainBundle().loadNibNamed("HomeHeaderView", owner: self, options: nil).first as! HomeHeaderView
     if urlArray.count != 0 {
       myView.backgroundImage.sd_setImageWithURL(NSURL(string: self.homeUrl), placeholderImage: nil)
     }
-    myView.privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
+   myView.LocationButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
     myView.backgroundImage.layer.masksToBounds = true
     let animation = CABasicAnimation(keyPath:"transform.scale")
     //动画选项设定

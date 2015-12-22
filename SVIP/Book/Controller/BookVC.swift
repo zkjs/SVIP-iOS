@@ -14,7 +14,6 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
   @IBOutlet weak var confirmButton: UIButton!
   @IBOutlet private weak var tableView: UITableView!
-  
   var hotel = Hotel()
   var headerView = BookHeaderView!()
   var shopid: NSNumber!
@@ -38,19 +37,28 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     setUI()
     loadData()
     loadRoomTypes()
+    
+    self.navigationController!.navigationBar.translucent = true
+    self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+    self.navigationController!.navigationBar.shadowImage = UIImage()
+    let image = UIImage(named: "ic_fanhui_orange")
+    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
+    navigationController?.navigationBar.translucent = true
+    self.navigationItem.leftBarButtonItem = item1
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
-    navigationController?.navigationBarHidden = true
+
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
+     navigationController?.navigationBar.translucent = false
     navigationController?.navigationBarHidden = false
   }
+  
+  
   
   func loadRoomTypes() {
     ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -70,7 +78,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   }
   
   private func setUI() {
-    title = NSLocalizedString("ROOM_TYPE", comment: "")
+    //title = NSLocalizedString("ROOM_TYPE", comment: "")
     automaticallyAdjustsScrollViewInsets = false
     
     let nibName = UINib(nibName: BookRoomCell.nibName(), bundle: nil)
@@ -115,7 +123,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     headerView = NSBundle.mainBundle().loadNibNamed("BookHeaderView", owner: self, options: nil).first as! BookHeaderView
     if hotel.shopid != nil {
-      headerView.backButton.addTarget(self, action: "pop:", forControlEvents: UIControlEvents.TouchUpInside)
+//      headerView.backButton.addTarget(self, action: "pop:", forControlEvents: UIControlEvents.TouchUpInside)
       headerView.hotelNameLabel.text = hotel.shopname
       let placeholderImage = UIImage(named: "img_hotel_zhanwei")
       headerView.addressLabel.text = hotel.shopaddress
@@ -123,7 +131,24 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
       headerView.backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
       headerView.explainLabel.text = hotel.shopbusiness
       headerView.introducesLabel.text = hotel.shopdesc
+      headerView.introducesLabel.sizeToFit()
       headerView.addressLabel.text = hotel.shopaddress
+      
+      let  dtext = headerView.introducesLabel.text
+      headerView.introducesLabel.font = UIFont.systemFontOfSize(14)
+      headerView.introducesLabel.numberOfLines = 0          //设置无限换行
+      
+      headerView.introducesLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping  //自动折行
+      //根据detailText文字长度调节topView高度
+      
+      let constraint = CGSize(width: headerView.frame.size.width,height:0)
+      
+      let size = dtext!.boundingRectWithSize(constraint,options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: NSDictionary(object:UIFont.systemFontOfSize(14), forKey: NSFontAttributeName) as? [String : AnyObject] ,context: nil)
+      
+      headerView.introducesLabel.frame = CGRectMake(10,260, size.width, size.height)
+      headerView.frame.size.height += size.height
+      print(headerView.introducesLabel.text)
+      print(size)
     }
     return headerView
   }
@@ -139,7 +164,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     confirmButton.enabled = true
   }
   
-  func pop(sender:UIButton) {
+  func pop(sender:UIBarButtonItem) {
     navigationController?.popViewControllerAnimated(true)
   }
   
