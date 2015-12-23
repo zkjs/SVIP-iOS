@@ -94,7 +94,7 @@
 
 #pragma mark - 查询所有的酒店列表
 - (void)getShopListWithPage:(NSString *)page size:(NSString *)size success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString * string = [NSString stringWithFormat:@"shop/list/%d/%d",page.intValue,size.intValue];
+  NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%d/%d",[self userID],page.intValue,size.intValue];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
     // NSLog(@"酒店列表%@", [responseObject description]);

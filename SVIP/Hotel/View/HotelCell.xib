@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -64,8 +64,8 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRF-M1-qBD">
-                        <rect key="frame" x="18" y="330" width="200" height="38"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRF-M1-qBD">
+                        <rect key="frame" x="18" y="330" width="428" height="38"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="200" id="EO0-Af-5QT"/>
@@ -74,6 +74,11 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EO0-Af-5QT"/>
+                            </mask>
+                        </variation>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wN-xA-hbl">
                         <rect key="frame" x="496" y="294" width="48" height="48"/>
@@ -91,6 +96,15 @@
                             </mask>
                         </variation>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZK-M6-78K">
+                        <rect key="frame" x="18" y="368" width="476" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="5IS-UQ-6Ec"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -99,15 +113,19 @@
                     <constraint firstItem="9wN-xA-hbl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="100" id="3CN-t3-nSN"/>
                     <constraint firstAttribute="trailing" secondItem="TJE-6o-7DQ" secondAttribute="trailing" id="6Dd-pQ-dj1"/>
                     <constraint firstAttribute="trailing" secondItem="A4g-Ev-AfZ" secondAttribute="trailing" id="7nS-6j-nwY"/>
+                    <constraint firstItem="9wN-xA-hbl" firstAttribute="leading" secondItem="wRF-M1-qBD" secondAttribute="trailing" constant="50" id="9iq-SR-I8y"/>
                     <constraint firstItem="A4g-Ev-AfZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="F81-4A-r0N"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9wN-xA-hbl" secondAttribute="trailing" constant="20" id="KJI-49-zJ5"/>
                     <constraint firstItem="9wN-xA-hbl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="299" id="QON-rc-Yr5"/>
                     <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="RRX-HC-9JT"/>
+                    <constraint firstItem="9wN-xA-hbl" firstAttribute="leading" secondItem="wRF-M1-qBD" secondAttribute="trailing" constant="278" id="T4F-67-fBQ"/>
                     <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="top" secondItem="fRo-1M-SDA" secondAttribute="bottom" id="Wio-tQ-9S3"/>
                     <constraint firstItem="A4g-Ev-AfZ" firstAttribute="top" secondItem="TJE-6o-7DQ" secondAttribute="bottom" id="XYx-Ud-Jgp"/>
                     <constraint firstItem="9wN-xA-hbl" firstAttribute="top" secondItem="Z6Z-Mf-dtv" secondAttribute="bottom" constant="90" id="blD-oD-pjU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vZK-M6-78K" secondAttribute="trailing" constant="70" id="eat-4A-4pL"/>
                     <constraint firstAttribute="trailing" secondItem="Z6Z-Mf-dtv" secondAttribute="trailing" constant="8" id="ejp-rW-4BL"/>
                     <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fhB-0Q-Ypg"/>
+                    <constraint firstItem="vZK-M6-78K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="qQa-te-Y4Z"/>
                     <constraint firstItem="fRo-1M-SDA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="115" id="s39-Nc-ogj"/>
                     <constraint firstItem="9wN-xA-hbl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="100" id="sDW-0E-vtC"/>
                     <constraint firstItem="wRF-M1-qBD" firstAttribute="top" secondItem="A4g-Ev-AfZ" secondAttribute="bottom" constant="8" id="sQv-EE-Y1J"/>
@@ -115,11 +133,13 @@
                     <constraint firstItem="fRo-1M-SDA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="t0m-1h-KdX"/>
                     <constraint firstItem="wRF-M1-qBD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="y7n-kY-5HY"/>
                     <constraint firstItem="TJE-6o-7DQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="y8g-mN-i8R"/>
+                    <constraint firstItem="vZK-M6-78K" firstAttribute="top" secondItem="wRF-M1-qBD" secondAttribute="bottom" id="zdF-tY-z6T"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="3CN-t3-nSN"/>
                         <exclude reference="QON-rc-Yr5"/>
+                        <exclude reference="T4F-67-fBQ"/>
                         <exclude reference="sDW-0E-vtC"/>
                     </mask>
                 </variation>
@@ -128,6 +148,7 @@
             <connections>
                 <outlet property="addressLabel" destination="wRF-M1-qBD" id="dQq-1g-kka"/>
                 <outlet property="customLabel" destination="Z6Z-Mf-dtv" id="mWR-L4-tkq"/>
+                <outlet property="descriptionLabel" destination="vZK-M6-78K" id="t9E-1r-z1E"/>
                 <outlet property="hotelImageView" destination="TJE-6o-7DQ" id="OBU-TS-vBW"/>
                 <outlet property="hotelNameLabel" destination="fRo-1M-SDA" id="hEt-M4-HNP"/>
                 <outlet property="userImageButton" destination="9wN-xA-hbl" id="tpl-O7-Hm3"/>

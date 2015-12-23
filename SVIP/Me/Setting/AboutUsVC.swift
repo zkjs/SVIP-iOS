@@ -15,7 +15,7 @@ class WebViewVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    navigationController?.navigationBar.translucent = false
     initSubviews()
   }
   

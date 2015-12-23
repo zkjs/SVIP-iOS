@@ -50,15 +50,15 @@
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dqK-gH-25K">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqK-gH-25K">
                     <rect key="frame" x="10" y="276" width="582" height="80"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="D0p-DF-O5X"/>
                         <constraint firstAttribute="width" constant="300" id="npp-MY-vOG"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -66,15 +66,15 @@
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zQE-4S-otS">
-                    <rect key="frame" x="10" y="366" width="582" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zQE-4S-otS">
+                    <rect key="frame" x="10" y="360" width="582" height="21"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="1tI-5z-NYd"/>
                         <constraint firstAttribute="height" constant="21" id="E4A-Py-qYG"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -97,7 +97,6 @@
                         <constraint firstAttribute="height" constant="44" id="CxQ-mV-rVQ"/>
                         <constraint firstAttribute="width" constant="44" id="gYU-KJ-aI5"/>
                     </constraints>
-                    <state key="normal" image="ic_fanhui_orange"/>
                 </button>
             </subviews>
             <animations/>
@@ -107,7 +106,7 @@
                 <constraint firstItem="MXc-Gq-mWL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="45L-kA-rOj"/>
                 <constraint firstItem="MXc-Gq-mWL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="APk-bn-JCn"/>
                 <constraint firstAttribute="trailing" secondItem="zQE-4S-otS" secondAttribute="trailing" constant="8" id="Ebp-NA-jOH"/>
-                <constraint firstItem="zQE-4S-otS" firstAttribute="top" secondItem="dqK-gH-25K" secondAttribute="bottom" constant="10" id="IDB-93-O8K"/>
+                <constraint firstItem="zQE-4S-otS" firstAttribute="top" secondItem="dqK-gH-25K" secondAttribute="bottom" constant="4" id="IDB-93-O8K"/>
                 <constraint firstItem="oDt-qX-VzJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="JuV-mW-o9A"/>
                 <constraint firstAttribute="trailing" secondItem="oDt-qX-VzJ" secondAttribute="trailing" constant="8" id="KSi-ho-WUq"/>
                 <constraint firstItem="zQE-4S-otS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="RJT-RC-blR"/>
@@ -142,7 +141,4 @@
             </connections>
         </view>
     </objects>
-    <resources>
-        <image name="ic_fanhui_orange" width="10" height="18"/>
-    </resources>
 </document>
