@@ -31,6 +31,14 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   _welcomeWords.text = NSLocalizedString(@"SLOGAN", nil);
+  [[NSNotificationCenter defaultCenter] addObserver: self
+                                           selector: @selector(finishAnimation)
+                                               name: @"UIApplicationWillEnterForegroundNotification"
+                                             object: nil];
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -52,6 +60,10 @@
   } completion:^(BOOL finished) {
     
   }];
+}
+
+- (void)finishAnimation {
+  [[LoginManager sharedInstance] afterAnimation];
 }
 
 @end

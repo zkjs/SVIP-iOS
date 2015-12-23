@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-@interface ZKJSHTTPSMSSessionManager : AFHTTPSessionManager
+@interface ZKJSHTTPSMSSessionManager : NSObject
 
 // 单例
 + (instancetype)sharedInstance;
