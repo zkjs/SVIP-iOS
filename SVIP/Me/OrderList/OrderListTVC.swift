@@ -33,9 +33,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     emptyLabel.frame = CGRectMake(0.0, 0.0, 150.0, 30.0)
     let screenSize = UIScreen.mainScreen().bounds
     emptyLabel.textAlignment = .Center
-    emptyLabel.text = "暂无更多数据"
+    emptyLabel.font = UIFont.systemFontOfSize(14)
+    emptyLabel.text = "暂无订单"
     emptyLabel.textColor = UIColor.ZKJS_promptColor()
-    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY)
+    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
     emptyLabel.hidden = true
     view.addSubview(emptyLabel)
     
