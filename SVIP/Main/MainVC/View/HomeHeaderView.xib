@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -18,16 +18,21 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                             <animations/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em2-Hz-coW">
-                            <rect key="frame" x="18" y="234" width="120" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em2-Hz-coW">
+                            <rect key="frame" x="18" y="234" width="96" height="24"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="IA2-49-54N"/>
-                                <constraint firstAttribute="height" constant="21" id="QVK-hm-Dzo"/>
+                                <constraint firstAttribute="height" constant="24" id="QVK-hm-Dzo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="IA2-49-54N"/>
+                                </mask>
+                            </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入邀请码激活身份，享受超凡个性服务" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhH-3u-nJI">
                             <rect key="frame" x="18" y="260" width="566" height="60"/>
@@ -71,15 +76,21 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyW-MZ-jvc">
-                            <rect key="frame" x="146" y="229" width="150" height="30"/>
+                            <rect key="frame" x="122" y="234" width="96" height="24"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="C7K-r4-ExO"/>
-                                <constraint firstAttribute="height" constant="30" id="cfs-ep-cjH"/>
+                                <constraint firstAttribute="height" constant="24" id="cfs-ep-cjH"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                            <state key="normal">
+                            <state key="normal" title="立即激活">
                                 <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="C7K-r4-ExO"/>
+                                </mask>
+                            </variation>
                         </button>
                     </subviews>
                     <animations/>
@@ -90,7 +101,7 @@
                         <constraint firstAttribute="height" constant="338" id="6kc-Rz-T8e"/>
                         <constraint firstItem="Z7I-4C-mFs" firstAttribute="top" secondItem="E8H-WK-rmy" secondAttribute="bottom" constant="19" id="6sf-Ue-LQI"/>
                         <constraint firstItem="dU1-0M-DHr" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" id="9X2-NB-zWD"/>
-                        <constraint firstItem="qyW-MZ-jvc" firstAttribute="top" secondItem="E8H-WK-rmy" secondAttribute="bottom" constant="19" id="9jn-Li-pnL"/>
+                        <constraint firstItem="qyW-MZ-jvc" firstAttribute="top" secondItem="E8H-WK-rmy" secondAttribute="bottom" constant="24" id="9jn-Li-pnL"/>
                         <constraint firstItem="yhH-3u-nJI" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="ANJ-xw-mJg"/>
                         <constraint firstItem="dU1-0M-DHr" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" id="JaO-gg-FPy"/>
                         <constraint firstItem="E8H-WK-rmy" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="Lqf-jY-Ecb"/>
@@ -102,6 +113,11 @@
                         <constraint firstItem="Z7I-4C-mFs" firstAttribute="leading" secondItem="JNH-Co-neS" secondAttribute="leading" constant="18" id="tAv-Fb-Obq"/>
                         <constraint firstItem="E8H-WK-rmy" firstAttribute="top" secondItem="JNH-Co-neS" secondAttribute="top" constant="184" id="wQf-5t-g8h"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="XbU-5v-UDh"/>
+                        </mask>
+                    </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4r-ak-Q7I">
                     <rect key="frame" x="390" y="308" width="60" height="60"/>
