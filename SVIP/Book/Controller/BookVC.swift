@@ -134,7 +134,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
       headerView.introducesLabel.sizeToFit()
       headerView.addressLabel.text = hotel.shopaddress
       
-      let  dtext = headerView.introducesLabel.text
+      let  dtext = headerView.introducesLabel.text ?? ""
       headerView.introducesLabel.font = UIFont.systemFontOfSize(14)
       headerView.introducesLabel.numberOfLines = 0          //设置无限换行
       
@@ -143,7 +143,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
       
       let constraint = CGSize(width: headerView.frame.size.width,height:0)
       
-      let size = dtext!.boundingRectWithSize(constraint,options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: NSDictionary(object:UIFont.systemFontOfSize(14), forKey: NSFontAttributeName) as? [String : AnyObject] ,context: nil)
+      let size = dtext.boundingRectWithSize(constraint,options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: NSDictionary(object:UIFont.systemFontOfSize(14), forKey: NSFontAttributeName) as? [String : AnyObject] ,context: nil)
       
       headerView.introducesLabel.frame = CGRectMake(10,260, size.width, size.height)
       headerView.frame.size.height += size.height
