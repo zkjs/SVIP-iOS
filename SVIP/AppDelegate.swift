@@ -19,7 +19,7 @@ let UMAppKey = "55c31431e0f55a65c1002597"
 let WXAppId = "wxe09e14fcb69825cc"
 let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
 let UMURL = ""
-var reach: TMReachability?
+//var reach: TMReachability?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegate {
@@ -50,28 +50,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     return true
   }
   func networkState() {
-    // Allocate a reachability object
-    reach = TMReachability.reachabilityForInternetConnection()
-    
-    // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
-    reach!.reachableOnWWAN = false
-    
-    // Here we set up a NSNotification observer. The Reachability that caused the notification
-    // is passed in the object parameter
-    NSNotificationCenter.defaultCenter().addObserver(self,
-      selector: "reachabilityChanged:",
-      name: kReachabilityChangedNotification,
-      object: nil)
-    
-    reach!.startNotifier()
+//    // Allocate a reachability object
+//    reach = TMReachability.reachabilityForInternetConnection()
+//    
+//    // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
+//    reach!.reachableOnWWAN = false
+//    
+//    // Here we set up a NSNotification observer. The Reachability that caused the notification
+//    // is passed in the object parameter
+//    NSNotificationCenter.defaultCenter().addObserver(self,
+//      selector: "reachabilityChanged:",
+//      name: kReachabilityChangedNotification,
+//      object: nil)
+//    
+//    reach!.startNotifier()
   }
   
   func reachabilityChanged(notification: NSNotification) {
-    if reach!.isReachableViaWiFi() || reach!.isReachableViaWWAN() {
-      print("Service avalaible!!!")
-    } else {
-      print("No service avalaible!!!")
-    }
+//    if reach!.isReachableViaWiFi() || reach!.isReachableViaWWAN() {
+//      print("Service avalaible!!!")
+//    } else {
+//      print("No service avalaible!!!")
+//    }
   }
 
   func applicationWillResignActive(application: UIApplication) {

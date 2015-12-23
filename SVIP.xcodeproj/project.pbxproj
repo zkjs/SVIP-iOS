@@ -22,6 +22,8 @@
 		40095A001C2149B900D3DA61 /* InvoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959FF1C2149B900D3DA61 /* InvoiceModel.swift */; };
 		40095A031C215C0F00D3DA61 /* InvoiceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */; };
 		40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40095A021C215C0F00D3DA61 /* InvoiceDetailVC.xib */; };
+		401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */; };
+		401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F381C2A2EEC003B9E69 /* XMLReader.m */; };
 		404A2F421BA94C7B006475D7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405352161BA66251007157FC /* NotificationCenter.framework */; };
 		404A2F471BA94C7B006475D7 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404A2F461BA94C7B006475D7 /* TodayViewController.swift */; };
 		404A2F491BA94C7B006475D7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A2F481BA94C7B006475D7 /* MainInterface.storyboard */; };
@@ -289,7 +291,6 @@
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
 		FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF51C159DB000B86B28 /* SalesVC.swift */; };
 		FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF61C159DB000B86B28 /* SalesVC.xib */; };
-		FAF101C71C046AAE00FC3672 /* TMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF101C61C046AAE00FC3672 /* TMReachability.m */; };
 		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
 		FAF139271C26947700B84F47 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139261C26947700B84F47 /* loading@3x.gif */; };
 		FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF212D31BF71DD5002C1C73 /* CityVC.swift */; };
@@ -397,6 +398,11 @@
 		400959FF1C2149B900D3DA61 /* InvoiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceModel.swift; sourceTree = "<group>"; };
 		40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceDetailVC.swift; sourceTree = "<group>"; };
 		40095A021C215C0F00D3DA61 /* InvoiceDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceDetailVC.xib; sourceTree = "<group>"; };
+		401C1F1C1C2A2EEC003B9E69 /* CCPRestSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCPRestSDK-Prefix.pch"; sourceTree = "<group>"; };
+		401C1F1D1C2A2EEC003B9E69 /* CCPRestSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPRestSDK.h; sourceTree = "<group>"; };
+		401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPRestSDK.m; sourceTree = "<group>"; };
+		401C1F371C2A2EEC003B9E69 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		401C1F381C2A2EEC003B9E69 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		404A2F411BA94C7B006475D7 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		404A2F451BA94C7B006475D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404A2F461BA94C7B006475D7 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -1062,8 +1068,6 @@
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		FAF02EF51C159DB000B86B28 /* SalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
 		FAF02EF61C159DB000B86B28 /* SalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesVC.xib; sourceTree = "<group>"; };
-		FAF101C51C046AAE00FC3672 /* TMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMReachability.h; sourceTree = "<group>"; };
-		FAF101C61C046AAE00FC3672 /* TMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMReachability.m; sourceTree = "<group>"; };
 		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
 		FAF139261C26947700B84F47 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
 		FAF212D31BF71DD5002C1C73 /* CityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityVC.swift; sourceTree = "<group>"; };
@@ -1210,6 +1214,34 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		401C1F1B1C2A2EEC003B9E69 /* CCPRestSDK */ = {
+			isa = PBXGroup;
+			children = (
+				401C1F1C1C2A2EEC003B9E69 /* CCPRestSDK-Prefix.pch */,
+				401C1F1D1C2A2EEC003B9E69 /* CCPRestSDK.h */,
+				401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */,
+				401C1F1F1C2A2EEC003B9E69 /* net */,
+				401C1F361C2A2EEC003B9E69 /* xml */,
+			);
+			path = CCPRestSDK;
+			sourceTree = "<group>";
+		};
+		401C1F1F1C2A2EEC003B9E69 /* net */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		401C1F361C2A2EEC003B9E69 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				401C1F371C2A2EEC003B9E69 /* XMLReader.h */,
+				401C1F381C2A2EEC003B9E69 /* XMLReader.m */,
+			);
+			path = xml;
+			sourceTree = "<group>";
+		};
 		404A2F431BA94C7B006475D7 /* Today */ = {
 			isa = PBXGroup;
 			children = (
@@ -1342,6 +1374,7 @@
 		40641F861B3E79A300CF150D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				401C1F1B1C2A2EEC003B9E69 /* CCPRestSDK */,
 				40641F871B3E79A300CF150D /* Category */,
 				404C18471B53675300F11122 /* Compressor */,
 				4077C79B1C26578F000DD7DC /* Cryptography */,
@@ -2799,8 +2832,6 @@
 			children = (
 				B2F4A9E01B7EE229000DBD81 /* TimesSquare */,
 				40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */,
-				FAF101C51C046AAE00FC3672 /* TMReachability.h */,
-				FAF101C61C046AAE00FC3672 /* TMReachability.m */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -3287,6 +3318,7 @@
 				40D585E21C22B0D100C5267D /* SalesModel.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				4077DDB41C1EAF9900E13D6B /* MWPhoto.m in Sources */,
+				401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */,
 				4077DDC31C1EAF9900E13D6B /* UIButton+EMWebCache.m in Sources */,
 				4077DDAC1C1EAF9900E13D6B /* wav.mm in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
@@ -3300,7 +3332,6 @@
 				4077DD9A1C1EAF9900E13D6B /* GroupSubjectChangingViewController.m in Sources */,
 				4077DDCF1C1EAF9900E13D6B /* PSTCollectionViewFlowLayout.m in Sources */,
 				4077DD9C1C1EAF9900E13D6B /* RealtimeSearchUtil.m in Sources */,
-				FAF101C71C046AAE00FC3672 /* TMReachability.m in Sources */,
 				4077DDF41C1EAF9900E13D6B /* EaseBubbleView+Image.m in Sources */,
 				4077DDB91C1EAF9900E13D6B /* DACircularProgressView.m in Sources */,
 				FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */,
@@ -3400,6 +3431,7 @@
 				4077DD911C1EAF9900E13D6B /* ChatViewController.m in Sources */,
 				4077DDBD1C1EAF9900E13D6B /* EMSDWebImageDownloader.m in Sources */,
 				4077DD951C1EAF9900E13D6B /* ChatGroupDetailViewController.m in Sources */,
+				401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,

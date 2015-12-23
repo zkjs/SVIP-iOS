@@ -21,6 +21,8 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AMapSearch (3.1.0)
+  - ASIHTTPRequest:
+    - Reachability (~> 3.2)
   - CocoaLumberjack (2.2.0):
     - CocoaLumberjack/Default (= 2.2.0)
     - CocoaLumberjack/Extensions (= 2.2.0)
@@ -51,6 +53,7 @@ PODS:
     - Pingpp/Core
   - Pingpp/Wx (2.1.4):
     - Pingpp/Core
+  - Reachability (3.2)
   - SKTagView (0.7):
     - Masonry
   - SocketRocket (0.4.2)
@@ -60,6 +63,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AMapSearch
+  - ASIHTTPRequest (from `https://github.com/hanton/asi-http-request`)
   - CocoaLumberjack
   - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - EDStarRating
@@ -77,6 +81,8 @@ DEPENDENCIES:
   - XLPagerTabStrip
 
 EXTERNAL SOURCES:
+  ASIHTTPRequest:
+    :git: https://github.com/hanton/asi-http-request
   EaseMobSDKFull:
     :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
@@ -84,6 +90,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/hanton/SKTagView
 
 CHECKOUT OPTIONS:
+  ASIHTTPRequest:
+    :commit: ab2ddd63a6f33d55cfb8ece1a5d026b52445dfab
+    :git: https://github.com/hanton/asi-http-request
   EaseMobSDKFull:
     :commit: c4a63a69518d396309e8d6c267f2756cac3877ee
     :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
@@ -94,6 +103,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AMapSearch: aa7621ae8aec9cb8df116710b26e3fe3d09dc0ff
+  ASIHTTPRequest: b2fb6b7703472faf6571f128ef5d4ed0bd21a563
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   EaseMobSDKFull: 4a18d6ad47b4ccca564833963511bddd151e1654
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
@@ -106,6 +116,7 @@ SPEC CHECKSUMS:
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
   MJRefresh: 809ed03f2014275056c3d65e2812aef1ba5b0f98
   Pingpp: 08415163eb1791bc07d7d939f1648d2e36a30eda
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SKTagView: 33378cfeb717df04f77489605b013506e91d1da5
   SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579

@@ -3,6 +3,7 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 
 target 'SVIP' do
+  pod 'ASIHTTPRequest', :git => 'https://github.com/hanton/asi-http-request'
   pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'
   pod 'HexColors'
   pod 'JCTagListView'

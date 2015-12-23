@@ -8,10 +8,12 @@
 
 #import "ZKJSHTTPSMSSessionManager.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "CCPRestSDK.h"
 
 @interface ZKJSHTTPSMSSessionManager ()
 
 @property (nonatomic, strong) NSMutableDictionary *phoneSMS;
+@property (nonatomic, strong) CCPRestSDK *ccpRestSdk;
 
 @end
 
@@ -39,39 +41,57 @@
     [requestSerializer setValue:authorizationString forHTTPHeaderField:@"Authorization"];
     self.requestSerializer = requestSerializer;
     self.responseSerializer = [[AFJSONResponseSerializer alloc] init];
+    
+    self.ccpRestSdk = [[CCPRestSDK alloc] initWithServerIP:@"app.cloopen.com" andserverPort:8883];
+    [self.ccpRestSdk setApp_ID:@"8a48b5514f73ea32014f8d1d3f71344d"];
+    [self.ccpRestSdk enableLog:YES];
+    [self.ccpRestSdk setAccountWithAccountSid: @"8a48b5514d9861c3014d99cf3572024a" andAccountToken:@"137d18e0111643ffb9e06401f214cc8d"];
   }
   return self;
 }
 
 // 发送短信验证码
 - (void)requestSmsCodeWithPhoneNumber:(NSString *)phone callback:(void (^)(BOOL succeeded, NSError *error))callback {
-  NSString *serverIP = @"app.cloopen.com";
-  int serverPort = 8883;
-  NSString *appID = @"8a48b5514f73ea32014f8d1d3f71344d";
-  NSString *serverVersion = @"2013-12-26";
-  NSString *mainAccount = @"8a48b5514d9861c3014d99cf3572024a";
-  NSString *mainToken = @"137d18e0111643ffb9e06401f214cc8d";
-  NSString *timestamp = [self getTimestamp];
-  NSString *mainSig = [self getMainSig:[NSString stringWithFormat:@"%@%@%@", mainAccount, mainToken, timestamp]];
-  NSString *requestURL = [NSString stringWithFormat:@"https://%@:%d/%@/Accounts/%@/SMS/TemplateSMS?sig=%@", serverIP, serverPort, serverVersion, mainAccount, mainSig];
+//  NSString *serverIP = @"app.cloopen.com";
+//  int serverPort = 8883;
+//  NSString *appID = @"8a48b5514f73ea32014f8d1d3f71344d";
+//  NSString *serverVersion = @"2013-12-26";
+//  NSString *mainAccount = @"8a48b5514d9861c3014d99cf3572024a";
+//  NSString *mainToken = @"137d18e0111643ffb9e06401f214cc8d";
+//  NSString *timestamp = [self getTimestamp];
+//  NSString *mainSig = [self getMainSig:[NSString stringWithFormat:@"%@%@%@", mainAccount, mainToken, timestamp]];
+//  NSString *requestURL = [NSString stringWithFormat:@"https://%@:%d/%@/Accounts/%@/SMS/TemplateSMS?sig=%@", serverIP, serverPort, serverVersion, mainAccount, mainSig];
+//  NSString *verifyCode = [NSString stringWithFormat:@"%d%d%d%d%d%d", arc4random() % 9 + 1, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10];
+//  NSString *verifyTime = @"5";
+//  NSArray *datas = @[verifyCode, verifyTime];
+//  NSDictionary *parameters = @{
+//                               @"to": phone,
+//                               @"appId": appID,
+//                               @"templateId": @"50157",
+//                               @"datas": datas
+//                               };
+//  NSLog(@"%@", verifyCode);
+//  [self POST:requestURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//    NSLog(@"%@", responseObject[@"statusMsg"]);
+//    self.phoneSMS[phone] = verifyCode;
+//    callback(YES, nil);
+//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    NSLog(@"%@", error.description);
+//    callback(NO, error);
+//  }];
+  
   NSString *verifyCode = [NSString stringWithFormat:@"%d%d%d%d%d%d", arc4random() % 9 + 1, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10];
   NSString *verifyTime = @"5";
-  NSArray *datas = @[verifyCode, verifyTime];
-  NSDictionary *parameters = @{
-                               @"to": phone,
-                               @"appId": appID,
-                               @"templateId": @"50157",
-                               @"datas": datas
-                               };
-  NSLog(@"%@", verifyCode);
-  [self POST:requestURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", responseObject[@"statusMsg"]);
+  NSArray*  arr = [NSArray arrayWithObjects:verifyCode,verifyTime ,nil];
+  NSMutableDictionary *dict = [self.ccpRestSdk sendTemplateSMSWithTo:phone andTemplateId:@"50157" andDatas:arr];
+  if ([dict[@"statusCode"] isEqualToString:@"000000"]) {
+    // statusMsg = "成功"
     self.phoneSMS[phone] = verifyCode;
     callback(YES, nil);
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
-    callback(NO, error);
-  }];
+  } else {
+    NSLog(@"%@", [dict description]);
+    callback(NO, nil);
+  }
 }
 
 // 检查短信验证码
