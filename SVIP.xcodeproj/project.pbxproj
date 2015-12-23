@@ -1220,17 +1220,9 @@
 				401C1F1C1C2A2EEC003B9E69 /* CCPRestSDK-Prefix.pch */,
 				401C1F1D1C2A2EEC003B9E69 /* CCPRestSDK.h */,
 				401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */,
-				401C1F1F1C2A2EEC003B9E69 /* net */,
 				401C1F361C2A2EEC003B9E69 /* xml */,
 			);
 			path = CCPRestSDK;
-			sourceTree = "<group>";
-		};
-		401C1F1F1C2A2EEC003B9E69 /* net */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = net;
 			sourceTree = "<group>";
 		};
 		401C1F361C2A2EEC003B9E69 /* xml */ = {

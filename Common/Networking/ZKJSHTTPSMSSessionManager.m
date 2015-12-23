@@ -46,9 +46,10 @@
   NSArray *datas = [NSArray arrayWithObjects: verifyCode, verifyTime, nil];
   NSString *templateId = @"50157";
   NSMutableDictionary *dict = [self.ccpRestSdk sendTemplateSMSWithTo:phone andTemplateId:templateId andDatas:datas];
+  NSLog(@"%@", verifyCode);
+  self.phoneSMS[phone] = verifyCode;
   if ([dict[@"statusCode"] isEqualToString:@"000000"]) {
     // statusMsg = "成功"
-    self.phoneSMS[phone] = verifyCode;
     callback(YES, nil);
   } else {
     NSLog(@"%@", [dict description]);
