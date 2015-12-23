@@ -18,8 +18,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                             <animations/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em2-Hz-coW">
-                            <rect key="frame" x="18" y="234" width="96" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em2-Hz-coW">
+                            <rect key="frame" x="18" y="234" width="0.0" height="24"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="IA2-49-54N"/>
@@ -76,14 +76,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyW-MZ-jvc">
-                            <rect key="frame" x="122" y="234" width="96" height="24"/>
+                            <rect key="frame" x="26" y="234" width="30" height="24"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="C7K-r4-ExO"/>
                                 <constraint firstAttribute="height" constant="24" id="cfs-ep-cjH"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                            <state key="normal" title="立即激活">
+                            <state key="normal">
                                 <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <variation key="default">
