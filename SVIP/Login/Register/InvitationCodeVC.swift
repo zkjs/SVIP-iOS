@@ -26,8 +26,7 @@ class InvitationCodeVC: UIViewController {
     }
   }
   @IBOutlet weak var okButton: UIButton!
-    @IBOutlet weak var animationViewHeight: NSLayoutConstraint!
-  
+  @IBOutlet weak var animationViewHeight: NSLayoutConstraint!
   @IBOutlet weak var avatarImageHeight: NSLayoutConstraint!
   lazy var type = InvitationCodeVCType.first
   lazy var code = ""
@@ -42,13 +41,10 @@ class InvitationCodeVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
     setupUI()
   }
 
@@ -62,18 +58,14 @@ class InvitationCodeVC: UIViewController {
     codeIV.contentMode = .Center
     codeTextField.leftViewMode = .Always
     codeTextField.leftView = codeIV
-    
     animationViewHeight.constant = 0
     avatarImageHeight.constant = 0
   }
   
   @IBAction func nextStep(sender: AnyObject) {
-    
-    if codeTextField.text!.isEmpty == false {
+     if codeTextField.text!.isEmpty == false {
       let phone = AccountManager.sharedInstance().phone
-      
       showHUDInView(view, withLoading: "")
-      
       ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
@@ -84,8 +76,8 @@ class InvitationCodeVC: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
               } else {
                 self.navigationController?.popViewControllerAnimated(true)
-              }
-            } else {
+               }
+          } else {
               self.hideHUD()
               ZKJSTool.showMsg("该邀请码无效,请重试")
               self.navigationController?.popViewControllerAnimated(true)

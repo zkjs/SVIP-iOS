@@ -24,7 +24,6 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
      navigationController?.navigationBarHidden = false
-      getCityListData()
       let image = UIImage(named: "ic_fanhui_orange")
       let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "miss:")
       item1.tintColor = UIColor.ZKJS_mainColor()
@@ -36,13 +35,10 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
       tableView.registerNib(nibName, forCellReuseIdentifier: HotCityCell.reuseIdentifier())                                                            
       tableView.tableFooterView = UIView()
       self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
   
   override func loadView() {
@@ -51,6 +47,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
+    getCityListData()
     setupCoreLocationService()
     tableView.reloadData()
   }
@@ -66,15 +63,16 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   func getCityListData() {
     ZKJSHTTPSessionManager.sharedInstance().getCityListSuccess({ (task: NSURLSessionDataTask!, responsObject: AnyObject!) -> Void in
       if let array = responsObject as? NSArray {
+//        print(array)
         for dic in array {
           let string = dic["city"] as! String
           self.cityArray.append(string)
         }
+//        print(self.cityArray.count)
         self.tableView.reloadData()
       }
-      
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        print(error.description)
     }
   }
   
@@ -98,12 +96,10 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
       let cell = tableView.dequeueReusableCellWithIdentifier(HotCityCell.reuseIdentifier(), forIndexPath: indexPath) as! HotCityCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
-     cell.textLabel?.text = cityArray[indexPath.row]
+      cell.textLabel?.text = cityArray[indexPath.row]
       return cell
-  
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -112,13 +108,6 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    /**
-//    先判断闭包是否存在，然后再调用
-//    */
-//    let string = cityArray[indexPath.row]
-//    if (testClosure != nil){
-//      testClosure!(string: string)
-//    }
     let vc = MerchantsVC()
     vc.city = cityArray[indexPath.row]
     print(vc.city)
@@ -136,14 +125,12 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
           city = placemark.administrativeArea
         }
         self.myView.locationCityLabel.text = city
-        
       }
     }
   }
-  }
+}
 
 extension CityVC: CLLocationManagerDelegate {
-  
   private func setupCoreLocationService() {
     locationManager.delegate = self
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -154,7 +141,6 @@ extension CityVC: CLLocationManagerDelegate {
     let alertView = UIAlertController(title: "无法定位您所在城市", message: "需要您前往设置中心打开定位服务", preferredStyle: .Alert)
     alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
     presentViewController(alertView, animated: true, completion: nil)
-
   }
   
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -166,5 +152,4 @@ extension CityVC: CLLocationManagerDelegate {
     }
     setupUI()
   }
-  
 }

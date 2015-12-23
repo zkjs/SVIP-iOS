@@ -21,11 +21,6 @@ class BookHotelListCell: UITableViewCell {
   @IBOutlet weak var hotel: UILabel!
   @IBOutlet weak var hotelInfo: UILabel!
   
-//  func configureCell(hotelData: Hotel) {
-//    avatar .sd_setImageWithURL(NSURL(string: hotelData.logoURL), placeholderImage: UIImage(named:"img_hotel_zhanwei"), options: SDWebImageOptions.LowPriority | SDWebImageOptions.RetryFailed, completed: nil)
-//    hotel.text = hotelData.fullname
-//  }
-  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -49,13 +44,10 @@ enum HotelListStyle: Int, CustomStringConvertible {
 }
 
 class BookHotelListTVC: UITableViewController {
-
   var dataArray = NSMutableArray()
   var style = HotelListStyle.Booking
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     self.tableView .registerNib(UINib(nibName: "BookHotelListCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
     self.tableView.tableFooterView = UIView()
     navigationController?.navigationBar.translucent = false
@@ -63,7 +55,6 @@ class BookHotelListTVC: UITableViewController {
     navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     // Hanton
     title = NSLocalizedString("CHOOSE_HOTEL", comment: "")
-    
     loadData()
   }
   
@@ -97,18 +88,12 @@ class BookHotelListTVC: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! BookHotelListCell
-    
     cell.hotelData = dataArray[indexPath.row] as? Hotel
-
     return cell
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
-//    let vc = BookVC()
-//    vc.shopid = (dataArray[indexPath.row] as? Hotel)!.shopid
-//    let vc = BookingOrderTVC()
-    
     switch style {
     case .Booking:
       let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
@@ -117,8 +102,6 @@ class BookHotelListTVC: UITableViewController {
       self.navigationController?.pushViewController(vc, animated: true)
     case .PhoneCall:
       break
-     // let hotel = dataArray[indexPath.row] as? Hotel
-     // UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(hotel!.phone)")!)
     }
   }
 }

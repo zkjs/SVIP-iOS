@@ -119,7 +119,7 @@
 - (void)getPushInfoToUserWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"messages/default" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    // NSLog(@"%@", [responseObject description]);
+   //  NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -128,11 +128,11 @@
 
 #pragma mark - 获取用户订单状态消息
 - (void)getOrderWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSDictionary * dic = @{@"token":[self token],@"userid":@"5555ec48d6ed3"};
+  NSDictionary * dic = @{@"token":[self token],@"userid":[self userID]};
   
   [self POST:@"messages/orders" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
+   // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -143,8 +143,9 @@
   NSString * string = [NSString stringWithFormat:@"shop/getshop/%@",shopID];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
+   // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+  //  NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }

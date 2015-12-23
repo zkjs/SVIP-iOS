@@ -59,13 +59,13 @@ class MerchantsVC: UIViewController {
     MerchantsPage++
     getDataWithPage(MerchantsPage)
   }
+  
   func refreshData() {
     getDataWithPage(1)
   }
   
   private func getDataWithPage(page: Int) {
-   
-      ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+       ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
         if let array = responseObject as? NSArray {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
@@ -85,10 +85,7 @@ class MerchantsVC: UIViewController {
           self.tableView.mj_header.endRefreshing()
         }
         }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-          
       }
-   
-   
   }
 
   // MARK: - Table view data source
@@ -108,7 +105,6 @@ class MerchantsVC: UIViewController {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
     if indexPath.row == 0 {
       let cell = tableView.dequeueReusableCellWithIdentifier(RecommandCell.reuseIdentifier(), forIndexPath: indexPath) as! RecommandCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -124,11 +120,6 @@ class MerchantsVC: UIViewController {
       cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
       return cell
     }
-//    let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
-//    cell.selectionStyle = UITableViewCellSelectionStyle.None
-//    let shop = dataArray[indexPath.row]
-//    cell.setData(shop)
-//    return cell
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -149,17 +140,4 @@ class MerchantsVC: UIViewController {
       self.navigationController?.pushViewController(vc, animated: true)
     }
   }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

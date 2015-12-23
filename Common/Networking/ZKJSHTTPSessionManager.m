@@ -859,7 +859,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [formData appendPartWithFormData:[[self token] dataUsingEncoding:NSUTF8StringEncoding] name:@"token"];
     
   } success:^(NSURLSessionDataTask *task, id responseObject) {
-    DDLogInfo(@"%@", [responseObject description]);
+//    DDLogInfo(@"%@", [responseObject description]);
     if ([self isValidTokenWithObject:responseObject]) {
       success(task, responseObject);
     }

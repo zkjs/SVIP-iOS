@@ -33,9 +33,7 @@ class BookPayVC: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
     automaticallyAdjustsScrollViewInsets = false
-
     if type == .Present {
       let dismissItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissSelf")
       navigationItem.rightBarButtonItem = dismissItem
@@ -44,7 +42,6 @@ class BookPayVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     name.text = bkOrder.room_type
     //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
@@ -88,10 +85,8 @@ class BookPayVC: UIViewController {
       let dic = responsObject as! NSDictionary
       self.payAliOrder(dic)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
-    
-  }
+}
   
   @IBAction private func weixinzhifu(sender: UIButton) {
     dic = [
@@ -106,10 +101,8 @@ class BookPayVC: UIViewController {
       let dic = responsObject as! NSDictionary
       self.payAliOrder(dic)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
-    
-  }
+}
   
   @IBAction private func payInHotel(sender: UIButton) {
     //    let chatVC = JSHChatVC(chatType: .OldSession)
@@ -196,9 +189,6 @@ class BookPayVC: UIViewController {
   }
   
   private func validateResult(result: NSString) -> Bool{
-    //    let resultRange = NSRange(location: 0, length: count(result))
-    //    let locale = NSLocale.systemLocale()
-    //    result .rangeOfString("success=\"", options: NSStringCompareOptions.LiteralSearch, range: resultRange, locale:locale)
     let range = result .rangeOfString("success=\"")
     if range.length == 0 {
       return false

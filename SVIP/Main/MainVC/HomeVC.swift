@@ -19,6 +19,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   var floatingVC = FloatingWindowVC()
   //var pushInfo = PushInfoModel()
   var pushInfoArray = [PushInfoModel]()
+  var orderArray = [PushInfoModel]()
   var myView: HomeHeaderView!
   var activate =  true
   var longitude: double_t!
@@ -46,7 +47,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     
     setupCoreLocationService()
     setupBluetoothManager()
-    loadData()
     self.navigationController!.navigationBar.translucent = true
     self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
     self.navigationController!.navigationBar.shadowImage = UIImage()
@@ -65,9 +65,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     self.pushInfoArray.removeAll()
     delegate = self
     navigationController?.navigationBarHidden = true
-    
     count++
-   // tableView.reloadData()
+    loadData()
     let islogin = AccountManager.sharedInstance().isLogin()
     if islogin == true {
       memberActivation()
@@ -122,10 +121,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
           let url = dic["url"] as! String
           self.urlArray .addObject(url)
         }
-        
         self.homeUrl = self.urlArray[self.count] as! String
-        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.None)
-//        self.tableView.reloadData()
+        self.tableView.reloadData()
       }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
@@ -138,7 +135,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     hourFormatter.dateFormat = "HH";
     let time = hourFormatter.stringFromDate(nowDate);
     let beacon = StorageManager.sharedInstance().lastBeacon()
-    let order = StorageManager.sharedInstance().lastOrder()
+
     if(time <= "09" && time > "00" ){
       hourLabel = "早上好"
     }
@@ -161,20 +158,16 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       } else {
         self.sexString  = "女士"
       }
-    
     let loginStats = AccountManager.sharedInstance().isLogin()
     let image = AccountManager.sharedInstance().avatarImage
     if loginStats == false {
-      
       self.myView.loginButton.setTitle("立即登录", forState: UIControlState.Normal)
       self.myView.loginButton.tintColor = UIColor.ZKJS_mainColor()
       self.myView.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
       self.myView.dynamicLabel.text = "使用超级身份，享受超凡个性服务"
-      
     }
     if loginStats == true && activate == false {
-     
-      myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+      myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
       self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
       self.myView.activateButton.setTitle("立即激活", forState: UIControlState.Normal)
       self.myView.activateButton.tintColor = UIColor.ZKJS_mainColor()
@@ -183,13 +176,13 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     }
     if loginStats == true && activate == true {
       self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
-      myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
+      myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
       self.myView.dynamicLabel.text = "使用超级身份，享受超凡个性服务"
     }
     if loginStats == true && activate == true && beacon != nil {
       self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
-      myView.usernameLabel.text = AccountManager.sharedInstance().userName + "\(self.sexString)"
-      self.myView.dynamicLabel.text = "欢迎光临\(order?.fullname)"
+      myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
+      self.myView.dynamicLabel.text = "欢迎光临\(beacon!["shopName"])"
     }
     
   }
@@ -227,36 +220,16 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   
   func getlastOrder() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      print(responseObject)
       if let array = responseObject as? NSArray {
         for dic in array {
-        let  pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-          if self.pushInfoArray.count == 0 {
-            self.pushInfoArray.append(pushInfo)
-          } else {
-            self.pushInfoArray.insert(pushInfo, atIndex: 0)
-          }
-          
+        let  order = PushInfoModel(dic: dic as! [String: AnyObject])
+          self.orderArray.append(order)
         }
         self.tableView.reloadData()
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
-//    ZKJSHTTPSessionManager.sharedInstance().getLatestOrderWithSuccess({(task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      let lastOrder = responseObject as! NSDictionary
-//      if let reservation_no = lastOrder["reservation_no"] as? String {
-//        if reservation_no == "0" {
-//          StorageManager.sharedInstance().updateLastOrder(nil)
-//        } else {
-//          let order = BookOrder(dictionary: responseObject as! [String: AnyObject])
-//          StorageManager.sharedInstance().updateLastOrder(order)
-//        }
-//        self.tableView.reloadData()
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
   }
   
   // Member Activate
@@ -288,15 +261,25 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   //  }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 1
+    return 2
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return pushInfoArray.count
+    if section == 0 {
+      return orderArray.count
+    } else {
+      return pushInfoArray.count
+    }
+    
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 338
+    if section == 0 {
+      return 338
+    } else {
+      return 1
+    }
+    
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -306,8 +289,14 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
     cell.selectionStyle = UITableViewCellSelectionStyle.None
-    if self.pushInfoArray.count != 0 {
-       let pushInfo = self.pushInfoArray[indexPath.row]
+    if orderArray.count != 0 && indexPath.section == 0 {
+      let order = self.orderArray[indexPath.row]
+      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+      cell.setData(order)
+    }
+    
+    if self.pushInfoArray.count != 0  && indexPath.section == 1{
+      let pushInfo = self.pushInfoArray[indexPath.row]
       cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
       cell.setData(pushInfo)
     }
@@ -315,23 +304,39 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
   
   
+  func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    let backV = UIView()
+    backV.frame = CGRectMake(0, 0, view.frame.size.width, 0)
+    backV.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+    return backV
+  }
+  
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    myView = NSBundle.mainBundle().loadNibNamed("HomeHeaderView", owner: self, options: nil).first as! HomeHeaderView
-    if urlArray.count != 0 {
-      myView.backgroundImage.sd_setImageWithURL(NSURL(string: self.homeUrl), placeholderImage: nil)
+    if section == 0 {
+      myView = NSBundle.mainBundle().loadNibNamed("HomeHeaderView", owner: self, options: nil).first as! HomeHeaderView
+      if urlArray.count != 0 {
+        myView.backgroundImage.sd_setImageWithURL(NSURL(string: self.homeUrl), placeholderImage: nil)
+      }
+      myView.LocationButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
+      myView.backgroundImage.layer.masksToBounds = true
+      let animation = CABasicAnimation(keyPath:"transform.scale")
+      //动画选项设定
+      animation.duration = 8
+      animation.repeatCount = HUGE
+      animation.autoreverses = true
+      animation.fromValue = NSNumber(double: 1.0)
+      animation.toValue = NSNumber(double: 1.4)
+      myView.backgroundImage.layer.addAnimation(animation, forKey: "scale-layer")
+      setupUI()
+      return myView
     }
-   myView.LocationButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
-    myView.backgroundImage.layer.masksToBounds = true
-    let animation = CABasicAnimation(keyPath:"transform.scale")
-    //动画选项设定
-    animation.duration = 8
-    animation.repeatCount = HUGE
-    animation.autoreverses = true
-    animation.fromValue = NSNumber(double: 1.0)
-    animation.toValue = NSNumber(double: 1.4)
-    myView.backgroundImage.layer.addAnimation(animation, forKey: "scale-layer")
-    setupUI()
-    return myView
+    else {
+      let backV = UIView()
+      backV.frame = CGRectMake(0, 0, view.frame.size.width, 0)
+      backV.backgroundColor = UIColor.whiteColor()
+      return backV
+    }
+    
   }
   
   func getPrivilege() {
@@ -346,13 +351,13 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     self.view.addSubview(floatingVC.view)
     self.addChildViewController(floatingVC)
   }
+  
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let pushInfo = pushInfoArray[indexPath.row]
     if AccountManager.sharedInstance().isLogin() == true &&  pushInfoArray.count != 0 {
-      if indexPath.row == 0 {
+      if indexPath.section == 0 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
-        
         navigationController?.pushViewController(vc, animated: true)
       } else {
         if pushInfo.shopid == "" {
@@ -363,20 +368,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
         } else {
           pushToBookVC(pushInfo.shopid)
         }
-        
-      }
-
-    }else {
-      if pushInfo.shopid.isEmpty == true {
-        let vc = WebViewVC()
-        vc.hidesBottomBarWhenPushed = true
-        vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
-        self.navigationController?.pushViewController(vc, animated: true)
-      } else {
-        pushToBookVC(pushInfo.shopid)
       }
     }
-    
   }
   
   func pushToBookVC(shopid:String) {
@@ -389,8 +382,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   private func setupBluetoothManager() {
     bluetoothManager = CBCentralManager(delegate: self, queue: nil)
   }
-  // MARK: - CBCentralManagerDelegate
   
+  
+  // MARK: - CBCentralManagerDelegate
   func centralManagerDidUpdateState(central: CBCentralManager) {
     switch central.state {
     case .PoweredOn:
@@ -407,8 +401,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       print(".Unsupported")
     }
   }
-
-  
 }
 
 
@@ -426,7 +418,6 @@ extension HomeVC: CLLocationManagerDelegate {
       alert.show()
       return
     }
-    
     locationManager.delegate = self
     if CLLocationManager.authorizationStatus() == .NotDetermined {
       locationManager.requestAlwaysAuthorization()
@@ -442,7 +433,6 @@ extension HomeVC: CLLocationManagerDelegate {
       alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
       presentViewController(alertView, animated: true, completion: nil)
     }
-    
   }
   
   func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -455,8 +445,6 @@ extension HomeVC: CLLocationManagerDelegate {
     let coordinate = manager.location!.coordinate
     longitude = coordinate.longitude
     latution = coordinate.latitude
-    
-//    postGPSLocation(coordinate)
   }
   
   private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
@@ -512,7 +500,6 @@ extension HomeVC: CLLocationManagerDelegate {
     if AccountManager.sharedInstance().isLogin() == false {
       return
     }
-    
     guard let shopID = beacon["shopid"] else { return }
     guard let locid = beacon["locid"] else { return }
     guard let locdesc = beacon["locdesc"] else { return }
@@ -521,7 +508,6 @@ extension HomeVC: CLLocationManagerDelegate {
     //    guard let minor = beacon["minor"] else { return }
     let userID = AccountManager.sharedInstance().userID
     let userName = AccountManager.sharedInstance().userName
-    
     //    let notification = UILocalNotification()
     //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
     //    notification.alertBody = alertMessage
@@ -546,7 +532,6 @@ extension HomeVC: CLLocationManagerDelegate {
     let sound = "default"
     let apnOption = YBApnOption(alert: alert, badge: badge, sound: sound, contentAvailable: nil, extra: extra)
     option.apnOption = apnOption
-    
     YunBaService.publish2(topic, data: data, option: option) { (success: Bool, error: NSError!) -> Void in
       if success {
         print("[result] publish2 data(\(json)) to topic(\(topic)) succeed")
@@ -587,10 +572,8 @@ extension HomeVC: CLLocationManagerDelegate {
       self.myView.LocationButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
     }
     else {
-       self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
     }
-    
-    
   }
   
   private func setupBeaconMonitor() {
@@ -647,7 +630,6 @@ extension HomeVC: CLLocationManagerDelegate {
       locationManager.stopMonitoringForRegion(region)
     }
   }
-  
 }
 
 

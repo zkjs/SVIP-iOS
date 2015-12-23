@@ -15,13 +15,13 @@ class PushInfoModel: NSObject {
   var shopid: String!
   var title: String!
   var orderNo: String!
+  
   override init() {
     super.init()
   }
   init(dic: NSDictionary) {
     
-    desc = dic["desc"] as! String
-    iconbaseurl = dic["iconbaseurl"] as! String
+    desc = dic["desc"] as? String
     iconbaseurl = dic["iconbaseurl"] as? String
     iconfilename = dic["iconfilename"] as? String
     shopid = dic["shopid"] as? String

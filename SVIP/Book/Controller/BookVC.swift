@@ -33,11 +33,9 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setUI()
     loadData()
     loadRoomTypes()
-    
     self.navigationController!.navigationBar.translucent = true
     self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
     self.navigationController!.navigationBar.shadowImage = UIImage()
@@ -45,11 +43,12 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
     navigationController?.navigationBar.translucent = true
     self.navigationItem.leftBarButtonItem = item1
+    //title = shopName
+   
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -57,8 +56,6 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
      navigationController?.navigationBar.translucent = false
     navigationController?.navigationBarHidden = false
   }
-  
-  
   
   func loadRoomTypes() {
     ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -71,16 +68,14 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
           }
         }
         self.tableView.reloadData()
-    }
+      }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
-  }
+}
   
   private func setUI() {
     //title = NSLocalizedString("ROOM_TYPE", comment: "")
     automaticallyAdjustsScrollViewInsets = false
-    
     let nibName = UINib(nibName: BookRoomCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: BookRoomCell.reuseIdentifier())
   }
@@ -113,8 +108,6 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCellWithIdentifier(BookRoomCell.reuseIdentifier()) as! BookRoomCell
     if indexPath.row == selectedRow {
       tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
-    } else {
-//      cell.backgroundColor = UIColor.clearColor()
     }
     cell.setData(roomTypes[indexPath.row] as! RoomGoods)
     return cell
@@ -123,32 +116,26 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     headerView = NSBundle.mainBundle().loadNibNamed("BookHeaderView", owner: self, options: nil).first as! BookHeaderView
     if hotel.shopid != nil {
-//      headerView.backButton.addTarget(self, action: "pop:", forControlEvents: UIControlEvents.TouchUpInside)
       headerView.hotelNameLabel.text = hotel.shopname
       let placeholderImage = UIImage(named: "img_hotel_zhanwei")
       headerView.addressLabel.text = hotel.shopaddress
       let logoURL = NSURL(string: hotel.bgImgUrl)
+//      print("这是\(hotel.bgImgUrl)")
       headerView.backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
       headerView.explainLabel.text = hotel.shopbusiness
       headerView.introducesLabel.text = hotel.shopdesc
-      headerView.introducesLabel.sizeToFit()
       headerView.addressLabel.text = hotel.shopaddress
-      
-      let  dtext = headerView.introducesLabel.text
-      headerView.introducesLabel.font = UIFont.systemFontOfSize(14)
-      headerView.introducesLabel.numberOfLines = 0          //设置无限换行
-      
-      headerView.introducesLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping  //自动折行
-      //根据detailText文字长度调节topView高度
-      
-      let constraint = CGSize(width: headerView.frame.size.width,height:0)
-      
-      let size = dtext!.boundingRectWithSize(constraint,options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: NSDictionary(object:UIFont.systemFontOfSize(14), forKey: NSFontAttributeName) as? [String : AnyObject] ,context: nil)
-      
-      headerView.introducesLabel.frame = CGRectMake(10,260, size.width, size.height)
-      headerView.frame.size.height += size.height
-      print(headerView.introducesLabel.text)
-      print(size)
+//      let  dtext = headerView.introducesLabel.text
+//      headerView.introducesLabel.font = UIFont.systemFontOfSize(14)
+//      headerView.introducesLabel.numberOfLines = 0          //设置无限换行
+//      headerView.introducesLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping  //自动折行
+//      //根据detailText文字长度调节topView高度
+//      let constraint = CGSize(width: headerView.introducesLabel.frame.size.width,height:0)
+//      let size = dtext!.boundingRectWithSize(constraint,options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:headerView.introducesLabel.font],context: nil)
+//      headerView.introducesLabel.sizeToFit()
+//      headerView.introducesLabel.frame.size.height += size.height//CGRectMake(10,260, size.width, size.height)
+//      headerView.frame.size.height += size.height
+//      print(headerView.introducesLabel.frame)
     }
     return headerView
   }
@@ -177,5 +164,4 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     vc.shopName = shopName
     navigationController?.pushViewController(vc, animated: true)
   }
-  
 }
