@@ -53,7 +53,8 @@
     callback(YES, nil);
   } else {
     NSLog(@"%@", [dict description]);
-    callback(NO, nil);
+    NSError *error = [[NSError alloc] initWithDomain:@"验证码错误" code:999 userInfo:dict];
+    callback(NO, error);
   }
 }
 

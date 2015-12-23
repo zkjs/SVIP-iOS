@@ -202,8 +202,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   
   func getPushInfoData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      print(responseObject)
       if let array = responseObject as? NSArray {
-        
         for dic in array {
          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
          self.pushInfoArray.append(pushInfo)
@@ -215,11 +215,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     }
   }
   
-  
-  
-  
   func getlastOrder() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      print(responseObject)
       if let array = responseObject as? NSArray {
         for dic in array {
         let  order = PushInfoModel(dic: dic as! [String: AnyObject])
@@ -354,7 +352,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let pushInfo = pushInfoArray[indexPath.row]
-    if AccountManager.sharedInstance().isLogin() == true &&  pushInfoArray.count != 0 {
+    if pushInfoArray.count != 0 {
       if indexPath.section == 0 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
