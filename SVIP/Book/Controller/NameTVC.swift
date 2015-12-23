@@ -20,19 +20,15 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   let dataArray = NSMutableArray()
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     tableView.backgroundColor = UIColor.hx_colorWithHexString("EFEFF4")
     tableView.separatorStyle = .None
-    
     // Cell
     let cellNib = UINib(nibName: NewItemCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: NewItemCell.reuseIdentifier())
-    
     // Tap background to dimiss keyboard
     let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard")
     tap.cancelsTouchesInView = false
     tableView.addGestureRecognizer(tap)
-    
     loadData()
   }
   
@@ -42,9 +38,9 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     tableView.tableHeaderView = headerView
     tableView.tableFooterView = footerView
   }
+  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
     navigationController?.hidesBarsOnSwipe = false
   }
   
@@ -64,11 +60,9 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
       self.showHint("请填写内容")
       return
     }
-    
     selection(headerView.textField.text!,selectedRow)
     navigationController?.popViewControllerAnimated(true)
-    
-    for dic in self.dataArray {
+     for dic in self.dataArray {
       if let d = dic as? NSDictionary {
         if let realname = d["realname"] as? String {
           if realname == headerView.textField.text {
@@ -77,21 +71,18 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
         }
       }
     }
-    
     let param = ["realname" :headerView.textField.text!]
     let paramDic = NSDictionary(dictionary: param)
     ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(paramDic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
-          
         }
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     })
-
-  }
+}
   
   func hideKeyboard() {
     tableView.endEditing(true)

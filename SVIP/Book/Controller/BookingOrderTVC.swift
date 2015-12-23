@@ -47,13 +47,10 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    tableView.contentInset = UIEdgeInsetsMake(36.0, 0.0, 0.0, 0.0)
-    
+    tableView.contentInset = UIEdgeInsetsMake(-30, 0.0, 0.0, 0.0)
     roomCountInfoLabel.text = NSLocalizedString("ROOM_COUNT", comment: "")
     dateInfoLabel.text = NSLocalizedString("START_END_DATE", comment: "")
     sendOrderButton.setTitle(NSLocalizedString("SEND_ORDER", comment: ""), forState: UIControlState.Normal)
-
     title = NSLocalizedString("FILL_BOOKING_FORM", comment: "")
     dateFormatter.dateFormat = "M-dd"
     startDateLabel.text = dateFormatter.stringFromDate(startDate)
@@ -74,7 +71,6 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage)
     roomPriceLabel.text = "￥" + goods.price!
   }
-  
   
   func gotoChatVC() {
     ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -109,7 +105,6 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     order.room_typeid = goods.goodsid
     order.room_type = roomType.text! + breakfast
     order.fullname = shopName
-    
     order.room_image_URL = goods.image
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -177,9 +172,7 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.section == kNameSection {
-//      if indexPath.row > roomCount {
         return 0.0
-//      }
     }
     return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
   }
@@ -195,7 +188,6 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Table view delegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    print(indexPath)
     
     if indexPath.section == kRoomSection && indexPath.row == kRoomRow {
       navigationController?.popViewControllerAnimated(true)
@@ -231,5 +223,4 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     textField.resignFirstResponder()
     return false
   }
-  
 }

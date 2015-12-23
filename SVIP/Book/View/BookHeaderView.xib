@@ -50,13 +50,14 @@
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqK-gH-25K">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqK-gH-25K">
                     <rect key="frame" x="10" y="276" width="582" height="80"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="D0p-DF-O5X"/>
                         <constraint firstAttribute="width" constant="300" id="npp-MY-vOG"/>
                     </constraints>
+                    <string key="text">酒店主体建筑共29层，拥有316间豪华舒适的客房。特别开设了3层行政楼层，特设行政管家服务；酒店会议宴会总面积超过2400平方米，无柱式大宴会厅可容纳500人同时进行会议，拥有风格各异的2个餐厅和2个酒吧，28间豪华私人厅房；1室内恒温游泳池、健身房、瑜伽房、乒乓球室和台球室。专业的SPA、美发沙龙，给宾客带来高雅舒适的体验。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

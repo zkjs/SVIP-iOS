@@ -47,18 +47,11 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     self.navigationItem.leftBarButtonItem = item1
   }
   
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-
-  }
-  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
      navigationController?.navigationBar.translucent = false
     navigationController?.navigationBarHidden = false
   }
-  
-  
   
   func loadRoomTypes() {
     ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -113,8 +106,6 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCellWithIdentifier(BookRoomCell.reuseIdentifier()) as! BookRoomCell
     if indexPath.row == selectedRow {
       tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
-    } else {
-//      cell.backgroundColor = UIColor.clearColor()
     }
     cell.setData(roomTypes[indexPath.row] as! RoomGoods)
     return cell
@@ -123,7 +114,6 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     headerView = NSBundle.mainBundle().loadNibNamed("BookHeaderView", owner: self, options: nil).first as! BookHeaderView
     if hotel.shopid != nil {
-//      headerView.backButton.addTarget(self, action: "pop:", forControlEvents: UIControlEvents.TouchUpInside)
       headerView.hotelNameLabel.text = hotel.shopname
       let placeholderImage = UIImage(named: "img_hotel_zhanwei")
       headerView.addressLabel.text = hotel.shopaddress

@@ -34,17 +34,13 @@ class BookConfirmVC: UIViewController {
     super.init(coder: aDecoder)
   }
   
-  
   // MARK: - View Lifecycle
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     loadData()
     setupUI()
     updateSubviews()
   }
-  
   
   // MARK: - Constraints
   
@@ -56,7 +52,6 @@ class BookConfirmVC: UIViewController {
     }
     super.updateViewConstraints()
   }
-  
   
   // MARK: - Private
 
@@ -84,7 +79,6 @@ class BookConfirmVC: UIViewController {
   private func setupUI() {
     inDate.baseTitle = "入住时间"
     outDate.baseTitle = "离开时间"
-    
     let baseUrl = kBaseURL
     if let goodsImage = goods?.image {
       let placeholderImage = UIImage(named: "星空中心")
@@ -95,17 +89,15 @@ class BookConfirmVC: UIViewController {
         options: [.LowPriority, .RetryFailed],
         completed: nil)
     }
-    
     if let remark = order.remark {
       preference.text = remark
     }
-    
     for button in optionButtonArray {
       button.layer.borderColor = UIColor.grayColor().CGColor
       button.layer.borderWidth = 1
       button.addTarget(self, action: "optionSelect:", forControlEvents: .TouchUpInside)
     }
-  }
+}
   
   private func updateSubviews() {
     if inDate.date == nil {
@@ -113,39 +105,31 @@ class BookConfirmVC: UIViewController {
       let components = calender.components(([.Year, .Month, .Day]), fromDate: NSDate())
       inDate.date = calender.dateFromComponents(components)
     }
-    
     if outDate.date == nil {
       outDate.date = inDate.date?.dateByAddingTimeInterval(24 * 60 * 60)
     }
-    
     let duration = outDate.date!.timeIntervalSinceDate(inDate.date!)
     let day = duration / 24 / 60 / 60
     let dayInt = Int(day)
-//    order.dayInt = String(dayInt)
     if let roomType = order.room_type {
       name.text = "\(roomType)    共\(dayInt)晚"
     }
-    
     if let str = order.room_rate {
       let danjia = str.integerValue
       let total = danjia * dayInt
-
       let dic: [String: AnyObject] = [
         NSFontAttributeName: UIFont.systemFontOfSize(18),
         NSForegroundColorAttributeName: UIColor.orangeColor()
       ]
       let attriStr = NSAttributedString(string: "\(total)", attributes: dic)
-      
       let dic1: [String: AnyObject] = [
         NSFontAttributeName: UIFont.systemFontOfSize(13)
       ]
       let mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1)
-      
       mutAttriStr .appendAttributedString(attriStr)
       price.attributedText = mutAttriStr
     }
-    
-  }
+}
   
   
   //MARK: - Button Action

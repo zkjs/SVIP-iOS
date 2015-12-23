@@ -14,7 +14,7 @@ class AccountManager: NSObject {
   private(set) var userID = ""
   private(set) var token = ""
   private(set) var avatarURL = ""
-  private(set) var avatarImage = UIImage()
+  private(set) var avatarImage = UIImage(named: "ic_zhijian_white")
   private(set) var userName = ""
   private(set) var sex = "0" // 0男 1女
   private(set) var email = ""

@@ -32,8 +32,6 @@ class ComprehensiveVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
     showHUDInView(view, withLoading: "正在加载中...")
     tableView.tableFooterView = UIView()
     tableView.showsVerticalScrollIndicator = false
@@ -49,7 +47,6 @@ class ComprehensiveVC: UIViewController {
     
     let image = UIImage(named: "ic_search_orange")
     let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "choiceCity:")
-    
     item2 = UIBarButtonItem(title: "想去哪里,享受尊贵服务", style: UIBarButtonItemStyle.Done, target: self, action: "choiceCity:")
     item2.tintColor = UIColor.ZKJS_navegationTextColor()
     super.navigationItem.leftBarButtonItems = [item1,item2]
@@ -66,7 +63,6 @@ class ComprehensiveVC: UIViewController {
     loadShopListData(orderPage)
     self.hidesBottomBarWhenPushed = false
     navigationController?.navigationBarHidden = false
-    
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -76,6 +72,7 @@ class ComprehensiveVC: UIViewController {
   func loadMore() {
     loadShopListData(orderPage)
   }
+  
   func refreshData() {
     orderPage = 1
     loadShopListData(orderPage)
@@ -88,27 +85,6 @@ class ComprehensiveVC: UIViewController {
     navigationController?.presentViewController(nav, animated: true, completion: nil)
   }
   
-  
-//  
-//  func loadRecommandData() {
-//    
-//    ZKJSJavaHTTPSessionManager.sharedInstance().getRecommendShopListWithCity(currentCity, success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-//      if let array = responseObject as? NSArray {
-//        self.recommendArray.removeAll()
-//        for dic in array {
-//          let recommend = RecommendModel(dic: dic as! [String:AnyObject])
-//          self.recommendArray.append(recommend)
-//        }
-//        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
-//        self.tableView.mj_header.endRefreshing()
-//      }
-//      
-//      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-//    }
-//    
-//  }
-  
-  
   private func loadShopListData(page: Int) {
     //获取所有商家列表
     ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
@@ -117,7 +93,6 @@ class ComprehensiveVC: UIViewController {
         if self.orderPage == 1 {
           self.dataArray.removeAll()
         }
-        
         for dic in array {
           let hotel = Hotel(dic: dic as! [String:AnyObject])
           self.dataArray.append(hotel)
@@ -126,7 +101,6 @@ class ComprehensiveVC: UIViewController {
         self.orderPage++
         self.tableView.reloadData()
       }
-     
       self.tableView.mj_footer.endRefreshing()
       self.tableView.mj_header.endRefreshing()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
@@ -171,8 +145,6 @@ class ComprehensiveVC: UIViewController {
       cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
       return cell
 }
-    
-    
   }
   
   func pushToDetail(sender:UIButton) {
@@ -202,50 +174,5 @@ class ComprehensiveVC: UIViewController {
       vc.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
     }
-    
   }
-//  
-//  func setupUI() {
-//    let loc = CLLocation(latitude: latution, longitude: longitude)
-//    let geocoder = CLGeocoder()
-//    geocoder.reverseGeocodeLocation(loc) { (array:[CLPlacemark]?, error:NSError?) -> Void in
-//      if array?.count > 0 {
-//        let placemark = array![0]
-//        var city = placemark.locality
-//        if (city == nil) {
-//          city = placemark.administrativeArea
-//        }
-//        self.currentCity = city?.stringByReplacingOccurrencesOfString("市", withString:"")
-//        self.loadRecommandData()
-//      }
-//    }
-//  }
-  
 }
-
-//extension ComprehensiveVC: CLLocationManagerDelegate {
-//  
-//  private func setupCoreLocationService() {
-//    locationManager.delegate = self
-//    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//    locationManager.startUpdatingLocation()
-//  }
-//  
-//  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-//    let alertView = UIAlertController(title: "无法定位您所在城市", message: "需要您前往设置中心打开定位服务", preferredStyle: .Alert)
-//    alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-//    presentViewController(alertView, animated: true, completion: nil)
-//    
-//  }
-//  
-//  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//    let location:CLLocation = locations[locations.count - 1]
-//    if location.horizontalAccuracy > 0 {
-//      latution = location.coordinate.latitude
-//      longitude = location.coordinate.longitude
-//      locationManager.stopUpdatingLocation()
-//    }
-//    setupUI()
-//  }
-//  
-//}

@@ -22,16 +22,13 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     
     tableView.backgroundColor = UIColor.hx_colorWithHexString("EFEFF4")
     tableView.separatorStyle = .None
-    
     // Cell
     let cellNib = UINib(nibName: NewItemCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: NewItemCell.reuseIdentifier())
-    
     // Tap background to dimiss keyboard
     let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard")
     tap.cancelsTouchesInView = false
     tableView.addGestureRecognizer(tap)
-    
     loadData()
   }
   
@@ -41,9 +38,9 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
     tableView.tableHeaderView = headerView
     tableView.tableFooterView = footerView
   }
+  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
     navigationController?.hidesBarsOnSwipe = false
   }
   
@@ -74,10 +71,8 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
       showHint("请填写内容")
       return
     }
-    
     selection(headerView.textField.text!)
     navigationController?.popViewControllerAnimated(true)
-    
     for dic in self.dataArray {
       if let d = dic as? NSDictionary {
         if let invoice_title = d["invoice_title"] as? String {
