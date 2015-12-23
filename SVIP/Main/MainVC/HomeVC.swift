@@ -364,15 +364,16 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
           vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
           self.navigationController?.pushViewController(vc, animated: true)
         } else {
-          pushToBookVC(pushInfo.shopid)
+          pushToBookVC(pushInfo)
         }
       }
     }
   }
   
-  func pushToBookVC(shopid:String) {
+  func pushToBookVC(pushinfo: PushInfoModel) {
     let vc = BookVC()
-    vc.shopid = NSNumber(integer: Int(shopid)!)
+    vc.shopid = NSNumber(integer: Int(pushinfo.shopid)!)
+    vc.shopName = pushinfo.shopName
     vc.hidesBottomBarWhenPushed = true
     navigationController?.pushViewController(vc, animated: true)
   }

@@ -14,6 +14,7 @@ class PushInfoModel: NSObject {
   var iconbaseurl: String!
   var iconfilename: String!
   var shopid: String!
+  var shopName: String!
   var title: String!
   var orderNo: String!
   
@@ -31,6 +32,11 @@ class PushInfoModel: NSObject {
       self.orderNo = orderNo
     } else {
       ZKJSTool.showMsg("orderNo无值\(dic)")
+    }
+    if let shopName = dic["shopName"] as? String {
+      self.shopName = shopName
+    } else {
+      ZKJSTool.showMsg("shopName无值\(dic)")
     }
     desc = dic["desc"] as? String ?? ""
     iconbaseurl = dic["iconbaseurl"] as? String ?? ""
