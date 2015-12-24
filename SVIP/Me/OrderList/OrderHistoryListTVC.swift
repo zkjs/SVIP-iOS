@@ -65,14 +65,13 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
     if orders.count == 0 {
       return UITableViewCell()
     }
-    
     let cell: OrderHistoryCell = tableView.dequeueReusableCellWithIdentifier(OrderHistoryCell.reuseIdentifier()) as! OrderHistoryCell
    let order = orders[indexPath.row] as! OrderModel
     cell.setOrder(order)
     cell.delegate = self
-    
     return cell
   }
+  
   //设置cell的显示动画
   override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
@@ -150,8 +149,6 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
         
     }
   }
- 
-  
   
 }
 

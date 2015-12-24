@@ -134,11 +134,11 @@ class BookingOrderDetailVC: UIViewController {
   
   // MARK: - Button Action
   @IBAction func showChatView(sender: AnyObject) {
-//    let chatVC = JSHChatVC(chatType: .OldSession)
-//    chatVC.shopID = order.shopid.stringValue
-//    chatVC.shopName = order.fullname
-//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
-//    navigationController?.pushViewController(chatVC, animated: true)
+    //    let chatVC = JSHChatVC(chatType: .OldSession)
+    //    chatVC.shopID = order.shopid.stringValue
+    //    chatVC.shopName = order.fullname
+    //    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_IN_ROOM_CHECK_IN", comment: "")
+    //    navigationController?.pushViewController(chatVC, animated: true)
   }
   
   @IBAction func payBookingOrder(sender: AnyObject) {
@@ -146,13 +146,13 @@ class BookingOrderDetailVC: UIViewController {
     payVC.bkOrder = order
     self.navigationController?.pushViewController(payVC, animated: true)
   }
-
+  
   @IBAction func cancelOrder(sender: AnyObject) {
-//    let chatVC = JSHChatVC(chatType: .CancelOrder)
-//    chatVC.shopID = order.shopid.stringValue
-//    chatVC.shopName = order.fullname
-//    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
-//    navigationController?.pushViewController(chatVC, animated: true)
+    //    let chatVC = JSHChatVC(chatType: .CancelOrder)
+    //    chatVC.shopID = order.shopid.stringValue
+    //    chatVC.shopName = order.fullname
+    //    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_CANCEL_ORDER", comment: "")
+    //    navigationController?.pushViewController(chatVC, animated: true)
   }
   
 }

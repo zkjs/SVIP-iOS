@@ -86,27 +86,53 @@ class ComprehensiveVC: UIViewController {
   }
   
   private func loadShopListData(page: Int) {
-    //获取所有商家列表
-    ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      self.hideHUD()
-      if let array = responseObject as? NSArray {
-        if self.orderPage == 1 {
-          self.dataArray.removeAll()
+    let stats = AccountManager.sharedInstance().isLogin()
+    if stats == true {
+      //获取所有商家列表
+      ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+        self.hideHUD()
+        if let array = responseObject as? NSArray {
+          if self.orderPage == 1 {
+            self.dataArray.removeAll()
+          }
+          for dic in array {
+            let hotel = Hotel(dic: dic as! [String:AnyObject])
+            self.dataArray.append(hotel)
+          }
+          print(self.dataArray.count)
+          self.orderPage++
+          self.tableView.reloadData()
         }
-        for dic in array {
-          let hotel = Hotel(dic: dic as! [String:AnyObject])
-          self.dataArray.append(hotel)
-        }
-        print(self.dataArray.count)
-        self.orderPage++
-        self.tableView.reloadData()
+        self.tableView.mj_footer.endRefreshing()
+        self.tableView.mj_header.endRefreshing()
+        }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+          
       }
-      self.tableView.mj_footer.endRefreshing()
-      self.tableView.mj_header.endRefreshing()
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
+
+    } else {
+      //获取所有商家列表
+      ZKJSJavaHTTPSessionManager.sharedInstance().getLoginOutShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+        self.hideHUD()
+        if let array = responseObject as? NSArray {
+          if self.orderPage == 1 {
+            self.dataArray.removeAll()
+          }
+          for dic in array {
+            let hotel = Hotel(dic: dic as! [String:AnyObject])
+            self.dataArray.append(hotel)
+          }
+          print(self.dataArray.count)
+          self.orderPage++
+          self.tableView.reloadData()
+        }
+        self.tableView.mj_footer.endRefreshing()
+        self.tableView.mj_header.endRefreshing()
+        }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+          
+      }
+
     }
-  }
+      }
   
   // MARK: - Table view data source
   

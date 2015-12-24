@@ -73,17 +73,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       getlastOrder()
     }
     getPushInfoData()
-//    
-//    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-//      self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-//        target:self,selector:Selector("highLight"),
-//        userInfo:nil,repeats:true)
-//      if let data = responsObjcet as? [String: AnyObject] {
-//        self.privilege = PrivilegeModel(dic: data)
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//    }
-
 
   }
   //TableView Scroller Delegate
@@ -160,7 +149,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       }
     let loginStats = AccountManager.sharedInstance().isLogin()
     let image = AccountManager.sharedInstance().avatarImage
+    
     if loginStats == false {
+      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
       self.myView.loginButton.setTitle("立即登录", forState: UIControlState.Normal)
       self.myView.loginButton.tintColor = UIColor.ZKJS_mainColor()
       self.myView.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -208,7 +199,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
          self.pushInfoArray.append(pushInfo)
         }
-        self.tableView.reloadData()
+       self.tableView.reloadData()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
@@ -224,6 +215,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
           self.orderArray.append(order)
         }
         self.tableView.reloadData()
+
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
@@ -499,6 +491,7 @@ extension HomeVC: CLLocationManagerDelegate {
     if AccountManager.sharedInstance().isLogin() == false {
       return
     }
+    
     guard let shopID = beacon["shopid"] else { return }
     guard let locid = beacon["locid"] else { return }
     guard let locdesc = beacon["locdesc"] else { return }
@@ -538,17 +531,6 @@ extension HomeVC: CLLocationManagerDelegate {
         print("[result] publish data(\(json)) to topic(\(topic)) failed: \(error), recovery suggestion: \(error.localizedRecoverySuggestion)")
       }
     }
-    //位置区域变化通知
-    ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-      let dic = responsObject as! NSDictionary
-      let set = dic["set"] as! NSNumber
-      if set.boolValue == true {
-        print("告诉后台成功")
-      }
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
-    }
-    
     if activate == true {
       //根据酒店区域获取用户特权
       
@@ -562,6 +544,18 @@ extension HomeVC: CLLocationManagerDelegate {
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       }
     }
+    //位置区域变化通知
+    ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+      let dic = responsObject as! NSDictionary
+      let set = dic["set"] as! NSNumber
+      if set.boolValue == true {
+        print("告诉后台成功")
+      }
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
+    
+   
   }
   
   func highLight() {
