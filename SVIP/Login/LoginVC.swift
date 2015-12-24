@@ -179,7 +179,7 @@ class LoginVC: UIViewController {
 
   // MARK: Button Action
   
-  @IBAction func tappedCodeButton(sender: AnyObject) {
+  @IBAction func tappedCodeButton(sender: UIButton) {
     guard let phone = phoneTextField.text else { return }
     if ZKJSTool.validateMobile(phone) {
       // 发送验证码

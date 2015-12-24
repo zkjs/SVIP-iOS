@@ -9,6 +9,18 @@
 #import "ZKJSHTTPSMSSessionManager.h"
 #import "CCPRestSDK.h"
 
+// 正式版
+static NSString* const appID = @"8a48b5514f73ea32014f8d1d3f71344d";
+static NSString* const token = @"137d18e0111643ffb9e06401f214cc8d";
+static NSString* const restURL = @"app.cloopen.com";
+static NSString* const templateID = @"50157";
+
+// 测试版本
+//static NSString* const appID = @"aaf98f894d985d36014d99d2196e0266";
+//static NSString* const token = @"0e48533de702931f037558521133dce2";
+//static NSString* const restURL = @"sandboxapp.cloopen.com";
+//static NSString* const templateID = @"1";
+
 @interface ZKJSHTTPSMSSessionManager ()
 
 @property (nonatomic, strong) NSMutableDictionary *phoneSMS;
@@ -31,10 +43,10 @@
   self = [super init];
   if (self) {
     self.phoneSMS = [NSMutableDictionary dictionary];
-    self.ccpRestSdk = [[CCPRestSDK alloc] initWithServerIP:@"app.cloopen.com" andserverPort:8883];
-    [self.ccpRestSdk setApp_ID:@"8a48b5514f73ea32014f8d1d3f71344d"];
-    [self.ccpRestSdk enableLog:YES];
-    [self.ccpRestSdk setAccountWithAccountSid: @"8a48b5514d9861c3014d99cf3572024a" andAccountToken:@"137d18e0111643ffb9e06401f214cc8d"];
+    self.ccpRestSdk = [[CCPRestSDK alloc] initWithServerIP: restURL andserverPort: 8883];
+    [self.ccpRestSdk setApp_ID: appID];
+    [self.ccpRestSdk enableLog: YES];
+    [self.ccpRestSdk setAccountWithAccountSid: @"8a48b5514d9861c3014d99cf3572024a" andAccountToken: token];
   }
   return self;
 }
@@ -44,8 +56,7 @@
   NSString *verifyCode = [NSString stringWithFormat:@"%d%d%d%d%d%d", arc4random() % 9 + 1, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10, arc4random() % 10];
   NSString *verifyTime = @"5";
   NSArray *datas = [NSArray arrayWithObjects: verifyCode, verifyTime, nil];
-  NSString *templateId = @"50157";
-  NSMutableDictionary *dict = [self.ccpRestSdk sendTemplateSMSWithTo:phone andTemplateId:templateId andDatas:datas];
+  NSMutableDictionary *dict = [self.ccpRestSdk sendTemplateSMSWithTo:phone andTemplateId:templateID andDatas:datas];
   NSLog(@"%@", verifyCode);
   self.phoneSMS[phone] = verifyCode;
   if ([dict[@"statusCode"] isEqualToString:@"000000"]) {

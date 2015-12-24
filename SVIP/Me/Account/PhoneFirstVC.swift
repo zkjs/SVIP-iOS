@@ -72,6 +72,10 @@ class PhoneFirstVC: UIViewController {
           self.codeButton.alpha = 0.5
           self.count = 30
           self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+        } else {
+          if let userInfo = error.userInfo.first {
+            self.showHint(userInfo.1 as! String)
+          }
         }
       })
     } else {
