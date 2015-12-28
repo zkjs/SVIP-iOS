@@ -126,20 +126,24 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       let orderArray = responseObject as! NSArray
-      if orderArray.count != 0 {
+      if orderArray.count > 0 {
         for orderInfo in orderArray {
           let order = OrderModel(dic: orderInfo as! NSDictionary)
           self.orders.addObject(order)
         }
         self.hideHUD()
-        self.emptyLabel.hidden = true
         self.tableView.reloadData()
         self.tableView.mj_footer.endRefreshing()
         self.orderPage++
       } else {
         self.hideHUD()
+        self.tableView.mj_footer.endRefreshingWithNoMoreData()
+      }
+      
+      if self.orders.count > 0 {
+        self.emptyLabel.hidden = true
+      } else {
         self.emptyLabel.hidden = false
-        self.tableView.mj_footer.endRefreshingWithNoMoreData()  
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
