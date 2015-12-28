@@ -12,7 +12,6 @@ import CoreBluetooth
 class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   var delegate:refreshHomeVCDelegate?
   let Identifier = "SettingVCCell"
-  let titles = ["订单状态","最近浏览","服务精选","酒店精选"]
   let locationManager = CLLocationManager()
   var bluetoothManager = CBCentralManager()
   var privilege = PrivilegeModel()
@@ -21,14 +20,13 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   var pushInfoArray = [PushInfoModel]()
   var orderArray = [PushInfoModel]()
   var myView: HomeHeaderView!
-  var activate =  true
+  
   var longitude: double_t!
   var latution: double_t!
   var beaconRegions = [String: [String: String]]()
-  var nowDate = NSDate()
+  var activate =  true
   var compareNumber: NSNumber!
-  var hourLabel = String()
-  var sexString = String()//性别
+
   var urlArray = NSMutableArray()
   var homeUrl = String()
   var count = 0
@@ -54,8 +52,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Identifier)
     let nibName = UINib(nibName: HomeCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: HomeCell.reuseIdentifier())
-    let NibName = UINib(nibName: OrderCustomCell.nibName(), bundle: nil)
-    tableView.registerNib(NibName, forCellReuseIdentifier: OrderCustomCell.reuseIdentifier())
+    let NibName = UINib(nibName: CustonCell.nibName(), bundle: nil)
+    tableView.registerNib(NibName, forCellReuseIdentifier: CustonCell.reuseIdentifier())
     tableView.showsVerticalScrollIndicator = false
   }
   
@@ -73,8 +71,18 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       getlastOrder()
     }
     getPushInfoData()
-
+//    //根据酒店区域获取用户特权
+//    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+//      self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+//        target:self,selector:Selector("highLight"),
+//        userInfo:nil,repeats:true)
+//      if let data = responsObjcet as? [String: AnyObject] {
+//        self.privilege = PrivilegeModel(dic: data)
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//    }
   }
+  
   //TableView Scroller Delegate
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
@@ -86,17 +94,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
      navigationController?.navigationBarHidden = false
   }
   
-//  func scrollViewDidScroll(scrollView: UIScrollView) {
-//    let color = UIColor.ZKJS_mainColor()
-//    let offsetY = scrollView.contentOffset.y
-//    if (offsetY > 10) {
-//      let alpha = min(1, 1 - ((10 + 64 - offsetY) / 64))
-//      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
-//      
-//    } else {
-//      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
-//    }
-//  }
   
   //refreshHomeVCDelegate
   func refreshHomeVC(set: Bool) {
@@ -118,77 +115,10 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     }
   }
   
-  func setupUI() {
-    let nowDate = NSDate();
-    let hourFormatter = NSDateFormatter();
-    hourFormatter.dateFormat = "HH";
-    let time = hourFormatter.stringFromDate(nowDate);
-    let beacon = StorageManager.sharedInstance().lastBeacon()
-
-    if(time <= "09" && time > "00" ){
-      hourLabel = "早上好"
-    }
-    if(time <= "11" && time > "09" ){
-      hourLabel = "上午好"
-    }
-    if(time <= "12" && time > "11" ){
-      hourLabel = "中午好"
-    }
-    if(time <= "18" && time > "12" ){
-      hourLabel = "下午好"
-    }
-    if(time <= "24" && time > "18" ){
-      hourLabel = "晚上好"
-    }
-    myView.greetLabel.text = hourLabel
-     let sex = AccountManager.sharedInstance().sex
-      if sex == "0" {
-        self.sexString = "先生"
-      } else {
-        self.sexString  = "女士"
-      }
-    let loginStats = AccountManager.sharedInstance().isLogin()
-    let image = AccountManager.sharedInstance().avatarImage
-    
-    if loginStats == false {
-      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
-      self.myView.loginButton.setTitle("立即登录", forState: UIControlState.Normal)
-      self.myView.loginButton.tintColor = UIColor.ZKJS_mainColor()
-      self.myView.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
-      self.myView.dynamicLabel.text = "使用超级身份,享受超凡个性服务"
-    }
-    if loginStats == true && activate == false {
-      myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
-      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
-      self.myView.activateButton.setTitle("立即激活", forState: UIControlState.Normal)
-      self.myView.activateButton.tintColor = UIColor.ZKJS_mainColor()
-      self.myView.activateButton.addTarget(self, action: "activated:", forControlEvents: UIControlEvents.TouchUpInside)
-      self.myView.dynamicLabel.text = "输入邀请码激活身份,享受超凡个性服务"
-    }
-    if loginStats == true && activate == true {
-      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
-      myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
-      self.myView.dynamicLabel.text = "使用超级身份,享受超凡个性服务"
-    }
-    if loginStats == true && activate == true && beacon != nil {
-      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
-      myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
-      self.myView.dynamicLabel.text = "欢迎光临\(beacon!["shopName"])"
-    }
-    
-  }
-  
   func login(sender:UIButton) {
     let vc = LoginVC()
     self.presentViewController(vc, animated: true, completion: nil)
  
-  }
-  
-  func activated(sender:UIButton) {
-    //激活页面
-    let vc = InvitationCodeVC()
-    self.presentViewController(vc, animated: true, completion: nil)
-    
   }
   
   func getPushInfoData() {
@@ -208,9 +138,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   
   func getlastOrder() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      print(responseObject)
       if let array = responseObject as? NSArray {
-        self.orderArray.removeAll()
         for dic in array {
         let  order = PushInfoModel(dic: dic as! [String: AnyObject])
           self.orderArray.append(order)
@@ -228,7 +156,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     ZKJSHTTPSessionManager.sharedInstance().InvitationCodeActivatedSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
       self.activate = dic["set"] as! Bool
-      self.setupUI()
+      self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
@@ -252,86 +180,71 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   //  }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
+    return 3
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
+      return 1
+    }
+    if section == 1 {
       return orderArray.count
-    } else {
+    }
+    else {
       return pushInfoArray.count
     }
     
   }
   
-  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if section == 0 {
-      return 338
-    } else {
-      return 1
-    }
-    
-  }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return HomeCell.height()
+    if indexPath.section == 0 {
+      return CustonCell.height()
+    } else {
+       return HomeCell.height()
+    }
+   
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-    cell.selectionStyle = UITableViewCellSelectionStyle.None
-    if orderArray.count != 0 && indexPath.section == 0 {
+    
+   
+    if indexPath.section == 0 {
+      let headercell = tableView.dequeueReusableCellWithIdentifier("CustonCell", forIndexPath: indexPath) as! CustonCell
+      headercell.selectionStyle = UITableViewCellSelectionStyle.None
+      headercell.setData(self.activate,homeUrl: self.homeUrl)
+      headercell.activeButton.addTarget(self, action: "activeCode:", forControlEvents: UIControlEvents.TouchUpInside)
+      headercell.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
+      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
+      return headercell
+    }
+    if orderArray.count != 0 && indexPath.section == 1 {
+      let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
       let order = self.orderArray[indexPath.row]
       cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
       cell.setData(order)
+      return cell
     }
-    
-    if self.pushInfoArray.count != 0  && indexPath.section == 1{
+   else {
+      let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
       let pushInfo = self.pushInfoArray[indexPath.row]
       cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
       cell.setData(pushInfo)
+      return cell
     }
-    return cell
   }
   
-  
-  func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    let backV = UIView()
-    backV.frame = CGRectMake(0, 0, view.frame.size.width, 0)
-    backV.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-    return backV
+  func activeCode(sender:UIButton) {
+    //激活页面
+    let vc = InvitationCodeVC()
+    self.presentViewController(vc, animated: true, completion: nil)
   }
   
-  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if section == 0 {
-      myView = NSBundle.mainBundle().loadNibNamed("HomeHeaderView", owner: self, options: nil).first as! HomeHeaderView
-      if urlArray.count != 0 {
-        myView.backgroundImage.sd_setImageWithURL(NSURL(string: self.homeUrl), placeholderImage: nil)
-      }
-      myView.LocationButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
-      myView.backgroundImage.layer.masksToBounds = true
-      let animation = CABasicAnimation(keyPath:"transform.scale")
-      //动画选项设定
-      animation.duration = 8
-      animation.repeatCount = HUGE
-      animation.autoreverses = true
-      animation.fromValue = NSNumber(double: 1.0)
-      animation.toValue = NSNumber(double: 1.4)
-      myView.backgroundImage.layer.addAnimation(animation, forKey: "scale-layer")
-      setupUI()
-      return myView
-    }
-    else {
-      let backV = UIView()
-      backV.frame = CGRectMake(0, 0, view.frame.size.width, 0)
-      backV.backgroundColor = UIColor.whiteColor()
-      return backV
-    }
-    
-  }
   
   func getPrivilege() {
-    if privilege.privilegeName == nil{
+    if privilege.privilegeName == nil {
       return
     }
     countTimer = 0
@@ -346,11 +259,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let pushInfo = pushInfoArray[indexPath.row]
     if pushInfoArray.count != 0 {
-      if indexPath.section == 0 {
+      if indexPath.section == 1 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
-      } else {
+      }
+      if indexPath.section == 2 {
         if pushInfo.shopid == "" {
           let vc = WebViewVC()
           vc.hidesBottomBarWhenPushed = true
@@ -362,7 +276,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       }
     }
   }
-  
+
   func pushToBookVC(pushinfo: PushInfoModel) {
     let vc = BookVC()
     vc.shopid = NSNumber(integer: Int(pushinfo.shopid)!)
@@ -496,16 +410,8 @@ extension HomeVC: CLLocationManagerDelegate {
     guard let shopID = beacon["shopid"] else { return }
     guard let locid = beacon["locid"] else { return }
     guard let locdesc = beacon["locdesc"] else { return }
-    //    guard let UUID = beacon["uuid"] else { return }
-    //    guard let major = beacon["major"] else { return }
-    //    guard let minor = beacon["minor"] else { return }
     let userID = AccountManager.sharedInstance().userID
     let userName = AccountManager.sharedInstance().userName
-    //    let notification = UILocalNotification()
-    //    let alertMessage = "Enter \(shopID!) \(locid!) \(uuid!) \(major!) \(minor!)"
-    //    notification.alertBody = alertMessage
-    //    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-    
     let topic = locid
     let extra = ["locdesc": locdesc,
       "locid": locid,
@@ -534,7 +440,6 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     if activate == true {
       //根据酒店区域获取用户特权
-      
       ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
         self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
           target:self,selector:Selector("highLight"),
@@ -560,19 +465,19 @@ extension HomeVC: CLLocationManagerDelegate {
   }
   
   func highLight() {
+   let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as! CustonCell
     countTimer++
     let image = AccountManager.sharedInstance().avatarImage
     if self.countTimer % 2 == 0 {
-      self.myView.LocationButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+      cell.PrivilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
     }
     else {
-      self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      cell.PrivilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
     }
   }
   
   private func setupBeaconMonitor() {
     removeAllMonitoredRegions()
-    
     beaconRegions = StorageManager.sharedInstance().beaconRegions()
     for key in beaconRegions.keys {
       if let beaconInfo = beaconRegions[key] {
