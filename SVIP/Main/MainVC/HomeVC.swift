@@ -155,7 +155,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       self.myView.loginButton.setTitle("立即登录", forState: UIControlState.Normal)
       self.myView.loginButton.tintColor = UIColor.ZKJS_mainColor()
       self.myView.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
-      self.myView.dynamicLabel.text = "使用超级身份，享受超凡个性服务"
+      self.myView.dynamicLabel.text = "使用超级身份,享受超凡个性服务"
     }
     if loginStats == true && activate == false {
       myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
@@ -163,12 +163,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       self.myView.activateButton.setTitle("立即激活", forState: UIControlState.Normal)
       self.myView.activateButton.tintColor = UIColor.ZKJS_mainColor()
       self.myView.activateButton.addTarget(self, action: "activated:", forControlEvents: UIControlEvents.TouchUpInside)
-      self.myView.dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
+      self.myView.dynamicLabel.text = "输入邀请码激活身份,享受超凡个性服务"
     }
     if loginStats == true && activate == true {
       self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
       myView.usernameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
-      self.myView.dynamicLabel.text = "使用超级身份，享受超凡个性服务"
+      self.myView.dynamicLabel.text = "使用超级身份,享受超凡个性服务"
     }
     if loginStats == true && activate == true && beacon != nil {
       self.myView.LocationButton.setBackgroundImage(image, forState: UIControlState.Normal)
@@ -210,6 +210,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       print(responseObject)
       if let array = responseObject as? NSArray {
+        self.orderArray.removeAll()
         for dic in array {
         let  order = PushInfoModel(dic: dic as! [String: AnyObject])
           self.orderArray.append(order)
