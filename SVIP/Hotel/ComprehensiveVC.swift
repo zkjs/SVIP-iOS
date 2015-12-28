@@ -121,7 +121,6 @@ class ComprehensiveVC: UIViewController {
             let hotel = Hotel(dic: dic as! [String:AnyObject])
             self.dataArray.append(hotel)
           }
-          print(self.dataArray.count)
           self.orderPage++
           self.tableView.reloadData()
         }
