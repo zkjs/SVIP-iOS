@@ -139,7 +139,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       } else {
         self.hideHUD()
         self.emptyLabel.hidden = false
-        self.tableView.mj_footer.endRefreshingWithNoMoreData()
+        self.tableView.mj_footer.endRefreshingWithNoMoreData()  
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         

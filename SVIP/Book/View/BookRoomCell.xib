@@ -19,7 +19,7 @@
                         <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  双人套房 ￥999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K36-kR-ysN">
-                        <rect key="frame" x="8" y="103" width="356" height="30"/>
+                        <rect key="frame" x="8" y="132" width="356" height="30"/>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -44,7 +44,7 @@
                     <constraint firstAttribute="bottom" secondItem="coO-qz-vS5" secondAttribute="bottom" constant="8" id="RJD-4G-9Sa"/>
                     <constraint firstItem="p58-hg-VO9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="aCM-DP-7g7"/>
                     <constraint firstItem="coO-qz-vS5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="cku-yN-sKn"/>
-                    <constraint firstItem="K36-kR-ysN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="103" id="fiC-4b-Jmr"/>
+                    <constraint firstItem="K36-kR-ysN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="132" id="fiC-4b-Jmr"/>
                     <constraint firstAttribute="trailing" secondItem="coO-qz-vS5" secondAttribute="trailing" constant="8" id="jiJ-Vz-gxM"/>
                     <constraint firstItem="p58-hg-VO9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="rl1-aj-rTI"/>
                     <constraint firstItem="coO-qz-vS5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="tyK-L4-4XI"/>

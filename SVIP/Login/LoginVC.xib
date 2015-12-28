@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="SVIP" customModuleProvider="target">
@@ -92,26 +92,26 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPh-Po-9EY">
-                    <rect key="frame" x="263" y="458" width="75" height="14"/>
+                    <rect key="frame" x="263" y="458" width="75" height="17"/>
                     <animations/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="14" id="Glq-KD-iE8"/>
+                        <constraint firstAttribute="height" constant="17" id="Glq-KD-iE8"/>
                         <constraint firstAttribute="width" constant="75" id="hDP-Y7-FiB"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="使用协议">
+                    <state key="normal" title="《使用协议》">
                         <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
-                    <rect key="frame" x="8" y="16" width="44" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
+                    <rect key="frame" x="25" y="27" width="10" height="22"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="O3U-j7-0Nd"/>
                         <constraint firstAttribute="width" constant="44" id="Vut-jq-DhT"/>
                     </constraints>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" image="ic_quxiao_b"/>
+                    <state key="normal" image="ic_fanhui_orange"/>
                     <connections>
                         <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="fFR-ab-snz"/>
                     </connections>
@@ -183,6 +183,6 @@
     </objects>
     <resources>
         <image name="bg_zhuce" width="375" height="267"/>
-        <image name="ic_quxiao_b" width="12" height="12"/>
+        <image name="ic_fanhui_orange" width="10" height="18"/>
     </resources>
 </document>

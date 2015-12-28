@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -131,7 +131,7 @@
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4r-ak-Q7I">
-                    <rect key="frame" x="390" y="308" width="60" height="60"/>
+                    <rect key="frame" x="390" y="305" width="60" height="60"/>
                     <animations/>
                     <color key="backgroundColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -154,7 +154,7 @@
             <constraints>
                 <constraint firstItem="JNH-Co-neS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CKw-MU-zpG"/>
                 <constraint firstItem="x4r-ak-Q7I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="308" id="EiX-KN-EkH"/>
-                <constraint firstItem="x4r-ak-Q7I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="308" id="FpH-ML-pDE"/>
+                <constraint firstItem="x4r-ak-Q7I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="305" id="FpH-ML-pDE"/>
                 <constraint firstItem="x4r-ak-Q7I" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="120" id="Lrf-R3-zQX"/>
                 <constraint firstAttribute="trailing" secondItem="JNH-Co-neS" secondAttribute="trailing" id="YI0-yi-60F"/>
                 <constraint firstItem="JNH-Co-neS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="d7l-v6-2hq"/>

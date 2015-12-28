@@ -90,8 +90,6 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     orderV.startLabel.text = order.departure_date
     orderV.usernameLabel.text = order.guest
     orderV.hotelImage.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
-    
-    
   }
   
   //MARK -EDStarRating Protocol
@@ -116,6 +114,4 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
         
     }
   }
-    
-
 }

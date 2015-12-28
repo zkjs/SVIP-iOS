@@ -62,14 +62,13 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   
   func getCityListData() {
     ZKJSHTTPSessionManager.sharedInstance().getCityListSuccess({ (task: NSURLSessionDataTask!, responsObject: AnyObject!) -> Void in
+      
       if let array = responsObject as? NSArray {
-//        print(array)
         self.cityArray.removeAll()
         for dic in array {
           let string = dic["city"] as! String
           self.cityArray.append(string)
         }
-//        print(self.cityArray.count)
         self.tableView.reloadData()
       }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
