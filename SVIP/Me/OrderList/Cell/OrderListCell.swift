@@ -54,7 +54,7 @@ class OrderListCell: SWTableViewCell {
     hotelImageView.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     hotelnameLabel.text = order.fullname
     roomTypeLabel.text = order.room_type + "x" + order.rooms.stringValue
-    locationLabel.text = order.departure_date
+    locationLabel.text = order.arrival_date
     priceLabel.text = "￥" + "\(order.room_rate.stringValue)"
     rightUtilityButtons = rightButtons() as [AnyObject]
     setupStatsLabel(order)
