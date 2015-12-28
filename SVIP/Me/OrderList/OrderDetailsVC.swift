@@ -87,7 +87,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     orderV.hotelNameLabel.text = order.fullname
     orderV.bedStulyLabel.text = order.room_type + "x" + order.rooms.stringValue
     orderV.room_priceLabel.text = "￥" + order.room_rate.stringValue
-    orderV.startLabel.text = order.departure_date
+    orderV.startLabel.text = order.arrival_date
     orderV.usernameLabel.text = order.guest
     orderV.hotelImage.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
   }
