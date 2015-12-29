@@ -55,8 +55,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="徐伟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-dX-2nZ">
-                                <rect key="frame" x="18" y="234" width="48" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-dX-2nZ">
+                                <rect key="frame" x="18" y="234" width="0.0" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="9L1-ep-NVI"/>
                                 </constraints>
@@ -93,29 +93,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRP-12-ZOI">
-                                <rect key="frame" x="486" y="309" width="60" height="60"/>
-                                <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="afw-0s-YaO"/>
-                                    <constraint firstAttribute="height" constant="60" id="hfg-dY-TVk"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="ic_zhijian_white">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="H2J-qP-qS1" firstAttribute="top" secondItem="KH4-as-UOF" secondAttribute="bottom" constant="24" id="4Er-in-TfM"/>
                             <constraint firstItem="pMZ-dX-2nZ" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" constant="18" id="5XX-kr-soE"/>
-                            <constraint firstItem="fRP-12-ZOI" firstAttribute="top" secondItem="Qj2-s1-f89" secondAttribute="bottom" id="9Je-bi-5As"/>
                             <constraint firstItem="Qj2-s1-f89" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" constant="18" id="IeK-L9-cqL"/>
                             <constraint firstItem="cil-LM-wVa" firstAttribute="top" secondItem="DOC-mM-OVZ" secondAttribute="top" id="LJN-Wh-jOS"/>
                             <constraint firstAttribute="height" constant="339" id="MfP-oS-qso"/>
                             <constraint firstItem="pMZ-dX-2nZ" firstAttribute="top" secondItem="KH4-as-UOF" secondAttribute="bottom" constant="24" id="Qxk-zK-gcS"/>
                             <constraint firstItem="H2J-qP-qS1" firstAttribute="leading" secondItem="3og-2i-xLJ" secondAttribute="trailing" constant="40" id="RbY-v3-aVU"/>
-                            <constraint firstAttribute="trailing" secondItem="fRP-12-ZOI" secondAttribute="trailing" constant="50" id="SDp-X1-8gh"/>
                             <constraint firstItem="3og-2i-xLJ" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" constant="18" id="W7o-ec-abP"/>
                             <constraint firstItem="Qj2-s1-f89" firstAttribute="top" secondItem="3og-2i-xLJ" secondAttribute="bottom" constant="15" id="XEa-ST-B20"/>
                             <constraint firstAttribute="trailing" secondItem="cil-LM-wVa" secondAttribute="trailing" id="XG4-1n-ECj"/>
@@ -134,7 +121,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="PrivilegeButton" destination="fRP-12-ZOI" id="BZZ-2u-HF7"/>
                 <outlet property="activeButton" destination="H2J-qP-qS1" id="vZj-3U-i0a"/>
                 <outlet property="dynamicLabel" destination="Qj2-s1-f89" id="9Xx-mV-cm8"/>
                 <outlet property="greetLabel" destination="KH4-as-UOF" id="9Xn-GC-Ilk"/>
@@ -146,7 +132,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_zhijian_white" width="50" height="50"/>
         <image name="img_background" width="375" height="373"/>
     </resources>
 </document>
