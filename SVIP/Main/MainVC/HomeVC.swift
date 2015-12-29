@@ -20,22 +20,28 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   var pushInfoArray = [PushInfoModel]()
   var orderArray = [PushInfoModel]()
   var myView: HomeHeaderView!
-  
   var longitude: double_t!
   var latution: double_t!
   var beaconRegions = [String: [String: String]]()
   var activate =  true
   var compareNumber: NSNumber!
-
   var urlArray = NSMutableArray()
   var homeUrl = String()
   var count = 0
   var countTimer = 0
   var timer = NSTimer!()
+  var originOffsetY: CGFloat = 0.0
   
   
   @IBOutlet weak var tableView: UITableView!
   
+  @IBOutlet weak var privilegeButton: UIButton!{
+    didSet {
+      privilegeButton.layer.masksToBounds = true
+      privilegeButton.layer.cornerRadius = 30
+    }
+  }
+
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
   }
@@ -55,11 +61,20 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     let NibName = UINib(nibName: CustonCell.nibName(), bundle: nil)
     tableView.registerNib(NibName, forCellReuseIdentifier: CustonCell.reuseIdentifier())
     tableView.showsVerticalScrollIndicator = false
+   
+    originOffsetY = privilegeButton.frame.origin.y
   }
   
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    let loginStats = AccountManager.sharedInstance().isLogin()
+    let image = AccountManager.sharedInstance().avatarImage
+    if loginStats == true {
+      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
     self.pushInfoArray.removeAll()
     delegate = self
     navigationController?.navigationBarHidden = true
@@ -100,6 +115,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     getPushInfoData()
   }
   
+  func scrollViewDidScroll(scrollView: UIScrollView) {
+    let offsetY = scrollView.contentOffset.y
+    privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
+    
+  }
+  
   func  loadData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
@@ -125,6 +146,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       print(responseObject)
       if let array = responseObject as? NSArray {
+        self.pushInfoArray.removeAll()
         for dic in array {
          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
          self.pushInfoArray.append(pushInfo)
@@ -156,7 +178,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     ZKJSHTTPSessionManager.sharedInstance().InvitationCodeActivatedSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
       self.activate = dic["set"] as! Bool
-      self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+      self.tableView.reloadData()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
@@ -211,11 +233,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
    
     if indexPath.section == 0 {
       let headercell = tableView.dequeueReusableCellWithIdentifier("CustonCell", forIndexPath: indexPath) as! CustonCell
+      
       headercell.selectionStyle = UITableViewCellSelectionStyle.None
       headercell.setData(self.activate,homeUrl: self.homeUrl)
       headercell.activeButton.addTarget(self, action: "activeCode:", forControlEvents: UIControlEvents.TouchUpInside)
       headercell.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
-      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
+//      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
       return headercell
     }
     if orderArray.count != 0 && indexPath.section == 1 {
@@ -229,9 +252,11 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
    else {
       let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
-      let pushInfo = self.pushInfoArray[indexPath.row]
-      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
-      cell.setData(pushInfo)
+      if pushInfoArray.count != 0 {
+        let pushInfo = self.pushInfoArray[indexPath.row]
+        cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+        cell.setData(pushInfo)
+      }
       return cell
     }
   }
@@ -465,14 +490,13 @@ extension HomeVC: CLLocationManagerDelegate {
   }
   
   func highLight() {
-   let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as! CustonCell
     countTimer++
     let image = AccountManager.sharedInstance().avatarImage
     if self.countTimer % 2 == 0 {
-      cell.PrivilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+      privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
     }
     else {
-      cell.PrivilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
     }
   }
   

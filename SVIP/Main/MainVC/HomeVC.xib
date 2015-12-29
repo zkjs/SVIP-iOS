@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="privilegeButton" destination="dH8-Mk-X5n" id="Awt-At-7X8"/>
                 <outlet property="tableView" destination="AMJ-qA-CwZ" id="MbL-7o-F17"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Ull-wK-ExY"/>
             </connections>
@@ -25,15 +26,29 @@
                         <outlet property="delegate" destination="-1" id="Vg0-6R-sgi"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dH8-Mk-X5n">
+                    <rect key="frame" x="510" y="309" width="60" height="60"/>
+                    <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="oXn-Uu-doM"/>
+                        <constraint firstAttribute="height" constant="60" id="x8V-qo-WJb"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="ic_zhijian_white"/>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="AMJ-qA-CwZ" secondAttribute="bottom" constant="-40" id="2i7-99-Ihc"/>
                 <constraint firstItem="AMJ-qA-CwZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GkJ-u9-A0g"/>
+                <constraint firstItem="dH8-Mk-X5n" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="309" id="gxr-2m-ta8"/>
                 <constraint firstItem="AMJ-qA-CwZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-20" id="hBV-36-FhR"/>
                 <constraint firstAttribute="trailing" secondItem="AMJ-qA-CwZ" secondAttribute="trailing" id="sqk-mT-jEp"/>
+                <constraint firstAttribute="trailing" secondItem="dH8-Mk-X5n" secondAttribute="trailing" constant="30" id="ysv-wC-o9S"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="ic_zhijian_white" width="50" height="50"/>
+    </resources>
 </document>
