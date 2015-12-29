@@ -130,6 +130,7 @@ class LoginVC: UIViewController {
   
   private func getUserInfo(closure: () -> Void) {
     ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
       if let data = responseObject as? [String : AnyObject] {
         AccountManager.sharedInstance().saveBaseInfo(data)
         self.easeMobAutoLogin()

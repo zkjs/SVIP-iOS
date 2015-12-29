@@ -21,6 +21,7 @@ class SettingTVC: UITableViewController {
   // MARK: - Private
   
   func logout() {
+    showHUDInView(view, withLoading: "")
     ZKJSHTTPSessionManager.sharedInstance().logoutWithSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       if let data = responsObject {
         if let set = data["set"] {
@@ -31,7 +32,9 @@ class SettingTVC: UITableViewController {
           }
         }
       }
+      self.hideHUD()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        self.hideHUD()
         self.showAlertWithTitle(error.description, message: "")
     }
   }
