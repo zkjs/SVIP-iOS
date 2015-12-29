@@ -16,15 +16,15 @@ class AccountManager: NSObject {
   private(set) var avatarURL = ""
   private(set) var avatarImage = UIImage(named: "ic_zhijian_white")
   private(set) var userName = ""
-  private(set) var sex = "0" // 0男 1女
+  private(set) var sex = "0" // 0女 1男
   private(set) var email = ""
   private(set) var phone = ""
   
   var sexName: String? {
     get {
-      if sex == "0" {
+      if sex == "1" {
         return "男"
-      } else if sex == "1" {
+      } else if sex == "0" {
         return "女"
       } else {
         return nil

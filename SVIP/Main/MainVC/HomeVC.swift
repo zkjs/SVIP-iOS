@@ -437,18 +437,19 @@ extension HomeVC: CLLocationManagerDelegate {
     guard let locdesc = beacon["locdesc"] else { return }
     let userID = AccountManager.sharedInstance().userID
     let userName = AccountManager.sharedInstance().userName
+    let sex = AccountManager.sharedInstance().sex
     let topic = locid
     let extra = ["locdesc": locdesc,
       "locid": locid,
       "shopid": shopID,
       "userid": userID,
-      "username": userName]
+      "username": userName,
+      "sex": sex]
     let json = ZKJSTool.convertJSONStringFromDictionary(extra)
     let data = json.dataUsingEncoding(NSUTF8StringEncoding)
     let option = YBPublish2Option()
-    let sex = AccountManager.sharedInstance().sex
     var gender = "先生"
-    if sex == "1" {
+    if sex == "0" {
       gender = "女士"
     }
     let alert = "\(userName)\(gender) 到达 \(locdesc)"

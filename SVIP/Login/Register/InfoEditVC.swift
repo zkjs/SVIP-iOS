@@ -88,9 +88,9 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   @IBAction func selectSex(sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0 :
-      sex = "0"
-    case 1 :
       sex = "1"
+    case 1 :
+      sex = "0"
     default:
       print("default")
     }

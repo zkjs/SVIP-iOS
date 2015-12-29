@@ -75,7 +75,7 @@ class CustonCell: UITableViewCell {
     }
     greetLabel.text = hourLabel
     let sex = AccountManager.sharedInstance().sex
-    if sex == "0" {
+    if sex == "1" {
       sexString = "先生"
     } else {
       sexString  = "女士"

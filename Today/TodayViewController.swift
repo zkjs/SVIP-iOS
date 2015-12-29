@@ -38,7 +38,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     if let userID = defaults.objectForKey("userid") as? String,
       let token = defaults.objectForKey("token") as? String {
-        let url = NSURL(string: "http://120.25.241.196/order/last")
+        let url = NSURL(string: "http://tap.zkjinshi.com/order/last")
         let request = NSMutableURLRequest(URL: url!)
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"

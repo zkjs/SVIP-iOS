@@ -114,7 +114,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
         if let dic = responseObject as? NSDictionary {
           let set = dic["set"]!.boolValue!
           if set {
-            AccountManager.sharedInstance().saveSex("0")
+            AccountManager.sharedInstance().saveSex("1")
             self.refreshDataAndUI()
           }
         }
@@ -128,7 +128,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
         if let dic = responseObject as? NSDictionary {
           let set = dic["set"]!.boolValue!
           if set {
-            AccountManager.sharedInstance().saveSex("1")
+            AccountManager.sharedInstance().saveSex("0")
             self.refreshDataAndUI()
           }
         }
