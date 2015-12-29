@@ -110,7 +110,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   func chooseSex() {
     let alertController = UIAlertController(title: "请选择性别", message: "", preferredStyle: .ActionSheet)
     let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "0", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "1", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let dic = responseObject as? NSDictionary {
           let set = dic["set"]!.boolValue!
           if set {
@@ -124,7 +124,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     })
     alertController.addAction(manAction)
     let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "1", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "0", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let dic = responseObject as? NSDictionary {
           let set = dic["set"]!.boolValue!
           if set {

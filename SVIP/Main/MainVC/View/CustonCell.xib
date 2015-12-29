@@ -69,10 +69,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3og-2i-xLJ">
-                                <rect key="frame" x="18" y="234" width="96" height="30"/>
+                                <rect key="frame" x="18" y="234" width="96" height="26"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="lub-3D-FNf"/>
+                                    <constraint firstAttribute="height" constant="26" id="lub-3D-FNf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="立即登录">
@@ -80,10 +80,10 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2J-qP-qS1">
-                                <rect key="frame" x="154" y="234" width="96" height="30"/>
+                                <rect key="frame" x="154" y="234" width="96" height="26"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="dan-Sb-NaX"/>
+                                    <constraint firstAttribute="height" constant="26" id="dan-Sb-NaX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="立即激活">
@@ -91,7 +91,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj2-s1-f89">
-                                <rect key="frame" x="18" y="279" width="548" height="52"/>
+                                <rect key="frame" x="18" y="265" width="548" height="52"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="x0F-uH-y1O"/>
@@ -112,7 +112,7 @@
                             <constraint firstItem="pMZ-dX-2nZ" firstAttribute="top" secondItem="KH4-as-UOF" secondAttribute="bottom" constant="24" id="Qxk-zK-gcS"/>
                             <constraint firstItem="H2J-qP-qS1" firstAttribute="leading" secondItem="3og-2i-xLJ" secondAttribute="trailing" constant="40" id="RbY-v3-aVU"/>
                             <constraint firstItem="3og-2i-xLJ" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" constant="18" id="W7o-ec-abP"/>
-                            <constraint firstItem="Qj2-s1-f89" firstAttribute="top" secondItem="3og-2i-xLJ" secondAttribute="bottom" constant="15" id="XEa-ST-B20"/>
+                            <constraint firstItem="Qj2-s1-f89" firstAttribute="top" secondItem="3og-2i-xLJ" secondAttribute="bottom" constant="5" id="XEa-ST-B20"/>
                             <constraint firstAttribute="trailing" secondItem="cil-LM-wVa" secondAttribute="trailing" id="XG4-1n-ECj"/>
                             <constraint firstItem="cil-LM-wVa" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" id="c3a-E1-Lqv"/>
                             <constraint firstItem="KH4-as-UOF" firstAttribute="top" secondItem="DOC-mM-OVZ" secondAttribute="top" constant="184" id="cg1-LY-5zJ"/>
@@ -138,7 +138,7 @@
                 <outlet property="loginButton" destination="3og-2i-xLJ" id="Cq5-Ac-YvI"/>
                 <outlet property="userNameLabel" destination="pMZ-dX-2nZ" id="hg5-Cc-ZFt"/>
             </connections>
-            <point key="canvasLocation" x="711" y="694"/>
+            <point key="canvasLocation" x="578" y="638"/>
         </tableViewCell>
     </objects>
     <resources>
