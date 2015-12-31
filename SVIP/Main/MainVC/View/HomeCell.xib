@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -17,17 +17,15 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BKz-cF-RD8">
                         <rect key="frame" x="24" y="72" width="56" height="56"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="56" id="7kR-AF-JSE"/>
                             <constraint firstAttribute="height" constant="56" id="Zfv-qu-Lyh"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用超级身份" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="B5G-2U-msB">
-                        <rect key="frame" x="100" y="62" width="458" height="22"/>
-                        <animations/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用超级身份" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5G-2U-msB">
+                        <rect key="frame" x="100" y="54" width="458" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="1c1-Ti-bpx"/>
+                            <constraint firstAttribute="height" constant="44" id="1c1-Ti-bpx"/>
                             <constraint firstAttribute="width" constant="240" id="SJU-2A-Nnf"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -39,9 +37,8 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份精选了很多优质服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puh-03-iyV">
-                        <rect key="frame" x="100" y="87" width="458" height="60"/>
-                        <animations/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份精选了很多优质服务" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puh-03-iyV">
+                        <rect key="frame" x="100" y="101" width="458" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="210" id="Sr6-NQ-Hvb"/>
                             <constraint firstAttribute="height" constant="60" id="frJ-Kf-eRP"/>
@@ -57,21 +54,19 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tju-aw-W7R">
                         <rect key="frame" x="43" y="90" width="18" height="20"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="18" id="1QJ-Fv-TVS"/>
                             <constraint firstAttribute="height" constant="20" id="qVD-Cj-23H"/>
                         </constraints>
                     </imageView>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="BKz-cF-RD8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="4h4-0v-8tt"/>
                     <constraint firstItem="BKz-cF-RD8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="46" id="5DV-MS-kZE"/>
                     <constraint firstItem="tju-aw-W7R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="35" id="7HG-9o-L3Z"/>
                     <constraint firstItem="B5G-2U-msB" firstAttribute="leading" secondItem="BKz-cF-RD8" secondAttribute="trailing" constant="20" id="9Yk-J6-Ph9"/>
                     <constraint firstItem="BKz-cF-RD8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HVb-tj-xbJ"/>
-                    <constraint firstItem="B5G-2U-msB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="54" id="V06-yW-5C8"/>
+                    <constraint firstItem="B5G-2U-msB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="46" id="V06-yW-5C8"/>
                     <constraint firstItem="tju-aw-W7R" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VmH-k9-GFN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="puh-03-iyV" secondAttribute="trailing" constant="8" id="dbI-WS-lfB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="B5G-2U-msB" secondAttribute="trailing" constant="8" id="kHN-5M-IAZ"/>
@@ -86,7 +81,6 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="backImageView" destination="BKz-cF-RD8" id="TMj-Iq-BIu"/>
                 <outlet property="nextLabel" destination="puh-03-iyV" id="3e4-1I-d8L"/>
