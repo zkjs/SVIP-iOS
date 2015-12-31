@@ -486,7 +486,7 @@ extension HomeVC: CLLocationManagerDelegate {
 //      avatarBase64 = avatarData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
 //    }
 //    let avatarURL = AccountManager.sharedInstance().avatarURL
-    let apnDict = ["aps": ["alert": ["body": alert, "title": "到店通知"], "badge": badge, "sound": sound, "category": "arrivalInfo"], "userid": userID]
+    let apnDict = ["aps": ["alert": ["body": alert, "title": "到店通知"], "badge": badge, "sound": sound, "category": "arrivalInfo"], "extra": extra]
     print(apnDict)
     let apnOption = YBApnOption(apnDict: apnDict as [NSObject : AnyObject])
     option.apnOption = apnOption
