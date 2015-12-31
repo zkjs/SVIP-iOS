@@ -45,4 +45,5 @@
 #import "YunBaService.h"
 //#import "FLAnimatedImage.h"
 #import "UINavigationBar+Awesome.h"
+#import "BrowserImageView.h"
 

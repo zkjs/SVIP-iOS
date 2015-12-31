@@ -56,7 +56,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: OrderListCell = tableView.dequeueReusableCellWithIdentifier(OrderListCell.reuseIdentifier()) as! OrderListCell
-    let order = orders[indexPath.row] as! OrderModel
+    let order = orders[indexPath.row] as! OrderListModel
     cell.setOrder(order)
     cell.delegate = self
     cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -75,11 +75,11 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-    let order = orders[indexPath.row] as! OrderModel
-        if order.status == 0 || order.status == 2 || order.status == 4 {  // 0 未确认可取消订单
+    let order = orders[indexPath.row] as! OrderListModel
+        if order.orderstatus == 0 || order.orderstatus == 2 || order.orderstatus == 4 {  // 0 未确认可取消订单
           let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
           let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
-          vc.reservation_no = order.reservation_no
+          vc.reservation_no = order.orderno
           navigationController?.pushViewController(vc, animated: true)
         } else {
           let vc = OrderDetailsVC()
@@ -122,29 +122,52 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   // MARK: - Private Method
   
   func loadMoreData() -> Void {
-    let page = String(orderPage)
-    ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+   // let page = String(orderPage)
+    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderListWithSuccess({ [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
-      let orderArray = responseObject as! NSArray
-      if orderArray.count != 0 {
-        for orderInfo in orderArray {
-          let order = OrderModel(dic: orderInfo as! NSDictionary)
-          self.orders.addObject(order)
-        }
-        self.hideHUD()
-        self.emptyLabel.hidden = true
-        self.tableView.reloadData()
-        self.tableView.mj_footer.endRefreshing()
-        self.orderPage++
-      } else {
-        self.hideHUD()
-        self.emptyLabel.hidden = false
-        self.tableView.mj_footer.endRefreshingWithNoMoreData()  
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+            let orderArray = responseObject as! NSArray
+            if orderArray.count != 0 {
+              for orderInfo in orderArray {
+                let order = OrderListModel(dic: orderInfo as! NSDictionary)
+                self.orders.addObject(order)
+              }
+              self.hideHUD()
+              self.emptyLabel.hidden = true
+              self.tableView.reloadData()
+              self.tableView.mj_footer.endRefreshing()
+              self.orderPage++
+            } else {
+              self.hideHUD()
+              self.emptyLabel.hidden = false
+              self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
+            }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+              
+          }
+    
     }
-  }
+//      ZKJSHTTPSessionManager.sharedInstance().getOrderHistoryListWithPage(page, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      print(responseObject)
+//      let orderArray = responseObject as! NSArray
+//      if orderArray.count != 0 {
+//        for orderInfo in orderArray {
+//          let order = OrderModel(dic: orderInfo as! NSDictionary)
+//          self.orders.addObject(order)
+//        }
+//        self.hideHUD()
+//        self.emptyLabel.hidden = true
+//        self.tableView.reloadData()
+//        self.tableView.mj_footer.endRefreshing()
+//        self.orderPage++
+//      } else {
+//        self.hideHUD()
+//        self.emptyLabel.hidden = false
+//        self.tableView.mj_footer.endRefreshingWithNoMoreData()  
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
+//  }
   
 }
 

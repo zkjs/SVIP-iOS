@@ -64,6 +64,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   var shopID: Int = 0
   var reservation_no = ""
   var bkOrder: BookOrder!
+  var orderDetail:OrderDetailModel!
   var roomTags = [String]()
   var chosenRoomTags = [String]()
   var serviceTags = [String]()
@@ -136,7 +137,19 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   // MARK: - Private
   
   private func loadData() {
-    //获取订单
+    //获取订单详情
+//    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let dic = responseObject as? NSDictionary {
+//        self.orderDetail = OrderDetailModel(dic: dic)
+//      }
+//      self.setupData()
+//      self.tableView.reloadData()
+//      self.setupUI()
+//      self.setupRoomTagView()
+//      self.setupServiceTagView()
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
     ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         self.invoiceDic = dic["invoice"] as? [String: AnyObject]
@@ -174,10 +187,10 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   private func setupData() {
-    roomCount = self.roomDic["rooms"]!.integerValue;
+    roomCount = Int(self.orderDetail.roomcount)
     let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
-    arrivalDate = formatter.dateFromString(self.roomDic["arrival_date"] as! String)
+    startDateLabel.text = formatter.stringFromDate(orderDetail.arrivaldate)
     departureDate = formatter.dateFromString(self.roomDic["departure_date"] as! String)
     for dic: [String: AnyObject] in self.roomTagArr {
       if let tag = dic["content"] as? String {

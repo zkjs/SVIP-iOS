@@ -189,7 +189,8 @@ class ComprehensiveVC: UIViewController {
       web.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(web, animated: true)
     } else {
-      let vc = BookVC()
+      let storyboard = UIStoryboard(name: "BusinessDetailTVC", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailTVC") as! BusinessDetailTVC
       let hotel = self.dataArray[indexPath.row]
       if hotel.shopid == "" {
         return

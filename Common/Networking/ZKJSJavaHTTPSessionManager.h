@@ -10,8 +10,8 @@
 
 #import "AFNetworking.h"
 
-#define kJavaBaseURL @"http://mmm.zkjinshi.com/" // Java HTTP服务器测试地址
-
+//#define kJavaBaseURL @"http://mmm.zkjinshi.com/" // Java HTTP服务器测试地址
+#define kJavaBaseURL @"http://test.zkjinshi.com/japi/"
 @interface ZKJSJavaHTTPSessionManager : AFHTTPSessionManager
 
 #pragma mark - 单例
@@ -53,4 +53,15 @@
 #pragma mark - 根据酒店区域获取用户特权
 - (void)getPrivilegeWithShopID:(NSString *)shopID locID:(NSString *)locID Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+# pragma mark - 获取订单列表
+- (void)getOrderListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+# pragma mark - 获取订单详情
+- (void)getOrderDetailWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+# pragma mark - 订单新增
+- (void)addOrderWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+# pragma mark - 获取商家详情
+- (void)getOrderDetailWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end

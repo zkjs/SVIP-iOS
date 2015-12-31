@@ -67,6 +67,7 @@ class InvitationCodeVC: UIViewController {
       let phone = AccountManager.sharedInstance().phone
       showHUDInView(view, withLoading: "")
       ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        print(responseObject)
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
             if set.boolValue == true {
