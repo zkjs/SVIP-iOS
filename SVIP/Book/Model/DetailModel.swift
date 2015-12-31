@@ -10,18 +10,22 @@ import UIKit
 
 class DetailModel: NSObject {
   var address: String!
+  var category: String!
   var images: NSArray!
   var shopName: String!
   var telephone: String!
   var evaluation: String!
   var score: NSNumber!
+  var shopid: String!
   override init() {
     super.init()
   }
   init(dic: NSDictionary) {
     address = dic["address"] as? String ?? ""
+    shopid = dic["shopid"] as? String ?? ""
     images = dic["images"] as? NSArray ?? NSArray()
     shopName = dic["shopName"] as? String ?? ""
+    category = dic["category"] as? String ?? ""
     telephone = dic["telephone"] as? String ?? ""
     evaluation = dic["evaluation"] as? String ?? ""
     score = dic["score"] as? NSNumber ?? NSNumber(double: 0.0)

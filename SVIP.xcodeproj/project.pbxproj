@@ -315,6 +315,8 @@
 		FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4148B1BFC64B600D3BED4 /* HotCityCell.swift */; };
 		FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */; };
 		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
+		FAF72CDD1C34D81B0092CEFD /* BusinessDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF72CDC1C34D81B0092CEFD /* BusinessDetailVC.swift */; };
+		FAF72CDF1C34D8430092CEFD /* BusinessDetailVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF72CDE1C34D8430092CEFD /* BusinessDetailVC.storyboard */; };
 		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
 		FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */; };
 		FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */; };
@@ -1105,6 +1107,8 @@
 		FAF4148C1BFC64B600D3BED4 /* HotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCityCell.xib; sourceTree = "<group>"; };
 		FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushInfoModel.swift; sourceTree = "<group>"; };
 		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
+		FAF72CDC1C34D81B0092CEFD /* BusinessDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailVC.swift; sourceTree = "<group>"; };
+		FAF72CDE1C34D8430092CEFD /* BusinessDetailVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessDetailVC.storyboard; sourceTree = "<group>"; };
 		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		FAF7F5541C02E88F00C84601 /* PrivilegeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeVC.swift; sourceTree = "<group>"; };
@@ -2794,6 +2798,7 @@
 				404B04B11B8C501800198BB4 /* BookingOrderDetailTVC.swift */,
 				40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */,
 				FAF206131C3278CC0052EF74 /* BusinessDetailTVC.swift */,
+				FAF72CDC1C34D81B0092CEFD /* BusinessDetailVC.swift */,
 				FAF206171C329C5A0052EF74 /* HotelOrderTVC.swift */,
 				FAFBC43A1C336BC4001E9155 /* KTVTableView.swift */,
 				FAFBC43E1C33740C001E9155 /* LeisureTVC.swift */,
@@ -2832,6 +2837,7 @@
 				4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */,
 				4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */,
 				FAF206151C3278DD0052EF74 /* BusinessDetailTVC.storyboard */,
+				FAF72CDE1C34D8430092CEFD /* BusinessDetailVC.storyboard */,
 				FAF206191C329C680052EF74 /* HotelOrderTVC.storyboard */,
 				FAFBC43C1C336BD9001E9155 /* KTVTableView.storyboard */,
 				FAFBC4401C337415001E9155 /* LeisureTVC.storyboard */,
@@ -3185,6 +3191,7 @@
 				40E3A1601BFEFA0C00516EC4 /* MailListTVC.xib in Resources */,
 				FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */,
 				40E3A1891BFEFA8300516EC4 /* SearchBarView.xib in Resources */,
+				FAF72CDF1C34D8430092CEFD /* BusinessDetailVC.storyboard in Resources */,
 				FAF249591BFF08CA001E7E41 /* SearchCell.xib in Resources */,
 				400959FE1C2148BA00D3DA61 /* InvoiceVC.xib in Resources */,
 				FAFBFB791C228E3B00A1126B /* RecommandCell.xib in Resources */,
@@ -3337,6 +3344,7 @@
 				FAF7F55E1C0309D500C84601 /* CustomerServiceTVC.swift in Sources */,
 				4077DDAA1C1EAF9900E13D6B /* EMCDDeviceManagerBase.m in Sources */,
 				4077DDE51C1EAF9900E13D6B /* EaseEmoji.m in Sources */,
+				FAF72CDD1C34D81B0092CEFD /* BusinessDetailVC.swift in Sources */,
 				FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */,
 				4077DD9B1C1EAF9900E13D6B /* ContactListSelectViewController.m in Sources */,
 				4077DDA11C1EAF9900E13D6B /* EMChooseViewController.m in Sources */,

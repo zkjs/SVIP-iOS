@@ -21,42 +21,45 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
   @IBOutlet weak var pageControl: UIPageControl!
   @IBOutlet weak var telphoneLabel: UILabel!
   @IBOutlet weak var addressLabel: UILabel!
+  @IBOutlet weak var webView: UIWebView! {
+    didSet {
+      webView.scrollView.scrollEnabled = false
+    }
+  }
+  
+  var scheduledButton = UIButton()
   var shopid: NSNumber!
   var shopName: String!
   var shopDetail = DetailModel()
   var timer = NSTimer()
   var imgUrlArray = NSArray()
+  var originOffsetY: CGFloat = 0.0
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         title = shopName
-      self.navigationController!.navigationBar.translucent = true
       self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
       self.navigationController!.navigationBar.shadowImage = UIImage()
-      let image = UIImage(named: "ic_fanhui_orange")
-      let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
       navigationController?.navigationBar.translucent = true
-      self.navigationItem.leftBarButtonItem = item1
+      self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0)
       
     }
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
     loadData()
-    
   }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
   
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    navigationController?.navigationBar.translucent = false
-  }
-  
-  func pop(sender:UIBarButtonItem) {
-    navigationController?.popViewControllerAnimated(true)
+  func advanceOrder() {
+    let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   func loadData() {
@@ -125,9 +128,19 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
       page--
       pageControl.currentPage = page
     }
+    let color = UIColor.ZKJS_whiteColor()
+    let offsetY = scrollView.contentOffset.y
+    if (offsetY > 50) {
+      let alpha = min(1, 1 - ((50 + 64 - offsetY) / 64))
+    self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
+    } else {
+      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
+    }
+   
   }
   
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+  
      let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
       let currentPage = Int((self.scrollView.contentOffset.x - pageWidth/(CGFloat(shopDetail.images.count+2)))/pageWidth) + 1
