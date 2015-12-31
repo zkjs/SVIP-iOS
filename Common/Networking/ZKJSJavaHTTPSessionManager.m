@@ -207,28 +207,28 @@
 
 # pragma mark - 订单新增
 - (void)addOrderWithCategory:(NSString *)category data:(NSDictionary *)data Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-//  NSDictionary * dic = @{@"category":category,@"data":data};
-
-//  [self POST:@"order/add" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//    success(task, responseObject);
-//    NSLog(@"%@", [responseObject description]);
-//  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//    failure(task, error);
-//  }];
   NSString * str = [ZKJSTool convertJSONStringFromDictionary:data];
   NSData *plainTextData = [str dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
-  [self POST:@"order/add" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:[category dataUsingEncoding:NSUTF8StringEncoding] name:@"category"];
-    [formData appendPartWithFormData:[base64String dataUsingEncoding:NSUTF8StringEncoding] name:@"data"];
-    
-  } success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSLog(@"%@", [responseObject description]);
+  NSDictionary * dic = @{@"category":category,@"data":base64String};
+  [self POST:@"order/add/" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    NSLog(@"%@", error.description);
+    NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
+ 
+//  [self POST:@"order/add" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//    [formData appendPartWithFormData:[category dataUsingEncoding:NSUTF8StringEncoding] name:@"category"];
+//    [formData appendPartWithFormData:[base64String dataUsingEncoding:NSUTF8StringEncoding] name:@"data"];
+//    
+//  } success:^(NSURLSessionDataTask *task, id responseObject) {
+//    NSLog(@"%@", [responseObject description]);
+//    success(task, responseObject);
+//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    NSLog(@"%@", error.description);
+//    failure(task, error);
+//  }];
 
 }
 # pragma mark - 获取商家详情

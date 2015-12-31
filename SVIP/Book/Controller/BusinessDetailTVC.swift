@@ -30,6 +30,8 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
   var scheduledButton = UIButton()
   var shopid: NSNumber!
   var shopName: String!
+  var saleid: String!
+
   var shopDetail = DetailModel()
   var timer = NSTimer()
   var imgUrlArray = NSArray()

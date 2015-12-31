@@ -12,6 +12,7 @@ class BusinessDetailVC: UIViewController {
 
   var shopid: NSNumber!
   var shopName: String!
+  var saleid: String!
   var shopDetail = DetailModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class BusinessDetailVC: UIViewController {
         if let vc = nc.topViewController as? BusinessDetailTVC {
           vc.shopid = shopid
           vc.shopName = shopName
+          vc.saleid = self.saleid
         }
       }
     }
@@ -64,6 +66,7 @@ class BusinessDetailVC: UIViewController {
       let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
       vc.shopName = self.shopDetail.shopName
       vc.shopid = shopid
+      vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
     if self.shopDetail.category == "餐饮行业" {

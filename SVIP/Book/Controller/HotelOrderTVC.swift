@@ -33,6 +33,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
 
   var shopid: NSNumber!
   var shopName: String!
+  var saleid: String!
   var roomsCount = 1
   var leavedate:String!
   var arrivaldate: String!
@@ -153,11 +154,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     }
     let userID = AccountManager.sharedInstance().userID
     var dic = [String: AnyObject]()
+    dic["saleid"] = self.saleid
      dic["arrivaldate"] = self.arrivaldate
      dic["leavedate"] = self.leavedate
-     dic["roomtype"] = self.roomsTypeLabel.text
+     dic["roomtype"] = self.roomsTypeLabel.text!.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
      dic["roomcount"] = Int(self.roomsTextField.text!)
-     dic["orderedby"] = self.contactTextField.text
+     dic["orderedby"] = self.contactTextField.text!.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
      dic["telephone"] = self.telphoneTextField.text
     dic["shopid"] = self.shopid
     dic["userid"] = userID
@@ -166,13 +168,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["roomno"] = ""
     dic["paytype"] = ""
     dic["roomprice"] = ""
-    dic["orderedby"] = self.contactTextField.text
     dic["telephone"] = self.telphoneTextField.text
      dic["personcount"] = 1
      dic["doublebreakfeast"] = 1
      dic["nosmoking"] = 1
      dic["company"] = ""
-    dic["remark"] = self.remarkTextView.text
+    dic["remark"] = self.remarkTextView.text.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         if arrivaldate.isEmpty == true {
       ZKJSTool.showMsg("请填写时间")
       return
@@ -181,6 +182,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       ZKJSTool.showMsg("请选择房型")
       return
     }
+    
     ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       print(responObjects)
       self.gotoChatVC()
