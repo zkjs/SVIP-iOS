@@ -436,15 +436,32 @@ extension HomeVC: CLLocationManagerDelegate {
     guard let locid = beacon["locid"] else { return }
     guard let locdesc = beacon["locdesc"] else { return }
     let userID = AccountManager.sharedInstance().userID
-    let userName = AccountManager.sharedInstance().userName
+    var userName = AccountManager.sharedInstance().userName
     let sex = AccountManager.sharedInstance().sex
     let topic = locid
-    let extra = ["locdesc": locdesc,
-      "locid": locid,
-      "shopid": shopID,
-      "userid": userID,
-      "username": userName,
-      "sex": sex]
+    var orderDict = [String: AnyObject]()
+    if let order = StorageManager.sharedInstance().lastOrder() {
+      orderDict["shopid"] = order.shopid
+      orderDict["fullname"] = order.fullname
+      orderDict["guest"] = order.guest
+      orderDict["rooms"] = order.rooms
+      orderDict["room_type"] = order.room_type
+      orderDict["room_rate"] = order.room_rate
+      orderDict["arrival_date"] = order.arrival_date
+      orderDict["departure_date"] = order.departure_date
+      orderDict["dayInt"] = order.dayInt
+      orderDict["reservation_no"] = order.reservation_no
+      orderDict["created"] = order.created
+      orderDict["status"] = order.status
+    }
+    var extra = [String: AnyObject]()
+    extra["locdesc"] = locdesc
+    extra["locid"] = locid
+    extra["shopid"] = shopID
+    extra["userid"] = userID
+    extra["username"] = userName
+    extra["sex"] = sex
+    extra["order"] = orderDict
     let json = ZKJSTool.convertJSONStringFromDictionary(extra)
     let data = json.dataUsingEncoding(NSUTF8StringEncoding)
     let option = YBPublish2Option()
@@ -452,10 +469,26 @@ extension HomeVC: CLLocationManagerDelegate {
     if sex == "0" {
       gender = "女士"
     }
+    if userName.isEmpty {
+      userName = "游客"
+    }
     let alert = "\(userName)\(gender) 到达 \(locdesc)"
     let badge = NSNumber(integer: 1)
     let sound = "default"
-    let apnOption = YBApnOption(alert: alert, badge: badge, sound: sound, contentAvailable: nil, extra: extra)
+//    var avatarBase64 = ""
+//    if let avatar = AccountManager.sharedInstance().avatarImage {
+//      var avatarData = UIImageJPEGRepresentation(avatar, 1.0)!
+//      var i = 0
+//      while avatarData.length / 1024 > 30 {
+//        let persent = CGFloat(100 - i++) / 100.0
+//        avatarData = UIImageJPEGRepresentation(avatar, persent)!
+//      }
+//      avatarBase64 = avatarData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+//    }
+//    let avatarURL = AccountManager.sharedInstance().avatarURL
+    let apnDict = ["aps": ["alert": ["body": alert, "title": "到店通知"], "badge": badge, "sound": sound, "category": "arrivalInfo"], "userid": userID]
+    print(apnDict)
+    let apnOption = YBApnOption(apnDict: apnDict as [NSObject : AnyObject])
     option.apnOption = apnOption
     YunBaService.publish2(topic, data: data, option: option) { (success: Bool, error: NSError!) -> Void in
       if success {
@@ -486,8 +519,6 @@ extension HomeVC: CLLocationManagerDelegate {
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
-    
-   
   }
   
   func highLight() {
