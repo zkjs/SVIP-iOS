@@ -12,7 +12,7 @@ typealias RoomSelectionBlock = (RoomGoods) -> ()
 
 class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-  @IBOutlet weak var confirmButton: UIButton!
+
   @IBOutlet private weak var tableView: UITableView!
   var hotel = Hotel()
   var headerView = BookHeaderView!()
@@ -145,27 +145,16 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
-    let oldCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
-    oldCell?.selected = false
-    let newCell = tableView.cellForRowAtIndexPath(indexPath)
-    newCell?.selected = true
-    selectedRow = indexPath.row
-    confirmButton.alpha = 1.0
-    confirmButton.enabled = true
+    let goods = roomTypes[indexPath.row] as! RoomGoods
+    if (selection != nil){
+      selection!(goods)
+      self.navigationController?.popViewControllerAnimated(true)
+    }
   }
   
   func pop(sender:UIBarButtonItem) {
     navigationController?.popViewControllerAnimated(true)
   }
   
-  @IBAction func confirm(sender: AnyObject) {
-    let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
-    let goods = roomTypes[self.selectedRow] as! RoomGoods
-    vc.goods = goods
-    vc.shopID = String(shopid)
-    vc.shopName = shopName
-    navigationController?.pushViewController(vc, animated: true)
-  }
   
 }

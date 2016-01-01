@@ -48,40 +48,35 @@ class OrderListCell: SWTableViewCell {
         return 116.0
       }
 
-  func setOrder(order:OrderModel) {
-    let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid.stringValue).png"
+  func setOrder(order:OrderListModel) {
+    let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"
     
     hotelImageView.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
-    hotelnameLabel.text = order.fullname
-    roomTypeLabel.text = order.room_type + "x" + order.rooms.stringValue
-    locationLabel.text = order.arrival_date
-    priceLabel.text = "￥" + "\(order.room_rate.stringValue)"
+    hotelnameLabel.text = order.shopname
+    roomTypeLabel.text = order.roomtype! + "x" + (order.roomcount?.stringValue)!
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "dd-MM-yyyy"
+    locationLabel.text = dateFormatter.stringFromDate(order.arrivaldate)
+    
+    priceLabel.text =   " ￥\(order.roomprice)"
     rightUtilityButtons = rightButtons() as [AnyObject]
     setupStatsLabel(order)
   }
-  func setupStatsLabel(order:OrderModel) {
-    if order.status == 0 {
+  
+  func setupStatsLabel(order:OrderListModel) {
+    if order.orderstatus == 0 {
       statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
-      statsLabel.text = "待确认"
+      statsLabel.text = "未确认"
     }
-    if order.status == 2 {
+    if order.orderstatus == 1 {
       statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
-      statsLabel.text = "待入住"
+      statsLabel.text = "已确认"
     }
-    if order.status == 3 {
-      if order.score != 0 {
-        statsLabel.backgroundColor = UIColor.ZKJS_textColor()
-        statsLabel.text = "完成"
-      } else {
-        statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
-        statsLabel.text = "待评价"
-      }
-      
-    }
-    if order.status == 4 {
+    if order.orderstatus == 2 {
       statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
-      statsLabel.text = "已入住"
+      statsLabel.text = "已取消"
     }
+    
   }
 //  func getDayOfWeek(today:String) {
 //    let formatter = NSDateFormatter()

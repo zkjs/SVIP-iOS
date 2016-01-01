@@ -108,7 +108,7 @@
   NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%d/%d",[self userID],page.intValue,size.intValue];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    //NSLog(@"酒店列表%@", [responseObject description]);
+    NSLog(@"酒店列表%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -178,6 +178,65 @@
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
   //   NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
+
+# pragma mark - 获取订单列表
+- (void)getOrderListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * url = [NSString stringWithFormat:@"order/list/%s", "5620694aab3f9"];
+  [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+      // NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
+
+# pragma mark - 获取订单详情
+- (void)getOrderDetailWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * url = [NSString stringWithFormat:@"order/get/%@", orderno];
+  [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+     NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
+
+# pragma mark - 订单新增
+- (void)addOrderWithCategory:(NSString *)category data:(NSDictionary *)data Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * str = [ZKJSTool convertJSONStringFromDictionary:data];
+  NSData *plainTextData = [str dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
+  NSDictionary * dic = @{@"category":category,@"data":base64String};
+  [self POST:@"order/add/" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+ 
+//  [self POST:@"order/add" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//    [formData appendPartWithFormData:[category dataUsingEncoding:NSUTF8StringEncoding] name:@"category"];
+//    [formData appendPartWithFormData:[base64String dataUsingEncoding:NSUTF8StringEncoding] name:@"data"];
+//    
+//  } success:^(NSURLSessionDataTask *task, id responseObject) {
+//    NSLog(@"%@", [responseObject description]);
+//    success(task, responseObject);
+//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    NSLog(@"%@", error.description);
+//    failure(task, error);
+//  }];
+
+}
+# pragma mark - 获取商家详情
+- (void)getOrderDetailWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * url = [NSString stringWithFormat:@"shop/get/%@", shopID];
+  [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
