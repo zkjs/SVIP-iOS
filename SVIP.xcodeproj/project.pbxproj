@@ -353,6 +353,8 @@
 		FAFBFB791C228E3B00A1126B /* RecommandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFBFB771C228E3B00A1126B /* RecommandCell.xib */; };
 		FAFBFB7B1C22CF3000A1126B /* BookHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBFB7A1C22CF3000A1126B /* BookHeaderView.swift */; };
 		FAFBFB7D1C22CF3900A1126B /* BookHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFBFB7C1C22CF3900A1126B /* BookHeaderView.xib */; };
+		FAFF22491C37783A0015943C /* PhotosViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF22471C37783A0015943C /* PhotosViewerVC.swift */; };
+		FAFF224A1C37783A0015943C /* PhotosViewerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFF22481C37783A0015943C /* PhotosViewerVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1156,6 +1158,8 @@
 		FAFBFB771C228E3B00A1126B /* RecommandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommandCell.xib; sourceTree = "<group>"; };
 		FAFBFB7A1C22CF3000A1126B /* BookHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookHeaderView.swift; sourceTree = "<group>"; };
 		FAFBFB7C1C22CF3900A1126B /* BookHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookHeaderView.xib; sourceTree = "<group>"; };
+		FAFF22471C37783A0015943C /* PhotosViewerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewerVC.swift; sourceTree = "<group>"; };
+		FAFF22481C37783A0015943C /* PhotosViewerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewerVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3040,6 +3044,8 @@
 			children = (
 				FAFBC4481C33B404001E9155 /* BrowserImageView.h */,
 				FAFBC4491C33B404001E9155 /* BrowserImageView.m */,
+				FAFF22471C37783A0015943C /* PhotosViewerVC.swift */,
+				FAFF22481C37783A0015943C /* PhotosViewerVC.xib */,
 			);
 			name = ScrollView;
 			path = Controller;
@@ -3194,6 +3200,7 @@
 				40E3A17E1BFEFA6400516EC4 /* HotelCell.xib in Resources */,
 				40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
+				FAFF224A1C37783A0015943C /* PhotosViewerVC.xib in Resources */,
 				FA6BC8371C1A748500D409E4 /* CustomServiceVC.xib in Resources */,
 				4077DDD71C1EAF9900E13D6B /* MWPhotoBrowser.bundle in Resources */,
 				4077DD8D1C1EAF9900E13D6B /* callRing.mp3 in Resources */,
@@ -3497,6 +3504,7 @@
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				4077DDFF1C1EAF9900E13D6B /* EaseFacialView.m in Sources */,
 				B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */,
+				FAFF22491C37783A0015943C /* PhotosViewerVC.swift in Sources */,
 				4077DDE81C1EAF9900E13D6B /* EaseEmotionManager.m in Sources */,
 				4077DD8B1C1EAF9900E13D6B /* EMAlertView.m in Sources */,
 				4077DDD81C1EAF9900E13D6B /* EaseSDKHelper.m in Sources */,

@@ -8,7 +8,6 @@
         <!--Table View Controller-->
         <scene sceneID="R8g-op-0ch">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uzO-El-eLv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Jbb-F5-fsO" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ru1-vG-Eds">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -166,6 +165,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uzO-El-eLv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="611.5" y="-532"/>
         </scene>

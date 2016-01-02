@@ -164,9 +164,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQd-yA-Rw5">
-                                                    <rect key="frame" x="504" y="0.0" width="63" height="62"/>
+                                                    <rect key="frame" x="527" y="0.0" width="40" height="62"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="63" id="r7S-lJ-A7h"/>
+                                                        <constraint firstAttribute="width" constant="40" id="r7S-lJ-A7h"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                                     <state key="normal" title="-">
@@ -174,9 +174,9 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPu-kl-EHK">
-                                                    <rect key="frame" x="444" y="0.0" width="60" height="62"/>
+                                                    <rect key="frame" x="487" y="0.0" width="40" height="62"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="ttt-oZ-o8o"/>
+                                                        <constraint firstAttribute="width" constant="40" id="ttt-oZ-o8o"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                                     <state key="normal" title="+">
@@ -184,7 +184,7 @@
                                                     </state>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="添加人数" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4zI-Ts-Usa">
-                                                    <rect key="frame" x="335" y="20" width="109" height="28"/>
+                                                    <rect key="frame" x="378" y="20" width="109" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="109" id="2li-Xb-Uq5"/>
                                                     </constraints>

@@ -37,6 +37,9 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   var roomsCount = 1
   var leavedate:String!
   var arrivaldate: String!
+  var breakfeastCount = 0 //无早餐
+  var smokingCount = 0 // 无烟房
+  
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,8 +140,14 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   
   @IBAction func switchBreakfast(sender: AnyObject) {
+    if  breakfeastSwitch.on == true {
+      
+    }
   }
   @IBAction func smokingSwitch(sender: AnyObject) {
+    if isSmokingSwitch.on {
+      
+    }
   }
   // MARK: - UITextFieldDelegate
   func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -157,9 +166,9 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["saleid"] = self.saleid
      dic["arrivaldate"] = self.arrivaldate
      dic["leavedate"] = self.leavedate
-     dic["roomtype"] = self.roomsTypeLabel.text!.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+     dic["roomtype"] = self.roomsTypeLabel.text!
      dic["roomcount"] = Int(self.roomsTextField.text!)
-     dic["orderedby"] = self.contactTextField.text!.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+     dic["orderedby"] = self.contactTextField.text
      dic["telephone"] = self.telphoneTextField.text
     dic["shopid"] = self.shopid
     dic["userid"] = userID
@@ -173,7 +182,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
      dic["doublebreakfeast"] = 1
      dic["nosmoking"] = 1
      dic["company"] = ""
-    dic["remark"] = self.remarkTextView.text.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+    dic["remark"] = "你好"
         if arrivaldate.isEmpty == true {
       ZKJSTool.showMsg("请填写时间")
       return

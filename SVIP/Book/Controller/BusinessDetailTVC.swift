@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
+class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate {
   
   @IBOutlet weak var scrollView: UIScrollView! {
     didSet {
@@ -36,6 +36,9 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
   var timer = NSTimer()
   var imgUrlArray = NSArray()
   var originOffsetY: CGFloat = 0.0
+  var photosArray = NSMutableArray()
+  var photo = MWPhoto()
+  var thumb = MWPhoto()
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +52,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    navigationController?.navigationBar.translucent = true
     loadData()
   }
 
@@ -87,18 +91,24 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
     pageControl.currentPage = 0
     for var i = 0; i < shopDetail.images.count; i++ {
       let imgView = BrowserImageView()
+      imgView.addTarget(self, action: "photoViewer")
+      imgView.contentMode = UIViewContentMode.ScaleToFill
       let url = NSURL(string: shopDetail.images[i] as! String)
       imgView.sd_setImageWithURL(url, placeholderImage: nil)
+      self.photo = MWPhoto(URL: url!)
+      self.photosArray.addObject(photo)
       imgView.frame = CGRectMake(CGFloat(i+1) * view.bounds.size.width, 0, view.frame.size.width, 400)
       self.scrollView.addSubview(imgView)
     }
     //取数组最后一张图片 放在第0页
     var imageView = BrowserImageView(frame: CGRectMake(0, 0, view.bounds.size.width, 400))
+     imageView.addTarget(self, action: "photoViewer")
     let url = NSURL(string: shopDetail.images[count - 1] as! String)
     imageView.sd_setImageWithURL(url, placeholderImage: nil)
     scrollView.addSubview(imageView)
     // 取数组第一张图片 放在最后1页
     imageView = BrowserImageView(frame: CGRectMake(CGFloat(count + 1)*view.bounds.size.width, 0, view.bounds.size.width, 400))
+     imageView.addTarget(self, action: "photoViewer")
     let Url = NSURL(string: shopDetail.images[0] as! String)
     imageView.sd_setImageWithURL(Url, placeholderImage: nil)
     scrollView.addSubview(imageView)
@@ -161,7 +171,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
     if indexPath.section == 2 {
       //评价
       let starRating = EDStarRating()
-      starRating.frame = CGRectMake(view.bounds.size.width/1.6, 2, 100, 45)
+      starRating.frame = CGRectMake(view.bounds.size.width/2, 2, 100, 45)
       starRating.backgroundColor = UIColor.whiteColor()
       starRating.starImage = UIImage(named: "ic_star_nor")
       starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
@@ -176,5 +186,32 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol {
     }
     return cell
   }
+  
+  func photoViewer() {
+    let browser = MWPhotoBrowser(delegate: self)
+    
+    browser.displayActionButton = false
+    browser.displayNavArrows = false
+    browser.displaySelectionButtons = false
+    browser.alwaysShowControls = false
+    browser.zoomPhotosToFill = true
+    browser.enableGrid = true
+    browser.startOnGrid = true
+    browser.enableSwipeToDismiss = false
+    browser.setCurrentPhotoIndex(0)
+    self.presentViewController(browser, animated: true, completion: nil)
 
+  }
+  
+  func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    return UInt(imgUrlArray.count)
+  }
+  
+  func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    if index < UInt(self.photosArray.count) {
+      return self.photosArray.objectAtIndex(Int(index)) as! MWPhotoProtocol
+    }
+    return nil
+  }
+  
 }

@@ -211,14 +211,15 @@
   NSData *plainTextData = [str dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
   NSDictionary * dic = @{@"category":category,@"data":base64String};
-  [self POST:@"order/add/" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+  [self POST:@"order/add" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
     NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
+    NSLog(@"%@", [error description]);
   }];
  
-//  [self POST:@"order/add" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//  [self POST:@"order/add" parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 //    [formData appendPartWithFormData:[category dataUsingEncoding:NSUTF8StringEncoding] name:@"category"];
 //    [formData appendPartWithFormData:[base64String dataUsingEncoding:NSUTF8StringEncoding] name:@"data"];
 //    
