@@ -46,4 +46,6 @@
 //#import "FLAnimatedImage.h"
 #import "UINavigationBar+Awesome.h"
 #import "BrowserImageView.h"
+#import "MWPhotoBrowser.h"
+
 

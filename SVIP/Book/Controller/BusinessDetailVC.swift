@@ -10,6 +10,7 @@ import UIKit
 
 class BusinessDetailVC: UIViewController {
 
+  @IBOutlet weak var advanceOrderButton: UIButton!
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!

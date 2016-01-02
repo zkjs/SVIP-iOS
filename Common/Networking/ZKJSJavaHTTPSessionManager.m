@@ -28,7 +28,7 @@
 - (id)init {
   self = [super initWithBaseURL:[[NSURL alloc] initWithString:kJavaBaseURL]];
   if (self) {
-    self.requestSerializer = [[AFHTTPRequestSerializer alloc] init];
+    self.requestSerializer = [[AFJSONRequestSerializer alloc] init];
     self.responseSerializer = [[AFJSONResponseSerializer alloc] init];
   }
   return self;
@@ -185,7 +185,7 @@
 
 # pragma mark - 获取订单列表
 - (void)getOrderListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString * url = [NSString stringWithFormat:@"order/list/%s", "5620694aab3f9"];
+  NSString * url = [NSString stringWithFormat:@"order/list/%@/1/9", [self userID]];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
       // NSLog(@"%@", [responseObject description]);
@@ -211,14 +211,15 @@
   NSData *plainTextData = [str dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
   NSDictionary * dic = @{@"category":category,@"data":base64String};
-  [self POST:@"order/add/" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+  [self POST:@"order/add" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
     NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
+    NSLog(@"%@", [error description]);
   }];
  
-//  [self POST:@"order/add" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//  [self POST:@"order/add" parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 //    [formData appendPartWithFormData:[category dataUsingEncoding:NSUTF8StringEncoding] name:@"category"];
 //    [formData appendPartWithFormData:[base64String dataUsingEncoding:NSUTF8StringEncoding] name:@"data"];
 //    
