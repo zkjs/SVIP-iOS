@@ -56,24 +56,7 @@ class LoginVC: UIViewController {
   // MARK: - Button Action
   
   @IBAction func confirm(sender: AnyObject) {
-    guard let phone = phoneTextField.text else { return }
-    guard let code = codeTextField.text else { return }
-    
-    showHUDInView(view, withLoading: "")
-    
-    if phone == "18503027465" && code == "123456" {
-      loginWithPhone(phone)
-      return
-    }
-    
-    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
-      if success {
-        self.loginWithPhone(phone)
-      } else {
-        self.hideHUD()
-        self.showHint("验证码不正确")
-      }
-    }
+    nextStep()
   }
   
   @IBAction func dismiss(sender: AnyObject) {
@@ -138,6 +121,27 @@ class LoginVC: UIViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
+    }
+  }
+  
+  private func nextStep() {
+    guard let phone = phoneTextField.text else { return }
+    guard let code = codeTextField.text else { return }
+    
+    showHUDInView(view, withLoading: "")
+    
+    if phone == "18503027465" && code == "123456" {
+      loginWithPhone(phone)
+      return
+    }
+    
+    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
+      if success {
+        self.loginWithPhone(phone)
+      } else {
+        self.hideHUD()
+        self.showHint("验证码不正确")
+      }
     }
   }
   
@@ -271,6 +275,14 @@ extension LoginVC: UITextFieldDelegate {
       }
     }
     return false;
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    if textField == codeTextField {
+      textField.resignFirstResponder()
+      nextStep()
+    }
+    return true
   }
   
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
