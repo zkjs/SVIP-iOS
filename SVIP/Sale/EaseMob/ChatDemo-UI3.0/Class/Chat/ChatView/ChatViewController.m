@@ -155,12 +155,27 @@
 - (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel
 {
     BOOL flag = NO;
+  if ([[messageModel.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"OrderDetail" bundle:nil];
+//    OrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"OrderDetailVC"];
+//    vc.type = OrderTypeAdd;
+//    OrderModel *order = [[OrderModel alloc] initWithJson:messageModel.text];
+//    vc.order = order;
+//    [self.navigationController pushViewController:vc animated:true];
+    flag = YES;
+  }
     return flag;
 }
 
 - (void)messageViewController:(EaseMessageViewController *)viewController
   didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
+//  if ([messageModel isSender] == NO) {
+//    SalesDetailVC *vc = [SalesDetailVC new];
+//    vc.salesid = salesid;
+//    [self.navigationController pushViewController:vc animated:YES];
+//  }
+  
   //    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.nickname];
   //    [self.navigationController pushViewController:userprofile animated:YES];
 }
@@ -530,6 +545,7 @@
       content[@"dayNum"] = self.order.dayInt;
       content[@"guest"] = self.conversation.ext[@"fromName"];
       content[@"guesttel"] = self.order.guesttel;
+      content[@"reservation_no"] = self.order.reservation_no;
       NSError *error;
       NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
                                                          options:0
