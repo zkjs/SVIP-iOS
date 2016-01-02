@@ -26,9 +26,13 @@ class SettingTVC: UITableViewController {
       if let data = responsObject {
         if let set = data["set"] {
           if set?.boolValue == true {
-            AccountManager.sharedInstance().clearAccountCache()
-            let window =  UIApplication.sharedApplication().keyWindow
-            window?.rootViewController = MainTBC()
+            let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+            EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
+            if error == nil {
+              AccountManager.sharedInstance().clearAccountCache()
+              let window =  UIApplication.sharedApplication().keyWindow
+              window?.rootViewController = MainTBC()
+            }
           }
         }
       }
