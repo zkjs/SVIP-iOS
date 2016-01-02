@@ -26,17 +26,17 @@ class MeTVC: UITableViewController {
     
     navigationController?.navigationBarHidden = true
     setupUI()
-//    #if DEBUG
-//      sendTestPushNotification()
-//    #endif
+    #if DEBUG
+      sendTestPushNotification()
+    #endif
   }
   
   private func sendTestPushNotification() {
-    let shopID = "123"
+    let shopID = "110"
     let locid = "30"
     let locdesc = "中科金石"
     let userID = "5603d8d417392"
-    var userName = "Hanton"
+    var userName = "不要紧张"
     let sex = "1"
     let topic = locid
     var orderDict = [String: AnyObject]()
