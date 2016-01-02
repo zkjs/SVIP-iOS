@@ -35,8 +35,13 @@ class MailListTVC: UITableViewController {
     emptyLabel.hidden = false
     view.addSubview(emptyLabel)
     
-    loadFriendListData()
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "loadFriendListData")  // 下拉刷新
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    loadFriendListData()
   }
   
   func loadFriendListData() {

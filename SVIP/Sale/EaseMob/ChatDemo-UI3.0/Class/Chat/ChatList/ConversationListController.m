@@ -197,12 +197,20 @@
       // 最后一条消息的发送者为自己
       NSString *shopName = latestMessage.ext[@"shopName"];
       NSString *toName = latestMessage.ext[@"toName"];
-      model.title = [NSString stringWithFormat:@"%@-%@", shopName, toName];
+      if ([shopName isEqualToString:@""]) {
+        model.title = toName;
+      } else {
+        model.title = [NSString stringWithFormat:@"%@-%@", shopName, toName];
+      }
     } else {
       // 最后一条消息的发送者为对方
       NSString *shopName = latestMessage.ext[@"shopName"];
       NSString *fromName = latestMessage.ext[@"fromName"];
-      model.title = [NSString stringWithFormat:@"%@-%@", shopName, fromName];
+      if ([shopName isEqualToString:@""]) {
+        model.title = fromName;
+      } else {
+        model.title = [NSString stringWithFormat:@"%@-%@", shopName, fromName];
+      }
     }
     if ([conversation.chatter isEqualToString:@"app_customer_service"]) {
       model.avatarImage = [UIImage imageNamed:@"ic_home_nor"];
