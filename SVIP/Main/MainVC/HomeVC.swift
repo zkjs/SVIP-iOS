@@ -144,7 +144,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   
   func getPushInfoData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      print(responseObject)
+//      print(responseObject)
       if let array = responseObject as? NSArray {
         self.pushInfoArray.removeAll()
         for dic in array {
@@ -176,7 +176,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   // Member Activate
   func memberActivation() {
     ZKJSHTTPSessionManager.sharedInstance().InvitationCodeActivatedSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-      print(responsObject)
+//      print(responsObject)
       if  let dic = responsObject as? NSDictionary {
         if let set = dic["set"] as? Bool {
           self.activate = set
@@ -516,10 +516,12 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     //位置区域变化通知
     ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-      let dic = responsObject as! NSDictionary
-      let set = dic["set"] as! NSNumber
-      if set.boolValue == true {
-        print("告诉后台成功")
+      if let data = responsObject as? [String: AnyObject] {
+        if let set = data["set"] as? NSNumber {
+          if set.boolValue == true {
+            print("告诉后台成功")
+          }
+        }
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         

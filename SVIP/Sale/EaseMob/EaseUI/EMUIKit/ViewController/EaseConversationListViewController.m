@@ -71,6 +71,7 @@
   id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
   cell.model = model;
   
+  cell.avatarView.imageView.backgroundColor = [UIColor clearColor];
   cell.avatarView.imageView.layer.masksToBounds = YES;
   cell.avatarView.imageView.layer.cornerRadius = cell.avatarView.frame.size.height / 2;
   

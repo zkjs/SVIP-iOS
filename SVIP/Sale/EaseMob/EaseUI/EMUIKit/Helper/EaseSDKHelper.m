@@ -188,17 +188,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
               apnsCertName:(NSString *)apnsCertName
                otherConfig:(NSDictionary *)otherConfig
 {
-  //注册登录状态监听
-  //    [[NSNotificationCenter defaultCenter] addObserver:self
-  //                                             selector:@selector(loginStateChange:)
-  //                                                 name:KNOTIFICATION_LOGINCHANGE
-  //                                               object:nil];
+   // 注册登录状态监听
+//  [[NSNotificationCenter defaultCenter] addObserver:self
+//                                           selector:@selector(loginStateChange:)
+//                                               name:KNOTIFICATION_LOGINCHANGE
+//                                             object:nil];
   
   //注册AppDelegate默认回调监听
   [self _setupAppDelegateNotifications];
   
   //注册apns
-  [self _registerRemoteNotification];
+//  [self _registerRemoteNotification];
   
   //注册easemob sdk
   [[EaseMob sharedInstance] registerSDKWithAppKey:appkey
@@ -222,13 +222,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   UIAlertView *alertView = nil;
   if (error) {
 //    alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.errorAutoLogin", @"Automatic logon failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
-    
+    NSLog(@"Automatic logon failure");
     //发送自动登陆状态通知
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
   }
   else{
     //        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.beginAutoLogin", @"Start automatic login...") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
-    
+    NSLog(@"Start automatic login...");
     //将旧版的coredata数据导入新的数据库
     EMError *error = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
     if (!error) {
@@ -245,15 +245,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   UIAlertView *alertView = nil;
   if (error) {
 //    alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.errorAutoLogin", @"Automatic logon failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
-    
+    NSLog(@"Automatic logon failure");
     //发送自动登陆状态通知
-    //        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
   }
   else{
     //获取群组列表
     [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
     
     //        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.endAutoLogin", @"End automatic login...") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+    NSLog(@"End automatic login...");
   }
   
   [alertView show];

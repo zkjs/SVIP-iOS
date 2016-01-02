@@ -204,8 +204,12 @@
       NSString *fromName = latestMessage.ext[@"fromName"];
       model.title = [NSString stringWithFormat:@"%@-%@", shopName, fromName];
     }
-    NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", conversation.chatter];
-    model.avatarURLPath = [kBaseURL stringByAppendingString:url];
+    if ([conversation.chatter isEqualToString:@"app_customer_service"]) {
+      model.avatarImage = [UIImage imageNamed:@"ic_home_nor"];
+    } else {
+      NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", conversation.chatter];
+      model.avatarURLPath = [kBaseURL stringByAppendingString:url];
+    }
   } else if (model.conversation.conversationType == eConversationTypeGroupChat) {
     if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"]) {
       NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];

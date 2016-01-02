@@ -35,7 +35,7 @@ class MailListTVC: UITableViewController {
     emptyLabel.hidden = false
     view.addSubview(emptyLabel)
     
-//    loadFriendListData()
+    loadFriendListData()
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "loadFriendListData")  // 下拉刷新
   }
   
@@ -83,6 +83,10 @@ class MailListTVC: UITableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier(MailListCell.reuseIdentifier(), forIndexPath: indexPath) as! MailListCell
     let contact = contactArray[indexPath.row]
     cell.setData(contact)
+    cell.contactImageView.tag = indexPath.row
+    let tap = UITapGestureRecognizer(target: self, action: Selector("tappedContactImage:"))
+    tap.delegate = self
+    cell.contactImageView.addGestureRecognizer(tap)
     return cell
   }
   
@@ -90,15 +94,45 @@ class MailListTVC: UITableViewController {
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    
     let contact = contactArray[indexPath.row]
-    let vc = SalesDetailVC()
+    let vc = ChatViewController(conversationChatter: contact.fuid, conversationType: .eConversationTypeChat)
     vc.hidesBottomBarWhenPushed = true
-    vc.salesid = contact.fuid
-    self.navigationController?.pushViewController(vc, animated: true)
+    vc.title = contact.fname
+    // 扩展字段
+    let userName = AccountManager.sharedInstance().userName
+    let ext = ["shopId": contact.shopid ?? "",
+      "shopName": contact.shop_name ?? "",
+      "toName": contact.fname,
+      "fromName": userName]
+    vc.conversation.ext = ext
+    navigationController?.pushViewController(vc, animated: true)
   }
   
 }
+
+// MARK: - UIGestureRecognizerDelegate 
+
+extension MailListTVC: UIGestureRecognizerDelegate {
+  
+  func tappedContactImage(sender: UIGestureRecognizer) {
+    let contactImageView = sender.view as! UIImageView
+    let contact = contactArray[contactImageView.tag]
+    if contact.fuid == "app_customer_service" {
+      let vc = WebViewVC()
+      vc.hidesBottomBarWhenPushed = true
+      vc.url = "http://www.zkjinshi.com/about_us/"
+      navigationController?.pushViewController(vc, animated: true)
+    } else {
+      let vc = SalesDetailVC()
+      vc.hidesBottomBarWhenPushed = true
+      vc.salesid = contact.fuid
+      navigationController?.pushViewController(vc, animated: true)
+    }
+  }
+  
+}
+
+// MARK: - XLPagerTabStripChildItem
 
 extension MailListTVC: XLPagerTabStripChildItem {
   

@@ -35,8 +35,8 @@ class MailListCell: UITableViewCell {
     shopNameLabel.text = contact.shop_name
     contactNameLabel.text = contact.fname
     let url = NSURL(string: kBaseURL)
-    let urlStr = url?.URLByAppendingPathComponent("uploads/users/\(contact.userid).jpg")
-    contactImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    let urlStr = url?.URLByAppendingPathComponent("uploads/users/\(contact.fuid).jpg")
+    contactImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "ic_home_nor"))
   }
   
   override func setSelected(selected: Bool, animated: Bool) {
