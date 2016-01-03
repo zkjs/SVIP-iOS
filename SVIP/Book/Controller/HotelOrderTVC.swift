@@ -10,6 +10,7 @@ import UIKit
 
 class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
 
+  @IBOutlet weak var roomImage: UIImageView!
   @IBOutlet weak var daysLabel: UILabel!
   @IBOutlet weak var roomsTypeLabel: UILabel!
   @IBOutlet weak var roomsTextField: UITextField!
@@ -39,6 +40,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   var arrivaldate: String!
   var breakfeastCount = 0 //无早餐
   var smokingCount = 0 // 无烟房
+  var goods: RoomGoods!
   
   
   override func viewDidLoad() {
@@ -55,7 +57,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.translucent = false
    
   }
   
@@ -65,7 +66,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    navigationController?.navigationBar.translucent = true
   }
   
   func countAdd(sender: AnyObject) {

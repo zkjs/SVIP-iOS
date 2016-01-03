@@ -557,7 +557,7 @@
                         <outlet property="isSmokingSwitch" destination="GAF-Xi-CEB" id="Hm7-gg-4uG"/>
                         <outlet property="paymentLabel" destination="y8w-rC-sZN" id="aTV-fk-crE"/>
                         <outlet property="remarkTextView" destination="Ytz-is-epb" id="LrH-uP-Wkr"/>
-                        <outlet property="roomImage" destination="u5w-Gh-CX6" id="WH8-Ne-59g"/>
+                        <outlet property="roomImage" destination="u5w-Gh-CX6" id="yHI-zJ-LrG"/>
                         <outlet property="roomsTextField" destination="4zI-Ts-Usa" id="iGU-Ay-3wU"/>
                         <outlet property="roomsTypeLabel" destination="idp-py-l7b" id="cAw-BZ-zhe"/>
                         <outlet property="telphoneTextField" destination="wJu-Gj-ITM" id="Rvr-XY-WEY"/>
