@@ -19,8 +19,8 @@ class BookPayVC: UIViewController {
   @IBOutlet private weak var price: UILabel!
   @IBOutlet private weak var preference: UILabel!
   @IBOutlet weak var roomLook: UIImageView!
-  
-  var bkOrder: BookOrder!
+  var bkorder: BookOrder!
+  var bkOrder: OrderDetailModel!
   var money: double_t!
   var dic: NSDictionary!
   var IP: String!
@@ -42,19 +42,18 @@ class BookPayVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    name.text = bkOrder.room_type
+    name.text = bkOrder.roomtype
     //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
-    let rate = bkOrder.room_rate.doubleValue
-    money = rate * bkOrder.dayInt.doubleValue
-    price.text = "￥\(money)"
-    name.text = bkOrder.room_type
+    money = bkOrder.roomprice
+    price.text = "￥\(bkOrder.roomprice)"
+    name.text = bkOrder.roomtype
     getCurrentIP()
   }
   
   func cancelOrder() {
     showHUDInView(view, withLoading: "正在取消订单")
-    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithReservationNO(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithReservationNO(bkOrder.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.showHint("订单已取消")
       self.dismissViewControllerAnimated(true, completion: nil)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -73,12 +72,12 @@ class BookPayVC: UIViewController {
   
   @IBAction private func zhifubao(sender: UIButton) {
     dic = [
-      "order_no":bkOrder.reservation_no,
+      "order_no":bkOrder.orderno,
       "channel":"alipay",
       "amount":NSNumber(integer: Int(money*100)),
       "client_ip":"\(IP)",
-      "subject":"\(bkOrder.fullname)" + "\(bkOrder.rooms)" + "\(bkOrder.room_type)" + "\(bkOrder.dayInt)晚",
-      "body":"\(bkOrder.room_type)" + "\(bkOrder.guest)"
+      "subject":"\(bkOrder.shopname)" + "\(bkOrder.roomcount)" + "\(bkOrder.roomtype)" + "\(bkOrder.dayInt)晚",
+      "body":"\(bkOrder.roomtype)" + "\(bkOrder.orderedby)"
     ]
     
     ZKJSHTTPSessionManager.sharedInstance().pingPayWithDic(dic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
@@ -90,12 +89,12 @@ class BookPayVC: UIViewController {
   
   @IBAction private func weixinzhifu(sender: UIButton) {
     dic = [
-      "order_no" :bkOrder.reservation_no,
+      "order_no" :bkOrder.orderno,
       "channel":"wx",
       "amount":NSNumber(integer: Int(money*100)),
       "client_ip":"\(IP)",
-      "subject":"\(bkOrder.fullname)" + "\(bkOrder.rooms)" + "\(bkOrder.room_type)" + "\(bkOrder.dayInt)晚",
-      "body":"\(bkOrder.room_type)" + "\(bkOrder.guest)"
+      "subject":"\(bkOrder.shopname)" + "\(bkOrder.roomcount)" + "\(bkOrder.roomtype)" + "\(bkOrder.dayInt)晚",
+      "body":"\(bkOrder.roomtype)" + "\(bkOrder.orderedby)"
     ]
     ZKJSHTTPSessionManager.sharedInstance().pingPayWithDic(dic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary

@@ -143,7 +143,7 @@ class BookingOrderDetailVC: UIViewController {
   
   @IBAction func payBookingOrder(sender: AnyObject) {
     let payVC = BookPayVC()
-    payVC.bkOrder = order
+    payVC.bkorder = order
     self.navigationController?.pushViewController(payVC, animated: true)
   }
   

@@ -21,6 +21,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   @IBOutlet weak var payButton: UIButton!
   @IBOutlet weak var cancleButton: UIButton!
   var reservation_no: String!
+  var orderno: String!
   var orderDetail = OrderDetailModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,11 @@ class HotelOrderDetailTVC:  UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBar.translucent = false
+  }
   
   func loadData() {
     //获取订单详情
@@ -52,11 +58,12 @@ class HotelOrderDetailTVC:  UITableViewController {
     roomsCountLabel.text = String(orderDetail.roomcount)
     contacterLabel.text = orderDetail.orderedby
     telphotoLabel.text = orderDetail.telephone
+    print(orderDetail.telephone)
     if orderDetail.paytype == 1 {
       payTypeLabel.text = "在线支付"
     }
     print(orderDetail.orderstatus)
-    if orderDetail.orderstatus == "待支付" {
+    if orderDetail.orderstatus == "待确认" {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
@@ -66,10 +73,38 @@ class HotelOrderDetailTVC:  UITableViewController {
   
   func confirm(sender:UIButton) {
     print(11)
+    ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
+      print(responsObjects)
+      if let dic = responsObjects as? NSDictionary {
+        self.orderno = dic["data"] as! String
+        if let result = dic["result"] as? NSNumber {
+          if result.boolValue == true {
+            let vc = BookPayVC()
+            vc.bkOrder = self.orderDetail
+            self.navigationController?.pushViewController(vc, animated: true)
+          }
+          
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
+        
+    }
   }
   
   func cancle(sender:UIButton) {
-     print(22)
+   ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
+    if let dic = responsObjects as? NSDictionary {
+      self.orderno = dic["data"] as! String
+      if let result = dic["result"] as? NSNumber {
+        if result.boolValue == true {
+          self.navigationController?.popViewControllerAnimated(true)
+        }
+        
+      }
+    }
+    }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
+      
+    }
   }
 
     
