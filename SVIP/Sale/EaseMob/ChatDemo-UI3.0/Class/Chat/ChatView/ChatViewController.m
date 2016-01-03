@@ -155,29 +155,29 @@
 - (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel
 {
     BOOL flag = NO;
-//  if ([[messageModel.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
-//    NSString *type = [[self.order.reservation_no substringToIndex:1] uppercaseString];
-//    if ([type isEqualToString:@"H"]) {
-//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HotelOrderTVC" bundle:nil];
-//      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"HotelOrderTVC"];
-//      vc.shopName = self.order.fullname;
-//      vc.shopid = self.order.shopid;
-//      [self.navigationController pushViewController:vc animated:YES];
-//    } else if ([type isEqualToString:@"O"]) {
-//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LeisureTVC" bundle:nil];
-//      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"LeisureTVC"];
-//      vc.shopName = self.order.fullname;
-//      vc.shopid = self.order.shopid;
-//      [self.navigationController pushViewController:vc animated:YES];
-//    } else if ([type isEqualToString:@"K"]) {
-//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KTVTableView" bundle:nil];
-//      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"KTVTableView"];
-//      vc.shopName = self.order.fullname;
-//      vc.shopid = self.order.shopid;
-//      [self.navigationController pushViewController:vc animated:YES];
-//    }
-//    flag = YES;
-//  }
+  if ([[messageModel.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+    BookOrder *order = [[BookOrder alloc] initWithJson: [messageModel text]];
+    NSString *type = [[order.reservation_no substringToIndex:1] uppercaseString];
+    if ([type isEqualToString:@"H"]) {
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HotelOrderDetailTVC" bundle:nil];
+      HotelOrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"HotelOrderDetailTVC"];
+      vc.reservation_no = self.order.reservation_no;
+      [self.navigationController pushViewController:vc animated:YES];
+    } else if ([type isEqualToString:@"O"]) {
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LeisureTVC" bundle:nil];
+      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"LeisureTVC"];
+      vc.shopName = self.order.fullname;
+      vc.shopid = self.order.shopid;
+      [self.navigationController pushViewController:vc animated:YES];
+    } else if ([type isEqualToString:@"K"]) {
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KTVTableView" bundle:nil];
+      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"KTVTableView"];
+      vc.shopName = self.order.fullname;
+      vc.shopid = self.order.shopid;
+      [self.navigationController pushViewController:vc animated:YES];
+    }
+    flag = YES;
+  }
     return flag;
 }
 

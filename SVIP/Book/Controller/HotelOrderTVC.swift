@@ -241,26 +241,28 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     
     ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       print(responObjects)
-      let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
-      let order = self.packetOrder()
-      print(order)
-      vc.title = order.fullname
-      // 扩展字段
-      let userName = AccountManager.sharedInstance().userName
-      let ext = ["shopId": order.shopid.stringValue,
-        "shopName": order.fullname,
-        "toName": salesName,
-        "fromName": userName]
-      vc.conversation.ext = ext
-      vc.firstMessage = "Card"
-      vc.order = order
-      self.navigationController?.pushViewController(vc, animated: true)
+      if let orderno = responObjects["data"] as? String {
+        let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+        let order = self.packetOrderWithOrderNO(orderno)
+        print(order)
+        vc.title = order.fullname
+        // 扩展字段
+        let userName = AccountManager.sharedInstance().userName
+        let ext = ["shopId": order.shopid.stringValue,
+          "shopName": order.fullname,
+          "toName": salesName,
+          "fromName": userName]
+        vc.conversation.ext = ext
+        vc.firstMessage = "Card"
+        vc.order = order
+        self.navigationController?.pushViewController(vc, animated: true)
+      }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
   }
 
-  func packetOrder() -> BookOrder {
+  func packetOrderWithOrderNO(orderNO: String) -> BookOrder {
     let order = BookOrder()
     order.shopid = shopid
     order.rooms = NSNumber(integer: Int(roomsTextField.text!)!)
@@ -275,6 +277,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     order.guest = contactTextField.text
     order.guesttel = telphoneTextField.text
     order.room_image = roomImage.image
+    order.reservation_no = orderNO
     return order
   }
   
