@@ -340,7 +340,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       if type == .Present {
         payVC.type = .Present
       }
-      payVC.bkOrder = bkOrder
+      payVC.bkorder = bkOrder
       navigationController?.pushViewController(payVC, animated: true)
     } else {
       // 直接确定订单

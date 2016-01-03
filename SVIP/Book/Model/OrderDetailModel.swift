@@ -33,7 +33,20 @@ class OrderDetailModel: NSObject {
    var telephone: String!
    var userid: String!
    var username: String!
-  
+  var dayInt: NSNumber {
+    get {
+      if let arrivalDate = arrivaldate, let departureDate = leavedate {
+        let days = NSDate.daysFromDateString(arrivalDate, toDateString: departureDate)
+        if days == 0 {
+          // 当天走也算一天
+          return NSNumber(integer: 1)
+        }
+        return NSNumber(integer: days)
+      } else {
+        return NSNumber(integer: 0)
+      }
+    }
+  }
   override init() {
     super.init()
   }
@@ -59,6 +72,7 @@ class OrderDetailModel: NSObject {
     saleid = dic["saleid"] as? String ?? ""
     shopid = dic["shopid"] as? String ?? ""
     shopname = dic["shopname"] as? String ?? ""
+    telephone = dic["telephone"] as? String ?? ""
     userid = dic["userid"] as? String ?? ""
     username = dic["username"] as? String ?? ""
   }
