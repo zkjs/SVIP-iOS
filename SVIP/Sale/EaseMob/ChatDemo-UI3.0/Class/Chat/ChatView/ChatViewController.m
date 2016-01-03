@@ -155,15 +155,29 @@
 - (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel
 {
     BOOL flag = NO;
-  if ([[messageModel.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"OrderDetail" bundle:nil];
-//    OrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"OrderDetailVC"];
-//    vc.type = OrderTypeAdd;
-//    OrderModel *order = [[OrderModel alloc] initWithJson:messageModel.text];
-//    vc.order = order;
-//    [self.navigationController pushViewController:vc animated:true];
-    flag = YES;
-  }
+//  if ([[messageModel.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
+//    NSString *type = [[self.order.reservation_no substringToIndex:1] uppercaseString];
+//    if ([type isEqualToString:@"H"]) {
+//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HotelOrderTVC" bundle:nil];
+//      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"HotelOrderTVC"];
+//      vc.shopName = self.order.fullname;
+//      vc.shopid = self.order.shopid;
+//      [self.navigationController pushViewController:vc animated:YES];
+//    } else if ([type isEqualToString:@"O"]) {
+//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LeisureTVC" bundle:nil];
+//      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"LeisureTVC"];
+//      vc.shopName = self.order.fullname;
+//      vc.shopid = self.order.shopid;
+//      [self.navigationController pushViewController:vc animated:YES];
+//    } else if ([type isEqualToString:@"K"]) {
+//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KTVTableView" bundle:nil];
+//      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"KTVTableView"];
+//      vc.shopName = self.order.fullname;
+//      vc.shopid = self.order.shopid;
+//      [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    flag = YES;
+//  }
     return flag;
 }
 

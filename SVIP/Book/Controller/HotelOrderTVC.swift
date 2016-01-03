@@ -176,8 +176,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["telephone"] = self.telphoneTextField.text
     dic["shopid"] = self.shopid
     dic["userid"] = userID
-    dic["imgurl"] = ""
-    dic["productid"] = ""
+    dic["imgurl"] = goods.image
+    dic["productid"] = goods.goodsid
     dic["roomno"] = ""
     dic["paytype"] = ""
     dic["roomprice"] = ""
@@ -275,7 +275,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     order.guesttel = telphoneTextField.text
     order.room_image = roomImage.image
     return order
- 
   }
   
 }
