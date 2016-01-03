@@ -165,43 +165,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       presentViewController(nc, animated: true, completion: nil)
       return
     }
-    let userID = AccountManager.sharedInstance().userID
-    var dic = [String: AnyObject]()
-    dic["saleid"] = self.saleid
-    dic["arrivaldate"] = self.arrivaldate
-    dic["leavedate"] = self.leavedate
-    dic["roomtype"] = self.roomsTypeLabel.text!
-    dic["roomcount"] = Int(self.roomsTextField.text!)
-    dic["orderedby"] = self.contactTextField.text
-    dic["telephone"] = self.telphoneTextField.text
-    dic["shopid"] = self.shopid
-    dic["userid"] = userID
-    dic["imgurl"] = goods.image
-    dic["productid"] = goods.goodsid
-    dic["roomno"] = ""
-    dic["paytype"] = ""
-    dic["roomprice"] = ""
-    dic["telephone"] = self.telphoneTextField.text
-    dic["personcount"] = 1
-    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
-    dic["nosmoking"] = isSmokingSwitch.on ? 1 : 0
-    dic["company"] = ""
-    dic["remark"] = self.remarkTextView.text
-    if arrivaldate == nil || arrivaldate.isEmpty == true {
-      ZKJSTool.showMsg("请填写时间")
-      return
-    }
-    if self.roomsTypeLabel.text == "请选择房型" {
-      ZKJSTool.showMsg("请选择房型")
-      return
-    }
     
-    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
-      print(responObjects)
-      self.gotoChatVC()
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
-    }
+    gotoChatVC()
   }
   
   func gotoChatVC() {
@@ -243,20 +208,56 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   }
   
   func createConversationWithSalesID(salesID: String, salesName: String) {
-    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
-    let order = packetOrder()
-    print(order)
-    vc.title = order.fullname
-    // 扩展字段
-    let userName = AccountManager.sharedInstance().userName
-    let ext = ["shopId": order.shopid.stringValue,
-      "shopName": order.fullname,
-      "toName": salesName,
-      "fromName": userName]
-    vc.conversation.ext = ext
-    vc.firstMessage = "Card"
-    vc.order = order
-    navigationController?.pushViewController(vc, animated: true)
+    let userID = AccountManager.sharedInstance().userID
+    var dic = [String: AnyObject]()
+    dic["saleid"] = salesID
+    dic["arrivaldate"] = self.arrivaldate
+    dic["leavedate"] = self.leavedate
+    dic["roomtype"] = self.roomsTypeLabel.text!
+    dic["roomcount"] = Int(self.roomsTextField.text!)
+    dic["orderedby"] = self.contactTextField.text
+    dic["telephone"] = self.telphoneTextField.text
+    dic["shopid"] = self.shopid
+    dic["userid"] = userID
+    dic["imgurl"] = goods.image
+    dic["productid"] = goods.goodsid
+    dic["roomno"] = ""
+    dic["paytype"] = ""
+    dic["roomprice"] = ""
+    dic["telephone"] = self.telphoneTextField.text
+    dic["personcount"] = 1
+    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
+    dic["nosmoking"] = isSmokingSwitch.on ? 1 : 0
+    dic["company"] = ""
+    dic["remark"] = self.remarkTextView.text
+    if arrivaldate == nil || arrivaldate.isEmpty == true {
+      ZKJSTool.showMsg("请填写时间")
+      return
+    }
+    if self.roomsTypeLabel.text == "请选择房型" {
+      ZKJSTool.showMsg("请选择房型")
+      return
+    }
+    
+    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
+      print(responObjects)
+      let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+      let order = self.packetOrder()
+      print(order)
+      vc.title = order.fullname
+      // 扩展字段
+      let userName = AccountManager.sharedInstance().userName
+      let ext = ["shopId": order.shopid.stringValue,
+        "shopName": order.fullname,
+        "toName": salesName,
+        "fromName": userName]
+      vc.conversation.ext = ext
+      vc.firstMessage = "Card"
+      vc.order = order
+      self.navigationController?.pushViewController(vc, animated: true)
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
   }
 
   func packetOrder() -> BookOrder {

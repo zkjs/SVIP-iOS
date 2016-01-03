@@ -72,6 +72,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   func advanceOrder() {
     let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
+    vc.saleid = saleid
     navigationController?.pushViewController(vc, animated: true)
   }
   
