@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessDetailVC: UIViewController {
+class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
 
   @IBOutlet weak var advanceOrderButton: UIButton!
   var shopid: NSNumber!
@@ -30,6 +30,7 @@ class BusinessDetailVC: UIViewController {
       
       if let nc = childViewControllers[0] as? UINavigationController {
         if let vc = nc.topViewController as? BusinessDetailTVC {
+          vc.delegate = self
           vc.shopid = shopid
           vc.shopName = shopName
           vc.saleid = self.saleid
@@ -80,6 +81,10 @@ class BusinessDetailVC: UIViewController {
       let vc = storyboard.instantiateViewControllerWithIdentifier("KTVTableView") as! KTVTableView
       navigationController?.pushViewController(vc, animated: true)
     }
+  }
+  
+  func gotoPhotoViewerDelegate(Brower:MWPhotoBrowser) {
+    self.navigationController?.pushViewController(Brower, animated: true)
   }
 
     /*

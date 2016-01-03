@@ -39,11 +39,13 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   var arrivaldate: String!
   var breakfeastCount = 0 //无早餐
   var smokingCount = 0 // 无烟房
-  
+  var reservation_no: String!
+  var orderDetail = OrderDetailModel()
   
     override func viewDidLoad() {
         super.viewDidLoad()
       title = shopName
+      
       setUpUI()
     }
 
@@ -57,6 +59,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     navigationController?.navigationBar.translucent = false
    
   }
+  
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     view.endEditing(true)
@@ -80,8 +83,22 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
      setUpUI()
   }
   
+ 
+  
   func setUpUI() {
     self.roomsTextField.text = String(roomsCount)
+  }
+  
+  func setUI() {
+    daysLabel.text = orderDetail.arrivaldate
+    roomsTypeLabel.text = orderDetail.roomtype
+    roomsTextField.text = String(orderDetail.roomcount)
+    contactTextField.text = orderDetail.orderedby
+    telphoneTextField.text = orderDetail.telephone
+    if orderDetail.paytype == 1 {
+      paymentLabel.text = "在线支付"
+    }
+    
   }
     // MARK: - Table view data source
 
@@ -141,12 +158,18 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   @IBAction func switchBreakfast(sender: AnyObject) {
     if  breakfeastSwitch.on == true {
+      breakfeastCount = 1
       
+    } else {
+      breakfeastCount = 0
     }
   }
   @IBAction func smokingSwitch(sender: AnyObject) {
     if isSmokingSwitch.on {
+      smokingCount = 1
       
+    } else {
+      smokingCount = 0
     }
   }
   // MARK: - UITextFieldDelegate
@@ -179,10 +202,10 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["roomprice"] = ""
     dic["telephone"] = self.telphoneTextField.text
      dic["personcount"] = 1
-     dic["doublebreakfeast"] = 1
-     dic["nosmoking"] = 1
+     dic["doublebreakfeast"] = breakfeastCount
+     dic["nosmoking"] = smokingCount
      dic["company"] = ""
-    dic["remark"] = "你好"
+    dic["remark"] = self.remarkTextView.text
         if arrivaldate.isEmpty == true {
       ZKJSTool.showMsg("请填写时间")
       return
