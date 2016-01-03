@@ -89,11 +89,14 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     getPushInfoData()
 //    //根据酒店区域获取用户特权
 //    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-//      self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-//        target:self,selector:Selector("highLight"),
-//        userInfo:nil,repeats:true)
+//     
+//      self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
 //      if let data = responsObjcet as? [String: AnyObject] {
 //        self.privilege = PrivilegeModel(dic: data)
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+//          target:self,selector:Selector("highLight"),
+//          userInfo:nil,repeats:true)
+//        self.originOffsetY = self.privilegeButton.frame.origin.y
 //      }
 //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 //    }
@@ -122,6 +125,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
     
   }
+
   
   func  loadData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
@@ -163,6 +167,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   func getlastOrder() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
+        self.orderArray.removeAll()
         for dic in array {
         let  order = PushInfoModel(dic: dic as! [String: AnyObject])
           self.orderArray.append(order)
@@ -280,7 +285,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       return
     }
     countTimer = 0
-    self.timer.invalidate()
+//    self.timer.invalidate()
     floatingVC = FloatingWindowVC()
     floatingVC.delegate = self
     floatingVC.privilege = privilege
@@ -289,8 +294,10 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let pushInfo = pushInfoArray[indexPath.row]
+    
+   
     if pushInfoArray.count != 0 {
+       let pushInfo = pushInfoArray[indexPath.row]
       if indexPath.section == 1 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
@@ -507,9 +514,9 @@ extension HomeVC: CLLocationManagerDelegate {
     if activate == true {
       //根据酒店区域获取用户特权
       ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-          target:self,selector:Selector("highLight"),
-          userInfo:nil,repeats:true)
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+//          target:self,selector:Selector("highLight"),
+//          userInfo:nil,repeats:true)
         if let data = responsObjcet as? [String: AnyObject] {
           self.privilege = PrivilegeModel(dic: data)
         }

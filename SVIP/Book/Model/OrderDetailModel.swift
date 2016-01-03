@@ -9,48 +9,58 @@
 import UIKit
 
 class OrderDetailModel: NSObject {
-  var orderno: String!
-  var shopid: String!
-  var userid: String!
-  var saleid: String!
-  var shopname: String!
-  var roomno: String!
-  var roomcount: NSNumber!
-  var roomtype: String!
-  var paytype: NSNumber!
-  var roomprice: double_t!
-  var orderedby: String!
-  var telephone: String!
-  var arrivaldate: NSDate!
-  var doublebreakfeast: NSNumber!
-  var nosmoking: NSNumber!
+  var arrivaldate: String!
   var company: String!
+  var doublebreakfeast: NSNumber!
+  var imgurl: String!
   var isinvoice: NSNumber!
+  var leavedate: String!
+  var nosmoking: NSNumber!
+  var orderedby: String!
+  var orderno: String!
+  var orderstatus: String!
+  var paytype: NSNumber!
+  var personcount: String!
+  var productid: String!
   var remark: String!
+  var roomcount: NSNumber!
+  var roomno: String!
+  var roomprice: double_t!
+  var roomtype: String!
+  var saleid: String!
+   var shopid: String!
+   var shopname: String!
+   var telephone: String!
+   var userid: String!
+   var username: String!
   
   override init() {
     super.init()
   }
   
   init(dic: NSDictionary) {
-    orderno = dic["orderno"] as? String ?? ""
-    shopid = dic["shopid"] as? String ?? ""
-    userid = dic["userid"] as? String ?? ""
-    shopname = dic["shopname"] as? String ?? ""
-    roomno = dic["roomno"] as? String ?? ""
-    roomcount = dic["roomcount"] as? NSNumber ?? NSNumber(double: 0.0)
-    roomtype = dic["roomtype"] as? String ?? ""
-    roomprice = dic["roomprice"] as? double_t ??  double_t(0.0)
-    paytype = dic["paytype"] as? NSNumber ?? NSNumber(double: 0.0)
-    orderedby = dic["orderedby"] as? String ?? ""
-    telephone = dic["telephone"] as? String ?? ""
-    telephone = dic["telephone"] as? String ?? ""
-    arrivaldate = dic["arrivaldate"] as? NSDate ?? NSDate()
-    doublebreakfeast = dic["doublebreakfeast"] as? NSNumber ?? NSNumber(double: 0.0)
-    nosmoking = dic["nosmoking"] as? NSNumber ?? NSNumber(double: 0.0)
-    isinvoice = dic["isinvoice"] as? NSNumber ?? NSNumber(double: 0.0)
+    arrivaldate = dic["arrivaldate"] as? String ?? ""
     company = dic["company"] as? String ?? ""
+    doublebreakfeast = dic["doublebreakfeast"] as? NSNumber ?? NSNumber(double: 0.0)
+    imgurl = dic["imgurl"] as? String ?? ""
+    isinvoice = dic["isinvoice"] as? NSNumber ?? NSNumber(double: 0.0)
+    leavedate = dic["leavedate"] as? String ?? ""
+    nosmoking = dic["nosmoking"] as? NSNumber ?? NSNumber(double: 0.0)
+    orderedby = dic["orderedby"] as? String ?? ""
+    orderno = dic["orderno"] as? String ?? ""
+    orderstatus = dic["orderstatus"] as? String ?? ""
+    paytype = dic["paytype"] as? NSNumber ?? NSNumber(double: 0.0)
+    personcount = dic["personcount"] as? String ?? ""
     remark = dic["remark"] as? String ?? ""
+    roomcount = dic["roomcount"] as? NSNumber ?? NSNumber(double: 0.0)
+    roomno = dic["roomno"] as? String ?? ""
+    roomprice = dic["roomprice"] as? double_t ?? double_t(0.0)
+    roomtype = dic["roomtype"] as? String ?? ""
+    saleid = dic["saleid"] as? String ?? ""
+    shopid = dic["shopid"] as? String ?? ""
+    shopname = dic["shopname"] as? String ?? ""
+    userid = dic["userid"] as? String ?? ""
+    username = dic["username"] as? String ?? ""
   }
 
 }

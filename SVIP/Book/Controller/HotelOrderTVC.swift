@@ -9,8 +9,7 @@
 import UIKit
 
 class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
-  
-  @IBOutlet weak var roomImage: UIImageView!
+
   @IBOutlet weak var daysLabel: UILabel!
   @IBOutlet weak var roomsTypeLabel: UILabel!
   @IBOutlet weak var roomsTextField: UITextField!
@@ -31,10 +30,9 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       countAddButton.addTarget(self, action: "countAdd:", forControlEvents: UIControlEvents.TouchUpInside)
     }
   }
-  
+
   var shopid: NSNumber!
   var shopName: String!
-  var goods: RoomGoods!
   var saleid: String!
   var roomsCount = 1
   var leavedate:String!
@@ -58,7 +56,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.translucent = false
-    
+   
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -260,7 +258,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     vc.order = order
     navigationController?.pushViewController(vc, animated: true)
   }
-  
+
   func packetOrder() -> BookOrder {
     let order = BookOrder()
     order.shopid = shopid
@@ -277,7 +275,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     order.guesttel = telphoneTextField.text
     order.room_image = roomImage.image
     return order
-    
+ 
   }
   
 }

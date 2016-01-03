@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol PhotoViewerDelegate {
+  func gotoPhotoViewerDelegate(brower:MWPhotoBrowser)
+}
 class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate {
   
   @IBOutlet weak var scrollView: UIScrollView! {
@@ -26,7 +28,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       webView.scrollView.scrollEnabled = false
     }
   }
-  
+  var delegate:PhotoViewerDelegate?
   var scheduledButton = UIButton()
   var shopid: NSNumber!
   var shopName: String!
@@ -204,7 +206,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     browser.startOnGrid = true
     browser.enableSwipeToDismiss = false
     browser.setCurrentPhotoIndex(0)
-    self.presentViewController(browser, animated: true, completion: nil)
+    self.delegate?.gotoPhotoViewerDelegate(browser)
 
   }
   

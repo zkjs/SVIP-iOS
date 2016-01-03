@@ -353,6 +353,8 @@
 		FAFBFB791C228E3B00A1126B /* RecommandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFBFB771C228E3B00A1126B /* RecommandCell.xib */; };
 		FAFBFB7B1C22CF3000A1126B /* BookHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBFB7A1C22CF3000A1126B /* BookHeaderView.swift */; };
 		FAFBFB7D1C22CF3900A1126B /* BookHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFBFB7C1C22CF3900A1126B /* BookHeaderView.xib */; };
+		FAFD27151C38C83A00B27C55 /* HotelOrderDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD27141C38C83A00B27C55 /* HotelOrderDetailTVC.swift */; };
+		FAFD27181C38C85E00B27C55 /* HotelOrderDetailTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFD27171C38C85E00B27C55 /* HotelOrderDetailTVC.storyboard */; };
 		FAFF22491C37783A0015943C /* PhotosViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF22471C37783A0015943C /* PhotosViewerVC.swift */; };
 		FAFF224A1C37783A0015943C /* PhotosViewerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFF22481C37783A0015943C /* PhotosViewerVC.xib */; };
 /* End PBXBuildFile section */
@@ -1158,6 +1160,8 @@
 		FAFBFB771C228E3B00A1126B /* RecommandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommandCell.xib; sourceTree = "<group>"; };
 		FAFBFB7A1C22CF3000A1126B /* BookHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookHeaderView.swift; sourceTree = "<group>"; };
 		FAFBFB7C1C22CF3900A1126B /* BookHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookHeaderView.xib; sourceTree = "<group>"; };
+		FAFD27141C38C83A00B27C55 /* HotelOrderDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelOrderDetailTVC.swift; sourceTree = "<group>"; };
+		FAFD27171C38C85E00B27C55 /* HotelOrderDetailTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HotelOrderDetailTVC.storyboard; sourceTree = "<group>"; };
 		FAFF22471C37783A0015943C /* PhotosViewerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewerVC.swift; sourceTree = "<group>"; };
 		FAFF22481C37783A0015943C /* PhotosViewerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewerVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2157,6 +2161,7 @@
 		40E39E1C1BFEF43800516EC4 /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
+				FAFD27161C38C85300B27C55 /* View */,
 				FAF2060E1C3231540052EF74 /* Model */,
 				40E39E1F1BFEF43800516EC4 /* Cell */,
 				40E39E271BFEF43800516EC4 /* HeaderView */,
@@ -2170,6 +2175,7 @@
 				40E39E2C1BFEF43800516EC4 /* OrderDetailsVC.swift */,
 				40E39E2D1BFEF43800516EC4 /* OrderDetailsVC.xib */,
 				40E39E301BFEF43800516EC4 /* OrderHistoryListTVC.swift */,
+				FAFD27141C38C83A00B27C55 /* HotelOrderDetailTVC.swift */,
 				40E39E311BFEF43800516EC4 /* OrderListTVC.swift */,
 				40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */,
 			);
@@ -3060,6 +3066,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FAFD27161C38C85300B27C55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FAFD27171C38C85E00B27C55 /* HotelOrderDetailTVC.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3233,6 +3247,7 @@
 				4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */,
 				40E39E3E1BFEF43800516EC4 /* OrderContentView.xib in Resources */,
 				40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */,
+				FAFD27181C38C85E00B27C55 /* HotelOrderDetailTVC.storyboard in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
 				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
@@ -3336,6 +3351,7 @@
 				FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */,
 				4077DDCB1C1EAF9900E13D6B /* PSTCollectionView.m in Sources */,
 				4077DD971C1EAF9900E13D6B /* ContactView.m in Sources */,
+				FAFD27151C38C83A00B27C55 /* HotelOrderDetailTVC.swift in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
 				FA6BC8361C1A748500D409E4 /* CustomServiceVC.swift in Sources */,
 				4077DDBC1C1EAF9900E13D6B /* EMSDWebImageDecoder.m in Sources */,

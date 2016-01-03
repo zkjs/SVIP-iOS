@@ -138,60 +138,58 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   
   private func loadData() {
     //获取订单详情
-//    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      if let dic = responseObject as? NSDictionary {
-//        self.orderDetail = OrderDetailModel(dic: dic)
-//      }
-//      self.setupData()
-//      self.tableView.reloadData()
-//      self.setupUI()
-//      self.setupRoomTagView()
-//      self.setupServiceTagView()
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
-    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
       if let dic = responseObject as? NSDictionary {
-        self.invoiceDic = dic["invoice"] as? [String: AnyObject]
-        self.privilegeArr = dic["privilege"] as? [[String: AnyObject]]
-        self.roomDic = dic["room"] as? NSDictionary
-        self.bkOrder.fullname = self.roomDic["fullname"] as? String
-        self.bkOrder.arrival_date = self.roomDic["arrival_date"] as? String
-        self.bkOrder.departure_date = self.roomDic["departure_date"] as? String
-        self.bkOrder.pay_status = self.roomDic["pay_status"] as? NSNumber
-        if let pay_id = self.roomDic["pay_id"] as? String {
-          self.bkOrder.pay_id = NSNumber(integer: Int(pay_id)!)
-        } else if let pay_id = self.roomDic["pay_id"] as? NSNumber {
-          self.bkOrder.pay_id = pay_id
-        }
-        // 服务器数据类型不统一，有时候是返回是String，有时候是Int
-        if let status = self.roomDic["status"] as? NSNumber {
-          self.bkOrder.status = status
-        } else if let status = self.roomDic["status"] as? String {
-          self.bkOrder.status = NSNumber(integer: Int(status)!)
-        }
-        self.roomTagArr = dic["room_tag"] as? [[String: AnyObject]]
-        self.userArr = dic["users"] as? [[String: String]]
-        if let shopid = dic["shopid"]?.integerValue {
-          self.shopID = shopid
-        }
+        self.orderDetail = OrderDetailModel(dic: dic)
       }
       self.setupData()
       self.tableView.reloadData()
       self.setupUI()
       self.setupRoomTagView()
       self.setupServiceTagView()
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    })
+    }
+//    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      if let dic = responseObject as? NSDictionary {
+//        self.invoiceDic = dic["invoice"] as? [String: AnyObject]
+//        self.privilegeArr = dic["privilege"] as? [[String: AnyObject]]
+//        self.roomDic = dic["room"] as? NSDictionary
+//        self.bkOrder.fullname = self.roomDic["fullname"] as? String
+//        self.bkOrder.arrival_date = self.roomDic["arrival_date"] as? String
+//        self.bkOrder.departure_date = self.roomDic["departure_date"] as? String
+//        self.bkOrder.pay_status = self.roomDic["pay_status"] as? NSNumber
+//        if let pay_id = self.roomDic["pay_id"] as? String {
+//          self.bkOrder.pay_id = NSNumber(integer: Int(pay_id)!)
+//        } else if let pay_id = self.roomDic["pay_id"] as? NSNumber {
+//          self.bkOrder.pay_id = pay_id
+//        }
+//        // 服务器数据类型不统一，有时候是返回是String，有时候是Int
+//        if let status = self.roomDic["status"] as? NSNumber {
+//          self.bkOrder.status = status
+//        } else if let status = self.roomDic["status"] as? String {
+//          self.bkOrder.status = NSNumber(integer: Int(status)!)
+//        }
+//        self.roomTagArr = dic["room_tag"] as? [[String: AnyObject]]
+//        self.userArr = dic["users"] as? [[String: String]]
+//        if let shopid = dic["shopid"]?.integerValue {
+//          self.shopID = shopid
+//        }
+//      }
+//      self.setupData()
+//      self.tableView.reloadData()
+//      self.setupUI()
+//      self.setupRoomTagView()
+//      self.setupServiceTagView()
+//      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    })
   }
   
   private func setupData() {
     roomCount = Int(self.orderDetail.roomcount)
-    let formatter = NSDateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    startDateLabel.text = formatter.stringFromDate(orderDetail.arrivaldate)
-    departureDate = formatter.dateFromString(self.roomDic["departure_date"] as! String)
+    startDateLabel.text = orderDetail.arrivaldate
     for dic: [String: AnyObject] in self.roomTagArr {
       if let tag = dic["content"] as? String {
         roomTags.append(tag)
@@ -205,57 +203,62 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   private func setupUI() {
-    let rate = roomDic["room_rate"]!.floatValue
-    let total = rate
-    let totalString = String(Int(total))
-    let payed: Float = 0
-    let remain = total - payed
-    let remainString = String(Int(remain))
-    if bkOrder.pay_status == 1 {
-//      okButton.setTitle("客服", forState: UIControlState.Normal)
-//      cancelButton.setTitle("退款", forState: UIControlState.Normal)
-      payStatusLabel.text = "已支付"
-      paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [totalString, "0"])
-    } else {
-      payStatusLabel.text = "待付款"
-      paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [totalString, remainString])
-    }
-    bkOrder.room_type = self.roomDic["room_type"] as? String
-    if let rooms = self.roomDic["rooms"] as? NSNumber {
-      bkOrder.rooms = rooms
-    }
-    if let room_rate = self.roomDic["room_rate"] as? NSNumber {
-      bkOrder.room_rate = room_rate
-    }
-    //设置amountLabel
-    let dic: [String: AnyObject] = [
-      NSFontAttributeName: UIFont.systemFontOfSize(18),
-      NSForegroundColorAttributeName: UIColor.orangeColor()
-    ]
-    let attriStr = NSAttributedString(string: "\(total)", attributes: dic)
-    let dic1: [String: AnyObject] = [
-      NSFontAttributeName: UIFont.systemFontOfSize(13)
-    ]
-    let mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1)
-    mutAttriStr .appendAttributedString(attriStr)
-    amountLabel.attributedText = mutAttriStr
-    //设置入住人
-    for var i = 0 ; i < roomCount; i++ {
-      nameInfos[i].text = NSLocalizedString("CLIENT", comment: "") + "\(i+1)"
-      nameTextFields[i].placeholder = NSLocalizedString("ONE_ROOM_ONE_PERSON", comment: "")
-    }
-    //设置roomTypeLabel
-    roomTypeLabel.text = bkOrder.room_type
-    //设置statusLabel
-    statusLabel.text = status[bkOrder.status.integerValue]
-    //设置roomCountLabel
-    if bkOrder.rooms != nil {
-      roomCountLabel.text = bkOrder.rooms.stringValue
-    }
-    //设置startDateLabel
-    startDateLabel.text = arrivalDateStr
-    //设置endDateLabel
-    endDateLabel.text = departureDateStr
+    amountLabel.text = String(self.orderDetail.roomprice)
+    roomTypeLabel.text = self.orderDetail.roomtype
+    startDateLabel.text = orderDetail.orderstatus
+    roomCountLabel.text = String(orderDetail.roomcount)
+    startDateLabel.text = orderDetail.arrivaldate
+    endDateLabel.text = orderDetail.leavedate
+    
+//    let rate = roomDic["room_rate"]!.floatValue
+//    let total = rate
+//    let totalString = String(Int(total))
+//    let payed: Float = 0
+//    let remain = total - payed
+//    let remainString = String(Int(remain))
+//    if bkOrder.pay_status == 1 {
+//      payStatusLabel.text = "已支付"
+//      paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [totalString, "0"])
+//    } else {
+//      payStatusLabel.text = "待付款"
+//      paymentLabel.text = String(format: NSLocalizedString("PAYED_UNPAY", comment: ""), arguments: [totalString, remainString])
+//    }
+//    bkOrder.room_type = self.roomDic["room_type"] as? String
+//    if let rooms = self.roomDic["rooms"] as? NSNumber {
+//      bkOrder.rooms = rooms
+//    }
+//    if let room_rate = self.roomDic["room_rate"] as? NSNumber {
+//      bkOrder.room_rate = room_rate
+//    }
+//    //设置amountLabel
+//    let dic: [String: AnyObject] = [
+//      NSFontAttributeName: UIFont.systemFontOfSize(18),
+//      NSForegroundColorAttributeName: UIColor.orangeColor()
+//    ]
+//    let attriStr = NSAttributedString(string: "\(total)", attributes: dic)
+//    let dic1: [String: AnyObject] = [
+//      NSFontAttributeName: UIFont.systemFontOfSize(13)
+//    ]
+//    let mutAttriStr = NSMutableAttributedString(string: "￥", attributes: dic1)
+//    mutAttriStr .appendAttributedString(attriStr)
+//    amountLabel.attributedText = mutAttriStr
+//    //设置入住人
+//    for var i = 0 ; i < roomCount; i++ {
+//      nameInfos[i].text = NSLocalizedString("CLIENT", comment: "") + "\(i+1)"
+//      nameTextFields[i].placeholder = NSLocalizedString("ONE_ROOM_ONE_PERSON", comment: "")
+//    }
+//    //设置roomTypeLabel
+//    roomTypeLabel.text = bkOrder.room_type
+//    //设置statusLabel
+//    statusLabel.text = status[bkOrder.status.integerValue]
+//    //设置roomCountLabel
+//    if bkOrder.rooms != nil {
+//      roomCountLabel.text = bkOrder.rooms.stringValue
+//    }
+//    //设置startDateLabel
+//    startDateLabel.text = arrivalDateStr
+//    //设置endDateLabel
+//    endDateLabel.text = departureDateStr
   }
   
   private func setupRoomTagView() {

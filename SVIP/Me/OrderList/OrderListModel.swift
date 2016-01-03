@@ -21,12 +21,14 @@ class OrderListModel: NSObject {
   var roomcount: NSNumber!
    var orderstatus: NSNumber!
   var roomtype: String!
-  var paytype: NSNumber!
   var roomprice: double_t!
   var orderedby: String!
   var telephone: String!
   var arrivaldate: NSDate!
   var leavedate: NSDate!
+  var created: NSDate!
+  var saleid:String!
+  var username:String!
   
   
   override init() {
@@ -46,8 +48,11 @@ class OrderListModel: NSObject {
     orderstatus = dic["orderstatus"] as? NSNumber ?? NSNumber(double: 0.0)
     orderedby = dic["orderedby"] as? String ?? ""
     telephone = dic["telephone"] as? String ?? ""
+     username = dic["username"] as? String ?? ""
+     saleid = dic["saleid"] as? String ?? ""
     arrivaldate = dic["arrivaldate"] as? NSDate ?? NSDate()
     leavedate = dic["leavedate"] as? NSDate ?? NSDate()
+    created = dic["created"] as? NSDate ?? NSDate()
     
   }
 

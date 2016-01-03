@@ -77,8 +77,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     
     let order = orders[indexPath.row] as! OrderListModel
         if order.orderstatus == 0 || order.orderstatus == 2 || order.orderstatus == 4 {  // 0 未确认可取消订单
-          let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
-          let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
+          let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
           vc.reservation_no = order.orderno
           navigationController?.pushViewController(vc, animated: true)
         } else {
