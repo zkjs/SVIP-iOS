@@ -48,7 +48,6 @@ class HotelOrderDetailTVC:  UITableViewController {
       self.tableView.reloadData()
       self.setUI()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
     
   }
@@ -61,9 +60,8 @@ class HotelOrderDetailTVC:  UITableViewController {
     telphotoLabel.text = orderDetail.telephone
     if orderDetail.paytype == 1 {
       payTypeLabel.text = "在线支付"
-      payButton.setTitle("立即支付", forState: UIControlState.Normal)
+      payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)
     }
-    
     if orderDetail.paytype == 0 {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
@@ -72,7 +70,6 @@ class HotelOrderDetailTVC:  UITableViewController {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
-    
     
   }
   
@@ -91,7 +88,6 @@ class HotelOrderDetailTVC:  UITableViewController {
               ZKJSTool.showMsg("订单已确认")
               self.navigationController?.popViewControllerAnimated(true)
             }
-            
           }
         }
         }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
@@ -109,7 +105,6 @@ class HotelOrderDetailTVC:  UITableViewController {
         if result.boolValue == true {
           self.navigationController?.popViewControllerAnimated(true)
         }
-        
       }
     }
     }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in

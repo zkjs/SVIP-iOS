@@ -8,7 +8,7 @@
 
 import UIKit
 protocol PhotoViewerDelegate {
-  func gotoPhotoViewerDelegate(brower:MWPhotoBrowser)
+  func gotoPhotoViewerDelegate(brower:AnyObject)
 }
 class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate {
   
@@ -91,7 +91,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   func setupUI() {
     addressLabel.text = shopDetail.address
     telphoneLabel.text = shopDetail.telephone
-    timer = NSTimer.scheduledTimerWithTimeInterval(3.5, target: self, selector: "runTimePage", userInfo: nil, repeats: true)
+    timer = NSTimer.scheduledTimerWithTimeInterval(7, target: self, selector: "runTimePage", userInfo: nil, repeats: true)
     let count = shopDetail.images.count
     pageControl.addTarget(self, action: "turnPage", forControlEvents: UIControlEvents.ValueChanged)
     pageControl.numberOfPages = imgUrlArray.count
@@ -192,6 +192,12 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       cell.addSubview(starRating)
     }
     return cell
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath == NSIndexPath(forRow: 0, inSection: 3) {
+      
+        }
   }
   
   func photoViewer() {

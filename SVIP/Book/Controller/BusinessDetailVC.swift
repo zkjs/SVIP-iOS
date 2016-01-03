@@ -17,9 +17,6 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   var shopDetail = DetailModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-//      self.navigationController!.navigationBar.translucent = true
       self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
       self.navigationController!.navigationBar.shadowImage = UIImage()
       let image = UIImage(named: "ic_fanhui_orange")
@@ -53,6 +50,11 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     }
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.navigationBar.translucent = true
+  }
+  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     navigationController?.navigationBar.translucent = false
@@ -83,8 +85,8 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     }
   }
   
-  func gotoPhotoViewerDelegate(Brower:MWPhotoBrowser) {
-    self.navigationController?.pushViewController(Brower, animated: true)
+  func gotoPhotoViewerDelegate(Brower:AnyObject) {
+    self.navigationController?.pushViewController(Brower as! MWPhotoBrowser, animated: true)
   }
 
 }
