@@ -19,7 +19,7 @@ class OrderListModel: NSObject {
   var productid: String!
   var roomno: String!
   var roomcount: NSNumber!
-   var orderstatus: NSNumber!
+   var orderstatus: String!
   var roomtype: String!
   var roomprice: double_t!
   var orderedby: String!
@@ -34,6 +34,7 @@ class OrderListModel: NSObject {
   override init() {
     super.init()
   }
+  
   init(dic: NSDictionary) {
     orderno = dic["orderno"] as? String ?? ""
     shopid = dic["shopid"] as? String ?? ""
@@ -45,11 +46,11 @@ class OrderListModel: NSObject {
     roomtype = dic["roomtype"] as? String ?? ""
     roomprice = dic["roomprice"] as? double_t ??  double_t(0.0)
     roomcount = dic["roomcount"] as? NSNumber ?? NSNumber(double: 0.0)
-    orderstatus = dic["orderstatus"] as? NSNumber ?? NSNumber(double: 0.0)
+    orderstatus = dic["orderstatus"] as? String ?? ""
     orderedby = dic["orderedby"] as? String ?? ""
     telephone = dic["telephone"] as? String ?? ""
-     username = dic["username"] as? String ?? ""
-     saleid = dic["saleid"] as? String ?? ""
+    username = dic["username"] as? String ?? ""
+    saleid = dic["saleid"] as? String ?? ""
     arrivaldate = dic["arrivaldate"] as? NSDate ?? NSDate()
     leavedate = dic["leavedate"] as? NSDate ?? NSDate()
     created = dic["created"] as? NSDate ?? NSDate()

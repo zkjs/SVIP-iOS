@@ -64,18 +64,8 @@ class OrderListCell: SWTableViewCell {
   }
   
   func setupStatsLabel(order:OrderListModel) {
-    if order.orderstatus == 0 {
-      statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
-      statsLabel.text = "未确认"
-    }
-    if order.orderstatus == 1 {
-      statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
-      statsLabel.text = "已确认"
-    }
-    if order.orderstatus == 2 {
-      statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
-      statsLabel.text = "已取消"
-    }
+    statsLabel.backgroundColor = UIColor.ZKJS_mainColor()
+    statsLabel.text = order.orderstatus
     
   }
 //  func getDayOfWeek(today:String) {

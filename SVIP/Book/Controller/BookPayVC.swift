@@ -116,7 +116,12 @@ class BookPayVC: UIViewController {
     Pingpp.createPayment(charge,viewController: self, appURLScheme: "SVIPPAY") { (result:String!, error:PingppError!) -> Void in
       if result == "success" {
         ZKJSTool.showMsg("支付成功")
-      }else {
+        ZKJSJavaHTTPSessionManager.sharedInstance().orderPayWithOrderno(self.bkOrder.orderno, success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
+          
+          }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+            
+        })
+             }else {
         print(error.getMsg())
         ZKJSTool.showMsg("支付失败")
       }

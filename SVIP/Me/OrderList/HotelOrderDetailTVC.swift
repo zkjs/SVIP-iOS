@@ -9,6 +9,7 @@
 import UIKit
 
 class HotelOrderDetailTVC:  UITableViewController {
+  @IBOutlet weak var pendingConfirmationLabel: UILabel!
   @IBOutlet weak var invoinceTextField: UITextField!
   @IBOutlet weak var contacterLabel: UILabel!
   @IBOutlet weak var telphotoLabel: UILabel!
@@ -58,11 +59,15 @@ class HotelOrderDetailTVC:  UITableViewController {
     roomsCountLabel.text = String(orderDetail.roomcount)
     contacterLabel.text = orderDetail.orderedby
     telphotoLabel.text = orderDetail.telephone
-    print(orderDetail.telephone)
     if orderDetail.paytype == 1 {
       payTypeLabel.text = "在线支付"
+      payButton.setTitle("立即支付", forState: UIControlState.Normal)
     }
-    print(orderDetail.orderstatus)
+    
+    if orderDetail.paytype == 0 {
+      payButton.hidden = true
+      pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
+    }
     if orderDetail.orderstatus == "待确认" {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -72,23 +77,28 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func confirm(sender:UIButton) {
-    print(11)
-    ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
-      print(responsObjects)
-      if let dic = responsObjects as? NSDictionary {
-        self.orderno = dic["data"] as! String
-        if let result = dic["result"] as? NSNumber {
-          if result.boolValue == true {
-            let vc = BookPayVC()
-            vc.bkOrder = self.orderDetail
-            self.navigationController?.pushViewController(vc, animated: true)
+    if self.orderDetail.paytype == 1 {
+      let vc = BookPayVC()
+      vc.bkOrder = self.orderDetail
+      self.navigationController?.pushViewController(vc, animated: true)
+    } else {
+      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
+        print(responsObjects)
+        if let dic = responsObjects as? NSDictionary {
+          self.orderno = dic["data"] as! String
+          if let result = dic["result"] as? NSNumber {
+            if result.boolValue == true {
+              ZKJSTool.showMsg("订单已确认")
+              self.navigationController?.popViewControllerAnimated(true)
+            }
+            
           }
-          
         }
+        }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
+          
       }
-      }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
-        
     }
+    
   }
   
   func cancle(sender:UIButton) {

@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="波涛菲诺大酒店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByE-et-4Yb">
-                        <rect key="frame" x="102" y="23" width="150" height="21"/>
+                        <rect key="frame" x="102" y="23" width="310" height="21"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="B2y-eF-ewq"/>
@@ -33,6 +33,11 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PeV-S7-i7a"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华大床房x1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ct-kw-PR7">
                         <rect key="frame" x="102" y="49" width="150" height="21"/>
@@ -103,6 +108,7 @@
                     <constraint firstItem="c6w-hQ-KOJ" firstAttribute="top" secondItem="Ofm-Lh-p6H" secondAttribute="bottom" constant="4" id="qOt-Ba-4wc"/>
                     <constraint firstItem="c6w-hQ-KOJ" firstAttribute="leading" secondItem="XV0-CL-TQo" secondAttribute="trailing" constant="20" id="vAE-li-dIK"/>
                     <constraint firstItem="Ofm-Lh-p6H" firstAttribute="leading" secondItem="GU9-Rn-RKk" secondAttribute="trailing" constant="140" id="xtF-Ak-cSM"/>
+                    <constraint firstAttribute="trailing" secondItem="ByE-et-4Yb" secondAttribute="trailing" constant="50" id="zAg-sT-T23"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>

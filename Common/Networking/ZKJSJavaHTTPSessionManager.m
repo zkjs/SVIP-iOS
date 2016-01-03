@@ -184,8 +184,8 @@
 }
 
 # pragma mark - 获取订单列表
-- (void)getOrderListWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString * url = [NSString stringWithFormat:@"order/list/%@/1/10", [self userID]];
+- (void)getOrderListWithPage:(NSString * )page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * url = [NSString stringWithFormat:@"order/list/%@/%@/%@", [self userID],page,size];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
        NSLog(@"%@", [responseObject description]);
@@ -263,6 +263,18 @@
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
+}
+
+# pragma mark - 订单支付
+- (void)orderPayWithOrderno:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSDictionary * dic = @{@"orderno":orderno};
+  [self POST:@"order/pay" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    //NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+
 }
 
 @end
