@@ -53,22 +53,22 @@ import UIKit
 "price": "888.00",
 */
 class RoomGoods: NSObject {
-  var goodsid: String?
-  var shopid: String?
-  var room: String?
-  var image: String?
-  var type: String?
-  var meat: String?
-  var price: String?
+  var goodsid: String!
+  var shopid: String!
+  var room: String!
+  var image: String!
+  var type: String!
+  var meat: String!
+  var price: String!
   var logo: String?
   var fullname: String?
 
   init(dic: NSDictionary) {
-      goodsid = dic["id"] as? String
-      room = dic["room"] as? String
-      image = dic["imgurl"] as? String
-      type = dic["type"] as? String
+      goodsid = dic["id"] as? String ?? ""
+      room = dic["room"] as? String ?? ""
+      image = dic["imgurl"] as? String ?? ""
+      type = dic["type"] as? String ?? ""
       meat = dic["meat"] as? String ?? "无早"  //避免服务器返回空值
-      price = dic["price"] as? String
+      price = dic["price"] as? String ?? ""
   }
 }

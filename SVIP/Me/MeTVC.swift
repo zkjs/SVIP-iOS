@@ -26,9 +26,9 @@ class MeTVC: UITableViewController {
     
     navigationController?.navigationBarHidden = true
     setupUI()
-//    #if DEBUG
-//      sendTestPushNotification()
-//    #endif
+    #if DEBUG
+      sendTestPushNotification()
+    #endif
   }
   
   private func sendTestPushNotification() {

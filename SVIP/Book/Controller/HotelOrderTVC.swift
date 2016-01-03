@@ -9,7 +9,8 @@
 import UIKit
 
 class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
-
+  
+  @IBOutlet weak var roomImage: UIImageView!
   @IBOutlet weak var daysLabel: UILabel!
   @IBOutlet weak var roomsTypeLabel: UILabel!
   @IBOutlet weak var roomsTextField: UITextField!
@@ -30,9 +31,10 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       countAddButton.addTarget(self, action: "countAdd:", forControlEvents: UIControlEvents.TouchUpInside)
     }
   }
-
+  
   var shopid: NSNumber!
   var shopName: String!
+  var goods: RoomGoods!
   var saleid: String!
   var roomsCount = 1
   var leavedate:String!
@@ -41,21 +43,22 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   var smokingCount = 0 // 无烟房
   
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      title = shopName
-      setUpUI()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    title = shopName
+    roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
+    setUpUI()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.translucent = false
-   
+    
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -66,30 +69,30 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     super.viewWillDisappear(animated)
     navigationController?.navigationBar.translucent = true
   }
-
-   func countAdd(sender: AnyObject) {
+  
+  func countAdd(sender: AnyObject) {
     self.countSubtractButton.enabled = true
     roomsCount++
-     setUpUI()
+    setUpUI()
   }
-   func countSubtract(sender: AnyObject) {
+  func countSubtract(sender: AnyObject) {
     roomsCount--
     if roomsCount < 1 {
       self.countSubtractButton.enabled = false
     }
-     setUpUI()
+    setUpUI()
   }
   
   func setUpUI() {
     self.roomsTextField.text = String(roomsCount)
   }
-    // MARK: - Table view data source
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
-      return cell
-    }
+  // MARK: - Table view data source
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
+    return cell
+  }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath == NSIndexPath(forRow: 1, inSection: 0) {
@@ -118,7 +121,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       dateFormatter.dateFormat = "M/dd"
       
       let formatter = NSDateFormatter()
-      formatter.dateFormat = "YYYY-MM-dd  HH:mm:ss"
+      formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
       self.arrivaldate = formatter.stringFromDate(startDate)
       self.leavedate = formatter.stringFromDate(endDate)
       let start = dateFormatter.stringFromDate(startDate)
@@ -133,7 +136,10 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     let vc = BookVC()
     vc.shopid = self.shopid
     vc.selection = { (goods:RoomGoods ) ->() in
-      self.roomsTypeLabel.text = goods.type
+      self.roomsTypeLabel.text = goods.room + goods.type
+      self.goods = goods
+      let urlString = kBaseURL + goods.image
+      self.roomImage.sd_setImageWithURL(NSURL(string: urlString))
     }
     navigationController?.pushViewController(vc, animated: true)
   }
@@ -164,12 +170,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     let userID = AccountManager.sharedInstance().userID
     var dic = [String: AnyObject]()
     dic["saleid"] = self.saleid
-     dic["arrivaldate"] = self.arrivaldate
-     dic["leavedate"] = self.leavedate
-     dic["roomtype"] = self.roomsTypeLabel.text!
-     dic["roomcount"] = Int(self.roomsTextField.text!)
-     dic["orderedby"] = self.contactTextField.text
-     dic["telephone"] = self.telphoneTextField.text
+    dic["arrivaldate"] = self.arrivaldate
+    dic["leavedate"] = self.leavedate
+    dic["roomtype"] = self.roomsTypeLabel.text!
+    dic["roomcount"] = Int(self.roomsTextField.text!)
+    dic["orderedby"] = self.contactTextField.text
+    dic["telephone"] = self.telphoneTextField.text
     dic["shopid"] = self.shopid
     dic["userid"] = userID
     dic["imgurl"] = ""
@@ -178,12 +184,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["paytype"] = ""
     dic["roomprice"] = ""
     dic["telephone"] = self.telphoneTextField.text
-     dic["personcount"] = 1
-     dic["doublebreakfeast"] = 1
-     dic["nosmoking"] = 1
-     dic["company"] = ""
-    dic["remark"] = "你好"
-        if arrivaldate.isEmpty == true {
+    dic["personcount"] = 1
+    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
+    dic["nosmoking"] = isSmokingSwitch.on ? 1 : 0
+    dic["company"] = ""
+    dic["remark"] = self.remarkTextView.text
+    if arrivaldate == nil || arrivaldate.isEmpty == true {
       ZKJSTool.showMsg("请填写时间")
       return
     }
@@ -254,28 +260,24 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     vc.order = order
     navigationController?.pushViewController(vc, animated: true)
   }
-
+  
   func packetOrder() -> BookOrder {
     let order = BookOrder()
-//    order.shopid = shopid
-//    order.rooms = NSNumber(integer: Int(rooms)!)
-//    order.room_typeid = goods.goodsid
-//    order.room_type = roomType.text! + breakfast
-//    order.fullname = shopName
-//    order.room_image_URL = goods.image
-//    let dateFormatter = NSDateFormatter()
-//    dateFormatter.dateFormat = "yyyy-MM-dd"
-//    order.arrival_date = dateFormatter.stringFromDate(startDate)
-//    order.departure_date = dateFormatter.stringFromDate(endDate)
-//    var guests = [String]()
-//    for index in 0..<roomCount {
-//      guests.append(nameTextFields[index].text!)
-//    }
-//    order.guest = guests.joinWithSeparator(",")
-//    order.guesttel = AccountManager.sharedInstance().phone
-//    order.room_image = roomImage.image
+    order.shopid = shopid
+    order.rooms = NSNumber(integer: Int(roomsTextField.text!)!)
+    order.room_typeid = goods.goodsid
+    order.room_type = roomsTypeLabel.text!
+    order.fullname = shopName
+    order.room_image_URL = goods.image
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    order.arrival_date = arrivaldate
+    order.departure_date = leavedate
+    order.guest = contactTextField.text
+    order.guesttel = telphoneTextField.text
+    order.room_image = roomImage.image
     return order
-
+    
   }
   
 }

@@ -94,7 +94,7 @@ class BookOrder: NSObject {
     get {
       if let arrivalDateString = arrival_date {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let arrivalDate = dateFormatter.dateFromString(arrivalDateString)!
         dateFormatter.dateFormat = "M/dd"
         return dateFormatter.stringFromDate(arrivalDate)
@@ -108,7 +108,7 @@ class BookOrder: NSObject {
     get {
       if let departureDateString = departure_date {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let departureDate = dateFormatter.dateFromString(departureDateString)!
         dateFormatter.dateFormat = "M/dd"
         return dateFormatter.stringFromDate(departureDate)

@@ -2,7 +2,7 @@
 //  BookPayVC.swift
 //  SVIP
 //
-//  Created by dai.fengyi on 15/7/2.
+//  Created by Hanton on 15/7/2.
 //  Copyright (c) 2015年 zkjinshi. All rights reserved.
 //
 

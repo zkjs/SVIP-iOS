@@ -55,6 +55,11 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     navigationController?.navigationBar.translucent = true
     loadData()
   }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.navigationBar.translucent = false
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

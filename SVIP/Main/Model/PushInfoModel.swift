@@ -26,17 +26,17 @@ class PushInfoModel: NSObject {
     if let shopid = dic["shopid"] as? String {
       self.shopid = shopid
     } else {
-      ZKJSTool.showMsg("shopid无值\(dic)")
+//      ZKJSTool.showMsg("shopid无值\(dic)")
     }
     if let orderNo = dic["orderNo"] as? String {
       self.orderNo = orderNo
     } else {
-      ZKJSTool.showMsg("orderNo无值\(dic)")
+//      ZKJSTool.showMsg("orderNo无值\(dic)")
     }
     if let shopName = dic["shopName"] as? String {
       self.shopName = shopName
     } else {
-      ZKJSTool.showMsg("shopName无值\(dic)")
+//      ZKJSTool.showMsg("shopName无值\(dic)")
     }
     desc = dic["desc"] as? String ?? ""
     iconbaseurl = dic["iconbaseurl"] as? String ?? ""

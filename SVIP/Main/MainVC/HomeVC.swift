@@ -78,6 +78,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     self.pushInfoArray.removeAll()
     delegate = self
     navigationController?.navigationBarHidden = true
+    navigationController?.navigationBar.translucent = true
     count++
     loadData()
     let islogin = AccountManager.sharedInstance().isLogin()
@@ -107,6 +108,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       self.homeUrl = self.urlArray[self.count] as! String
     }
      navigationController?.navigationBarHidden = false
+    navigationController?.navigationBar.translucent = false
   }
   
   
