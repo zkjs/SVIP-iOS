@@ -100,13 +100,18 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       chooseRoomType()
     }
     if indexPath == NSIndexPath(forRow: 1, inSection: 2) {
-      navigationController?.pushViewController(InvoiceVC(), animated: true)
+      let vc = InvoiceVC()
+      vc.selection = { [unowned self] (invoice:  InvoiceModel) ->() in
+        self.invoinceLabel.text = invoice.title
+      }
+      self.navigationController?.pushViewController(vc, animated: true)
     }
     if indexPath == NSIndexPath(forRow: 0, inSection: 5) {
       
     }
-    
+    view.endEditing(true)
   }
+  
   
   @IBAction func submitOrder(sender: AnyObject) {
     submitOrder()

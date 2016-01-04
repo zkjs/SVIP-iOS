@@ -196,8 +196,9 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath == NSIndexPath(forRow: 0, inSection: 3) {
-      
+    if indexPath == NSIndexPath(forRow: 0, inSection: 2) {
+      let vc = CommentsTVC()
+      self.delegate?.gotoPhotoViewerDelegate(vc)
         }
   }
   

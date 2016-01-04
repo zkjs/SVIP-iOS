@@ -347,24 +347,22 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6xp-3b-OxD">
-                                                    <rect key="frame" x="463" y="20" width="97" height="32"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9b0-5N-M4Q">
+                                                    <rect key="frame" x="360" y="20" width="200" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="97" id="LMZ-Zy-tSy"/>
+                                                        <constraint firstAttribute="width" constant="200" id="2vF-3y-g5u"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="cfV-x8-11K" id="icg-Ot-cb3"/>
-                                                    </connections>
-                                                </textField>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="u8L-AS-ps3" firstAttribute="top" secondItem="X2H-hI-P27" secondAttribute="top" constant="20" id="AcL-fd-oQR"/>
-                                                <constraint firstAttribute="trailing" secondItem="6xp-3b-OxD" secondAttribute="trailing" constant="40" id="BKl-0e-sFO"/>
+                                                <constraint firstItem="9b0-5N-M4Q" firstAttribute="top" secondItem="X2H-hI-P27" secondAttribute="top" constant="20" id="COU-qw-jVB"/>
+                                                <constraint firstAttribute="bottom" secondItem="9b0-5N-M4Q" secondAttribute="bottom" constant="20" id="fwA-En-kdG"/>
                                                 <constraint firstItem="u8L-AS-ps3" firstAttribute="leading" secondItem="X2H-hI-P27" secondAttribute="leading" constant="30" id="jFa-cs-at4"/>
-                                                <constraint firstAttribute="bottom" secondItem="6xp-3b-OxD" secondAttribute="bottom" constant="10" id="mod-ZX-uy0"/>
-                                                <constraint firstItem="6xp-3b-OxD" firstAttribute="top" secondItem="X2H-hI-P27" secondAttribute="top" constant="20" id="qKa-O6-4vd"/>
+                                                <constraint firstAttribute="trailing" secondItem="9b0-5N-M4Q" secondAttribute="trailing" constant="40" id="tzR-Ig-GtT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -454,7 +452,7 @@
                         <outlet property="countAddButton" destination="4ZM-jl-DGC" id="NLd-i3-ONt"/>
                         <outlet property="countSubtractButton" destination="Tf9-4u-4RI" id="F0H-v1-GNV"/>
                         <outlet property="dateTextField" destination="rcC-xT-or4" id="d09-AW-q0J"/>
-                        <outlet property="invoinceTextFiled" destination="6xp-3b-OxD" id="DuG-qI-e7O"/>
+                        <outlet property="invoinceLabel" destination="9b0-5N-M4Q" id="xal-po-kHC"/>
                         <outlet property="remarkView" destination="Ivq-2i-mdc" id="Ydn-LZ-gu4"/>
                         <outlet property="roomImage" destination="rcn-2D-6Ql" id="c4O-V7-ApJ"/>
                         <outlet property="roomTypeLabel" destination="ndP-hC-BRv" id="LTq-G2-rH4"/>

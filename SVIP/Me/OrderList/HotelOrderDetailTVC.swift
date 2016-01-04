@@ -10,7 +10,8 @@ import UIKit
 
 class HotelOrderDetailTVC:  UITableViewController {
   @IBOutlet weak var pendingConfirmationLabel: UILabel!
-  @IBOutlet weak var invoinceTextField: UITextField!
+
+  @IBOutlet weak var invoiceLabel: UILabel!
   @IBOutlet weak var contacterLabel: UILabel!
   @IBOutlet weak var telphotoLabel: UILabel!
   @IBOutlet weak var smokingLabel: UILabel!
@@ -53,11 +54,12 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func setUI() {
-    arrivateLabel.text = orderDetail.arrivaldate
+    arrivateLabel.text = orderDetail.roomInfo
     roomTypeLabel.text = orderDetail.roomtype
     roomsCountLabel.text = String(orderDetail.roomcount)
     contacterLabel.text = orderDetail.orderedby
     telphotoLabel.text = orderDetail.telephone
+    invoiceLabel.text = String(orderDetail.isinvoice)
     if orderDetail.paytype == 1 {
       payTypeLabel.text = "在线支付"
       payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)
@@ -111,6 +113,15 @@ class HotelOrderDetailTVC:  UITableViewController {
       
     }
   }
+  
+  override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    if section == 5 || section == 6 {
+      return 10
+    } else {
+      return 0
+    }
+  }
+  
 
     
 

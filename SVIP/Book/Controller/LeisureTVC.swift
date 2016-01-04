@@ -22,6 +22,7 @@ class LeisureTVC: UITableViewController {
     }
   }
 
+  @IBOutlet weak var invoinceLabel: UILabel!
   @IBOutlet weak var remarkTextView: UITextView!
   @IBOutlet weak var telphotoTextField: UITextField!
   @IBOutlet weak var contacterTextField: UITextField!
@@ -63,7 +64,12 @@ class LeisureTVC: UITableViewController {
       chooseRoomType()
     }
     if indexPath == NSIndexPath(forRow: 1, inSection: 2) {
-      navigationController?.pushViewController(InvoiceVC(), animated: true)
+      let vc = InvoiceVC()
+      vc.selection = { [unowned self] (invoice:  InvoiceModel) ->() in
+        self.invoinceLabel.text = invoice.title
+      }
+      self.navigationController?.pushViewController(vc, animated: true)
+    
     }
     
     
