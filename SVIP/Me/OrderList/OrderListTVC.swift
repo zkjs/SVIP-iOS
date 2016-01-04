@@ -19,17 +19,12 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     title = NSLocalizedString("ORDRE_LIST", comment: "")
-    
     let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderListCell.reuseIdentifier())
-    
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.mj_footer.hidden = true
-    
     tableView.tableFooterView = UIView()
-    
     emptyLabel.frame = CGRectMake(0.0, 0.0, 150.0, 30.0)
     let screenSize = UIScreen.mainScreen().bounds
     emptyLabel.textAlignment = .Center
@@ -39,7 +34,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
     emptyLabel.hidden = true
     view.addSubview(emptyLabel)
-    
     showHUDInView(view, withLoading: "")
     loadMoreData()
   }
@@ -74,7 +68,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   // MARK: - Table view delegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
     let order = orders[indexPath.row] as! OrderListModel
         if order.orderstatus == "待确认" || order.orderstatus == "待支付"{  // 0 未确认可取消订单
           let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
@@ -108,9 +101,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       let order = orders[indexPath.row] as! OrderModel
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-      
       ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           self.showHint(NSLocalizedString("FAILED", comment: ""))
       })
@@ -120,32 +111,28 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   }
   
   // MARK: - Private Method
-  
   func loadMoreData() -> Void {
     let page = String(orderPage)
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderListWithPage(page, size: "10", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let orderArray = responseObject as! NSArray
-                  if orderArray.count != 0 {
-                    for orderInfo in orderArray {
-                      let order = OrderListModel(dic: orderInfo as! NSDictionary)
-                      self.orders.addObject(order)
-                    }
-                    self.hideHUD()
-                    self.emptyLabel.hidden = true
-                    self.tableView.reloadData()
-                    self.tableView.mj_footer.endRefreshing()
-                    self.orderPage++
-                  } else {
-                    self.hideHUD()
-                    self.emptyLabel.hidden = false
-                    self.tableView.mj_footer.endRefreshingWithNoMoreData()
-                  }
-
+          if orderArray.count != 0 {
+            for orderInfo in orderArray {
+              let order = OrderListModel(dic: orderInfo as! NSDictionary)
+              self.orders.addObject(order)
+            }
+            self.hideHUD()
+            self.emptyLabel.hidden = true
+            self.tableView.reloadData()
+            self.tableView.mj_footer.endRefreshing()
+            self.orderPage++
+          } else {
+            self.hideHUD()
+            self.emptyLabel.hidden = false
+            self.tableView.mj_footer.endRefreshingWithNoMoreData()
+          }
       }) { (task: NSURLSessionDataTask!, error: NSError!)-> Void in
-      
     }
-//    
-    }
+  }
   
 }
 
