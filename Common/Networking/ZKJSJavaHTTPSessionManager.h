@@ -74,4 +74,8 @@
 
 # pragma mark - 订单支付
 - (void)orderPayWithOrderno:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+# pragma mark - 获取未确认订单列表
+- (void)getUnconfirmedOrderListWithPage:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end

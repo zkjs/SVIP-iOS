@@ -274,7 +274,17 @@
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
+}
 
+# pragma mark - 获取未确认订单列表
+- (void)getUnconfirmedOrderListWithPage:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * url = [NSString stringWithFormat:@"order/get/unconfirmed/%@/%@/50", [self userID], page];
+  [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    //NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
 }
 
 @end

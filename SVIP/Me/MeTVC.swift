@@ -12,6 +12,7 @@ class MeTVC: UITableViewController {
   
   @IBOutlet weak var userImage: UIImageView!
   @IBOutlet weak var loginLabel: UILabel!
+  @IBOutlet weak var unconfirmedOrderCountLabel: UILabel!
 
   
   override func viewDidLoad() {
@@ -26,9 +27,31 @@ class MeTVC: UITableViewController {
     
     navigationController?.navigationBarHidden = true
     setupUI()
-    #if DEBUG
-      sendTestPushNotification()
-    #endif
+    loadUnconfirmedOrderList()
+//    #if DEBUG
+//      sendTestPushNotification()
+//    #endif
+  }
+  
+  func loadUnconfirmedOrderList() {
+    if AccountManager.sharedInstance().isLogin() == false {
+      return
+    }
+    
+    ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderListWithPage("1", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
+      if let array = responseObject as? [[String: AnyObject]] {
+        let count = array.count
+        if count > 0 {
+          self.unconfirmedOrderCountLabel.text = "\(count)个待确认订单"
+          self.unconfirmedOrderCountLabel.hidden = false
+        } else {
+          self.unconfirmedOrderCountLabel.hidden = true
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   private func sendTestPushNotification() {
@@ -106,6 +129,8 @@ class MeTVC: UITableViewController {
   }
   
   func setupUI() {
+    unconfirmedOrderCountLabel.hidden = true
+
     if AccountManager.sharedInstance().isLogin() == true {
       loginLabel.hidden = true
       userImage.image = AccountManager.sharedInstance().avatarImage
