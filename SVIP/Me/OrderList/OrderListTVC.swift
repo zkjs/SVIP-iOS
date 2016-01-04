@@ -26,7 +26,12 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
     layoutHidView()
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     showHUDInView(view, withLoading: "")
+    orderPage = 1
     loadMoreData()
   }
   
@@ -131,6 +136,9 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     let page = String(orderPage)
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderListWithPage(page, size: "10", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let orderArray = responseObject as! NSArray
+      if page == "1" {
+        self.orders.removeAllObjects()
+      }
           if orderArray.count != 0 {
             for orderInfo in orderArray {
               let order = OrderListModel(dic: orderInfo as! NSDictionary)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookPayVC" customModule="SVIP" customModuleProvider="target">
@@ -325,7 +325,7 @@
                 <constraint firstItem="S8R-na-tCj" firstAttribute="top" secondItem="Hcr-cd-tLM" secondAttribute="bottom" constant="30" id="eMp-Pc-5rc"/>
                 <constraint firstAttribute="bottom" secondItem="VE5-Le-scw" secondAttribute="bottom" constant="20" id="hUd-5A-Ina"/>
                 <constraint firstItem="eo3-aY-KlZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jEo-Kc-UVQ">
-                    <variation key="heightClass=regular-widthClass=compact" constant="64"/>
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                 </constraint>
                 <constraint firstItem="VE5-Le-scw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="jXV-HY-JxA"/>
                 <constraint firstItem="Edu-IJ-jqz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="n4h-tD-txS"/>
@@ -333,7 +333,6 @@
                 <constraint firstAttribute="centerX" secondItem="Edu-IJ-jqz" secondAttribute="centerX" id="vTO-Th-imZ"/>
                 <constraint firstAttribute="trailing" secondItem="eo3-aY-KlZ" secondAttribute="trailing" id="z8o-tZ-1xs"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="Edu-IJ-jqz"/>

@@ -322,9 +322,6 @@
                                                     <state key="normal" title="确认">
                                                         <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="submitOrder:" destination="qJb-Mn-eDw" eventType="touchUpInside" id="ZqD-Ce-YZX"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -352,9 +349,6 @@
                                                     <state key="normal" title="取消">
                                                         <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="submitOrder:" destination="qJb-Mn-eDw" eventType="touchUpInside" id="aXr-f6-F4Q"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

@@ -47,6 +47,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       print(responseObject)
       self.hideHUD()
       if let dic = responseObject as? NSDictionary {
+        print(dic)
         self.orderDetail = OrderDetailModel(dic: dic)
         self.tableView.reloadData()
         self.setUI()
@@ -65,6 +66,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     if orderDetail.paytype == 1 {
       payTypeLabel.text = "在线支付"
       payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)
+      payButton.addTarget(self, action: "pay:", forControlEvents: UIControlEvents.TouchUpInside)
     }
     if orderDetail.paytype == 0 {
       payButton.hidden = true
@@ -113,6 +115,24 @@ class HotelOrderDetailTVC:  UITableViewController {
       }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
         
     }
+  }
+  
+  func pay(sender:UIButton) {
+    if orderDetail.orderstatus == "待支付" && orderDetail.paytype.integerValue == 1 {
+      let payVC = BookPayVC()
+      payVC.type = .Push
+      payVC.bkOrder = orderDetail
+      navigationController?.pushViewController(payVC, animated: true)
+    } else {
+      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        print(responseObject)
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+          print(error)
+      })
+    }
+    
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
