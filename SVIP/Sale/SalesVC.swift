@@ -20,8 +20,8 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
     setupView()
   }
   
-  private func setupView() {
-    navigationController?.navigationBar.translucent = false
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     
     if AccountManager.sharedInstance().isLogin() == false {
       let rightBarButtonItem = UIBarButtonItem(title: "请登录", style: .Plain, target: self, action: "login:")
@@ -32,9 +32,11 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
       rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
       super.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
-    
+  }
+  
+  private func setupView() {
+    navigationController?.navigationBar.translucent = false
     segmentedControl.frame.size = CGSizeMake(150.0, 30.0)
-    
     containerView.scrollEnabled = false
   }
   

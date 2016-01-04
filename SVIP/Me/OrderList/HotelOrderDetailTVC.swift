@@ -9,8 +9,8 @@
 import UIKit
 
 class HotelOrderDetailTVC:  UITableViewController {
+  
   @IBOutlet weak var pendingConfirmationLabel: UILabel!
-
   @IBOutlet weak var invoiceLabel: UILabel!
   @IBOutlet weak var contacterLabel: UILabel!
   @IBOutlet weak var telphotoLabel: UILabel!
@@ -22,35 +22,37 @@ class HotelOrderDetailTVC:  UITableViewController {
   @IBOutlet weak var payTypeLabel: UILabel!
   @IBOutlet weak var payButton: UIButton!
   @IBOutlet weak var cancleButton: UIButton!
+  
   var reservation_no: String!
   var orderno: String!
   var orderDetail = OrderDetailModel()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+  
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    loadData()
+  }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationController?.navigationBar.translucent = false
+    
+    navigationController?.navigationBar.translucent = false
   }
   
   func loadData() {
+    showHUDInView(view, withLoading: "")
     //获取订单详情
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
+      self.hideHUD()
       if let dic = responseObject as? NSDictionary {
         self.orderDetail = OrderDetailModel(dic: dic)
+        self.tableView.reloadData()
+        self.setUI()
       }
-      self.tableView.reloadData()
-      self.setUI()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
     }
-    
   }
   
   func setUI() {
@@ -72,14 +74,13 @@ class HotelOrderDetailTVC:  UITableViewController {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
-    
   }
   
   func confirm(sender:UIButton) {
-    if self.orderDetail.paytype == 1 {
+    if orderDetail.paytype == 1 {
       let vc = BookPayVC()
-      vc.bkOrder = self.orderDetail
-      self.navigationController?.pushViewController(vc, animated: true)
+      vc.bkOrder = orderDetail
+      navigationController?.pushViewController(vc, animated: true)
     } else {
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         print(responsObjects)
@@ -100,39 +101,44 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func cancle(sender:UIButton) {
-   ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
-    if let dic = responsObjects as? NSDictionary {
-      self.orderno = dic["data"] as! String
-      if let result = dic["result"] as? NSNumber {
-        if result.boolValue == true {
-          self.navigationController?.popViewControllerAnimated(true)
+    ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
+      if let dic = responsObjects as? NSDictionary {
+        self.orderno = dic["data"] as! String
+        if let result = dic["result"] as? NSNumber {
+          if result.boolValue == true {
+            self.navigationController?.popViewControllerAnimated(true)
+          }
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
+        
+    }
+  }
+  
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    // 确定
+    if indexPath.section == 5 {
+      if orderDetail.orderstatus != nil {
+        if orderDetail.orderstatus == "已确认" || orderDetail.orderstatus == "已取消" {
+          return 0.0
+        }
+      }
+      
+      if orderDetail.paytype != nil && orderDetail.paytype.integerValue == 0 {
+        return 0.0
+      }
+    }
+    
+    // 取消
+    if indexPath.section == 6 {
+      if orderDetail.orderstatus != nil {
+        if orderDetail.orderstatus == "已确认" || orderDetail.orderstatus == "已取消" {
+          return 0.0
         }
       }
     }
-    }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
-      
-    }
-  }
-  
-  override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    if section == 5 || section == 6 {
-      return 10
-    } else {
-      return 0
-    }
-  }
-  
-
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+  }
+  
 }
