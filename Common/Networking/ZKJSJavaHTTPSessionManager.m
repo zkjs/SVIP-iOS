@@ -80,9 +80,21 @@
   }];
 }
 
+#pragma mark - 根据城市名称查询酒店列表(未登录时的)
+- (void)getLoginOutShopListWithCity:(NSString *)city page:(NSString *)page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * string = [NSString stringWithFormat:@"shop/list/%@/%@/%@",city,page,size];
+  string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
+  [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    // NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
+
 #pragma mark - 根据城市名称查询酒店列表
 - (void)getShopListWithCity:(NSString *)city page:(NSString *)page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSString * string = [NSString stringWithFormat:@"shop/list/%@/%@/%@",city,page,size];
+  NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%@/%@/%@",[self userID],city,page,size];
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
@@ -218,20 +230,8 @@
     failure(task, error);
     NSLog(@"%@", [error description]);
   }];
- 
-//  [self POST:@"order/add" parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//    [formData appendPartWithFormData:[category dataUsingEncoding:NSUTF8StringEncoding] name:@"category"];
-//    [formData appendPartWithFormData:[base64String dataUsingEncoding:NSUTF8StringEncoding] name:@"data"];
-//    
-//  } success:^(NSURLSessionDataTask *task, id responseObject) {
-//    NSLog(@"%@", [responseObject description]);
-//    success(task, responseObject);
-//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//    NSLog(@"%@", error.description);
-//    failure(task, error);
-//  }];
-
 }
+
 # pragma mark - 获取商家详情
 - (void)getOrderDetailWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"shop/get/%@", shopID];
@@ -283,6 +283,18 @@
     success(task, responseObject);
     //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+  }];
+}
+
+#pragma mark - 获取指定商家的商品列表
+- (void)getShopGoodsListWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *urlString = [NSString stringWithFormat:@"goods/get/%@", shopID];
+  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//    NSLog(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSLog(@"%@", error.description);
     failure(task, error);
   }];
 }

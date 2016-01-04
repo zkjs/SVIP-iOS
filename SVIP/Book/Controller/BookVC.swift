@@ -54,7 +54,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   }
   
   func loadRoomTypes() {
-    ZKJSHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSJavaHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let arr = responseObject as? NSArray {
         for dict in arr {

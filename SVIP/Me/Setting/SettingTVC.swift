@@ -28,11 +28,9 @@ class SettingTVC: UITableViewController {
           if set?.boolValue == true {
             let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
             EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
-            if error == nil {
-              AccountManager.sharedInstance().clearAccountCache()
-              let window =  UIApplication.sharedApplication().keyWindow
-              window?.rootViewController = MainTBC()
-            }
+            AccountManager.sharedInstance().clearAccountCache()
+            let window =  UIApplication.sharedApplication().keyWindow
+            window?.rootViewController = MainTBC()
           }
         }
       }

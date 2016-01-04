@@ -1224,8 +1224,8 @@
 			children = (
 				40095A071C21643F00D3DA61 /* Model */,
 				40095A061C21643800D3DA61 /* View */,
-				FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */,
 				FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */,
+				FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */,
 				400959E71C21221F00D3DA61 /* EmailVC.swift */,
 				400959E81C21221F00D3DA61 /* EmailVC.xib */,
 				40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */,

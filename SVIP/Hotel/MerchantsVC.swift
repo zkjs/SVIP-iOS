@@ -65,7 +65,8 @@ class MerchantsVC: UIViewController {
   }
   
   private func getDataWithPage(page: Int) {
-       ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+    if AccountManager.sharedInstance().isLogin() {
+      ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
         if let array = responseObject as? NSArray {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
@@ -86,6 +87,29 @@ class MerchantsVC: UIViewController {
         }
         }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
       }
+    } else {
+      ZKJSJavaHTTPSessionManager.sharedInstance().getLoginOutShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+        if let array = responseObject as? NSArray {
+          if array.count == 0 {
+            self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            self.tableView.mj_header.endRefreshing()
+          } else {
+            if page == 1 {
+              self.dataArray.removeAll()
+            }
+            for dic in array {
+              let hotel = Hotel(dic: dic as! [String:AnyObject])
+              self.dataArray.append(hotel)
+            }
+            self.hideHUD()
+            self.tableView.reloadData()
+            self.tableView.mj_footer.endRefreshing()
+          }
+          self.tableView.mj_header.endRefreshing()
+        }
+        }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+      }
+    }
   }
 
   // MARK: - Table view data source
