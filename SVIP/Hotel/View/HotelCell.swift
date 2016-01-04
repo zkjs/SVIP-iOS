@@ -56,10 +56,9 @@ class HotelCell: UITableViewCell {
   func setData(hotel:Hotel) {
     hotelNameLabel.text = hotel.shopname
     descriptionLabel.text = hotel.shopaddress
-    let placeholderImage = UIImage(named: "bg_zhuce")
     addressLabel.text = hotel.shopdesc
     let logoURL = NSURL(string: hotel.bgImgUrl)
-    hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
+    hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: nil)
     if let salesid = hotel.salesid {
       let url = NSURL(string: kBaseURL)
       let urlStr = url?.URLByAppendingPathComponent("uploads/users/\(salesid).jpg")

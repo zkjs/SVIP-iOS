@@ -7,11 +7,9 @@
 //
 
 import UIKit
-
 protocol PhotoViewerDelegate {
   func gotoPhotoViewerDelegate(brower:AnyObject)
 }
-
 class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate {
   
   @IBOutlet weak var scrollView: UIScrollView! {
@@ -35,7 +33,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!
-  
+
   var shopDetail = DetailModel()
   var timer = NSTimer()
   var imgUrlArray = NSArray()
@@ -165,10 +163,12 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
       navigationItem.titleView?.alpha = 0
     }
+   
   }
   
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-    let pageWidth:CGFloat = scrollView.frame.size.width
+  
+     let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
       let currentPage = Int((self.scrollView.contentOffset.x - pageWidth/(CGFloat(shopDetail.images.count+2)))/pageWidth) + 1
       if currentPage == 0 {
@@ -177,9 +177,9 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       if currentPage == shopDetail.images.count + 1 {
         self.scrollView.scrollRectToVisible(CGRectMake(view.bounds.size.width , 0, view.bounds.size.width, 400), animated: true)
       }
+}
     }
-  }
-  
+
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
     cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -196,19 +196,22 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       if let score = self.shopDetail.score {
         starRating.rating = score.floatValue
       }
+      
       cell.addSubview(starRating)
     }
     return cell
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath == NSIndexPath(forRow: 0, inSection: 3) {
-      
-    }
+    if indexPath == NSIndexPath(forRow: 0, inSection: 2) {
+      let vc = CommentsTVC()
+      self.delegate?.gotoPhotoViewerDelegate(vc)
+        }
   }
   
   func photoViewer() {
     let browser = MWPhotoBrowser(delegate: self)
+    
     browser.displayActionButton = false
     browser.displayNavArrows = false
     browser.displaySelectionButtons = false
@@ -218,7 +221,8 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     browser.startOnGrid = true
     browser.enableSwipeToDismiss = false
     browser.setCurrentPhotoIndex(0)
-    delegate?.gotoPhotoViewerDelegate(browser)
+    self.delegate?.gotoPhotoViewerDelegate(browser)
+
   }
   
   func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {

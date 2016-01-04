@@ -15,10 +15,11 @@ class KTVTableView: UITableViewController {
   
   @IBOutlet weak var dateTextField: UITextField!
   
+  @IBOutlet weak var invoinceLabel: UILabel!
   @IBOutlet weak var roomsTextField: UITextField!
   @IBOutlet weak var roomImage: UIImageView!
   @IBOutlet weak var remarkView: UITextView!
-  @IBOutlet weak var invoinceTextFiled: UITextField!
+
   @IBOutlet weak var telphonetextFiled: UITextField!
   @IBOutlet weak var contacterTextFiled: UITextField!
   @IBOutlet weak var countSubtractButton: UIButton! {
@@ -70,7 +71,11 @@ class KTVTableView: UITableViewController {
       chooseRoomType()
     }
     if indexPath == NSIndexPath(forRow: 1, inSection: 2) {
-      navigationController?.pushViewController(InvoiceVC(), animated: true)
+      let vc = InvoiceVC()
+      vc.selection = { [unowned self] (invoice:  InvoiceModel) ->() in
+        self.invoinceLabel.text = invoice.title
+      }
+      self.navigationController?.pushViewController(vc, animated: true)
     }
     
   }

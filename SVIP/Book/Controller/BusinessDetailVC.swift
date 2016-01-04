@@ -17,6 +17,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   var shopDetail = DetailModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+      advanceOrderButton.frame = CGRectMake(0, view.bounds.size.height-48, view.bounds.size.width, 48)
       self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
       self.navigationController!.navigationBar.shadowImage = UIImage()
       let image = UIImage(named: "ic_fanhui_orange")
@@ -24,7 +25,6 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
       navigationController?.navigationBar.translucent = true
       self.navigationItem.leftBarButtonItem = item1
       loadData()
-      
       if let nc = childViewControllers[0] as? UINavigationController {
         if let vc = nc.topViewController as? BusinessDetailTVC {
           vc.delegate = self
@@ -65,6 +65,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   }
     
   @IBAction func advanceOrder(sender: AnyObject) {
+    print(self.shopDetail.category)
     if self.shopDetail.category == "酒店行业" {
       let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
@@ -86,7 +87,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   }
   
   func gotoPhotoViewerDelegate(Brower:AnyObject) {
-    self.navigationController?.pushViewController(Brower as! MWPhotoBrowser, animated: true)
+    self.navigationController?.pushViewController(Brower as! UIViewController, animated: true)
   }
 
 }

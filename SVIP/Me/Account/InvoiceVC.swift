@@ -8,11 +8,14 @@
 
 import UIKit
 
+typealias InvoiceSelectionBlock = (InvoiceModel) -> ()
+
 class InvoiceVC: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   
   var dataArray = [InvoiceModel]()
+  var selection: InvoiceSelectionBlock!
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("InvoiceVC", owner:self, options:nil)
@@ -138,10 +141,16 @@ extension InvoiceVC: UITableViewDataSource, UITableViewDelegate {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
     let invoice = dataArray[indexPath.section]
-    let vc = InvoiceDetailVC()
-    vc.type = .Update
-    vc.invoice = invoice
-    navigationController?.pushViewController(vc, animated: true)
+    
+    if selection == nil {
+      let vc = InvoiceDetailVC()
+      vc.type = .Update
+      vc.invoice = invoice
+      navigationController?.pushViewController(vc, animated: true)
+    } else {
+      selection(invoice)
+      navigationController?.popViewControllerAnimated(true)
+    }
   }
   
 }

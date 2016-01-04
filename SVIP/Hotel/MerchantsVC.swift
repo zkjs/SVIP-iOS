@@ -125,7 +125,7 @@ class MerchantsVC: UIViewController {
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      return 385
+      return 400
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -150,13 +150,15 @@ class MerchantsVC: UIViewController {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
     let hotel = self.dataArray[indexPath.row]
     if type == .chat {
-      let storyboard = UIStoryboard(name: "BookingOrder", bundle: nil)
-      let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderTVC") as! BookingOrderTVC
+      let storyboard = UIStoryboard(name: "BusinessDetailVC", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailVC") as! BusinessDetailVC
       if hotel.shopid == "" {
         ZKJSTool.showMsg("暂无商家信息")
         return
       }
-      vc.shopID = hotel.shopid
+      vc.shopid = NSNumber(integer: Int(hotel.shopid)!)
+      vc.shopName = hotel.shopname
+      vc.saleid = hotel.salesid
       self.navigationController?.pushViewController(vc, animated: true)
     } else if type == .customerService {
       let vc = CustomerServiceTVC()

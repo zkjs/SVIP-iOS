@@ -12,6 +12,14 @@ class CommentsTVC: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+      title = "评价"
+      let image = UIImage(named: "ic_fanhui_orange")
+      let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
+      navigationController?.navigationBar.translucent = true
+      self.navigationItem.leftBarButtonItem = item1
+      
+      let cellNib = UINib(nibName: CommentsCell.nibName(), bundle: nil)
+      tableView.registerNib(cellNib, forCellReuseIdentifier: CommentsCell.reuseIdentifier())
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -19,6 +27,10 @@ class CommentsTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+  
+  func pop(sender:UIBarButtonItem) {
+    navigationController?.popViewControllerAnimated(true)
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -29,23 +41,26 @@ class CommentsTVC: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 10
     }
+  
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return CommentsCell.height()
+  }
 
-    /*
+  
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+      let cell = tableView.dequeueReusableCellWithIdentifier(CommentsCell.reuseIdentifier()) as! CommentsCell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
+      return cell
 
-        // Configure the cell...
-
-        return cell
     }
-    */
+  
 
     /*
     // Override to support conditional editing of the table view.

@@ -329,6 +329,7 @@
                         <outlet property="contacterTextField" destination="Ph3-qY-U5T" id="8jD-wK-HPh"/>
                         <outlet property="countAddBUtton" destination="vv4-7r-7Ad" id="12g-Md-nz2"/>
                         <outlet property="countSubtractButton" destination="v6B-N0-mWg" id="KZN-2N-U1b"/>
+                        <outlet property="invoinceLabel" destination="oeB-JU-zbD" id="A5T-iA-lYC"/>
                         <outlet property="personNumberTextField" destination="WbA-Bw-hHN" id="vo7-Zb-JKW"/>
                         <outlet property="remarkTextView" destination="lJe-sS-SWF" id="wj9-21-oiY"/>
                         <outlet property="roomImage" destination="UC3-nu-aiO" id="fRT-cW-dtk"/>

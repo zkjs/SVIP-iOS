@@ -41,10 +41,10 @@
                         <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coO-cH-BPq">
-                        <rect key="frame" x="30" y="85" width="324" height="70"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="去北京之前特地用招行信用卡积分兑换的酒店，价格很美丽，环境也很不错。出门5分钟就能到达地铁站，超级便捷。信用卡积分兑换的酒店，价格很合理" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coO-cH-BPq">
+                        <rect key="frame" x="30" y="70" width="324" height="54"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="m1I-hU-vJp"/>
+                            <constraint firstAttribute="height" constant="54" id="m1I-hU-vJp"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.36862745098039218" green="0.36862745098039218" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,7 +61,7 @@
                     <constraint firstItem="kPZ-mq-Xy3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="lVC-UE-zDV"/>
                     <constraint firstItem="kPZ-mq-Xy3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="o9P-LR-RRq"/>
                     <constraint firstItem="1I8-Z0-mdV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="of4-CP-8IT"/>
-                    <constraint firstItem="coO-cH-BPq" firstAttribute="top" secondItem="kPZ-mq-Xy3" secondAttribute="bottom" constant="15" id="zhP-F8-hx8"/>
+                    <constraint firstItem="coO-cH-BPq" firstAttribute="top" secondItem="kPZ-mq-Xy3" secondAttribute="bottom" id="zhP-F8-hx8"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -69,6 +69,12 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="appraiserImage" destination="kPZ-mq-Xy3" id="d5q-p7-Lhn"/>
+                <outlet property="appraiserNameLabel" destination="1I8-Z0-mdV" id="yRI-aV-4IO"/>
+                <outlet property="commentsDateLabel" destination="39R-Qs-CiR" id="Hdx-H2-Iob"/>
+                <outlet property="contentEvaluation" destination="coO-cH-BPq" id="U3w-jY-3k5"/>
+            </connections>
             <point key="canvasLocation" x="610" y="516"/>
         </tableViewCell>
     </objects>

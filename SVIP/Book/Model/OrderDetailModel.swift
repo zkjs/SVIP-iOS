@@ -33,6 +33,7 @@ class OrderDetailModel: NSObject {
    var telephone: String!
    var userid: String!
    var username: String!
+  
   var dayInt: NSNumber {
     get {
       if let arrivalDate = arrivaldate, let departureDate = leavedate {
@@ -44,6 +45,44 @@ class OrderDetailModel: NSObject {
         return NSNumber(integer: days)
       } else {
         return NSNumber(integer: 0)
+      }
+    }
+  }
+  
+  var arrivalDateShortStyle: String? {
+    get {
+      if let arrivalDateString = arrivaldate {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let arrivalDate = dateFormatter.dateFromString(arrivalDateString)!
+        dateFormatter.dateFormat = "M/dd"
+        return dateFormatter.stringFromDate(arrivalDate)
+      } else {
+        return nil
+      }
+    }
+  }
+  
+  var departureDateShortStyle: String? {
+    get {
+      if let departureDateString = leavedate {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let departureDate = dateFormatter.dateFromString(departureDateString)!
+        dateFormatter.dateFormat = "M/dd"
+        return dateFormatter.stringFromDate(departureDate)
+      } else {
+        return nil
+      }
+    }
+  }
+  
+  var roomInfo: String {
+    get {
+      if let arrivalDateShortStyle = arrivalDateShortStyle,let departureDateShortStyle = departureDateShortStyle {
+        return "\(arrivalDateShortStyle) 到 \(departureDateShortStyle) | \(dayInt)晚"
+      } else {
+        return "\(roomtype) | \(dayInt)晚"
       }
     }
   }
