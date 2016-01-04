@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pnW-vz-SMH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pnW-vz-SMH">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Business DetailVC-->
@@ -23,41 +23,16 @@
                                     <segue destination="JFc-Zc-LYx" kind="embed" id="4Zs-C7-073"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-UV-VgO">
-                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
-                                <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="psI-2t-yDm"/>
-                                </constraints>
-                                <state key="normal" title="立即预定">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="advanceOrder:" destination="pnW-vz-SMH" eventType="touchUpInside" id="XPj-oz-Yku"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BYb-lw-q6X" secondAttribute="trailing" id="9t9-NJ-8QS"/>
-                            <constraint firstItem="Snk-MB-ILE" firstAttribute="top" secondItem="hXL-UV-VgO" secondAttribute="bottom" id="FRC-hz-mSH"/>
                             <constraint firstItem="Snk-MB-ILE" firstAttribute="top" secondItem="BYb-lw-q6X" secondAttribute="bottom" id="Lk7-Ck-6He"/>
-                            <constraint firstItem="hXL-UV-VgO" firstAttribute="leading" secondItem="ywg-Ro-EtS" secondAttribute="leading" id="nqt-Pu-1uE"/>
                             <constraint firstItem="BYb-lw-q6X" firstAttribute="top" secondItem="ywg-Ro-EtS" secondAttribute="top" id="ogS-YG-Umo"/>
-                            <constraint firstItem="hXL-UV-VgO" firstAttribute="top" secondItem="BYb-lw-q6X" secondAttribute="bottom" id="pfy-jC-0eW"/>
-                            <constraint firstAttribute="trailing" secondItem="hXL-UV-VgO" secondAttribute="trailing" id="vLq-Hc-Unb"/>
                             <constraint firstItem="BYb-lw-q6X" firstAttribute="leading" secondItem="ywg-Ro-EtS" secondAttribute="leading" id="w1f-mH-IZz"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="pfy-jC-0eW"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="advanceOrderButton" destination="hXL-UV-VgO" id="9D2-uA-QQy"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMW-j0-NaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

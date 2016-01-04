@@ -49,6 +49,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     titleLabel.text = shopName
     titleLabel.textAlignment = .Center
     titleLabel.textColor = UIColor.ZKJS_navegationTextColor()
+    titleLabel.minimumScaleFactor = 0.6
     titleLabel.sizeToFit()
     navigationItem.titleView = titleLabel
     

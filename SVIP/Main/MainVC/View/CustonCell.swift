@@ -104,7 +104,8 @@ class CustonCell: UITableViewCell {
     if loginStats == true && activate == true && beacon != nil {
       activeButton.hidden = true
       userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
-      dynamicLabel.text = "欢迎光临\(beacon!["shopName"])"
+//      dynamicLabel.text = "欢迎光临\(beacon!["remark"])"
+      dynamicLabel.text = ""
     }
   }
   

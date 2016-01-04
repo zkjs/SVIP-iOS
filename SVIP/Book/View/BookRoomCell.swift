@@ -44,7 +44,7 @@ class BookRoomCell: UITableViewCell {
       type = goods.type
     }
     //        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
-    let tagStr = "  \(room)\(type)"
+    let tagStr = room
     priceTag.text = tagStr
     
     let baseUrl = kBaseURL

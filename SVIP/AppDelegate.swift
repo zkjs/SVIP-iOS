@@ -239,6 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
         var minor = ""
         var locid = ""
         var locdesc = ""
+        var remark = ""
         if let info = beaconInfo["shopid"] as? String {
           shopID = info
         }
@@ -257,13 +258,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
         if let info = beaconInfo["locdesc"] as? String {
           locdesc = info
         }
+        if let info = beaconInfo["remark"] as? String {
+          remark = info
+        }
         let beacon = [
           "shopid": shopID,
           "uuid": UUID,
           "major": major,
           "minor": minor,
           "locid": locid,
-          "locdesc": locdesc
+          "locdesc": locdesc,
+          "remark": remark
         ]
         let regionKey = "\(shopID)-\(locid)"
         beaconRegions[regionKey] = beacon

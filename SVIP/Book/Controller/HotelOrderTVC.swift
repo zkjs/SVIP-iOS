@@ -139,7 +139,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     let vc = BookVC()
     vc.shopid = self.shopid
     vc.selection = { (goods:RoomGoods ) ->() in
-      self.roomsTypeLabel.text = goods.room + goods.type
+      self.roomsTypeLabel.text = goods.room
       self.goods = goods
       let urlString = kBaseURL + goods.image
       self.roomImage.sd_setImageWithURL(NSURL(string: urlString))
