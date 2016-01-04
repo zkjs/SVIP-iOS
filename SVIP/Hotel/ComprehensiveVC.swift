@@ -61,6 +61,7 @@ class ComprehensiveVC: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
     loadShopListData(orderPage)
+    self.navigationController?.navigationBar.translucent = false
     self.hidesBottomBarWhenPushed = false
     navigationController?.navigationBarHidden = false
   }

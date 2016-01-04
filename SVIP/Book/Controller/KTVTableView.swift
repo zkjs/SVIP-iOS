@@ -144,49 +144,14 @@ class KTVTableView: UITableViewController {
   }
   
   func submitOrder() {
+    
     if AccountManager.sharedInstance().isLogin() == false {
       let nc = BaseNC(rootViewController: LoginVC())
       presentViewController(nc, animated: true, completion: nil)
       return
     }
-    let userID = AccountManager.sharedInstance().userID
-    var dic = [String: AnyObject]()
-    dic["saleid"] = self.saleid
-    dic["arrivaldate"] = self.arrivaldate
-    dic["leavedate"] = self.leavedate
-    dic["roomtype"] = self.roomTypeLabel.text!
-    dic["roomcount"] = Int(self.roomsTextField.text!)
-    dic["orderedby"] = self.contacterTextFiled.text
-    dic["telephone"] = self.telphonetextFiled.text
-    dic["shopid"] = self.shopid
-    dic["userid"] = userID
-    dic["imgurl"] = goods.image
-    dic["productid"] = goods.goodsid
-    dic["roomno"] = ""
-    dic["paytype"] = ""
-    dic["roomprice"] = ""
-  
-    dic["personcount"] = 1
-    dic["doublebreakfeast"] = 1
-    dic["nosmoking"] = 1
-    dic["company"] = ""
-    dic["remark"] = self.remarkView.text
-    if arrivaldate == nil || arrivaldate.isEmpty == true {
-      ZKJSTool.showMsg("请填写时间")
-      return
-    }
-    if self.roomTypeLabel.text == "请选择房型" {
-      ZKJSTool.showMsg("请选择房型")
-      return
-    }
-    
-    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("1", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
-      print(responObjects)
-      self.gotoChatVC()
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
-    }
-
+     gotoChatVC()
+   
   }
   
   func gotoChatVC() {
@@ -228,33 +193,72 @@ class KTVTableView: UITableViewController {
   }
   
   func createConversationWithSalesID(salesID: String, salesName: String) {
-    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
-    let order = packetOrder()
-    print(order)
-    vc.title = order.fullname
-    // 扩展字段
-    let userName = AccountManager.sharedInstance().userName
-    let ext = ["shopId": order.shopid.stringValue,
-      "shopName": order.fullname,
-      "toName": salesName,
-      "fromName": userName]
-    vc.conversation.ext = ext
-    vc.firstMessage = "Card"
-    vc.order = order
-    navigationController?.pushViewController(vc, animated: true)
-  }
+    if dateTextField.text == "" {
+      ZKJSTool.showMsg("请填写时间")
+      return
+    }
+    if self.roomTypeLabel.text == "请选择房型" {
+      ZKJSTool.showMsg("请选择房型")
+      return
+    }
+    
+    let userID = AccountManager.sharedInstance().userID
+    var dic = [String: AnyObject]()
+    dic["saleid"] = salesID
+    dic["arrivaldate"] = dateTextField.text
+    dic["leavedate"] = self.leavedate
+    dic["roomtype"] = self.roomTypeLabel.text!
+    dic["roomcount"] = Int(self.roomsTextField.text!)
+    dic["orderedby"] = self.contacterTextFiled.text
+    dic["telephone"] = self.telphonetextFiled.text
+    dic["shopid"] = self.shopid
+    dic["userid"] = userID
+    dic["imgurl"] = ""
+    dic["productid"] = ""
+    dic["roomno"] = ""
+    dic["paytype"] = ""
+    dic["roomprice"] = ""
+    dic["personcount"] = 1
+    dic["doublebreakfeast"] = 1
+    dic["nosmoking"] = 1
+    dic["company"] = ""
+    dic["remark"] = self.remarkView.text
+   
+    
+    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("1", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
+      print(responObjects)
+      let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+      let order = self.packetOrder()
+      print(order)
+      vc.title = order.fullname
+      // 扩展字段
+      let userName = AccountManager.sharedInstance().userName
+      let ext = ["shopId": order.shopid.stringValue,
+        "shopName": order.fullname,
+        "toName": salesName,
+        "fromName": userName]
+      vc.conversation.ext = ext
+      vc.firstMessage = "Card"
+      vc.order = order
+      self.navigationController?.pushViewController(vc, animated: true)
+    
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        print(error)
+    }
+}
+   
   
   func packetOrder() -> BookOrder {
     let order = BookOrder()
     order.shopid = shopid
     order.rooms = NSNumber(integer: Int(roomsTextField.text!)!)
-    order.room_typeid = goods.goodsid
+    order.room_typeid = ""//goods.goodsid
     order.room_type = roomTypeLabel.text!
     order.fullname = shopName
-    order.room_image_URL = goods.image
+    order.room_image_URL = ""//goods.image
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
-    order.arrival_date = arrivaldate
+    order.arrival_date = dateTextField.text
     order.departure_date = leavedate
     order.guest = contacterTextFiled.text
     order.guesttel = telphonetextFiled.text

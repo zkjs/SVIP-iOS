@@ -9,7 +9,8 @@
 import UIKit
 
 class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
-  
+
+  @IBOutlet weak var advanceOrderButton: UIButton!
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!
@@ -89,11 +90,17 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     if self.shopDetail.category == "餐饮行业" {
       let storyboard = UIStoryboard(name: "LeisureTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureTVC") as! LeisureTVC
+	  vc.shopName = self.shopDetail.shopName
+      vc.shopid = shopid
+      vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
     if self.shopDetail.category == "KTV" {
       let storyboard = UIStoryboard(name: "KTVTableView", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("KTVTableView") as! KTVTableView
+      vc.shopName = self.shopDetail.shopName
+      vc.shopid = shopid
+      vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
   }
@@ -101,5 +108,5 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   func gotoPhotoViewerDelegate(Brower:AnyObject) {
     self.navigationController?.pushViewController(Brower as! UIViewController, animated: true)
   }
-  
+
 }

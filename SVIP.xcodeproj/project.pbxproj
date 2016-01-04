@@ -359,6 +359,10 @@
 		FAFD271C1C39273700B27C55 /* CommentsTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFD271A1C39273700B27C55 /* CommentsTVC.xib */; };
 		FAFD271F1C39275800B27C55 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD271D1C39275800B27C55 /* CommentsCell.swift */; };
 		FAFD27201C39275800B27C55 /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFD271E1C39275800B27C55 /* CommentsCell.xib */; };
+		FAFE15A11C3A669E0051410C /* KTVOrderDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE15A01C3A669E0051410C /* KTVOrderDetailTVC.swift */; };
+		FAFE15A31C3A66A80051410C /* KTVOrderDetailTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFE15A21C3A66A80051410C /* KTVOrderDetailTVC.storyboard */; };
+		FAFE15A51C3A66CC0051410C /* LeisureOrderDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE15A41C3A66CC0051410C /* LeisureOrderDetailTVC.swift */; };
+		FAFE15A71C3A66D30051410C /* LeisureOrderDetailTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFE15A61C3A66D30051410C /* LeisureOrderDetailTVC.storyboard */; };
 		FAFF22491C37783A0015943C /* PhotosViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF22471C37783A0015943C /* PhotosViewerVC.swift */; };
 		FAFF224A1C37783A0015943C /* PhotosViewerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFF22481C37783A0015943C /* PhotosViewerVC.xib */; };
 /* End PBXBuildFile section */
@@ -1170,6 +1174,10 @@
 		FAFD271A1C39273700B27C55 /* CommentsTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsTVC.xib; sourceTree = "<group>"; };
 		FAFD271D1C39275800B27C55 /* CommentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		FAFD271E1C39275800B27C55 /* CommentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
+		FAFE15A01C3A669E0051410C /* KTVOrderDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVOrderDetailTVC.swift; sourceTree = "<group>"; };
+		FAFE15A21C3A66A80051410C /* KTVOrderDetailTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KTVOrderDetailTVC.storyboard; sourceTree = "<group>"; };
+		FAFE15A41C3A66CC0051410C /* LeisureOrderDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeisureOrderDetailTVC.swift; sourceTree = "<group>"; };
+		FAFE15A61C3A66D30051410C /* LeisureOrderDetailTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeisureOrderDetailTVC.storyboard; sourceTree = "<group>"; };
 		FAFF22471C37783A0015943C /* PhotosViewerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewerVC.swift; sourceTree = "<group>"; };
 		FAFF22481C37783A0015943C /* PhotosViewerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewerVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2184,6 +2192,8 @@
 				40E39E2D1BFEF43800516EC4 /* OrderDetailsVC.xib */,
 				40E39E301BFEF43800516EC4 /* OrderHistoryListTVC.swift */,
 				FAFD27141C38C83A00B27C55 /* HotelOrderDetailTVC.swift */,
+				FAFE15A01C3A669E0051410C /* KTVOrderDetailTVC.swift */,
+				FAFE15A41C3A66CC0051410C /* LeisureOrderDetailTVC.swift */,
 				40E39E311BFEF43800516EC4 /* OrderListTVC.swift */,
 				40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */,
 			);
@@ -3082,6 +3092,8 @@
 			isa = PBXGroup;
 			children = (
 				FAFD27171C38C85E00B27C55 /* HotelOrderDetailTVC.storyboard */,
+				FAFE15A21C3A66A80051410C /* KTVOrderDetailTVC.storyboard */,
+				FAFE15A61C3A66D30051410C /* LeisureOrderDetailTVC.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3232,6 +3244,7 @@
 				4077DD8D1C1EAF9900E13D6B /* callRing.mp3 in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
+				FAFE15A71C3A66D30051410C /* LeisureOrderDetailTVC.storyboard in Resources */,
 				40E3A1601BFEFA0C00516EC4 /* MailListTVC.xib in Resources */,
 				FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */,
 				40E3A1891BFEFA8300516EC4 /* SearchBarView.xib in Resources */,
@@ -3291,6 +3304,7 @@
 				FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */,
 				FAFBC43D1C336BD9001E9155 /* KTVTableView.storyboard in Resources */,
 				FAFBFB721C224B4500A1126B /* MerchantsVC.xib in Resources */,
+				FAFE15A31C3A66A80051410C /* KTVOrderDetailTVC.storyboard in Resources */,
 				B26C0E241B5FBC9F00F8AE46 /* BookHotelListCell.xib in Resources */,
 				400959FA1C21483A00D3DA61 /* InvoiceCell.xib in Resources */,
 				40E39E421BFEF43800516EC4 /* OrderDetailVC.xib in Resources */,
@@ -3449,6 +3463,7 @@
 				4077DDBA1C1EAF9900E13D6B /* EMSDImageCache.m in Sources */,
 				FAFBFB7B1C22CF3000A1126B /* BookHeaderView.swift in Sources */,
 				4077DDB51C1EAF9900E13D6B /* MWPhotoBrowser.m in Sources */,
+				FAFE15A51C3A66CC0051410C /* LeisureOrderDetailTVC.swift in Sources */,
 				4077DDAB1C1EAF9900E13D6B /* amrFileCodec.mm in Sources */,
 				404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */,
 				40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */,
@@ -3609,6 +3624,7 @@
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,
 				4077DDA21C1EAF9900E13D6B /* EMSearchDisplayController.m in Sources */,
+				FAFE15A11C3A669E0051410C /* KTVOrderDetailTVC.swift in Sources */,
 				4077DDD51C1EAF9900E13D6B /* PSTGridLayoutRow.m in Sources */,
 				4077DDB71C1EAF9900E13D6B /* MWTapDetectingView.m in Sources */,
 				4077DDC21C1EAF9900E13D6B /* NSData+EMImageContentType.m in Sources */,
