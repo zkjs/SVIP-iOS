@@ -7,9 +7,11 @@
 //
 
 import UIKit
+
 protocol PhotoViewerDelegate {
   func gotoPhotoViewerDelegate(brower:AnyObject)
 }
+
 class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate {
   
   @IBOutlet weak var scrollView: UIScrollView! {
@@ -33,7 +35,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!
-
+  
   var shopDetail = DetailModel()
   var timer = NSTimer()
   var imgUrlArray = NSArray()
@@ -42,15 +44,21 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   var photo = MWPhoto()
   var thumb = MWPhoto()
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = shopName
-      self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-      self.navigationController!.navigationBar.shadowImage = UIImage()
-      navigationController?.navigationBar.translucent = true
-      self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0)
-      
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    let titleLabel = UILabel()
+    titleLabel.text = shopName
+    titleLabel.textAlignment = .Center
+    titleLabel.textColor = UIColor.ZKJS_navegationTextColor()
+    titleLabel.sizeToFit()
+    navigationItem.titleView = titleLabel
+    
+    navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+    navigationController?.navigationBar.shadowImage = UIImage()
+    navigationController?.navigationBar.translucent = true
+    tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0)
+  }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -62,12 +70,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     super.viewWillDisappear(animated)
     navigationController?.navigationBar.translucent = false
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
   
   func advanceOrder() {
     let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
@@ -99,8 +101,9 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     pageControl.currentPage = 0
     for var i = 0; i < shopDetail.images.count; i++ {
       let imgView = BrowserImageView()
+      imgView.clipsToBounds = true
       imgView.addTarget(self, action: "photoViewer")
-      imgView.contentMode = UIViewContentMode.ScaleToFill
+      imgView.contentMode = UIViewContentMode.ScaleAspectFill
       let url = NSURL(string: shopDetail.images[i] as! String)
       imgView.sd_setImageWithURL(url, placeholderImage: nil)
       self.photo = MWPhoto(URL: url!)
@@ -110,13 +113,17 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     }
     //取数组最后一张图片 放在第0页
     var imageView = BrowserImageView(frame: CGRectMake(0, 0, view.bounds.size.width, 400))
-     imageView.addTarget(self, action: "photoViewer")
+    imageView.addTarget(self, action: "photoViewer")
+    imageView.clipsToBounds = true
+    imageView.contentMode = UIViewContentMode.ScaleAspectFill
     let url = NSURL(string: shopDetail.images[count - 1] as! String)
     imageView.sd_setImageWithURL(url, placeholderImage: nil)
     scrollView.addSubview(imageView)
     // 取数组第一张图片 放在最后1页
     imageView = BrowserImageView(frame: CGRectMake(CGFloat(count + 1)*view.bounds.size.width, 0, view.bounds.size.width, 400))
-     imageView.addTarget(self, action: "photoViewer")
+    imageView.clipsToBounds = true
+    imageView.contentMode = UIViewContentMode.ScaleAspectFill
+    imageView.addTarget(self, action: "photoViewer")
     let Url = NSURL(string: shopDetail.images[0] as! String)
     imageView.sd_setImageWithURL(Url, placeholderImage: nil)
     scrollView.addSubview(imageView)
@@ -152,16 +159,16 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     let offsetY = scrollView.contentOffset.y
     if (offsetY > 50) {
       let alpha = min(1, 1 - ((50 + 64 - offsetY) / 64))
-    self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
+      navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
+      navigationItem.titleView?.alpha = alpha
     } else {
-      self.navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
+      navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
+      navigationItem.titleView?.alpha = 0
     }
-   
   }
   
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-  
-     let pageWidth:CGFloat = scrollView.frame.size.width
+    let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
       let currentPage = Int((self.scrollView.contentOffset.x - pageWidth/(CGFloat(shopDetail.images.count+2)))/pageWidth) + 1
       if currentPage == 0 {
@@ -170,9 +177,9 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       if currentPage == shopDetail.images.count + 1 {
         self.scrollView.scrollRectToVisible(CGRectMake(view.bounds.size.width , 0, view.bounds.size.width, 400), animated: true)
       }
-}
     }
-
+  }
+  
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
     cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -189,7 +196,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       if let score = self.shopDetail.score {
         starRating.rating = score.floatValue
       }
-      
       cell.addSubview(starRating)
     }
     return cell
@@ -198,12 +204,11 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath == NSIndexPath(forRow: 0, inSection: 3) {
       
-        }
+    }
   }
   
   func photoViewer() {
     let browser = MWPhotoBrowser(delegate: self)
-    
     browser.displayActionButton = false
     browser.displayNavArrows = false
     browser.displaySelectionButtons = false
@@ -213,8 +218,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     browser.startOnGrid = true
     browser.enableSwipeToDismiss = false
     browser.setCurrentPhotoIndex(0)
-    self.delegate?.gotoPhotoViewerDelegate(browser)
-
+    delegate?.gotoPhotoViewerDelegate(browser)
   }
   
   func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
