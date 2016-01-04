@@ -10,7 +10,6 @@ import UIKit
 
 class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
 
-  @IBOutlet weak var advanceOrderButton: UIButton!
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!

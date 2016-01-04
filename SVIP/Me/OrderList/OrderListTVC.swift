@@ -78,31 +78,24 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     let index = order.orderno.startIndex.advancedBy(1)
     let type = order.orderno.substringToIndex(index)
     print(type)
-        if order.orderstatus == "待确认" || order.orderstatus == "待支付"{  // 0 未确认可取消订单
-          if type == "H" {
-            let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
-            vc.reservation_no = order.orderno
-            navigationController?.pushViewController(vc, animated: true)
-          }
-          if type == "O" {
-            let storyboard = UIStoryboard(name: "LeisureOrderDetailTVC", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureOrderDetailTVC") as! LeisureOrderDetailTVC
-            vc.reservation_no = order.orderno
-            navigationController?.pushViewController(vc, animated: true)
-          }
-          if type == "K" {
-            let storyboard = UIStoryboard(name: "KTVOrderDetailTVC", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("KTVOrderDetailTVC") as! KTVOrderDetailTVC
-            vc.reservation_no = order.orderno
-            navigationController?.pushViewController(vc, animated: true)
-          }
-        } else {
-          let vc = OrderDetailsVC()
-          let order = orders[indexPath.row]
-          vc.order = order as! OrderModel
-          navigationController?.pushViewController(vc, animated: true)
-        }
+    if type == "H" {
+      let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
+      vc.reservation_no = order.orderno
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
+    if type == "O" {
+      let storyboard = UIStoryboard(name: "LeisureOrderDetailTVC", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureOrderDetailTVC") as! LeisureOrderDetailTVC
+      vc.reservation_no = order.orderno
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
+    if type == "K" {
+      let storyboard = UIStoryboard(name: "KTVOrderDetailTVC", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("KTVOrderDetailTVC") as! KTVOrderDetailTVC
+      vc.reservation_no = order.orderno
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
   }
   
   // MARK: - BookingOrderDetailVCDelegate

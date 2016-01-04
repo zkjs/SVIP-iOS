@@ -80,16 +80,31 @@ extension MainTBC: EMCallManagerDelegate {
   }
   
   func showOrderAlertWithOrderInfo(order: [String: AnyObject]) {
-    if let orderNo = order["orderNo"] as? String {
-      let alertMessage = "您的订单\(orderNo)已新增，请查看详情"
+    if let orderno = order["orderNo"] as? String {
+      let alertMessage = "您的订单\(orderno)已新增，请查看详情"
       let alertView = UIAlertController(title: "订单新增", message: alertMessage, preferredStyle: .Alert)
       let checkAction = UIAlertAction(title: "查看", style: .Default, handler: { (action: UIAlertAction) -> Void in
-        let storyboard = UIStoryboard(name: "BookingOrderDetail", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("BookingOrderDetailTVC") as! BookingOrderDetailTVC
-        vc.type = .Present
-        vc.reservation_no = orderNo
-        let nc = BaseNC(rootViewController:vc)
-        self.presentViewController(nc, animated: true, completion: nil)
+        let index = orderno.startIndex.advancedBy(1)
+        let type = orderno.substringToIndex(index)
+        print(type)
+        if type == "H" {
+          let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
+          vc.reservation_no = orderno
+          self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if type == "O" {
+          let storyboard = UIStoryboard(name: "LeisureOrderDetailTVC", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureOrderDetailTVC") as! LeisureOrderDetailTVC
+          vc.reservation_no = orderno
+          self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if type == "K" {
+          let storyboard = UIStoryboard(name: "KTVOrderDetailTVC", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("KTVOrderDetailTVC") as! KTVOrderDetailTVC
+          vc.reservation_no = orderno
+          self.navigationController?.pushViewController(vc, animated: true)
+        }
       })
       let cancelAction = UIAlertAction(title: "知道了", style: .Cancel, handler: nil)
       alertView.addAction(cancelAction)

@@ -164,16 +164,14 @@
       vc.reservation_no = self.order.reservation_no;
       [self.navigationController pushViewController:vc animated:YES];
     } else if ([type isEqualToString:@"O"]) {
-      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LeisureTVC" bundle:nil];
-      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"LeisureTVC"];
-      vc.shopName = self.order.fullname;
-      vc.shopid = self.order.shopid;
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LeisureOrderDetailTVC" bundle:nil];
+      LeisureOrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"LeisureOrderDetailTVC"];
+      vc.reservation_no = self.order.reservation_no;
       [self.navigationController pushViewController:vc animated:YES];
     } else if ([type isEqualToString:@"K"]) {
-      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KTVTableView" bundle:nil];
-      HotelOrderTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"KTVTableView"];
-      vc.shopName = self.order.fullname;
-      vc.shopid = self.order.shopid;
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KTVOrderDetailTVC" bundle:nil];
+      KTVOrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"KTVOrderDetailTVC"];
+      vc.reservation_no = self.order.reservation_no;
       [self.navigationController pushViewController:vc animated:YES];
     }
     flag = YES;
