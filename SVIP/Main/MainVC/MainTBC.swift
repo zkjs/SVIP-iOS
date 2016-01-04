@@ -32,7 +32,7 @@ class MainTBC: UITabBarController {
     //酒店餐饮休闲
     let vc2 = ComprehensiveVC()
     let nc2 = BaseNC(rootViewController: vc2)
-    vc2.tabBarItem.image = UIImage(named: "ic_liebiao_gary")
+    vc2.tabBarItem.image = UIImage(named: "tab_shangjia")
     vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     
     //服务中心

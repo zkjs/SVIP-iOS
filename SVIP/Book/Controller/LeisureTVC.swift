@@ -71,16 +71,14 @@ class LeisureTVC: UITableViewController {
       self.navigationController?.pushViewController(vc, animated: true)
     
     }
-    
-    
+    view.endEditing(true)
   }
   
   func chooseRoomType() {
     
   }
 
-  
-  @IBAction func textFieldEditing( sender: UITextField) {
+  @IBAction func textFieldEditing(sender: UITextField) {
     toolBar.frame = CGRectMake(0, 0, 0, 40)
     arrviteDateLabel.inputAccessoryView = toolBar
     let doneItem = UIBarButtonItem(title: "确认", style: UIBarButtonItemStyle.Done, target: self, action: "sure")
@@ -92,8 +90,10 @@ class LeisureTVC: UITableViewController {
     sender.inputView = datePickerView
     datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
   }
+
   
   func sure() {
+    arrviteDateLabel.text = ""
     let selectedDate = self.datePickerView.date
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -124,6 +124,10 @@ class LeisureTVC: UITableViewController {
   }
   
   
+  @IBAction func submitOrder(sender: AnyObject) {
+    submitOrder()
+  }
+  
   // MARK: - UITextFieldDelegate
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     textField.resignFirstResponder()
@@ -131,44 +135,13 @@ class LeisureTVC: UITableViewController {
   }
 
   func submitOrder() {
+    print("11")
     if AccountManager.sharedInstance().isLogin() == false {
       let nc = BaseNC(rootViewController: LoginVC())
       presentViewController(nc, animated: true, completion: nil)
       return
     }
-    let userID = AccountManager.sharedInstance().userID
-    var dic = [String: AnyObject]()
-    dic["saleid"] = self.saleid
-    dic["arrivaldate"] = self.arrivaldate
-    dic["leavedate"] = self.leavedate
-    dic["roomtype"] = ""
-    dic["roomcount"] = nil
-    dic["orderedby"] = self.contacterTextField.text
-    dic["telephone"] = self.telphotoTextField.text
-    dic["shopid"] = self.shopid
-    dic["userid"] = userID
-    dic["imgurl"] = goods.image
-    dic["productid"] = goods.goodsid
-    dic["roomno"] = ""
-    dic["paytype"] = ""
-    dic["roomprice"] = ""
-    dic["personcount"] = 1
-    dic["doublebreakfeast"] = 1
-    dic["nosmoking"] = 1
-    dic["company"] = ""
-    dic["remark"] = self.remarkTextView.text
-    if arrivaldate == nil || arrivaldate.isEmpty == true {
-      ZKJSTool.showMsg("请填写时间")
-      return
-    }
-    
-    
-    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("2", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
-      print(responObjects)
-      self.gotoChatVC()
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
-    }
+     gotoChatVC()
     
   }
   
@@ -211,20 +184,52 @@ class LeisureTVC: UITableViewController {
   }
   
   func createConversationWithSalesID(salesID: String, salesName: String) {
-    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
-    let order = packetOrder()
-    print(order)
-    vc.title = order.fullname
-    // 扩展字段
-    let userName = AccountManager.sharedInstance().userName
-    let ext = ["shopId": order.shopid.stringValue,
-      "shopName": order.fullname,
-      "toName": salesName,
-      "fromName": userName]
-    vc.conversation.ext = ext
-    vc.firstMessage = "Card"
-    vc.order = order
-    navigationController?.pushViewController(vc, animated: true)
+    if arrviteDateLabel.text == nil  {
+      ZKJSTool.showMsg("请填写时间")
+      return
+    }
+    
+    let userID = AccountManager.sharedInstance().userID
+    var dic = [String: AnyObject]()
+    dic["saleid"] = salesID
+    dic["arrivaldate"] = self.arrviteDateLabel.text
+    dic["leavedate"] = self.leavedate
+    dic["roomtype"] = ""
+    dic["roomcount"] = nil
+    dic["orderedby"] = self.contacterTextField.text
+    dic["telephone"] = self.telphotoTextField.text
+    dic["shopid"] = self.shopid
+    dic["userid"] = userID
+    dic["imgurl"] = ""
+    dic["productid"] = ""//goods.goodsid
+    dic["roomno"] = ""
+    dic["paytype"] = ""
+    dic["roomprice"] = ""
+    dic["personcount"] = 1
+    dic["doublebreakfeast"] = 1
+    dic["nosmoking"] = 1
+    dic["company"] = ""
+    dic["remark"] = self.remarkTextView.text
+    
+    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("2", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
+      print(responObjects)
+      let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+      let order = self.packetOrder()
+      print(order)
+      vc.title = order.fullname
+      // 扩展字段
+      let userName = AccountManager.sharedInstance().userName
+      let ext = ["shopId": order.shopid.stringValue,
+        "shopName": order.fullname,
+        "toName": salesName,
+        "fromName": userName]
+      vc.conversation.ext = ext
+      vc.firstMessage = "Card"
+      vc.order = order
+      self.navigationController?.pushViewController(vc, animated: true)
+      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+        
+    }
   }
   
   func packetOrder() -> BookOrder {

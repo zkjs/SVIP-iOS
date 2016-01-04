@@ -192,9 +192,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcC-xT-or4">
-                                                    <rect key="frame" x="377" y="20" width="150" height="32"/>
+                                                    <rect key="frame" x="357" y="20" width="200" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="Wlk-wj-gKq"/>
+                                                        <constraint firstAttribute="width" constant="200" id="Wlk-wj-gKq"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -209,7 +209,7 @@
                                                 <constraint firstItem="jbS-lI-o52" firstAttribute="leading" secondItem="B1m-T1-lon" secondAttribute="leading" constant="92" id="7ji-Ow-y7N"/>
                                                 <constraint firstItem="co6-ks-wm5" firstAttribute="top" secondItem="B1m-T1-lon" secondAttribute="top" constant="20" id="S1P-kY-P4p"/>
                                                 <constraint firstItem="rcC-xT-or4" firstAttribute="top" secondItem="B1m-T1-lon" secondAttribute="top" constant="20" id="WeI-BV-aOo"/>
-                                                <constraint firstAttribute="trailing" secondItem="rcC-xT-or4" secondAttribute="trailing" constant="40" id="hHv-KA-3cI"/>
+                                                <constraint firstAttribute="trailing" secondItem="rcC-xT-or4" secondAttribute="trailing" constant="10" id="hHv-KA-3cI"/>
                                                 <constraint firstAttribute="bottom" secondItem="rcC-xT-or4" secondAttribute="bottom" constant="10" id="x1z-Ou-3q0"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -235,13 +235,18 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ocW-mg-btR">
-                                                    <rect key="frame" x="463" y="20" width="97" height="32"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="填写联系人" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ocW-mg-btR">
+                                                    <rect key="frame" x="170" y="20" width="390" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="97" id="FSp-AO-qwh"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="FSp-AO-qwh"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="cfV-x8-11K" id="fUg-9B-P9I"/>
                                                     </connections>
@@ -252,6 +257,7 @@
                                                 <constraint firstItem="8n2-2C-Jl2" firstAttribute="leading" secondItem="LXw-lJ-tdi" secondAttribute="leading" constant="30" id="6z1-tK-lFH"/>
                                                 <constraint firstItem="ocW-mg-btR" firstAttribute="top" secondItem="LXw-lJ-tdi" secondAttribute="top" constant="20" id="73D-0M-hkI"/>
                                                 <constraint firstAttribute="trailing" secondItem="ocW-mg-btR" secondAttribute="trailing" constant="40" id="Hgd-Lw-pd6"/>
+                                                <constraint firstItem="ocW-mg-btR" firstAttribute="leading" secondItem="8n2-2C-Jl2" secondAttribute="trailing" constant="40" id="fXz-OT-ls4"/>
                                                 <constraint firstItem="8n2-2C-Jl2" firstAttribute="top" secondItem="LXw-lJ-tdi" secondAttribute="top" constant="17" id="j9h-0e-5r7"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -273,13 +279,18 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CPi-93-7yN">
-                                                    <rect key="frame" x="463" y="20" width="97" height="32"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="填写手机号" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CPi-93-7yN">
+                                                    <rect key="frame" x="200" y="20" width="360" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="97" id="ZEN-ud-eTy"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="ZEN-ud-eTy"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="cfV-x8-11K" id="QbX-sW-lcL"/>
                                                     </connections>
@@ -287,6 +298,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="CPi-93-7yN" secondAttribute="trailing" constant="40" id="4c9-3v-zyJ"/>
+                                                <constraint firstItem="CPi-93-7yN" firstAttribute="leading" secondItem="Fv4-zR-oQT" secondAttribute="trailing" constant="20" id="PUp-Gc-XhX"/>
                                                 <constraint firstAttribute="bottom" secondItem="CPi-93-7yN" secondAttribute="bottom" constant="10" id="f8E-0a-rR7"/>
                                                 <constraint firstItem="Fv4-zR-oQT" firstAttribute="top" secondItem="YyD-jV-mNY" secondAttribute="top" constant="20" id="hJY-Fp-Ltg"/>
                                                 <constraint firstItem="CPi-93-7yN" firstAttribute="top" secondItem="YyD-jV-mNY" secondAttribute="top" constant="20" id="kNt-by-cYc"/>

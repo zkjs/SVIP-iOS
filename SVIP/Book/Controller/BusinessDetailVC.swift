@@ -65,23 +65,29 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   }
     
   @IBAction func advanceOrder(sender: AnyObject) {
-    print(self.shopDetail.category)
-    if self.shopDetail.category == "酒店行业" {
-      let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
-      let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
+    self.shopDetail.category = "KTV"
+//    if self.shopDetail.category == "酒店行业" {
+//      let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
+//      let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
+//      vc.shopName = self.shopDetail.shopName
+//      vc.shopid = shopid
+//      vc.saleid = self.saleid
+//      navigationController?.pushViewController(vc, animated: true)
+//    }
+    if self.shopDetail.category == "餐饮行业" {
+      let storyboard = UIStoryboard(name: "LeisureTVC", bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureTVC") as! LeisureTVC
       vc.shopName = self.shopDetail.shopName
       vc.shopid = shopid
       vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
-    if self.shopDetail.category == "餐饮行业" {
-      let storyboard = UIStoryboard(name: "LeisureTVC", bundle: nil)
-      let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureTVC") as! LeisureTVC
-      navigationController?.pushViewController(vc, animated: true)
-    }
     if self.shopDetail.category == "KTV" {
       let storyboard = UIStoryboard(name: "KTVTableView", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("KTVTableView") as! KTVTableView
+      vc.shopName = self.shopDetail.shopName
+      vc.shopid = shopid
+      vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
   }

@@ -170,7 +170,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       presentViewController(nc, animated: true, completion: nil)
       return
     }
-    
     gotoChatVC()
   }
   
@@ -213,6 +212,15 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   }
   
   func createConversationWithSalesID(salesID: String, salesName: String) {
+    if arrivaldate == nil || arrivaldate.isEmpty == true {
+      ZKJSTool.showMsg("请填写时间")
+      return
+    }
+    if self.roomsTypeLabel.text == "请选择房型" {
+      ZKJSTool.showMsg("请选择房型")
+      return
+    }
+
     let userID = AccountManager.sharedInstance().userID
     var dic = [String: AnyObject]()
     dic["saleid"] = salesID
@@ -235,14 +243,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["nosmoking"] = isSmokingSwitch.on ? 1 : 0
     dic["company"] = ""
     dic["remark"] = self.remarkTextView.text
-    if arrivaldate == nil || arrivaldate.isEmpty == true {
-      ZKJSTool.showMsg("请填写时间")
-      return
-    }
-    if self.roomsTypeLabel.text == "请选择房型" {
-      ZKJSTool.showMsg("请选择房型")
-      return
-    }
     
     ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       print(responObjects)

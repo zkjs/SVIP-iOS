@@ -245,7 +245,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
    
     if indexPath.section == 0 {
       let headercell = tableView.dequeueReusableCellWithIdentifier("CustonCell", forIndexPath: indexPath) as! CustonCell
-      
       headercell.selectionStyle = UITableViewCellSelectionStyle.None
       headercell.setData(self.activate,homeUrl: self.homeUrl)
       headercell.activeButton.addTarget(self, action: "activeCode:", forControlEvents: UIControlEvents.TouchUpInside)

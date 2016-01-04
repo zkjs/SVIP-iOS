@@ -25,15 +25,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
     tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
-    emptyLabel.frame = CGRectMake(0.0, 0.0, 150.0, 30.0)
-    let screenSize = UIScreen.mainScreen().bounds
-    emptyLabel.textAlignment = .Center
-    emptyLabel.font = UIFont.systemFontOfSize(14)
-    emptyLabel.text = "暂无订单"
-    emptyLabel.textColor = UIColor.ZKJS_promptColor()
-    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
-    emptyLabel.hidden = true
-    view.addSubview(emptyLabel)
+    layoutHidView()
     showHUDInView(view, withLoading: "")
     loadMoreData()
   }
@@ -57,6 +49,20 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     return cell
   }
   
+  func  layoutHidView() {
+    if orders.count == 0 {
+      emptyLabel.frame = CGRectMake(0.0, 30, 150.0, 30.0)
+      //    let screenSize = UIScreen.mainScreen().bounds
+      emptyLabel.textAlignment = .Center
+      emptyLabel.font = UIFont.systemFontOfSize(14)
+      emptyLabel.text = "您还没有订单,有预订时,将会在此查看订单"
+      emptyLabel.textColor = UIColor.ZKJS_promptColor()
+      //    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
+      emptyLabel.hidden = true
+      view.addSubview(emptyLabel)
+    }
+  }
+  
 //  //设置cell的显示动画
 //  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //    cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
@@ -69,11 +75,28 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let order = orders[indexPath.row] as! OrderListModel
+    let index = order.orderno.startIndex.advancedBy(1)
+    let type = order.orderno.substringToIndex(index)
+    print(type)
         if order.orderstatus == "待确认" || order.orderstatus == "待支付"{  // 0 未确认可取消订单
-          let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
-          let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
-          vc.reservation_no = order.orderno
-          navigationController?.pushViewController(vc, animated: true)
+          if type == "H" {
+            let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
+            vc.reservation_no = order.orderno
+            navigationController?.pushViewController(vc, animated: true)
+          }
+          if type == "O" {
+            let storyboard = UIStoryboard(name: "LeisureOrderDetailTVC", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureOrderDetailTVC") as! LeisureOrderDetailTVC
+            vc.reservation_no = order.orderno
+            navigationController?.pushViewController(vc, animated: true)
+          }
+          if type == "K" {
+            let storyboard = UIStoryboard(name: "KTVOrderDetailTVC", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("KTVOrderDetailTVC") as! KTVOrderDetailTVC
+            vc.reservation_no = order.orderno
+            navigationController?.pushViewController(vc, animated: true)
+          }
         } else {
           let vc = OrderDetailsVC()
           let order = orders[indexPath.row]
@@ -127,8 +150,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
             self.orderPage++
           } else {
             self.hideHUD()
-            self.emptyLabel.hidden = false
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
+      }
+      if self.orders.count == 0 {
+            self.emptyLabel.hidden = false
           }
       }) { (task: NSURLSessionDataTask!, error: NSError!)-> Void in
     }
