@@ -10,6 +10,8 @@ import UIKit
 
 class CustonCell: UITableViewCell {
   
+
+  @IBOutlet weak var bluetoolView: UIView!
   @IBOutlet weak var greetLabel: UILabel!
   @IBOutlet weak var dynamicLabel: UILabel!
   @IBOutlet weak var userNameLabel: UILabel!

@@ -67,13 +67,18 @@
                                                     <color key="textColor" red="1" green="0.3411764706" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CUJ-lv-qSg">
-                                                    <rect key="frame" x="360" y="20" width="200" height="32"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CUJ-lv-qSg">
+                                                    <rect key="frame" x="150" y="20" width="410" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="200" id="NU0-c4-xCT"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="NU0-c4-xCT"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
                                                         <action selector="textFieldEditing:" destination="jHd-Mv-9DP" eventType="editingDidEnd" id="5ML-tU-ZpC"/>
                                                         <action selector="textFieldEditing:" destination="jHd-Mv-9DP" eventType="editingDidBegin" id="pr7-JW-iJ1"/>
@@ -88,6 +93,7 @@
                                                 <constraint firstItem="qfD-yU-kbq" firstAttribute="leading" secondItem="jYc-dl-ReW" secondAttribute="leading" constant="30" id="e0H-73-9p9"/>
                                                 <constraint firstAttribute="trailing" secondItem="CUJ-lv-qSg" secondAttribute="trailing" constant="40" id="s5R-3F-f5Y"/>
                                                 <constraint firstItem="qfD-yU-kbq" firstAttribute="top" secondItem="jYc-dl-ReW" secondAttribute="top" constant="20" id="xh2-SL-hWs"/>
+                                                <constraint firstItem="CUJ-lv-qSg" firstAttribute="leading" secondItem="PbI-4a-Cui" secondAttribute="trailing" constant="50" id="zwm-kW-C0M"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -119,7 +125,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6B-N0-mWg">
-                                                    <rect key="frame" x="537" y="0.0" width="63" height="62"/>
+                                                    <rect key="frame" x="517" y="0.0" width="63" height="62"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="63" id="Jls-wU-AIX"/>
                                                     </constraints>
@@ -129,7 +135,7 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vv4-7r-7Ad">
-                                                    <rect key="frame" x="477" y="0.0" width="60" height="62"/>
+                                                    <rect key="frame" x="377" y="0.0" width="60" height="62"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="sLs-1p-VWX"/>
                                                     </constraints>
@@ -139,12 +145,17 @@
                                                     </state>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="添加人数" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WbA-Bw-hHN">
-                                                    <rect key="frame" x="360" y="20" width="109" height="28"/>
+                                                    <rect key="frame" x="437" y="0.0" width="80" height="62"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="109" id="jJ4-hq-bZ2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="jJ4-hq-bZ2"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
                                                         <action selector="textFieldEditing:" destination="jHd-Mv-9DP" eventType="editingDidBegin" id="Jf0-R5-lsf"/>
                                                     </connections>
@@ -153,18 +164,29 @@
                                             <constraints>
                                                 <constraint firstItem="vv4-7r-7Ad" firstAttribute="leading" secondItem="WbA-Bw-hHN" secondAttribute="trailing" constant="8" id="1O9-4M-F63"/>
                                                 <constraint firstAttribute="bottom" secondItem="v6B-N0-mWg" secondAttribute="bottom" id="8r4-Yp-4sw"/>
-                                                <constraint firstAttribute="trailing" secondItem="v6B-N0-mWg" secondAttribute="trailing" id="9MF-w3-pcE"/>
+                                                <constraint firstAttribute="trailing" secondItem="v6B-N0-mWg" secondAttribute="trailing" constant="20" id="9MF-w3-pcE"/>
                                                 <constraint firstItem="efX-dK-faF" firstAttribute="top" secondItem="NPp-qq-LGp" secondAttribute="top" constant="20" id="Dxh-Hy-O7R"/>
+                                                <constraint firstItem="WbA-Bw-hHN" firstAttribute="leading" secondItem="vv4-7r-7Ad" secondAttribute="trailing" id="Puj-tP-t69"/>
                                                 <constraint firstAttribute="bottom" secondItem="vv4-7r-7Ad" secondAttribute="bottom" id="SBr-jY-sBG"/>
                                                 <constraint firstItem="5JW-lp-pbD" firstAttribute="leading" secondItem="NPp-qq-LGp" secondAttribute="leading" constant="63" id="X5R-gk-wDI"/>
                                                 <constraint firstItem="5JW-lp-pbD" firstAttribute="top" secondItem="NPp-qq-LGp" secondAttribute="top" constant="23" id="av7-XM-IiI"/>
                                                 <constraint firstItem="efX-dK-faF" firstAttribute="leading" secondItem="NPp-qq-LGp" secondAttribute="leading" constant="30" id="iYG-44-tjZ"/>
                                                 <constraint firstItem="v6B-N0-mWg" firstAttribute="top" secondItem="NPp-qq-LGp" secondAttribute="top" id="jSV-A5-Uvd"/>
                                                 <constraint firstItem="WbA-Bw-hHN" firstAttribute="top" secondItem="NPp-qq-LGp" secondAttribute="top" constant="20" id="k1C-10-qRL"/>
+                                                <constraint firstAttribute="bottom" secondItem="WbA-Bw-hHN" secondAttribute="bottom" id="kc8-te-KsY"/>
                                                 <constraint firstItem="vv4-7r-7Ad" firstAttribute="top" secondItem="NPp-qq-LGp" secondAttribute="top" id="mWA-zm-lSI"/>
+                                                <constraint firstAttribute="trailing" secondItem="WbA-Bw-hHN" secondAttribute="trailing" constant="83" id="pE7-DC-oIJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="WbA-Bw-hHN" secondAttribute="bottom" constant="14" id="pg5-VC-cXH"/>
-                                                <constraint firstItem="v6B-N0-mWg" firstAttribute="leading" secondItem="vv4-7r-7Ad" secondAttribute="trailing" id="zka-oc-cft"/>
+                                                <constraint firstItem="WbA-Bw-hHN" firstAttribute="top" secondItem="NPp-qq-LGp" secondAttribute="top" id="yXZ-rW-A2M"/>
+                                                <constraint firstItem="v6B-N0-mWg" firstAttribute="leading" secondItem="vv4-7r-7Ad" secondAttribute="trailing" constant="80" id="zka-oc-cft"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="1O9-4M-F63"/>
+                                                    <exclude reference="k1C-10-qRL"/>
+                                                    <exclude reference="pg5-VC-cXH"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
