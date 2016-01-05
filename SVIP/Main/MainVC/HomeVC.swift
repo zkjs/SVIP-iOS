@@ -124,7 +124,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
 
   
-  func  loadData() {
+  func loadData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
         for dic in array {
@@ -140,9 +140,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
   
   func login(sender:UIButton) {
-    let vc = LoginVC()
-    self.presentViewController(vc, animated: true, completion: nil)
- 
+    let nc = BaseNC(rootViewController: LoginVC())
+    self.presentViewController(nc, animated: true, completion: nil)
   }
   
   func getPushInfoData() {

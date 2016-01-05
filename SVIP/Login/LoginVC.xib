@@ -86,7 +86,7 @@
                         <action selector="tappedCodeButton:" destination="-1" eventType="touchUpInside" id="OlE-bH-hAW"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPh-Po-9EY">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPh-Po-9EY">
                     <rect key="frame" x="263" y="458" width="75" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="Glq-KD-iE8"/>
@@ -96,6 +96,9 @@
                     <state key="normal" title="《使用协议》">
                         <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="tappedLicense:" destination="-1" eventType="touchUpInside" id="8tm-5f-9la"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
                     <rect key="frame" x="25" y="27" width="10" height="22"/>

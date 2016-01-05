@@ -31,6 +31,18 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
 
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.navigationBarHidden = true
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.navigationBarHidden = false
+  }
+  
   //MARK:- Button Action
   
   @IBAction func nextStep(sender: AnyObject) {

@@ -171,7 +171,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   // MARK: - HTTPSessionManagerDelegate
   
   func didReceiveInvalidToken() {
-    window?.rootViewController?.presentViewController(LoginVC(), animated: true, completion: nil)
+    let nc = BaseNC(rootViewController: LoginVC())
+    window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
     ZKJSTool.showMsg("账号在别处登录，请重新重录")
   }
   

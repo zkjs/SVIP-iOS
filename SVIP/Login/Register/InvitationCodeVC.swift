@@ -28,6 +28,7 @@ class InvitationCodeVC: UIViewController {
   @IBOutlet weak var okButton: UIButton!
   @IBOutlet weak var animationViewHeight: NSLayoutConstraint!
   @IBOutlet weak var avatarImageHeight: NSLayoutConstraint!
+  
   lazy var type = InvitationCodeVCType.first
   lazy var code = ""
   lazy var salesid = ""
@@ -45,7 +46,15 @@ class InvitationCodeVC: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    
+    navigationController?.navigationBarHidden = true
     setupUI()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.navigationBarHidden = false
   }
 
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

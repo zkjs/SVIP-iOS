@@ -41,6 +41,12 @@ class LoginVC: UIViewController {
     navigationController?.navigationBarHidden = true
   }
   
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.navigationBarHidden = false
+  }
+  
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self);
   }
@@ -207,6 +213,12 @@ class LoginVC: UIViewController {
     }
   }
 
+  @IBAction func tappedLicense(sender: AnyObject) {
+    let vc = WebViewVC()
+    vc.url = "http://zkjinshi.com/about_us/use_agree.html"
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
   // MARK: - Timer
   
   func refreshCount() {
