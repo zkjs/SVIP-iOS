@@ -299,4 +299,18 @@
   }];
 }
 
+#pragma mark - APP升级检查
+- (void)checkVersionWithVersion:(NSNumber *)version success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSDictionary * dict = @{@"verno":version,
+                          @"devicetype": @"ios",
+                          @"appid": [NSNumber numberWithInt:1]};  //  应用编号(1:超级身份 2 超级服务)
+  [self POST:@"app/upgrade" parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+    //    NSLog(@"%@", [responseObject description]);
+    success(task, responseObject);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSLog(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
 @end

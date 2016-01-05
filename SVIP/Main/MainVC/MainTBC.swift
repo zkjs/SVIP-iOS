@@ -50,6 +50,55 @@ class MainTBC: UITabBarController {
     
     viewControllers = [nc1, nc2, nc3, nc4]
     tabBar.tintColor = UIColor.ZKJS_mainColor()
+    
+    checkVersion()
+  }
+  
+  func checkVersion() {
+    let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+    let version = NSNumber(longLong: Int64(buildNumber)!)
+    ZKJSJavaHTTPSessionManager.sharedInstance().checkVersionWithVersion(version, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
+      if let isForceUpgrade = responseObject["isForceUpgrade"] as? NSNumber {
+        if isForceUpgrade.integerValue == 0 {
+          // hmmm...
+        } else if isForceUpgrade.integerValue == 1 {
+          // 提示更新
+          if let versionNo = responseObject["versionNo"] as? NSNumber {
+            if versionNo.longLongValue > version.longLongValue {
+              let alertController = UIAlertController(title: "升级提示", message: "已有新版本可供升级", preferredStyle: .Alert)
+              let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
+                let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
+                if UIApplication.sharedApplication().canOpenURL(url!) {
+                  UIApplication.sharedApplication().openURL(url!)
+                }
+              })
+              alertController.addAction(upgradeAction)
+              let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+              alertController.addAction(cancelAction)
+              self.presentViewController(alertController, animated: true, completion: nil)
+            }
+          }
+        } else if isForceUpgrade.integerValue == 2 {
+          // 强制更新
+          if let versionNo = responseObject["versionNo"] as? NSNumber {
+            if versionNo.longLongValue > version.longLongValue {
+              let alertController = UIAlertController(title: "升级提示", message: "请您升级到最新版本，以保证软件的正常使用", preferredStyle: .Alert)
+              let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
+                let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
+                if UIApplication.sharedApplication().canOpenURL(url!) {
+                  UIApplication.sharedApplication().openURL(url!)
+                }
+              })
+              alertController.addAction(upgradeAction)
+              self.presentViewController(alertController, animated: true, completion: nil)
+            }
+          }
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   deinit {
