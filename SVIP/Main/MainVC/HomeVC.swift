@@ -31,6 +31,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   var countTimer = 0
   var timer = NSTimer!()
   var originOffsetY: CGFloat = 0.0
+  var bluetoothStats: Bool!
   
   
   @IBOutlet weak var tableView: UITableView!
@@ -332,8 +333,14 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   func centralManagerDidUpdateState(central: CBCentralManager) {
     switch central.state {
     case .PoweredOn:
+      self.bluetoothStats = true
+      let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! CustonCell
+      cell.bluetoolView.hidden = true
       print(".PoweredOn")
     case .PoweredOff:
+      self.bluetoothStats = false
+      let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! CustonCell
+      cell.bluetoolView.hidden = false
       print(".PoweredOff")
     case .Resetting:
       print(".Resetting")

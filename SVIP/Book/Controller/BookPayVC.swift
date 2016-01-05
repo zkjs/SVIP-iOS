@@ -101,6 +101,7 @@ class BookPayVC: UIViewController {
       let dic = responsObject as! NSDictionary
       self.payAliOrder(dic)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        print(error)
     }
 }
   

@@ -119,10 +119,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     switch index {
     case 0:
       let indexPath = tableView.indexPathForCell(cell)!
-      let order = orders[indexPath.row] as! OrderModel
+      let order = orders[indexPath.row] as! OrderListModel
       orders.removeObjectAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           self.showHint(NSLocalizedString("FAILED", comment: ""))
       })

@@ -84,19 +84,26 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   func setUpUI() {
     self.roomsTextField.text = String(roomsCount)
   }
+  
   // MARK: - Table view data source
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
     cell.selectionStyle = UITableViewCellSelectionStyle.None
+    if indexPath.section == 0 && (indexPath.row == 0 || indexPath.row == 2)  || indexPath.section == 4 || indexPath.section == 5 {
+      
+    } else {
+      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+    }
+    
     return cell
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath == NSIndexPath(forRow: 1, inSection: 0) {
+    if indexPath == NSIndexPath(forRow: 3, inSection: 0) {
       chooseDate()
     }
-    if indexPath == NSIndexPath(forRow: 2, inSection: 0) {
+    if indexPath == NSIndexPath(forRow: 1, inSection: 0) {
       chooseRoomType()
     }
     if indexPath == NSIndexPath(forRow: 1, inSection: 2) {
@@ -177,7 +184,9 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   func gotoChatVC() {
     showHUDInView(view, withLoading: "")
     ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
+      if responseObject == nil {
+        return
+      }
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
