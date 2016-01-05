@@ -30,7 +30,7 @@
                         <action selector="done:" destination="-1" eventType="touchUpInside" id="D7E-iF-Gc9"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" background="ic_dian" translatesAutoresizingMaskIntoConstraints="NO" id="rBT-WC-9iY">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rBT-WC-9iY">
                     <rect key="frame" x="155" y="80" width="290" height="44"/>
                     <animations/>
                     <constraints>
@@ -43,20 +43,30 @@
                         <outlet property="delegate" destination="-1" id="86M-wg-LbS"/>
                     </connections>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBH-Of-g7K">
+                    <rect key="frame" x="155" y="132" width="290" height="1"/>
+                    <color key="backgroundColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="290" id="Eww-WN-2Ml"/>
+                        <constraint firstAttribute="height" constant="1" id="waW-EX-jxM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="rBT-WC-9iY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9ii-ZX-gCL"/>
+                <constraint firstItem="rBH-Of-g7K" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wpa-bZ-ONa"/>
                 <constraint firstItem="Nba-yg-4Kr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XO3-Yb-Cqf"/>
                 <constraint firstAttribute="bottom" secondItem="Nba-yg-4Kr" secondAttribute="bottom" id="gpG-0H-J0l"/>
+                <constraint firstItem="rBH-Of-g7K" firstAttribute="top" secondItem="rBT-WC-9iY" secondAttribute="bottom" constant="8" id="kHa-Dl-V1j"/>
                 <constraint firstItem="rBT-WC-9iY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="nId-iX-XdP"/>
                 <constraint firstAttribute="trailing" secondItem="Nba-yg-4Kr" secondAttribute="trailing" id="uco-jr-i3s"/>
             </constraints>
             <point key="canvasLocation" x="187" y="381"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_dian" width="1" height="44"/>
-    </resources>
 </document>

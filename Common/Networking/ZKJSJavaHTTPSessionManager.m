@@ -120,8 +120,9 @@
   NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%d/%d",[self userID],page.intValue,size.intValue];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    NSLog(@"酒店列表%@", [responseObject description]);
+  //  NSLog(@"酒店列表%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+   // NSLog(@"酒店列表%@", [error description]);
     failure(task, error);
   }];
 }
