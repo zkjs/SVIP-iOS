@@ -27,6 +27,8 @@ class CustonCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
+    
+    bluetoolView.hidden = true
   }
   
   class func reuseIdentifier() -> String {
