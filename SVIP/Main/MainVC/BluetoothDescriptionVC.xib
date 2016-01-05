@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BluetoothDescriptionVC" customModule="SVIP" customModuleProvider="target">
@@ -16,16 +16,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 只有您打开蓝牙，商家的iBecon才能运作，为您提供细节的服务。如离你最近的服务员响应您的服务等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1b-yY-91s">
-                    <rect key="frame" x="20" y="21" width="560" height="40"/>
+                    <rect key="frame" x="20" y="21" width="560" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="McB-Zi-D5G"/>
+                        <constraint firstAttribute="height" constant="60" id="McB-Zi-D5G"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sz-xI-qLA">
-                    <rect key="frame" x="50" y="137" width="500" height="70"/>
+                    <rect key="frame" x="50" y="131" width="500" height="70"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="gBf-P0-A0Q"/>
                     </constraints>
@@ -38,7 +38,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="5sz-xI-qLA" firstAttribute="top" secondItem="t1b-yY-91s" secondAttribute="bottom" constant="76" id="1DH-rl-ZcA"/>
+                <constraint firstItem="5sz-xI-qLA" firstAttribute="top" secondItem="t1b-yY-91s" secondAttribute="bottom" constant="50" id="1DH-rl-ZcA"/>
                 <constraint firstItem="5sz-xI-qLA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9aw-l1-37x"/>
                 <constraint firstAttribute="trailing" secondItem="t1b-yY-91s" secondAttribute="trailing" constant="20" id="OBx-NC-9d4"/>
                 <constraint firstItem="5sz-xI-qLA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="OPm-tP-eWf"/>
@@ -46,6 +46,11 @@
                 <constraint firstItem="t1b-yY-91s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="21" id="gPY-mJ-LSc"/>
                 <constraint firstItem="t1b-yY-91s" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="pUv-CO-g7u"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="9aw-l1-37x"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
