@@ -157,6 +157,7 @@
     BOOL flag = NO;
   if ([[messageModel.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
     BookOrder *order = [[BookOrder alloc] initWithJson: [messageModel text]];
+    NSLog(@"%@", order);
     NSString *type = [[order.reservation_no substringToIndex:1] uppercaseString];
     if ([type isEqualToString:@"H"]) {
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HotelOrderDetailTVC" bundle:nil];

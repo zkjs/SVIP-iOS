@@ -41,8 +41,9 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func loadData() {
-    showHUDInView(view, withLoading: "")
     //获取订单详情
+    guard let reservation_no = reservation_no else { return }
+    showHUDInView(view, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       self.hideHUD()
