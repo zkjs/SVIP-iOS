@@ -119,9 +119,9 @@ class BookPayVC: UIViewController {
       if result == "success" {
         ZKJSTool.showMsg("支付成功")
         ZKJSJavaHTTPSessionManager.sharedInstance().orderPayWithOrderno(self.bkOrder.orderno, success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
-          
+          print(responsObjects)
           }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-            
+            print(error)
         })
              }else {
         print(error.getMsg())

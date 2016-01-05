@@ -280,6 +280,8 @@
 		B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */; };
 		B2FF5A0C1B4918AC00139E49 /* BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */; };
 		C0C5BA42D3F8EB7E7B899613 /* libPods-SVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46501E00CF356A221CE759C9 /* libPods-SVIP.a */; };
+		FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */; };
+		FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */; };
 		FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02C5821C0D42D100D0D439 /* LoginVC.swift */; };
 		FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02C5831C0D42D100D0D439 /* LoginVC.xib */; };
 		FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B28B51C09453500E8B1C0 /* MailListCell.swift */; };
@@ -1094,6 +1096,8 @@
 		B2F4A9EF1B7EE2C3000DBD81 /* BookDateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDateSelectionViewController.swift; sourceTree = "<group>"; };
 		B2FF5A0B1B4918AC00139E49 /* BookOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookOrder.swift; sourceTree = "<group>"; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
+		FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDescriptionVC.swift; sourceTree = "<group>"; };
+		FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothDescriptionVC.xib; sourceTree = "<group>"; };
 		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
@@ -3007,6 +3011,8 @@
 				FAF253F41C12CE5600768A4D /* View */,
 				FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */,
 				FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */,
+				FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */,
+				FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */,
 				FAFA518E1C16C62900BF04F2 /* HomeVC.swift */,
 				FAFA518F1C16C62900BF04F2 /* HomeVC.xib */,
 				FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */,
@@ -3268,6 +3274,7 @@
 				FAF7F55B1C02EB4400C84601 /* PrivilegeCVCell.xib in Resources */,
 				40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */,
 				FAF7F55F1C0309D500C84601 /* CustomerServiceTVC.xib in Resources */,
+				FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
 				FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */,
 				40EE4D801C1EEF70009C0311 /* MeTVC.storyboard in Resources */,
@@ -3454,6 +3461,7 @@
 				4077DDF51C1EAF9900E13D6B /* EaseBubbleView+Location.m in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
 				4077DDE91C1EAF9900E13D6B /* EaseConversationListViewController.m in Sources */,
+				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
 				4077DD9F1C1EAF9900E13D6B /* EMTextView.m in Sources */,
 				FAF206141C3278CC0052EF74 /* BusinessDetailTVC.swift in Sources */,
 				4077DDC01C1EAF9900E13D6B /* EMSDWebImagePrefetcher.m in Sources */,

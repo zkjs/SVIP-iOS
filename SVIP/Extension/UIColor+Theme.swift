@@ -18,6 +18,10 @@ extension UIColor {
     return UIColor.hx_colorWithHexString("666666")
   }
   
+  class func ZKJS_navTitleColor() -> UIColor {
+    return UIColor.hx_colorWithHexString("5e5e5e")
+  }
+  
   class func ZKJS_promptColor() -> UIColor {
     return UIColor.hx_colorWithHexString("b8b8b8")
   }
