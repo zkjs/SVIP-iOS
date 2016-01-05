@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -39,20 +39,20 @@
                                         <rect key="frame" x="0.0" y="0.0" width="596" height="60"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bluetooth" translatesAutoresizingMaskIntoConstraints="NO" id="y0r-6C-kLS">
-                                                <rect key="frame" x="20" y="20" width="25" height="29"/>
+                                                <rect key="frame" x="20" y="25" width="20" height="25"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="7Jd-ZD-ETM"/>
-                                                    <constraint firstAttribute="width" constant="25" id="aIS-TQ-pmv"/>
+                                                    <constraint firstAttribute="height" constant="25" id="7Jd-ZD-ETM"/>
+                                                    <constraint firstAttribute="width" constant="20" id="aIS-TQ-pmv"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3n-G3-bPd">
-                                                <rect key="frame" x="65" y="20" width="255" height="25"/>
-                                                <state key="normal" title="请打开您的蓝牙，以便享受更好的服务">
+                                                <rect key="frame" x="56" y="30" width="195" height="15"/>
+                                                <state key="normal" title="请打开蓝牙，享受更好的服务">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9p-S3-ZtY">
-                                                <rect key="frame" x="506" y="7" width="45" height="46"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_right_orange" translatesAutoresizingMaskIntoConstraints="NO" id="l9p-S3-ZtY">
+                                                <rect key="frame" x="551" y="14" width="45" height="46"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="MKc-ZF-8F3"/>
                                                 </constraints>
@@ -60,14 +60,14 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="l9p-S3-ZtY" secondAttribute="bottom" constant="7" id="0K4-YT-gN5"/>
-                                            <constraint firstItem="H3n-G3-bPd" firstAttribute="top" secondItem="dwu-eE-s1p" secondAttribute="top" constant="20" id="6Va-6S-6Nx"/>
+                                            <constraint firstAttribute="bottom" secondItem="l9p-S3-ZtY" secondAttribute="bottom" id="0K4-YT-gN5"/>
+                                            <constraint firstItem="H3n-G3-bPd" firstAttribute="top" secondItem="dwu-eE-s1p" secondAttribute="top" constant="30" id="6Va-6S-6Nx"/>
                                             <constraint firstAttribute="height" constant="60" id="ADk-OJ-UJa"/>
                                             <constraint firstAttribute="bottom" secondItem="H3n-G3-bPd" secondAttribute="bottom" constant="15" id="ah6-m1-osd"/>
-                                            <constraint firstAttribute="trailing" secondItem="l9p-S3-ZtY" secondAttribute="trailing" constant="45" id="iFQ-Yy-HUt"/>
-                                            <constraint firstItem="H3n-G3-bPd" firstAttribute="leading" secondItem="y0r-6C-kLS" secondAttribute="trailing" constant="20" id="jJs-rd-T05"/>
-                                            <constraint firstItem="y0r-6C-kLS" firstAttribute="top" secondItem="dwu-eE-s1p" secondAttribute="top" constant="20" id="pKH-3l-EIF"/>
-                                            <constraint firstItem="l9p-S3-ZtY" firstAttribute="top" secondItem="dwu-eE-s1p" secondAttribute="top" constant="7" id="qHR-4I-Zjx"/>
+                                            <constraint firstAttribute="trailing" secondItem="l9p-S3-ZtY" secondAttribute="trailing" id="iFQ-Yy-HUt"/>
+                                            <constraint firstItem="H3n-G3-bPd" firstAttribute="leading" secondItem="y0r-6C-kLS" secondAttribute="trailing" constant="16" id="jJs-rd-T05"/>
+                                            <constraint firstItem="y0r-6C-kLS" firstAttribute="top" secondItem="dwu-eE-s1p" secondAttribute="top" constant="25" id="pKH-3l-EIF"/>
+                                            <constraint firstItem="l9p-S3-ZtY" firstAttribute="top" secondItem="dwu-eE-s1p" secondAttribute="top" constant="14" id="qHR-4I-Zjx"/>
                                             <constraint firstItem="y0r-6C-kLS" firstAttribute="leading" secondItem="dwu-eE-s1p" secondAttribute="leading" constant="20" id="tm6-rn-DE1"/>
                                         </constraints>
                                     </view>
@@ -173,6 +173,7 @@
     </objects>
     <resources>
         <image name="header_img_default" width="487" height="452"/>
+        <image name="ic_right_orange" width="10" height="18"/>
         <image name="nav_bluetooth" width="13" height="18"/>
     </resources>
 </document>
