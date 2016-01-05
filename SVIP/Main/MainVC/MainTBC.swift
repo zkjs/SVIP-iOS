@@ -54,6 +54,17 @@ class MainTBC: UITabBarController {
     checkVersion()
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.navigationBarHidden = true
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.navigationBarHidden = false
+  }
+  
   func checkVersion() {
     let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
     let version = NSNumber(longLong: Int64(buildNumber)!)

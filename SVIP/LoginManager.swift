@@ -42,7 +42,8 @@ class LoginManager: NSObject {
   
   //动画结束
   func afterAnimation() {
-    appWindow.rootViewController = MainTBC()
+    let nc = BaseNC(rootViewController: MainTBC())
+    appWindow.rootViewController = nc
   }
   
 }
