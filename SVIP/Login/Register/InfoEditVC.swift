@@ -51,6 +51,11 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
       return
     }
     
+    if username.text!.characters.count > 6 {
+      showHint("用户名最多6位")
+      return
+    }
+    
     if avatarData == nil {
       showHint("头像不能为空")
       return

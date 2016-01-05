@@ -54,15 +54,15 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     return cell
   }
   
-  func  layoutHidView() {
+  func layoutHidView() {
     if orders.count == 0 {
-      emptyLabel.frame = CGRectMake(0.0, 30, 150.0, 30.0)
-      //    let screenSize = UIScreen.mainScreen().bounds
+      let screenSize = UIScreen.mainScreen().bounds
+      emptyLabel.frame = CGRectMake(0.0, 30, 300.0, 30.0)
       emptyLabel.textAlignment = .Center
       emptyLabel.font = UIFont.systemFontOfSize(14)
       emptyLabel.text = "您还没有订单,有预订时,将会在此查看订单"
       emptyLabel.textColor = UIColor.ZKJS_promptColor()
-      //    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
+      emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
       emptyLabel.hidden = true
       view.addSubview(emptyLabel)
     }

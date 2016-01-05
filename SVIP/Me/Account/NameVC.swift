@@ -34,18 +34,23 @@ class NameVC: UIViewController {
   
   @IBAction func done(sender: AnyObject) {
     guard let userName = nameTextField.text else { return }
-    if nameTextField.text?.isEmpty == true {
+    if userName.isEmpty == true {
       showHint("姓名不能为空")
-    } else {
-      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(userName, imageData: nil, sex: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      return
+    }
+    
+    if userName.characters.count > 6 {
+      showHint("用户名最多6位")
+      return
+    }
+    
+    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(userName, imageData: nil, sex: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         AccountManager.sharedInstance().saveUserName(userName)
         self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           
       })
     }
-  }
-  
 }
 
 extension NameVC: UITextFieldDelegate {
