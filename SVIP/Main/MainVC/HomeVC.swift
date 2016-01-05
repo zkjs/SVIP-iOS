@@ -87,16 +87,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       getlastOrder()
     }
     getPushInfoData()
+    
 //    //根据酒店区域获取用户特权
 //    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-//     
-//      self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
 //      if let data = responsObjcet as? [String: AnyObject] {
 //        self.privilege = PrivilegeModel(dic: data)
-//        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-//          target:self,selector:Selector("highLight"),
-//          userInfo:nil,repeats:true)
-//        self.originOffsetY = self.privilegeButton.frame.origin.y
+//        self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
 //      }
 //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 //    }
@@ -290,6 +286,9 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     floatingVC.privilege = privilege
     self.view.addSubview(floatingVC.view)
     self.addChildViewController(floatingVC)
+    
+    let image = AccountManager.sharedInstance().avatarImage
+    privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -518,6 +517,7 @@ extension HomeVC: CLLocationManagerDelegate {
 //          userInfo:nil,repeats:true)
         if let data = responsObjcet as? [String: AnyObject] {
           self.privilege = PrivilegeModel(dic: data)
+          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
         }
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       }
