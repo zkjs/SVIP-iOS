@@ -237,6 +237,7 @@
 		40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D871C1F0836009C0311 /* SettingTVC.swift */; };
 		40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */; };
 		40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */; };
+		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
 		B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */; };
 		B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */; };
 		B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */; };
@@ -1036,6 +1037,7 @@
 		40EE4D871C1F0836009C0311 /* SettingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
 		40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
 		40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTVC.xib; sourceTree = "<group>"; };
+		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingViewController.swift; sourceTree = "<group>"; };
 		B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionBinaryTransformer.swift; sourceTree = "<group>"; };
@@ -1350,6 +1352,7 @@
 		40641EEF1B3E569700CF150D = {
 			isa = PBXGroup;
 			children = (
+				40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */,
 				40641F861B3E79A300CF150D /* Common */,
 				D8D0F96B75FA018B7CF90312 /* Frameworks */,
 				35D3481E8EFB7901D0E20AFC /* Pods */,
@@ -3276,6 +3279,7 @@
 				40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */,
 				FAFD27181C38C85E00B27C55 /* HotelOrderDetailTVC.storyboard in Resources */,
 				FAF249611BFF1008001E7E41 /* SearchResultVC.xib in Resources */,
+				40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */,
 				40E39E371BFEF43800516EC4 /* OrderHistoryCell.xib in Resources */,
 				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
 				40D585D21C22AA4E00C5267D /* SalesDetailVC.xib in Resources */,
