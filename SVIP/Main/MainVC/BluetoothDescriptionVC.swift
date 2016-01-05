@@ -12,9 +12,32 @@ class BluetoothDescriptionVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      title = "请打开您的蓝牙"
+//      navigationController?.navigationBar.tintColor = UIColor.ZKJS_navTitleColor()
+      let image = UIImage(named: "ic_fanhui_orange")
+      let  item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")
+      self.navigationItem.leftBarButtonItem = item1
 
-        // Do any additional setup after loading the view.
     }
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("BluetoothDescriptionVC", owner:self, options:nil)
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.navigationBar.translucent = false
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.navigationBar.translucent = true
+    self.hidesBottomBarWhenPushed = false
+  }
+  
+  func back() {
+    navigationController?.popViewControllerAnimated(true)
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

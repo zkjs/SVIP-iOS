@@ -120,7 +120,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   func scrollViewDidScroll(scrollView: UIScrollView) {
     let offsetY = scrollView.contentOffset.y
     privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
-    
   }
 
   
@@ -170,7 +169,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
           self.orderArray.append(order)
         }
         self.tableView.reloadData()
-
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
@@ -246,6 +244,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
       headercell.setData(self.activate,homeUrl: self.homeUrl)
       headercell.activeButton.addTarget(self, action: "activeCode:", forControlEvents: UIControlEvents.TouchUpInside)
       headercell.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
+      let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTap")
+      headercell.bluetoolView.addGestureRecognizer(singleTap)
 //      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
       return headercell
     }
@@ -290,6 +290,12 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     
     let image = AccountManager.sharedInstance().avatarImage
     privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+  }
+  
+  func handleSingleTap() {
+    let vc = BluetoothDescriptionVC()
+    vc.hidesBottomBarWhenPushed = true
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

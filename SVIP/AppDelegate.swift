@@ -176,16 +176,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   }
   
   //UM
-  
+  //iOS 8 及以下
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    let canHandleURL = Pingpp.handleOpenURL(url, withCompletion: nil) 
     let urlStr = url.absoluteString
     if urlStr.hasPrefix("SVIPPAY") {
-      
     }
-//    else if urlStr.hasPrefix(WXAppId) {
-//        return UMSocialSnsService.handleOpenURL(url)
-//    }
-        return true
+        return canHandleURL
+  }
+  //iOS 9 及以上
+
+  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+     let canHandleURL = Pingpp.handleOpenURL(url, withCompletion: nil)
+      return canHandleURL
   }
   
   // MARK: - Private Method

@@ -43,6 +43,11 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>201601042</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>wechat</string>
+		<string>weixin</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

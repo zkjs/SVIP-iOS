@@ -177,7 +177,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       presentViewController(nc, animated: true, completion: nil)
       return
     }
-    
     gotoChatVC()
   }
   

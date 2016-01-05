@@ -67,6 +67,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       payTypeLabel.text = "在线支付"
       payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)
       payButton.addTarget(self, action: "pay:", forControlEvents: UIControlEvents.TouchUpInside)
+      cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
     if orderDetail.paytype == 0 {
       payButton.hidden = true
@@ -103,6 +104,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func cancle(sender:UIButton) {
+    print("1")
     ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
         self.orderno = dic["data"] as! String
@@ -126,7 +128,6 @@ class HotelOrderDetailTVC:  UITableViewController {
     } else {
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
-        
         self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           print(error)
