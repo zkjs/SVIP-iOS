@@ -29,7 +29,7 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
     let myView = NSBundle.mainBundle().loadNibNamed("FloatHeaderView", owner: self, options: nil).first as! FloatHeaderView
     myView.frame.origin = CGPointMake((UIScreen.mainScreen().bounds.size.width-300)/2, 80)
     myView.nameLabel.text = privilege.privilegeName
-    myView.detailLabel.text = "详情: \(privilege.privilegeDesc)"
+    myView.detailLabel.text = "\(privilege.privilegeDesc)"
     self.view.addSubview(myView)
   }
  

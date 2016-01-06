@@ -121,6 +121,11 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     let offsetY = scrollView.contentOffset.y
     privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
   }
+  
+  func scrollViewDidEndScroll(scrollView: UIScrollView) {
+    let offsetY = scrollView.contentOffset.y
+    privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
+  }
 
   
   func loadData() {
@@ -298,8 +303,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
-   
     if pushInfoArray.count != 0 {
        let pushInfo = pushInfoArray[indexPath.row]
       if indexPath.section == 1 {
@@ -314,6 +317,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
           vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
           self.navigationController?.pushViewController(vc, animated: true)
         } else {
+          
           pushToBookVC(pushInfo)
         }
       }
@@ -321,9 +325,15 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
 
   func pushToBookVC(pushinfo: PushInfoModel) {
-    let vc = BookVC()
+    if pushinfo.shopid == "" {
+      ZKJSTool.showMsg("暂无商家信息")
+      return
+    }
+    let storyboard = UIStoryboard(name: "BusinessDetailVC", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailVC") as! BusinessDetailVC
     vc.shopid = NSNumber(integer: Int(pushinfo.shopid)!)
     vc.shopName = pushinfo.shopName
+    
     vc.hidesBottomBarWhenPushed = true
     navigationController?.pushViewController(vc, animated: true)
   }

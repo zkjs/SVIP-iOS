@@ -157,6 +157,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
             self.emptyLabel.hidden = false
           }
       }) { (task: NSURLSessionDataTask!, error: NSError!)-> Void in
+        self.hideHUD()
+        ZKJSTool.showMsg("数据异常")
     }
   }
   

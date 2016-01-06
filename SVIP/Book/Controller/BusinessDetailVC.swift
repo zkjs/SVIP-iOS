@@ -25,7 +25,6 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     let image = UIImage(named: "ic_fanhui_orange")
     let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
     self.navigationItem.leftBarButtonItem = item1
-    
     if let nc = childViewControllers[0] as? UINavigationController {
       if let vc = nc.topViewController as? BusinessDetailTVC {
         vc.delegate = self
@@ -34,9 +33,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
         vc.saleid = self.saleid
       }
     }
-    
     navigationController?.navigationBar.translucent = true
-
     loadData()
     addNextStepButton()
   }
