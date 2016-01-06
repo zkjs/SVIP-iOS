@@ -183,7 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     let urlStr = url.absoluteString
     if urlStr.hasPrefix("SVIPPAY") {
     }
-        return canHandleURL
+    return canHandleURL
   }
   //iOS 9 及以上
 
