@@ -66,7 +66,7 @@ class LeisureOrderDetailTVC: UITableViewController {
     personCountLabel.text = String(orderDetail.roomcount)
     contacterLabel.text = orderDetail.orderedby
     telphotoLabel.text = orderDetail.telephone
-    invoiceLabel.text = String(orderDetail.isinvoice)
+    invoiceLabel.text = orderDetail.company
         if orderDetail.paytype == 0 {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"

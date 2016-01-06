@@ -215,6 +215,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
               let name = sale["name"] as? String {
                 self.createConversationWithSalesID(salesid, salesName: name)
             }
+          } else {
+            ZKJSTool.showMsg("商家暂无客服")
           }
         }
       }

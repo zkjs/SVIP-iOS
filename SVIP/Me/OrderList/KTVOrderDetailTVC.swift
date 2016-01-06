@@ -67,7 +67,7 @@ class KTVOrderDetailTVC: UITableViewController {
     roomsCountLabel.text = String(orderDetail.roomcount)
     contacterLabel.text = orderDetail.orderedby
     telphotoLabel.text = orderDetail.telephone
-    invoiceLabel.text = String(orderDetail.isinvoice)
+    invoiceLabel.text = orderDetail.company
     if orderDetail.paytype == 1 {
       payTypeLabel.text = "在线支付"
       payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)

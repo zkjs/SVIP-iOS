@@ -42,6 +42,11 @@ class BookPayVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let image = UIImage(named: "ic_fanhui_orange")
+    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
+    self.navigationItem.leftBarButtonItem = item1
+    
     name.text = bkOrder.roomtype
     //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
     preference.text = bkOrder.remark
@@ -49,6 +54,10 @@ class BookPayVC: UIViewController {
     price.text = "￥\(bkOrder.roomprice)"
     name.text = bkOrder.roomtype
     getCurrentIP()
+  }
+  
+  func pop(sender:UIBarButtonItem) {
+   navigationController?.popToRootViewControllerAnimated(true)
   }
   
   func cancelOrder() {

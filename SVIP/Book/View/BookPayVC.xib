@@ -300,7 +300,7 @@
             <constraints>
                 <constraint firstItem="eXf-QQ-Gb3" firstAttribute="centerY" secondItem="eo3-aY-KlZ" secondAttribute="centerY" id="0Rc-iF-ool"/>
                 <constraint firstItem="aNk-VP-hq9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="78X-8v-LNB">
-                    <variation key="heightClass=regular-widthClass=compact" constant="129"/>
+                    <variation key="heightClass=regular-widthClass=compact" constant="80"/>
                 </constraint>
                 <constraint firstAttribute="centerX" secondItem="7I2-cC-9nC" secondAttribute="centerX" id="9jA-H8-uVI"/>
                 <constraint firstItem="VE5-Le-scw" firstAttribute="top" secondItem="tN4-gq-AVy" secondAttribute="bottom" constant="8" id="A0S-Vw-5EY"/>
