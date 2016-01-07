@@ -70,6 +70,12 @@ class HotelOrderDetailTVC:  UITableViewController {
       payButton.addTarget(self, action: "pay:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
+    if orderDetail.paytype == 2 {
+       payTypeLabel.text = "到店支付"
+    }
+    if orderDetail.paytype == 2 {
+      payTypeLabel.text = "挂账"
+    }
     if orderDetail.paytype == 0 {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
@@ -86,13 +92,14 @@ class HotelOrderDetailTVC:  UITableViewController {
       vc.bkOrder = orderDetail
       navigationController?.pushViewController(vc, animated: true)
     } else {
+      showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
-        print(responsObjects)
         if let dic = responsObjects as? NSDictionary {
           self.orderno = dic["data"] as! String
           if let result = dic["result"] as? NSNumber {
             if result.boolValue == true {
               ZKJSTool.showMsg("订单已确认")
+              self.hideHUD()
               self.navigationController?.popViewControllerAnimated(true)
             }
           }
@@ -105,13 +112,14 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func cancle(sender:UIButton) {
-    print("1")
+    showHUDInView(view, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
         self.orderno = dic["data"] as! String
         if let result = dic["result"] as? NSNumber {
           if result.boolValue == true {
             self.navigationController?.popViewControllerAnimated(true)
+            self.hideHUD()
           }
         }
       }
@@ -127,11 +135,14 @@ class HotelOrderDetailTVC:  UITableViewController {
       payVC.bkOrder = orderDetail
       navigationController?.pushViewController(payVC, animated: true)
     } else {
+      showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
+        self.hideHUD()
         self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           print(error)
+          self.hideHUD()
       })
     }
     

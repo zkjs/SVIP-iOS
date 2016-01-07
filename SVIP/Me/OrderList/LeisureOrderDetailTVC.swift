@@ -71,6 +71,7 @@ class LeisureOrderDetailTVC: UITableViewController {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
     }
+  
     if orderDetail.orderstatus == "待确认" {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -84,6 +85,7 @@ class LeisureOrderDetailTVC: UITableViewController {
       vc.bkOrder = self.orderDetail
       self.navigationController?.pushViewController(vc, animated: true)
     } else {
+      showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         print(responsObjects)
         if let dic = responsObjects as? NSDictionary {
@@ -91,6 +93,7 @@ class LeisureOrderDetailTVC: UITableViewController {
           if let result = dic["result"] as? NSNumber {
             if result.boolValue == true {
               ZKJSTool.showMsg("订单已确认")
+              self.hideHUD()
               self.navigationController?.popViewControllerAnimated(true)
             }
           }
@@ -103,12 +106,14 @@ class LeisureOrderDetailTVC: UITableViewController {
   }
   
   func cancle(sender:UIButton) {
+    showHUDInView(view, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
         self.orderno = dic["data"] as! String
         if let result = dic["result"] as? NSNumber {
           if result.boolValue == true {
             self.navigationController?.popViewControllerAnimated(true)
+            self.hideHUD()
           }
         }
       }
@@ -117,65 +122,5 @@ class LeisureOrderDetailTVC: UITableViewController {
     }
   }
   
-
-
-  
- 
-  
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

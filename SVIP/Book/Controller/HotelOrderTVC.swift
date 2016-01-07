@@ -244,7 +244,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["remark"] = self.remarkTextView.text
     
     ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
-//      print(responObjects)
       if let orderno = responObjects["data"] as? String {
         let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
         let order = self.packetOrderWithOrderNO(orderno)
@@ -262,7 +261,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
+        print(error)
     }
   }
 

@@ -302,7 +302,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     navigationController?.pushViewController(vc, animated: true)
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {  
     if pushInfoArray.count != 0 {
        let pushInfo = pushInfoArray[indexPath.row]
       if indexPath.section == 1 {
@@ -317,7 +317,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
           vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
           self.navigationController?.pushViewController(vc, animated: true)
         } else {
-          
           pushToBookVC(pushInfo)
         }
       }

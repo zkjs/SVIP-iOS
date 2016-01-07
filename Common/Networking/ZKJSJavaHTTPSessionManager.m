@@ -239,7 +239,7 @@
   NSString * url = [NSString stringWithFormat:@"shop/get/%@", shopID];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
+   // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
