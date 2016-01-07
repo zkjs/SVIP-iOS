@@ -27,31 +27,20 @@ class BookRoomCell: UITableViewCell {
     return 171.0
   }
   
-  
   //DATA
   
   func setData(goods: RoomGoods) {
-    //        var priceStr = ""
     var room: String! = ""
-    var type: String! = ""
-    //        if let b = myGoods.price {
-    //          priceStr = b
-    //        }
     if goods.room != nil {
       room = goods.room
     }
-    if goods.type != nil {
-      type = goods.type
-    }
-    //        let tagStr = "  \(room)\(type)   ¥\(priceStr)"
-    let tagStr = room
-    priceTag.text = tagStr
+    priceTag.text = room
     
     let baseUrl = kBaseURL
     if let goodsImage = goods.image {
       var url = NSURL(string: baseUrl)
       url = url?.URLByAppendingPathComponent(goodsImage)
-      roomLook.sd_setImageWithURL(url)
+      roomLook.sd_setImageWithURL(url, placeholderImage: UIImage(named: "bg_dingdanzhuangtai"))
     }
   }
   

@@ -37,20 +37,6 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     setUI()
     loadData()
     loadRoomTypes()
-    
-    self.navigationController!.navigationBar.translucent = true
-    self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-    self.navigationController!.navigationBar.shadowImage = UIImage()
-    let image = UIImage(named: "ic_fanhui_orange")
-    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
-    navigationController?.navigationBar.translucent = true
-    self.navigationItem.leftBarButtonItem = item1
-  }
-  
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-     navigationController?.navigationBar.translucent = false
-    navigationController?.navigationBarHidden = false
   }
   
   func loadRoomTypes() {
@@ -72,7 +58,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   private func setUI() {
     //title = NSLocalizedString("ROOM_TYPE", comment: "")
-    automaticallyAdjustsScrollViewInsets = false
+//    automaticallyAdjustsScrollViewInsets = false
     
     let nibName = UINib(nibName: BookRoomCell.nibName(), bundle: nil)
     tableView.registerNib(nibName, forCellReuseIdentifier: BookRoomCell.reuseIdentifier())

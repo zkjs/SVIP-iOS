@@ -64,7 +64,7 @@
 
     BookOrder *order = [[BookOrder alloc] initWithJson:model.text];
     NSURL *imageURL = [NSURL URLWithString:order.room_image_URL];
-    [_bubbleView.locationImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"imageDownloadFail"]];
+    [_bubbleView.locationImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"bg_dingdanzhuangtai"]];
     NSString *roomInfo = order.roomInfo;
     NSString *cardInfo = [NSString stringWithFormat:@" %@", roomInfo];
     _bubbleView.locationLabel.text = cardInfo;
