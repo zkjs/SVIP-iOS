@@ -73,6 +73,12 @@ class KTVOrderDetailTVC: UITableViewController {
       payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)
       payButton.addTarget(self, action: "pay:", forControlEvents: UIControlEvents.TouchUpInside)
     }
+    if orderDetail.paytype == 2 {
+      payTypeLabel.text = "到店支付"
+    }
+    if orderDetail.paytype == 2 {
+      payTypeLabel.text = "挂账"
+    }
     if orderDetail.paytype == 0 {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
@@ -90,6 +96,7 @@ class KTVOrderDetailTVC: UITableViewController {
       vc.bkOrder = self.orderDetail
       self.navigationController?.pushViewController(vc, animated: true)
     } else {
+      showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         print(responsObjects)
         if let dic = responsObjects as? NSDictionary {
@@ -97,6 +104,7 @@ class KTVOrderDetailTVC: UITableViewController {
           if let result = dic["result"] as? NSNumber {
             if result.boolValue == true {
               ZKJSTool.showMsg("订单已确认")
+              self.hideHUD()
               self.navigationController?.popViewControllerAnimated(true)
             }
           }

@@ -71,6 +71,7 @@ class LeisureOrderDetailTVC: UITableViewController {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
     }
+  
     if orderDetail.orderstatus == "待确认" {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -84,6 +85,7 @@ class LeisureOrderDetailTVC: UITableViewController {
       vc.bkOrder = self.orderDetail
       self.navigationController?.pushViewController(vc, animated: true)
     } else {
+      showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         print(responsObjects)
         if let dic = responsObjects as? NSDictionary {
@@ -91,6 +93,7 @@ class LeisureOrderDetailTVC: UITableViewController {
           if let result = dic["result"] as? NSNumber {
             if result.boolValue == true {
               ZKJSTool.showMsg("订单已确认")
+              self.hideHUD()
               self.navigationController?.popViewControllerAnimated(true)
             }
           }
