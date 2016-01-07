@@ -168,7 +168,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   }
   
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-  
      let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
       let currentPage = Int((self.scrollView.contentOffset.x - pageWidth/(CGFloat(shopDetail.images.count+2)))/pageWidth) + 1
@@ -197,7 +196,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       if let score = self.shopDetail.score {
         starRating.rating = score.floatValue
       }
-      
       cell.addSubview(starRating)
     }
     return cell
@@ -212,7 +210,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   
   func photoViewer() {
     let browser = MWPhotoBrowser(delegate: self)
-    
     browser.displayActionButton = false
     browser.displayNavArrows = false
     browser.displaySelectionButtons = false
@@ -223,7 +220,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     browser.enableSwipeToDismiss = false
     browser.setCurrentPhotoIndex(0)
     self.delegate?.gotoPhotoViewerDelegate(browser)
-
   }
   
   func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {

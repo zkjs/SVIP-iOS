@@ -321,7 +321,8 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   }
 
   func pushToBookVC(pushinfo: PushInfoModel) {
-    let vc = BookVC()
+    let storyboard = UIStoryboard(name: "BusinessDetailVC", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailVC") as! BusinessDetailVC
     vc.shopid = NSNumber(integer: Int(pushinfo.shopid)!)
     vc.shopName = pushinfo.shopName
     vc.hidesBottomBarWhenPushed = true
