@@ -115,13 +115,14 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func cancle(sender:UIButton) {
-    
+    showHUDInView(view, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
         self.orderno = dic["data"] as! String
         if let result = dic["result"] as? NSNumber {
           if result.boolValue == true {
             self.navigationController?.popViewControllerAnimated(true)
+            self.hideHUD()
           }
         }
       }
@@ -137,11 +138,14 @@ class HotelOrderDetailTVC:  UITableViewController {
       payVC.bkOrder = orderDetail
       navigationController?.pushViewController(payVC, animated: true)
     } else {
+      showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
+        self.hideHUD()
         self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           print(error)
+          self.hideHUD()
       })
     }
     
