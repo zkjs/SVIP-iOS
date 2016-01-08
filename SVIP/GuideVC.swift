@@ -20,12 +20,18 @@ class GuideVC: UIViewController {
   let cloud2 = UIImageView(image: UIImage(named: "defoult_cloud_1"))
   
   let text2 = UIImageView(image: UIImage(named: "defoult_text_2"))
+  let bg2 = UIImageView(image: UIImage(named: "defoult_bg_2"))
+  let bicycle = UIImageView(image: UIImage(named: "defoult_Bicycle"))
+  let car = UIImageView(image: UIImage(named: "defoult_car"))
 
   let text3 = UIImageView(image: UIImage(named: "defoult_text_3"))
+  let bg3 = UIImageView(image: UIImage(named: "defoult_bg_3"))
 
   let text4 = UIImageView(image: UIImage(named: "defoult_text_4"))
+  let bg4 = UIImageView(image: UIImage(named: "defoult_bg_4"))
 
   let text5 = UIImageView(image: UIImage(named: "defoult_text_5"))
+  let bg5 = UIImageView(image: UIImage(named: "defoult_bg_5"))
   let startButton = UIButton()
 
   
@@ -98,10 +104,29 @@ class GuideVC: UIViewController {
   }
   
   private func setupPage2() {
+    let scrollViewWidth: CGFloat = scrollView.frame.width
+    
+    let middleX = CGRectGetMidX(UIScreen.mainScreen().bounds)
+    let middleY = CGRectGetMidY(UIScreen.mainScreen().bounds)
+
     text2.sizeToFit()
     text2.hidden = true
     
+    bg2.sizeToFit()
+    bg2.center = CGPointMake(middleX+scrollViewWidth, middleY-100)
+    
+    bicycle.sizeToFit()
+    bicycle.center = CGPointMake(middleX+scrollViewWidth, middleY-100)
+    bicycle.transform = CGAffineTransformMakeScale(1.2, 1.2)
+    
+    car.sizeToFit()
+    car.alpha = 0
+    car.center = CGPointMake(middleX+scrollViewWidth, middleY-100)
+    
     scrollView.addSubview(text2)
+    scrollView.addSubview(bg2)
+    scrollView.addSubview(bicycle)
+    scrollView.addSubview(car)
   }
   
   private func setupPage3() {
@@ -109,12 +134,15 @@ class GuideVC: UIViewController {
     
     let middleX = CGRectGetMidX(UIScreen.mainScreen().bounds)
     let middleY = CGRectGetMidY(UIScreen.mainScreen().bounds)
-    let textY = middleY + 120
     
     text3.sizeToFit()
     text3.hidden = true
     
+    bg3.sizeToFit()
+    bg3.center = CGPointMake(middleX+scrollViewWidth*2, middleY-100)
+    
     scrollView.addSubview(text3)
+    scrollView.addSubview(bg3)
   }
   
   private func setupPage4() {
@@ -122,12 +150,15 @@ class GuideVC: UIViewController {
     
     let middleX = CGRectGetMidX(UIScreen.mainScreen().bounds)
     let middleY = CGRectGetMidY(UIScreen.mainScreen().bounds)
-    let textY = middleY + 120
     
     text4.sizeToFit()
     text4.hidden = true
     
+    bg4.sizeToFit()
+    bg4.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
+    
     scrollView.addSubview(text4)
+    scrollView.addSubview(bg4)
   }
   
   private func setupPage5() {
@@ -135,10 +166,12 @@ class GuideVC: UIViewController {
     
     let middleX = CGRectGetMidX(UIScreen.mainScreen().bounds)
     let middleY = CGRectGetMidY(UIScreen.mainScreen().bounds)
-    let textY = middleY + 120
     
     text5.sizeToFit()
     text5.hidden = true
+    
+    bg5.sizeToFit()
+    bg5.center = CGPointMake(middleX+scrollViewWidth*4, middleY-100)
     
     startButton.setImage(UIImage(named: "defoult_start"), forState: .Normal)
     startButton.sizeToFit()
@@ -147,6 +180,7 @@ class GuideVC: UIViewController {
     
     scrollView.addSubview(text5)
     scrollView.addSubview(startButton)
+    scrollView.addSubview(bg5)
   }
   
   // MARK: - Button Action
@@ -186,6 +220,20 @@ extension GuideVC: UIScrollViewDelegate {
       text2.center = CGPointMake(middleX+scrollViewWidth+300, textY)
       UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
         self.text2.center = CGPointMake(middleX+scrollViewWidth, textY)
+        }, completion: nil)
+      
+      bicycle.transform = CGAffineTransformMakeScale(1.2, 1.2)
+      bicycle.alpha = 1
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.bicycle.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        self.bicycle.alpha = 0
+        }, completion: nil)
+      
+      car.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      car.alpha = 0
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.car.transform = CGAffineTransformIdentity
+        self.car.alpha = 1
         }, completion: nil)
     } else if Int(currentPage) == 2 {
       text3.hidden = false
