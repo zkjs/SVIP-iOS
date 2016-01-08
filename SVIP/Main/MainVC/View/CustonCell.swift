@@ -88,6 +88,7 @@ class CustonCell: UITableViewCell {
 //    let image = AccountManager.sharedInstance().avatarImage
     
     if loginStats == false {
+      userNameLabel.text = ""//没登陆时不显示名字(不要删掉)
       loginButton.hidden = false
       activeButton.hidden = true
       loginButton.setTitle("立即登录", forState: UIControlState.Normal)

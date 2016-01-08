@@ -39,7 +39,6 @@ class MeTVC: UITableViewController {
     }
     
     ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderListWithPage("1", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
       if let array = responseObject as? [[String: AnyObject]] {
         let count = array.count
         if count > 0 {
