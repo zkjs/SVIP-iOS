@@ -177,6 +177,8 @@
 		40817D1A1B8EDA7300EF188F /* NewItemFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40817D191B8EDA7300EF188F /* NewItemFooterView.xib */; };
 		40817D1C1B8EDCED00EF188F /* NewItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1B1B8EDCED00EF188F /* NewItemHeaderView.swift */; };
 		40817D1E1B8EDD4B00EF188F /* NewItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D1D1B8EDD4B00EF188F /* NewItemFooterView.swift */; };
+		408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408D28E61C3F8C3600183849 /* GuideVC.swift */; };
+		408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408D28E71C3F8C3600183849 /* GuideVC.xib */; };
 		409587EA1BCD05CE00D212D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 409587EC1BCD05CE00D212D6 /* Localizable.strings */; };
 		40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */; };
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
@@ -750,6 +752,8 @@
 		40817D191B8EDA7300EF188F /* NewItemFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewItemFooterView.xib; sourceTree = "<group>"; };
 		40817D1B1B8EDCED00EF188F /* NewItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemHeaderView.swift; sourceTree = "<group>"; };
 		40817D1D1B8EDD4B00EF188F /* NewItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemFooterView.swift; sourceTree = "<group>"; };
+		408D28E61C3F8C3600183849 /* GuideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVC.swift; sourceTree = "<group>"; };
+		408D28E71C3F8C3600183849 /* GuideVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideVC.xib; sourceTree = "<group>"; };
 		409587EB1BCD05CE00D212D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		409587ED1BCD05D000D212D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
@@ -1397,6 +1401,8 @@
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
 				40D412201BCB4FAB00FC28DB /* Localizable.strings */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
+				408D28E61C3F8C3600183849 /* GuideVC.swift */,
+				408D28E71C3F8C3600183849 /* GuideVC.xib */,
 				405826481BA11CC5005A2C8E /* PrefixHeader.pch */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
 				404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */,
@@ -3291,6 +3297,7 @@
 				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
 				40D585D21C22AA4E00C5267D /* SalesDetailVC.xib in Resources */,
 				40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */,
+				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */,
@@ -3616,6 +3623,7 @@
 				40E39E3B1BFEF43800516EC4 /* OrderListHeaderView.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
 				4077DDD91C1EAF9900E13D6B /* EaseConversationModel.m in Sources */,
+				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
 				4077DDA81C1EAF9900E13D6B /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				4077DDED1C1EAF9900E13D6B /* EaseUsersListViewController.m in Sources */,
 				404B04B21B8C501800198BB4 /* BookingOrderDetailTVC.swift in Sources */,
