@@ -7,30 +7,30 @@
 //
 
 import UIKit
+
 protocol refreshHomeVCDelegate{
   func refreshHomeVC(set:Bool)
 }
-class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate {
-  var delegate:refreshHomeVCDelegate?
-  var dataArray = Array<[String: String]>()
-  var privilege = PrivilegeModel()
-  
-  @IBOutlet weak var floatView: UIView!
 
+class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate {
+  
+  var delegate:refreshHomeVCDelegate?
+  var privilegeArray = [PrivilegeModel]()
+  
+  @IBOutlet weak var tableView: UITableView!
+
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("FloatingWindowVC", owner: self, options: nil)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationController?.navigationBarHidden = true
+    
+    tableView.tableFooterView = UIView()
+    tableView .registerNib(UINib(nibName: FloatCell.nibName(), bundle: nil), forCellReuseIdentifier: FloatCell.reuseIdentifier())
+    
     view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-  }
-  
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    let myView = NSBundle.mainBundle().loadNibNamed("FloatHeaderView", owner: self, options: nil).first as! FloatHeaderView
-    myView.frame.origin = CGPointMake((UIScreen.mainScreen().bounds.size.width-300)/2, 80)
-    myView.nameLabel.text = privilege.privilegeName
-    myView.detailLabel.text = "\(privilege.privilegeDesc)"
-    self.view.addSubview(myView)
   }
  
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
@@ -40,11 +40,33 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
     self.view.removeFromSuperview()
   }
 
-  override func loadView() {
-    NSBundle.mainBundle().loadNibNamed("FloatingWindowVC", owner: self, options: nil)
+}
+
+extension FloatingWindowVC: UITableViewDelegate, UITableViewDataSource {
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return privilegeArray.count
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-   }
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return FloatCell.height()
+  }
+  
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 100
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(FloatCell.reuseIdentifier(), forIndexPath: indexPath) as! FloatCell
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
+    let privilege = privilegeArray[indexPath.row]
+    cell.setData(privilege)
+    return cell
+  }
+  
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = NSBundle.mainBundle().loadNibNamed("FloatHeaderView", owner: self, options: nil).first as! FloatHeaderView
+    return view
+  }
+  
 }

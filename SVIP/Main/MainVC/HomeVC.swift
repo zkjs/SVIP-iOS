@@ -14,7 +14,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   let Identifier = "SettingVCCell"
   let locationManager = CLLocationManager()
   var bluetoothManager = CBCentralManager()
-  var privilege = PrivilegeModel()
+  var privilegeArray = [PrivilegeModel]()
   var floatingVC = FloatingWindowVC()
   //var pushInfo = PushInfoModel()
   var pushInfoArray = [PushInfoModel]()
@@ -89,14 +89,19 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     }
     getPushInfoData()
     
-//    //根据酒店区域获取用户特权
-//    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-//      if let data = responsObjcet as? [String: AnyObject] {
-//        self.privilege = PrivilegeModel(dic: data)
-//        self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//    }
+    //根据酒店区域获取用户特权
+    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+      if let array = responsObjcet as? [[String: AnyObject]] {
+        if array.count > 0 {
+          for data in array {
+            let privilege = PrivilegeModel(dic: data)
+            self.privilegeArray.append(privilege)
+          }
+          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+    }
   }
   
   //TableView Scroller Delegate
@@ -281,14 +286,14 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
   
   
   func getPrivilege() {
-    if privilege.privilegeName == nil {
+    if privilegeArray.count == 0 {
       return
     }
     countTimer = 0
 //    self.timer.invalidate()
     floatingVC = FloatingWindowVC()
     floatingVC.delegate = self
-    floatingVC.privilege = privilege
+    floatingVC.privilegeArray = privilegeArray
     self.view.addSubview(floatingVC.view)
     self.addChildViewController(floatingVC)
     
@@ -536,9 +541,15 @@ extension HomeVC: CLLocationManagerDelegate {
 //        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
 //          target:self,selector:Selector("highLight"),
 //          userInfo:nil,repeats:true)
-        if let data = responsObjcet as? [String: AnyObject] {
-          self.privilege = PrivilegeModel(dic: data)
-          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+        if let array = responsObjcet as? [[String: AnyObject]] {
+          if array.count > 0 {
+            for data in array {
+              let privilege = PrivilegeModel(dic: data)
+              self.privilegeArray.append(privilege)
+            }
+            
+            self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+          }
         }
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       }
