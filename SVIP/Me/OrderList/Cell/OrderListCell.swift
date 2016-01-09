@@ -56,7 +56,7 @@ class OrderListCell: SWTableViewCell {
     roomTypeLabel.text = order.roomtype! + "x" + (order.roomcount?.stringValue)!
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "dd-MM-yyyy"
-    locationLabel.text = dateFormatter.stringFromDate(order.arrivaldate)
+    locationLabel.text = dateFormatter.stringFromDate(order.created)
     
     priceLabel.text =   " ￥\(order.roomprice)"
     rightUtilityButtons = rightButtons() as [AnyObject]

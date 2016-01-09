@@ -52,8 +52,10 @@ class OrderListModel: NSObject {
     username = dic["username"] as? String ?? ""
     saleid = dic["saleid"] as? String ?? ""
     arrivaldate = dic["arrivaldate"] as? NSDate ?? NSDate()
-    leavedate = dic["leavedate"] as? NSDate ?? NSDate()
-    created = dic["created"] as? NSDate ?? NSDate()
+    if let timestamp =  dic["created"] as? NSNumber {
+      created = NSDate(timeIntervalSince1970: timestamp.doubleValue / 1000.0)
+    }
+    
     
   }
 

@@ -337,7 +337,6 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailVC") as! BusinessDetailVC
     vc.shopid = NSNumber(integer: Int(pushinfo.shopid)!)
     vc.shopName = pushinfo.shopName
-    
     vc.hidesBottomBarWhenPushed = true
     navigationController?.pushViewController(vc, animated: true)
   }

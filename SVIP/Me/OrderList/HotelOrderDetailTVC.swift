@@ -93,7 +93,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       navigationController?.pushViewController(vc, animated: true)
     } else {
       showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
+      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         if let dic = responsObjects as? NSDictionary {
           self.orderno = dic["data"] as! String
           if let result = dic["result"] as? NSNumber {
@@ -136,7 +136,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       navigationController?.pushViewController(payVC, animated: true)
     } else {
       showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
         self.hideHUD()
         self.navigationController?.popViewControllerAnimated(true)
@@ -148,24 +148,38 @@ class HotelOrderDetailTVC:  UITableViewController {
     
   }
   
+  @IBAction func comments(sender: AnyObject) {
+    let vc = OrderDetailsVC()
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    // 确定
+    //待评价
     if indexPath.section == 5 {
       if orderDetail.orderstatus != nil {
-        if orderDetail.orderstatus == "已确认" || orderDetail.orderstatus == "已取消" {
+        if  orderDetail.orderstatus != "待评价"  {
           return 0.0
         }
       }
-      
-      if orderDetail.paytype != nil && orderDetail.paytype.integerValue == 0 {
-        return 0.0
+    }
+    
+    // 确定
+    if indexPath.section == 6  {//确认
+      if orderDetail.orderstatus != nil {
+        if orderDetail.orderstatus == "待确认" || orderDetail.orderstatus == "待支付" {
+          
+        } else {
+          return 0.0
+        }
       }
     }
     
     // 取消
-    if indexPath.section == 6 {
+    if indexPath.section == 7 {//取消
       if orderDetail.orderstatus != nil {
-        if orderDetail.orderstatus == "已确认" || orderDetail.orderstatus == "已取消" {
+        if orderDetail.orderstatus == "待处理" || orderDetail.orderstatus == "待确认" || orderDetail.orderstatus == "待支付" || orderDetail.orderstatus == "已确认" {
+          
+        } else {
           return 0.0
         }
       }
@@ -174,4 +188,5 @@ class HotelOrderDetailTVC:  UITableViewController {
     return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
   }
   
+
 }

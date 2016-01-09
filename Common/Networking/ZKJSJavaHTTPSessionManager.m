@@ -156,7 +156,7 @@
   
   [self POST:@"messages/orders" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-   // NSLog(@"%@", [responseObject description]);
+    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -202,7 +202,7 @@
   NSString * url = [NSString stringWithFormat:@"order/list/%@/%@/%@", [self userID],page,size];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-       NSLog(@"%@", [responseObject description]);
+    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"%@", [error description]);
     failure(task, error);
@@ -325,6 +325,22 @@
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
+}
+
+#pragma mark - 订单评价
+- (void)evaluationWithData:(NSDictionary *)data success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * str = [ZKJSTool convertJSONStringFromDictionary:data];
+  NSData *plainTextData = [str dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
+  NSDictionary * dic = @{@"data":base64String};
+  [self POST:@"order/evaluation" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+    NSLog(@"%@", [error description]);
+  }];
+  
 }
 
 @end
