@@ -26,13 +26,41 @@ class GuideVC: UIViewController {
 
   let text3 = UIImageView(image: UIImage(named: "defoult_text_3"))
   let bg3 = UIImageView(image: UIImage(named: "defoult_bg_3"))
+  let liwu = UIImageView(image: UIImage(named: "defoult_liwu"))
+  let guangyun = UIImageView(image: UIImage(named: "defoult_guangyun"))
+  let pass = UIImageView(image: UIImage(named: "defoult_pass"))
+  let jiu = UIImageView(image: UIImage(named: "defoult_jiu"))
+  let hua = UIImageView(image: UIImage(named: "defoult_hua"))
 
   let text4 = UIImageView(image: UIImage(named: "defoult_text_4"))
   let bg4 = UIImageView(image: UIImage(named: "defoult_bg_4"))
+  
+  let p_7 = UIImageView(image: UIImage(named: "defoult_p_7"))
+  let p_11 = UIImageView(image: UIImage(named: "defoult_p_11"))
+  let p_15 = UIImageView(image: UIImage(named: "defoult_p_15"))
+
+  let p_8 = UIImageView(image: UIImage(named: "defoult_p_8"))
+  let p_12 = UIImageView(image: UIImage(named: "defoult_p_12"))
+  let p_16 = UIImageView(image: UIImage(named: "defoult_p_16"))
+
+  let p_9 = UIImageView(image: UIImage(named: "defoult_p_9"))
+  let p_13 = UIImageView(image: UIImage(named: "defoult_p_13"))
+  let p_17 = UIImageView(image: UIImage(named: "defoult_p_17"))
+
+  let p_19 = UIImageView(image: UIImage(named: "defoult_p_19"))
+  let p_14 = UIImageView(image: UIImage(named: "defoult_p_14"))
+  let p_18 = UIImageView(image: UIImage(named: "defoult_p_18"))
+  
+  let p_20 = UIImageView(image: UIImage(named: "defoult_p_20"))
+  let p_10 = UIImageView(image: UIImage(named: "defoult_p_10"))
+  let p_21 = UIImageView(image: UIImage(named: "defoult_p_21"))
 
   let text5 = UIImageView(image: UIImage(named: "defoult_text_5"))
   let bg5 = UIImageView(image: UIImage(named: "defoult_bg_5"))
   let startButton = UIButton()
+  let p_5 = UIImageView(image: UIImage(named: "defoult_p_5"))
+  let huangguan = UIImageView(image: UIImage(named: "defoult_huangguan"))
+  let guanghuan = UIImageView(image: UIImage(named: "defoult_guanghuan"))
 
   
   override func loadView() {
@@ -141,8 +169,28 @@ class GuideVC: UIViewController {
     bg3.sizeToFit()
     bg3.center = CGPointMake(middleX+scrollViewWidth*2, middleY-100)
     
+    liwu.sizeToFit()
+    liwu.alpha = 0
+    
+    guangyun.sizeToFit()
+    guangyun.alpha = 0
+    
+    pass.sizeToFit()
+    pass.alpha = 0
+    
+    jiu.sizeToFit()
+    jiu.alpha = 0
+    
+    hua.sizeToFit()
+    hua.alpha = 0
+    
     scrollView.addSubview(text3)
     scrollView.addSubview(bg3)
+    scrollView.addSubview(liwu)
+    scrollView.addSubview(guangyun)
+    scrollView.addSubview(pass)
+    scrollView.addSubview(jiu)
+    scrollView.addSubview(hua)
   }
   
   private func setupPage4() {
@@ -156,6 +204,41 @@ class GuideVC: UIViewController {
     
     bg4.sizeToFit()
     bg4.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
+    
+    p_20.sizeToFit()
+    p_20.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100-70)
+    p_10.sizeToFit()
+    p_10.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100)
+    p_21.sizeToFit()
+    p_21.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100+70)
+    
+    p_7.sizeToFit()
+    p_7.center = CGPointMake(middleX+scrollViewWidth*3-30, middleY-100-70)
+    p_11.sizeToFit()
+    p_11.center = CGPointMake(middleX+scrollViewWidth*3-30, middleY-100)
+    p_15.sizeToFit()
+    p_15.center = CGPointMake(middleX+scrollViewWidth*3-30, middleY-100+70)
+    
+    p_8.sizeToFit()
+    p_8.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100-70)
+    p_12.sizeToFit()
+    p_12.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
+    p_16.sizeToFit()
+    p_16.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100+70)
+    
+    p_9.sizeToFit()
+    p_9.center = CGPointMake(middleX+scrollViewWidth*3+30, middleY-100-70)
+    p_13.sizeToFit()
+    p_13.center = CGPointMake(middleX+scrollViewWidth*3+30, middleY-100)
+    p_17.sizeToFit()
+    p_17.center = CGPointMake(middleX+scrollViewWidth*3+30, middleY-100+70)
+    
+    p_19.sizeToFit()
+    p_19.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100-70)
+    p_14.sizeToFit()
+    p_14.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100)
+    p_18.sizeToFit()
+    p_18.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100+70)
     
     scrollView.addSubview(text4)
     scrollView.addSubview(bg4)
@@ -178,9 +261,20 @@ class GuideVC: UIViewController {
     startButton.hidden = true
     startButton.addTarget(self, action: "gotoMain", forControlEvents: .TouchUpInside)
     
+    p_5.sizeToFit()
+    p_5.center = CGPointMake(middleX+scrollViewWidth*4, middleY-50)
+    
+    huangguan.sizeToFit()
+    
+    guangyun.sizeToFit()
+    guangyun.center = CGPointMake(middleX+scrollViewWidth*4, middleY-100)
+    
     scrollView.addSubview(text5)
     scrollView.addSubview(startButton)
     scrollView.addSubview(bg5)
+    scrollView.addSubview(p_5)
+    scrollView.addSubview(huangguan)
+    scrollView.addSubview(guangyun)
   }
   
   // MARK: - Button Action
@@ -241,6 +335,39 @@ extension GuideVC: UIScrollViewDelegate {
       UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
         self.text3.center = CGPointMake(middleX+scrollViewWidth*2, textY)
         }, completion: nil)
+      
+      liwu.center = CGPointMake(middleX+scrollViewWidth*2, middleY-100)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.liwu.center = CGPointMake(middleX+scrollViewWidth*2, middleY-50)
+        }, completion: nil)
+      
+      guangyun.center = CGPointMake(middleX+scrollViewWidth*2, middleY-70)
+      guangyun.alpha = 0
+      guangyun.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.6, delay: 0.3+0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.guangyun.transform = CGAffineTransformIdentity
+        }, completion: nil)
+      
+      pass.center = CGPointMake(middleX+scrollViewWidth*2-50, middleY-80)
+      pass.alpha = 0
+      pass.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.6, delay: 0.3+0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.pass.transform = CGAffineTransformIdentity
+        }, completion: nil)
+      
+      jiu.center = CGPointMake(middleX+scrollViewWidth*2, middleY-90)
+      jiu.alpha = 0
+      jiu.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.6, delay: 0.3+0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.jiu.transform = CGAffineTransformIdentity
+        }, completion: nil)
+      
+      hua.center = CGPointMake(middleX+scrollViewWidth*2+50, middleY-80)
+      hua.alpha = 0
+      hua.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.6, delay: 0.3+0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.hua.transform = CGAffineTransformIdentity
+        }, completion: nil)
     } else if Int(currentPage) == 3 {
       text4.hidden = false
       text4.center = CGPointMake(middleX+scrollViewWidth*3+300, textY)
@@ -258,6 +385,20 @@ extension GuideVC: UIScrollViewDelegate {
       startButton.center = CGPointMake(middleX+scrollViewWidth*4+300, textY+90)
       UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
         self.startButton.center = CGPointMake(middleX+scrollViewWidth*4, textY+90)
+        }, completion: nil)
+      
+      huangguan.center = CGPointMake(middleX+scrollViewWidth*4, middleY-150)
+      huangguan.alpha = 0
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.huangguan.center = CGPointMake(middleX+scrollViewWidth*4, middleY-120)
+        self.huangguan.alpha = 1
+        }, completion: nil)
+      
+      guangyun.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      guangyun.alpha = 0
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.guangyun.transform = CGAffineTransformIdentity
+        self.guangyun.alpha = 1
         }, completion: nil)
     }
   }
