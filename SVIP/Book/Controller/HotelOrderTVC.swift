@@ -183,12 +183,13 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   func gotoChatVC() {
     showHUDInView(view, withLoading: "")
     ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
       if responseObject == nil {
         return
       }
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        print(error)
     }
   }
   

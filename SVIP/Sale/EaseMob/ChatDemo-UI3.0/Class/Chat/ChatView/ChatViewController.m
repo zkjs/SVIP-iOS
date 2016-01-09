@@ -154,40 +154,40 @@
 
 - (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel
 {
-    BOOL flag = NO;
+  BOOL flag = NO;
   if ([[messageModel.message.ext objectForKey:@"extType"] integerValue] == eTextTxtCard) {
-    BookOrder *order = [[BookOrder alloc] initWithJson: [messageModel text]];
+    OrderDetailModel *order = [[OrderDetailModel alloc] initWithJson: [messageModel text]];
     NSLog(@"%@", order);
-    NSString *type = [[order.reservation_no substringToIndex:1] uppercaseString];
+    NSString *type = [[order.orderno substringToIndex:1] uppercaseString];
     if ([type isEqualToString:@"H"]) {
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HotelOrderDetailTVC" bundle:nil];
       HotelOrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"HotelOrderDetailTVC"];
-      vc.reservation_no = self.order.reservation_no;
+      vc.reservation_no = order.orderno;
       [self.navigationController pushViewController:vc animated:YES];
     } else if ([type isEqualToString:@"O"]) {
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LeisureOrderDetailTVC" bundle:nil];
       LeisureOrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"LeisureOrderDetailTVC"];
-      vc.reservation_no = self.order.reservation_no;
+      vc.reservation_no = order.orderno;
       [self.navigationController pushViewController:vc animated:YES];
     } else if ([type isEqualToString:@"K"]) {
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KTVOrderDetailTVC" bundle:nil];
       KTVOrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"KTVOrderDetailTVC"];
-      vc.reservation_no = self.order.reservation_no;
+      vc.reservation_no = order.orderno;
       [self.navigationController pushViewController:vc animated:YES];
     }
     flag = YES;
   }
-    return flag;
+  return flag;
 }
 
 - (void)messageViewController:(EaseMessageViewController *)viewController
   didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
-//  if ([messageModel isSender] == NO) {
-//    SalesDetailVC *vc = [SalesDetailVC new];
-//    vc.salesid = salesid;
-//    [self.navigationController pushViewController:vc animated:YES];
-//  }
+  //  if ([messageModel isSender] == NO) {
+  //    SalesDetailVC *vc = [SalesDetailVC new];
+  //    vc.salesid = salesid;
+  //    [self.navigationController pushViewController:vc animated:YES];
+  //  }
   
   //    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.nickname];
   //    [self.navigationController pushViewController:userprofile animated:YES];
@@ -209,39 +209,39 @@
   switch (type) {
     case EaseRecordViewTypeTouchDown:
     {
-    if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
-      [(EaseRecordView *)self.recordView  recordButtonTouchDown];
-    }
+      if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
+        [(EaseRecordView *)self.recordView  recordButtonTouchDown];
+      }
     }
       break;
     case EaseRecordViewTypeTouchUpInside:
     {
-    if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
-      [(EaseRecordView *)self.recordView recordButtonTouchUpInside];
-    }
-    [self.recordView removeFromSuperview];
+      if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
+        [(EaseRecordView *)self.recordView recordButtonTouchUpInside];
+      }
+      [self.recordView removeFromSuperview];
     }
       break;
     case EaseRecordViewTypeTouchUpOutside:
     {
-    if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
-      [(EaseRecordView *)self.recordView recordButtonTouchUpOutside];
-    }
-    [self.recordView removeFromSuperview];
+      if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
+        [(EaseRecordView *)self.recordView recordButtonTouchUpOutside];
+      }
+      [self.recordView removeFromSuperview];
     }
       break;
     case EaseRecordViewTypeDragInside:
     {
-    if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
-      [(EaseRecordView *)self.recordView recordButtonDragInside];
-    }
+      if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
+        [(EaseRecordView *)self.recordView recordButtonDragInside];
+      }
     }
       break;
     case EaseRecordViewTypeDragOutside:
     {
-    if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
-      [(EaseRecordView *)self.recordView recordButtonDragOutside];
-    }
+      if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
+        [(EaseRecordView *)self.recordView recordButtonDragOutside];
+      }
     }
       break;
     default:
@@ -254,14 +254,14 @@
 - (id<IMessageModel>)messageViewController:(EaseMessageViewController *)viewController
                            modelForMessage:(EMMessage *)message
 {
-    id<IMessageModel> model = nil;
-    model = [[EaseMessageModel alloc] initWithMessage:message];
-    model.avatarImage = [UIImage imageNamed:@"ic_home_nor"];
-    NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", model.nickname];
-    model.avatarURLPath = [kBaseURL stringByAppendingString:url];
-    model.nickname = message.ext[@"fromName"];
-    model.failImageName = @"imageDownloadFail";
-    return model;
+  id<IMessageModel> model = nil;
+  model = [[EaseMessageModel alloc] initWithMessage:message];
+  model.avatarImage = [UIImage imageNamed:@"ic_home_nor"];
+  NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", model.nickname];
+  model.avatarURLPath = [kBaseURL stringByAppendingString:url];
+  model.nickname = message.ext[@"fromName"];
+  model.failImageName = @"imageDownloadFail";
+  return model;
 }
 
 #pragma mark - send message
@@ -380,15 +380,15 @@
     }
   }
   [self.navigationController popToRootViewControllerAnimated:YES];
-//  [self.navigationController popViewControllerAnimated:YES];
+  //  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)showGroupDetailAction
 {
   [self.view endEditing:YES];
   if (self.conversation.conversationType == eConversationTypeGroupChat) {
-//    ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:self.conversation.chatter];
-//    [self.navigationController pushViewController:detailController animated:YES];
+    //    ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:self.conversation.chatter];
+    //    [self.navigationController pushViewController:detailController animated:YES];
   }
 }
 
@@ -420,14 +420,14 @@
 
 - (void)transpondMenuAction:(id)sender
 {
-    if (self.menuIndexPath && self.menuIndexPath.row > 0) {
-//        id<IMessageModel> model = [self.dataArray objectAtIndex:self.menuIndexPath.row];
-//        ContactListSelectViewController *listViewController = [[ContactListSelectViewController alloc] initWithNibName:nil bundle:nil];
-//        listViewController.messageModel = model;
-//        [listViewController tableViewDidTriggerHeaderRefresh];
-//        [self.navigationController pushViewController:listViewController animated:YES];
-    }
-    self.menuIndexPath = nil;
+  if (self.menuIndexPath && self.menuIndexPath.row > 0) {
+    //        id<IMessageModel> model = [self.dataArray objectAtIndex:self.menuIndexPath.row];
+    //        ContactListSelectViewController *listViewController = [[ContactListSelectViewController alloc] initWithNibName:nil bundle:nil];
+    //        listViewController.messageModel = model;
+    //        [listViewController tableViewDidTriggerHeaderRefresh];
+    //        [self.navigationController pushViewController:listViewController animated:YES];
+  }
+  self.menuIndexPath = nil;
 }
 
 - (void)copyMenuAction:(id)sender
@@ -542,23 +542,23 @@
 - (void)_sendFirstMessage {
   if ([self.firstMessage length] != 0) {
     if ([self.firstMessage isEqualToString:@"Card"]) {
-      NSString *senderID = [AccountManager sharedInstance].userID;
+      //      NSString *senderID = [AccountManager sharedInstance].userID;
       NSMutableDictionary *content = [NSMutableDictionary dictionary];
-      content[@"room_typeid"] = self.order.room_typeid;
-      content[@"room_type"] = self.order.room_type;
-      content[@"rooms"] = self.order.rooms;
-      content[@"arrival_date"] = self.order.arrival_date;
-      content[@"departure_date"] = self.order.departure_date;
-      content[@"manInStay"] = self.order.guest;
+      //      content[@"room_typeid"] = self.order.room_typeid;
+      content[@"roomtype"] = self.order.room_type;
+      //      content[@"rooms"] = self.order.rooms;
+      content[@"arrivaldate"] = self.order.arrival_date;
+      content[@"leavedate"] = self.order.departure_date;
+      //      content[@"manInStay"] = self.order.guest;
       content[@"content"] = NSLocalizedString(@"BOOKING_CARD_TITLE", nil);
-      content[@"userid"] = senderID;
-      content[@"image"] = self.order.room_image_URL;
-      content[@"shopid"] = self.conversation.ext[@"shopId"];
-      content[@"fullname"] = self.order.fullname;
-      content[@"dayNum"] = self.order.dayInt;
-      content[@"guest"] = self.conversation.ext[@"fromName"];
-      content[@"guesttel"] = self.order.guesttel;
-      content[@"reservation_no"] = self.order.reservation_no;
+      //      content[@"userid"] = senderID;
+      content[@"imgurl"] = self.order.room_image_URL;
+      //      content[@"shopid"] = self.conversation.ext[@"shopId"];
+      //      content[@"fullname"] = self.order.fullname;
+      //      content[@"dayNum"] = self.order.dayInt;
+      //      content[@"guest"] = self.conversation.ext[@"fromName"];
+      //      content[@"guesttel"] = self.order.guesttel;
+      content[@"orderno"] = self.order.reservation_no;
       NSError *error;
       NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
                                                          options:0

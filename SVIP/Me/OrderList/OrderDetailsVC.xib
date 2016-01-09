@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailsVC" customModule="SVIP" customModuleProvider="target">
             <connections>
                 <outlet property="evaluateLabel" destination="xkr-nX-pSu" id="xPh-D7-3Zf"/>
+                <outlet property="remark" destination="6hE-il-y3T" id="8Zt-jW-YVs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,6 +23,7 @@
                         <constraint firstAttribute="height" constant="30" id="tO3-9N-yIg"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOa-mu-Kcx">
@@ -34,17 +36,33 @@
                     <state key="normal" title="提交评价">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="1Um-co-UH7"/>
+                    </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6hE-il-y3T">
+                    <rect key="frame" x="60" y="210" width="480" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="4e5-sy-jKI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="xkr-nX-pSu" secondAttribute="trailing" constant="50" id="53w-xR-QIZ"/>
+                <constraint firstItem="6hE-il-y3T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="7CC-gc-BZm"/>
                 <constraint firstAttribute="bottom" secondItem="iOa-mu-Kcx" secondAttribute="bottom" id="85E-xJ-fc0"/>
                 <constraint firstAttribute="trailing" secondItem="iOa-mu-Kcx" secondAttribute="trailing" id="8Qq-TT-1Pr"/>
                 <constraint firstItem="iOa-mu-Kcx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BMA-Jw-0Mg"/>
                 <constraint firstItem="xkr-nX-pSu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="150" id="CzW-re-C0C"/>
+                <constraint firstItem="6hE-il-y3T" firstAttribute="top" secondItem="xkr-nX-pSu" secondAttribute="bottom" constant="30" id="Nsm-5H-BYr"/>
+                <constraint firstItem="6hE-il-y3T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QOX-f9-dFf"/>
                 <constraint firstItem="xkr-nX-pSu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RW0-Ae-0zo"/>
+                <constraint firstAttribute="trailing" secondItem="6hE-il-y3T" secondAttribute="trailing" constant="60" id="TeC-gb-dVR"/>
                 <constraint firstItem="xkr-nX-pSu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="exf-G6-vQS"/>
                 <constraint firstItem="iOa-mu-Kcx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gLG-0y-5nt"/>
             </constraints>

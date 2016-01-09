@@ -12,7 +12,7 @@
 @import UIKit;
 
 //#define kBaseURL @"http://api.zkjinshi.com/"  // HTTP外网服务器地址
-#define kBaseURL @"http://tap.zkjinshi.com/" // HTTP服务器测试地址
+#define kBaseURL @"http://tst.zkjinshi.com/" // HTTP服务器测试地址
 
 @protocol HTTPSessionManagerDelegate;
 

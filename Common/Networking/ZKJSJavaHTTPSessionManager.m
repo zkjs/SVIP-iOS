@@ -156,7 +156,7 @@
   
   [self POST:@"messages/orders" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
-   // NSLog(@"%@", [responseObject description]);
+    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -245,8 +245,8 @@
 }
 
 # pragma mark - 订单确认
-- (void)confirmOrderWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSDictionary * dic = @{@"orderno":orderno};
+- (void)confirmOrderWithOrderNo:(NSString *)orderno status:(int)status Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSDictionary * dic = @{@"orderno":orderno,@"status":[NSNumber numberWithInt:status]};
   [self POST:@"order/confirm" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
     success(task, responseObject);
     NSLog(@"%@", [responseObject description]);
@@ -312,6 +312,22 @@
     NSLog(@"%@", error.description);
     failure(task, error);
   }];
+}
+
+#pragma mark - 订单评价
+- (void)evaluationWithData:(NSDictionary *)data success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * str = [ZKJSTool convertJSONStringFromDictionary:data];
+  NSData *plainTextData = [str dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
+  NSDictionary * dic = @{@"data":base64String};
+  [self POST:@"order/evaluation" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+    NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+    NSLog(@"%@", [error description]);
+  }];
+  
 }
 
 @end

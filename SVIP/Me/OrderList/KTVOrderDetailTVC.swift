@@ -92,7 +92,7 @@ class KTVOrderDetailTVC: UITableViewController {
       self.navigationController?.pushViewController(vc, animated: true)
     } else {
       showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
+      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:1, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         print(responsObjects)
         if let dic = responsObjects as? NSDictionary {
           self.orderno = dic["data"] as! String
@@ -136,7 +136,7 @@ class KTVOrderDetailTVC: UITableViewController {
       navigationController?.pushViewController(payVC, animated: true)
     } else {
       showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
         self.hideHUD()
         self.navigationController?.popViewControllerAnimated(true)

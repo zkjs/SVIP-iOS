@@ -10,6 +10,7 @@ import UIKit
 
 class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
   
+  @IBOutlet weak var remark: UITextView!
   @IBOutlet weak var evaluateLabel: UILabel!
   var order = OrderModel()
   var score = Float()
@@ -25,14 +26,16 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       title = "订单详情"
       //评价
       let starRating = EDStarRating()
-      starRating.frame = CGRectMake(20, 10, self.view.bounds.width/1.3, 60)
+      starRating.frame = CGRectMake(20, 10, self.view.bounds.width/1.7, 60)
       starRating.backgroundColor = UIColor.whiteColor()
       starRating.starImage = UIImage(named: "ic_star_nor")
       starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
       starRating.maxRating = 5
+      starRating.rating = 1
       starRating.delegate = self
       starRating.horizontalMargin = 12
       starRating.editable = true
+      view.addSubview(starRating)
         // Do any additional setup after loading the view.
     }
   
@@ -54,13 +57,13 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     if score == 2.0 {
       evaluateLabel.text = "一般"
     }
-    if score == 2.0 {
+    if score == 3.0 {
       evaluateLabel.text = "满意"
     }
-    if score == 2.0 {
+    if score == 4.0 {
       evaluateLabel.text = "非常满意"
     }
-    if score == 2.0 {
+    if score == 5.0 {
       evaluateLabel.text = "强烈推荐"
     }
     
@@ -73,13 +76,26 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     
 
   @IBAction func submit(sender: AnyObject) {
-    ZKJSHTTPSessionManager.sharedInstance().submitEvaluationWithScore(NSString(format: "%f", score) as String, content: nil, reservation_no: order.reservation_no, success: { (task: NSURLSessionDataTask!, responObject: AnyObject!) -> Void in
-      let dic = responObject as! NSDictionary
-      let set = dic["set"] as? Bool
-      if (set == true) {
-        self.navigationController?.popViewControllerAnimated(true)
+    
+    let userID = AccountManager.sharedInstance().userID
+    var dic = [String: AnyObject]()
+    dic["id"] = ""
+    dic["orderNo"] = order.reservation_no
+    dic["score"] = score
+    dic["content"] = self.remark.text
+    dic["createDate"] = ""
+    dic["userid"] = userID
+    showHUDInView(view, withLoading: "")
+    ZKJSJavaHTTPSessionManager.sharedInstance().evaluationWithData(dic, success: { (task: NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
+      self.hideHUD()
+      if let dic = responsObjects as? NSDictionary {
+        if let result = dic["result"] as? NSNumber {
+          if result.boolValue == true {
+            self.navigationController?.popToRootViewControllerAnimated(true)
+          }
+        }
       }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
   }

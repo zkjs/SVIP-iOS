@@ -90,7 +90,19 @@ class OrderDetailModel: NSObject {
     super.init()
   }
   
+  init(json: String) {
+    super.init()
+    if let dictionary = ZKJSTool.convertJSONStringToDictionary(json) as? [String: AnyObject] {
+      initWithDict(dictionary)
+    }
+  }
+  
   init(dic: NSDictionary) {
+    super.init()
+    initWithDict(dic as! [String : AnyObject])
+  }
+  
+  func initWithDict(dic: [String: AnyObject])  {
     arrivaldate = dic["arrivaldate"] as? String ?? ""
     company = dic["company"] as? String ?? ""
     doublebreakfeast = dic["doublebreakfeast"] as? NSNumber ?? NSNumber(double: 0.0)
