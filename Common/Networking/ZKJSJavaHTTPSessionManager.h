@@ -87,4 +87,7 @@
 #pragma mark - APP升级检查
 - (void)checkVersionWithVersion:(NSNumber *)version success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+# pragma mark - 获取未确认订单个数
+- (void)getUnconfirmedOrderCountWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end

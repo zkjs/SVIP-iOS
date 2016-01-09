@@ -47,13 +47,13 @@ class GuideVC: UIViewController {
   let p_13 = UIImageView(image: UIImage(named: "defoult_p_13"))
   let p_17 = UIImageView(image: UIImage(named: "defoult_p_17"))
 
-  let p_19 = UIImageView(image: UIImage(named: "defoult_p_19"))
+//  let p_19 = UIImageView(image: UIImage(named: "defoult_p_19"))
   let p_14 = UIImageView(image: UIImage(named: "defoult_p_14"))
-  let p_18 = UIImageView(image: UIImage(named: "defoult_p_18"))
+//  let p_18 = UIImageView(image: UIImage(named: "defoult_p_18"))
   
-  let p_20 = UIImageView(image: UIImage(named: "defoult_p_20"))
+//  let p_20 = UIImageView(image: UIImage(named: "defoult_p_20"))
   let p_10 = UIImageView(image: UIImage(named: "defoult_p_10"))
-  let p_21 = UIImageView(image: UIImage(named: "defoult_p_21"))
+//  let p_21 = UIImageView(image: UIImage(named: "defoult_p_21"))
 
   let text5 = UIImageView(image: UIImage(named: "defoult_text_5"))
   let bg5 = UIImageView(image: UIImage(named: "defoult_bg_5"))
@@ -186,8 +186,8 @@ class GuideVC: UIViewController {
     
     scrollView.addSubview(text3)
     scrollView.addSubview(bg3)
-    scrollView.addSubview(liwu)
     scrollView.addSubview(guangyun)
+    scrollView.addSubview(liwu)
     scrollView.addSubview(pass)
     scrollView.addSubview(jiu)
     scrollView.addSubview(hua)
@@ -205,43 +205,58 @@ class GuideVC: UIViewController {
     bg4.sizeToFit()
     bg4.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
     
-    p_20.sizeToFit()
-    p_20.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100-70)
+//    p_20.sizeToFit()
+//    p_20.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100-70)
     p_10.sizeToFit()
-    p_10.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100)
-    p_21.sizeToFit()
-    p_21.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100+70)
+    p_10.center = CGPointMake(middleX+scrollViewWidth*3-120, middleY-100)
+//    p_21.sizeToFit()
+//    p_21.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100+70)
     
     p_7.sizeToFit()
-    p_7.center = CGPointMake(middleX+scrollViewWidth*3-30, middleY-100-70)
+    p_7.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100-90)
     p_11.sizeToFit()
-    p_11.center = CGPointMake(middleX+scrollViewWidth*3-30, middleY-100)
+    p_11.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100)
     p_15.sizeToFit()
-    p_15.center = CGPointMake(middleX+scrollViewWidth*3-30, middleY-100+70)
+    p_15.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100+90)
     
     p_8.sizeToFit()
-    p_8.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100-70)
+    p_8.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100-90)
     p_12.sizeToFit()
     p_12.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
     p_16.sizeToFit()
-    p_16.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100+70)
+    p_16.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100+90)
     
     p_9.sizeToFit()
-    p_9.center = CGPointMake(middleX+scrollViewWidth*3+30, middleY-100-70)
+    p_9.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100-90)
     p_13.sizeToFit()
-    p_13.center = CGPointMake(middleX+scrollViewWidth*3+30, middleY-100)
+    p_13.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100)
     p_17.sizeToFit()
-    p_17.center = CGPointMake(middleX+scrollViewWidth*3+30, middleY-100+70)
+    p_17.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100+90)
     
-    p_19.sizeToFit()
-    p_19.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100-70)
+//    p_19.sizeToFit()
+//    p_19.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100-70)
     p_14.sizeToFit()
-    p_14.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100)
-    p_18.sizeToFit()
-    p_18.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100+70)
+    p_14.center = CGPointMake(middleX+scrollViewWidth*3+120, middleY-100)
+//    p_18.sizeToFit()
+//    p_18.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100+70)
     
     scrollView.addSubview(text4)
     scrollView.addSubview(bg4)
+    scrollView.addSubview(p_7)
+    scrollView.addSubview(p_8)
+    scrollView.addSubview(p_9)
+    scrollView.addSubview(p_10)
+    scrollView.addSubview(p_11)
+    scrollView.addSubview(p_12)
+    scrollView.addSubview(p_13)
+    scrollView.addSubview(p_14)
+    scrollView.addSubview(p_15)
+    scrollView.addSubview(p_16)
+    scrollView.addSubview(p_17)
+//    scrollView.addSubview(p_18)
+//    scrollView.addSubview(p_19)
+//    scrollView.addSubview(p_20)
+//    scrollView.addSubview(p_21)
   }
   
   private func setupPage5() {
@@ -262,19 +277,21 @@ class GuideVC: UIViewController {
     startButton.addTarget(self, action: "gotoMain", forControlEvents: .TouchUpInside)
     
     p_5.sizeToFit()
-    p_5.center = CGPointMake(middleX+scrollViewWidth*4, middleY-50)
+    p_5.center = CGPointMake(middleX+scrollViewWidth*4, middleY-47)
     
     huangguan.sizeToFit()
+    huangguan.alpha = 0
     
-    guangyun.sizeToFit()
-    guangyun.center = CGPointMake(middleX+scrollViewWidth*4, middleY-100)
+    guanghuan.sizeToFit()
+    guanghuan.alpha = 0
+    guanghuan.center = CGPointMake(middleX+scrollViewWidth*4, middleY-100)
     
     scrollView.addSubview(text5)
     scrollView.addSubview(startButton)
     scrollView.addSubview(bg5)
+    scrollView.addSubview(guanghuan)
     scrollView.addSubview(p_5)
     scrollView.addSubview(huangguan)
-    scrollView.addSubview(guangyun)
   }
   
   // MARK: - Button Action
@@ -338,34 +355,39 @@ extension GuideVC: UIScrollViewDelegate {
       
       liwu.center = CGPointMake(middleX+scrollViewWidth*2, middleY-100)
       UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
-        self.liwu.center = CGPointMake(middleX+scrollViewWidth*2, middleY-50)
+        self.liwu.alpha = 1
+        self.liwu.center = CGPointMake(middleX+scrollViewWidth*2, middleY)
         }, completion: nil)
       
-      guangyun.center = CGPointMake(middleX+scrollViewWidth*2, middleY-70)
+      guangyun.center = CGPointMake(middleX+scrollViewWidth*2+10, middleY-70)
       guangyun.alpha = 0
       guangyun.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.6, delay: 0.3+0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.guangyun.alpha = 1
         self.guangyun.transform = CGAffineTransformIdentity
         }, completion: nil)
       
-      pass.center = CGPointMake(middleX+scrollViewWidth*2-50, middleY-80)
+      pass.center = CGPointMake(middleX+scrollViewWidth*2-80, middleY-100)
       pass.alpha = 0
       pass.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.6, delay: 0.3+0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.pass.alpha = 1
         self.pass.transform = CGAffineTransformIdentity
         }, completion: nil)
       
-      jiu.center = CGPointMake(middleX+scrollViewWidth*2, middleY-90)
+      jiu.center = CGPointMake(middleX+scrollViewWidth*2-10, middleY-150)
       jiu.alpha = 0
       jiu.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.6, delay: 0.3+0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.jiu.alpha = 1
         self.jiu.transform = CGAffineTransformIdentity
         }, completion: nil)
       
-      hua.center = CGPointMake(middleX+scrollViewWidth*2+50, middleY-80)
+      hua.center = CGPointMake(middleX+scrollViewWidth*2+70, middleY-130)
       hua.alpha = 0
       hua.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.6, delay: 0.3+0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.hua.alpha = 1
         self.hua.transform = CGAffineTransformIdentity
         }, completion: nil)
     } else if Int(currentPage) == 3 {
@@ -387,19 +409,19 @@ extension GuideVC: UIScrollViewDelegate {
         self.startButton.center = CGPointMake(middleX+scrollViewWidth*4, textY+90)
         }, completion: nil)
       
-      huangguan.center = CGPointMake(middleX+scrollViewWidth*4, middleY-150)
+      huangguan.center = CGPointMake(middleX+scrollViewWidth*4, middleY-170)
       huangguan.alpha = 0
       UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
-        self.huangguan.center = CGPointMake(middleX+scrollViewWidth*4, middleY-120)
+        self.huangguan.center = CGPointMake(middleX+scrollViewWidth*4, middleY-155)
         self.huangguan.alpha = 1
         }, completion: nil)
       
-      guangyun.transform = CGAffineTransformMakeScale(0.1, 0.1)
-      guangyun.alpha = 0
-      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
-        self.guangyun.transform = CGAffineTransformIdentity
-        self.guangyun.alpha = 1
-        }, completion: nil)
+      guanghuan.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      guanghuan.alpha = 0
+      UIView.animateWithDuration(1, animations: { () -> Void in
+        self.guanghuan.transform = CGAffineTransformIdentity
+        self.guanghuan.alpha = 1
+      })
     }
   }
   

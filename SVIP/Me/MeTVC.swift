@@ -38,19 +38,20 @@ class MeTVC: UITableViewController {
       return
     }
     
-    ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderListWithPage("1", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderCountWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
-      if let array = responseObject as? [[String: AnyObject]] {
-        let count = array.count
-        if count > 0 {
-          self.unconfirmedOrderCountLabel.text = "\(count)个待确认订单"
-          self.unconfirmedOrderCountLabel.hidden = false
-        } else {
-          self.unconfirmedOrderCountLabel.hidden = true
+      if let data = responseObject as? [String: AnyObject] {
+        if let count = data["count"] as? String {
+          if count == "0" {
+            self.unconfirmedOrderCountLabel.hidden = true
+          } else {
+            self.unconfirmedOrderCountLabel.text = "\(count)个待确认订单"
+            self.unconfirmedOrderCountLabel.hidden = false
+          }
         }
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        print(error)
     }
   }
   

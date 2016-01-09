@@ -43,13 +43,13 @@ class LoginManager: NSObject {
   //动画结束
   func afterAnimation() {
     let guideViewController = GuideVC()
-//    if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
-//      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
+    if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
       appWindow.rootViewController = guideViewController
-//    } else {
-//      let nc = BaseNC(rootViewController: MainTBC())
-//      appWindow.rootViewController = nc
-//    }
+    } else {
+      let nc = BaseNC(rootViewController: MainTBC())
+      appWindow.rootViewController = nc
+    }
   }
   
 }

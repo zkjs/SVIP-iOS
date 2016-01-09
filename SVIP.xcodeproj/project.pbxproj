@@ -1401,8 +1401,7 @@
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
 				40D412201BCB4FAB00FC28DB /* Localizable.strings */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
-				408D28E61C3F8C3600183849 /* GuideVC.swift */,
-				408D28E71C3F8C3600183849 /* GuideVC.xib */,
+				40D794BF1C41197F004C7DC9 /* Guide */,
 				405826481BA11CC5005A2C8E /* PrefixHeader.pch */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
 				404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */,
@@ -2185,6 +2184,15 @@
 				40D585E11C22B0D100C5267D /* SalesModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		40D794BF1C41197F004C7DC9 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				408D28E61C3F8C3600183849 /* GuideVC.swift */,
+				408D28E71C3F8C3600183849 /* GuideVC.xib */,
+			);
+			name = Guide;
 			sourceTree = "<group>";
 		};
 		40E39E1C1BFEF43800516EC4 /* OrderList */ = {
