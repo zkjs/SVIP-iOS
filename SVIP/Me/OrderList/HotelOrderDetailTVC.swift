@@ -150,6 +150,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   
   @IBAction func comments(sender: AnyObject) {
     let vc = OrderDetailsVC()
+    vc.order = self.orderDetail
     navigationController?.pushViewController(vc, animated: true)
   }
   

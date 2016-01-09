@@ -12,7 +12,8 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
   
   @IBOutlet weak var remark: UITextView!
   @IBOutlet weak var evaluateLabel: UILabel!
-  var order = OrderModel()
+  var order = OrderDetailModel()
+  
   var score = Float()
   var orderV = UIView()
   
@@ -80,12 +81,13 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     let userID = AccountManager.sharedInstance().userID
     var dic = [String: AnyObject]()
     dic["id"] = ""
-    dic["orderNo"] = order.reservation_no
+    dic["orderNo"] = order.orderno
     dic["score"] = score
     dic["content"] = self.remark.text
     dic["createDate"] = ""
     dic["userid"] = userID
     showHUDInView(view, withLoading: "")
+    print(dic)
     ZKJSJavaHTTPSessionManager.sharedInstance().evaluationWithData(dic, success: { (task: NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
       self.hideHUD()
       if let dic = responsObjects as? NSDictionary {

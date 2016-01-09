@@ -92,8 +92,6 @@ class OrderHistoryListTVC: UITableViewController, SWTableViewCellDelegate, Booki
 //      navigationController?.pushViewController(OrderDetailVC(order: order), animated: true)
 //    }
     let vc = OrderDetailsVC()
-    let order = orders[indexPath.row]
-    vc.order = order as! OrderModel
     navigationController?.pushViewController(vc, animated: true)
   }
   
