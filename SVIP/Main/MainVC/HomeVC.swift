@@ -89,19 +89,19 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     }
     getPushInfoData()
     
-    //根据酒店区域获取用户特权
-    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-      if let array = responsObjcet as? [[String: AnyObject]] {
-        if array.count > 0 {
-          for data in array {
-            let privilege = PrivilegeModel(dic: data)
-            self.privilegeArray.append(privilege)
-          }
-          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-        }
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-    }
+//    //根据酒店区域获取用户特权
+//    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+//      if let array = responsObjcet as? [[String: AnyObject]] {
+//        if array.count > 0 {
+//          for data in array {
+//            let privilege = PrivilegeModel(dic: data)
+//            self.privilegeArray.append(privilege)
+//          }
+//          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+//        }
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//    }
   }
   
   //TableView Scroller Delegate

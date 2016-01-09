@@ -70,7 +70,7 @@
 - (void)getOrderDetailWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 # pragma mark - 订单确认
-- (void)confirmOrderWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (void)confirmOrderWithOrderNo:(NSString *)orderno status:(int)status Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 # pragma mark - 取消订单
 - (void)cancleOrderWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
@@ -86,5 +86,11 @@
 
 #pragma mark - APP升级检查
 - (void)checkVersionWithVersion:(NSNumber *)version success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+# pragma mark - 获取未确认订单个数
+- (void)getUnconfirmedOrderCountWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+#pragma mark - 订单评价
+- (void)evaluationWithData:(NSDictionary *)data success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 @end
