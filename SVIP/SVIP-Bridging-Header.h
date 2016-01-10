@@ -17,7 +17,7 @@
 #import "BlurDatePickerView.h"
 #import "JSHAnimationVC.h"
 #import "JSHAnimator.h"
-#import "CocoaLumberjack.h"
+//#import "CocoaLumberjack.h"
 #import "CompressingLogFileManager.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>

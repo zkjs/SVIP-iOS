@@ -8,11 +8,11 @@
 
 import UIKit
 
-#if DEBUG
-let ddLogLevel = DDLogLevel.Verbose;
-#else
-let ddLogLevel = DDLogLevel.Warning;
-#endif
+//#if DEBUG
+//let ddLogLevel = DDLogLevel.Verbose;
+//#else
+//let ddLogLevel = DDLogLevel.Warning;
+//#endif
 
 //UM
 let UMAppKey = "55c31431e0f55a65c1002597"
@@ -207,16 +207,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   }
   
   func setupLogger() {
-    DDLog.addLogger(DDASLLogger.sharedInstance())
-    DDLog.addLogger(DDTTYLogger.sharedInstance())
-    
-    let logFileManager = CompressingLogFileManager(logsDirectory: LogManager.sharedInstance().logsDirectory())
-    print(logFileManager.logsDirectory())
-    let fileLogger = DDFileLogger(logFileManager: logFileManager)
-    fileLogger.maximumFileSize = 1024 * 512
-//    fileLogger.rollingFrequency = 60 * 60 * 24
-    fileLogger.logFileManager.maximumNumberOfLogFiles = 1
-    DDLog.addLogger(fileLogger)
+//    DDLog.addLogger(DDASLLogger.sharedInstance())
+//    DDLog.addLogger(DDTTYLogger.sharedInstance())
+//    
+//    let logFileManager = CompressingLogFileManager(logsDirectory: LogManager.sharedInstance().logsDirectory())
+//    print(logFileManager.logsDirectory())
+//    let fileLogger = DDFileLogger(logFileManager: logFileManager)
+//    fileLogger.maximumFileSize = 1024 * 512
+////    fileLogger.rollingFrequency = 60 * 60 * 24
+//    fileLogger.logFileManager.maximumNumberOfLogFiles = 1
+//    DDLog.addLogger(fileLogger)
   }
 
   func setupNotification() {

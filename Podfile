@@ -4,11 +4,11 @@ inhibit_all_warnings!
 
 target 'SVIP' do
   pod 'ASIHTTPRequest', :git => 'https://github.com/hanton/asi-http-request'
-  pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'
+  pod 'EaseMobSDKFull'
   pod 'HexColors'
   pod 'JCTagListView'
   pod 'AMapSearch'
-  pod 'CocoaLumberjack'
+#  pod 'CocoaLumberjack'
   pod 'SKTagView', :git => 'https://github.com/hanton/SKTagView', :branch => 'master'
   pod 'MIBadgeButton'
   pod 'SWTableViewCell'
