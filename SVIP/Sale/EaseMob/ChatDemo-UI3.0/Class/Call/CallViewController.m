@@ -52,7 +52,7 @@
         
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         if ([ud valueForKey:kLocalCallBitrate]) {
-            [[EaseMob sharedInstance].callManager setBitrate:[[ud valueForKey:kLocalCallBitrate] intValue]];
+//            [[EaseMob sharedInstance].callManager setBitrate:[[ud valueForKey:kLocalCallBitrate] intValue]];
         }
         
         g_callCenter = [[CTCallCenter alloc] init];
@@ -64,7 +64,7 @@
                 [_timeTimer invalidate];
                 [self _stopRing];
                 
-                [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReasonHangup];
+                [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReason_Hangup];
                 [self _close];
             }
         };
@@ -415,13 +415,13 @@
 
 - (void)_reloadPropertyData
 {
-    id<ICallManager> callManager = [EaseMob sharedInstance].callManager;
-    _sizeLabel.text = [NSString stringWithFormat:@"%@%i/%i", NSLocalizedString(@"call.videoSize", @"Width/Height: "), [callManager getVideoWidth], [callManager getVideoHeight]];
-    _timedelayLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoTimedelay", @"Timedelay: "), [callManager getVideoTimedelay]];
-    _framerateLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoFramerate", @"Framerate: "), [callManager getVideoFramerate]];
-    _lostcntLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoLostcnt", @"Lostcnt: "), [callManager getVideoLostcnt]];
-    _localBitrateLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoLocalBitrate", @"Local Bitrate: "), [callManager getVideoLocalBitrate]];
-    _remoteBitrateLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoRemoteBitrate", @"Remote Bitrate: "), [callManager getVideoRemoteBitrate]];
+//    id<ICallManager> callManager = [EaseMob sharedInstance].callManager;
+//    _sizeLabel.text = [NSString stringWithFormat:@"%@%i/%i", NSLocalizedString(@"call.videoSize", @"Width/Height: "), [callManager getVideoWidth], [callManager getVideoHeight]];
+//    _timedelayLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoTimedelay", @"Timedelay: "), [callManager getVideoTimedelay]];
+//    _framerateLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoFramerate", @"Framerate: "), [callManager getVideoFramerate]];
+//    _lostcntLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoLostcnt", @"Lostcnt: "), [callManager getVideoLostcnt]];
+//    _localBitrateLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoLocalBitrate", @"Local Bitrate: "), [callManager getVideoLocalBitrate]];
+//    _remoteBitrateLabel.text = [NSString stringWithFormat:@"%@%i", NSLocalizedString(@"call.videoRemoteBitrate", @"Remote Bitrate: "), [callManager getVideoRemoteBitrate]];
 }
 
 - (void)_insertMessageWithStr:(NSString *)str
@@ -482,7 +482,7 @@
 {
     if (alertView.tag == kAlertViewTag_Close)
     {
-        [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReasonNull];
+        [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReason_Null];
         _callSession = nil;
         [self _close];
     }
@@ -602,13 +602,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         NSString *str = NSLocalizedString(@"call.over", @"Call end");
         if(_timeLength == 0)
         {
-            if (reason == eCallReasonHangup) {
+            if (reason == eCallReason_Hangup) {
                 str = NSLocalizedString(@"call.cancel", @"Cancel the call");
             }
-            else if (reason == eCallReasonReject){
+            else if (reason == eCallReason_Reject){
                 str = NSLocalizedString(@"call.rejected", @"Reject the call");
             }
-            else if (reason == eCallReasonBusy){
+            else if (reason == eCallReason_Busy){
                 str = NSLocalizedString(@"call.in", @"In the call...");
             }
         }
@@ -617,15 +617,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     else if (callSession.status == eCallSessionStatusAccepted)
     {
-        if (callSession.connectType == eCallConnectTypeRelay) {
-            _statusLabel.text = NSLocalizedString(@"call.speak.relay", @"Can speak...Relay");
-        }
-        else if (callSession.connectType == eCallConnectTypeDirect){
-            _statusLabel.text = NSLocalizedString(@"call.speak.direct", @"Can speak...Direct");
-        }
-        else{
-            _statusLabel.text = NSLocalizedString(@"call.speak", @"Can speak...");
-        }
+//        if (callSession.connectType == eCallConnectTypeRelay) {
+//            _statusLabel.text = NSLocalizedString(@"call.speak.relay", @"Can speak...Relay");
+//        }
+//        else if (callSession.connectType == eCallConnectTypeDirect){
+//            _statusLabel.text = NSLocalizedString(@"call.speak.direct", @"Can speak...Direct");
+//        }
+//        else{
+//            _statusLabel.text = NSLocalizedString(@"call.speak", @"Can speak...");
+//        }
         _timeLength = 0;
         _timeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeTimerAction:) userInfo:nil repeats:YES];
 
@@ -690,7 +690,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self _stopRing];
     [self showHint:NSLocalizedString(@"call.rejected", @"Reject the call")];
     
-    EMError *error = [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReasonReject];
+    EMError *error = [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReason_Reject];
     if (error) {
         [self _close];
     }
@@ -721,7 +721,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [audioSession setCategory:_audioCategory error:nil];
     [audioSession setActive:YES error:nil];
     
-    EMError *error = [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReasonHangup];
+    EMError *error = [[EaseMob sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:eCallReason_Hangup];
     if (error) {
         [self _close];
     }
