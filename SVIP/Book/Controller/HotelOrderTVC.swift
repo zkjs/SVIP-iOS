@@ -41,6 +41,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   var breakfeastCount = 0 //无早餐
   var smokingCount = 0 // 无烟房
   var goods: RoomGoods!
+  var paytypeArray = ["未设置", "在线支付", "到店支付", "挂帐"]
+  var paytype = "0"
   
   
   override func viewDidLoad() {
@@ -99,8 +101,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       }
       self.navigationController?.pushViewController(vc, animated: true)
     }
-    if indexPath == NSIndexPath(forRow: 0, inSection: 5) {
-      
+    if indexPath == NSIndexPath(forRow: 0, inSection: 2) {
+      choosePayStatus()
     }
     view.endEditing(true)
   }
@@ -108,6 +110,19 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   @IBAction func submitOrder(sender: AnyObject) {
     submitOrder()
+  }
+  
+  func choosePayStatus() {
+    let alertView = UIAlertController(title: "选择订单状态", message: "", preferredStyle: .ActionSheet)
+    for index in 1..<paytypeArray.count {
+      alertView.addAction(UIAlertAction(title: paytypeArray[index], style: .Default, handler: { [unowned self] (action: UIAlertAction!) -> Void in
+        self.paymentLabel.text = self.paytypeArray[index]
+        // 更新订单
+        self.paytype = "\(index)"
+        }))
+    }
+    alertView.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+    presentViewController(alertView, animated: true, completion: nil)
   }
   
   func chooseDate() {
@@ -235,7 +250,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["imgurl"] = goods.image
     dic["productid"] = goods.goodsid
     dic["roomno"] = ""
-    dic["paytype"] = ""
+    dic["paytype"] = self.paytype
     dic["roomprice"] = ""
     dic["telephone"] = self.telphoneTextField.text
     dic["personcount"] = 1
