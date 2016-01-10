@@ -150,7 +150,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       self.roomsTypeLabel.text = goods.room
       self.goods = goods
       let urlString = kBaseURL + goods.image
-      self.roomImage.sd_setImageWithURL(NSURL(string: urlString))
+      self.roomImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "bg_dingdanzhuangtai"))
     }
     navigationController?.pushViewController(vc, animated: true)
   }
@@ -254,7 +254,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["roomprice"] = ""
     dic["telephone"] = self.telphoneTextField.text
     dic["personcount"] = 1
-    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
+//    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
     dic["nosmoking"] = isSmokingSwitch.on ? 1 : 0
     dic["company"] = ""
     dic["remark"] = self.remarkTextView.text
