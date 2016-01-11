@@ -545,20 +545,21 @@
       //      NSString *senderID = [AccountManager sharedInstance].userID;
       NSMutableDictionary *content = [NSMutableDictionary dictionary];
       //      content[@"room_typeid"] = self.order.room_typeid;
-      content[@"roomtype"] = self.order.room_type;
+      content[@"roomtype"] = self.order.roomtype;
       //      content[@"rooms"] = self.order.rooms;
-      content[@"arrivaldate"] = self.order.arrival_date;
-      content[@"leavedate"] = self.order.departure_date;
+      content[@"arrivaldate"] = self.order.arrivaldate;
+      content[@"leavedate"] = self.order.leavedate;
       //      content[@"manInStay"] = self.order.guest;
       content[@"content"] = NSLocalizedString(@"BOOKING_CARD_TITLE", nil);
       //      content[@"userid"] = senderID;
-      content[@"imgurl"] = self.order.room_image_URL;
+      content[@"imgurl"] = self.order.imgurl;
       //      content[@"shopid"] = self.conversation.ext[@"shopId"];
       //      content[@"fullname"] = self.order.fullname;
       //      content[@"dayNum"] = self.order.dayInt;
       //      content[@"guest"] = self.conversation.ext[@"fromName"];
       //      content[@"guesttel"] = self.order.guesttel;
-      content[@"orderno"] = self.order.reservation_no;
+      content[@"orderno"] = self.order.orderno;
+      content[@"orderstatus"] = self.order.orderstatus;
       NSError *error;
       NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
                                                          options:0

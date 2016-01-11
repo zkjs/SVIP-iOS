@@ -82,41 +82,30 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   }
   
   func createConversationWithSalesID(salesID: String, salesName: String) {
-    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
-    let order = packetOrder()
-    print(order)
-    vc.title = order.fullname
-    // 扩展字段
-    let userName = AccountManager.sharedInstance().userName
-    let ext = ["shopId": order.shopid.stringValue,
-    "shopName": order.fullname,
-    "toName": salesName,
-    "fromName": userName]
-    vc.conversation.ext = ext
-    vc.firstMessage = "Card"
-    vc.order = order
-    navigationController?.pushViewController(vc, animated: true)
+//    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+//    let order = packetOrder()
+//    print(order)
+//    vc.title = order.fullname
+//    // 扩展字段
+//    let userName = AccountManager.sharedInstance().userName
+//    let ext = ["shopId": order.shopid.stringValue,
+//    "shopName": order.fullname,
+//    "toName": salesName,
+//    "fromName": userName]
+//    vc.conversation.ext = ext
+//    vc.firstMessage = "Card"
+//    vc.order = order
+//    navigationController?.pushViewController(vc, animated: true)
   }
   
-  func packetOrder() -> BookOrder {
+  func packetOrderWithOrderNO(orderNO: String) -> BookOrder {
     let order = BookOrder()
-    order.shopid = NSNumber(integer: Int(shopID)!)
-    order.rooms = NSNumber(integer: Int(rooms)!)
-    order.room_typeid = goods.goodsid
-    order.room_type = roomType.text! + breakfast
-    order.fullname = shopName
-    order.room_image_URL = goods.image
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    order.arrival_date = dateFormatter.stringFromDate(startDate)
-    order.departure_date = dateFormatter.stringFromDate(endDate)
-    var guests = [String]()
-    for index in 0..<roomCount {
-      guests.append(nameTextFields[index].text!)
-    }
-    order.guest = guests.joinWithSeparator(",")
-    order.guesttel = AccountManager.sharedInstance().phone
-    order.room_image = roomImage.image
+//    order.roomtype = ""
+//    order.arrivaldate = arrivaldate
+//    order.leavedate = leavedate
+//    order.imgurl = goods.image
+//    order.orderno = orderNO
+//    order.orderstatus = "待处理"
     return order
   }
   

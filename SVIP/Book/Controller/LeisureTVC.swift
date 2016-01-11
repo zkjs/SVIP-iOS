@@ -215,40 +215,35 @@ class LeisureTVC: UITableViewController {
     
     ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("2", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       print(responObjects)
-      let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
-      let order = self.packetOrder()
-      print(order)
-      vc.title = order.fullname
-      // 扩展字段
-      let userName = AccountManager.sharedInstance().userName
-      let ext = ["shopId": order.shopid.stringValue,
-        "shopName": order.fullname,
-        "toName": salesName,
-        "fromName": userName]
-      vc.conversation.ext = ext
-      vc.firstMessage = "Card"
-      vc.order = order
-      self.navigationController?.pushViewController(vc, animated: true)
+      if let orderno = responObjects["data"] as? String {
+        let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+        let order = self.packetOrderWithOrderNO(orderno)
+        print(order)
+        vc.title = self.shopName
+        // 扩展字段
+        let userName = AccountManager.sharedInstance().userName
+        let ext = ["shopId": self.shopid.stringValue,
+          "shopName": self.shopName,
+          "toName": salesName,
+          "fromName": userName]
+        vc.conversation.ext = ext
+        vc.firstMessage = "Card"
+        vc.order = order
+        self.navigationController?.pushViewController(vc, animated: true)
+      }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
   }
   
-  func packetOrder() -> BookOrder {
-    let order = BookOrder()
-    order.shopid = shopid
-    order.rooms = NSNumber(integer: Int(personNumberTextField.text!)!)
-    order.room_typeid = goods.goodsid
-    order.room_type = ""
-    order.fullname = shopName
-    order.room_image_URL = goods.image
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    order.arrival_date = arrivaldate
-    order.departure_date = leavedate
-    order.guest = contacterTextField.text
-    order.guesttel = telphotoTextField.text
-    order.room_image = roomImage.image
+  func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {
+    let order = OrderDetailModel()
+    order.roomtype = ""
+    order.arrivaldate = arrivaldate
+    order.leavedate = leavedate
+    order.imgurl = goods.image
+    order.orderno = orderNO
+    order.orderstatus = "待处理"
     return order
   }
 

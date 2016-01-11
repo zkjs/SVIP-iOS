@@ -9,10 +9,12 @@
 import UIKit
 import CoreLocation
 import CoreBluetooth
-class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
-  var delegate:refreshHomeVCDelegate?
+class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate {
+  
   let Identifier = "SettingVCCell"
   let locationManager = CLLocationManager()
+  
+  var delegate:refreshHomeVCDelegate?
   var bluetoothManager = CBCentralManager()
   var privilegeArray = [PrivilegeModel]()
   var floatingVC = FloatingWindowVC()
@@ -90,7 +92,7 @@ class HomeVC: UIViewController,CBCentralManagerDelegate,refreshHomeVCDelegate {
     getPushInfoData()
     
     //根据酒店区域获取用户特权
-    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", locID: "6", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("110", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
       if let array = responsObjcet as? [[String: AnyObject]] {
         if array.count > 0 {
           for data in array {
@@ -536,7 +538,7 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     if activate == true {
       //根据酒店区域获取用户特权
-      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, locID: locid, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
 //        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
 //          target:self,selector:Selector("highLight"),
 //          userInfo:nil,repeats:true)

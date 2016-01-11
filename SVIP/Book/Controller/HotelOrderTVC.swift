@@ -264,11 +264,11 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
         let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
         let order = self.packetOrderWithOrderNO(orderno)
         print(order)
-        vc.title = order.fullname
+        vc.title = self.shopName
         // 扩展字段
         let userName = AccountManager.sharedInstance().userName
-        let ext = ["shopId": order.shopid.stringValue,
-          "shopName": order.fullname,
+        let ext = ["shopId": self.shopid.stringValue,
+          "shopName": self.shopName,
           "toName": salesName,
           "fromName": userName]
         vc.conversation.ext = ext
@@ -281,22 +281,14 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     }
   }
 
-  func packetOrderWithOrderNO(orderNO: String) -> BookOrder {
-    let order = BookOrder()
-    order.shopid = shopid
-    order.rooms = NSNumber(integer: Int(roomsTextField.text!)!)
-    order.room_typeid = goods.goodsid
-    order.room_type = roomsTypeLabel.text!
-    order.fullname = shopName
-    order.room_image_URL = goods.image
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    order.arrival_date = arrivaldate
-    order.departure_date = leavedate
-    order.guest = contactTextField.text
-    order.guesttel = telphoneTextField.text
-    order.room_image = roomImage.image
-    order.reservation_no = orderNO
+  func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {
+    let order = OrderDetailModel()
+    order.roomtype = roomsTypeLabel.text!
+    order.arrivaldate = arrivaldate
+    order.leavedate = leavedate
+    order.imgurl = goods.image
+    order.orderno = orderNO
+    order.orderstatus = "待处理"
     return order
   }
   
