@@ -506,12 +506,12 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="如有其他需求,请在此说明" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ytz-is-epb">
-                                                    <rect key="frame" x="30" y="48" width="540" height="120"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ytz-is-epb">
+                                                    <rect key="frame" x="30" y="48" width="540" height="100"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="120" id="nuB-jn-RBJ"/>
+                                                        <constraint firstAttribute="height" constant="100" id="nuB-jn-RBJ"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>

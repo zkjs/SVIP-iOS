@@ -203,6 +203,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="addressLabel" destination="uIf-co-A0A" id="Qwq-uq-tQB"/>
+                        <outlet property="commentsLabel" destination="Fsx-f0-FOP" id="KMM-ma-7HV"/>
                         <outlet property="pageControl" destination="oAO-Xg-8KU" id="8N6-O7-zS6"/>
                         <outlet property="scrollView" destination="iAe-XN-vJ9" id="Ijl-UE-LKC"/>
                         <outlet property="telphoneLabel" destination="cTg-kV-qi6" id="5lw-OW-nBt"/>

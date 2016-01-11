@@ -12,6 +12,7 @@ let kGotoOrderList = "kGotoOrderList"
 
 class HotelOrderDetailTVC:  UITableViewController {
   
+  @IBOutlet weak var ordernoLabel: UILabel!
   @IBOutlet weak var privilageLabel: UILabel!
   @IBOutlet weak var pendingConfirmationLabel: UILabel!
   @IBOutlet weak var invoiceLabel: UILabel!
@@ -78,6 +79,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     roomTypeLabel.text = orderDetail.roomtype
     roomsCountLabel.text = String(orderDetail.roomcount)
     privilageLabel.text = orderDetail.privilegeName
+    ordernoLabel.text = orderDetail.orderno
     if orderDetail.orderedby == "" {
       contacterLabel.text = "暂未填写信息"
     } else {
