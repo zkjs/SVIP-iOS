@@ -20,7 +20,13 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   @IBOutlet weak var invoinceLabel: UILabel!
   @IBOutlet weak var breakfeastSwitch: UISwitch!
   @IBOutlet weak var isSmokingSwitch: UISwitch!
-  @IBOutlet weak var remarkTextView: UITextView!
+  @IBOutlet weak var remarkTextView: UITextView! {
+    didSet {
+      remarkTextView.layer.borderWidth = 1 //边框粗细
+      remarkTextView.layer.borderColor = UIColor.hx_colorWithHexString("B8B8B8").CGColor
+      
+    }
+  }
   @IBOutlet weak var countSubtractButton: UIButton! {
     didSet {
       countSubtractButton.addTarget(self, action: "countSubtract:", forControlEvents: UIControlEvents.TouchUpInside)

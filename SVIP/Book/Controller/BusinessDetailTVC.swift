@@ -10,8 +10,9 @@ import UIKit
 protocol PhotoViewerDelegate {
   func gotoPhotoViewerDelegate(brower:AnyObject)
 }
-class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate {
+class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate,UIWebViewDelegate {
   
+  @IBOutlet weak var commentsLabel: UILabel!
   @IBOutlet weak var scrollView: UIScrollView! {
     didSet {
       scrollView.bounces = false
@@ -41,7 +42,8 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   var photosArray = NSMutableArray()
   var photo = MWPhoto()
   var thumb = MWPhoto()
-  
+  var web = UIWebView()
+  var height = CGFloat()
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -91,6 +93,15 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   }
   
   func setupUI() {
+    if shopDetail.shopdescUrl != nil {
+      web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)
+      web.scrollView.bounces = false
+      web.scrollView.scrollEnabled  = false
+//      web.frame = CGRectMake(0, 0, self.view.bounds.size.width, 0)
+      web.delegate = self
+    }
+    
+    commentsLabel.text = shopDetail.evaluation
     addressLabel.text = shopDetail.address
     telphoneLabel.text = shopDetail.telephone
     timer = NSTimer.scheduledTimerWithTimeInterval(7, target: self, selector: "runTimePage", userInfo: nil, repeats: true)
@@ -167,6 +178,15 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
    
   }
   
+
+  
+  func webViewDidFinishLoad(webView: UIWebView) {
+    let result = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight;")
+    height = CGFloat((result! as NSString).doubleValue)
+    web.frame = CGRectMake(0, 0, self.view.bounds.size.width, height)
+    self.tableView.reloadData()
+  }
+  
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
      let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
@@ -179,6 +199,13 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       }
 }
     }
+  
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    if indexPath.section == 3 {
+      return height
+    }
+    return super.tableView(tableView,  heightForRowAtIndexPath: indexPath)
+  }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -197,6 +224,10 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
         starRating.rating = score.floatValue
       }
       cell.addSubview(starRating)
+    }
+    
+    if indexPath.section == 3 {
+        cell.addSubview(web)
     }
     return cell
   }
