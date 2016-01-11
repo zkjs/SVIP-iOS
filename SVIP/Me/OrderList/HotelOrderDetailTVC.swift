@@ -75,6 +75,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func setUI() {
+    remark.text = orderDetail.remark
     arrivateLabel.text = orderDetail.roomInfo
     roomTypeLabel.text = orderDetail.roomtype
     roomsCountLabel.text = String(orderDetail.roomcount)

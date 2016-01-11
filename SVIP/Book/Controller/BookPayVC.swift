@@ -57,7 +57,12 @@ class BookPayVC: UIViewController {
   }
   
   func pop(sender:UIBarButtonItem) {
-   navigationController?.popToRootViewControllerAnimated(true)
+    let appWindow = UIApplication.sharedApplication().keyWindow
+    let mainTBC = MainTBC()
+    mainTBC.selectedIndex = 3
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
+    let nc = BaseNC(rootViewController: mainTBC)
+    appWindow?.rootViewController = nc
   }
   
   func cancelOrder() {
