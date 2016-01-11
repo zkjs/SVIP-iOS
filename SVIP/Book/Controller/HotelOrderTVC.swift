@@ -59,10 +59,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     setUpUI()
   }
   
-  override func loadView() {
-    NSBundle.mainBundle().loadNibNamed("HotelOrderTVC", owner:self, options:nil)
-  }
-  
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     view.endEditing(true)
   }
