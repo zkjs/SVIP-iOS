@@ -60,6 +60,7 @@ class CustonCell: UITableViewCell {
     hourFormatter.dateFormat = "HH"
     let time = hourFormatter.stringFromDate(nowDate)
     let beacon = StorageManager.sharedInstance().lastBeacon()
+    print(beacon)
     loginButton.hidden = true
     activeButton.hidden = false
     if(time <= "09" && time > "00" ){

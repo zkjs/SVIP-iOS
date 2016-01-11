@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-private let kPriviledge = "kPriviledge"
 
 class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate {
   
@@ -20,7 +19,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var delegate:refreshHomeVCDelegate?
   var bluetoothManager = CBCentralManager()
   var privilegeArray = [PrivilegeModel]()
-  var privilegeData = [[String: AnyObject]]()
   var floatingVC = FloatingWindowVC()
   //var pushInfo = PushInfoModel()
   var pushInfoArray = [PushInfoModel]()
@@ -98,9 +96,10 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     let islogin = AccountManager.sharedInstance().isLogin()
     if islogin == true {
       memberActivation()
-      getlastOrder()
+      getAllMessages()
+    } else {
+      getPushInfoData()
     }
-    getPushInfoData()
     
 //    //根据酒店区域获取用户特权
 //    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
@@ -120,6 +119,39 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
 //      }
 //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 //    }
+  }
+  
+  func getAllMessages() {
+    let city = "长沙"
+    ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
+      if let defaultNotitification = responseObject["defaultNotitification"] as? NSArray {
+        self.pushInfoArray.removeAll()
+        for dic in defaultNotitification {
+          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+          self.pushInfoArray.append(pushInfo)
+        }
+      }
+      if let notificationForOrder = responseObject["notificationForOrder"] as? NSArray {
+        self.orderArray.removeAll()
+        for dic in notificationForOrder {
+          let  order = PushInfoModel(dic: dic as! [String: AnyObject])
+          self.orderArray.append(order)
+        }
+      }
+      if let userPrivilege = responseObject["userPrivilege"] as? [[String: AnyObject]] {
+        if userPrivilege.count > 0 {
+          self.privilegeArray.removeAll()
+          for data in userPrivilege {
+            let privilege = PrivilegeModel(dic: data)
+            self.privilegeArray.append(privilege)
+          }
+        }
+      }
+      self.refreshTableView()
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
   
   // TableView Scroller Delegate
@@ -256,11 +288,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if section == 0 {
       return 1
     } else if section == 1 {
-      if let privilegeData = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
-        print(privilegeData.count)
-        return max(10, privilegeData.count)
-      }
-      return 0
+      return privilegeArray.count
     } else if section == 2 {
       return orderArray.count
     } else {
@@ -289,25 +317,17 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
 //      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
       return headercell
     } else if indexPath.section == 1 {
-      if let privilegeData = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
-        if privilegeData.count != 0 {
-          let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-          cell.selectionStyle = UITableViewCellSelectionStyle.None
-          let privilege = privilegeData[indexPath.row]
-          let pushInfo = PushInfoModel()
-          if let privilegeIcon = privilege["privilegeIcon"] as? String {
-            pushInfo.iconbaseurl = privilegeIcon
-          }
-          if let privilegeName = privilege["privilegeName"] as? String {
-            pushInfo.title = privilegeName
-          }
-          if let privilegeDesc = privilege["privilegeDesc"] as? String {
-            pushInfo.desc = privilegeDesc
-          }
-          cell.accessoryView = nil
-          cell.setData(pushInfo)
-          return cell
-        }
+      if privilegeArray.count != 0 {
+        let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        let privilege = privilegeArray[indexPath.row]
+        let pushInfo = PushInfoModel()
+        pushInfo.iconbaseurl = privilege.privilegeIcon
+        pushInfo.title = privilege.privilegeName
+        pushInfo.desc = privilege.privilegeDesc
+        cell.accessoryView = nil
+        cell.setData(pushInfo)
+        return cell
       }
     } else if indexPath.section == 2 {
       if orderArray.count != 0 {
@@ -353,8 +373,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     let image = AccountManager.sharedInstance().avatarImage
     privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
     privilegeButton.userInteractionEnabled = false
-    
-    NSUserDefaults.standardUserDefaults().setObject(privilegeData, forKey: kPriviledge)
   }
   
   func handleSingleTap() {
@@ -365,13 +383,13 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {  
     if pushInfoArray.count != 0 {
-       let pushInfo = pushInfoArray[indexPath.row]
       if indexPath.section == 2 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
       }
       if indexPath.section == 3 {
+        let pushInfo = pushInfoArray[indexPath.row]
         if pushInfo.shopid == "" {
           let vc = WebViewVC()
           vc.hidesBottomBarWhenPushed = true
@@ -602,8 +620,8 @@ extension HomeVC: CLLocationManagerDelegate {
               let privilege = PrivilegeModel(dic: data)
               self.privilegeArray.append(privilege)
             }
-            
             self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+            self.privilegeButton.userInteractionEnabled = true
           }
         }
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in

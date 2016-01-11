@@ -145,8 +145,6 @@ class HotelOrderDetailTVC:  UITableViewController {
         }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
           
       }
-    
-    
   }
   
   func cancle(sender:UIButton) {
@@ -183,9 +181,26 @@ class HotelOrderDetailTVC:  UITableViewController {
           self.hideHUD()
       })
     }
-    
   }
   
+  func sendMessageNotificationWithText(text: String) {
+    // 发送环信透传消息
+    let userID = AccountManager.sharedInstance().userID
+    let userName = AccountManager.sharedInstance().userName
+    let phone = AccountManager.sharedInstance().phone
+    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+    let txtChat = EMChatText(text: text)
+    let body = EMTextMessageBody(chatObject: txtChat)
+//    let message = EMMessage(receiver: salesid, bodies: [body])
+//    let ext = ["shopId": self.shopid.stringValue,
+//      "shopName": self.shopName,
+//      "toName": salesName,
+//      "fromName": userName]
+//    message.ext = ext
+//    message.messageType = .eMessageTypeChat
+//    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+  }
+    
   @IBAction func comments(sender: AnyObject) {
     let vc = OrderDetailsVC()
     vc.order = self.orderDetail
