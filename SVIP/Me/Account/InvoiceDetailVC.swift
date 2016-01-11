@@ -56,6 +56,10 @@ class InvoiceDetailVC: UIViewController {
   
   func addInvoice() {
     guard let title = titleTextField.text else { return }
+    if titleTextField.text == "" {
+      showHint("请填写发票信息")
+      return
+    }
     ZKJSHTTPSessionManager.sharedInstance().addInvoiceWithTitle(title, isDefault: isDefaultButton.selected, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject as? [String: AnyObject] {
         if let set = data["set"] as? NSNumber {

@@ -17,20 +17,23 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   // MARK: Life cycle
   
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("OrderListTVC", owner:self, options:nil)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     title = NSLocalizedString("ORDRE_LIST", comment: "")
     let cellNib = UINib(nibName: OrderListCell.nibName(), bundle: nil)
     tableView.registerNib(cellNib, forCellReuseIdentifier: OrderListCell.reuseIdentifier())
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
-    tableView.mj_footer.hidden = true
+//    tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
     layoutHidView()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    showHUDInView(view, withLoading: "")
     orderPage = 1
     loadMoreData()
   }
@@ -133,6 +136,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   // MARK: - Private Method
   func loadMoreData() -> Void {
+    view.frame = UIScreen.mainScreen().bounds
+    showHUDInView(view, withLoading: "")
     let page = String(orderPage)
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderListWithPage(page, size: "10", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let orderArray = responseObject as! NSArray

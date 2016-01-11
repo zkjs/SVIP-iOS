@@ -48,6 +48,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = shopName
+    tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
     roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
     setUpUI()
   }
@@ -85,6 +86,19 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     }
     
     return cell
+  }
+  
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 0
+    }
+    return 20
+  }
+  
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let header = UIView()
+    header.backgroundColor = UIColor.clearColor()
+    return header
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -184,7 +198,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   func gotoChatVC() {
     showHUDInView(view, withLoading: "")
     ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
       if responseObject == nil {
         return
       }
@@ -211,11 +224,14 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
               }
             }
           } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
-            let sale = data[randomIndex]
-            if let salesid = sale["salesid"] as? String,
-              let name = sale["name"] as? String {
-                self.createConversationWithSalesID(salesid, salesName: name)
+            for sale in data {
+              if let salesID = sale["roleid"] as? NSNumber {
+                if salesID == 1 {
+                 let salesid = sale["salesid"] as? String
+                 let name = sale["name"] as? String
+                self.createConversationWithSalesID(salesid!, salesName: name!)
+                }
+              }
             }
           } else {
             ZKJSTool.showMsg("商家暂无客服")
@@ -233,6 +249,11 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     }
     if self.roomsTypeLabel.text == "请选择房型" {
       ZKJSTool.showMsg("请选择房型")
+      return
+    }
+    
+    if roomsTextField.text <= "0" {
+      ZKJSTool.showMsg("请添加房间数量")
       return
     }
     

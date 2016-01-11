@@ -54,15 +54,16 @@ class HotelCell: UITableViewCell {
   
   
   func setData(hotel:Hotel) {
+
     hotelNameLabel.text = hotel.shopname
     descriptionLabel.text = hotel.shopaddress
     addressLabel.text = hotel.shopdesc
     let logoURL = NSURL(string: hotel.bgImgUrl)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: nil)
-    if let salesid = hotel.salesid {
+    if let shopid = hotel.shopid {
       let url = NSURL(string: kBaseURL)
-      let urlStr = url?.URLByAppendingPathComponent("uploads/users/\(salesid).jpg")
-      userImageButton.sd_setBackgroundImageWithURL(urlStr, forState: UIControlState.Normal)
+      let urlStr = url?.URLByAppendingPathComponent("uploads/shops/\(shopid).jpg")
+      userImageButton.sd_setBackgroundImageWithURL(urlStr, forState: UIControlState.Normal,placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     }
 
    

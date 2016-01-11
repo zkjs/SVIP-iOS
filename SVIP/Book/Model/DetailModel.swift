@@ -17,6 +17,8 @@ class DetailModel: NSObject {
   var evaluation: String!
   var score: NSNumber!
   var shopid: String!
+  var shopStatus:NSNumber!
+  
   override init() {
     super.init()
   }
@@ -29,6 +31,8 @@ class DetailModel: NSObject {
     telephone = dic["telephone"] as? String ?? ""
     evaluation = dic["evaluation"] as? String ?? ""
     score = dic["score"] as? NSNumber ?? NSNumber(double: 0.0)
+    shopStatus = dic["shopStatus"] as? NSNumber ?? NSNumber(double: 0.0)
+
     
       }
 
