@@ -79,7 +79,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if loginStats == true {
       privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
       privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
-      privilegeButton.enabled = false
+      privilegeButton.userInteractionEnabled = false
     }
     
     self.pushInfoArray.removeAll()
@@ -104,7 +104,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
             self.privilegeArray.append(privilege)
           }
           self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-          self.privilegeButton.enabled = true
+          self.privilegeButton.userInteractionEnabled = true
         }
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -306,7 +306,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     
     let image = AccountManager.sharedInstance().avatarImage
     privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
-    privilegeButton.enabled = false
+    privilegeButton.userInteractionEnabled = false
   }
   
   func handleSingleTap() {
