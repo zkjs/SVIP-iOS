@@ -56,7 +56,8 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     let button = UIButton(frame: frame)
     button.backgroundColor = UIColor.ZKJS_mainColor()
     if shopDetail.shopStatus == 0 {
-      button.setTitle("即将入住", forState: .Normal)
+      button.setTitle("即将入驻", forState: .Normal)
+      button.backgroundColor = UIColor.lightGrayColor()
       button.enabled = false
     } else {
       button.setTitle("立即预订", forState: .Normal)

@@ -20,6 +20,14 @@ class MeTVC: UITableViewController {
     
     tableView.tableFooterView = UIView()
     automaticallyAdjustsScrollViewInsets = false
+    
+    let bGotoOrderList = NSUserDefaults.standardUserDefaults().boolForKey(kGotoOrderList)
+    if bGotoOrderList == true {
+      let vc = OrderListTVC()
+      vc.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(vc, animated: false)
+      NSUserDefaults.standardUserDefaults().setBool(false, forKey: kGotoOrderList)
+    }
   }
   
   override func viewWillAppear(animated: Bool) {

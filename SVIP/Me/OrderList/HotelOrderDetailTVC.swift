@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kGotoOrderList = "kGotoOrderList"
+
 class HotelOrderDetailTVC:  UITableViewController {
   
   @IBOutlet weak var privilageLabel: UILabel!
@@ -32,6 +34,10 @@ class HotelOrderDetailTVC:  UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
+    
+    let image = UIImage(named: "ic_fanhui_orange")
+    let item = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")
+    self.navigationItem.leftBarButtonItem = item
     loadData()
   }
   
@@ -39,6 +45,15 @@ class HotelOrderDetailTVC:  UITableViewController {
     super.viewWillAppear(animated)
     
     navigationController?.navigationBar.translucent = false
+  }
+  
+  func back() {
+    let appWindow = UIApplication.sharedApplication().keyWindow
+    let mainTBC = MainTBC()
+    mainTBC.selectedIndex = 3
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
+    let nc = BaseNC(rootViewController: mainTBC)
+    appWindow?.rootViewController = nc
   }
   
   func loadData() {

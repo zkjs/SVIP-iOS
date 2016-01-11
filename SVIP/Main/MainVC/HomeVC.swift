@@ -102,21 +102,24 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     }
     getPushInfoData()
     
-    //根据酒店区域获取用户特权
-    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-      if let array = responsObjcet as? [[String: AnyObject]] {
-        if array.count > 0 {
-          self.privilegeData = array
-          for data in array {
-            let privilege = PrivilegeModel(dic: data)
-            self.privilegeArray.append(privilege)
-          }
-          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-          self.privilegeButton.userInteractionEnabled = true
-        }
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-    }
+//    //根据酒店区域获取用户特权
+//    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+//      if let array = responsObjcet as? [[String: AnyObject]] {
+//        if array.count > 0 {
+//          for data in array {
+//            let privilege = PrivilegeModel(dic: data)
+//            self.privilegeArray.append(privilege)
+//          }
+//          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+//          self.privilegeButton.userInteractionEnabled = true
+//          self.privilegeData = array
+////          for item in array.reverse() {
+////            self.privilegeData.insert(item, atIndex: 0)
+////          }
+//        }
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//    }
   }
   
   // TableView Scroller Delegate
@@ -253,8 +256,9 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if section == 0 {
       return 1
     } else if section == 1 {
-      if let privilegeArray = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
-        return privilegeArray.count
+      if let privilegeData = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
+        print(privilegeData.count)
+        return max(10, privilegeData.count)
       }
       return 0
     } else if section == 2 {
@@ -285,11 +289,11 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
 //      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
       return headercell
     } else if indexPath.section == 1 {
-      if let privilegeArray = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
-        if privilegeArray.count != 0 {
+      if let privilegeData = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
+        if privilegeData.count != 0 {
           let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
           cell.selectionStyle = UITableViewCellSelectionStyle.None
-          let privilege = privilegeArray[indexPath.row]
+          let privilege = privilegeData[indexPath.row]
           let pushInfo = PushInfoModel()
           if let privilegeIcon = privilege["privilegeIcon"] as? String {
             pushInfo.iconbaseurl = privilegeIcon
