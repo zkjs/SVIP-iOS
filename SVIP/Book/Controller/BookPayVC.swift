@@ -57,12 +57,7 @@ class BookPayVC: UIViewController {
   }
   
   func pop(sender:UIBarButtonItem) {
-    let appWindow = UIApplication.sharedApplication().keyWindow
-    let mainTBC = MainTBC()
-    mainTBC.selectedIndex = 3
-    NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
-    let nc = BaseNC(rootViewController: mainTBC)
-    appWindow?.rootViewController = nc
+   navigationController?.popToRootViewControllerAnimated(true)
   }
   
   func cancelOrder() {
@@ -134,6 +129,12 @@ class BookPayVC: UIViewController {
         ZKJSTool.showMsg("支付成功")
         ZKJSJavaHTTPSessionManager.sharedInstance().orderPayWithOrderno(self.bkOrder.orderno, success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
           print(responsObjects)
+          let appWindow = UIApplication.sharedApplication().keyWindow
+          let mainTBC = MainTBC()
+          mainTBC.selectedIndex = 3
+          NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
+          let nc = BaseNC(rootViewController: mainTBC)
+          appWindow?.rootViewController = nc
           }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
             print(error)
         })
