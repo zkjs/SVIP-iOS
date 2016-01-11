@@ -55,7 +55,7 @@ class HomeCell: UITableViewCell {
     resolution =  ZKJSTool.getResolution()
     let  BaseURL = "\(pushInfo.iconbaseurl)" + "ios/" + "\(resolution)/" + "\(pushInfo.iconfilename)"
     let url = NSURL(string: BaseURL)
-    pushImage.sd_setImageWithURL(url, placeholderImage: nil)
+    pushImage.sd_setImageWithURL(url, placeholderImage: UIImage(named: "ic_v_orange"))
     subjectLabel.text = pushInfo.title
     nextLabel.text = pushInfo.desc
   }

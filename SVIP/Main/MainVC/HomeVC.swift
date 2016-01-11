@@ -9,6 +9,9 @@
 import UIKit
 import CoreLocation
 import CoreBluetooth
+
+private let kPriviledge = "kPriviledge"
+
 class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate {
   
   let Identifier = "SettingVCCell"
@@ -17,6 +20,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var delegate:refreshHomeVCDelegate?
   var bluetoothManager = CBCentralManager()
   var privilegeArray = [PrivilegeModel]()
+  var privilegeData = [[String: AnyObject]]()
   var floatingVC = FloatingWindowVC()
   //var pushInfo = PushInfoModel()
   var pushInfoArray = [PushInfoModel]()
@@ -64,6 +68,9 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     let NibName = UINib(nibName: CustonCell.nibName(), bundle: nil)
     tableView.registerNib(NibName, forCellReuseIdentifier: CustonCell.reuseIdentifier())
     tableView.showsVerticalScrollIndicator = false
+    
+    let footer = UIView(frame: CGRectMake(0, 0, 100, 40))
+    tableView.tableFooterView = footer
    
     originOffsetY = privilegeButton.frame.origin.y
     print("userID: \(AccountManager.sharedInstance().userID)")
@@ -99,6 +106,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
       if let array = responsObjcet as? [[String: AnyObject]] {
         if array.count > 0 {
+          self.privilegeData = array
           for data in array {
             let privilege = PrivilegeModel(dic: data)
             self.privilegeArray.append(privilege)
@@ -111,7 +119,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     }
   }
   
-  //TableView Scroller Delegate
+  // TableView Scroller Delegate
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     if self.urlArray.count <= self.count {
@@ -126,7 +134,16 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   //refreshHomeVCDelegate
   func refreshHomeVC(set: Bool) {
-    getPushInfoData()
+//    getPushInfoData()
+    self.refreshTableView()
+  }
+  
+  func refreshTableView() {
+    tableView.reloadData()
+//    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+//    tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
+    tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+//    tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, 4)), withRowAnimation: .None)
   }
   
   func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -134,10 +151,10 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
   }
   
-  func scrollViewDidEndScroll(scrollView: UIScrollView) {
-    let offsetY = scrollView.contentOffset.y
-    privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
-  }
+//  func scrollViewDidEndScroll(scrollView: UIScrollView) {
+//    let offsetY = scrollView.contentOffset.y
+//    privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
+//  }
 
   
   func loadData() {
@@ -148,7 +165,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
           self.urlArray .addObject(url)
         }
         self.homeUrl = self.urlArray[self.count] as! String
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+        self.refreshTableView()
       }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
@@ -169,7 +187,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
          self.pushInfoArray.append(pushInfo)
         }
-       self.tableView.reloadData()
+//       self.tableView.reloadData()
+        self.refreshTableView()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
@@ -184,7 +203,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
         let  order = PushInfoModel(dic: dic as! [String: AnyObject])
           self.orderArray.append(order)
         }
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+        self.refreshTableView()
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
@@ -199,7 +219,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
         if let set = dic["set"] as? Bool {
           self.activate = set
         }
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+        self.refreshTableView()
       }
      
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
@@ -225,20 +246,22 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   //  }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 3
+    return 4
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
       return 1
-    }
-    if section == 1 {
+    } else if section == 1 {
+      if let privilegeArray = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
+        return privilegeArray.count
+      }
+      return 0
+    } else if section == 2 {
       return orderArray.count
-    }
-    else {
+    } else {
       return pushInfoArray.count
     }
-    
   }
   
   
@@ -248,12 +271,9 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     } else {
        return HomeCell.height()
     }
-   
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-   
     if indexPath.section == 0 {
       let headercell = tableView.dequeueReusableCellWithIdentifier("CustonCell", forIndexPath: indexPath) as! CustonCell
       headercell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -264,25 +284,47 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       headercell.bluetoolView.addGestureRecognizer(singleTap)
 //      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
       return headercell
-    }
-    if orderArray.count != 0 && indexPath.section == 1 {
-      let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
-      let order = self.orderArray[indexPath.row]
-      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
-      cell.setData(order)
-      return cell
-    }
-   else {
-      let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
+    } else if indexPath.section == 1 {
+      if let privilegeArray = NSUserDefaults.standardUserDefaults().objectForKey(kPriviledge) as? [[String: AnyObject]] {
+        if privilegeArray.count != 0 {
+          let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
+          cell.selectionStyle = UITableViewCellSelectionStyle.None
+          let privilege = privilegeArray[indexPath.row]
+          let pushInfo = PushInfoModel()
+          if let privilegeIcon = privilege["privilegeIcon"] as? String {
+            pushInfo.iconbaseurl = privilegeIcon
+          }
+          if let privilegeName = privilege["privilegeName"] as? String {
+            pushInfo.title = privilegeName
+          }
+          if let privilegeDesc = privilege["privilegeDesc"] as? String {
+            pushInfo.desc = privilegeDesc
+          }
+          cell.accessoryView = nil
+          cell.setData(pushInfo)
+          return cell
+        }
+      }
+    } else if indexPath.section == 2 {
+      if orderArray.count != 0 {
+        let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        let order = self.orderArray[indexPath.row]
+        cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+        cell.setData(order)
+        return cell
+      }
+    } else {
       if pushInfoArray.count != 0 {
+        let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         let pushInfo = self.pushInfoArray[indexPath.row]
         cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
         cell.setData(pushInfo)
+        return cell
       }
-      return cell
     }
+    return UITableViewCell()
   }
   
   func activeCode(sender:UIButton) {
@@ -307,6 +349,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     let image = AccountManager.sharedInstance().avatarImage
     privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
     privilegeButton.userInteractionEnabled = false
+    
+    NSUserDefaults.standardUserDefaults().setObject(privilegeData, forKey: kPriviledge)
   }
   
   func handleSingleTap() {
@@ -318,12 +362,12 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {  
     if pushInfoArray.count != 0 {
        let pushInfo = pushInfoArray[indexPath.row]
-      if indexPath.section == 1 {
+      if indexPath.section == 2 {
         let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
       }
-      if indexPath.section == 2 {
+      if indexPath.section == 3 {
         if pushInfo.shopid == "" {
           let vc = WebViewVC()
           vc.hidesBottomBarWhenPushed = true
