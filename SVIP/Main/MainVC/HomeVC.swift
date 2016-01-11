@@ -66,16 +66,20 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     tableView.showsVerticalScrollIndicator = false
    
     originOffsetY = privilegeButton.frame.origin.y
+    print("userID: \(AccountManager.sharedInstance().userID)")
+    print("Token: \(AccountManager.sharedInstance().token)")
   }
   
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    
     let loginStats = AccountManager.sharedInstance().isLogin()
     let image = AccountManager.sharedInstance().avatarImage
     if loginStats == true {
       privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
       privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
+      privilegeButton.enabled = false
     }
     
     self.pushInfoArray.removeAll()
@@ -92,7 +96,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     getPushInfoData()
     
     //根据酒店区域获取用户特权
-    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("110", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
       if let array = responsObjcet as? [[String: AnyObject]] {
         if array.count > 0 {
           for data in array {
@@ -100,6 +104,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
             self.privilegeArray.append(privilege)
           }
           self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+          self.privilegeButton.enabled = true
         }
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -301,6 +306,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     
     let image = AccountManager.sharedInstance().avatarImage
     privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+    privilegeButton.enabled = false
   }
   
   func handleSingleTap() {

@@ -75,7 +75,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   
   func nextStep() {
     print(self.shopDetail.category)
-    if self.shopDetail.category == "酒店行业" {
+    if self.shopDetail.category == "50" {
       let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
       vc.shopName = self.shopDetail.shopName
@@ -83,7 +83,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
       vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
-    if self.shopDetail.category == "餐饮行业" {
+    if self.shopDetail.category == "70" {
       let storyboard = UIStoryboard(name: "LeisureTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureTVC") as! LeisureTVC
 	  vc.shopName = self.shopDetail.shopName
@@ -91,7 +91,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
       vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
-    if self.shopDetail.category == "KTV" {
+    if self.shopDetail.category == "60" {
       let storyboard = UIStoryboard(name: "KTVTableView", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("KTVTableView") as! KTVTableView
       vc.shopName = self.shopDetail.shopName

@@ -17,11 +17,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XSh-Gy-5Fs">
-                    <rect key="frame" x="181" y="75" width="300" height="672"/>
+                    <rect key="frame" x="181" y="75" width="300" height="200"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="SMN-15-BaH"/>
                         <constraint firstAttribute="width" constant="300" id="kpt-cc-Psw"/>
+                        <constraint firstAttribute="height" constant="200" id="wkc-jJ-tnp"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -36,11 +37,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="XSh-Gy-5Fs" secondAttribute="bottom" id="0Rc-J0-6Ea"/>
+                <constraint firstAttribute="bottom" secondItem="XSh-Gy-5Fs" secondAttribute="bottom" constant="200" id="0Rc-J0-6Ea"/>
                 <constraint firstItem="XSh-Gy-5Fs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BAD-WZ-Yc5"/>
                 <constraint firstItem="XSh-Gy-5Fs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="75" id="gQp-ko-6fx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="0Rc-J0-6Ea"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="479" y="522.5"/>
         </view>
     </objects>

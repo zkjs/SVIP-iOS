@@ -14,6 +14,7 @@ class MainTBC: UITabBarController {
   var  isUnSelected = false
   var salesVC = SalesVC()
   let vc = FloatingWindowVC()
+  let tipView = UIView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,6 +53,38 @@ class MainTBC: UITabBarController {
     tabBar.tintColor = UIColor.ZKJS_mainColor()
     
     checkVersion()
+    
+//    showTipView()
+  }
+  
+  func showTipView() {
+    tipView.frame = view.bounds
+    tipView.backgroundColor = UIColor(white: 0.0, alpha: 0.8)
+    let button = UIButton()
+    button.setImage(UIImage(named: "default_btn_wozhidaola"), forState: .Normal)
+    button.sizeToFit()
+    button.addTarget(self, action: "hideTipView", forControlEvents: .TouchUpInside)
+    let text = UIImageView(image: UIImage(named: "default_zhijian"))
+    text.sizeToFit()
+    tipView.addSubview(button)
+    tipView.addSubview(text)
+    
+    let radius: CGFloat = 60.0
+    let path = UIBezierPath(roundedRect: CGRectMake(0, 0, view.frame.size.width, view.frame.size.height), cornerRadius: 0.0)
+    let circlePath = UIBezierPath(roundedRect: CGRectMake(view.frame.size.width-radius, 309, radius, radius), cornerRadius: radius)
+    path.appendPath(circlePath)
+    path.usesEvenOddFillRule = true
+    let fillLayer = CAShapeLayer()
+    fillLayer.path = path.CGPath
+    fillLayer.fillRule = kCAFillRuleEvenOdd
+    fillLayer.fillColor = UIColor.blackColor().CGColor
+    fillLayer.opacity = 0.2
+    tipView.layer.addSublayer(fillLayer)
+    view.addSubview(tipView)
+  }
+  
+  func hideTipView() {
+    tipView.hidden = true
   }
   
   override func viewWillAppear(animated: Bool) {

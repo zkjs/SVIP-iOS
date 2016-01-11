@@ -27,6 +27,7 @@ class FloatingWindowVC: UIViewController, XLPagerTabStripViewControllerDelegate 
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    view.frame = UIScreen.mainScreen().bounds
     tableView.tableFooterView = UIView()
     tableView .registerNib(UINib(nibName: FloatCell.nibName(), bundle: nil), forCellReuseIdentifier: FloatCell.reuseIdentifier())
     

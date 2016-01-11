@@ -46,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     
 //    // fir.im BugHD
 //    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
-    
     return true
   }
   func networkState() {
@@ -139,9 +138,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     print(error)
   }
   
-  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+//  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+//    print(userInfo)
+//  }
+  
+  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
     print(userInfo)
-    // 广告推送
+//    let localNotification:UILocalNotification = UILocalNotification()
+//    localNotification.alertAction = "Testing notifications on iOS8"
+//    localNotification.alertBody = "Woww it works!!"
+//    localNotification.fireDate = NSDate(timeIntervalSinceNow: 3)
+//    localNotification.category = "INVITE_CATEGORY";
+//    UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+//    completionHandler(.NewData)
   }
   
 //  // MARK: - Background Fetch

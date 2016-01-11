@@ -14,22 +14,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_v_orange" translatesAutoresizingMaskIntoConstraints="NO" id="u85-Hj-WYT">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_v_orange" translatesAutoresizingMaskIntoConstraints="NO" id="u85-Hj-WYT">
                         <rect key="frame" x="16" y="16" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="9sm-RL-akx"/>
+                            <constraint firstAttribute="height" constant="20" id="aaK-jG-sEy"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="早餐升级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujo-dH-Dh6">
-                        <rect key="frame" x="47" y="15" width="206" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="早餐升级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujo-dH-Dh6">
+                        <rect key="frame" x="47" y="15" width="237" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="TrW-0m-q5n"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="详情：无早升单早、单早升双早" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjO-4m-dj8">
-                        <rect key="frame" x="47" y="39" width="206" height="52"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="详情：无早升单早、单早升双早" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjO-4m-dj8">
+                        <rect key="frame" x="47" y="39" width="237" height="52"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="VVJ-7B-cqY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="u85-Hj-WYT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="7qv-yV-awg"/>
+                    <constraint firstItem="IjO-4m-dj8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="47" id="BGA-TF-Dfo"/>
+                    <constraint firstItem="IjO-4m-dj8" firstAttribute="top" secondItem="Ujo-dH-Dh6" secondAttribute="bottom" constant="3" id="ULr-Fy-sdY"/>
+                    <constraint firstItem="Ujo-dH-Dh6" firstAttribute="leading" secondItem="u85-Hj-WYT" secondAttribute="trailing" constant="11" id="V7F-tp-Jda"/>
+                    <constraint firstItem="Ujo-dH-Dh6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Z3U-Gf-M6x"/>
+                    <constraint firstItem="u85-Hj-WYT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="aks-vR-ofp"/>
+                    <constraint firstAttribute="trailing" secondItem="Ujo-dH-Dh6" secondAttribute="trailing" constant="16" id="g8B-if-HZ6"/>
+                    <constraint firstAttribute="trailing" secondItem="IjO-4m-dj8" secondAttribute="trailing" constant="16" id="wvn-e9-9Fx"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="IjO-4m-dj8" id="HdV-QN-Huh"/>
