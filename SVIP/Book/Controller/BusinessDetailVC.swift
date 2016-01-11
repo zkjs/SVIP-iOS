@@ -35,7 +35,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     }
     navigationController?.navigationBar.translucent = true
     loadData()
-    addNextStepButton()
+    
   }
   
   func loadData() {
@@ -43,6 +43,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       if let dict = responsObject as? NSDictionary {
         self.shopDetail = DetailModel(dic: dict)
+        self.addNextStepButton()
       }
       self.hideHUD()
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -54,7 +55,13 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     let frame = CGRectMake(0, view.bounds.size.height-48, view.bounds.size.width, 48)
     let button = UIButton(frame: frame)
     button.backgroundColor = UIColor.ZKJS_mainColor()
-    button.setTitle("立即预订", forState: .Normal)
+    if shopDetail.shopStatus == 0 {
+      button.setTitle("即将入住", forState: .Normal)
+      button.enabled = false
+    } else {
+      button.setTitle("立即预订", forState: .Normal)
+    }
+    
     button.addTarget(self, action: "nextStep", forControlEvents: .TouchUpInside)
     view.addSubview(button)
   }
@@ -74,8 +81,15 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
   }
   
   func nextStep() {
+    
+    if AccountManager.sharedInstance().isLogin() == false {
+      let nc = BaseNC(rootViewController: LoginVC())
+      presentViewController(nc, animated: true, completion: nil)
+      return
+    }
+    
     print(self.shopDetail.category)
-    if self.shopDetail.category == "酒店行业" {
+    if self.shopDetail.category == "50" {
       let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
       vc.shopName = self.shopDetail.shopName
@@ -83,7 +97,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
       vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
-    if self.shopDetail.category == "餐饮行业" {
+    if self.shopDetail.category == "70" {
       let storyboard = UIStoryboard(name: "LeisureTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureTVC") as! LeisureTVC
 	  vc.shopName = self.shopDetail.shopName
@@ -91,7 +105,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
       vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
     }
-    if self.shopDetail.category == "KTV" {
+    if self.shopDetail.category == "60" {
       let storyboard = UIStoryboard(name: "KTVTableView", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("KTVTableView") as! KTVTableView
       vc.shopName = self.shopDetail.shopName

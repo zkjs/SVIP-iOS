@@ -54,6 +54,7 @@ class HotelCell: UITableViewCell {
   
   
   func setData(hotel:Hotel) {
+
     hotelNameLabel.text = hotel.shopname
     descriptionLabel.text = hotel.shopaddress
     addressLabel.text = hotel.shopdesc

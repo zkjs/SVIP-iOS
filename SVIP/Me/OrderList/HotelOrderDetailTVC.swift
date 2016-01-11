@@ -15,7 +15,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   @IBOutlet weak var contacterLabel: UILabel!
   @IBOutlet weak var telphotoLabel: UILabel!
   @IBOutlet weak var smokingLabel: UILabel!
-  @IBOutlet weak var breakbreastLabel: UILabel!
+  @IBOutlet weak var remark: UITextView!
   @IBOutlet weak var arrivateLabel: UILabel!
   @IBOutlet weak var roomTypeLabel: UILabel!
   @IBOutlet weak var roomsCountLabel: UILabel!
@@ -64,6 +64,13 @@ class HotelOrderDetailTVC:  UITableViewController {
     contacterLabel.text = orderDetail.orderedby
     telphotoLabel.text = orderDetail.telephone
     invoiceLabel.text = orderDetail.company
+    remark.editable = false
+    if orderDetail.nosmoking == 0 {
+      smokingLabel.text = "否"
+    } else {
+      smokingLabel.text = "是"
+    }
+    
     if orderDetail.paytype == 1 {
       payTypeLabel.text = "在线支付"
       payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)
@@ -73,17 +80,15 @@ class HotelOrderDetailTVC:  UITableViewController {
     if orderDetail.paytype == 2 {
        payTypeLabel.text = "到店支付"
     }
-    if orderDetail.paytype == 2 {
+    if orderDetail.paytype == 3 {
       payTypeLabel.text = "挂账"
     }
     if orderDetail.paytype == 0 {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
     }
-    if orderDetail.orderstatus == "待确认" {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
-    }
   }
   
   func confirm(sender:UIButton) {

@@ -93,7 +93,7 @@ class BookPayVC: UIViewController {
       let dic = responsObject as! NSDictionary
       self.payAliOrder(dic)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        print(error)
+        ZKJSTool.showMsg("请安装支付宝")
     }
 }
   
@@ -110,7 +110,7 @@ class BookPayVC: UIViewController {
       let dic = responsObject as! NSDictionary
       self.payAliOrder(dic)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        print(error)
+        ZKJSTool.showMsg("请安装微信")
     }
 }
   

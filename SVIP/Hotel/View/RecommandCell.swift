@@ -31,7 +31,7 @@ class RecommandCell: UITableViewCell {
   }
   func setdata(hotel:Hotel) {
     titleLabel.text = hotel.shopname
-    let placeholderImage = UIImage(named: "img_hotel_zhanwei")
+    let placeholderImage = UIImage(named: "bg_zhuce")
     let logoURL = NSURL(string: hotel.bgImgUrl)
     backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
     contentLabel.text = hotel.shopdesc
