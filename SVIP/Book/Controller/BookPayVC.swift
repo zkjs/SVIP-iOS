@@ -49,7 +49,7 @@ class BookPayVC: UIViewController {
     
     name.text = bkOrder.roomtype
     //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
-    preference.text = bkOrder.remark
+//    preference.text = bkOrder.remark
     money = bkOrder.roomprice
     price.text = "￥\(bkOrder.roomprice)"
     name.text = bkOrder.roomtype

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookPayVC" customModule="SVIP" customModuleProvider="target">
@@ -21,7 +21,6 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*温馨提示：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edu-IJ-jqz">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="nwq-xV-fSf"/>
                     </constraints>
@@ -41,7 +40,6 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_dingdan" translatesAutoresizingMaskIntoConstraints="NO" id="eo3-aY-KlZ">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <animations/>
                     <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="OjY-Pn-5I5"/>
@@ -64,7 +62,6 @@
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_yuan" translatesAutoresizingMaskIntoConstraints="NO" id="eXf-QQ-Gb3">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="158" id="3Fq-vM-BnC"/>
                         <constraint firstAttribute="width" constant="158" id="c70-AU-uWx"/>
@@ -90,7 +87,6 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNk-VP-hq9">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="mhP-ei-V93"/>
                     </constraints>
@@ -125,7 +121,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7I2-cC-9nC">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="OPe-T6-VFh"/>
                         <constraint firstAttribute="width" constant="33" id="UFd-K8-cwT"/>
@@ -148,7 +143,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华大床房" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gt4-Nk-1Pf">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="65" id="4ti-2h-eig"/>
                         <constraint firstAttribute="height" constant="21" id="hoP-xB-Rhf"/>
@@ -171,7 +165,6 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcr-cd-tLM">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="41" id="MQH-m7-Frq">
                             <variation key="heightClass=regular-widthClass=compact" constant="41"/>
@@ -201,7 +194,6 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 成功预订需要酒店反馈，请注意订单通知" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN4-gq-AVy">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="NEn-Fd-HTP"/>
                     </constraints>
@@ -221,7 +213,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 如需退房退款，请和酒店联系" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VE5-Le-scw">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="R94-X4-KFq"/>
                     </constraints>
@@ -241,7 +232,6 @@
                 </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-U7-CNv">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="6H9-CT-BAX"/>
                         <constraint firstAttribute="width" constant="185" id="RAZ-yV-4ua"/>
@@ -272,7 +262,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8R-na-tCj">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="eGi-Hd-ezK"/>
                         <constraint firstAttribute="height" constant="41" id="eu2-1b-BeP"/>
@@ -295,7 +284,6 @@
                     </connections>
                 </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="eXf-QQ-Gb3" firstAttribute="centerY" secondItem="eo3-aY-KlZ" secondAttribute="centerY" id="0Rc-iF-ool"/>
