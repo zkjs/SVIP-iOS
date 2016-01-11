@@ -168,7 +168,7 @@ class ComprehensiveVC: UIViewController {
       cell.userImageButton.tag = indexPath.row
       let shop = dataArray[indexPath.row]
       cell.setData(shop)
-      cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
+//      cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
       return cell
 }
   }

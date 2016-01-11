@@ -22,6 +22,8 @@
 
 - (void)showHUDInView:(UIView *)view withLoading:(NSString *)hint;
 
+- (void)showHUDInTableView:(UITableView *)tableView withLoading:(NSString *)hint;
+
 - (void)hideHUD;
 
 - (void)showHint:(NSString *)hint;

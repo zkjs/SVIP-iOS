@@ -50,7 +50,6 @@ class OrderListCell: SWTableViewCell {
 
   func setOrder(order:OrderListModel) {
     let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"
-    
     hotelImageView.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     hotelnameLabel.text = order.shopname
     roomTypeLabel.text = order.roomtype! + "x" + (order.roomcount?.stringValue)!

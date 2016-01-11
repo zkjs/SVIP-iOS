@@ -10,6 +10,7 @@ import UIKit
 
 class HotelOrderDetailTVC:  UITableViewController {
   
+  @IBOutlet weak var privilageLabel: UILabel!
   @IBOutlet weak var pendingConfirmationLabel: UILabel!
   @IBOutlet weak var invoiceLabel: UILabel!
   @IBOutlet weak var contacterLabel: UILabel!
@@ -30,7 +31,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
     loadData()
   }
   
@@ -61,9 +62,25 @@ class HotelOrderDetailTVC:  UITableViewController {
     arrivateLabel.text = orderDetail.roomInfo
     roomTypeLabel.text = orderDetail.roomtype
     roomsCountLabel.text = String(orderDetail.roomcount)
-    contacterLabel.text = orderDetail.orderedby
-    telphotoLabel.text = orderDetail.telephone
-    invoiceLabel.text = orderDetail.company
+    privilageLabel.text = orderDetail.privilegeName
+    if orderDetail.orderedby == "" {
+      contacterLabel.text = "暂未填写信息"
+    } else {
+      contacterLabel.text = orderDetail.orderedby
+    }
+    
+    if orderDetail.telephone == "" {
+      telphotoLabel.text = "暂未填写手机号"
+    } else {
+      telphotoLabel.text = orderDetail.telephone
+    }
+    
+    if orderDetail.company == "" {
+      invoiceLabel.text = "暂未填写"
+    } else {
+      invoiceLabel.text = orderDetail.company
+    }
+    
     remark.editable = false
     if orderDetail.nosmoking == 0 {
       smokingLabel.text = "否"
@@ -87,16 +104,14 @@ class HotelOrderDetailTVC:  UITableViewController {
       payButton.hidden = true
       pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
     }
+    if orderDetail.paytype != 1 {
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
   }
   
   func confirm(sender:UIButton) {
-    if orderDetail.paytype == 1 {
-      let vc = BookPayVC()
-      vc.bkOrder = orderDetail
-      navigationController?.pushViewController(vc, animated: true)
-    } else {
       showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         if let dic = responsObjects as? NSDictionary {
@@ -112,12 +127,12 @@ class HotelOrderDetailTVC:  UITableViewController {
         }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
           
       }
-    }
+    
     
   }
   
   func cancle(sender:UIButton) {
-    showHUDInView(view, withLoading: "")
+    showHUDInTableView(tableView, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
         self.orderno = dic["data"] as! String
@@ -192,6 +207,41 @@ class HotelOrderDetailTVC:  UITableViewController {
     }
     
     return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+  }
+  
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 0
+    }
+    // 确定
+    if section == 6  {//确认
+      if orderDetail.orderstatus != nil {
+        if orderDetail.orderstatus == "待确认" || orderDetail.orderstatus == "待支付" {
+          
+        } else {
+          return 0.0
+        }
+      }
+    }
+    
+    // 取消
+    if section == 7 {//取消
+      if orderDetail.orderstatus != nil {
+        if orderDetail.orderstatus == "待处理" || orderDetail.orderstatus == "待确认" || orderDetail.orderstatus == "待支付" || orderDetail.orderstatus == "已确认" {
+          
+        } else {
+          return 0.0
+        }
+      }
+    }
+
+    return 20
+  }
+  
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let header = UIView()
+    header.backgroundColor = UIColor.clearColor()
+    return header
   }
   
 

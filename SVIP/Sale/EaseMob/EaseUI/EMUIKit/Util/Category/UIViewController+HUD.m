@@ -61,8 +61,19 @@ static const void *HttpRequestHUDKey = &HttpRequestHUDKey;
     HUD.labelText = hint;
     HUD.labelFont = [UIFont systemFontOfSize:12.0];
     [view addSubview:HUD];
+//    HUD.yOffset = view.bounds.size.height - ([UIScreen mainScreen].bounds.size.height)/2.0 + HUD.frame.size.height/2.0;
     [HUD show:YES];
     [self setHUD:HUD];
+}
+
+- (void)showHUDInTableView:(UITableView *)tableView withLoading:(NSString *)hint {
+  MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:tableView];
+  HUD.labelText = hint;
+  HUD.labelFont = [UIFont systemFontOfSize:12.0];
+  [tableView addSubview:HUD];
+  HUD.yOffset = tableView.contentOffset.y;
+  [HUD show:YES];
+  [self setHUD:HUD];
 }
 
 - (void)showHint:(NSString *)hint

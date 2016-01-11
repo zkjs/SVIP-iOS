@@ -48,6 +48,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = shopName
+    tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
     roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
     setUpUI()
   }
@@ -85,6 +86,19 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     }
     
     return cell
+  }
+  
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 0
+    }
+    return 20
+  }
+  
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let header = UIView()
+    header.backgroundColor = UIColor.clearColor()
+    return header
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
