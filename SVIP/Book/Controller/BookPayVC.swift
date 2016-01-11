@@ -126,15 +126,19 @@ class BookPayVC: UIViewController {
   private func payAliOrder(charge:NSDictionary) {
     Pingpp.createPayment(charge,viewController: self, appURLScheme: "SVIPPAY") { (result:String!, error:PingppError!) -> Void in
       if result == "success" {
-        ZKJSTool.showMsg("支付成功")
         ZKJSJavaHTTPSessionManager.sharedInstance().orderPayWithOrderno(self.bkOrder.orderno, success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
           print(responsObjects)
-          let appWindow = UIApplication.sharedApplication().keyWindow
-          let mainTBC = MainTBC()
-          mainTBC.selectedIndex = 3
-          NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
-          let nc = BaseNC(rootViewController: mainTBC)
-          appWindow?.rootViewController = nc
+          // 延迟一秒，让用户看清楚离店时间动画
+          ZKJSTool.showMsg("支付成功")
+          let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+          dispatch_after(delayTime, dispatch_get_main_queue()) {
+            let appWindow = UIApplication.sharedApplication().keyWindow
+            let mainTBC = MainTBC()
+            mainTBC.selectedIndex = 3
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
+            let nc = BaseNC(rootViewController: mainTBC)
+            appWindow?.rootViewController = nc
+          }
           }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
             print(error)
         })

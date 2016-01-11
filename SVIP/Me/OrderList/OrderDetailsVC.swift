@@ -32,7 +32,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       title = "订单详情"
       //评价
       let starRating = EDStarRating()
-      starRating.frame = CGRectMake(20, 10, self.view.bounds.width/1.7, 60)
+      starRating.frame = CGRectMake(0, 10, UIScreen.mainScreen().bounds.width, 60)
       starRating.backgroundColor = UIColor.whiteColor()
       starRating.starImage = UIImage(named: "ic_star_nor")
       starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
@@ -87,7 +87,8 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     
 
   @IBAction func submit(sender: AnyObject) {
-    let date = NSDate()
+    let date = NSDate().timeIntervalSince1970*1000
+    print(date)
     let userID = AccountManager.sharedInstance().userID
     var dic = [String: AnyObject]()
     dic["id"] = ""
@@ -113,4 +114,24 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
         
     }
   }
+}
+
+extension OrderDetailsVC: UITextViewDelegate {
+  
+  func textViewDidBeginEditing(textView: UITextView) {
+    if textView.text == "如有其他需求，请在此说明" {
+      textView.text = ""
+      textView.textColor = UIColor.blackColor()
+    }
+    textView.becomeFirstResponder()
+  }
+  
+  func textViewDidEndEditing(textView: UITextView) {
+    if textView.text == "" {
+      textView.text = "如有其他需求，请在此说明"
+      textView.textColor = UIColor.lightGrayColor()
+    }
+    textView.resignFirstResponder()
+  }
+  
 }

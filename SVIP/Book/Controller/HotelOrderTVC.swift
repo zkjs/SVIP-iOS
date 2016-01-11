@@ -320,3 +320,23 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   }
   
 }
+
+extension HotelOrderTVC: UITextViewDelegate {
+  
+  func textViewDidBeginEditing(textView: UITextView) {
+    if textView.text == "如有其他需求，请在此说明" {
+      textView.text = ""
+      textView.textColor = UIColor.blackColor()
+    }
+    textView.becomeFirstResponder()
+  }
+  
+  func textViewDidEndEditing(textView: UITextView) {
+    if textView.text == "" {
+      textView.text = "如有其他需求，请在此说明"
+      textView.textColor = UIColor.lightGrayColor()
+    }
+    textView.resignFirstResponder()
+  }
+  
+}
