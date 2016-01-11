@@ -137,6 +137,7 @@ class HotelOrderDetailTVC:  UITableViewController {
           if let result = dic["result"] as? NSNumber {
             if result.boolValue == true {
               ZKJSTool.showMsg("订单已确认")
+              self.sendMessageNotificationWithText("订单已确认")
               self.hideHUD()
               self.navigationController?.popViewControllerAnimated(true)
             }
@@ -154,6 +155,7 @@ class HotelOrderDetailTVC:  UITableViewController {
         self.orderno = dic["data"] as! String
         if let result = dic["result"] as? NSNumber {
           if result.boolValue == true {
+            self.sendMessageNotificationWithText("订单已取消")
             self.navigationController?.popViewControllerAnimated(true)
             self.hideHUD()
           }
@@ -174,6 +176,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
+        self.sendMessageNotificationWithText("订单已确认")
         self.hideHUD()
         self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -184,21 +187,18 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func sendMessageNotificationWithText(text: String) {
-    // 发送环信透传消息
-    let userID = AccountManager.sharedInstance().userID
+    // 发送环信消息
     let userName = AccountManager.sharedInstance().userName
-    let phone = AccountManager.sharedInstance().phone
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
     let txtChat = EMChatText(text: text)
     let body = EMTextMessageBody(chatObject: txtChat)
-//    let message = EMMessage(receiver: salesid, bodies: [body])
-//    let ext = ["shopId": self.shopid.stringValue,
-//      "shopName": self.shopName,
-//      "toName": salesName,
-//      "fromName": userName]
-//    message.ext = ext
-//    message.messageType = .eMessageTypeChat
-//    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+    let message = EMMessage(receiver: orderDetail.saleid, bodies: [body])
+    let ext = ["shopId": orderDetail.shopid,
+      "shopName": orderDetail.shopname,
+      "toName": "",
+      "fromName": userName]
+    message.ext = ext
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
   }
     
   @IBAction func comments(sender: AnyObject) {

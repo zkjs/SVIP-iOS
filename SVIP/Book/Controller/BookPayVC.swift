@@ -121,7 +121,7 @@ class BookPayVC: UIViewController {
     //    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_PAY_WHEN_CHECKIN", comment: "")
     //    navigationController?.pushViewController(chatVC, animated: true)
   }
-  
+
   //MARK:- ALIPAY
   private func payAliOrder(charge:NSDictionary) {
     Pingpp.createPayment(charge,viewController: self, appURLScheme: "SVIPPAY") { (result:String!, error:PingppError!) -> Void in
@@ -130,6 +130,7 @@ class BookPayVC: UIViewController {
           print(responsObjects)
           // 延迟一秒，让用户看清楚离店时间动画
           ZKJSTool.showMsg("支付成功")
+          self.sendMessageNotificationWithText("订单已成功支付")
           let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
           dispatch_after(delayTime, dispatch_get_main_queue()) {
             let appWindow = UIApplication.sharedApplication().keyWindow
@@ -211,6 +212,21 @@ class BookPayVC: UIViewController {
     //      }];
     //
     //    }
+  }
+  
+  func sendMessageNotificationWithText(text: String) {
+    // 发送环信消息
+    let userName = AccountManager.sharedInstance().userName
+    let txtChat = EMChatText(text: text)
+    let body = EMTextMessageBody(chatObject: txtChat)
+    let message = EMMessage(receiver: bkOrder.saleid, bodies: [body])
+    let ext = ["shopId": bkOrder.shopid,
+      "shopName": bkOrder.shopname,
+      "toName": "",
+      "fromName": userName]
+    message.ext = ext
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
   }
   
   private func validateResult(result: NSString) -> Bool{
