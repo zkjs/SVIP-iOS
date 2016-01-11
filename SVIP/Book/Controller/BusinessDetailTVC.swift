@@ -92,6 +92,10 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     }
   }
   
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("BusinessDetailTVC", owner:self, options:nil)
+  }
+  
   func setupUI() {
     if shopDetail.shopdescUrl != nil {
       web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)

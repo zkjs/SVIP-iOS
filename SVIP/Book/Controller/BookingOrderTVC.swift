@@ -81,6 +81,10 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
     }
   }
   
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("BookingOrderTVC", owner:self, options:nil)
+  }
+  
   func createConversationWithSalesID(salesID: String, salesName: String) {
 //    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
 //    let order = packetOrder()
