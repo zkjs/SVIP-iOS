@@ -10,6 +10,10 @@ import UIKit
 protocol PhotoViewerDelegate {
   func gotoPhotoViewerDelegate(brower:AnyObject)
 }
+
+protocol CommentsViewerDelegate {
+  func gotoCommentsViewerDelegate(CommentVC:AnyObject)
+}
 class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate,UIWebViewDelegate {
   
   @IBOutlet weak var commentsLabel: UILabel!
@@ -30,6 +34,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     }
   }
   var delegate:PhotoViewerDelegate?
+  var Delegate:CommentsViewerDelegate?
   var scheduledButton = UIButton()
   var shopid: NSNumber!
   var shopName: String!
@@ -91,6 +96,8 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
         
     }
   }
+  
+  
   
   func setupUI() {
     if shopDetail.shopdescUrl != nil {
@@ -233,10 +240,10 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    if indexPath == NSIndexPath(forRow: 0, inSection: 2) {
-//      let vc = CommentsTVC()
-//      self.delegate?.gotoPhotoViewerDelegate(vc)
-//        }
+    if indexPath == NSIndexPath(forRow: 0, inSection: 2) {
+      let vc = CommentsTVC()
+      self.Delegate?.gotoCommentsViewerDelegate(vc)
+        }
   }
   
   func photoViewer() {

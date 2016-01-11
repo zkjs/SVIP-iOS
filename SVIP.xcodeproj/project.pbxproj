@@ -339,6 +339,7 @@
 		FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F56E1C031F4100C84601 /* IntegralVC.xib */; };
 		FAF813B61C1FB81E008D96E2 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */; };
 		FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */; };
+		FAF92CB61C4414B800671300 /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF92CB51C4414B800671300 /* CommentsModel.swift */; };
 		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
 		FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA518F1C16C62900BF04F2 /* HomeVC.xib */; };
 		FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */; };
@@ -1160,6 +1161,7 @@
 		FAF7F56E1C031F4100C84601 /* IntegralVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralVC.xib; sourceTree = "<group>"; };
 		FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
 		FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountTVC.storyboard; sourceTree = "<group>"; };
+		FAF92CB51C4414B800671300 /* CommentsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
 		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		FAFA518F1C16C62900BF04F2 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCustomCell.swift; sourceTree = "<group>"; };
@@ -2883,6 +2885,7 @@
 				B2A642151B47C2A700AF0F28 /* RoomGoods.swift */,
 				FAF206111C3269890052EF74 /* OrderDetailModel.swift */,
 				FAFBC4421C338BC5001E9155 /* DetailModel.swift */,
+				FAF92CB51C4414B800671300 /* CommentsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3533,6 +3536,7 @@
 				4077DD991C1EAF9900E13D6B /* GroupSettingViewController.m in Sources */,
 				4077DDD21C1EAF9900E13D6B /* PSTCollectionViewUpdateItem.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
+				FAF92CB61C4414B800671300 /* CommentsModel.swift in Sources */,
 				40E39E3D1BFEF43800516EC4 /* OrderContentView.swift in Sources */,
 				40E3A15F1BFEFA0C00516EC4 /* MailListTVC.swift in Sources */,
 				B2A642251B47C2A700AF0F28 /* BookRoomCell.swift in Sources */,

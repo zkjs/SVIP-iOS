@@ -9,7 +9,9 @@
 import UIKit
 
 class CommentsTVC: UITableViewController {
-        
+  var shopid:NSNumber!
+  var orderPage = 1
+  var commentArray : NSMutableArray = []
     override func viewDidLoad() {
         super.viewDidLoad()
       title = "评价"
@@ -20,6 +22,8 @@ class CommentsTVC: UITableViewController {
       
       let cellNib = UINib(nibName: CommentsCell.nibName(), bundle: nil)
       tableView.registerNib(cellNib, forCellReuseIdentifier: CommentsCell.reuseIdentifier())
+      tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
+       tableView.tableFooterView = UIView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,6 +35,46 @@ class CommentsTVC: UITableViewController {
   func pop(sender:UIBarButtonItem) {
     navigationController?.popViewControllerAnimated(true)
   }
+  
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("CommentsTVC", owner:self, options:nil)
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    orderPage = 1
+    loadMoreData()
+  }
+  
+  func loadMoreData() {
+    showHUDInView(view, withLoading: "")
+    let page = String(orderPage)
+    ZKJSJavaHTTPSessionManager.sharedInstance().getevaluationWithshopid(String(shopid), page: page, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
+      let orderArray = responseObject as! NSArray
+      if page == "1" {
+        self.commentArray.removeAllObjects()
+      }
+      if orderArray.count != 0 {
+        for orderInfo in orderArray {
+          let order = CommentsModel(dic: orderInfo as! NSDictionary)
+          self.commentArray.addObject(order)
+        }
+        self.hideHUD()
+        self.tableView.reloadData()
+        self.tableView.mj_footer.endRefreshing()
+        self.orderPage++
+      } else {
+        self.hideHUD()
+        self.tableView.mj_footer.endRefreshingWithNoMoreData()
+      }
+     
+      }) { (task: NSURLSessionDataTask!, error: NSError!)-> Void in
+        self.hideHUD()
+        ZKJSTool.showMsg("数据异常")
+    }
+  }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -46,7 +90,7 @@ class CommentsTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return commentArray.count
     }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -57,6 +101,8 @@ class CommentsTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCellWithIdentifier(CommentsCell.reuseIdentifier()) as! CommentsCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
+      let comments = commentArray[indexPath.row] as! CommentsModel
+      cell.setDate(comments)
       return cell
 
     }

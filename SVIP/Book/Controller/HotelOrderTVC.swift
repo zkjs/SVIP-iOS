@@ -59,6 +59,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     setUpUI()
   }
   
+  
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     view.endEditing(true)
   }
@@ -69,10 +70,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     setUpUI()
   }
   func countSubtract(sender: AnyObject) {
-    roomsCount--
-    if roomsCount < 1 {
+   
+    if roomsCount < 2 {
       self.countSubtractButton.enabled = false
+      return
     }
+    roomsCount--
     setUpUI()
   }
   

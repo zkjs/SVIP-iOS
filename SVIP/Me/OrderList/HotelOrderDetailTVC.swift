@@ -42,6 +42,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     loadData()
   }
   
+
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -146,6 +147,8 @@ class HotelOrderDetailTVC:  UITableViewController {
         }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
           
       }
+    
+    
   }
   
   func cancle(sender:UIButton) {
@@ -184,6 +187,7 @@ class HotelOrderDetailTVC:  UITableViewController {
           self.hideHUD()
       })
     }
+    
   }
   
   func sendMessageNotificationWithText(text: String) {

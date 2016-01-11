@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="去北京之前特地用招行信用卡积分兑换的酒店，价格很美丽，环境也很不错。出门5分钟就能到达地铁站，超级便捷。信用卡积分兑换的酒店，价格很合理" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coO-cH-BPq">
-                        <rect key="frame" x="30" y="70" width="324" height="54"/>
+                        <rect key="frame" x="80" y="70" width="274" height="54"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="54" id="m1I-hU-vJp"/>
                         </constraints>
@@ -53,7 +53,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="39R-Qs-CiR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="6cs-lx-Lmo"/>
-                    <constraint firstItem="coO-cH-BPq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Fe8-Ct-1Mv"/>
+                    <constraint firstItem="coO-cH-BPq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="80" id="Fe8-Ct-1Mv"/>
                     <constraint firstAttribute="trailing" secondItem="coO-cH-BPq" secondAttribute="trailing" constant="30" id="MZW-Zs-Isg"/>
                     <constraint firstAttribute="trailing" secondItem="39R-Qs-CiR" secondAttribute="trailing" constant="30" id="aOp-JT-rRs"/>
                     <constraint firstAttribute="trailing" secondItem="1I8-Z0-mdV" secondAttribute="trailing" constant="50" id="caM-KM-cw7"/>

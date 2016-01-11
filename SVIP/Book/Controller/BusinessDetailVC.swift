@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
+class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDelegate {
 
   var shopid: NSNumber!
   var shopName: String!
@@ -28,6 +28,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     if let nc = childViewControllers[0] as? UINavigationController {
       if let vc = nc.topViewController as? BusinessDetailTVC {
         vc.delegate = self
+        vc.Delegate = self
         vc.shopid = shopid
         vc.shopName = shopName
         vc.saleid = self.saleid
@@ -116,8 +117,16 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate {
     }
   }
   
+ 
+  
   func gotoPhotoViewerDelegate(Brower:AnyObject) {
-    self.navigationController?.pushViewController(Brower as! UIViewController, animated: true)
+    self.navigationController?.pushViewController(Brower  as! UIViewController , animated: true)
+  }
+  
+  func gotoCommentsViewerDelegate(Brower:AnyObject) {
+    let vc = CommentsTVC()
+    vc.shopid = self.shopid
+    self.navigationController?.pushViewController(vc , animated: true)
   }
 
 }

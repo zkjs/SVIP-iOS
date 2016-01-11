@@ -96,4 +96,7 @@
 # pragma mark - 首页超级接口
 - (void)getMessagesWithCity:(NSString *)city success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+#pragma mark -  获取商家评论
+- (void)getevaluationWithshopid:(NSString * )shopid Page:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end
