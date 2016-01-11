@@ -342,4 +342,16 @@
   }];
 }
 
+#pragma mark -  获取商家评论
+- (void)getevaluationWithshopid:(NSString * )shopid Page:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString *urlString = [NSString stringWithFormat:@"shop/evaluation/get/%@/%@/10", shopid,page];
+  [self GET:urlString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    success(task, responseObject);
+   // NSLog(@"%@", [responseObject description]);
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(task, error);
+    NSLog(@"%@", [error description]);
+  }];
+}
+
 @end

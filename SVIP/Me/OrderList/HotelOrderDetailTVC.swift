@@ -42,10 +42,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     loadData()
   }
   
-  override func loadView() {
-    NSBundle.mainBundle().loadNibNamed("HotelOrderDetailTVC", owner:self, options:nil)
-  }
-  
+
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     

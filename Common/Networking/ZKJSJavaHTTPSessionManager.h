@@ -93,4 +93,7 @@
 #pragma mark - 订单评价
 - (void)evaluationWithData:(NSDictionary *)data success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+#pragma mark -  获取商家评论
+- (void)getevaluationWithshopid:(NSString * )shopid Page:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end
