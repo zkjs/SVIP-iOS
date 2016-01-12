@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Hotel Order DetailTVC-->
@@ -626,6 +626,7 @@
                         <outlet property="arrivateLabel" destination="Djw-en-Bj8" id="LfF-eO-heg"/>
                         <outlet property="cancleButton" destination="akT-TS-xPI" id="hZ7-aI-fLj"/>
                         <outlet property="contacterLabel" destination="MWt-BP-Ouf" id="2lL-zT-l8e"/>
+                        <outlet property="hotelImageView" destination="7uP-2Z-uAu" id="SFR-7x-g2j"/>
                         <outlet property="invoiceLabel" destination="ypF-5F-bqI" id="51R-Qu-wlV"/>
                         <outlet property="ordernoLabel" destination="Zbo-zz-mM2" id="JUb-0V-078"/>
                         <outlet property="payButton" destination="dq2-su-Iax" id="dGQ-mO-EtZ"/>

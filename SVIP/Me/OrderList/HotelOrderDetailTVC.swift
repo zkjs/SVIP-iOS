@@ -27,6 +27,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   @IBOutlet weak var payButton: UIButton!
   @IBOutlet weak var cancleButton: UIButton!
   
+  @IBOutlet weak var hotelImageView: UIImageView!
   var reservation_no: String!
   var orderno: String!
   var orderDetail = OrderDetailModel()
@@ -82,6 +83,11 @@ class HotelOrderDetailTVC:  UITableViewController {
     roomsCountLabel.text = String(orderDetail.roomcount)
     privilageLabel.text = orderDetail.privilegeName
     ordernoLabel.text = orderDetail.orderno
+    let url = NSURL(string: kBaseURL)
+    if let shoplogo = orderDetail.imgurl {
+      let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
+      hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    }
     if orderDetail.orderedby == "" {
       contacterLabel.text = "暂未填写信息"
     } else {

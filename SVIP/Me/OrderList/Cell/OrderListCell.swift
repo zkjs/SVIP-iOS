@@ -24,7 +24,13 @@ class OrderListCell: SWTableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var roomTypeLabel: UILabel!
     @IBOutlet weak var hotelnameLabel: UILabel!
-    @IBOutlet weak var hotelImageView: UIImageView!
+  @IBOutlet weak var hotelImageView: UIImageView!{
+    didSet {
+      hotelImageView.layer.masksToBounds = true
+      hotelImageView.layer.cornerRadius = hotelImageView.frame.width / 2.0
+    }
+  }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -49,8 +55,12 @@ class OrderListCell: SWTableViewCell {
       }
 
   func setOrder(order:OrderListModel) {
-    let hotelUrl = "\(kBaseURL)uploads/shops/\(order.shopid).png"
-    hotelImageView.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    let url = NSURL(string: kBaseURL)
+    if let shoplogo = order.shoplogo {
+      let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
+      hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+    }
+
     hotelnameLabel.text = order.shopname
     roomTypeLabel.text = order.roomtype! + "x" + (order.roomcount?.stringValue)!
     let dateFormatter = NSDateFormatter()

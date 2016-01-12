@@ -29,7 +29,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-      title = "订单详情"
+      title = "订单评论"
       //评价
       let starRating = EDStarRating()
       starRating.frame = CGRectMake(0, 10, UIScreen.mainScreen().bounds.width, 60)

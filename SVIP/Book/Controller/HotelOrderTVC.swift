@@ -172,8 +172,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     vc.selection = { (goods:RoomGoods ) ->() in
       self.roomsTypeLabel.text = goods.room
       self.goods = goods
-      let urlString = kBaseURL + goods.image
-      self.roomImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "bg_dingdanzhuangtai"))
+      let baseUrl = kBaseURL
+      if let goodsImage = goods.image {
+        var url = NSURL(string: baseUrl)
+        url = url?.URLByAppendingPathComponent(goodsImage)
+        self.roomImage.sd_setImageWithURL(url, placeholderImage: UIImage(named: "bg_dingdanzhuangtai"))
+      }
     }
     navigationController?.pushViewController(vc, animated: true)
   }
