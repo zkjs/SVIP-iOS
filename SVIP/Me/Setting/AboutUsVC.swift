@@ -20,7 +20,7 @@ class WebViewVC: UIViewController {
   }
   
   func initSubviews() {
-    webView = UIWebView(frame: view.bounds)
+    webView = UIWebView(frame: UIScreen.mainScreen().bounds)
     let url = NSURL(string: self.url)  
     webView.loadRequest(NSURLRequest(URL: url!))
     webView.scrollView.bounces = false

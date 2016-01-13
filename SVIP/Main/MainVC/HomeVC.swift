@@ -344,7 +344,11 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         let pushInfo = self.pushInfoArray[indexPath.row]
-        cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+        if pushInfo.shopid == "" {
+          cell.accessoryView = nil
+        } else {
+          cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+        }
         cell.setData(pushInfo)
         return cell
       }
@@ -392,10 +396,10 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       if indexPath.section == 3 {
         let pushInfo = pushInfoArray[indexPath.row]
         if pushInfo.shopid == "" {
-          let vc = WebViewVC()
-          vc.hidesBottomBarWhenPushed = true
-          vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
-          self.navigationController?.pushViewController(vc, animated: true)
+//          let vc = WebViewVC()
+//          vc.hidesBottomBarWhenPushed = true
+//          vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
+//          self.navigationController?.pushViewController(vc, animated: true)
         } else {
           pushToBookVC(pushInfo)
         }
