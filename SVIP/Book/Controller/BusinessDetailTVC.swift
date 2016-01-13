@@ -52,6 +52,10 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    telphoneLabel.text = ""
+    addressLabel.text = ""
+    commentsLabel.text = ""
+    
     let titleLabel = UILabel()
     titleLabel.text = shopName
     titleLabel.textAlignment = .Center

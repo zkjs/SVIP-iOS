@@ -97,8 +97,8 @@
   NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%@/%@/%@",[self userID],city,page,size];
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
-    // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -108,8 +108,8 @@
 - (void)getLoginOutShopListWithPage:(NSString *)page size:(NSString *)size success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"shop/list/%d/%d",page.intValue,size.intValue];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    NSLog(@"酒店列表%@", [responseObject description]);
     success(task, responseObject);
-     //NSLog(@"酒店列表%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -119,8 +119,8 @@
 - (void)getShopListWithPage:(NSString *)page size:(NSString *)size success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%d/%d",[self userID],page.intValue,size.intValue];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    NSLog(@"酒店列表%@", [responseObject description]);
     success(task, responseObject);
-  //  NSLog(@"酒店列表%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
    // NSLog(@"酒店列表%@", [error description]);
     failure(task, error);
@@ -132,8 +132,8 @@
   NSString * string = [NSString stringWithFormat:@"shop/recommended/%@",city];
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
-     //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -142,8 +142,8 @@
 #pragma mark - 获取用户推送消息(用户未登陆)
 - (void)getPushInfoToUserWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"messages/default" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
-   //  NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
