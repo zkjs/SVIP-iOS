@@ -24,7 +24,7 @@ class Hotel: NSObject {
   init(dic: NSDictionary) {
     
     shopid = dic["shopid"] as! String
-    shoplogo = dic["shoplogo"] as! String
+    shoplogo = dic["shoplogo"] as? String ?? ""
     salesid = dic["salesid"] as? String
     shopdesc = dic["shopdesc"] as? String
     shopname = dic["shopname"] as? String
