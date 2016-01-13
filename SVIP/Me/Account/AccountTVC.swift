@@ -10,6 +10,7 @@ import UIKit
 
 class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   
+  @IBOutlet weak var invoinceLabel: UILabel!
   @IBOutlet weak var emailTextFiled: UITextField!
   @IBOutlet weak var sexTextField: UITextField!
   @IBOutlet weak var surnameTextField: UITextField!
@@ -52,6 +53,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     surnameTextField.text = AccountManager.sharedInstance().userName
     emailTextFiled.text = AccountManager.sharedInstance().email
     sexTextField.text = AccountManager.sharedInstance().sexName
+    invoinceLabel.text = AccountManager.sharedInstance().invoice
   }
   
   // MARK: - Table view delegate
@@ -78,7 +80,11 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     case phone:
       navigationController?.pushViewController(PhoneFirstVC(), animated: true)
     case invoice:
-      navigationController?.pushViewController(InvoiceVC(), animated: true)
+      let vc = InvoiceVC()
+      vc.selection = { [unowned self] (invoice:  InvoiceModel) ->() in
+        self.invoinceLabel.text = invoice.title
+      }
+      self.navigationController?.pushViewController(vc, animated: true)
     default:
       break
     }

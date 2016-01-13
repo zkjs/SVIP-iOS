@@ -125,7 +125,12 @@ class MerchantsVC: UIViewController {
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      return 400
+    if indexPath.row == 0 {
+      return RecommandCell.height()
+    }
+    else {
+      return HotelCell.height()
+    }
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

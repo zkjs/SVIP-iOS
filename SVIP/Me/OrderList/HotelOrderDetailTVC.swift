@@ -40,8 +40,9 @@ class HotelOrderDetailTVC:  UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "订单管理"
     tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
-    
+    tableView.bounces = false
     let image = UIImage(named: "ic_fanhui_orange")
     let item = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")
     self.navigationItem.leftBarButtonItem = item
@@ -51,7 +52,6 @@ class HotelOrderDetailTVC:  UITableViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
     navigationController?.navigationBar.translucent = false
   }
   
@@ -68,20 +68,24 @@ class HotelOrderDetailTVC:  UITableViewController {
     //获取订单详情
     guard let reservation_no = reservation_no else { return }
     showHUDInView(view, withLoading: "")
+    tableView.scrollEnabled = false
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
-      self.hideHUD()
+      
       if let dic = responseObject as? NSDictionary {
         print(dic)
         self.orderDetail = OrderDetailModel(dic: dic)
-        self.tableView.reloadData()
-        self.setUI()
       }
+      self.hideHUD()
+      self.tableView.reloadData()
+      self.setUI()
+      self.tableView.scrollEnabled = true
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
     }
   }
   
   func setUI() {
+   
     remark.text = orderDetail.remark
     arrivateLabel.text = orderDetail.roomInfo
     roomTypeLabel.text = orderDetail.roomtype
@@ -93,20 +97,32 @@ class HotelOrderDetailTVC:  UITableViewController {
       let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
       hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "bg_zuijinliulan"))
     }
+    if orderDetail.orderstatus == "已取消" {
+      pendingConfirmationLabel.text = "  您的订单已取消"
+    }
+    if orderDetail.orderstatus == "待处理" {
+      pendingConfirmationLabel.text = "  请等待客服确认"
+    }else {
+      pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
+    }
+    
     if orderDetail.orderedby == "" {
       contacterLabel.text = "暂未填写信息"
+      contacterLabel.textColor = UIColor.ZKJS_textColor()
     } else {
       contacterLabel.text = orderDetail.orderedby
     }
     
     if orderDetail.telephone == "" {
       telphotoLabel.text = "暂未填写手机号"
+      telphotoLabel.textColor = UIColor.ZKJS_textColor()
     } else {
       telphotoLabel.text = orderDetail.telephone
     }
     
     if orderDetail.company == "" {
       invoiceLabel.text = "暂未填写"
+      invoiceLabel.textColor = UIColor.ZKJS_textColor()
     } else {
       invoiceLabel.text = orderDetail.company
     }
@@ -119,22 +135,24 @@ class HotelOrderDetailTVC:  UITableViewController {
     }
     
     if orderDetail.paytype == 1 {
-      payTypeLabel.text = "在线支付"
+      payTypeLabel.text = "￥\(orderDetail.roomprice) 在线支付"
       payButton.setTitle("￥\(orderDetail.roomprice)立即支付", forState: UIControlState.Normal)
       payButton.addTarget(self, action: "pay:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
     if orderDetail.paytype == 2 {
-       payTypeLabel.text = "到店支付" + "\(orderDetail.roomprice)"
+       payTypeLabel.text =  "￥\(orderDetail.roomprice)" + "到店支付"
     }
     if orderDetail.paytype == 3 {
-      payTypeLabel.text = "挂账" + "\(orderDetail.roomprice)"
+      payTypeLabel.text =  "￥\(orderDetail.roomprice)" + "挂账"
     }
     if orderDetail.paytype == 0 {
+      payTypeLabel.textColor = UIColor.ZKJS_textColor()
       payButton.hidden = true
-      pendingConfirmationLabel.text = "  请您核对订单，并确认。如需修改，请联系客服"
+      
     }
     if orderDetail.paytype != 1 {
+      payButton.titleLabel?.text = "￥\(orderDetail.roomprice) 确认"
       payButton.addTarget(self, action: "confirm:", forControlEvents: UIControlEvents.TouchUpInside)
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
@@ -226,6 +244,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  
     //待评价
     if indexPath.section == 5 {
       if orderDetail.orderstatus != nil {

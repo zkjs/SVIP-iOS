@@ -27,8 +27,17 @@ class HotelCell: UITableViewCell {
       addressLabel.numberOfLines = 0
     }
   }
-  @IBOutlet weak var customLabel: UILabel!
-  @IBOutlet weak var hotelNameLabel: UILabel!
+  @IBOutlet weak var customLabel: UILabel! {
+    didSet {
+      customLabel.text = ""
+    }
+  }
+  @IBOutlet weak var hotelNameLabel: UILabel! {
+    didSet {
+      hotelNameLabel.text = ""
+    }
+  }
+
   @IBOutlet weak var hotelImageView: UIImageView!
 //    {
 //    didSet {
