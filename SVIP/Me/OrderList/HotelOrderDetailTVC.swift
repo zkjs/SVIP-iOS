@@ -10,6 +10,10 @@ import UIKit
 
 let kGotoOrderList = "kGotoOrderList"
 
+@objc protocol HotelOrderDetailTVCDelegate {
+  func shouldSendTextMessage(message: String)
+}
+
 class HotelOrderDetailTVC:  UITableViewController {
   
   @IBOutlet weak var ordernoLabel: UILabel!
@@ -26,8 +30,9 @@ class HotelOrderDetailTVC:  UITableViewController {
   @IBOutlet weak var payTypeLabel: UILabel!
   @IBOutlet weak var payButton: UIButton!
   @IBOutlet weak var cancleButton: UIButton!
-  
   @IBOutlet weak var hotelImageView: UIImageView!
+  
+  var delegate: HotelOrderDetailTVCDelegate? = nil
   var reservation_no: String!
   var orderno: String!
   var orderDetail = OrderDetailModel()
@@ -197,18 +202,21 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func sendMessageNotificationWithText(text: String) {
-    // 发送环信消息
-    let userName = AccountManager.sharedInstance().userName
-    let txtChat = EMChatText(text: text)
-    let body = EMTextMessageBody(chatObject: txtChat)
-    let message = EMMessage(receiver: orderDetail.saleid, bodies: [body])
-    let ext = ["shopId": orderDetail.shopid,
-      "shopName": orderDetail.shopname,
-      "toName": "",
-      "fromName": userName]
-    message.ext = ext
-    message.messageType = .eMessageTypeChat
-    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+//    // 发送环信消息
+//    let userName = AccountManager.sharedInstance().userName
+//    let txtChat = EMChatText(text: text)
+//    let body = EMTextMessageBody(chatObject: txtChat)
+//    let message = EMMessage(receiver: orderDetail.saleid, bodies: [body])
+//    let ext = ["shopId": orderDetail.shopid,
+//      "shopName": orderDetail.shopname,
+//      "toName": "",
+//      "fromName": userName]
+//    message.ext = ext
+//    message.messageType = .eMessageTypeChat
+//    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+    
+//    NSNotificationCenter.defaultCenter().postNotificationName(kSendMessageNotification, object: nil, userInfo: ["text": text])
+    delegate?.shouldSendTextMessage(text)
   }
     
   @IBAction func comments(sender: AnyObject) {

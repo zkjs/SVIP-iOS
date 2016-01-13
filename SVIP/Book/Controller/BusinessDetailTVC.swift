@@ -39,7 +39,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!
-
   var shopDetail = DetailModel()
   var timer = NSTimer()
   var imgUrlArray = NSArray()

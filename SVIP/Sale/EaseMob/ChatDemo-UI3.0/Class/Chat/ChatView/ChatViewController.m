@@ -16,7 +16,7 @@
 #import "ContactSelectionViewController.h"
 #import "ChatGroupDetailViewController.h"
 
-@interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
+@interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource, HotelOrderDetailTVCDelegate>
 {
   UIMenuItem *_copyMenuItem;
   UIMenuItem *_deleteMenuItem;
@@ -78,6 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  
   if (self.conversation.conversationType == eConversationTypeGroupChat) {
     self.title = @"群聊";
   } else {
@@ -163,6 +164,7 @@
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HotelOrderDetailTVC" bundle:nil];
       HotelOrderDetailTVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"HotelOrderDetailTVC"];
       vc.reservation_no = order.orderno;
+      vc.delegate = self;
       [self.navigationController pushViewController:vc animated:YES];
     } else if ([type isEqualToString:@"O"]) {
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LeisureOrderDetailTVC" bundle:nil];
@@ -567,6 +569,13 @@
       [self sendTextMessage:self.firstMessage];
     }
   }
+}
+
+#pragma mark - HotelOrderDetailTVCDelegate
+
+-(void)shouldSendTextMessage:(NSString *)message {
+  [self sendTextMessage: message];
+  NSLog(@"send: %@", message);
 }
 
 #pragma mark - public refresh
