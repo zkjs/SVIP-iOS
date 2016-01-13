@@ -14,12 +14,12 @@
 
 
 // 测试
-#define kBaseURL @"http://tst.zkjinshi.com/"  // 测试
-#define kJavaBaseURL @"http://test.zkjinshi.com/japi/"  // 测试
+//#define kBaseURL @"http://tst.zkjinshi.com/"  // 测试
+//#define kJavaBaseURL @"http://test.zkjinshi.com/japi/"  // 测试
 
 // 预上线
-//#define kBaseURL @"http://rap.zkjinshi.com/" // 预上线
-//#define kJavaBaseURL @"http://p.zkjinshi.com/japi/"  // 预上线
+#define kBaseURL @"http://rap.zkjinshi.com/" // 预上线
+#define kJavaBaseURL @"http://p.zkjinshi.com/japi/"  // 预上线
 
 // 正式
 //#define kBaseURL @"http://api.zkjinshi.com/" // 正式

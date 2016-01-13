@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="572" height="472"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TJE-6o-7DQ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_img_default" translatesAutoresizingMaskIntoConstraints="NO" id="TJE-6o-7DQ">
                         <rect key="frame" x="0.0" y="0.0" width="572" height="321"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="321" id="V8Z-fa-UiR"/>
@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRF-M1-qBD">
-                        <rect key="frame" x="18" y="330" width="448" height="38"/>
+                        <rect key="frame" x="18" y="330" width="470" height="38"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="200" id="EO0-Af-5QT"/>
                             <constraint firstAttribute="height" constant="38" id="Tnj-KV-aN3"/>
@@ -91,8 +91,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙最美酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-1M-SDA">
-                                <rect key="frame" x="16" y="20" width="506" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙最美酒店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-1M-SDA">
+                                <rect key="frame" x="16" y="20" width="540" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="7sy-vy-TZe"/>
                                     <constraint firstAttribute="height" constant="30" id="Zyg-C2-H1s"/>
@@ -114,7 +114,7 @@
                         <color key="backgroundColor" white="1" alpha="0.089999999999999997" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fRo-1M-SDA" firstAttribute="leading" secondItem="cWr-Dj-drU" secondAttribute="leading" constant="16" id="6pQ-Ae-RDm"/>
-                            <constraint firstAttribute="trailing" secondItem="fRo-1M-SDA" secondAttribute="trailing" constant="50" id="Kod-YF-mvq"/>
+                            <constraint firstAttribute="trailing" secondItem="fRo-1M-SDA" secondAttribute="trailing" constant="16" id="Kod-YF-mvq"/>
                             <constraint firstAttribute="height" constant="100" id="LBp-p4-pg6"/>
                             <constraint firstItem="fRo-1M-SDA" firstAttribute="top" secondItem="cWr-Dj-drU" secondAttribute="top" constant="20" id="OLX-GD-0mV"/>
                             <constraint firstAttribute="trailing" secondItem="Z6Z-Mf-dtv" secondAttribute="trailing" constant="100" id="Rpd-qs-TeJ"/>
@@ -129,7 +129,7 @@
                     <constraint firstAttribute="trailing" secondItem="TJE-6o-7DQ" secondAttribute="trailing" id="6Dd-pQ-dj1"/>
                     <constraint firstAttribute="trailing" secondItem="A4g-Ev-AfZ" secondAttribute="trailing" id="7nS-6j-nwY"/>
                     <constraint firstItem="cWr-Dj-drU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8mt-WP-wYM"/>
-                    <constraint firstItem="9wN-xA-hbl" firstAttribute="leading" secondItem="wRF-M1-qBD" secondAttribute="trailing" constant="30" id="9iq-SR-I8y"/>
+                    <constraint firstItem="9wN-xA-hbl" firstAttribute="leading" secondItem="wRF-M1-qBD" secondAttribute="trailing" constant="8" id="9iq-SR-I8y"/>
                     <constraint firstAttribute="bottom" secondItem="9wN-xA-hbl" secondAttribute="bottom" constant="130" id="Acz-nu-oBT"/>
                     <constraint firstItem="A4g-Ev-AfZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="F81-4A-r0N"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9wN-xA-hbl" secondAttribute="trailing" constant="20" id="KJI-49-zJ5"/>
@@ -168,4 +168,7 @@
             <point key="canvasLocation" x="578" y="663.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="header_img_default" width="487" height="452"/>
+    </resources>
 </document>

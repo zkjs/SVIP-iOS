@@ -67,6 +67,7 @@ class MerchantsVC: UIViewController {
   private func getDataWithPage(page: Int) {
     if AccountManager.sharedInstance().isLogin() {
       ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+        print(responseObject)
         if let array = responseObject as? NSArray {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
@@ -89,6 +90,7 @@ class MerchantsVC: UIViewController {
       }
     } else {
       ZKJSJavaHTTPSessionManager.sharedInstance().getLoginOutShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+        print(responseObject)
         if let array = responseObject as? NSArray {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
