@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 typealias sendValueClosure=(string:String)->Void
 
-class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate {
   var myView:CityHeaderView!
   let locationManager:CLLocationManager = CLLocationManager()
   var longitude: double_t!
@@ -27,10 +27,14 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
       let image = UIImage(named: "ic_fanhui_orange")
       let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "miss:")
       item1.tintColor = UIColor.ZKJS_mainColor()
-      let leftBarBtn = UIBarButtonItem(title: "想去哪里", style: .Plain, target: self,
-        action:nil)
-      leftBarBtn.tintColor = UIColor.ZKJS_navegationTextColor()
-      self.navigationItem.leftBarButtonItems = [item1,leftBarBtn]
+         self.navigationItem.leftBarButtonItem = item1
+      
+      let mainViewBounds = self.navigationController?.view.bounds
+      let citySearchBar = UISearchBar()
+      citySearchBar.frame = CGRectMake(40, CGRectGetMinY(mainViewBounds!)+20, self.navigationController!.view.bounds.size.width-70, 40)
+      citySearchBar.delegate = self
+      self.navigationController?.view.addSubview(citySearchBar)
+      
       let nibName = UINib(nibName: HotCityCell.nibName(), bundle: nil)
       tableView.registerNib(nibName, forCellReuseIdentifier: HotCityCell.reuseIdentifier())                                                            
       tableView.tableFooterView = UIView()
@@ -40,6 +44,14 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+  
+  // 搜索代理UISearchBarDelegate方法，点击虚拟键盘上的Search按钮时触发
+  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    let vc = MerchantsVC()
+    vc.city = searchBar.text!
+    navigationController?.pushViewController(vc, animated: true)
+      searchBar.resignFirstResponder()
+  }
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("CityVC", owner:self, options:nil)
