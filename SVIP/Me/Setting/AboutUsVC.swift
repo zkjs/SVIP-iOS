@@ -21,9 +21,12 @@ class WebViewVC: UIViewController {
   
   func initSubviews() {
     webView = UIWebView(frame: UIScreen.mainScreen().bounds)
-    let url = NSURL(string: self.url)  
+    webView.scalesPageToFit = true
+    let url = NSURL(string: self.url)
     webView.loadRequest(NSURLRequest(URL: url!))
-    webView.scrollView.bounces = false
+    webView.scrollView.bounces = true
+    webView.backgroundColor = UIColor.blueColor()
+    webView.scrollView.backgroundColor = UIColor.redColor()
     webView.delegate = self
     view.addSubview(webView)
   }
@@ -37,6 +40,9 @@ extension WebViewVC: UIWebViewDelegate {
   }
   
   func webViewDidFinishLoad(webView: UIWebView) {
+    let result = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight;")
+    let height = CGFloat((result! as NSString).doubleValue)
+    webView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height)
     hideHUD()
   }
   
