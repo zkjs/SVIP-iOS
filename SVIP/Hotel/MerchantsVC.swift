@@ -160,7 +160,10 @@ class MerchantsVC: UIViewController {
       let storyboard = UIStoryboard(name: "BusinessDetailVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailVC") as! BusinessDetailVC
       if hotel.shopid == "" {
-        ZKJSTool.showMsg("暂无商家信息")
+        let web = WebViewVC()
+        web.url = hotel.shopaddress
+        web.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(web, animated: true)
         return
       }
       vc.shopid = NSNumber(integer: Int(hotel.shopid)!)

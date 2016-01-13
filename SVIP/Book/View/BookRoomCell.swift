@@ -40,7 +40,7 @@ class BookRoomCell: UITableViewCell {
     if let goodsImage = goods.image {
       var url = NSURL(string: baseUrl)
       url = url?.URLByAppendingPathComponent(goodsImage)
-      roomLook.sd_setImageWithURL(url, placeholderImage: UIImage(named: "bg_dingdanzhuangtai"))
+      roomLook.sd_setImageWithURL(url)
     }
   }
   

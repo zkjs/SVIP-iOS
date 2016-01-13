@@ -128,12 +128,14 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       imgView.clipsToBounds = true
       imgView.addTarget(self, action: "photoViewer")
       imgView.contentMode = UIViewContentMode.ScaleAspectFill
-      let url = NSURL(string: shopDetail.images[i] as! String)
-      imgView.sd_setImageWithURL(url, placeholderImage: nil)
-      self.photo = MWPhoto(URL: url!)
-      self.photosArray.addObject(photo)
-      imgView.frame = CGRectMake(CGFloat(i+1) * view.bounds.size.width, 0, view.frame.size.width, 400)
-      self.scrollView.addSubview(imgView)
+      if let image = shopDetail.images[i] as? String {
+        let url = NSURL(string: kImageURL + image)
+        imgView.sd_setImageWithURL(url, placeholderImage: nil)
+        self.photo = MWPhoto(URL: url!)
+        self.photosArray.addObject(photo)
+        imgView.frame = CGRectMake(CGFloat(i+1) * view.bounds.size.width, 0, view.frame.size.width, 400)
+        self.scrollView.addSubview(imgView)
+      }
     }
     if count == 0 {
       return

@@ -86,6 +86,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   func setUpUI() {
     self.roomsTextField.text = String(roomsCount)
+    self.invoinceLabel.text = AccountManager.sharedInstance().invoice
   }
   
   // MARK: - Table view data source
@@ -185,7 +186,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       if let goodsImage = goods.image {
         var url = NSURL(string: baseUrl)
         url = url?.URLByAppendingPathComponent(goodsImage)
-        self.roomImage.sd_setImageWithURL(url, placeholderImage: UIImage(named: "bg_dingdanzhuangtai"))
+        self.roomImage.sd_setImageWithURL(url)
       }
     }
     navigationController?.pushViewController(vc, animated: true)

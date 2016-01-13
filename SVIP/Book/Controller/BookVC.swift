@@ -65,12 +65,14 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   }
   
   private func loadData() {
+    showHUDInView(view, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().accordingMerchantNumberInquiryMerchantWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+      self.hideHUD()
       let dic = responsObject as! NSDictionary
       self.hotel = Hotel(dic: dic as! [String:AnyObject])
       self.tableView.reloadData()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
+        self.hideHUD()
     }
   }
   
