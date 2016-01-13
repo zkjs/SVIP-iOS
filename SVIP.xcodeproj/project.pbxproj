@@ -784,6 +784,7 @@
 		40D9C9E11C2037B200E992AB /* InfoEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditVC.swift; sourceTree = "<group>"; };
 		40D9C9E21C2037B200E992AB /* InfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditVC.xib; sourceTree = "<group>"; };
 		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
+		40DCE2521C46276C00C44E89 /* Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configure.h; sourceTree = "<group>"; };
 		40E39E1D1BFEF43800516EC4 /* BookingOrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderDetailVC.swift; sourceTree = "<group>"; };
 		40E39E1E1BFEF43800516EC4 /* BookingOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOrderDetailVC.xib; sourceTree = "<group>"; };
 		40E39E201BFEF43800516EC4 /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
@@ -1473,6 +1474,7 @@
 		40641F8F1B3E79A300CF150D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				40DCE2521C46276C00C44E89 /* Configure.h */,
 				40641F941B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.h */,
 				40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */,
 				40641F921B3E79A300CF150D /* ZKJSHTTPSessionManager.h */,

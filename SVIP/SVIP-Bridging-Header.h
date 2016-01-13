@@ -47,5 +47,4 @@
 #import "UINavigationBar+Awesome.h"
 #import "BrowserImageView.h"
 #import "MWPhotoBrowser.h"
-
-
+#import "Configure.h"

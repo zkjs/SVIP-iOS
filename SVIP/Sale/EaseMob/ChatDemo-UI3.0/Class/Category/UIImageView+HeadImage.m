@@ -14,6 +14,7 @@
 #import "UIImageView+HeadImage.h"
 #import "EaseUI.h"
 #import "ZKJSHTTPSessionManager.h"
+#import "Configure.h"
 
 @implementation UIImageView (HeadImage)
 
