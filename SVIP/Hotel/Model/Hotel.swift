@@ -17,6 +17,7 @@ class Hotel: NSObject {
   var shopbusiness: String!
   var bgImgUrl: String!
   var shopaddress: String!
+  var recommtitle: String!
   
   override init() {
     super.init()
@@ -25,12 +26,12 @@ class Hotel: NSObject {
     
     shopid = dic["shopid"] as! String
     shoplogo = dic["shoplogo"] as? String ?? ""
-    salesid = dic["salesid"] as? String
-    shopdesc = dic["shoptitle"] as? String
-    shopname = dic["shopname"] as? String
-    shopbusiness = dic["shopbusiness"] as? String
-    bgImgUrl = dic["bgImgUrl"] as? String
-    shopaddress = dic["shopaddress"] as? String
-    
+    salesid = dic["salesid"] as? String ?? ""
+    shopdesc = dic["shoptitle"] as? String ?? ""
+    shopname = dic["shopname"] as? String ?? ""
+    shopbusiness = dic["shopbusiness"] as? String ?? ""
+    bgImgUrl = dic["bgImgUrl"] as? String ?? ""
+    shopaddress = dic["shopaddress"] as? String ?? ""
+    recommtitle = dic["recommtitle"] as? String ?? ""
   }
 }
