@@ -48,6 +48,7 @@ class InvoiceVC: UIViewController {
           print(invoice.isDefault)
           if invoice.isDefault {
             //默认发票置顶
+            AccountManager.sharedInstance().saveInvoice(invoice.title)
             self.dataArray.insert(invoice, atIndex: 0)
           } else {
             self.dataArray.append(invoice)

@@ -64,6 +64,10 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     navigationController?.navigationBar.shadowImage = UIImage()
     navigationController?.navigationBar.translucent = true
     tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0)
+    
+    addressLabel.text = ""
+    telphoneLabel.text = ""
+    commentsLabel.text = "客人评价"
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -230,6 +234,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       if let score = self.shopDetail.score {
         starRating.rating = score.floatValue
       }
+      cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
       cell.addSubview(starRating)
     }
     

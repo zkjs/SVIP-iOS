@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -198,11 +198,21 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5F-St-EVI">
+                                                    <rect key="frame" x="130" y="13" width="454" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="EVh-aM-noF" firstAttribute="leading" secondItem="1Lm-1h-yrR" secondAttribute="leading" constant="16" id="DII-GR-kWr"/>
+                                                <constraint firstItem="S5F-St-EVI" firstAttribute="top" secondItem="1Lm-1h-yrR" secondAttribute="top" constant="13" id="IHI-JU-Ki2"/>
                                                 <constraint firstItem="EVh-aM-noF" firstAttribute="centerY" secondItem="1Lm-1h-yrR" secondAttribute="centerY" id="fhY-Ir-NSz"/>
+                                                <constraint firstItem="S5F-St-EVI" firstAttribute="leading" secondItem="EVh-aM-noF" secondAttribute="trailing" constant="50" id="hjq-lJ-ScE"/>
+                                                <constraint firstAttribute="bottom" secondItem="S5F-St-EVI" secondAttribute="bottom" constant="13" id="r0C-5B-bl8"/>
+                                                <constraint firstAttribute="trailing" secondItem="S5F-St-EVI" secondAttribute="trailing" constant="16" id="tUt-QL-oAJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -218,6 +228,7 @@
                     </tableView>
                     <connections>
                         <outlet property="emailTextFiled" destination="yWz-Gw-Tkc" id="QkU-x9-cdD"/>
+                        <outlet property="invoinceLabel" destination="S5F-St-EVI" id="Z3v-9i-C1V"/>
                         <outlet property="sexTextField" destination="DLB-ls-Wob" id="Bsn-r2-kQJ"/>
                         <outlet property="surnameTextField" destination="PBf-PT-xw8" id="3lk-1A-Ifv"/>
                         <outlet property="userImage" destination="mKQ-ct-KJd" id="dCL-OQ-fPI"/>

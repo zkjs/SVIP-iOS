@@ -14,7 +14,7 @@ class CommentsTVC: UITableViewController {
   var commentArray : NSMutableArray = []
     override func viewDidLoad() {
         super.viewDidLoad()
-      title = "评价"
+      title = "评论"
       let image = UIImage(named: "ic_fanhui_orange")
       let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
       navigationController?.navigationBar.translucent = true
@@ -41,9 +41,17 @@ class CommentsTVC: UITableViewController {
   }
   
   override func viewWillAppear(animated: Bool) {
+    
     super.viewWillAppear(animated)
+    navigationController?.navigationBar.translucent = false
     orderPage = 1
     loadMoreData()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.navigationBar.translucent = true
+    
   }
   
   func loadMoreData() {

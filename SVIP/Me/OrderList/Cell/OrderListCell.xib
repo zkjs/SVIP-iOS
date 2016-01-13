@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -75,7 +75,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待支付" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6w-hQ-KOJ">
-                        <rect key="frame" x="242" y="74" width="67" height="23"/>
+                        <rect key="frame" x="375" y="74" width="67" height="23"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="67" id="89Q-VD-VjS"/>
                             <constraint firstAttribute="height" constant="23" id="Gmh-4y-oy0"/>
@@ -96,12 +96,18 @@
                     <constraint firstItem="GU9-Rn-RKk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="VTn-5W-IT7"/>
                     <constraint firstItem="XV0-CL-TQo" firstAttribute="leading" secondItem="dy0-0N-a4a" secondAttribute="trailing" constant="5" id="ViW-fW-IBI"/>
                     <constraint firstItem="dy0-0N-a4a" firstAttribute="top" secondItem="ByE-et-4Yb" secondAttribute="bottom" constant="33" id="hV8-An-1zc"/>
+                    <constraint firstAttribute="trailing" secondItem="c6w-hQ-KOJ" secondAttribute="trailing" constant="20" id="hbs-Oc-OdD"/>
                     <constraint firstItem="1ct-kw-PR7" firstAttribute="leading" secondItem="GU9-Rn-RKk" secondAttribute="trailing" constant="10" id="lGi-6t-DMn"/>
                     <constraint firstItem="c6w-hQ-KOJ" firstAttribute="top" secondItem="Ofm-Lh-p6H" secondAttribute="bottom" constant="4" id="qOt-Ba-4wc"/>
                     <constraint firstItem="c6w-hQ-KOJ" firstAttribute="leading" secondItem="XV0-CL-TQo" secondAttribute="trailing" constant="20" id="vAE-li-dIK"/>
                     <constraint firstItem="Ofm-Lh-p6H" firstAttribute="leading" secondItem="GU9-Rn-RKk" secondAttribute="trailing" constant="140" id="xtF-Ak-cSM"/>
                     <constraint firstAttribute="trailing" secondItem="ByE-et-4Yb" secondAttribute="trailing" constant="50" id="zAg-sT-T23"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="vAE-li-dIK"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="hotelImageView" destination="GU9-Rn-RKk" id="ySt-l9-4sR"/>

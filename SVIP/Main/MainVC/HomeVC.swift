@@ -44,6 +44,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     didSet {
       privilegeButton.layer.masksToBounds = true
       privilegeButton.layer.cornerRadius = 30
+      
     }
   }
 

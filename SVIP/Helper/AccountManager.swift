@@ -14,11 +14,12 @@ class AccountManager: NSObject {
   private(set) var userID = ""
   private(set) var token = ""
   private(set) var avatarURL = ""
-  private(set) var avatarImage = UIImage(named: "ic_zhijian_white")
+  private(set) var avatarImage = UIImage(named: "logo_white")
   private(set) var userName = ""
   private(set) var sex = "0" // 0女 1男
   private(set) var email = ""
   private(set) var phone = ""
+  private(set) var invoice = ""
   
   var sexName: String? {
     get {
@@ -55,6 +56,7 @@ class AccountManager: NSObject {
     sex = userDefaults.objectForKey("sex") as? String ?? ""
     email = userDefaults.objectForKey("email") as? String ?? ""
     phone = userDefaults.objectForKey("phone") as? String ?? ""
+    invoice = userDefaults.objectForKey("invoice") as? String ?? ""
   }
   
   func isLogin() -> Bool {
@@ -106,6 +108,12 @@ class AccountManager: NSObject {
     userDefaults.setObject(userName, forKey: "userName")
   }
   
+  func saveInvoice(invoice: String) {
+    self.invoice = invoice
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(invoice, forKey: "invoice")
+  }
+  
   func saveAvatarImageData(imageData: NSData) {
     if let image = UIImage(data: imageData) {
       avatarImage = image
@@ -133,6 +141,7 @@ class AccountManager: NSObject {
     userDefaults.setObject(nil, forKey: "sex")
     userDefaults.setObject(nil, forKey: "email")
     userDefaults.setObject(nil, forKey: "phone")
+    userDefaults.setObject(nil, forKey: "invoice")
     userDefaults.synchronize()
     
     userID = ""
@@ -143,6 +152,7 @@ class AccountManager: NSObject {
     sex = ""
     email = ""
     phone = ""
+    invoice = ""
   }
   
 }

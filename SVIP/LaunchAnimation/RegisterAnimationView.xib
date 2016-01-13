@@ -27,11 +27,11 @@
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_logo" id="Zya-E3-M0X">
-                    <rect key="frame" x="171" y="165" width="32" height="34"/>
+                    <rect key="frame" x="171" y="260" width="32" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无声的尊贵" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eZx-gT-7ma">
-                    <rect key="frame" x="95" y="218" width="185" height="21"/>
+                    <rect key="frame" x="95" y="300" width="185" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

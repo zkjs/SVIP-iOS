@@ -22,19 +22,23 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   @IBOutlet weak var isSmokingSwitch: UISwitch!
   @IBOutlet weak var remarkTextView: UITextView! {
     didSet {
-      remarkTextView.layer.borderWidth = 1 //边框粗细
-      remarkTextView.layer.borderColor = UIColor.hx_colorWithHexString("B8B8B8").CGColor
+//      remarkTextView.layer.borderWidth = 1 //边框粗细
+//      remarkTextView.layer.borderColor = UIColor.hx_colorWithHexString("B8B8B8").CGColor
       
     }
   }
   @IBOutlet weak var countSubtractButton: UIButton! {
     didSet {
       countSubtractButton.addTarget(self, action: "countSubtract:", forControlEvents: UIControlEvents.TouchUpInside)
+      countSubtractButton.layer.borderWidth = 1
+      countSubtractButton.layer.borderColor = UIColor.ZKJS_lineColor().CGColor
     }
   }
   @IBOutlet weak var countAddButton: UIButton! {
     didSet {
       countAddButton.addTarget(self, action: "countAdd:", forControlEvents: UIControlEvents.TouchUpInside)
+      countAddButton.layer.borderWidth = 1
+      countAddButton.layer.borderColor = UIColor.ZKJS_lineColor().CGColor
     }
   }
 
@@ -56,6 +60,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     title = shopName
     tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
     roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
+    tableView.bounces = false
     setUpUI()
   }
   
@@ -121,6 +126,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       let vc = InvoiceVC()
       vc.selection = { [unowned self] (invoice:  InvoiceModel) ->() in
         self.invoinceLabel.text = invoice.title
+        self.invoinceLabel.textColor = UIColor.ZKJS_navTitleColor()
       }
       self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -142,6 +148,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
         self.paymentLabel.text = self.paytypeArray[index]
         // 更新订单
         self.paytype = "\(index)"
+        self.paymentLabel.textColor = UIColor.ZKJS_navTitleColor()
         }))
     }
     alertView.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
@@ -162,6 +169,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       let end = dateFormatter.stringFromDate(endDate)
       let duration = NSDate.daysFromDate(startDate, toDate: endDate)
       self.daysLabel.text = "\(start)-\(end)共\(duration)晚"
+      self.daysLabel.textColor = UIColor.ZKJS_navTitleColor()
     }
     navigationController?.pushViewController(vc, animated: true)
   }
@@ -171,6 +179,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     vc.shopid = self.shopid
     vc.selection = { (goods:RoomGoods ) ->() in
       self.roomsTypeLabel.text = goods.room
+      self.roomsTypeLabel.textColor = UIColor.ZKJS_navTitleColor()
       self.goods = goods
       let baseUrl = kBaseURL
       if let goodsImage = goods.image {

@@ -89,7 +89,7 @@ class ComprehensiveVC: UIViewController {
   private func loadShopListData(page: Int) {
     let stats = AccountManager.sharedInstance().isLogin()
     if stats == true {
-      //获取所有商家列表
+      //获取所有商家列表(登陆时的数据)
       ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
         self.hideHUD()
         if let array = responseObject as? NSArray {
@@ -111,7 +111,7 @@ class ComprehensiveVC: UIViewController {
       }
 
     } else {
-      //获取所有商家列表
+      //获取所有商家列表(未登陆时的数据)
       ZKJSJavaHTTPSessionManager.sharedInstance().getLoginOutShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
         self.hideHUD()
         if let array = responseObject as? NSArray {
@@ -168,7 +168,6 @@ class ComprehensiveVC: UIViewController {
       cell.userImageButton.tag = indexPath.row
       let shop = dataArray[indexPath.row]
       cell.setData(shop)
-//      cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
       return cell
 }
   }
