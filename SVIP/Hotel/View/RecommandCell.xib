@@ -15,16 +15,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTP-zh-4Rr">
-                        <rect key="frame" x="0.0" y="0.0" width="585" height="321"/>
+                        <rect key="frame" x="0.0" y="0.0" width="585" height="240"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="321" id="JYm-1h-taN"/>
+                            <constraint firstAttribute="height" constant="240" id="JYm-1h-taN"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6z-4M-w8K">
                         <rect key="frame" x="0.0" y="0.0" width="585" height="100"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwe-fL-hEi">
-                                <rect key="frame" x="20" y="16" width="515" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_mengban" translatesAutoresizingMaskIntoConstraints="NO" id="Xg0-LS-ttF">
+                                <rect key="frame" x="0.0" y="0.0" width="585" height="100"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hwe-fL-hEi">
+                                <rect key="frame" x="20" y="16" width="549" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Dyq-7P-ovm"/>
                                     <constraint firstAttribute="height" constant="44" id="Mv0-5x-GmR"/>
@@ -40,8 +43,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyf-24-GyB">
-                                <rect key="frame" x="18" y="51" width="467" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Iyf-24-GyB">
+                                <rect key="frame" x="18" y="51" width="551" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="NF0-cN-Rvu"/>
                                     <constraint firstAttribute="height" constant="21" id="jAK-G2-GXe"/>
@@ -60,13 +63,16 @@
                                 </variation>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.080000000000000002" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hwe-fL-hEi" firstAttribute="leading" secondItem="L6z-4M-w8K" secondAttribute="leading" constant="20" id="0hM-b9-R24"/>
                             <constraint firstAttribute="trailing" secondItem="Iyf-24-GyB" secondAttribute="trailing" constant="100" id="1uZ-Kd-bCr"/>
-                            <constraint firstAttribute="trailing" secondItem="Iyf-24-GyB" secondAttribute="trailing" constant="100" id="AC2-5G-zlo"/>
+                            <constraint firstItem="Xg0-LS-ttF" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" id="2Ri-pe-14L"/>
+                            <constraint firstAttribute="bottom" secondItem="Xg0-LS-ttF" secondAttribute="bottom" id="3Nu-Pt-9Nd"/>
+                            <constraint firstAttribute="trailing" secondItem="Iyf-24-GyB" secondAttribute="trailing" constant="16" id="AC2-5G-zlo"/>
                             <constraint firstItem="Iyf-24-GyB" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" constant="51" id="CT2-4X-dX2"/>
-                            <constraint firstAttribute="trailing" secondItem="hwe-fL-hEi" secondAttribute="trailing" constant="50" id="OGz-eE-lsg"/>
+                            <constraint firstAttribute="trailing" secondItem="hwe-fL-hEi" secondAttribute="trailing" constant="16" id="OGz-eE-lsg"/>
+                            <constraint firstAttribute="trailing" secondItem="Xg0-LS-ttF" secondAttribute="trailing" id="RCY-kL-PX4"/>
+                            <constraint firstItem="Xg0-LS-ttF" firstAttribute="leading" secondItem="L6z-4M-w8K" secondAttribute="leading" id="adr-J9-ooF"/>
                             <constraint firstItem="hwe-fL-hEi" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" constant="16" id="eeE-XX-H6I"/>
                             <constraint firstItem="Iyf-24-GyB" firstAttribute="leading" secondItem="L6z-4M-w8K" secondAttribute="leading" constant="18" id="etc-sj-7Qu"/>
                             <constraint firstItem="Iyf-24-GyB" firstAttribute="leading" secondItem="L6z-4M-w8K" secondAttribute="leading" constant="20" id="g2z-t2-HVz"/>
@@ -99,4 +105,7 @@
             <point key="canvasLocation" x="705.5" y="755"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="pic_mengban" width="375" height="99"/>
+    </resources>
 </document>

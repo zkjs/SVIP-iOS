@@ -27,14 +27,14 @@ class RecommandCell: UITableViewCell {
   }
   
   class func height() -> CGFloat {
-    return 321
+    return 240
   }
   func setdata(hotel:Hotel) {
     titleLabel.text = hotel.shopname
     let placeholderImage = UIImage(named: "bg_zhuce")
     let logoURL = NSURL(string: kImageURL + hotel.bgImgUrl)
     backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
-    contentLabel.text = hotel.shopdesc
+    contentLabel.text = hotel.shoptitle
 
   }
 

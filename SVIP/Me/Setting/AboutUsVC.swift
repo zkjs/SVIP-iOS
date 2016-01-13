@@ -25,8 +25,7 @@ class WebViewVC: UIViewController {
     let url = NSURL(string: self.url)
     webView.loadRequest(NSURLRequest(URL: url!))
     webView.scrollView.bounces = true
-    webView.backgroundColor = UIColor.blueColor()
-    webView.scrollView.backgroundColor = UIColor.redColor()
+    webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
     webView.delegate = self
     view.addSubview(webView)
   }

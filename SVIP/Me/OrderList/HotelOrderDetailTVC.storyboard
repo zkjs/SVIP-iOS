@@ -632,6 +632,7 @@
                     <connections>
                         <outlet property="arrivateLabel" destination="Djw-en-Bj8" id="LfF-eO-heg"/>
                         <outlet property="cancleButton" destination="akT-TS-xPI" id="hZ7-aI-fLj"/>
+                        <outlet property="commentsButton" destination="zck-VD-THU" id="p5m-rQ-Wgf"/>
                         <outlet property="contacterLabel" destination="MWt-BP-Ouf" id="2lL-zT-l8e"/>
                         <outlet property="hotelImageView" destination="7uP-2Z-uAu" id="SFR-7x-g2j"/>
                         <outlet property="invoiceLabel" destination="ypF-5F-bqI" id="51R-Qu-wlV"/>

@@ -27,6 +27,7 @@ class SettingTVC: UITableViewController {
         if let set = data["set"] {
           if set?.boolValue == true {
             let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+            EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
             EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
             AccountManager.sharedInstance().clearAccountCache()
             let window =  UIApplication.sharedApplication().keyWindow

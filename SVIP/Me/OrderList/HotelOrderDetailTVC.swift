@@ -16,6 +16,7 @@ let kGotoOrderList = "kGotoOrderList"
 
 class HotelOrderDetailTVC:  UITableViewController {
   
+  @IBOutlet weak var commentsButton: UIButton!
   @IBOutlet weak var ordernoLabel: UILabel!
   @IBOutlet weak var privilageLabel: UILabel!
   @IBOutlet weak var pendingConfirmationLabel: UILabel!
@@ -99,6 +100,9 @@ class HotelOrderDetailTVC:  UITableViewController {
     }
     if orderDetail.orderstatus == "已取消" {
       pendingConfirmationLabel.text = "  您的订单已取消"
+      commentsButton.setTitle("已取消", forState: .Normal)
+      commentsButton.enabled = false
+      commentsButton.backgroundColor = UIColor.ZKJS_navegationTextColor()
     }
     if orderDetail.orderstatus == "待处理" {
       pendingConfirmationLabel.text = "  请等待客服确认"
@@ -181,6 +185,18 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func cancle(sender:UIButton) {
+    let alertController = UIAlertController(title: "取消订单提示", message: "您真的要取消吗", preferredStyle: .Alert)
+    let upgradeAction = UIAlertAction(title: "确认", style: .Default, handler: { (action: UIAlertAction) -> Void in
+        self.cancleOrder()
+    })
+    alertController.addAction(upgradeAction)
+    let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+    alertController.addAction(cancelAction)
+    self.presentViewController(alertController, animated: true, completion: nil)
+    
+     }
+  
+  func cancleOrder() {
     showHUDInTableView(tableView, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
@@ -196,6 +212,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
         
     }
+
   }
   
   func pay(sender:UIButton) {
@@ -248,9 +265,10 @@ class HotelOrderDetailTVC:  UITableViewController {
     //待评价
     if indexPath.section == 5 {
       if orderDetail.orderstatus != nil {
-        if  orderDetail.orderstatus != "待评价"  {
+        if  orderDetail.orderstatus != "待评价" &&  orderDetail.orderstatus != "已取消" {
           return 0.0
         }
+        
       }
     }
     

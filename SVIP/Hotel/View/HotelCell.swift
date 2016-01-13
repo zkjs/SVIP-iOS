@@ -58,7 +58,7 @@ class HotelCell: UITableViewCell {
   }
   
   class func height() -> CGFloat {
-    return 400
+    return 317
   }
   
   
@@ -67,7 +67,7 @@ class HotelCell: UITableViewCell {
     hotelNameLabel.text = hotel.shopname
     descriptionLabel.text = hotel.shopaddress
     addressLabel.text = hotel.recommtitle
-    customLabel.text = hotel.shopdesc
+    customLabel.text = hotel.shoptitle
     let url = NSURL(string: kImageURL)
     let logoURL = url?.URLByAppendingPathComponent("\(hotel.bgImgUrl)")
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: nil)
