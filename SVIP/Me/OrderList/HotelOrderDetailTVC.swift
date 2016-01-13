@@ -120,10 +120,10 @@ class HotelOrderDetailTVC:  UITableViewController {
       cancleButton.addTarget(self, action: "cancle:", forControlEvents: UIControlEvents.TouchUpInside)
     }
     if orderDetail.paytype == 2 {
-       payTypeLabel.text = "到店支付"
+       payTypeLabel.text = "到店支付" + "\(orderDetail.roomprice)"
     }
     if orderDetail.paytype == 3 {
-      payTypeLabel.text = "挂账"
+      payTypeLabel.text = "挂账" + "\(orderDetail.roomprice)"
     }
     if orderDetail.paytype == 0 {
       payButton.hidden = true
