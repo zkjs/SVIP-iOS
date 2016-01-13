@@ -75,7 +75,7 @@ class AccountManager: NSObject {
   }
   
   func saveBaseInfo(baseInfo: [String: AnyObject]) {
-    avatarURL = kImageURL + "uploads/users/\(userID).jpg"
+    avatarURL = kImageURL + "/uploads/users/\(userID).jpg"
     if let url = NSURL(string: avatarURL) {
       if let imageData = NSData(contentsOfURL: url) {
         if let image = UIImage(data: imageData) {

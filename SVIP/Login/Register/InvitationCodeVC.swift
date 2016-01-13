@@ -142,7 +142,7 @@ extension InvitationCodeVC: UITextFieldDelegate {
               self.saleNameTextField.text = "来自\(self.sales_name)的邀请码" 
               if let salesid = data["salesid"] as? String {
                 var url = NSURL(string: kImageURL)
-                url = url?.URLByAppendingPathComponent("uploads/users/\(salesid).jpg")
+                url = url?.URLByAppendingPathComponent("/uploads/users/\(salesid).jpg")
                 let placeImage = UIImage(named: "ic_zhijian")
                 self.saleAvatarImageView.sd_setImageWithURL(url, placeholderImage: placeImage)
               }

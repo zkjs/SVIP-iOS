@@ -120,7 +120,7 @@ extension SalesDetailVC: UITableViewDataSource, UITableViewDelegate {
     if section == 0 {
       let headerView = NSBundle.mainBundle().loadNibNamed("SalesDetailHeaderView", owner: self, options: nil).first as! SalesDetailHeaderView
       if let sales = self.sales {
-        let url = NSURL(string: kImageURL)?.URLByAppendingPathComponent("uploads/users/\(sales.userid).jpg")
+        let url = NSURL(string: kImageURL)?.URLByAppendingPathComponent("/uploads/users/\(sales.userid).jpg")
         headerView.avatarImageView.sd_setImageWithURL(url)
         headerView.nameLabel.text = sales.username
         headerView.shopNameLabel.text = sales.shop_name

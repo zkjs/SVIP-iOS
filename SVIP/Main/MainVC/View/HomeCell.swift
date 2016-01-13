@@ -53,7 +53,7 @@ class HomeCell: UITableViewCell {
   
   func setData(pushInfo:PushInfoModel) {
     resolution = ZKJSTool.getResolution()
-    let BaseURL = kImageURL + "\(pushInfo.iconbaseurl)" + "ios/" + "\(resolution)/" + "\(pushInfo.iconfilename)"
+    let BaseURL = kImageURL + "/\(pushInfo.iconbaseurl)" + "picture/ios/" + "\(resolution)" + "\(pushInfo.iconfilename)"
     let url = NSURL(string: BaseURL)
     pushImage.sd_setImageWithURL(url, placeholderImage: UIImage(named: "ic_v_orange"))
     subjectLabel.text = pushInfo.title

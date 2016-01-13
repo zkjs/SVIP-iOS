@@ -39,7 +39,7 @@ class CommentsCell: UITableViewCell {
   
   func setDate(comment:CommentsModel) {
     appraiserNameLabel.text = comment.userName
-    let hotelUrl = "\(kImageURL)uploads/users/\(comment.userid).jpg"
+    let hotelUrl = "\(kImageURL)/uploads/users/\(comment.userid).jpg"
     appraiserImage.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     contentEvaluation.text = comment.content
     let dateFormatter = NSDateFormatter()

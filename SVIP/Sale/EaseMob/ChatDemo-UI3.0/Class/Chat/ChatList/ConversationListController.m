@@ -215,7 +215,7 @@
     if ([conversation.chatter isEqualToString:@"app_customer_service"]) {
       model.avatarImage = [UIImage imageNamed:@"ic_home_nor"];
     } else {
-      NSString *url = [NSString stringWithFormat:@"uploads/users/%@.jpg", conversation.chatter];
+      NSString *url = [NSString stringWithFormat:@"/uploads/users/%@.jpg", conversation.chatter];
       model.avatarURLPath = [kImageURL stringByAppendingString:url];
     }
   } else if (model.conversation.conversationType == eConversationTypeGroupChat) {

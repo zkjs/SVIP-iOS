@@ -131,6 +131,9 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       imgView.frame = CGRectMake(CGFloat(i+1) * view.bounds.size.width, 0, view.frame.size.width, 400)
       self.scrollView.addSubview(imgView)
     }
+    if count == 0 {
+      return
+    }
     //取数组最后一张图片 放在第0页
     var imageView = BrowserImageView(frame: CGRectMake(0, 0, view.bounds.size.width, 400))
     imageView.addTarget(self, action: "photoViewer")
