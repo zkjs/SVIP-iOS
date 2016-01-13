@@ -224,18 +224,9 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     if let head = data["head"] as? [String: AnyObject] {
       if let set = head["set"] as? NSNumber {
         if set.boolValue {
-          if let exclusive_salesid = head["exclusive_salesid"] as? String {
-            if let data = data["data"] as? [[String: AnyObject]] {
-              for sale in data {
-                if let salesid = sale["salesid"] as? String {
-                  if salesid == exclusive_salesid {
-                    if let name = sale["name"] as? String {
-                      self.createConversationWithSalesID(salesid, salesName: name)
-                    }
-                  }
-                }
-              }
-            }
+          if let exclusive_salesid = head["exclusive_salesid"] as? String,let exclusive_name = head["exclusive_name"] as? String {
+            self.createConversationWithSalesID(exclusive_salesid, salesName: exclusive_name)
+          
           } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
             for sale in data {
               if let salesID = sale["roleid"] as? NSNumber {
@@ -290,7 +281,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["personcount"] = 1
 //    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
     dic["nosmoking"] = isSmokingSwitch.on ? 1 : 0
-    dic["company"] = ""
+    dic["company"] = invoinceLabel.text
     dic["remark"] = self.remarkTextView.text
     
     ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
@@ -302,7 +293,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
         // 扩展字段
         let userName = AccountManager.sharedInstance().userName
         let ext = ["shopId": self.shopid.stringValue,
-          "shopName": self.shopName,
+           "shopName": self.shopName,
           "toName": salesName,
           "fromName": userName]
         vc.conversation.ext = ext

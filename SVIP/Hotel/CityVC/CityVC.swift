@@ -62,7 +62,6 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   
   func getCityListData() {
     ZKJSHTTPSessionManager.sharedInstance().getCityListSuccess({ (task: NSURLSessionDataTask!, responsObject: AnyObject!) -> Void in
-      
       if let array = responsObject as? NSArray {
         self.cityArray.removeAll()
         for dic in array {
@@ -83,6 +82,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print(cityArray.count)
     return cityArray.count
   }
   

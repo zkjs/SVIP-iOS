@@ -86,7 +86,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     let url = NSURL(string: kBaseURL)
     if let shoplogo = orderDetail.imgurl {
       let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
-      hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "img_hotel_zhanwei"))
+      hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "bg_zuijinliulan"))
     }
     if orderDetail.orderedby == "" {
       contacterLabel.text = "暂未填写信息"
