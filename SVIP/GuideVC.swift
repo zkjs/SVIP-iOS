@@ -206,39 +206,39 @@ class GuideVC: UIViewController {
     bg4.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
     
 //    p_20.sizeToFit()
-//    p_20.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100-70)
+//    p_20.alpha = 0
     p_10.sizeToFit()
-    p_10.center = CGPointMake(middleX+scrollViewWidth*3-120, middleY-100)
+    p_10.alpha = 0
 //    p_21.sizeToFit()
-//    p_21.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100+70)
+//    p_21..alpha = 0
     
     p_7.sizeToFit()
-    p_7.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100-90)
+    p_7.alpha = 0
     p_11.sizeToFit()
-    p_11.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100)
+    p_11.alpha = 0
     p_15.sizeToFit()
-    p_15.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100+90)
+    p_15.alpha = 0
     
     p_8.sizeToFit()
-    p_8.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100-90)
+    p_8.alpha = 0
     p_12.sizeToFit()
-    p_12.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
+    p_12.alpha = 0
     p_16.sizeToFit()
-    p_16.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100+90)
+    p_16.alpha = 0
     
     p_9.sizeToFit()
-    p_9.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100-90)
+    p_9.alpha = 0
     p_13.sizeToFit()
-    p_13.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100)
+    p_13.alpha = 0
     p_17.sizeToFit()
-    p_17.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100+90)
+    p_17.alpha = 0
     
 //    p_19.sizeToFit()
-//    p_19.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100-70)
+//    p_19.alpha = 0
     p_14.sizeToFit()
-    p_14.center = CGPointMake(middleX+scrollViewWidth*3+120, middleY-100)
+    p_14.alpha = 0
 //    p_18.sizeToFit()
-//    p_18.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100+70)
+//    p_18.alpha = 0
     
     scrollView.addSubview(text4)
     scrollView.addSubview(bg4)
@@ -396,6 +396,67 @@ extension GuideVC: UIScrollViewDelegate {
       UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
         self.text4.center = CGPointMake(middleX+scrollViewWidth*3, textY)
         }, completion: nil)
+      
+      p_10.center = CGPointMake(middleX+scrollViewWidth*3-120-200, middleY-100)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_10.alpha = 1
+        self.p_10.center = CGPointMake(middleX+scrollViewWidth*3-120, middleY-100)
+        }, completion: nil)
+      
+      p_7.center = CGPointMake(middleX+scrollViewWidth*3-60-200, middleY-100-90)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_7.alpha = 1
+        self.p_7.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100-90)
+        }, completion: nil)
+      p_11.center = CGPointMake(middleX+scrollViewWidth*3-60-200, middleY-100)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_11.alpha = 1
+        self.p_11.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100)
+        }, completion: nil)
+      p_15.center = CGPointMake(middleX+scrollViewWidth*3-60-200, middleY-100+90)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_15.alpha = 1
+        self.p_15.center = CGPointMake(middleX+scrollViewWidth*3-60, middleY-100+90)
+        }, completion: nil)
+      
+      p_8.center = CGPointMake(middleX+scrollViewWidth*3-200, middleY-100-90)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_8.alpha = 1
+        self.p_8.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100-90)
+        }, completion: nil)
+      p_12.center = CGPointMake(middleX+scrollViewWidth*3+200, middleY-100)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_12.alpha = 1
+        self.p_12.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100)
+        }, completion: nil)
+      p_16.center = CGPointMake(middleX+scrollViewWidth*3-200, middleY-100+90)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_16.alpha = 1
+        self.p_16.center = CGPointMake(middleX+scrollViewWidth*3, middleY-100+90)
+        }, completion: nil)
+      
+      p_9.center = CGPointMake(middleX+scrollViewWidth*3+60+200, middleY-100-90)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_9.alpha = 1
+        self.p_9.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100-90)
+        }, completion: nil)
+      p_13.center = CGPointMake(middleX+scrollViewWidth*3+60+200, middleY-100)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_13.alpha = 1
+        self.p_13.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100)
+        }, completion: nil)
+      p_17.center = CGPointMake(middleX+scrollViewWidth*3+60+200, middleY-100+90)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_17.alpha = 1
+        self.p_17.center = CGPointMake(middleX+scrollViewWidth*3+60, middleY-100+90)
+        }, completion: nil)
+      
+      p_14.center = CGPointMake(middleX+scrollViewWidth*3+120+200, middleY-100)
+      UIView.animateWithDuration(0.6, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        self.p_14.alpha = 1
+        self.p_14.center = CGPointMake(middleX+scrollViewWidth*3+120, middleY-100)
+        }, completion: nil)
+
     } else if Int(currentPage) == 4 {
       text5.hidden = false
       text5.center = CGPointMake(middleX+scrollViewWidth*4+300, textY)
