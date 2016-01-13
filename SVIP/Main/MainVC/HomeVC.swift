@@ -610,22 +610,24 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     if activate == true {
       //根据酒店区域获取用户特权
-      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-//        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-//          target:self,selector:Selector("highLight"),
-//          userInfo:nil,repeats:true)
-        if let array = responsObjcet as? [[String: AnyObject]] {
-          if array.count > 0 {
-            for data in array {
-              let privilege = PrivilegeModel(dic: data)
-              self.privilegeArray.append(privilege)
-            }
-            self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-            self.privilegeButton.userInteractionEnabled = true
-          }
-        }
-        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      }
+//      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+////        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+////          target:self,selector:Selector("highLight"),
+////          userInfo:nil,repeats:true)
+//        if let array = responsObjcet as? [[String: AnyObject]] {
+//          if array.count > 0 {
+//            for data in array {
+//              let privilege = PrivilegeModel(dic: data)
+//              self.privilegeArray.append(privilege)
+//            }
+//            self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+//            self.privilegeButton.userInteractionEnabled = true
+//          }
+//        }
+//        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//      }
+      self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: .Normal)
+      self.privilegeButton.userInteractionEnabled = true
     }
     //位置区域变化通知
     ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in

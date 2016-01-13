@@ -214,6 +214,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       if responseObject == nil {
         return
       }
+      print(responseObject)
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         print(error)
@@ -229,8 +230,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
           
           } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
             for sale in data {
-              if let salesID = sale["roleid"] as? NSNumber {
-                if salesID == 1 {
+              if let roleid = sale["roleid"] as? NSNumber {
+                if roleid == 1 {
                  let salesid = sale["salesid"] as? String
                  let name = sale["name"] as? String
                 self.createConversationWithSalesID(salesid!, salesName: name!)
