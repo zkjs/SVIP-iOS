@@ -55,7 +55,7 @@ class OrderListCell: SWTableViewCell {
       }
 
   func setOrder(order:OrderListModel) {
-    let url = NSURL(string: kBaseURL)
+    let url = NSURL(string: kImageURL)
     if let shoplogo = order.shoplogo {
       let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
       hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "img_hotel_zhanwei"))

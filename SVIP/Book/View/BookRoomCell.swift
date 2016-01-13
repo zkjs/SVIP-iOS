@@ -36,7 +36,7 @@ class BookRoomCell: UITableViewCell {
     }
     priceTag.text = room
     
-    let baseUrl = kBaseURL
+    let baseUrl = kImageURL
     if let goodsImage = goods.image {
       var url = NSURL(string: baseUrl)
       url = url?.URLByAppendingPathComponent(goodsImage)

@@ -31,7 +31,7 @@
 //    }
   
   NSString *urlString = [NSString stringWithFormat:@"uploads/users/%@.jpg", username];
-  NSString *avatarURLPath = [kBaseURL stringByAppendingString:urlString];
+  NSString *avatarURLPath = [kImageURL stringByAppendingString:urlString];
   NSURL *url = [[NSURL alloc] initWithString:avatarURLPath];
   [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"ic_home_nor"]];
 }

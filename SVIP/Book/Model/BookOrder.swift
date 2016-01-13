@@ -227,9 +227,9 @@ class BookOrder: NSObject {
     map_longitude = dictionary["map_longitude"] as? double_t
     map_latitude = dictionary["map_latitude"] as? double_t
     if let imageURL = dictionary["room_image_URL"] as? String {
-      room_image_URL = kBaseURL + imageURL
+      room_image_URL = kImageURL + imageURL
     } else if let imageURL = dictionary["image"] as? String {
-      room_image_URL = kBaseURL + imageURL
+      room_image_URL = kImageURL + imageURL
     } else {
       room_image_URL = ""
     }

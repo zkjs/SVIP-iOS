@@ -58,7 +58,7 @@ class HotelCell: UITableViewCell {
     hotelNameLabel.text = hotel.shopname
     descriptionLabel.text = hotel.shopaddress
     addressLabel.text = hotel.shopdesc
-    let url = NSURL(string: kBaseURL)
+    let url = NSURL(string: kImageURL)
     let logoURL = url?.URLByAppendingPathComponent("\(hotel.bgImgUrl)")
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: nil)
     if let shoplogo = hotel.shoplogo {

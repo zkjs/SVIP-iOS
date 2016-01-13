@@ -32,7 +32,7 @@ class CustomerServiceCell: UITableViewCell {
     hotelNameLabel.text = servicer.phone.stringValue
     let salesid = servicer.salesid
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
-    let urlString = "\(kBaseURL)uploads/shops/\(salesid).png"
+    let urlString = "\(kImageURL)uploads/shops/\(salesid).png"
     let logoURL = NSURL(string: urlString)
     hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
     

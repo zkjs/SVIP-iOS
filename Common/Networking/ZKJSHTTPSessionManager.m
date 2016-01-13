@@ -303,7 +303,7 @@
 
 #pragma mark - 取得用户头像
 - (UIImage *)getUserProfile {
-  NSString *urlString = [NSString stringWithFormat:@"%@uploads/users/%@.jpg", kBaseURL, [self userID]];
+  NSString *urlString = [NSString stringWithFormat:@"%@uploads/users/%@.jpg", kImageURL, [self userID]];
   NSData *imageData = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:urlString]];
   UIImage *image = [[UIImage alloc] initWithData:imageData];
   return image;

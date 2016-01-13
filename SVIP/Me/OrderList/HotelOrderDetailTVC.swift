@@ -83,7 +83,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     roomsCountLabel.text = String(orderDetail.roomcount)
     privilageLabel.text = orderDetail.privilegeName
     ordernoLabel.text = orderDetail.orderno
-    let url = NSURL(string: kBaseURL)
+    let url = NSURL(string: kImageURL)
     if let shoplogo = orderDetail.imgurl {
       let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
       hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "bg_zuijinliulan"))

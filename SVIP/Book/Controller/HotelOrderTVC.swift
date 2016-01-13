@@ -172,7 +172,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     vc.selection = { (goods:RoomGoods ) ->() in
       self.roomsTypeLabel.text = goods.room
       self.goods = goods
-      let baseUrl = kBaseURL
+      let baseUrl = kImageURL
       if let goodsImage = goods.image {
         var url = NSURL(string: baseUrl)
         url = url?.URLByAppendingPathComponent(goodsImage)
