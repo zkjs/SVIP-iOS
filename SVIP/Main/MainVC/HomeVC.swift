@@ -289,7 +289,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if section == 0 {
       return 1
     } else if section == 1 {
-      return privilegeArray.count
+      return min(7, privilegeArray.count)
     } else if section == 2 {
       return orderArray.count
     } else {
@@ -364,11 +364,12 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   
   func getPrivilege() {
+    countTimer = 0
+    self.timer.invalidate()
+    
     if privilegeArray.count == 0 {
       return
     }
-    countTimer = 0
-//    self.timer.invalidate()
     floatingVC = FloatingWindowVC()
     floatingVC.delegate = self
     floatingVC.privilegeArray = privilegeArray
@@ -632,7 +633,10 @@ extension HomeVC: CLLocationManagerDelegate {
 //        }
 //        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 //      }
-      self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: .Normal)
+      self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+        target:self,selector:Selector("highLight"),
+        userInfo:nil,repeats:true)
+//      self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: .Normal)
       self.privilegeButton.userInteractionEnabled = true
     }
     //位置区域变化通知
@@ -651,12 +655,18 @@ extension HomeVC: CLLocationManagerDelegate {
   
   func highLight() {
     countTimer++
-    let image = AccountManager.sharedInstance().avatarImage
+//    let image = AccountManager.sharedInstance().avatarImage
     if self.countTimer % 2 == 0 {
-      privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+//      privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+      UIView.animateWithDuration(0.3, animations: { () -> Void in
+        self.privilegeButton.alpha = 0.3
+      })
     }
     else {
-      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      UIView.animateWithDuration(0.3, animations: { () -> Void in
+        self.privilegeButton.alpha = 1
+      })
+//      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
     }
   }
   
