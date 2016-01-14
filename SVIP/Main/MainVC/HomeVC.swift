@@ -614,6 +614,7 @@ extension HomeVC: CLLocationManagerDelegate {
       }
     }
     if activate == true {
+      // 显示特权按钮
       //根据酒店区域获取用户特权
 //      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
 ////        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,

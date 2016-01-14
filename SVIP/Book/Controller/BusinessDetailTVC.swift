@@ -111,6 +111,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)
       web.scrollView.bounces = false
       web.scrollView.scrollEnabled  = false
+      web.scalesPageToFit = true
 //      web.frame = CGRectMake(0, 0, self.view.bounds.size.width, 0)
       web.delegate = self
     }
@@ -201,7 +202,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   
   func webViewDidFinishLoad(webView: UIWebView) {
     let result = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight;")
-    height = CGFloat((result! as NSString).doubleValue)
+    height = CGFloat((result! as NSString).doubleValue) + 150
     web.frame = CGRectMake(0, 0, self.view.bounds.size.width, height)
     self.tableView.reloadData()
   }
