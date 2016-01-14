@@ -59,25 +59,53 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   func layoutHidView() {
     if orders.count == 0 {
+      tableView.mj_footer.hidden = true
       let screenSize = UIScreen.mainScreen().bounds
-      emptyLabel.frame = CGRectMake(0.0, 30, 300.0, 30.0)
+      emptyLabel.frame = CGRectMake(0.0, 30, 300.0, 50.0)
       emptyLabel.textAlignment = .Center
-      emptyLabel.font = UIFont.systemFontOfSize(14)
-      emptyLabel.text = "暂无订单"
+      emptyLabel.font = UIFont.systemFontOfSize(20)
+      emptyLabel.text = "当您有预订时将会在这里查看订单"
       emptyLabel.textColor = UIColor.ZKJS_promptColor()
-      emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
-      emptyLabel.hidden = true
+      emptyLabel.center = CGPointMake(screenSize.midX, 20)
+      emptyLabel.hidden = false
       view.addSubview(emptyLabel)
+      
+      let titleLabel = UILabel(frame: CGRectMake(0.0, 30, 300.0, 45.0))
+      titleLabel.textAlignment = .Center
+      titleLabel.font = UIFont.systemFontOfSize(18)
+      titleLabel.text = "找到您的下一个行程"
+      titleLabel.textColor = UIColor.ZKJS_textColor()
+      titleLabel.center = CGPointMake(screenSize.midX, 376)
+      titleLabel.hidden = false
+      view.addSubview(titleLabel)
+      
+      let title = UILabel(frame: CGRectMake(0.0, 30, 300.0, 45.0))
+      title.textAlignment = .Center
+      title.font = UIFont.systemFontOfSize(18)
+      title.text = "按地点进行搜索，为您推荐最好的服务。"
+      title.textColor = UIColor.ZKJS_promptColor()
+      title.center = CGPointMake(screenSize.midX, 421)
+      title.hidden = false
+      view.addSubview(title)
+      
+      let find = UIButton(frame: CGRectMake(0.0, 30, 160, 40.0))
+      find.setTitle("发现更多服务", forState: .Normal)
+      find.titleLabel?.textAlignment = .Center
+      find.titleLabel!.font = UIFont.systemFontOfSize(14)
+      find.backgroundColor = UIColor.ZKJS_mainColor()
+      find.center = CGPointMake(screenSize.midX, 469)
+      find.hidden = false
+      find.addTarget(self, action: "findMore", forControlEvents: .TouchUpInside)
+      view.addSubview(find)
+      
     }
   }
   
-//  //设置cell的显示动画
-//  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//    cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
-//    UIView.animateWithDuration(0.25) { () -> Void in
-//      cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
-//    }
-//  }
+  func findMore() {
+    self.tabBarController!.selectedIndex = 1
+    self.navigationController?.popViewControllerAnimated(false)
+  }
+  
   
   // MARK: - Table view delegate
   

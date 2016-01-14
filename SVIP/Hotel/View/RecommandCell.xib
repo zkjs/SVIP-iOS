@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="585" height="559"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTP-zh-4Rr">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTP-zh-4Rr">
                         <rect key="frame" x="0.0" y="0.0" width="585" height="240"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="240" id="JYm-1h-taN"/>
@@ -44,7 +44,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Iyf-24-GyB">
-                                <rect key="frame" x="18" y="51" width="551" height="21"/>
+                                <rect key="frame" x="18" y="56" width="551" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="NF0-cN-Rvu"/>
                                     <constraint firstAttribute="height" constant="21" id="jAK-G2-GXe"/>
@@ -57,6 +57,7 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="NF0-cN-Rvu"/>
+                                        <exclude reference="jAK-G2-GXe"/>
                                         <exclude reference="kxE-bZ-6Vt"/>
                                         <exclude reference="l25-IJ-zj9"/>
                                     </mask>
@@ -69,7 +70,7 @@
                             <constraint firstItem="Xg0-LS-ttF" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" id="2Ri-pe-14L"/>
                             <constraint firstAttribute="bottom" secondItem="Xg0-LS-ttF" secondAttribute="bottom" id="3Nu-Pt-9Nd"/>
                             <constraint firstAttribute="trailing" secondItem="Iyf-24-GyB" secondAttribute="trailing" constant="16" id="AC2-5G-zlo"/>
-                            <constraint firstItem="Iyf-24-GyB" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" constant="51" id="CT2-4X-dX2"/>
+                            <constraint firstItem="Iyf-24-GyB" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" constant="56" id="CT2-4X-dX2"/>
                             <constraint firstAttribute="trailing" secondItem="hwe-fL-hEi" secondAttribute="trailing" constant="16" id="OGz-eE-lsg"/>
                             <constraint firstAttribute="trailing" secondItem="Xg0-LS-ttF" secondAttribute="trailing" id="RCY-kL-PX4"/>
                             <constraint firstItem="Xg0-LS-ttF" firstAttribute="leading" secondItem="L6z-4M-w8K" secondAttribute="leading" id="adr-J9-ooF"/>

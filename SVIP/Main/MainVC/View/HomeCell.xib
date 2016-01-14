@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -16,14 +16,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BKz-cF-RD8">
-                        <rect key="frame" x="24" y="72" width="56" height="56"/>
+                        <rect key="frame" x="23" y="72" width="56" height="56"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="56" id="7kR-AF-JSE"/>
                             <constraint firstAttribute="height" constant="56" id="Zfv-qu-Lyh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用超级身份" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5G-2U-msB">
-                        <rect key="frame" x="100" y="54" width="458" height="44"/>
+                        <rect key="frame" x="94" y="54" width="462" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="1c1-Ti-bpx"/>
                             <constraint firstAttribute="width" constant="240" id="SJU-2A-Nnf"/>
@@ -37,8 +37,15 @@
                             </mask>
                         </variation>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tju-aw-W7R">
+                        <rect key="frame" x="43" y="90" width="18" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="1QJ-Fv-TVS"/>
+                            <constraint firstAttribute="height" constant="20" id="qVD-Cj-23H"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份精选了很多优质服务" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puh-03-iyV">
-                        <rect key="frame" x="100" y="101" width="458" height="60"/>
+                        <rect key="frame" x="94" y="101" width="462" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="210" id="Sr6-NQ-Hvb"/>
                             <constraint firstAttribute="height" constant="60" id="frJ-Kf-eRP"/>
@@ -49,28 +56,22 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Sr6-NQ-Hvb"/>
+                                <exclude reference="frJ-Kf-eRP"/>
                             </mask>
                         </variation>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tju-aw-W7R">
-                        <rect key="frame" x="43" y="90" width="18" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="18" id="1QJ-Fv-TVS"/>
-                            <constraint firstAttribute="height" constant="20" id="qVD-Cj-23H"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="BKz-cF-RD8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="4h4-0v-8tt"/>
+                    <constraint firstItem="BKz-cF-RD8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="4h4-0v-8tt"/>
                     <constraint firstItem="BKz-cF-RD8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="46" id="5DV-MS-kZE"/>
                     <constraint firstItem="tju-aw-W7R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="35" id="7HG-9o-L3Z"/>
-                    <constraint firstItem="B5G-2U-msB" firstAttribute="leading" secondItem="BKz-cF-RD8" secondAttribute="trailing" constant="20" id="9Yk-J6-Ph9"/>
+                    <constraint firstItem="B5G-2U-msB" firstAttribute="leading" secondItem="BKz-cF-RD8" secondAttribute="trailing" constant="15" id="9Yk-J6-Ph9"/>
                     <constraint firstItem="BKz-cF-RD8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HVb-tj-xbJ"/>
                     <constraint firstItem="B5G-2U-msB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="46" id="V06-yW-5C8"/>
                     <constraint firstItem="tju-aw-W7R" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VmH-k9-GFN"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="puh-03-iyV" secondAttribute="trailing" constant="8" id="dbI-WS-lfB"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="B5G-2U-msB" secondAttribute="trailing" constant="8" id="kHN-5M-IAZ"/>
-                    <constraint firstItem="puh-03-iyV" firstAttribute="leading" secondItem="BKz-cF-RD8" secondAttribute="trailing" constant="20" id="pca-kw-7b5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="puh-03-iyV" secondAttribute="trailing" constant="10" id="dbI-WS-lfB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="B5G-2U-msB" secondAttribute="trailing" constant="10" id="kHN-5M-IAZ"/>
+                    <constraint firstItem="puh-03-iyV" firstAttribute="leading" secondItem="BKz-cF-RD8" secondAttribute="trailing" constant="15" id="pca-kw-7b5"/>
                     <constraint firstItem="tju-aw-W7R" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="56" id="utm-ED-UAR"/>
                     <constraint firstItem="puh-03-iyV" firstAttribute="top" secondItem="B5G-2U-msB" secondAttribute="bottom" constant="3" id="v6T-d6-8fu"/>
                 </constraints>

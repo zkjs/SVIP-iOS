@@ -31,10 +31,10 @@ class RecommandCell: UITableViewCell {
   }
   func setdata(hotel:Hotel) {
     titleLabel.text = hotel.shopname
-    let placeholderImage = UIImage(named: "bg_zhuce")
     let logoURL = NSURL(string: kImageURL + hotel.bgImgUrl)
-    backImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage)
+    backImageView.sd_setImageWithURL(logoURL)
     contentLabel.text = hotel.shoptitle
+    contentLabel.sizeToFit()
 
   }
 
