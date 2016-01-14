@@ -97,7 +97,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       find.hidden = false
       find.addTarget(self, action: "findMore", forControlEvents: .TouchUpInside)
       view.addSubview(find)
-      
     }
   }
   

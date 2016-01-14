@@ -23,6 +23,8 @@
 @property (nonatomic, strong) EMSearchBar *searchBar;
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
 @property (nonatomic, strong) UILabel *emptyLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIButton *find;
 
 @end
 
@@ -54,12 +56,36 @@
   CGRect screenSize = [UIScreen mainScreen].bounds;
   self.emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 150.0, 30.0)];
   self.emptyLabel.textAlignment = NSTextAlignmentCenter;
-  self.emptyLabel.font = [UIFont systemFontOfSize:14];
+  self.emptyLabel.font = [UIFont systemFontOfSize:20];
   self.emptyLabel.text = @"暂无消息";
   self.emptyLabel.textColor = [UIColor ZKJS_promptColor];
-  self.emptyLabel.center = CGPointMake(screenSize.size.width / 2.0, screenSize.size.height / 2.0 - 100.0);
+  self.emptyLabel.center = CGPointMake(screenSize.size.width / 2.0, 17);
   self.emptyLabel.hidden = NO;
   [self.tableView addSubview:self.emptyLabel];
+  
+    
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 45.0)];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.font = [UIFont systemFontOfSize:16];
+    _titleLabel.text = @"在这里，您可以与专属客服进行沟通";
+    _titleLabel.textColor = [UIColor ZKJS_promptColor];
+    _titleLabel.center = CGPointMake(screenSize.size.width / 2.0, 400);
+    _titleLabel.hidden = NO;
+    [self.tableView addSubview:_titleLabel];
+  
+  _find = [UIButton buttonWithType:UIButtonTypeCustom];
+  _find.frame = CGRectMake(0.0, 30, 160, 40.0);
+  [_find
+   setTitle:@"发现服务" forState:UIControlStateNormal];
+//  [find addTarget:self action:@selector(findFriend) forControlEvents:UIControlEventTouchUpInside];
+  _find.titleLabel.textAlignment = NSTextAlignmentCenter;
+  _find.titleLabel.font = [UIFont systemFontOfSize:14];
+  _find.backgroundColor = [UIColor ZKJS_mainColor];
+  _find.center = CGPointMake(screenSize.size.width / 2.0, 460);
+  _find.hidden = NO;
+  [self.tableView addSubview:_find];
+  
+
 }
 
 
@@ -326,8 +352,12 @@
   
   if (self.dataArray.count > 0) {
     self.emptyLabel.hidden = YES;
+    self.titleLabel.hidden = YES;
+    self.find.hidden = YES;
   } else {
     self.emptyLabel.hidden = NO;
+    self.titleLabel.hidden = NO;
+    self.find.hidden = NO;
   }
 }
 
