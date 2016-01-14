@@ -91,21 +91,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dingwei_gary" translatesAutoresizingMaskIntoConstraints="NO" id="5Qm-9D-Xli">
-                                                    <rect key="frame" x="20" y="35" width="10" height="15"/>
+                                                    <rect key="frame" x="15" y="35" width="10" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="BnM-U6-k2Z"/>
                                                         <constraint firstAttribute="height" constant="15" id="Jsf-HW-oOL"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_phone_gary" translatesAutoresizingMaskIntoConstraints="NO" id="QJY-b4-2UI">
-                                                    <rect key="frame" x="20" y="95" width="10" height="15"/>
+                                                    <rect key="frame" x="15" y="95" width="10" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="Egx-IT-fat"/>
                                                         <constraint firstAttribute="height" constant="15" id="Ntc-H0-TaT"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙市芙蓉区芙蓉中路二段106号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-co-A0A">
-                                                    <rect key="frame" x="50" y="10" width="305" height="62"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙市芙蓉区芙蓉中路二段106号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-co-A0A">
+                                                    <rect key="frame" x="45" y="10" width="314" height="62"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="62" id="1Uf-jX-Igi"/>
                                                     </constraints>
@@ -114,7 +114,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="010-85117777" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTg-kV-qi6">
-                                                    <rect key="frame" x="56" y="77" width="299" height="50"/>
+                                                    <rect key="frame" x="51" y="77" width="304" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="fiE-sD-R27"/>
                                                     </constraints>
@@ -134,13 +134,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="uIf-co-A0A" secondAttribute="trailing" constant="20" id="0kp-Tu-q8f"/>
+                                                <constraint firstAttribute="trailing" secondItem="uIf-co-A0A" secondAttribute="trailing" constant="16" id="0kp-Tu-q8f"/>
                                                 <constraint firstAttribute="trailing" secondItem="RCM-L8-XEO" secondAttribute="trailing" id="1bh-2c-kSa"/>
                                                 <constraint firstItem="uIf-co-A0A" firstAttribute="leading" secondItem="5Qm-9D-Xli" secondAttribute="trailing" constant="20" id="BER-FK-yka"/>
                                                 <constraint firstItem="uIf-co-A0A" firstAttribute="top" secondItem="pzg-9F-sX2" secondAttribute="top" constant="10" id="BTF-tt-uOb"/>
-                                                <constraint firstItem="QJY-b4-2UI" firstAttribute="leading" secondItem="pzg-9F-sX2" secondAttribute="leading" constant="20" id="G6m-v5-GRs"/>
+                                                <constraint firstItem="QJY-b4-2UI" firstAttribute="leading" secondItem="pzg-9F-sX2" secondAttribute="leading" constant="15" id="G6m-v5-GRs"/>
                                                 <constraint firstItem="RCM-L8-XEO" firstAttribute="leading" secondItem="pzg-9F-sX2" secondAttribute="leading" id="IJr-CK-DHh"/>
-                                                <constraint firstItem="5Qm-9D-Xli" firstAttribute="leading" secondItem="pzg-9F-sX2" secondAttribute="leading" constant="20" id="M7v-2a-LaA"/>
+                                                <constraint firstItem="5Qm-9D-Xli" firstAttribute="leading" secondItem="pzg-9F-sX2" secondAttribute="leading" constant="15" id="M7v-2a-LaA"/>
                                                 <constraint firstItem="5Qm-9D-Xli" firstAttribute="top" secondItem="pzg-9F-sX2" secondAttribute="top" constant="35" id="RjV-xV-6W2"/>
                                                 <constraint firstItem="QJY-b4-2UI" firstAttribute="top" secondItem="5Qm-9D-Xli" secondAttribute="bottom" constant="45" id="SGx-C0-Ke1"/>
                                                 <constraint firstItem="cTg-kV-qi6" firstAttribute="leading" secondItem="QJY-b4-2UI" secondAttribute="trailing" constant="26" id="T0y-92-v8h"/>

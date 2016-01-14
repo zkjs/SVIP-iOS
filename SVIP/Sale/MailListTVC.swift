@@ -12,6 +12,8 @@ class MailListTVC: UITableViewController {
   
   var contactArray = [ContactModel]()
   var emptyLabel = UILabel()
+  var titleLabel = UILabel()
+  var find = UIButton()
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MailListTVC", owner:self, options:nil)
@@ -24,18 +26,44 @@ class MailListTVC: UITableViewController {
     tableView.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height)
     tableView.registerNib(nibName, forCellReuseIdentifier: MailListCell.reuseIdentifier())
     tableView.tableFooterView = UIView()
-    
-    emptyLabel.frame = CGRectMake(0.0, 0.0, 150.0, 30.0)
-    let screenSize = UIScreen.mainScreen().bounds
-    emptyLabel.font = UIFont.systemFontOfSize(14)
-    emptyLabel.textAlignment = .Center
-    emptyLabel.text = "暂无联系人"
-    emptyLabel.textColor = UIColor.ZKJS_promptColor()
-    emptyLabel.center = CGPointMake(screenSize.midX, screenSize.midY - 60.0)
-    emptyLabel.hidden = false
-    view.addSubview(emptyLabel)
+    layoutHind()
     
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "loadFriendListData")  // 下拉刷新
+  }
+  
+  func layoutHind() {
+    if contactArray.count == 0 {
+      let screenSize = UIScreen.mainScreen().bounds
+      emptyLabel.frame = CGRectMake(0.0, 30, 300.0, 50.0)
+      emptyLabel.textAlignment = .Center
+      emptyLabel.font = UIFont.systemFontOfSize(20)
+      emptyLabel.text = "暂无联系人"
+      emptyLabel.textColor = UIColor.ZKJS_promptColor()
+      emptyLabel.center = CGPointMake(screenSize.midX, 17)
+      emptyLabel.hidden = false
+      view.addSubview(emptyLabel)
+      
+      titleLabel = UILabel(frame: CGRectMake(0.0, 30, 300.0, 45.0))
+      titleLabel.textAlignment = .Center
+      titleLabel.font = UIFont.systemFontOfSize(16)
+      titleLabel.text = "在这里，您可以与专属客服进行沟通"
+      titleLabel.textColor = UIColor.ZKJS_promptColor()
+      titleLabel.center = CGPointMake(screenSize.midX, 420)
+      titleLabel.hidden = false
+      view.addSubview(titleLabel)
+      
+      find = UIButton(frame: CGRectMake(0.0, 30, 160, 40.0))
+      find.setTitle("发现服务", forState: .Normal)
+      find.titleLabel?.textAlignment = .Center
+      find.titleLabel!.font = UIFont.systemFontOfSize(14)
+      find.backgroundColor = UIColor.ZKJS_mainColor()
+      find.center = CGPointMake(screenSize.midX, 488)
+      find.hidden = false
+//      find.addTarget(self, action: "findMore", forControlEvents: .TouchUpInside)
+      view.addSubview(find)
+      
+    }
+
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -55,8 +83,12 @@ class MailListTVC: UITableViewController {
         }
         if self.contactArray.count > 0 {
           self.emptyLabel.hidden = true
+          self.titleLabel.hidden = true
+          self.find.hidden = true
         } else {
           self.emptyLabel.hidden = false
+          self.titleLabel.hidden = false
+          self.find.hidden = false
         }
         self.tableView.reloadData()
       }

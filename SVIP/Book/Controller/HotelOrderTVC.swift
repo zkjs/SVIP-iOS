@@ -210,11 +210,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   }
   
   func submitOrder() {
-    if AccountManager.sharedInstance().isLogin() == false {
-      let nc = BaseNC(rootViewController: LoginVC())
-      presentViewController(nc, animated: true, completion: nil)
-      return
-    }
     gotoChatVC()
   }
   
@@ -233,24 +228,26 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   func chooseChatterWithData(data: AnyObject) {
     if let head = data["head"] as? [String: AnyObject] {
-      if let set = head["set"] as? NSNumber {
-        if set.boolValue {
+      if let set = head["exclusive_salesid"] as? String {
+        if set != "" {
           if let exclusive_salesid = head["exclusive_salesid"] as? String,let exclusive_name = head["exclusive_name"] as? String {
             self.createConversationWithSalesID(exclusive_salesid, salesName: exclusive_name)
-          } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
-            for sale in data {
-              if let roleid = sale["roleid"] as? NSNumber {
-                if roleid == 1 {
-                 let salesid = sale["salesid"] as? String
-                 let name = sale["name"] as? String
+          }
+        } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
+          for sale in data {
+            if let roleid = sale["roleid"] as? NSNumber {
+              if roleid == 1 {
+                let salesid = sale["salesid"] as? String
+                let name = sale["name"] as? String
                 self.createConversationWithSalesID(salesid!, salesName: name!)
-                }
               }
             }
-          } else {
-            ZKJSTool.showMsg("商家暂无客服")
           }
         }
+      } else {
+        hideHUD()
+        ZKJSTool.showMsg("商家暂无客服")
+//        showHint("商家暂无客服")
       }
     }
   }

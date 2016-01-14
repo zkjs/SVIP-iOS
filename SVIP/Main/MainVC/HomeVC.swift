@@ -20,10 +20,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var bluetoothManager = CBCentralManager()
   var privilegeArray = [PrivilegeModel]()
   var floatingVC = FloatingWindowVC()
-  //var pushInfo = PushInfoModel()
   var pushInfoArray = [PushInfoModel]()
   var orderArray = [PushInfoModel]()
-  var myView: HomeHeaderView!
   var longitude: double_t!
   var latution: double_t!
   var beaconRegions = [String: [String: String]]()
@@ -86,6 +84,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
       privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
       privilegeButton.userInteractionEnabled = false
+    } else {
+//      privilegeButton.setBackgroundImage(UIImage(named: "logo_white"), forState: UIControlState.Normal)
     }
     
     self.pushInfoArray.removeAll()

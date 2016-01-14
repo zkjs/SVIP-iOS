@@ -130,6 +130,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     avatarData = imageData
+    AccountManager.sharedInstance().saveAvatarImageData(avatarData!)
     self.avatarButton.setImage(UIImage(data: avatarData!), forState: UIControlState.Normal)
     picker.dismissViewControllerAnimated(true, completion: nil)
   }
