@@ -37,7 +37,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="8KU-XH-4JF"/>
                     </constraints>
-                    <state key="normal" title="确定">
+                    <state key="normal" title="保存">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -54,7 +54,7 @@
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrX-iF-Iww">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrX-iF-Iww">
                     <rect key="frame" x="259" y="189" width="83" height="44"/>
                     <animations/>
                     <constraints>

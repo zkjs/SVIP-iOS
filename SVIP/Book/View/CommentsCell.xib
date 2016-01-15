@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -15,14 +15,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kPZ-mq-Xy3">
-                        <rect key="frame" x="30" y="20" width="50" height="50"/>
+                        <rect key="frame" x="15" y="20" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="0vv-bD-D8N"/>
                             <constraint firstAttribute="width" constant="50" id="pc4-3f-aMg"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王一鸣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I8-Z0-mdV">
-                        <rect key="frame" x="90" y="30" width="100" height="21"/>
+                        <rect key="frame" x="75" y="30" width="100" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="LLu-UP-ldr"/>
                             <constraint firstAttribute="height" constant="21" id="uQJ-BB-Dhf"/>
@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12月23日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39R-Qs-CiR">
-                        <rect key="frame" x="254" y="20" width="100" height="21"/>
+                        <rect key="frame" x="269" y="20" width="100" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="8WL-AG-NNn"/>
                             <constraint firstAttribute="width" constant="100" id="9QC-cd-qBP"/>
@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="去北京之前特地用招行信用卡积分兑换的酒店，价格很美丽，环境也很不错。出门5分钟就能到达地铁站，超级便捷。信用卡积分兑换的酒店，价格很合理" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coO-cH-BPq">
-                        <rect key="frame" x="40" y="70" width="314" height="54"/>
+                        <rect key="frame" x="15" y="70" width="339" height="54"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="54" id="m1I-hU-vJp"/>
                         </constraints>
@@ -53,13 +53,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="39R-Qs-CiR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="6cs-lx-Lmo"/>
-                    <constraint firstItem="coO-cH-BPq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="Fe8-Ct-1Mv"/>
+                    <constraint firstItem="coO-cH-BPq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Fe8-Ct-1Mv"/>
                     <constraint firstAttribute="trailing" secondItem="coO-cH-BPq" secondAttribute="trailing" constant="30" id="MZW-Zs-Isg"/>
-                    <constraint firstAttribute="trailing" secondItem="39R-Qs-CiR" secondAttribute="trailing" constant="30" id="aOp-JT-rRs"/>
+                    <constraint firstAttribute="trailing" secondItem="39R-Qs-CiR" secondAttribute="trailing" constant="15" id="aOp-JT-rRs"/>
                     <constraint firstAttribute="trailing" secondItem="1I8-Z0-mdV" secondAttribute="trailing" constant="50" id="caM-KM-cw7"/>
                     <constraint firstItem="1I8-Z0-mdV" firstAttribute="leading" secondItem="kPZ-mq-Xy3" secondAttribute="trailing" constant="10" id="hM3-Gg-Dn8"/>
                     <constraint firstItem="kPZ-mq-Xy3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="lVC-UE-zDV"/>
-                    <constraint firstItem="kPZ-mq-Xy3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="o9P-LR-RRq"/>
+                    <constraint firstItem="kPZ-mq-Xy3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="o9P-LR-RRq"/>
                     <constraint firstItem="1I8-Z0-mdV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="of4-CP-8IT"/>
                     <constraint firstItem="coO-cH-BPq" firstAttribute="top" secondItem="kPZ-mq-Xy3" secondAttribute="bottom" id="zhP-F8-hx8"/>
                 </constraints>

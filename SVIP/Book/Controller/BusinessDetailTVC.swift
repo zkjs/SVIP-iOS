@@ -71,6 +71,13 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     addressLabel.text = ""
     telphoneLabel.text = ""
     commentsLabel.text = "客人评价"
+    
+    if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+      tableView.separatorInset = UIEdgeInsetsZero
+    }
+    if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+      tableView.layoutMargins = UIEdgeInsetsZero
+    }
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -82,6 +89,16 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     navigationController?.navigationBar.translucent = false
+  }
+  
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
   }
   
   func advanceOrder() {
@@ -203,7 +220,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   func webViewDidFinishLoad(webView: UIWebView) {
     let result = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight;")
     height = CGFloat((result! as NSString).doubleValue) + 150
-    web.frame = CGRectMake(0, 0, self.view.bounds.size.width, height)
+    web.frame = CGRectMake(0, 1, self.view.bounds.size.width, height)
     self.tableView.reloadData()
   }
   
@@ -227,12 +244,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     return super.tableView(tableView,  heightForRowAtIndexPath: indexPath)
   }
   
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if section == 3 {
-      return 1
-    }
-    return 0.0
-  }
+
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -240,7 +252,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     if indexPath.section == 2 {
       //评价
       let starRating = EDStarRating()
-      starRating.frame = CGRectMake(view.bounds.size.width/2, 2, 100, 45)
+      starRating.frame = CGRectMake(view.bounds.size.width-165, 2, 140, 45)
       starRating.backgroundColor = UIColor.whiteColor()
       starRating.starImage = UIImage(named: "ic_star_nor")
       starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
