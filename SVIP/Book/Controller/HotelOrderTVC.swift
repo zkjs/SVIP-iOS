@@ -247,7 +247,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       } else {
         hideHUD()
         ZKJSTool.showMsg("商家暂无客服")
-//        showHint("商家暂无客服")
       }
     }
   }

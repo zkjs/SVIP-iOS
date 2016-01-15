@@ -76,7 +76,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="572" height="100"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精品服务为您定制" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-Mf-dtv">
-                                <rect key="frame" x="18" y="60" width="538" height="17"/>
+                                <rect key="frame" x="18" y="55" width="538" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="290" id="Ez8-Z2-pEz"/>
                                     <constraint firstAttribute="height" constant="21" id="Is0-qo-Tnt"/>
@@ -123,7 +123,7 @@
                             <constraint firstAttribute="height" constant="100" id="LBp-p4-pg6"/>
                             <constraint firstItem="fRo-1M-SDA" firstAttribute="top" secondItem="cWr-Dj-drU" secondAttribute="top" constant="20" id="OLX-GD-0mV"/>
                             <constraint firstAttribute="trailing" secondItem="Z6Z-Mf-dtv" secondAttribute="trailing" constant="16" id="Rpd-qs-TeJ"/>
-                            <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="top" secondItem="fRo-1M-SDA" secondAttribute="bottom" constant="10" id="VCf-1z-JBC"/>
+                            <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="top" secondItem="fRo-1M-SDA" secondAttribute="bottom" constant="5" id="VCf-1z-JBC"/>
                             <constraint firstAttribute="trailing" secondItem="93G-Rn-Kq5" secondAttribute="trailing" id="WIH-eA-omU"/>
                             <constraint firstAttribute="bottom" secondItem="93G-Rn-Kq5" secondAttribute="bottom" id="amF-Lc-QNE"/>
                             <constraint firstItem="Z6Z-Mf-dtv" firstAttribute="leading" secondItem="cWr-Dj-drU" secondAttribute="leading" constant="18" id="mRL-B4-tr1"/>

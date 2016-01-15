@@ -44,7 +44,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Iyf-24-GyB">
-                                <rect key="frame" x="18" y="56" width="551" height="0.0"/>
+                                <rect key="frame" x="18" y="51" width="551" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="NF0-cN-Rvu"/>
                                     <constraint firstAttribute="height" constant="21" id="jAK-G2-GXe"/>
@@ -70,7 +70,7 @@
                             <constraint firstItem="Xg0-LS-ttF" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" id="2Ri-pe-14L"/>
                             <constraint firstAttribute="bottom" secondItem="Xg0-LS-ttF" secondAttribute="bottom" id="3Nu-Pt-9Nd"/>
                             <constraint firstAttribute="trailing" secondItem="Iyf-24-GyB" secondAttribute="trailing" constant="16" id="AC2-5G-zlo"/>
-                            <constraint firstItem="Iyf-24-GyB" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" constant="56" id="CT2-4X-dX2"/>
+                            <constraint firstItem="Iyf-24-GyB" firstAttribute="top" secondItem="L6z-4M-w8K" secondAttribute="top" constant="51" id="CT2-4X-dX2"/>
                             <constraint firstAttribute="trailing" secondItem="hwe-fL-hEi" secondAttribute="trailing" constant="16" id="OGz-eE-lsg"/>
                             <constraint firstAttribute="trailing" secondItem="Xg0-LS-ttF" secondAttribute="trailing" id="RCY-kL-PX4"/>
                             <constraint firstItem="Xg0-LS-ttF" firstAttribute="leading" secondItem="L6z-4M-w8K" secondAttribute="leading" id="adr-J9-ooF"/>

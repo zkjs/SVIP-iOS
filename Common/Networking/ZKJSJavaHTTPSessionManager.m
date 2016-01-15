@@ -92,7 +92,7 @@
   }];
 }
 
-#pragma mark - 根据城市名称查询酒店列表
+#pragma mark - 根据城市名称查询酒店列表(登录时)
 - (void)getShopListWithCity:(NSString *)city page:(NSString *)page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%@/%@/%@",[self userID],city,page,size];
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码

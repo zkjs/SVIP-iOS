@@ -111,7 +111,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)
       web.scrollView.bounces = false
       web.scrollView.scrollEnabled  = false
-      web.scalesPageToFit = true
+//      web.scalesPageToFit = true
 //      web.frame = CGRectMake(0, 0, self.view.bounds.size.width, 0)
       web.delegate = self
     }
@@ -225,6 +225,13 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       return height
     }
     return super.tableView(tableView,  heightForRowAtIndexPath: indexPath)
+  }
+  
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 3 {
+      return 1
+    }
+    return 0.0
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
