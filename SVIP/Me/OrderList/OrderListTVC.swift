@@ -29,7 +29,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
 //    tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
-    layoutHidView()
+    
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -79,10 +79,10 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       titleLabel.hidden = false
       view.addSubview(titleLabel)
       
-      let title = UILabel(frame: CGRectMake(0.0, 30, 300.0, 45.0))
+      let title = UILabel(frame: CGRectMake(0.0, 30, 400.0, 45.0))
       title.textAlignment = .Center
       title.font = UIFont.systemFontOfSize(18)
-      title.text = "按地点进行搜索，为您推荐最好的服务。"
+      title.text = "按地点进行搜索,为您推荐最好的服务"
       title.textColor = UIColor.ZKJS_promptColor()
       title.center = CGPointMake(screenSize.midX, 421)
       title.hidden = false
@@ -182,11 +182,14 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
             self.tableView.mj_footer.endRefreshing()
             self.orderPage++
           } else {
+            
+           
             self.hideHUD()
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            self.tableView.mj_footer.hidden = true
       }
       if self.orders.count == 0 {
-            self.emptyLabel.hidden = false
+         self.layoutHidView()
           }
       }) { (task: NSURLSessionDataTask!, error: NSError!)-> Void in
         self.hideHUD()

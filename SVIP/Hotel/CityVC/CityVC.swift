@@ -56,6 +56,12 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
       searchBar.resignFirstResponder()
   }
   
+  
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    view.endEditing(true)
+  }
+  
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("CityVC", owner:self, options:nil)
   }

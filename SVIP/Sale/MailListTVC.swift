@@ -48,7 +48,7 @@ class MailListTVC: UITableViewController {
       titleLabel.font = UIFont.systemFontOfSize(16)
       titleLabel.text = "在这里，您可以与专属客服进行沟通"
       titleLabel.textColor = UIColor.ZKJS_promptColor()
-      titleLabel.center = CGPointMake(screenSize.midX, 420)
+      titleLabel.center = CGPointMake(screenSize.midX, 350)
       titleLabel.hidden = false
       view.addSubview(titleLabel)
       
@@ -57,7 +57,7 @@ class MailListTVC: UITableViewController {
       find.titleLabel?.textAlignment = .Center
       find.titleLabel!.font = UIFont.systemFontOfSize(14)
       find.backgroundColor = UIColor.ZKJS_mainColor()
-      find.center = CGPointMake(screenSize.midX, 488)
+      find.center = CGPointMake(screenSize.midX, 408)
       find.hidden = false
 //      find.addTarget(self, action: "findMore", forControlEvents: .TouchUpInside)
       view.addSubview(find)
