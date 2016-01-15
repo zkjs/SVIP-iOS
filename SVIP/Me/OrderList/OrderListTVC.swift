@@ -182,8 +182,6 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
             self.tableView.mj_footer.endRefreshing()
             self.orderPage++
           } else {
-            
-           
             self.hideHUD()
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
             self.tableView.mj_footer.hidden = true

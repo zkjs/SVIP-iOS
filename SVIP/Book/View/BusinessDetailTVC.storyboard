@@ -140,6 +140,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ixi-qT-IyV" firstAttribute="centerY" secondItem="IQc-kn-fVP" secondAttribute="centerY" id="4xA-bR-p6I"/>
                                                 <constraint firstItem="ixi-qT-IyV" firstAttribute="top" secondItem="IQc-kn-fVP" secondAttribute="top" constant="3" id="JUs-Ga-07B"/>
                                                 <constraint firstItem="ixi-qT-IyV" firstAttribute="leading" secondItem="IQc-kn-fVP" secondAttribute="leading" constant="20" id="y9r-Gz-0cJ"/>
                                             </constraints>
