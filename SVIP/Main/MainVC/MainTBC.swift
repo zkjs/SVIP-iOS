@@ -15,6 +15,12 @@ class MainTBC: UITabBarController {
   var salesVC = SalesVC()
   let vc = FloatingWindowVC()
   let tipView = UIView()
+  let maskLayer1 = CAShapeLayer()
+  let guideButton1 = UIButton()
+  let guideText1 = UIImageView()
+  let maskLayer2 = CAShapeLayer()
+  let guideButton2 = UIButton()
+  let guideText2 = UIImageView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,37 +60,73 @@ class MainTBC: UITabBarController {
     
     checkVersion()
     
-//    showTipView()
+    if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
+      showTipView()
+    }
   }
   
   func showTipView() {
     tipView.frame = view.bounds
-    tipView.backgroundColor = UIColor(white: 0.0, alpha: 0.8)
-    let button = UIButton()
-    button.setImage(UIImage(named: "default_btn_wozhidaola"), forState: .Normal)
-    button.sizeToFit()
-    button.addTarget(self, action: "hideTipView", forControlEvents: .TouchUpInside)
-    let text = UIImageView(image: UIImage(named: "default_zhijian"))
-    text.sizeToFit()
-    tipView.addSubview(button)
-    tipView.addSubview(text)
-    
     let radius: CGFloat = 60.0
     let path = UIBezierPath(roundedRect: CGRectMake(0, 0, view.frame.size.width, view.frame.size.height), cornerRadius: 0.0)
-    let circlePath = UIBezierPath(roundedRect: CGRectMake(view.frame.size.width-radius, 309, radius, radius), cornerRadius: radius)
+    let circlePath = UIBezierPath(roundedRect: CGRectMake(view.frame.size.width-radius-30, 309, radius, radius), cornerRadius: radius)
     path.appendPath(circlePath)
     path.usesEvenOddFillRule = true
-    let fillLayer = CAShapeLayer()
-    fillLayer.path = path.CGPath
-    fillLayer.fillRule = kCAFillRuleEvenOdd
-    fillLayer.fillColor = UIColor.blackColor().CGColor
-    fillLayer.opacity = 0.2
-    tipView.layer.addSublayer(fillLayer)
+    maskLayer1.path = path.CGPath
+    maskLayer1.fillRule = kCAFillRuleEvenOdd
+    maskLayer1.fillColor = UIColor.blackColor().CGColor
+    maskLayer1.opacity = 0.8
+    tipView.layer.addSublayer(maskLayer1)
     view.addSubview(tipView)
+    
+    guideButton1.setImage(UIImage(named: "default_btn_wozhidaola"), forState: .Normal)
+    guideButton1.sizeToFit()
+    guideButton1.center = CGPointMake(CGRectGetMidX(view.frame), 309+100)
+    guideButton1.addTarget(self, action: "nextTipView", forControlEvents: .TouchUpInside)
+    view.addSubview(guideButton1)
+ 
+    guideText1.image = UIImage(named: "default_zhijian")
+    guideText1.sizeToFit()
+    guideText1.center = CGPointMake(CGRectGetMidX(view.frame)-30, 309+10)
+    view.addSubview(guideText1)
   }
   
-  func hideTipView() {
+  func nextTipView() {
+    maskLayer1.hidden = true
+    guideButton1.hidden = true
+    guideText1.hidden = true
+    
+    let radius: CGFloat = 40.0
+    let circleX = CGRectGetMidX(view.frame)+CGRectGetWidth(view.frame)/8.0-radius/2.0
+    let circleY = CGRectGetHeight(view.frame)-radius-5
+    let path = UIBezierPath(roundedRect: CGRectMake(0, 0, view.frame.size.width, view.frame.size.height), cornerRadius: 0.0)
+    let circlePath = UIBezierPath(roundedRect: CGRectMake(circleX, circleY, radius, radius), cornerRadius: radius)
+    path.appendPath(circlePath)
+    path.usesEvenOddFillRule = true
+    maskLayer2.path = path.CGPath
+    maskLayer2.fillRule = kCAFillRuleEvenOdd
+    maskLayer2.fillColor = UIColor.blackColor().CGColor
+    maskLayer2.opacity = 0.8
+    tipView.layer.addSublayer(maskLayer2)
+    view.addSubview(tipView)
+    
+    guideButton2.setImage(UIImage(named: "default_btn_zhaokefu"), forState: .Normal)
+    guideButton2.sizeToFit()
+    guideButton2.center = CGPointMake(CGRectGetMidX(view.frame), circleY-190)
+    guideButton2.addTarget(self, action: "finishTipView", forControlEvents: .TouchUpInside)
+    view.addSubview(guideButton2)
+    
+    guideText2.image = UIImage(named: "default_xiaoxi")
+    guideText2.sizeToFit()
+    guideText2.center = CGPointMake(circleX-radius/2.0, circleY-80)
+    view.addSubview(guideText2)
+  }
+  
+  func finishTipView() {
     tipView.hidden = true
+    guideButton2.hidden = true
+    guideText2.hidden = true
   }
   
   override func viewWillAppear(animated: Bool) {
