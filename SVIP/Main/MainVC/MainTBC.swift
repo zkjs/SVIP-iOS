@@ -58,8 +58,10 @@ class MainTBC: UITabBarController {
     viewControllers = [nc1, nc2, nc3, nc4]
     tabBar.tintColor = UIColor.ZKJS_mainColor()
     
+    // 检查版本更新
     checkVersion()
     
+    // 新手用户使用指南
     if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
       NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
       showTipView()

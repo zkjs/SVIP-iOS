@@ -9,7 +9,7 @@
 import UIKit
 
 class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
-
+  
   @IBOutlet weak var roomImage: UIImageView!
   @IBOutlet weak var daysLabel: UILabel!
   @IBOutlet weak var roomsTypeLabel: UILabel!
@@ -22,8 +22,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   @IBOutlet weak var isSmokingSwitch: UISwitch!
   @IBOutlet weak var remarkTextView: UITextView! {
     didSet {
-//      remarkTextView.layer.borderWidth = 1 //边框粗细
-//      remarkTextView.layer.borderColor = UIColor.hx_colorWithHexString("B8B8B8").CGColor
+      //      remarkTextView.layer.borderWidth = 1 //边框粗细
+      //      remarkTextView.layer.borderColor = UIColor.hx_colorWithHexString("B8B8B8").CGColor
       
     }
   }
@@ -41,7 +41,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       countAddButton.layer.borderColor = UIColor.ZKJS_lineColor().CGColor
     }
   }
-
+  
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!
@@ -75,7 +75,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     setUpUI()
   }
   func countSubtract(sender: AnyObject) {
-   
+    
     if roomsCount < 2 {
       self.countSubtractButton.enabled = false
       return
@@ -228,23 +228,34 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   func chooseChatterWithData(data: AnyObject) {
     if let head = data["head"] as? [String: AnyObject] {
-      if let set = head["exclusive_salesid"] as? String {
-        if set != "" {
-          if let exclusive_salesid = head["exclusive_salesid"] as? String,let exclusive_name = head["exclusive_name"] as? String {
-            self.createConversationWithSalesID(exclusive_salesid, salesName: exclusive_name)
-          }
-        } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
-          for sale in data {
-            if let roleid = sale["roleid"] as? NSNumber {
-              if roleid == 1 {
-                let salesid = sale["salesid"] as? String
-                let name = sale["name"] as? String
-                self.createConversationWithSalesID(salesid!, salesName: name!)
-              }
+      if let exclusive_salesid = head["exclusive_salesid"] as? String {
+        // 有专属客服
+        var exclusive_name = ""
+        if let name = head["exclusive_name"] as? String {
+          exclusive_name = name
+        }
+        self.createConversationWithSalesID(exclusive_salesid, salesName: exclusive_name)
+      } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
+        // 无专属客服，发给商家管理员
+        for sale in data {
+          if let roleid = sale["roleid"] as? String {
+            if roleid == "1" {
+              // 管理员
+              let salesid = sale["salesid"] as? String
+              let name = sale["name"] as? String
+              self.createConversationWithSalesID(salesid!, salesName: name!)
+            }
+          } else if let roleid = sale["roleid"] as? NSNumber {
+            if roleid.integerValue == 1 {
+              // 管理员
+              let salesid = sale["salesid"] as? String
+              let name = sale["name"] as? String
+              self.createConversationWithSalesID(salesid!, salesName: name!)
             }
           }
         }
       } else {
+        // 无可用客服
         hideHUD()
         ZKJSTool.showMsg("商家暂无客服")
       }
@@ -285,7 +296,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["roomprice"] = ""
     dic["telephone"] = self.telphoneTextField.text
     dic["personcount"] = 1
-//    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
+    //    dic["doublebreakfeast"] = breakfeastSwitch.on ? 1 : 0
     dic["nosmoking"] = isSmokingSwitch.on ? 1 : 0
     dic["company"] = invoinceLabel.text
     dic["remark"] = self.remarkTextView.text
@@ -311,7 +322,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
         print(error)
     }
   }
-
+  
   func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {
     let order = OrderDetailModel()
     order.roomtype = roomsTypeLabel.text!
