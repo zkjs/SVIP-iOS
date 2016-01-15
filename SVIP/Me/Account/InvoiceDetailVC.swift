@@ -27,7 +27,7 @@ class InvoiceDetailVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     titleTextField.text = invoice.title
     isDefaultButton.selected = invoice.isDefault
   }

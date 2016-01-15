@@ -58,21 +58,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dingwei_gary" translatesAutoresizingMaskIntoConstraints="NO" id="hEh-R7-32r">
-                                                    <rect key="frame" x="15" y="25" width="10" height="15"/>
+                                                    <rect key="frame" x="15" y="25" width="13" height="13"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="15" id="0Xh-fE-RXT"/>
-                                                        <constraint firstAttribute="width" constant="10" id="NvQ-dF-yhV"/>
+                                                        <constraint firstAttribute="height" constant="13" id="0Xh-fE-RXT"/>
+                                                        <constraint firstAttribute="width" constant="13" id="NvQ-dF-yhV"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_phone_gary" translatesAutoresizingMaskIntoConstraints="NO" id="EnJ-hH-NQ1">
-                                                    <rect key="frame" x="16" y="80" width="10" height="14"/>
+                                                    <rect key="frame" x="16" y="78" width="13" height="13"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="10" id="Zdk-Lm-Sd4"/>
-                                                        <constraint firstAttribute="height" constant="14" id="kRO-Et-O1p"/>
+                                                        <constraint firstAttribute="width" constant="13" id="Zdk-Lm-Sd4"/>
+                                                        <constraint firstAttribute="height" constant="13" id="kRO-Et-O1p"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙市芙蓉区芙蓉中路二段106号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaO-6G-gTD">
-                                                    <rect key="frame" x="45" y="0.0" width="314" height="62"/>
+                                                    <rect key="frame" x="48" y="0.0" width="311" height="62"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="62" id="Rhh-VI-C8C"/>
                                                     </constraints>
@@ -81,7 +81,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="010-85117777" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZu-p1-NuJ">
-                                                    <rect key="frame" x="52" y="62" width="303" height="50"/>
+                                                    <rect key="frame" x="55" y="62" width="300" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="VDk-fP-wx8"/>
                                                     </constraints>
