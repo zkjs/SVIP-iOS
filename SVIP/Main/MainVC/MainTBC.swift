@@ -66,6 +66,19 @@ class MainTBC: UITabBarController {
       NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
       showTipView()
     }
+    
+    if AccountManager.sharedInstance().isLogin() == true {
+      let userID = AccountManager.sharedInstance().userID
+      print("EaseMob Login Name: \(userID)")
+      let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+      print("登陆前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+      EaseMob.sharedInstance().chatManager.loginWithUsername(userID, password: "123456", error: error)
+      print("登陆后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+      if error != nil {
+        showHint(error.debugDescription)
+      }
+      EaseMob.sharedInstance().chatManager.loadDataFromDatabase()
+    }
   }
   
   func showTipView() {
