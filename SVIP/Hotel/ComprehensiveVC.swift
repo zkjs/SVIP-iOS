@@ -83,6 +83,7 @@ class ComprehensiveVC: UIViewController {
   func refreshData() {
     orderPage = 1
     loadShopListData(orderPage)
+    self.tableView.mj_footer.hidden = false
    // setupCoreLocationService()
   }
   
@@ -102,11 +103,14 @@ class ComprehensiveVC: UIViewController {
           if self.orderPage == 1 {
             self.dataArray.removeAll()
           }
-          
+          if array.count == 0 {
+            self.tableView.mj_footer.hidden = true
+          }
           for dic in array {
             let hotel = Hotel(dic: dic as! [String:AnyObject])
             self.dataArray.append(hotel)
           }
+          print(self.dataArray.count)
           self.orderPage++
           self.tableView.reloadData()
         }
@@ -124,7 +128,9 @@ class ComprehensiveVC: UIViewController {
           if self.orderPage == 1 {
             self.dataArray.removeAll()
           }
-         
+          if array.count == 0 {
+            self.tableView.mj_footer.hidden = true
+          }
           for dic in array {
             let hotel = Hotel(dic: dic as! [String:AnyObject])
             self.dataArray.append(hotel)

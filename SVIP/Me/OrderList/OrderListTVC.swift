@@ -46,15 +46,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     loadMoreData()
   }
   
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    
-    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
-      cell.separatorInset = UIEdgeInsetsZero
-    }
-    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
-      cell.layoutMargins = UIEdgeInsetsZero
-    }
-  }
+  
   
   // MARK: - Table view data source
   
@@ -202,6 +194,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
           } else {
             self.hideHUD()
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            self.tableView.mj_footer.hidden = true
       }
       if self.orders.count == 0 {
          self.layoutHidView()

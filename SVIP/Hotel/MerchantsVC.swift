@@ -79,6 +79,7 @@ class MerchantsVC: UIViewController {
   
   func refreshData() {
     getDataWithPage(1)
+    self.tableView.mj_footer.hidden = false
   }
   
   private func getDataWithPage(page: Int) {
@@ -89,6 +90,7 @@ class MerchantsVC: UIViewController {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.hidden = true
           } else {
             if page == 1 {
               self.dataArray.removeAll()
@@ -112,6 +114,7 @@ class MerchantsVC: UIViewController {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.hidden = true
           } else {
             if page == 1 {
               self.dataArray.removeAll()

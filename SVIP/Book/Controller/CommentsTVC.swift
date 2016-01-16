@@ -91,6 +91,7 @@ class CommentsTVC: UITableViewController {
         self.tableView.mj_footer.endRefreshing()
         self.orderPage++
       } else {
+        self.tableView.mj_footer.hidden = true
         self.hideHUD()
         self.tableView.mj_footer.endRefreshingWithNoMoreData()
       }
