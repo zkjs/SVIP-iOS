@@ -88,11 +88,7 @@
 
 - (void)gotoShopList
 {
-  UIWindow *appWindow = [UIApplication sharedApplication].keyWindow;
-  MainTBC *mainTBC = [MainTBC new];
-  mainTBC.selectedIndex = 1;
-  BaseNC *nc = [[BaseNC alloc] initWithRootViewController:mainTBC];
-  appWindow.rootViewController = nc;
+  self.tabBarController.selectedIndex = 1;
 }
 
 - (void)removeEmptyConversationsFromDB

@@ -72,11 +72,7 @@ class MailListTVC: UITableViewController {
   }
   
   func gotoShopList() {
-    let appWindow = UIApplication.sharedApplication().keyWindow
-    let mainTBC = MainTBC()
-    mainTBC.selectedIndex = 1
-    let nc = BaseNC(rootViewController: mainTBC)
-    appWindow?.rootViewController = nc
+    tabBarController?.selectedIndex = 1
   }
   
   func loadFriendListData() {
