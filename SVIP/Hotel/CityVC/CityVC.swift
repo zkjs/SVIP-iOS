@@ -31,7 +31,6 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
          self.navigationItem.leftBarButtonItem = item1
       
       let mainViewBounds = self.navigationController?.view.bounds
-      
       citySearchBar.frame = CGRectMake(40, CGRectGetMinY(mainViewBounds!)+20, self.navigationController!.view.bounds.size.width-70, 40)
       citySearchBar.barTintColor = UIColor.ZKJS_whiteColor()
       citySearchBar.placeholder = "搜索"

@@ -20,7 +20,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cil-LM-wVa">
                                 <rect key="frame" x="0.0" y="0.0" width="596" height="339"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_img_default" translatesAutoresizingMaskIntoConstraints="NO" id="BVq-D6-ypL">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BVq-D6-ypL">
                                         <rect key="frame" x="0.0" y="0.0" width="596" height="339"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="216" id="6vC-Hh-8jN"/>
@@ -175,7 +175,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="header_img_default" width="487" height="452"/>
         <image name="ic_right_orange" width="10" height="18"/>
         <image name="nav_bluetooth" width="13" height="18"/>
     </resources>
