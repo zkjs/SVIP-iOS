@@ -67,6 +67,15 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     return cell
   }
   
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
+  }
+  
   func layoutHidView() {
     if orders.count == 0 {
       tableView.mj_footer.hidden = true
