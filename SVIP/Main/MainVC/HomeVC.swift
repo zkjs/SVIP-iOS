@@ -42,7 +42,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     didSet {
       privilegeButton.layer.masksToBounds = true
       privilegeButton.layer.cornerRadius = 30
-      
     }
   }
 
@@ -85,10 +84,11 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
       privilegeButton.userInteractionEnabled = false
     } else {
-//      privilegeButton.setBackgroundImage(UIImage(named: "logo_white"), forState: UIControlState.Normal)
+      privilegeButton.setBackgroundImage(UIImage(named: "logo_white"), forState: UIControlState.Normal)
+      privilegeButton.userInteractionEnabled = false
     }
     
-    self.pushInfoArray.removeAll()
+    pushInfoArray.removeAll()
     delegate = self
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true

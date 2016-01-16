@@ -148,7 +148,7 @@ class AccountManager: NSObject {
     userID = ""
     token = ""
     avatarURL = ""
-    avatarImage = UIImage()
+    avatarImage = UIImage(named: "logo_white")
     userName = ""
     sex = ""
     email = ""
