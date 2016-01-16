@@ -51,6 +51,12 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+      tableView.separatorInset = UIEdgeInsetsZero
+    }
+    if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+      tableView.layoutMargins = UIEdgeInsetsZero
+    }
     
     setupCoreLocationService()
     setupBluetoothManager()
@@ -71,6 +77,16 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     originOffsetY = privilegeButton.frame.origin.y
     print("userID: \(AccountManager.sharedInstance().userID)")
     print("Token: \(AccountManager.sharedInstance().token)")
+  }
+  
+  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
   }
   
   

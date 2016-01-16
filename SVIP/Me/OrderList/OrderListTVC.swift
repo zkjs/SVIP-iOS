@@ -29,6 +29,14 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
 //    tableView.mj_footer.hidden = true
     tableView.tableFooterView = UIView()
+    self.tableView.backgroundColor = UIColor.whiteColor()
+    
+    if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+      tableView.separatorInset = UIEdgeInsetsZero
+    }
+    if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+      tableView.layoutMargins = UIEdgeInsetsZero
+    }
     
   }
   
@@ -37,6 +45,8 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     orderPage = 1
     loadMoreData()
   }
+  
+  
   
   // MARK: - Table view data source
   
@@ -75,7 +85,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       titleLabel.font = UIFont.systemFontOfSize(18)
       titleLabel.text = "找到您的下一个行程"
       titleLabel.textColor = UIColor.ZKJS_textColor()
-      titleLabel.center = CGPointMake(screenSize.midX, 376)
+      titleLabel.center = CGPointMake(screenSize.midX, 200)
       titleLabel.hidden = false
       view.addSubview(titleLabel)
       
@@ -84,7 +94,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       title.font = UIFont.systemFontOfSize(18)
       title.text = "按地点进行搜索,为您推荐最好的服务"
       title.textColor = UIColor.ZKJS_promptColor()
-      title.center = CGPointMake(screenSize.midX, 421)
+      title.center = CGPointMake(screenSize.midX, 245)
       title.hidden = false
       view.addSubview(title)
       
@@ -93,7 +103,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       find.titleLabel?.textAlignment = .Center
       find.titleLabel!.font = UIFont.systemFontOfSize(14)
       find.backgroundColor = UIColor.ZKJS_mainColor()
-      find.center = CGPointMake(screenSize.midX, 469)
+      find.center = CGPointMake(screenSize.midX, 293)
       find.hidden = false
       find.addTarget(self, action: "findMore", forControlEvents: .TouchUpInside)
       view.addSubview(find)

@@ -42,6 +42,7 @@ class ComprehensiveVC: UIViewController {
     tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
     let nibName1 = UINib(nibName: RecommandCell.nibName(), bundle: nil)
     tableView.registerNib(nibName1, forCellReuseIdentifier: RecommandCell.reuseIdentifier())
+    tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "refreshData")  // 下拉刷新
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMore")  // 上拉加载
@@ -82,6 +83,7 @@ class ComprehensiveVC: UIViewController {
   func refreshData() {
     orderPage = 1
     loadShopListData(orderPage)
+    self.tableView.mj_footer.hidden = false
    // setupCoreLocationService()
   }
   

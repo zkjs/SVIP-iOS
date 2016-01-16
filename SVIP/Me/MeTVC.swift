@@ -28,6 +28,14 @@ class MeTVC: UITableViewController {
       navigationController?.pushViewController(vc, animated: false)
       NSUserDefaults.standardUserDefaults().setBool(false, forKey: kGotoOrderList)
     }
+    
+    if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+      tableView.separatorInset = UIEdgeInsetsZero
+    }
+    if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+      tableView.layoutMargins = UIEdgeInsetsZero
+    }
+    
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -39,6 +47,16 @@ class MeTVC: UITableViewController {
 //    #if DEBUG
 //      sendTestPushNotification()
 //    #endif
+  }
+  
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
   }
   
   func loadUnconfirmedOrderList() {

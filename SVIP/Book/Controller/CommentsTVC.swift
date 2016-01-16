@@ -24,6 +24,14 @@ class CommentsTVC: UITableViewController {
       tableView.registerNib(cellNib, forCellReuseIdentifier: CommentsCell.reuseIdentifier())
       tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
        tableView.tableFooterView = UIView()
+      
+      
+      if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+        tableView.separatorInset = UIEdgeInsetsZero
+      }
+      if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+        tableView.layoutMargins = UIEdgeInsetsZero
+      }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,6 +39,16 @@ class CommentsTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+  
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
+  }
   
   func pop(sender:UIBarButtonItem) {
     navigationController?.popViewControllerAnimated(true)

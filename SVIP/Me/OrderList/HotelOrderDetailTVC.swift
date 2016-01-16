@@ -48,12 +48,29 @@ class HotelOrderDetailTVC:  UITableViewController {
     let item = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")
     self.navigationItem.leftBarButtonItem = item
     loadData()
+    
+    if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+      tableView.separatorInset = UIEdgeInsetsZero
+    }
+    if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+      tableView.layoutMargins = UIEdgeInsetsZero
+    }
   }
   
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.translucent = false
+  }
+  
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
   }
   
   func back() {
