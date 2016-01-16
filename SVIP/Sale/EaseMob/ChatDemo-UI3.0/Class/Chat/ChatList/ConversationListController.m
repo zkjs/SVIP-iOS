@@ -77,18 +77,23 @@
   _find.frame = CGRectMake(0.0, 30, 160, 40.0);
   [_find
    setTitle:@"发现服务" forState:UIControlStateNormal];
-//  [find addTarget:self action:@selector(findFriend) forControlEvents:UIControlEventTouchUpInside];
+  [_find addTarget:self action:@selector(gotoShopList) forControlEvents:UIControlEventTouchUpInside];
   _find.titleLabel.textAlignment = NSTextAlignmentCenter;
   _find.titleLabel.font = [UIFont systemFontOfSize:14];
   _find.backgroundColor = [UIColor ZKJS_mainColor];
   _find.center = CGPointMake(screenSize.size.width / 2.0, 360);
   _find.hidden = NO;
   [self.tableView addSubview:_find];
-  
-
 }
 
-
+- (void)gotoShopList
+{
+  UIWindow *appWindow = [UIApplication sharedApplication].keyWindow;
+  MainTBC *mainTBC = [MainTBC new];
+  mainTBC.selectedIndex = 1;
+  BaseNC *nc = [[BaseNC alloc] initWithRootViewController:mainTBC];
+  appWindow.rootViewController = nc;
+}
 
 - (void)removeEmptyConversationsFromDB
 {

@@ -59,9 +59,8 @@ class MailListTVC: UITableViewController {
       find.backgroundColor = UIColor.ZKJS_mainColor()
       find.center = CGPointMake(screenSize.midX, 408)
       find.hidden = false
-//      find.addTarget(self, action: "findMore", forControlEvents: .TouchUpInside)
+      find.addTarget(self, action: "gotoShopList", forControlEvents: .TouchUpInside)
       view.addSubview(find)
-      
     }
 
   }
@@ -70,6 +69,14 @@ class MailListTVC: UITableViewController {
     super.viewWillAppear(animated)
     
     loadFriendListData()
+  }
+  
+  func gotoShopList() {
+    let appWindow = UIApplication.sharedApplication().keyWindow
+    let mainTBC = MainTBC()
+    mainTBC.selectedIndex = 1
+    let nc = BaseNC(rootViewController: mainTBC)
+    appWindow?.rootViewController = nc
   }
   
   func loadFriendListData() {
