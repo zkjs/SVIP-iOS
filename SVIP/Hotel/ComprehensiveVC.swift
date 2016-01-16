@@ -42,6 +42,7 @@ class ComprehensiveVC: UIViewController {
     tableView.registerNib(nibName, forCellReuseIdentifier: HotelCell.reuseIdentifier())
     let nibName1 = UINib(nibName: RecommandCell.nibName(), bundle: nil)
     tableView.registerNib(nibName1, forCellReuseIdentifier: RecommandCell.reuseIdentifier())
+    tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "refreshData")  // 下拉刷新
     tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMore")  // 上拉加载
@@ -101,14 +102,11 @@ class ComprehensiveVC: UIViewController {
           if self.orderPage == 1 {
             self.dataArray.removeAll()
           }
-          if array.count == 0 {
-            self.tableView.mj_footer.hidden = true
-          }
+          
           for dic in array {
             let hotel = Hotel(dic: dic as! [String:AnyObject])
             self.dataArray.append(hotel)
           }
-          print(self.dataArray.count)
           self.orderPage++
           self.tableView.reloadData()
         }
@@ -126,9 +124,7 @@ class ComprehensiveVC: UIViewController {
           if self.orderPage == 1 {
             self.dataArray.removeAll()
           }
-          if array.count == 0 {
-            self.tableView.mj_footer.hidden = true
-          }
+         
           for dic in array {
             let hotel = Hotel(dic: dic as! [String:AnyObject])
             self.dataArray.append(hotel)

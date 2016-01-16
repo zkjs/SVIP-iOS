@@ -69,7 +69,7 @@
     _titleLabel.font = [UIFont systemFontOfSize:16];
     _titleLabel.text = @"在这里，您可以与专属客服进行沟通";
     _titleLabel.textColor = [UIColor ZKJS_promptColor];
-    _titleLabel.center = CGPointMake(screenSize.size.width / 2.0, 300);
+    _titleLabel.center = CGPointMake(screenSize.size.width / 2.0, 200);
     _titleLabel.hidden = NO;
     [self.tableView addSubview:_titleLabel];
   
@@ -81,7 +81,7 @@
   _find.titleLabel.textAlignment = NSTextAlignmentCenter;
   _find.titleLabel.font = [UIFont systemFontOfSize:14];
   _find.backgroundColor = [UIColor ZKJS_mainColor];
-  _find.center = CGPointMake(screenSize.size.width / 2.0, 360);
+  _find.center = CGPointMake(screenSize.size.width / 2.0, 250);
   _find.hidden = NO;
   [self.tableView addSubview:_find];
   

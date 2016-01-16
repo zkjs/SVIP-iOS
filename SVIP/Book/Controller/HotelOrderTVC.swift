@@ -62,11 +62,29 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
     tableView.bounces = false
     setUpUI()
+    
+    if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+      tableView.separatorInset = UIEdgeInsetsZero
+    }
+    if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+      tableView.layoutMargins = UIEdgeInsetsZero
+    }
+    
   }
   
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     view.endEditing(true)
+  }
+  
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
   }
   
   func countAdd(sender: AnyObject) {

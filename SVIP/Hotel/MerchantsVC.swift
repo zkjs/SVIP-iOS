@@ -35,6 +35,13 @@ class MerchantsVC: UIViewController {
       super.navigationItem.leftBarButtonItems = [item1,item2]
       super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
         // Do any additional setup after loading the view.
+      
+      if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+        tableView.separatorInset = UIEdgeInsetsZero
+      }
+      if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+        tableView.layoutMargins = UIEdgeInsetsZero
+      }
     }
   
   override func loadView() {
@@ -45,6 +52,16 @@ class MerchantsVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
+   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
+  }
   
   func backToView(sender:UIBarButtonItem) {
     navigationController?.popViewControllerAnimated(true)
@@ -72,7 +89,6 @@ class MerchantsVC: UIViewController {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
             self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.hidden = true
           } else {
             if page == 1 {
               self.dataArray.removeAll()
@@ -96,7 +112,6 @@ class MerchantsVC: UIViewController {
           if array.count == 0 {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
             self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.hidden = true
           } else {
             if page == 1 {
               self.dataArray.removeAll()

@@ -41,11 +41,29 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
       tableView.registerNib(nibName, forCellReuseIdentifier: HotCityCell.reuseIdentifier())                                                            
       tableView.tableFooterView = UIView()
       self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+      
+      
+      if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
+        tableView.separatorInset = UIEdgeInsetsZero
+      }
+      if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
+        tableView.layoutMargins = UIEdgeInsetsZero
+      }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+  
+   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+      cell.separatorInset = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
+  }
   
   // 搜索代理UISearchBarDelegate方法，点击虚拟键盘上的Search按钮时触发
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
