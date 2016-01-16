@@ -26,10 +26,22 @@ class SettingTVC: UITableViewController {
       if let data = responsObject {
         if let set = data["set"] {
           if set?.boolValue == true {
-            let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
-            EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
-            EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
+            // 清理系统缓存
             AccountManager.sharedInstance().clearAccountCache()
+            
+            // 登出环信
+            EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
+            let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+            print("登出前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+            EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
+            print("登出后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+            self.hideHUD()
+            if error != nil {
+              self.showHint(error.debugDescription)
+            } else {
+              NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+            }
+
             let window =  UIApplication.sharedApplication().keyWindow
             window?.rootViewController = MainTBC()
           }

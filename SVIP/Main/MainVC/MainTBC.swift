@@ -403,6 +403,26 @@ extension MainTBC: IChatManagerDelegate {
   
   func didLoginFromOtherDevice() {
     NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+    // 清理系统缓存
+    AccountManager.sharedInstance().clearAccountCache()
+    
+    // 登出环信
+    EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
+    let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+    print("登出前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+    EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
+    print("登出后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+    if error != nil {
+      print(error.debugDescription)
+    } else {
+      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+    }
+    
+    // 弹出登录框
+    let nc = BaseNC(rootViewController: LoginVC())
+    let window = UIApplication.sharedApplication().keyWindow
+    window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
+    ZKJSTool.showMsg("账号在别处登录，请重新重录。")
   }
   
   func didRemovedFromServer() {

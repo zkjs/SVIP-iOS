@@ -122,7 +122,7 @@ class LoginVC: UIViewController {
       print(responseObject)
       if let data = responseObject as? [String : AnyObject] {
         AccountManager.sharedInstance().saveBaseInfo(data)
-        self.easeMobAutoLogin()
+        self.loginEaseMob()
         closure()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -177,15 +177,17 @@ class LoginVC: UIViewController {
     codeButton.enabled = false
   }
   
-  private func easeMobAutoLogin() {
-    // 自动登录
-    let isAutoLogin = EaseMob.sharedInstance().chatManager.isAutoLoginEnabled
-    if isAutoLogin == false {
-      let userID = AccountManager.sharedInstance().userID
-      EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(userID, password: "123456", completion: { (responseObject: [NSObject : AnyObject]!, error: EMError!) -> Void in
-        EaseMob.sharedInstance().chatManager.enableAutoLogin!()
-        }, onQueue: nil)
+  private func loginEaseMob() {
+    let userID = AccountManager.sharedInstance().userID
+    let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+    print("Username: \(userID)")
+    print("登陆前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+    EaseMob.sharedInstance().chatManager.loginWithUsername(userID, password: "123456", error: error)
+    print("登陆后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+    if error != nil {
+      showHint(error.debugDescription)
     }
+    EaseMob.sharedInstance().chatManager.loadDataFromDatabase()
   }
 
   // MARK: Button Action
