@@ -120,6 +120,7 @@ class AccountManager: NSObject {
     }
   }
   
+  
   func saveSex(sex: String) {
     self.sex = sex
     let userDefaults = NSUserDefaults()
