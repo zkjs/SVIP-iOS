@@ -219,7 +219,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   
   func webViewDidFinishLoad(webView: UIWebView) {
     let result = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight;")
-    height = CGFloat((result! as NSString).doubleValue) + 150
+    height = CGFloat((result! as NSString).doubleValue) + 250
     web.frame = CGRectMake(0, 1, self.view.bounds.size.width, height)
     self.tableView.reloadData()
   }
