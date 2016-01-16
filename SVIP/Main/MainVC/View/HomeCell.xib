@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用超级身份" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5G-2U-msB">
-                        <rect key="frame" x="94" y="54" width="462" height="44"/>
+                        <rect key="frame" x="94" y="54" width="462" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="1c1-Ti-bpx"/>
                             <constraint firstAttribute="width" constant="240" id="SJU-2A-Nnf"/>
@@ -33,6 +33,7 @@
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="1c1-Ti-bpx"/>
                                 <exclude reference="SJU-2A-Nnf"/>
                             </mask>
                         </variation>
@@ -45,7 +46,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份精选了很多优质服务" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puh-03-iyV">
-                        <rect key="frame" x="94" y="101" width="462" height="18"/>
+                        <rect key="frame" x="94" y="84" width="462" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="210" id="Sr6-NQ-Hvb"/>
                             <constraint firstAttribute="height" constant="60" id="frJ-Kf-eRP"/>
@@ -73,7 +74,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="B5G-2U-msB" secondAttribute="trailing" constant="10" id="kHN-5M-IAZ"/>
                     <constraint firstItem="puh-03-iyV" firstAttribute="leading" secondItem="BKz-cF-RD8" secondAttribute="trailing" constant="15" id="pca-kw-7b5"/>
                     <constraint firstItem="tju-aw-W7R" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="56" id="utm-ED-UAR"/>
-                    <constraint firstItem="puh-03-iyV" firstAttribute="top" secondItem="B5G-2U-msB" secondAttribute="bottom" constant="3" id="v6T-d6-8fu"/>
+                    <constraint firstItem="puh-03-iyV" firstAttribute="top" secondItem="B5G-2U-msB" secondAttribute="bottom" constant="8" id="v6T-d6-8fu"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

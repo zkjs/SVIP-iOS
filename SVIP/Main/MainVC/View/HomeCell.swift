@@ -58,9 +58,11 @@ class HomeCell: UITableViewCell {
     let url = NSURL(string: BaseURL)
     pushImage.sd_setImageWithURL(url, placeholderImage: UIImage(named: "ic_v_orange"))
     subjectLabel.text = pushInfo.title
+    subjectLabel.sizeToFit()
     nextLabel.text = pushInfo.desc
     nextLabel.sizeToFit()
-
+    let frame = nextLabel.frame
+    nextLabel.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMaxY(subjectLabel.frame)+8, CGRectGetWidth(frame), CGRectGetHeight(frame))
   }
   
 }
