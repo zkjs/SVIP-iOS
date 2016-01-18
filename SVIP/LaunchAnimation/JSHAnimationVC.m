@@ -47,7 +47,7 @@
 
 - (void)startAnimation {
   [UIView animateWithDuration:kDuration animations:^{
-    _plane.bounds = CGRectMake(0, 0, 958 / 2, 1704 / 2);
+    _plane.transform = CGAffineTransformMakeScale(1.2, 1.2);
   } completion:^(BOOL finished) {
     if (finished) {
       [[LoginManager sharedInstance] afterAnimation];
