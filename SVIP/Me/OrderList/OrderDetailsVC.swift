@@ -87,6 +87,11 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     
 
   @IBAction func submit(sender: AnyObject) {
+    
+    if self.remark.text == "如有其他需求，请在此说明" {
+      ZKJSTool.showMsg("请填写评价内容")
+      return
+    }
     let date = NSDate().timeIntervalSince1970*1000
     print(date)
     let userID = AccountManager.sharedInstance().userID

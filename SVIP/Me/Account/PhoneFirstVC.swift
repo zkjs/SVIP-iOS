@@ -36,6 +36,7 @@ class PhoneFirstVC: UIViewController {
       codeButton.alpha = 0.5
     } else {
       phoneTextField.text = AccountManager.sharedInstance().phone
+      phoneTextField.enabled = false
     }
   }
   

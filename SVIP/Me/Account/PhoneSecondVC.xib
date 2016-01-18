@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -107,15 +107,23 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIh-CH-hV7">
-                    <rect key="frame" x="155" y="195" width="200" height="1"/>
+                    <rect key="frame" x="156" y="195" width="200" height="1"/>
                     <color key="backgroundColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="EDO-WR-tPU"/>
+                        <constraint firstAttribute="height" constant="1" id="Rb2-Yl-gEP"/>
                         <constraint firstAttribute="width" constant="200" id="XZR-ZE-96r"/>
+                        <constraint firstAttribute="width" constant="200" id="kPb-0m-2iZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="EDO-WR-tPU"/>
+                            <exclude reference="XZR-ZE-96r"/>
+                        </mask>
+                    </variation>
                 </label>
             </subviews>
             <animations/>
@@ -129,12 +137,20 @@
                 <constraint firstItem="3ec-5F-dd9" firstAttribute="top" secondItem="CGW-jL-9w7" secondAttribute="bottom" constant="18" id="RpZ-tn-h80"/>
                 <constraint firstAttribute="trailing" secondItem="CZV-ZR-NtN" secondAttribute="trailing" id="S53-yd-nBs"/>
                 <constraint firstItem="3ec-5F-dd9" firstAttribute="leading" secondItem="EE1-5G-VzE" secondAttribute="trailing" constant="8" id="Xfd-Jc-9JL"/>
+                <constraint firstItem="gIh-CH-hV7" firstAttribute="centerX" secondItem="wNc-2E-wlr" secondAttribute="centerX" constant="-44" id="exB-V3-Lh4"/>
                 <constraint firstItem="cao-iH-E6s" firstAttribute="centerX" secondItem="wNc-2E-wlr" secondAttribute="centerX" id="iaw-P7-ZGz"/>
+                <constraint firstItem="gIh-CH-hV7" firstAttribute="top" secondItem="EE1-5G-VzE" secondAttribute="bottom" constant="8" id="mE6-ZG-q9Y"/>
                 <constraint firstItem="CZV-ZR-NtN" firstAttribute="leading" secondItem="wNc-2E-wlr" secondAttribute="leading" id="sAS-Zy-vep"/>
                 <constraint firstItem="gIh-CH-hV7" firstAttribute="leading" secondItem="wNc-2E-wlr" secondAttribute="leading" constant="155" id="wMp-MW-O3G"/>
                 <constraint firstItem="CGW-jL-9w7" firstAttribute="top" secondItem="wNc-2E-wlr" secondAttribute="top" constant="80" id="xKC-0e-zlg"/>
                 <constraint firstItem="gIh-CH-hV7" firstAttribute="top" secondItem="EE1-5G-VzE" secondAttribute="bottom" constant="8" id="xMg-rr-DLl"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="wMp-MW-O3G"/>
+                    <exclude reference="xMg-rr-DLl"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
