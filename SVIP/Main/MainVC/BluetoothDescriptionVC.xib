@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 只有您打开蓝牙，商家的iBecon才能运作，为您提供细节的服务。如离你最近的服务员响应您的服务等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1b-yY-91s">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 只有您打开蓝牙，商家的iBeacon才能运作，为您提供细节的服务。如离你最近的服务员响应您的服务等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1b-yY-91s">
                     <rect key="frame" x="20" y="21" width="560" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="McB-Zi-D5G"/>
