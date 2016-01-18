@@ -649,11 +649,12 @@ extension HomeVC: CLLocationManagerDelegate {
 //        }
 //        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
 //      }
-      self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-        target:self,selector:Selector("highLight"),
-        userInfo:nil,repeats:true)
-//      self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: .Normal)
-      self.privilegeButton.userInteractionEnabled = true
+      if privilegeArray.count != 0 {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+          target:self, selector:Selector("highLight"),
+          userInfo:nil, repeats:true)
+        self.privilegeButton.userInteractionEnabled = true
+      }
     }
     //位置区域变化通知
     ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
