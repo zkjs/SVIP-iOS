@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -107,7 +107,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3og-2i-xLJ">
-                                <rect key="frame" x="18" y="234" width="96" height="26"/>
+                                <rect key="frame" x="18" y="230" width="96" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="lub-3D-FNf"/>
                                 </constraints>
@@ -117,7 +117,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2J-qP-qS1">
-                                <rect key="frame" x="154" y="234" width="96" height="26"/>
+                                <rect key="frame" x="154" y="230" width="96" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="dan-Sb-NaX"/>
                                 </constraints>
@@ -127,7 +127,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj2-s1-f89">
-                                <rect key="frame" x="18" y="265" width="548" height="52"/>
+                                <rect key="frame" x="18" y="261" width="548" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="x0F-uH-y1O"/>
                                 </constraints>
@@ -138,7 +138,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="H2J-qP-qS1" firstAttribute="top" secondItem="KH4-as-UOF" secondAttribute="bottom" constant="24" id="4Er-in-TfM"/>
+                            <constraint firstItem="H2J-qP-qS1" firstAttribute="top" secondItem="KH4-as-UOF" secondAttribute="bottom" constant="20" id="4Er-in-TfM"/>
                             <constraint firstItem="pMZ-dX-2nZ" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" constant="18" id="5XX-kr-soE"/>
                             <constraint firstItem="Qj2-s1-f89" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" constant="18" id="IeK-L9-cqL"/>
                             <constraint firstItem="cil-LM-wVa" firstAttribute="top" secondItem="DOC-mM-OVZ" secondAttribute="top" id="LJN-Wh-jOS"/>
@@ -150,7 +150,7 @@
                             <constraint firstAttribute="trailing" secondItem="cil-LM-wVa" secondAttribute="trailing" id="XG4-1n-ECj"/>
                             <constraint firstItem="cil-LM-wVa" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" id="c3a-E1-Lqv"/>
                             <constraint firstItem="KH4-as-UOF" firstAttribute="top" secondItem="DOC-mM-OVZ" secondAttribute="top" constant="184" id="cg1-LY-5zJ"/>
-                            <constraint firstItem="3og-2i-xLJ" firstAttribute="top" secondItem="KH4-as-UOF" secondAttribute="bottom" constant="24" id="eKR-al-Rt3"/>
+                            <constraint firstItem="3og-2i-xLJ" firstAttribute="top" secondItem="KH4-as-UOF" secondAttribute="bottom" constant="20" id="eKR-al-Rt3"/>
                             <constraint firstItem="KH4-as-UOF" firstAttribute="leading" secondItem="DOC-mM-OVZ" secondAttribute="leading" constant="18" id="pc1-Xy-Hc8"/>
                             <constraint firstAttribute="trailing" secondItem="Qj2-s1-f89" secondAttribute="trailing" constant="30" id="uC8-nP-n3c"/>
                         </constraints>

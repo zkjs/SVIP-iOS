@@ -27,7 +27,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var beaconRegions = [String: [String: String]]()
   var activate =  true
   var compareNumber: NSNumber!
-  var urlArray = NSMutableArray()
+  var urlArray = [String]()
   var homeUrl = String()
   var count = 0
   var countTimer = 0
@@ -152,7 +152,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   func getAllMessages() {
     let city = "长沙"
     ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
+//      print(responseObject)
       if let defaultNotitification = responseObject["defaultNotitification"] as? NSArray {
         self.pushInfoArray.removeAll()
         for dic in defaultNotitification {
@@ -188,7 +188,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if self.urlArray.count <= self.count {
       self.count = 0
     }else {
-      self.homeUrl = self.urlArray[self.count] as! String
+      self.homeUrl = self.urlArray[self.count]
     }
      navigationController?.navigationBarHidden = false
     navigationController?.navigationBar.translucent = false
@@ -221,18 +221,28 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
 
   
   func loadData() {
-    ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      if let array = responseObject as? NSArray {
-        for dic in array {
-          let url = dic["url"] as! String
-          self.urlArray .addObject(url)
-        }
-        self.homeUrl = self.urlArray[self.count] as! String
+    if let imageArray = StorageManager.sharedInstance().homeImage() {
+      // 已有缓存
+      print("cached \(imageArray)")
+      let randomIndex = Int(arc4random_uniform(UInt32(imageArray.count)))
+      homeUrl = imageArray[randomIndex]
+    } else {
+      // 未有缓冲，从服务器上取
+      ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+        print("server \(responseObject)")
+        if let array = responseObject as? NSArray {
+          for dic in array {
+            let url = dic["url"] as! String
+            self.urlArray.append(url)
+          }
+          self.homeUrl = self.urlArray[self.count]
+          StorageManager.sharedInstance().saveHomeImages(self.urlArray)
 //        self.tableView.reloadData()
-        self.refreshTableView()
+          self.refreshTableView()
+        }
+        }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+          
       }
-      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
   }
   

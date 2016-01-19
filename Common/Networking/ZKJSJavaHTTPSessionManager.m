@@ -346,7 +346,7 @@
 - (void)getMessagesWithCity:(NSString *)city success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"messages/%@/%@", [self userID], city];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);

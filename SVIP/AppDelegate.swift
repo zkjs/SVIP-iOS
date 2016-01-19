@@ -154,31 +154,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    completionHandler(.NewData)
   }
   
-//  // MARK: - Background Fetch
-//  
-//  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-//    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
-//    
-//    if AccountManager.sharedInstance().isLogin() == false {
-//      completionHandler(.Failed)
-//      return
-//    }
-//    
-//    let fetchStart = NSDate()
-//    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      print("Background Fetch: \(responseObject)")
-//      let shops = responseObject as! [(NSDictionary)]
-//      StorageManager.sharedInstance().saveShopsInfo(shops)
-//      completionHandler(.NewData)
-//      
-//      let fetchEnd = NSDate()
-//      print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        completionHandler(.Failed)
-//        let fetchEnd = NSDate()
-//        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
-//    }
-//  }
+  // MARK: - Background Fetch
+  
+  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
+    
+    
+    let fetchStart = NSDate()
+    ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      print("Background Fetch: \(responseObject)")
+      if let array = responseObject as? NSArray {
+        var urlArray = [String]()
+        for dic in array {
+          if let url = dic["url"] as? String {
+            urlArray.append(url)
+          }
+        }
+        StorageManager.sharedInstance().saveHomeImages(urlArray)
+        completionHandler(.NewData)
+        
+        let fetchEnd = NSDate()
+        print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+      } else {
+        completionHandler(.Failed)
+        let fetchEnd = NSDate()
+        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+      }
+      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+        completionHandler(.Failed)
+        let fetchEnd = NSDate()
+        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+    }
+  }
   
   // MARK: - HTTPSessionManagerDelegate
   
