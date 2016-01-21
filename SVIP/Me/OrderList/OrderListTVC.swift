@@ -82,7 +82,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       let screenSize = UIScreen.mainScreen().bounds
       emptyLabel.frame = CGRectMake(0.0, 30, 300.0, 50.0)
       emptyLabel.textAlignment = .Center
-      emptyLabel.font = UIFont.systemFontOfSize(20)
+      emptyLabel.font = UIFont.systemFontOfSize(14)
       emptyLabel.text = "当您有预订时将会在这里查看订单"
       emptyLabel.textColor = UIColor.ZKJS_promptColor()
       emptyLabel.center = CGPointMake(screenSize.midX, 20)
