@@ -78,12 +78,13 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
       tableView.layoutMargins = UIEdgeInsetsZero
     }
+    
+    loadData()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.translucent = true
-    loadData()
   }
   
   override func viewWillDisappear(animated: Bool) {
