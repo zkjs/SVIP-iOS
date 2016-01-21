@@ -19,8 +19,8 @@
 
 
 // 预上线
-//#define kBaseURL @"http://rap.zkjinshi.com/" // PHP服务器
-//#define kJavaBaseURL @"http://p.zkjinshi.com/japi/"  // Java服务器
+#define kBaseURL @"http://rap.zkjinshi.com/" // PHP服务器
+#define kJavaBaseURL @"http://p.zkjinshi.com/japi/"  // Java服务器
 //#define kEaseMobAppKey @"zkjs#sid"  // 环信
 
 // 正式

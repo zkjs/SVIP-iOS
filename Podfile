@@ -18,7 +18,7 @@ target 'SVIP' do
 #  pod 'PKYStepper'
 #  pod 'DateTools'
   pod 'MBProgressHUD'
-  pod 'AFNetworking'
+  pod 'AFNetworking', '~> 2.6.3'
 #  pod 'SSKeychain', '~> 1.2.3'
   pod 'JTSImageViewController'
   pod 'EDStarRating'

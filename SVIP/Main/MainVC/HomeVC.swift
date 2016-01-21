@@ -151,7 +151,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   func getAllMessages() {
     let city = "长沙"
-    ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
 //      print(responseObject)
       if let defaultNotitification = responseObject["defaultNotitification"] as? NSArray {
         self.pushInfoArray.removeAll()

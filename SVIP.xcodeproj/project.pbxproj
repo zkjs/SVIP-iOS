@@ -82,7 +82,6 @@
 		4077DDAB1C1EAF9900E13D6B /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4077DCB71C1EAF9900E13D6B /* amrFileCodec.mm */; };
 		4077DDAC1C1EAF9900E13D6B /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4077DCB91C1EAF9900E13D6B /* wav.mm */; };
 		4077DDAD1C1EAF9900E13D6B /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4077DCBB1C1EAF9900E13D6B /* EMVoiceConverter.mm */; };
-		4077DDAE1C1EAF9900E13D6B /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4077DCBF1C1EAF9900E13D6B /* libopencore-amrnb.a */; };
 		4077DDAF1C1EAF9900E13D6B /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4077DCC31C1EAF9900E13D6B /* libopencore-amrwb.a */; };
 		4077DDB01C1EAF9900E13D6B /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DCC61C1EAF9900E13D6B /* MBProgressHUD+Add.m */; };
 		4077DDB11C1EAF9900E13D6B /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DCCA1C1EAF9900E13D6B /* MWCaptionView.m */; };
@@ -1208,7 +1207,6 @@
 				B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */,
 				404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */,
 				40C4B71B1BFACDD000CB2DA5 /* openssl.framework in Frameworks */,
-				4077DDAE1C1EAF9900E13D6B /* libopencore-amrnb.a in Frameworks */,
 				B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */,
 				4077DDAF1C1EAF9900E13D6B /* libopencore-amrwb.a in Frameworks */,
 				4077DC581C1EAF4B00E13D6B /* libYunBa.a in Frameworks */,
@@ -3188,7 +3186,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = zkjinshi;
 				TargetAttributes = {
 					404A2F401BA94C7B006475D7 = {
