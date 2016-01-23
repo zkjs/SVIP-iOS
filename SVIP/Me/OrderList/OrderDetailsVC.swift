@@ -13,7 +13,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
   @IBOutlet weak var remark: UITextView! {
     didSet {
       remark.layer.borderWidth = 1 //边框粗细
-      remark.layer.borderColor = UIColor.hx_colorWithHexString("B8B8B8").CGColor //边框颜色
+      remark.layer.borderColor = UIColor(hexString: "B8B8B8").CGColor //边框颜色
     }
   }
   @IBOutlet weak var evaluateLabel: UILabel!

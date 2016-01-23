@@ -297,7 +297,7 @@ class GuideVC: UIViewController {
   // MARK: - Button Action
   
   func gotoMain() {
-    UIApplication.sharedApplication().keyWindow?.backgroundColor = UIColor.hx_colorWithHexString("F5F5F5")
+    UIApplication.sharedApplication().keyWindow?.backgroundColor = UIColor(hexString: "F5F5F5")
     
     UIView.animateWithDuration(0.4, animations: { () -> Void in
       self.view.transform = CGAffineTransformMakeScale(1.5, 1.5)

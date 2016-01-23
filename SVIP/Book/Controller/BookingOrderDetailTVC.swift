@@ -262,23 +262,23 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   }
   
   private func setupRoomTagView() {
-    roomTagView.canSeletedTags = true
-    roomTagView.tagColor = UIColor.blackColor()
-    roomTagView.tagCornerRadius = 12.0
-    roomTagView.tags.addObjectsFromArray(roomTags)
-    roomTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
-      print(self.roomTagView.seletedTags)
-    }
+//    roomTagView.canSeletedTags = true
+//    roomTagView.tagColor = UIColor.blackColor()
+//    roomTagView.tagCornerRadius = 12.0
+//    roomTagView.tags.addObjectsFromArray(roomTags)
+//    roomTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
+//      print(self.roomTagView.seletedTags)
+//    }
   }
   
   private func setupServiceTagView() {
-    serviceTagView.canSeletedTags = true
-    serviceTagView.tagColor = UIColor.blackColor()
-    serviceTagView.tagCornerRadius = 12.0
-    serviceTagView.tags.addObjectsFromArray(serviceTags)
-    serviceTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
-      print(self.serviceTagView.seletedTags)
-    }
+//    serviceTagView.canSeletedTags = true
+//    serviceTagView.tagColor = UIColor.blackColor()
+//    serviceTagView.tagCornerRadius = 12.0
+//    serviceTagView.tags.addObjectsFromArray(serviceTags)
+//    serviceTagView.setCompletionBlockWithSeleted { (index: Int) -> Void in
+//      print(self.serviceTagView.seletedTags)
+//    }
   }
   
   private func validateResult(result: NSString) -> Bool{
@@ -315,22 +315,22 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
     }
     mutDic.setObject(1, forKey: "invoice[invoice_get_id]")
     let privilegeIDs = NSMutableArray()
-    for tag in serviceTagView.seletedTags {
-      for dic in privilegeArr {
-        if let privilege_name = dic["privilege_name"] as? String,
-          let tag = tag as? String {
-            if privilege_name == tag {
-              privilegeIDs.addObject(dic["id"]!)
-            }
-        }
-      }
-    }
+//    for tag in serviceTagView.seletedTags {
+//      for dic in privilegeArr {
+//        if let privilege_name = dic["privilege_name"] as? String,
+//          let tag = tag as? String {
+//            if privilege_name == tag {
+//              privilegeIDs.addObject(dic["id"]!)
+//            }
+//        }
+//      }
+//    }
     if privilegeIDs.count != 0 {
       mutDic.setObject(privilegeIDs.componentsJoinedByString(","), forKey: "privilege")
     }
-    if roomTagView.seletedTags.count != 0 {
-      mutDic.setObject(roomTagView.seletedTags.componentsJoinedByString(","), forKey: "room_tags")
-    }
+//    if roomTagView.seletedTags.count != 0 {
+//      mutDic.setObject(roomTagView.seletedTags.componentsJoinedByString(","), forKey: "room_tags")
+//    }
     if !remarkTextView.text.isEmpty {
       mutDic.setObject(remarkTextView.text, forKey: "remark")
     }

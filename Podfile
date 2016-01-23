@@ -5,7 +5,7 @@ inhibit_all_warnings!
 target 'SVIP' do
   pod 'ASIHTTPRequest', :git => 'https://github.com/hanton/asi-http-request'
   pod 'EaseMobSDKFull'
-  pod 'HexColors'
+  pod 'HexColors', '~> 2.3.0'
   pod 'JCTagListView'
   pod 'AMapSearch'
 #  pod 'CocoaLumberjack'

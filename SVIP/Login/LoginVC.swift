@@ -171,9 +171,9 @@ class LoginVC: UIViewController {
     okButton.alpha = 0.5
     
     codeButton.layer.borderWidth = 0.6
-    codeButton.layer.borderColor = UIColor.hx_colorWithHexString("C7C7CD").CGColor
+    codeButton.layer.borderColor = UIColor(hexString: "C7C7CD").CGColor
     codeButton.backgroundColor = UIColor.whiteColor()
-    codeButton.setTitleColor(UIColor.hx_colorWithHexString("C7C7CD"), forState: .Normal)
+    codeButton.setTitleColor(UIColor(hexString: "C7C7CD"), forState: .Normal)
     codeButton.enabled = false
   }
   
@@ -265,9 +265,9 @@ extension LoginVC: UITextFieldDelegate {
         codeButton.enabled = true
       } else {
         codeButton.layer.borderWidth = 0.6
-        codeButton.layer.borderColor = UIColor.hx_colorWithHexString("C7C7CD").CGColor
+        codeButton.layer.borderColor = UIColor(hexString: "C7C7CD").CGColor
         codeButton.backgroundColor = UIColor.whiteColor()
-        codeButton.setTitleColor(UIColor.hx_colorWithHexString("C7C7CD"), forState: .Normal)
+        codeButton.setTitleColor(UIColor(hexString: "C7C7CD"), forState: .Normal)
         codeButton.enabled = false
       }
       

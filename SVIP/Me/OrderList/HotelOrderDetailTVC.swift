@@ -42,7 +42,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "订单管理"
-    tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
+    tableView.backgroundColor = UIColor(hexString: "#EFEFF4")
     tableView.bounces = false
     let image = UIImage(named: "ic_fanhui_orange")
     let item = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")

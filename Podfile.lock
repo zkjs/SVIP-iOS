@@ -20,8 +20,8 @@ PODS:
     - Reachability (~> 3.2)
   - EaseMobSDKFull (2.1.7)
   - EDStarRating (1.1)
-  - HexColors (3.0.0)
-  - JCTagListView (0.0.4)
+  - HexColors (2.3.0)
+  - JCTagListView (0.0.5)
   - JTSImageViewController (1.5.1)
   - LTNavigationBar (2.1.1)
   - Masonry (0.6.4)
@@ -45,7 +45,7 @@ PODS:
     - Masonry
   - SocketRocket (0.4.2)
   - SWTableViewCell (0.3.7)
-  - XLPagerTabStrip (2.0.0)
+  - XLPagerTabStrip (3.0.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -54,7 +54,7 @@ DEPENDENCIES:
   - ASIHTTPRequest (from `https://github.com/hanton/asi-http-request`)
   - EaseMobSDKFull
   - EDStarRating
-  - HexColors
+  - HexColors (~> 2.3.0)
   - JCTagListView
   - JTSImageViewController
   - LTNavigationBar
@@ -89,8 +89,8 @@ SPEC CHECKSUMS:
   ASIHTTPRequest: b2fb6b7703472faf6571f128ef5d4ed0bd21a563
   EaseMobSDKFull: 43858ca9a62bbe1fa4c7c006f944a3e52a4bff48
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
-  HexColors: 8b83e3fe90c0d466dae7b98c9d22da95799f99cb
-  JCTagListView: e267bb1e2f44555093d4d5ff5b95939c12ebd5ad
+  HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
+  JCTagListView: f8184077bed41b700d0750fa10450cc22514e5b3
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   LTNavigationBar: b1c15fdcc32453d84f8b9fc774fff611c184dfbb
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
@@ -102,6 +102,6 @@ SPEC CHECKSUMS:
   SKTagView: 33378cfeb717df04f77489605b013506e91d1da5
   SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
-  XLPagerTabStrip: 2c69b8e3208432a94e713c198ce597faad5a87bb
+  XLPagerTabStrip: 0f9f94246c84e7cb60a06ca435da68ac75c8b56e
 
 COCOAPODS: 0.38.2

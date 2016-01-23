@@ -62,7 +62,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = shopName
-    tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
+    tableView.backgroundColor = UIColor(hexString: "#EFEFF4")
     roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
     tableView.bounces = false
     setUpUI()
