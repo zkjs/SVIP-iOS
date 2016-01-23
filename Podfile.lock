@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
+  - AMapNavi (1.5.0)
   - AMapSearch (3.2.0)
   - ASIHTTPRequest:
     - Reachability (~> 3.2)
@@ -48,6 +49,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AMapNavi
   - AMapSearch
   - ASIHTTPRequest (from `https://github.com/hanton/asi-http-request`)
   - EaseMobSDKFull
@@ -82,6 +84,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  AMapNavi: 605e2dc3bad11fb2649ba4df61b82ab0da389d3f
   AMapSearch: a885f0702578a441a22cb66fa74f8918c6d19e6f
   ASIHTTPRequest: b2fb6b7703472faf6571f128ef5d4ed0bd21a563
   EaseMobSDKFull: 43858ca9a62bbe1fa4c7c006f944a3e52a4bff48

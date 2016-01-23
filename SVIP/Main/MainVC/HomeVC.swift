@@ -35,6 +35,13 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
   
+  var naviManager = AMapNaviManager()
+  
+  // 起点坐标
+  var startPoint: AMapNaviPoint?
+  // 终点坐标
+  var endPoint: AMapNaviPoint?
+  
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -77,7 +84,11 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     originOffsetY = privilegeButton.frame.origin.y
     print("userID: \(AccountManager.sharedInstance().userID)")
     print("Token: \(AccountManager.sharedInstance().token)")
+    
+    naviManager.delegate = self
   }
+  
+  
   
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     
@@ -470,7 +481,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
 
 // MARK: - CLLocationManagerDelegate
 
-extension HomeVC: CLLocationManagerDelegate {
+extension HomeVC: CLLocationManagerDelegate,AMapNaviManagerDelegate {
+
   
   private func setupCoreLocationService() {
     if CLLocationManager.authorizationStatus() == .Denied {
@@ -509,6 +521,29 @@ extension HomeVC: CLLocationManagerDelegate {
     let coordinate = manager.location!.coordinate
     longitude = coordinate.longitude
     latution = coordinate.latitude
+    endPoint = AMapNaviPoint.locationWithLatitude(23.6992042815339, longitude: 113.985375707086)
+    startPoint = AMapNaviPoint.locationWithLatitude(CGFloat(latution), longitude: CGFloat(longitude))
+    routeCall()
+  }
+  
+  //路径规划
+  func routeCall() {
+    var startPoints = [AMapNaviPoint]()
+    var endPoints = [AMapNaviPoint]()
+    startPoints.append(startPoint!)
+    endPoints.append(endPoint!)
+    print(startPoints,endPoints)
+    //驾车路径规划
+    naviManager.calculateDriveRouteWithStartPoints(startPoints, endPoints: endPoints, wayPoints: nil, drivingStrategy: AMapNaviDrivingStrategy.Default)
+  }
+  
+  
+  
+  // 算路成功的回调函数
+  func naviManagerOnCalculateRouteSuccess(naviManager: AMapNaviManager!) {
+    print("\(naviManager.naviRoute.routeLength)米")
+    
+    print("\(naviManager.naviRoute.routeTime)秒")
   }
   
   private func postGPSLocation(coordinate: CLLocationCoordinate2D) {

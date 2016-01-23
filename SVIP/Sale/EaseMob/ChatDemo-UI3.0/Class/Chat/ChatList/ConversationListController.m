@@ -56,7 +56,7 @@
   CGRect screenSize = [UIScreen mainScreen].bounds;
   self.emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 150.0, 30.0)];
   self.emptyLabel.textAlignment = NSTextAlignmentCenter;
-  self.emptyLabel.font = [UIFont systemFontOfSize:20];
+  self.emptyLabel.font = [UIFont systemFontOfSize:14];
   self.emptyLabel.text = @"暂无消息";
   self.emptyLabel.textColor = [UIColor ZKJS_promptColor];
   self.emptyLabel.center = CGPointMake(screenSize.size.width / 2.0, 17);

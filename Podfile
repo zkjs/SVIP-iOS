@@ -25,6 +25,7 @@ target 'SVIP' do
   pod 'XLPagerTabStrip'
   pod 'Pingpp', '~> 2.1.0'
   pod 'LTNavigationBar'
+  pod 'AMapNavi' #导航SDK
 #  pod 'MWPhotoBrowser'
 #  pod 'WMPageController'
 #  pod 'FLAnimatedImage', '~> 1.0'

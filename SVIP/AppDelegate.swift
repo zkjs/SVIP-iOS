@@ -19,6 +19,7 @@ let UMAppKey = "55c31431e0f55a65c1002597"
 let WXAppId = "wxe09e14fcb69825cc"
 let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
 let UMURL = ""
+let AmapKey = "7945ba33067bb07845e8a60d12135885"
 //var reach: TMReachability?
 
 @UIApplicationMain
@@ -43,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
-    
+    AMapNaviServices.sharedServices().apiKey = AmapKey
 //    // fir.im BugHD
 //    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
     return true

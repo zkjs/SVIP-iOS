@@ -19,7 +19,11 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   @IBOutlet weak var paymentLabel: UILabel!
   @IBOutlet weak var invoinceLabel: UILabel!
   @IBOutlet weak var breakfeastSwitch: UISwitch!
-  @IBOutlet weak var isSmokingSwitch: UISwitch!
+  @IBOutlet weak var isSmokingSwitch: UISwitch! {
+    didSet {
+      isSmokingSwitch.enabled = false
+    }
+  }
   @IBOutlet weak var remarkTextView: UITextView! {
     didSet {
       //      remarkTextView.layer.borderWidth = 1 //边框粗细
@@ -62,7 +66,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
     tableView.bounces = false
     setUpUI()
-    
     if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
       tableView.separatorInset = UIEdgeInsetsZero
     }
@@ -103,8 +106,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   }
   
   func setUpUI() {
-    self.roomsTextField.text = String(roomsCount)
-    self.invoinceLabel.text = AccountManager.sharedInstance().invoice
+    self.roomsTextField.text           = String(roomsCount)
+    self.invoinceLabel.text            = AccountManager.sharedInstance().invoice
   }
   
   // MARK: - Table view data source
