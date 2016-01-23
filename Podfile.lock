@@ -54,7 +54,7 @@ PODS:
   - XLPagerTabStrip (3.0.0)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (~> 2.6.3)
   - AMapNavi
   - AMapSearch
   - ASIHTTPRequest (from `https://github.com/hanton/asi-http-request`)
@@ -89,7 +89,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/hanton/SKTagView
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AMapNavi: 605e2dc3bad11fb2649ba4df61b82ab0da389d3f
   AMapSearch: a885f0702578a441a22cb66fa74f8918c6d19e6f
   ASIHTTPRequest: b2fb6b7703472faf6571f128ef5d4ed0bd21a563
