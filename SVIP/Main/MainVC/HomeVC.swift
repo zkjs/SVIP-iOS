@@ -15,6 +15,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   let Identifier = "SettingVCCell"
   let locationManager = CLLocationManager()
+  let amapLocationManager = AMapLocationManager()
+  let naviManager = AMapNaviManager()
   
   var delegate:refreshHomeVCDelegate?
   var bluetoothManager = CBCentralManager()
@@ -23,7 +25,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var pushInfoArray = [PushInfoModel]()
   var orderArray = [PushInfoModel]()
   var longitude: double_t!
-  var latution: double_t!
+  var latitude: double_t!
   var beaconRegions = [String: [String: String]]()
   var activate =  true
   var compareNumber: NSNumber!
@@ -34,14 +36,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var timer = NSTimer!()
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
-  
-  var naviManager = AMapNaviManager()
-  
-  // 起点坐标
-  var startPoint: AMapNaviPoint?
-  // 终点坐标
-  var endPoint: AMapNaviPoint?
-  
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -85,10 +79,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     print("userID: \(AccountManager.sharedInstance().userID)")
     print("Token: \(AccountManager.sharedInstance().token)")
     
-    naviManager.delegate = self
   }
-  
-  
   
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     
@@ -99,7 +90,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       cell.layoutMargins = UIEdgeInsetsZero
     }
   }
-  
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -488,11 +478,78 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   }
 }
 
+// MARK: - AMapLocationManagerDelegate
+
+extension HomeVC: AMapLocationManagerDelegate {
+  
+  private func setupAMapLocationMonitor() {
+    naviManager.delegate = self
+    amapLocationManager.delegate = self
+
+    //设置允许后台定位参数，保持不会被系统挂起
+    amapLocationManager.pausesLocationUpdatesAutomatically = false
+    amapLocationManager.allowsBackgroundLocationUpdates = true
+    
+    //开始持续定位
+    amapLocationManager.startUpdatingLocation()
+  }
+  
+  func amapLocationManager(manager: AMapLocationManager!, didUpdateLocation location: CLLocation!) {
+    //获取客户当前的地理位置
+//    let coordinate = location.coordinate
+//    latitude = coordinate.latitude
+//    longitude = coordinate.longitude
+//    let startPoint = AMapNaviPoint.locationWithLatitude(CGFloat(latitude), longitude: CGFloat(longitude))
+//    let endPoint = AMapNaviPoint.locationWithLatitude(22.596568, longitude: 113.989823)  // 国家超级计算深圳中心
+//    if let startPoint = startPoint,
+//      let endPoint = endPoint {
+//      routeCallWithStartPoint(startPoint, endPoint: endPoint)
+//    }
+  }
+  
+  func amapLocationManager(manager: AMapLocationManager!, didFailWithError error: NSError!) {
+    print(error.description)
+  }
+  
+}
+
+// MARK: - AMapNaviManagerDelegate
+
+extension HomeVC: AMapNaviManagerDelegate {
+  
+  //路径规划
+  func routeCallWithStartPoint(startPoint: AMapNaviPoint, endPoint: AMapNaviPoint) {
+    //驾车路径规划
+    naviManager.calculateDriveRouteWithStartPoints([startPoint], endPoints: [endPoint], wayPoints: nil, drivingStrategy: AMapNaviDrivingStrategy.Default)
+  }
+  
+  // 算路成功的回调函数
+  func naviManagerOnCalculateRouteSuccess(naviManager: AMapNaviManager!) {
+    // App在后台时申请一段时间执行
+    var bgTask = UIBackgroundTaskIdentifier()
+    bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithName("") { () -> Void in
+      // Clean up
+      UIApplication.sharedApplication().endBackgroundTask(bgTask)
+      bgTask = UIBackgroundTaskInvalid
+    }
+    
+    // Start the long-running task and return immediately.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
+      // 后台任务
+      print("距离\(naviManager.naviRoute.routeLength)米")
+      //    print("\(naviManager.naviRoute.routeTime)秒")
+      
+      UIApplication.sharedApplication().endBackgroundTask(bgTask)
+      bgTask = UIBackgroundTaskInvalid
+    }
+  }
+
+}
+
 
 // MARK: - CLLocationManagerDelegate
 
-extension HomeVC: CLLocationManagerDelegate,AMapNaviManagerDelegate {
-
+extension HomeVC: CLLocationManagerDelegate {
   
   private func setupCoreLocationService() {
     if CLLocationManager.authorizationStatus() == .Denied {
@@ -510,7 +567,8 @@ extension HomeVC: CLLocationManagerDelegate,AMapNaviManagerDelegate {
       return
     }
     setupBeaconMonitor()
-    setupGPSMonitor()
+    setupAMapLocationMonitor()
+//    setupGPSMonitor()
   }
   
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -521,51 +579,34 @@ extension HomeVC: CLLocationManagerDelegate,AMapNaviManagerDelegate {
     }
   }
   
-  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-    print("Error while updating location " + error.localizedDescription)
-  }
-  
-  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    locationManager.stopMonitoringSignificantLocationChanges()
-    //获取客户当前的地理位置
-    let coordinate = manager.location!.coordinate
-    longitude = coordinate.longitude
-    latution = coordinate.latitude
-    endPoint = AMapNaviPoint.locationWithLatitude(23.6992042815339, longitude: 113.985375707086)
-    startPoint = AMapNaviPoint.locationWithLatitude(CGFloat(latution), longitude: CGFloat(longitude))
-    routeCall()
-  }
-  
-  //路径规划
-  func routeCall() {
-    var startPoints = [AMapNaviPoint]()
-    var endPoints = [AMapNaviPoint]()
-    startPoints.append(startPoint!)
-    endPoints.append(endPoint!)
-    print(startPoints,endPoints)
-    //驾车路径规划
-    naviManager.calculateDriveRouteWithStartPoints(startPoints, endPoints: endPoints, wayPoints: nil, drivingStrategy: AMapNaviDrivingStrategy.Default)
-  }
-  
-  
-  
-  // 算路成功的回调函数
-  func naviManagerOnCalculateRouteSuccess(naviManager: AMapNaviManager!) {
-    print("\(naviManager.naviRoute.routeLength)米")
-    
-    print("\(naviManager.naviRoute.routeTime)秒")
-  }
-  
-  private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    let traceTime = dateFormatter.stringFromDate(NSDate())
-    ZKJSHTTPSessionManager.sharedInstance().postGPSWithLongitude("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
-  }
+//  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+//    print("Error while updating location " + error.localizedDescription)
+//  }
+//  
+//  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//    locationManager.stopMonitoringSignificantLocationChanges()
+//    
+//  }
+//  
+//  private func setupGPSMonitor() {
+//    if #available(iOS 9.0, *) {
+//      locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//      locationManager.requestLocation()
+//    } else {
+//      locationManager.startMonitoringSignificantLocationChanges()
+//    }
+//  }
+//  
+//  private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
+//    let dateFormatter = NSDateFormatter()
+//    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//    let traceTime = dateFormatter.stringFromDate(NSDate())
+//    ZKJSHTTPSessionManager.sharedInstance().postGPSWithLongitude("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
+//  }
   
   func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
     if region.identifier == "DetermineCurrentRegionState" {
@@ -770,15 +811,6 @@ extension HomeVC: CLLocationManagerDelegate,AMapNaviManagerDelegate {
     }
   }
   
-  private func setupGPSMonitor() {
-    if #available(iOS 9.0, *) {
-      locationManager.desiredAccuracy = kCLLocationAccuracyBest
-      locationManager.requestLocation()
-    } else {
-      locationManager.startMonitoringSignificantLocationChanges()
-    }
-  }
-  
   private func removeAllMonitoredRegions() {
     for monitoredRegion in locationManager.monitoredRegions {
       let region = monitoredRegion as! CLBeaconRegion
@@ -786,6 +818,3 @@ extension HomeVC: CLLocationManagerDelegate,AMapNaviManagerDelegate {
     }
   }
 }
-
-
-
