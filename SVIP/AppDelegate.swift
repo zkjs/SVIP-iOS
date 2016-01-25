@@ -14,11 +14,13 @@ import UIKit
 //let ddLogLevel = DDLogLevel.Warning;
 //#endif
 
-//UM
+// 友盟
 let UMAppKey = "55c31431e0f55a65c1002597"
+let UMURL = ""
+// 微信
 let WXAppId = "wxe09e14fcb69825cc"
 let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
-let UMURL = ""
+// 高德
 let AMapKey = "7945ba33067bb07845e8a60d12135885"
 //var reach: TMReachability?
 
