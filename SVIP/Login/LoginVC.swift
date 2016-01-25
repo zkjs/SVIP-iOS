@@ -83,6 +83,10 @@ class LoginVC: UIViewController {
             self.getUserInfo() {
               self.hideHUD()
               self.dismissSelf()
+              let userid = AccountManager.sharedInstance().userID
+              MobClick.profileSignInWithPUID(userid)
+              
+              
             }
           } else {
             // 未注册要先注册一下
