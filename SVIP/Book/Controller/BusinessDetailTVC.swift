@@ -7,6 +7,8 @@
 //
 
 import UIKit
+
+
 protocol PhotoViewerDelegate {
   func gotoPhotoViewerDelegate(brower:AnyObject)
 }
@@ -14,7 +16,8 @@ protocol PhotoViewerDelegate {
 protocol CommentsViewerDelegate {
   func gotoCommentsViewerDelegate(CommentVC:AnyObject)
 }
-class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate,UIWebViewDelegate {
+
+class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrowserDelegate {
   
   @IBOutlet weak var commentsLabel: UILabel!
   @IBOutlet weak var scrollView: UIScrollView! {
@@ -116,7 +119,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
         self.imgUrlArray = self.shopDetail.images
       }
       self.setupUI()
-      self.tableView.reloadData()
+//      self.tableView.reloadData()
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
@@ -127,10 +130,12 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   func setupUI() {
     if shopDetail.shopdescUrl != nil {
       web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)
-      web.scrollView.bounces = false
-      web.scrollView.scrollEnabled  = false
+//      web.scrollView.bounces = false
+//      web.scrollView.scrollEnabled = false
+//      web.scrollView.delegate = self
 //      web.scalesPageToFit = true
 //      web.frame = CGRectMake(0, 0, self.view.bounds.size.width, 0)
+      web.userInteractionEnabled = false
       web.delegate = self
     }
     
@@ -213,20 +218,11 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
       navigationItem.titleView?.alpha = 0
     }
-   
-  }
-  
-
-  
-  func webViewDidFinishLoad(webView: UIWebView) {
-    let result = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight;")
-    height = CGFloat((result! as NSString).doubleValue) + 250
-    web.frame = CGRectMake(0, 1, self.view.bounds.size.width, height)
-    self.tableView.reloadData()
+//    print(scrollView.contentOffset.y)
   }
   
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-     let pageWidth:CGFloat = scrollView.frame.size.width
+    let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
       let currentPage = Int((self.scrollView.contentOffset.x - pageWidth/(CGFloat(shopDetail.images.count+2)))/pageWidth) + 1
       if currentPage == 0 {
@@ -235,17 +231,17 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       if currentPage == shopDetail.images.count + 1 {
         self.scrollView.scrollRectToVisible(CGRectMake(view.bounds.size.width , 0, view.bounds.size.width, 400), animated: true)
       }
-}
     }
+  }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.section == 3 {
+      height = web.scrollView.contentSize.height
+      print(height)
       return height
     }
     return super.tableView(tableView,  heightForRowAtIndexPath: indexPath)
   }
-  
-
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -268,7 +264,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     }
     
     if indexPath.section == 3 {
-        cell.addSubview(web)
+      cell.addSubview(web)
     }
     return cell
   }
@@ -277,7 +273,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     if indexPath == NSIndexPath(forRow: 0, inSection: 2) {
       let vc = CommentsTVC()
       self.Delegate?.gotoCommentsViewerDelegate(vc)
-        }
+    }
   }
   
   func photoViewer() {
@@ -303,6 +299,39 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       return self.photosArray.objectAtIndex(Int(index)) as! MWPhotoProtocol
     }
     return nil
+  }
+  
+}
+
+extension BusinessDetailTVC: UIWebViewDelegate {
+  
+//  func webViewDidStartLoad(webView: UIWebView) {
+//    var frame = webView.frame
+//    frame.size.height = 5.0
+//    webView.frame = frame
+//  }
+  
+  func webViewDidFinishLoad(webView: UIWebView) {
+    let result = webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight;")
+    height = CGFloat((result! as NSString).doubleValue)
+//    if height > 568.0 {
+      height += 250.0
+//    }
+    webView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height)
+    print(height)
+    tableView.reloadData()
+    
+//    let mWebViewTextSize = webView.sizeThatFits(CGSizeMake(1.0, 1.0))
+//    var mWebViewFrame = webView.frame
+//    mWebViewFrame.size.height = mWebViewTextSize.height
+//    webView.frame = mWebViewFrame
+//    print(mWebViewTextSize.height)
+//    for subView in webView.subviews {
+//      if let view = subView as? UIScrollView {
+//        view.bounces = false
+//      }
+//    }
+//    tableView.reloadData()
   }
   
 }

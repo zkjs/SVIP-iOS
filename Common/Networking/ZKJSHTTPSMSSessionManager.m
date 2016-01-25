@@ -45,7 +45,7 @@ static NSString* const templateID = @"50157";
     self.phoneSMS = [NSMutableDictionary dictionary];
     self.ccpRestSdk = [[CCPRestSDK alloc] initWithServerIP: restURL andserverPort: 8883];
     [self.ccpRestSdk setApp_ID: appID];
-    [self.ccpRestSdk enableLog: YES];
+    [self.ccpRestSdk enableLog: NO];
     [self.ccpRestSdk setAccountWithAccountSid: @"8a48b5514d9861c3014d99cf3572024a" andAccountToken: token];
   }
   return self;
