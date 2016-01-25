@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--AccountTVC-->
@@ -12,7 +12,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NVL-7A-e58">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="xUn-fS-AG8">
@@ -26,14 +25,12 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份图片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DQ-7S-JIQ">
                                                     <rect key="frame" x="16" y="24" width="64" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background" translatesAutoresizingMaskIntoConstraints="NO" id="mKQ-ct-KJd">
                                                     <rect key="frame" x="536" y="10" width="48" height="48"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="mcc-lU-hMZ"/>
                                                         <constraint firstAttribute="height" constant="48" id="seI-gw-eg9"/>
@@ -45,7 +42,6 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="mKQ-ct-KJd" secondAttribute="trailing" constant="16" id="geO-D0-tTi"/>
                                                 <constraint firstItem="0DQ-7S-JIQ" firstAttribute="leading" secondItem="Ckj-VP-lAp" secondAttribute="leading" constant="16" id="mZA-77-hKE"/>
@@ -53,7 +49,6 @@
                                                 <constraint firstItem="mKQ-ct-KJd" firstAttribute="centerY" secondItem="Ckj-VP-lAp" secondAttribute="centerY" id="wBx-7d-ak2"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="48" id="5Mp-BA-LLf">
                                         <rect key="frame" x="0.0" y="68" width="600" height="48"/>
@@ -64,19 +59,16 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnD-kX-fr5">
                                                     <rect key="frame" x="16" y="14" width="32" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="立即补全信息" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PBf-PT-xw8">
                                                     <rect key="frame" x="484" y="14" width="100" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="NnD-kX-fr5" firstAttribute="leading" secondItem="Swr-3O-0nr" secondAttribute="leading" constant="16" id="6ZZ-Ec-LZo"/>
                                                 <constraint firstItem="PBf-PT-xw8" firstAttribute="centerY" secondItem="Swr-3O-0nr" secondAttribute="centerY" id="roe-8g-exy"/>
@@ -84,7 +76,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="PBf-PT-xw8" secondAttribute="trailing" constant="16" id="zqK-4s-QCX"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="48" id="Uv7-cl-nhE">
                                         <rect key="frame" x="0.0" y="116" width="600" height="48"/>
@@ -95,19 +86,16 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bV3-sm-YfM">
                                                     <rect key="frame" x="16" y="14" width="32" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="女" placeholder="立即补全信息" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DLB-ls-Wob">
                                                     <rect key="frame" x="484" y="14" width="100" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="DLB-ls-Wob" secondAttribute="trailing" constant="16" id="GJh-5O-8AU"/>
                                                 <constraint firstItem="bV3-sm-YfM" firstAttribute="centerY" secondItem="4HV-cO-lEn" secondAttribute="centerY" id="Klb-zI-AbS"/>
@@ -115,7 +103,6 @@
                                                 <constraint firstItem="DLB-ls-Wob" firstAttribute="centerY" secondItem="4HV-cO-lEn" secondAttribute="centerY" id="VZI-Ux-l74"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="48" id="T8D-G0-BeC">
                                         <rect key="frame" x="0.0" y="164" width="600" height="48"/>
@@ -126,19 +113,16 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邮箱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQQ-iF-kDb">
                                                     <rect key="frame" x="16" y="14" width="32" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="vip@zkjinshi.com" placeholder="立即补全信息" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yWz-Gw-Tkc">
                                                     <rect key="frame" x="454" y="14" width="130" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="tQQ-iF-kDb" firstAttribute="centerY" secondItem="HQx-Mg-9iU" secondAttribute="centerY" id="Drk-H1-Xfd"/>
                                                 <constraint firstAttribute="trailing" secondItem="yWz-Gw-Tkc" secondAttribute="trailing" constant="16" id="IEm-Ob-Ver"/>
@@ -146,7 +130,6 @@
                                                 <constraint firstItem="tQQ-iF-kDb" firstAttribute="leading" secondItem="HQx-Mg-9iU" secondAttribute="leading" constant="16" id="eg4-av-Rk3"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="20" id="bt3-S8-e4q">
@@ -155,9 +138,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bt3-S8-e4q" id="Eb7-os-mVp">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="19"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
@@ -170,19 +151,16 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改手机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-hE-jtK">
                                                     <rect key="frame" x="16" y="14" width="64" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="JgJ-hE-jtK" firstAttribute="centerY" secondItem="QBj-fY-e56" secondAttribute="centerY" id="hnS-QR-Uwg"/>
                                                 <constraint firstItem="JgJ-hE-jtK" firstAttribute="leading" secondItem="QBj-fY-e56" secondAttribute="leading" constant="16" id="mZE-YE-1eQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="48" id="Lki-Td-j0X">
                                         <rect key="frame" x="0.0" y="280" width="600" height="48"/>
@@ -193,7 +171,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发票信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVh-aM-noF">
                                                     <rect key="frame" x="16" y="14" width="64" height="20"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -205,7 +182,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="EVh-aM-noF" firstAttribute="leading" secondItem="1Lm-1h-yrR" secondAttribute="leading" constant="16" id="DII-GR-kWr"/>
                                                 <constraint firstItem="S5F-St-EVI" firstAttribute="top" secondItem="1Lm-1h-yrR" secondAttribute="top" constant="13" id="IHI-JU-Ki2"/>
@@ -215,7 +191,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="S5F-St-EVI" secondAttribute="trailing" constant="16" id="tUt-QL-oAJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </cells>

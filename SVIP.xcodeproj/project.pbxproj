@@ -295,6 +295,8 @@
 		FA6BC83B1C1AAA4D00D409E4 /* FloatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */; };
 		FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */; };
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
+		FAB7AC621C55B8D1009FE069 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB7AC601C55B8D1009FE069 /* FeedbackViewController.swift */; };
+		FAB7AC631C55B8D1009FE069 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB7AC611C55B8D1009FE069 /* FeedbackViewController.xib */; };
 		FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF51C159DB000B86B28 /* SalesVC.swift */; };
 		FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF61C159DB000B86B28 /* SalesVC.xib */; };
 		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
@@ -1113,6 +1115,8 @@
 		FA6BC83A1C1AAA4D00D409E4 /* FloatHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatHeaderView.xib; sourceTree = "<group>"; };
 		FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeModel.swift; sourceTree = "<group>"; };
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		FAB7AC601C55B8D1009FE069 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		FAB7AC611C55B8D1009FE069 /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackViewController.xib; sourceTree = "<group>"; };
 		FAF02EF51C159DB000B86B28 /* SalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
 		FAF02EF61C159DB000B86B28 /* SalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesVC.xib; sourceTree = "<group>"; };
 		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
@@ -1263,6 +1267,8 @@
 				B28967BC1B9E796300DF5D79 /* AboutUsVC.swift */,
 				40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */,
 				40EE4D871C1F0836009C0311 /* SettingTVC.swift */,
+				FAB7AC601C55B8D1009FE069 /* FeedbackViewController.swift */,
+				FAB7AC611C55B8D1009FE069 /* FeedbackViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -3270,6 +3276,7 @@
 				FAF72CDF1C34D8430092CEFD /* BusinessDetailVC.storyboard in Resources */,
 				FAF249591BFF08CA001E7E41 /* SearchCell.xib in Resources */,
 				400959FE1C2148BA00D3DA61 /* InvoiceVC.xib in Resources */,
+				FAB7AC631C55B8D1009FE069 /* FeedbackViewController.xib in Resources */,
 				FAFD271C1C39273700B27C55 /* CommentsTVC.xib in Resources */,
 				FAFBFB791C228E3B00A1126B /* RecommandCell.xib in Resources */,
 				FAFBC4411C337415001E9155 /* LeisureTVC.storyboard in Resources */,
@@ -3435,6 +3442,7 @@
 				4077DDE71C1EAF9900E13D6B /* EaseEmotionEscape.m in Sources */,
 				4077DDC91C1EAF9900E13D6B /* UIView+EMWebCacheOperation.m in Sources */,
 				B270040A1B608ABF00B1BEA7 /* Hotel.swift in Sources */,
+				FAB7AC621C55B8D1009FE069 /* FeedbackViewController.swift in Sources */,
 				B2F4A9ED1B7EE229000DBD81 /* TSQCalendarRowCell.m in Sources */,
 				4077DDE61C1EAF9900E13D6B /* EaseEmojiEmoticons.m in Sources */,
 				4077DD981C1EAF9900E13D6B /* CreateGroupViewController.m in Sources */,
