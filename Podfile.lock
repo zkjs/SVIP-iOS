@@ -51,6 +51,7 @@ PODS:
     - Masonry
   - SocketRocket (0.4.2)
   - SWTableViewCell (0.3.7)
+  - UMengAnalytics-NO-IDFA (3.6.7)
   - XLPagerTabStrip (3.0.0)
 
 DEPENDENCIES:
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - SKTagView (from `https://github.com/hanton/SKTagView`, branch `master`)
   - SocketRocket
   - SWTableViewCell
+  - UMengAnalytics-NO-IDFA
   - XLPagerTabStrip
 
 EXTERNAL SOURCES:
@@ -108,6 +110,7 @@ SPEC CHECKSUMS:
   SKTagView: 33378cfeb717df04f77489605b013506e91d1da5
   SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
   XLPagerTabStrip: 0f9f94246c84e7cb60a06ca435da68ac75c8b56e
 
 COCOAPODS: 0.38.2

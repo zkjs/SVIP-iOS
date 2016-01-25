@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
     AMapNaviServices.sharedServices().apiKey = AmapKey
+    MobClick.startWithAppkey(UMAppKey, reportPolicy: BATCH, channelId: "web")
 //    // fir.im BugHD
 //    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
     return true

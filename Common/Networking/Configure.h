@@ -13,14 +13,14 @@
 #define kImageURL @"http://svip02.oss-cn-shenzhen.aliyuncs.com"
 
 // 测试
-//#define kBaseURL @"http://tst.zkjinshi.com/"  // PHP服务器
-//#define kJavaBaseURL @"http://test.zkjinshi.com/japi/"  // Java服务器
+#define kBaseURL @"http://tst.zkjinshi.com/"  // PHP服务器
+#define kJavaBaseURL @"http://test.zkjinshi.com/japi/"  // Java服务器
 #define kEaseMobAppKey @"zkjs#svip"  // 环信
 
 
 // 预上线
-#define kBaseURL @"http://rap.zkjinshi.com/" // PHP服务器
-#define kJavaBaseURL @"http://p.zkjinshi.com/japi/"  // Java服务器
+//#define kBaseURL @"http://rap.zkjinshi.com/" // PHP服务器
+//#define kJavaBaseURL @"http://p.zkjinshi.com/japi/"  // Java服务器
 //#define kEaseMobAppKey @"zkjs#sid"  // 环信
 
 // 正式

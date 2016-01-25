@@ -26,6 +26,7 @@ target 'SVIP' do
   pod 'Pingpp', '~> 2.1.0'
   pod 'LTNavigationBar'
   pod 'AMapNavi' #导航SDK
+  pod 'UMengAnalytics-NO-IDFA'#无IDFA版友盟SDK
 #  pod 'MWPhotoBrowser'
 #  pod 'WMPageController'
 #  pod 'FLAnimatedImage', '~> 1.0'
