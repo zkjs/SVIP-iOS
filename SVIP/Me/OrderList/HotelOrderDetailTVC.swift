@@ -63,6 +63,11 @@ class HotelOrderDetailTVC:  UITableViewController {
     navigationController?.navigationBar.translucent = false
   }
   
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.hideHUD()
+  }
+  
   override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     
     if cell.respondsToSelector(Selector("setSeparatorInset:")) {
@@ -74,12 +79,23 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func back() {
-    let appWindow = UIApplication.sharedApplication().keyWindow
-    let mainTBC = MainTBC()
-    mainTBC.selectedIndex = 3
-    NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
-    let nc = BaseNC(rootViewController: mainTBC)
-    appWindow?.rootViewController = nc
+    
+    if let parentVC = self.parentViewController {
+      if let parentVC = parentVC as? OrderListTVC {
+        self.navigationController?.popToViewController(parentVC, animated: true)
+      } else  {
+        let appWindow = UIApplication.sharedApplication().keyWindow
+        let mainTBC = MainTBC()
+        mainTBC.selectedIndex = 3
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
+        let nc = BaseNC(rootViewController: mainTBC)
+        appWindow?.rootViewController = nc
+      }
+    }
+   
+    
+    
+    
   }
   
   func loadData() {
@@ -88,17 +104,19 @@ class HotelOrderDetailTVC:  UITableViewController {
     showHUDInView(view, withLoading: "")
     tableView.scrollEnabled = false
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
-      
+
       if let dic = responseObject as? NSDictionary {
         print(dic)
         self.orderDetail = OrderDetailModel(dic: dic)
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+          self.setUI()
+        })
+        
       }
       self.hideHUD()
-      self.tableView.reloadData()
-      self.setUI()
       self.tableView.scrollEnabled = true
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        self.hideHUD()
     }
   }
   

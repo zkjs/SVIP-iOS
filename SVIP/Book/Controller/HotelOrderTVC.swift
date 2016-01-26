@@ -108,6 +108,10 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   func setUpUI() {
     self.roomsTextField.text           = String(roomsCount)
     self.invoinceLabel.text            = AccountManager.sharedInstance().invoice
+    let phone = AccountManager.sharedInstance().phone
+    let username = AccountManager.sharedInstance().userName
+    telphoneTextField.text = phone
+    contactTextField.text = username
   }
   
   // MARK: - Table view data source
