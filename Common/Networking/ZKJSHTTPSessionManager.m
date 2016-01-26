@@ -901,4 +901,23 @@
   }];
 }
 
+#pragma mark - 意见反馈
+- (void)addFeedbackWithContent:(NSString *)content success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * app_version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+  app_version =  [app_version stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+  [self POST:@"feedback/add" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];
+    [formData appendPartWithFormData:[content dataUsingEncoding:NSUTF8StringEncoding] name:@"content"];
+    [formData appendPartWithFormData:[app_version dataUsingEncoding:NSUTF8StringEncoding] name:@"app_version"];
+  } success:^(NSURLSessionDataTask *task, id responseObject) {
+      //  NSLog(@"%@", [responseObject description]);
+    if ([self isValidTokenWithObject:responseObject]) {
+      success(task, responseObject);
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSLog(@"%@", error.description);
+    failure(task, error);
+  }];
+}
+
 @end

@@ -364,7 +364,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func setupUMStatistics() {
     let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
     MobClick.setAppVersion(version)
-     MobClick.startWithAppkey(UMAppKey, reportPolicy: BATCH, channelId: nil)
+    MobClick.startWithAppkey(UMAppKey, reportPolicy: BATCH, channelId: nil)
   }
   
 }
