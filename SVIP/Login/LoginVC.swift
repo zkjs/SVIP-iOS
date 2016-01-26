@@ -95,6 +95,8 @@ class LoginVC: UIViewController {
         }
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        self.hideHUD()
+        self.showHint("服务器返回数据异常")
     })
   }
   
@@ -113,7 +115,8 @@ class LoginVC: UIViewController {
         }
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        self.hideHUD()
+        self.showHint("服务器返回数据异常")
     })
   }
   
@@ -130,7 +133,8 @@ class LoginVC: UIViewController {
         closure()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        self.hideHUD()
+        self.showHint("服务器返回数据异常")
     }
   }
   
