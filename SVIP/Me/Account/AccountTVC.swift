@@ -81,9 +81,6 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
       navigationController?.pushViewController(PhoneFirstVC(), animated: true)
     case invoice:
       let vc = InvoiceVC()
-      vc.selection = { [unowned self] (invoice:  InvoiceModel) ->() in
-        self.invoinceLabel.text = invoice.title
-      }
       self.navigationController?.pushViewController(vc, animated: true)
     default:
       break
