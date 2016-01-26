@@ -870,7 +870,7 @@
 
 }
 
-#pragma mark -获取(涉及商家的)城市列表
+#pragma mark - 获取(涉及商家的)城市列表
 - (void)getCityListSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"arrive/citylist" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
   } success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -884,7 +884,7 @@
   }];
 }
 
-#pragma mark -用户查询服务员信息
+#pragma mark - 用户查询服务员信息
 - (void)getSalesWithID:(NSString *)salesid success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self POST:@"user/getsales" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFormData:[[self userID] dataUsingEncoding:NSUTF8StringEncoding] name:@"userid"];

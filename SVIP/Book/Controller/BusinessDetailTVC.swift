@@ -36,6 +36,8 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       webView.scrollView.scrollEnabled = false
     }
   }
+  @IBOutlet weak var shopDetailTextView: UITextView!
+  
   var delegate:PhotoViewerDelegate?
   var Delegate:CommentsViewerDelegate?
   var scheduledButton = UIButton()
@@ -119,24 +121,29 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
         self.imgUrlArray = self.shopDetail.images
       }
       self.setupUI()
-//      self.tableView.reloadData()
+      self.tableView.reloadData()
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
   }
   
-  
-  
   func setupUI() {
     if shopDetail.shopdescUrl != nil {
-      web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)
-//      web.scrollView.bounces = false
-//      web.scrollView.scrollEnabled = false
-//      web.scrollView.delegate = self
-//      web.scalesPageToFit = true
-//      web.frame = CGRectMake(0, 0, self.view.bounds.size.width, 0)
-      web.userInteractionEnabled = false
-      web.delegate = self
+//      web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)
+//      web.scrollView.userInteractionEnabled = false
+//      web.delegate = self
+      do {
+        let attributedString = try NSAttributedString(data: shopDetail.shopdescUrl.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+        shopDetailTextView.attributedText = attributedString
+        let fixedWidth = UIScreen.mainScreen().bounds.width
+        let newSize = shopDetailTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        height = newSize.height
+        var newFrame = shopDetailTextView.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        shopDetailTextView.frame = newFrame
+      } catch {
+        print(error)
+      }
     }
     
     commentsLabel.text = shopDetail.evaluation
@@ -218,7 +225,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
       navigationItem.titleView?.alpha = 0
     }
-//    print(scrollView.contentOffset.y)
   }
   
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -236,8 +242,6 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.section == 3 {
-      height = web.scrollView.contentSize.height
-      print(height)
       return height
     }
     return super.tableView(tableView,  heightForRowAtIndexPath: indexPath)
@@ -263,9 +267,9 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       cell.addSubview(starRating)
     }
     
-    if indexPath.section == 3 {
-      cell.addSubview(web)
-    }
+//    if indexPath.section == 3 {
+//      cell.contentView.addSubview(web)
+//    }
     return cell
   }
   
@@ -305,33 +309,13 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
 
 extension BusinessDetailTVC: UIWebViewDelegate {
   
-//  func webViewDidStartLoad(webView: UIWebView) {
-//    var frame = webView.frame
-//    frame.size.height = 5.0
-//    webView.frame = frame
-//  }
-  
   func webViewDidFinishLoad(webView: UIWebView) {
     let result = webView.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight;")
     height = CGFloat((result! as NSString).doubleValue)
-//    if height > 568.0 {
-      height += 250.0
-//    }
-    webView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height)
+    height += 250.0
+    webView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, height)
     print(height)
     tableView.reloadData()
-    
-//    let mWebViewTextSize = webView.sizeThatFits(CGSizeMake(1.0, 1.0))
-//    var mWebViewFrame = webView.frame
-//    mWebViewFrame.size.height = mWebViewTextSize.height
-//    webView.frame = mWebViewFrame
-//    print(mWebViewTextSize.height)
-//    for subView in webView.subviews {
-//      if let view = subView as? UIScrollView {
-//        view.bounces = false
-//      }
-//    }
-//    tableView.reloadData()
   }
   
 }
