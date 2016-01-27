@@ -10,8 +10,6 @@ import UIKit
 
 class OrderListCell: SWTableViewCell {
 
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var weeklabel: UILabel!
   @IBOutlet weak var statsLabel: UILabel! {
     didSet {
       statsLabel.layer.cornerRadius = 10
@@ -21,8 +19,7 @@ class OrderListCell: SWTableViewCell {
     }
   }
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var roomTypeLabel: UILabel!
+    @IBOutlet weak var roomInfoLabel: UILabel!
     @IBOutlet weak var hotelnameLabel: UILabel!
   @IBOutlet weak var hotelImageView: UIImageView!{
     didSet {
@@ -62,12 +59,13 @@ class OrderListCell: SWTableViewCell {
     }
 
     hotelnameLabel.text = order.shopname
-    roomTypeLabel.text = order.roomtype! + "x" + (order.roomcount?.stringValue)!
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     locationLabel.text = dateFormatter.stringFromDate(order.created)
     
-    priceLabel.text =   " ￥\(order.roomprice)"
+    dateFormatter.dateFormat = "MM/dd"
+    let arrivalDate = dateFormatter.stringFromDate(order.arrivaldate)
+    roomInfoLabel.text = "\(order.roomtype!) | \(arrivalDate) | ￥\(order.roomprice)"
     rightUtilityButtons = rightButtons() as [AnyObject]
     setupStatsLabel(order)
   }
