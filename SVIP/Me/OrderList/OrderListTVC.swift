@@ -135,6 +135,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     if type == "H" {
       let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
+      vc.type = .Pop
       vc.reservation_no = order.orderno
       self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum HotelOrderDetailType: Int {
+  case Back = 0
+  case Pop = 1
+}
+
 let kGotoOrderList = "kGotoOrderList"
 
 @objc protocol HotelOrderDetailTVCDelegate {
@@ -33,10 +38,13 @@ class HotelOrderDetailTVC:  UITableViewController {
   @IBOutlet weak var cancleButton: UIButton!
   @IBOutlet weak var hotelImageView: UIImageView!
   
+  let tipView = UIView()
+  
   var delegate: HotelOrderDetailTVCDelegate? = nil
   var reservation_no: String!
   var orderno: String!
   var orderDetail = OrderDetailModel()
+  var type = HotelOrderDetailType.Back
   
   
   override func viewDidLoad() {
@@ -79,23 +87,16 @@ class HotelOrderDetailTVC:  UITableViewController {
   }
   
   func back() {
-    
-    if let parentVC = self.parentViewController {
-      if let parentVC = parentVC as? OrderListTVC {
-        self.navigationController?.popToViewController(parentVC, animated: true)
-      } else  {
-        let appWindow = UIApplication.sharedApplication().keyWindow
-        let mainTBC = MainTBC()
-        mainTBC.selectedIndex = 3
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
-        let nc = BaseNC(rootViewController: mainTBC)
-        appWindow?.rootViewController = nc
-      }
+    if type == HotelOrderDetailType.Back {
+      let appWindow = UIApplication.sharedApplication().keyWindow
+      let mainTBC = MainTBC()
+      mainTBC.selectedIndex = 3
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
+      let nc = BaseNC(rootViewController: mainTBC)
+      appWindow?.rootViewController = nc
+    } else {
+      navigationController?.popViewControllerAnimated(true)
     }
-   
-    
-    
-    
   }
   
   func loadData() {
@@ -375,15 +376,41 @@ extension HotelOrderDetailTVC: BookPayVCDelegate {
   
   func didFinishPaymentWithStatus(status: PaymentStatusType) {
     if status == PaymentStatusType.Success {
-      let alertController = UIAlertController(title: "支付成功", message: "", preferredStyle: .Alert)
-      let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: "OK action"), style: .Default, handler: { (action: UIAlertAction) -> Void in
-        self.loadData()
-      })
-      alertController.addAction(okAction)
-      presentViewController(alertController, animated: true, completion: nil)
+      showTipViewWithText("支付成功", image: UIImage(named: "ic_chenggong")!)
     } else {
-      showAlertWithTitle("支付失败", message: "")
+      showTipViewWithText("支付失败", image: UIImage(named: "ic_cuowu")!)
     }
+  }
+  
+  func showTipViewWithText(text: String, image: UIImage) {
+    tipView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+    tipView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+    let alertView = UIView(frame: CGRectMake(0, 0, 300, 200))
+    alertView.backgroundColor = UIColor.whiteColor()
+    alertView.center = CGPointMake(CGRectGetMidX(view.frame), CGRectGetMidY(view.frame)-50)
+    tipView.addSubview(alertView)
+    let image = UIImageView(image: image)
+    image.center = CGPointMake(110, 90)
+    alertView.addSubview(image)
+    let label = UILabel()
+    label.center = CGPointMake(150, 80)
+    label.font = UIFont.systemFontOfSize(18)
+    label.text = text
+    label.sizeToFit()
+    alertView.addSubview(label)
+    let button = UIButton(frame: CGRectMake(0, 200-48, 300, 48))
+    button.addTarget(self, action: "dismissAlertView", forControlEvents: .TouchUpInside)
+    button.backgroundColor = UIColor.ZKJS_mainColor()
+    button.titleLabel?.font = UIFont.systemFontOfSize(14)
+    button.setTitle("确定", forState: .Normal)
+    alertView.addSubview(button)
+    let rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+    rootViewController?.view.addSubview(tipView)
+  }
+  
+  func dismissAlertView(){
+    loadData()
+    tipView.removeFromSuperview()
   }
   
 }
