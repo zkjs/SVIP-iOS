@@ -166,6 +166,12 @@
 #pragma mark -用户查询服务员信息
 - (void)getSalesWithID:(NSString *)salesid success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+#pragma mark - 意见反馈
+- (void)addFeedbackWithContent:(NSString *)content success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+#pragma mark - 客人发起绑定服务员
+- (void)userAddwaiterWithSalesID:(NSString *) salesID shopID:(NSString *) shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end
 
 @protocol HTTPSessionManagerDelegate <NSObject>

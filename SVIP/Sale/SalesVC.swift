@@ -58,7 +58,7 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
         if let array = responseObject as? [[String: AnyObject]] {
           if let data = array.first {
             if let userid = data["userId"] as? String {
-              let vc = SalesDetailVC()
+              let vc = AddSalesVC()
               vc.hidesBottomBarWhenPushed = true
               vc.salesid = userid
               self.navigationController?.pushViewController(vc, animated: true)

@@ -28,7 +28,7 @@ class SettingTVC: UITableViewController {
           if set?.boolValue == true {
             // 清理系统缓存
             AccountManager.sharedInstance().clearAccountCache()
-            
+            MobClick.profileSignOff()//登出统计
             // 登出环信
             EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
             let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil

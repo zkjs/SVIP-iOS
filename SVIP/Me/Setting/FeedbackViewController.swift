@@ -40,6 +40,20 @@ class FeedbackViewController: UIViewController {
   }
 
   @IBAction func sendFeedBack(sender: AnyObject) {
+    showHUDInView(view, withLoading: "")
+    ZKJSHTTPSessionManager.sharedInstance().addFeedbackWithContent(feedBackTextView.text, success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
+      print(responsObjects)
+      if let dic = responsObjects as? NSDictionary {
+        if let set = dic["set"] as? NSNumber {
+          if set.boolValue == true {
+            self.navigationController?.popViewControllerAnimated(true)
+            self.hideHUD()
+          }
+        }
+      }
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        
+    }
   }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
