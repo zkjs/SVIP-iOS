@@ -66,7 +66,7 @@ class OrderListCell: SWTableViewCell {
     dateFormatter.dateFormat = "MM/dd"
     let arrivalDate = dateFormatter.stringFromDate(order.arrivaldate)
     roomInfoLabel.text = "\(order.roomtype!) | \(arrivalDate) | ￥\(order.roomprice)"
-    rightUtilityButtons = rightButtons() as [AnyObject]
+//    rightUtilityButtons = rightButtons() as [AnyObject]
     setupStatsLabel(order)
   }
   

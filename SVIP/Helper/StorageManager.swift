@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+private let KHistoryArray = "HistoryArray.archive"
 private let kBeaconRegions = "BeaconRegions.archive"
 private let kLastOrder = "LastOrder.archive"
 private let kShopsInfo = "Shops.archive"
@@ -33,6 +33,16 @@ class StorageManager: NSObject {
   func beaconRegions() -> [String: [String: String]] {
     return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(kBeaconRegions)) as! Dictionary
   }
+  
+  func saveHistoryArray(historyArray:[String]) {
+    NSKeyedArchiver.archiveRootObject(historyArray, toFile: documentDirectory().stringByAppendingPathComponent(KHistoryArray))
+  }
+  
+  func historyArray() -> [String] {
+    return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(KHistoryArray)) as! [String]
+  }
+  
+ 
   
   func lastOrder() -> BookOrder? {
     var lastOrder: BookOrder? = nil
