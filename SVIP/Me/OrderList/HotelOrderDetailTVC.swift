@@ -110,6 +110,7 @@ class HotelOrderDetailTVC:  UITableViewController {
         self.orderDetail = OrderDetailModel(dic: dic)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
           self.setUI()
+          self.tableView.reloadData()
         })
         
       }
@@ -254,6 +255,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     if orderDetail.orderstatus == "待支付" && orderDetail.paytype.integerValue == 1 {
       let payVC = BookPayVC()
       payVC.type = .Push
+      payVC.delegate = self
       payVC.bkOrder = orderDetail
       navigationController?.pushViewController(payVC, animated: true)
     } else {
@@ -366,6 +368,22 @@ class HotelOrderDetailTVC:  UITableViewController {
     header.backgroundColor = UIColor.clearColor()
     return header
   }
-  
 
+}
+
+extension HotelOrderDetailTVC: BookPayVCDelegate {
+  
+  func didFinishPaymentWithStatus(status: PaymentStatusType) {
+    if status == PaymentStatusType.Success {
+      let alertController = UIAlertController(title: "支付成功", message: "", preferredStyle: .Alert)
+      let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: "OK action"), style: .Default, handler: { (action: UIAlertAction) -> Void in
+        self.loadData()
+      })
+      alertController.addAction(okAction)
+      presentViewController(alertController, animated: true, completion: nil)
+    } else {
+      showAlertWithTitle("支付失败", message: "")
+    }
+  }
+  
 }
