@@ -29,6 +29,8 @@ class MailListTVC: UITableViewController {
     layoutHind()
     
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "loadFriendListData")  // 下拉刷新
+    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadFriendListData", name: "addWaiterSuccess", object: nil)
   }
   
   func layoutHind() {

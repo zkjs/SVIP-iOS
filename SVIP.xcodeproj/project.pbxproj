@@ -297,6 +297,8 @@
 		FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA05E2C1C0995BF008605B7 /* ContactModel.swift */; };
 		FAB7AC621C55B8D1009FE069 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB7AC601C55B8D1009FE069 /* FeedbackViewController.swift */; };
 		FAB7AC631C55B8D1009FE069 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB7AC611C55B8D1009FE069 /* FeedbackViewController.xib */; };
+		FAEDFD431C585A4900AAEEEF /* AddSalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDFD411C585A4900AAEEEF /* AddSalesVC.swift */; };
+		FAEDFD441C585A4900AAEEEF /* AddSalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEDFD421C585A4900AAEEEF /* AddSalesVC.xib */; };
 		FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF02EF51C159DB000B86B28 /* SalesVC.swift */; };
 		FAF02EF81C159DB000B86B28 /* SalesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF02EF61C159DB000B86B28 /* SalesVC.xib */; };
 		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
@@ -1117,6 +1119,8 @@
 		FAA05E2C1C0995BF008605B7 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		FAB7AC601C55B8D1009FE069 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		FAB7AC611C55B8D1009FE069 /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackViewController.xib; sourceTree = "<group>"; };
+		FAEDFD411C585A4900AAEEEF /* AddSalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSalesVC.swift; sourceTree = "<group>"; };
+		FAEDFD421C585A4900AAEEEF /* AddSalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddSalesVC.xib; sourceTree = "<group>"; };
 		FAF02EF51C159DB000B86B28 /* SalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
 		FAF02EF61C159DB000B86B28 /* SalesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalesVC.xib; sourceTree = "<group>"; };
 		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
@@ -2257,6 +2261,8 @@
 				40E3A0F21BFEFA0C00516EC4 /* MailListTVC.xib */,
 				40D585CD1C22A8D900C5267D /* SalesDetailVC.swift */,
 				40D585D11C22AA4E00C5267D /* SalesDetailVC.xib */,
+				FAEDFD411C585A4900AAEEEF /* AddSalesVC.swift */,
+				FAEDFD421C585A4900AAEEEF /* AddSalesVC.xib */,
 				FAF02EF51C159DB000B86B28 /* SalesVC.swift */,
 				FAF02EF61C159DB000B86B28 /* SalesVC.xib */,
 			);
@@ -3313,6 +3319,7 @@
 				B2A642221B47C2A700AF0F28 /* BookConfirmVC.xib in Resources */,
 				40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */,
 				40E39E3C1BFEF43800516EC4 /* OrderListHeaderView.xib in Resources */,
+				FAEDFD441C585A4900AAEEEF /* AddSalesVC.xib in Resources */,
 				40E39E401BFEF43800516EC4 /* OrderDetailsVC.xib in Resources */,
 				FAFB96311C1981AA0031EE09 /* ComprehensiveVC.xib in Resources */,
 				400959EE1C21238C00D3DA61 /* PhoneFirstVC.xib in Resources */,
@@ -3559,6 +3566,7 @@
 				B20812CD1B8DD8650070D96F /* RuleEngine.swift in Sources */,
 				40E39E381BFEF43800516EC4 /* OrderListCell.swift in Sources */,
 				4077DDA41C1EAF9900E13D6B /* EMAudioPlayerUtil.m in Sources */,
+				FAEDFD431C585A4900AAEEEF /* AddSalesVC.swift in Sources */,
 				FAFD271F1C39275800B27C55 /* CommentsCell.swift in Sources */,
 				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
 				40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */,
