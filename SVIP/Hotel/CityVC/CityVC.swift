@@ -151,10 +151,11 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
     if section == 0 {
       return 50
     } else {
-      return 20
+      return 30
     }
     
   }
+  
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 50
@@ -179,13 +180,22 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
       return myView
     } else {
       let label = UILabel()
-      label.frame = CGRectMake(20, 0, 100, 20)
-      label.text = "历史记录"
+      label.frame = CGRectMake(20, -10, 100, 20)
+      label.text = "     历史记录"
       label.font = UIFont(name: label.font.fontName, size: 12)
       return label
     }
     
     }
+  
+  func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    let footerView = UIView()
+    return footerView
+  }
+  
+  func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 1
+  }
   
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
