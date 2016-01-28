@@ -20,7 +20,7 @@ class AccountManager: NSObject {
   private(set) var email = ""
   private(set) var phone = ""
   private(set) var invoice = ""
-  private(set) var activated = ""
+  private(set) var activated = "0"
   
   var sexName: String? {
     get {
@@ -58,7 +58,7 @@ class AccountManager: NSObject {
     email = userDefaults.objectForKey("email") as? String ?? ""
     phone = userDefaults.objectForKey("phone") as? String ?? ""
     invoice = userDefaults.objectForKey("invoice") as? String ?? ""
-    activated = userDefaults.objectForKey("activated") as? String ?? ""
+    activated = userDefaults.objectForKey("activated") as? String ?? "0"
   }
   
   func isLogin() -> Bool {
@@ -156,6 +156,7 @@ class AccountManager: NSObject {
     userDefaults.setObject(nil, forKey: "email")
     userDefaults.setObject(nil, forKey: "phone")
     userDefaults.setObject(nil, forKey: "invoice")
+    userDefaults.setObject(nil, forKey: "activated")
     userDefaults.synchronize()
     
     userID = ""
