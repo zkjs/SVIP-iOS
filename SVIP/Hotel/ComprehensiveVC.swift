@@ -50,11 +50,11 @@ class ComprehensiveVC: UIViewController {
     footer.automaticallyHidden = false
     
     let image = UIImage(named: "ic_dingwei_orange")
-    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: nil)
-    item1.backgroundImageForState(UIControlState.Disabled, style: .Done, barMetrics: UIBarMetrics.Default) //以后打开搜索删掉这行
-    item2 = UIBarButtonItem(title: "长沙本地服务", style: UIBarButtonItemStyle.Done, target: self, action:nil)
-    item2.tintColor = UIColor.ZKJS_blackColor()
-    item2.enabled = false //以后打开搜索删掉这行
+    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "choiceCity:")
+//    item1.backgroundImageForState(UIControlState.Disabled, style: .Done, barMetrics: UIBarMetrics.Default) //以后打开搜索删掉这行
+    item2 = UIBarButtonItem(title: "长沙本地服务", style: UIBarButtonItemStyle.Done, target: self, action:"choiceCity:")
+    item2.tintColor = UIColor.ZKJS_navTitleColor()
+//    item2.enabled = false //以后打开搜索删掉这行
     super.navigationItem.leftBarButtonItems = [item1,item2]
     super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
    // setupCoreLocationService()
@@ -87,11 +87,11 @@ class ComprehensiveVC: UIViewController {
    // setupCoreLocationService()
   }
   
-//  func choiceCity(sender:UIBarButtonItem) {
-//    let vc = CityVC()
-//    let nav = BaseNC(rootViewController: vc)
-//    navigationController?.presentViewController(nav, animated: true, completion: nil)
-//  }
+  func choiceCity(sender:UIBarButtonItem) {
+    let vc = CityVC()
+    let nav = BaseNC(rootViewController: vc)
+    navigationController?.presentViewController(nav, animated: true, completion: nil)
+  }
   
   private func loadShopListData(page: Int) {
     let stats = AccountManager.sharedInstance().isLogin()
@@ -117,7 +117,8 @@ class ComprehensiveVC: UIViewController {
         self.tableView.mj_footer.endRefreshing()
         self.tableView.mj_header.endRefreshing()
         }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-          
+          self.showHint("系统繁忙")
+          self.hideHUD()
       }
 
     } else {

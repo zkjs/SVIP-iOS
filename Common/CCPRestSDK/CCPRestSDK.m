@@ -519,8 +519,8 @@
         else
         {
             return [self builderWithCode:ECloopenRestSDK_BodyErr andMsg:@"返回包体错误"];
-            if (LogFlag == 1)
-                NSLog(@"解析JSON出错，%@",parseError);
+//            if (LogFlag == 1)
+//                NSLog(@"解析JSON出错，%@",parseError);
         }
 
     }

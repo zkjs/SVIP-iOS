@@ -201,8 +201,8 @@
 - (void)getOrderListWithPage:(NSString * )page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"order/list/%@/%@/%@", [self userID],page,size];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"%@", [error description]);
     failure(task, error);
@@ -239,8 +239,8 @@
 - (void)getOrderDetailWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"shop/get/%@", shopID];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
   }];
@@ -346,7 +346,7 @@
 - (void)getMessagesWithCity:(NSString *)city success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"messages/%@/%@", [self userID], city];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", [responseObject description]);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     failure(task, error);
@@ -364,5 +364,8 @@
     NSLog(@"%@", [error description]);
   }];
 }
+
+
+
 
 @end

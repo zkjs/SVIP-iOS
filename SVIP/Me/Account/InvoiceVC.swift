@@ -15,7 +15,7 @@ class InvoiceVC: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   
   var dataArray = [InvoiceModel]()
-  var selection: InvoiceSelectionBlock!
+  var selection: InvoiceSelectionBlock? = nil
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("InvoiceVC", owner:self, options:nil)
@@ -149,7 +149,7 @@ extension InvoiceVC: UITableViewDataSource, UITableViewDelegate {
       vc.invoice = invoice
       navigationController?.pushViewController(vc, animated: true)
     } else {
-      selection(invoice)
+      selection!(invoice)
       navigationController?.popViewControllerAnimated(true)
     }
   }

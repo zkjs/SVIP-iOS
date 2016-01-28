@@ -256,12 +256,53 @@ extension MainTBC: EMCallManagerDelegate {
     }
   }
   
+  func showCancleOrderAlertWithOrderInfo(order: [String: AnyObject]) {
+    if let orderno = order["orderNo"] as? String {
+      let alertMessage = "您的订单\(orderno)已取消，请查看详情"
+      let alertView = UIAlertController(title: "订单取消", message: alertMessage, preferredStyle: .Alert)
+      let checkAction = UIAlertAction(title: "查看", style: .Default, handler: { (action: UIAlertAction) -> Void in
+        let index = orderno.startIndex.advancedBy(1)
+        let type = orderno.substringToIndex(index)
+        print(type)
+        if type == "H" {
+          let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
+          vc.reservation_no = orderno
+          self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if type == "O" {
+          let storyboard = UIStoryboard(name: "LeisureOrderDetailTVC", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("LeisureOrderDetailTVC") as! LeisureOrderDetailTVC
+          vc.reservation_no = orderno
+          self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if type == "K" {
+          let storyboard = UIStoryboard(name: "KTVOrderDetailTVC", bundle: nil)
+          let vc = storyboard.instantiateViewControllerWithIdentifier("KTVOrderDetailTVC") as! KTVOrderDetailTVC
+          vc.reservation_no = orderno
+          self.navigationController?.pushViewController(vc, animated: true)
+        }
+      })
+      let cancelAction = UIAlertAction(title: "知道了", style: .Cancel, handler: nil)
+      alertView.addAction(cancelAction)
+      alertView.addAction(checkAction)
+      presentViewController(alertView, animated: true, completion: nil)
+    }
+  }
+
+  
   func didReceiveCmdMessage(cmdMessage: EMMessage!) {
     if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
       if chatObject.cmd == "sureOrder" {
         // 客服发送订单过来
         if let order = cmdMessage.ext as? [String: AnyObject] {
           showOrderAlertWithOrderInfo(order)
+        }
+      }
+      if chatObject.cmd == "cancleOrder" {
+        //客服取消订单
+        if let order = cmdMessage.ext as? [String: AnyObject] {
+          showCancleOrderAlertWithOrderInfo(order)
         }
       }
     }
@@ -275,6 +316,12 @@ extension MainTBC: EMCallManagerDelegate {
             // 客服发送订单过来
             if let order = cmdMessage.ext as? [String: AnyObject] {
               showOrderAlertWithOrderInfo(order)
+            }
+          }
+          if chatObject.cmd == "cancleOrder" {
+            //客服取消订单
+            if let order = cmdMessage.ext as? [String: AnyObject] {
+              showCancleOrderAlertWithOrderInfo(order)
             }
           }
         }
@@ -369,23 +416,23 @@ extension MainTBC: IChatManagerDelegate {
   
   func callSessionStatusChanged(callSession: EMCallSession!, changeReason reason: EMCallStatusChangedReason, error: EMError!) {
     if callSession.status == .eCallSessionStatusConnected {
-      var error: EMError? = nil
+//      var error: EMError? = nil
       let isShowPicker = NSUserDefaults.standardUserDefaults().objectForKey("isShowPicker")
       if isShowPicker != nil && isShowPicker!.boolValue == true {
-        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
         EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
         return
       }
       
       if canRecord() == false {
-        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
         EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
         return
       }
       
       if callSession.type == EMCallSessionType.eCallSessionTypeVideo &&
         (UIApplication.sharedApplication().applicationState != UIApplicationState.Active || CallViewController.canVideo() == false) {
-          error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//          error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
           EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
           return
       }

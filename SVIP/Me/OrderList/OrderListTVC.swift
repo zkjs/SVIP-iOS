@@ -82,7 +82,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       let screenSize = UIScreen.mainScreen().bounds
       emptyLabel.frame = CGRectMake(0.0, 30, 300.0, 50.0)
       emptyLabel.textAlignment = .Center
-      emptyLabel.font = UIFont.systemFontOfSize(20)
+      emptyLabel.font = UIFont.systemFontOfSize(14)
       emptyLabel.text = "当您有预订时将会在这里查看订单"
       emptyLabel.textColor = UIColor.ZKJS_promptColor()
       emptyLabel.center = CGPointMake(screenSize.midX, 20)
@@ -135,6 +135,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     if type == "H" {
       let storyboard = UIStoryboard(name: "HotelOrderDetailTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderDetailTVC") as! HotelOrderDetailTVC
+      vc.type = .Pop
       vc.reservation_no = order.orderno
       self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -164,21 +165,21 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
   
   // MARK: - SWTableViewDelegate
   
-  func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
-    switch index {
-    case 0:
-      let indexPath = tableView.indexPathForCell(cell)!
-      let order = orders[indexPath.row] as! OrderListModel
-      orders.removeObjectAtIndex(indexPath.row)
-      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          self.showHint(NSLocalizedString("FAILED", comment: ""))
-      })
-    default:
-      break
-    }
-  }
+//  func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+//    switch index {
+//    case 0:
+//      let indexPath = tableView.indexPathForCell(cell)!
+//      let order = orders[indexPath.row] as! OrderListModel
+//      orders.removeObjectAtIndex(indexPath.row)
+//      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//      ZKJSHTTPSessionManager.sharedInstance().deleteOrderWithReservationNO(order.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//          self.showHint(NSLocalizedString("FAILED", comment: ""))
+//      })
+//    default:
+//      break
+//    }
+//  }
   
   // MARK: - Private Method
   func loadMoreData() -> Void {

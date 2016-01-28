@@ -83,6 +83,10 @@ class LoginVC: UIViewController {
             self.getUserInfo() {
               self.hideHUD()
               self.dismissSelf()
+              let userid = AccountManager.sharedInstance().userID
+              MobClick.profileSignInWithPUID(userid)
+              
+              
             }
           } else {
             // 未注册要先注册一下
@@ -91,6 +95,8 @@ class LoginVC: UIViewController {
         }
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        self.hideHUD()
+        self.showHint("服务器返回数据异常")
     })
   }
   
@@ -109,7 +115,8 @@ class LoginVC: UIViewController {
         }
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        self.hideHUD()
+        self.showHint("服务器返回数据异常")
     })
   }
   
@@ -126,7 +133,8 @@ class LoginVC: UIViewController {
         closure()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        self.hideHUD()
+        self.showHint("服务器返回数据异常")
     }
   }
   
@@ -171,9 +179,9 @@ class LoginVC: UIViewController {
     okButton.alpha = 0.5
     
     codeButton.layer.borderWidth = 0.6
-    codeButton.layer.borderColor = UIColor.hx_colorWithHexString("C7C7CD").CGColor
+    codeButton.layer.borderColor = UIColor(hexString: "C7C7CD").CGColor
     codeButton.backgroundColor = UIColor.whiteColor()
-    codeButton.setTitleColor(UIColor.hx_colorWithHexString("C7C7CD"), forState: .Normal)
+    codeButton.setTitleColor(UIColor(hexString: "C7C7CD"), forState: .Normal)
     codeButton.enabled = false
   }
   
@@ -265,9 +273,9 @@ extension LoginVC: UITextFieldDelegate {
         codeButton.enabled = true
       } else {
         codeButton.layer.borderWidth = 0.6
-        codeButton.layer.borderColor = UIColor.hx_colorWithHexString("C7C7CD").CGColor
+        codeButton.layer.borderColor = UIColor(hexString: "C7C7CD").CGColor
         codeButton.backgroundColor = UIColor.whiteColor()
-        codeButton.setTitleColor(UIColor.hx_colorWithHexString("C7C7CD"), forState: .Normal)
+        codeButton.setTitleColor(UIColor(hexString: "C7C7CD"), forState: .Normal)
         codeButton.enabled = false
       }
       

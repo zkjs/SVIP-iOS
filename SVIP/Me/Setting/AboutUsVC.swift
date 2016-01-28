@@ -17,6 +17,10 @@ class WebViewVC: UIViewController {
     super.viewDidLoad()
     navigationController?.navigationBar.translucent = false
     initSubviews()
+    
+    let image = UIImage(named: "ic_fanhui_orange")
+    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")
+    self.navigationItem.leftBarButtonItem = item1
   }
   
   func initSubviews() {
@@ -28,6 +32,14 @@ class WebViewVC: UIViewController {
     webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
     webView.delegate = self
     view.addSubview(webView)
+  }
+  
+  func back() {
+    if webView.canGoBack {
+      webView.goBack()
+    } else {
+      navigationController?.popViewControllerAnimated(true)
+    }
   }
   
 }

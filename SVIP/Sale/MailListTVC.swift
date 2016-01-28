@@ -29,6 +29,8 @@ class MailListTVC: UITableViewController {
     layoutHind()
     
     tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "loadFriendListData")  // 下拉刷新
+    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadFriendListData", name: "addWaiterSuccess", object: nil)
   }
   
   func layoutHind() {
@@ -36,7 +38,7 @@ class MailListTVC: UITableViewController {
       let screenSize = UIScreen.mainScreen().bounds
       emptyLabel.frame = CGRectMake(0.0, 30, 300.0, 50.0)
       emptyLabel.textAlignment = .Center
-      emptyLabel.font = UIFont.systemFontOfSize(20)
+      emptyLabel.font = UIFont.systemFontOfSize(14)
       emptyLabel.text = "暂无联系人"
       emptyLabel.textColor = UIColor.ZKJS_promptColor()
       emptyLabel.center = CGPointMake(screenSize.midX, 17)

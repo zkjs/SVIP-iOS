@@ -81,9 +81,6 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
       navigationController?.pushViewController(PhoneFirstVC(), animated: true)
     case invoice:
       let vc = InvoiceVC()
-      vc.selection = { [unowned self] (invoice:  InvoiceModel) ->() in
-        self.invoinceLabel.text = invoice.title
-      }
       self.navigationController?.pushViewController(vc, animated: true)
     default:
       break
@@ -157,6 +154,9 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
 extension AccountTVC: UIImagePickerControllerDelegate {
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    picker.dismissViewControllerAnimated(true, completion: nil)
+
+    showHudInView(view, hint: "正在上传头像...")
     var imageData = UIImageJPEGRepresentation(image, 1.0)!
     var i = 0
     while imageData.length / 1024 > 80 {
@@ -164,15 +164,17 @@ extension AccountTVC: UIImagePickerControllerDelegate {
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: imageData, sex: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      self.hideHUD()
       if let dic = responseObject as? NSDictionary {
         if dic["set"]?.boolValue == true {
           AccountManager.sharedInstance().saveAvatarImageData(imageData)
           self.refreshDataAndUI()
-          picker .dismissViewControllerAnimated(true, completion: nil)
+          self.showHint("上传头像成功")
         }
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+        self.hideHUD()
+        self.showHint("上传头像失败")
     }
   }
   

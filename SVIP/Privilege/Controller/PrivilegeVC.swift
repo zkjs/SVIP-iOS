@@ -75,12 +75,14 @@ class PrivilegeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
   }
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
      if let buttonIndex = collectionViewItem(rawValue: indexPath.row) {
-      var vc = UIViewController()
+//      var vc = UIViewController()
       switch buttonIndex {
       case .freeReception:
-        vc = SkipCheckInSettingViewController()
+//        vc = SkipCheckInSettingViewController()
+        break
       case .Integra:
-      vc = IntegralVC()
+//        vc = IntegralVC()
+        break
       case .ExclusiveCustomeService:
        let hotelVC = ComprehensiveVC()
         hotelVC.type = ComprehensiveType.customerService

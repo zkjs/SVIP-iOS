@@ -15,6 +15,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   let Identifier = "SettingVCCell"
   let locationManager = CLLocationManager()
+  let amapLocationManager = AMapLocationManager()
+  let naviManager = AMapNaviManager()
   
   var delegate:refreshHomeVCDelegate?
   var bluetoothManager = CBCentralManager()
@@ -23,18 +25,17 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var pushInfoArray = [PushInfoModel]()
   var orderArray = [PushInfoModel]()
   var longitude: double_t!
-  var latution: double_t!
+  var latitude: double_t!
   var beaconRegions = [String: [String: String]]()
   var activate =  true
   var compareNumber: NSNumber!
-  var urlArray = NSMutableArray()
+  var urlArray = [String]()
   var homeUrl = String()
   var count = 0
   var countTimer = 0
   var timer = NSTimer!()
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
-  
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -77,6 +78,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     originOffsetY = privilegeButton.frame.origin.y
     print("userID: \(AccountManager.sharedInstance().userID)")
     print("Token: \(AccountManager.sharedInstance().token)")
+    
   }
   
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -88,7 +90,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       cell.layoutMargins = UIEdgeInsetsZero
     }
   }
-  
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -140,8 +141,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   func getAllMessages() {
     let city = "长沙"
-    ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
+    ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      print(responseObject)
       if let defaultNotitification = responseObject["defaultNotitification"] as? NSArray {
         self.pushInfoArray.removeAll()
         for dic in defaultNotitification {
@@ -177,7 +178,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if self.urlArray.count <= self.count {
       self.count = 0
     }else {
-      self.homeUrl = self.urlArray[self.count] as! String
+      self.homeUrl = self.urlArray[self.count]
     }
      navigationController?.navigationBarHidden = false
     navigationController?.navigationBar.translucent = false
@@ -210,18 +211,28 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
 
   
   func loadData() {
-    ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      if let array = responseObject as? NSArray {
-        for dic in array {
-          let url = dic["url"] as! String
-          self.urlArray .addObject(url)
-        }
-        self.homeUrl = self.urlArray[self.count] as! String
+    if let imageArray = StorageManager.sharedInstance().homeImage() {
+      // 已有缓存
+      print("cached \(imageArray)")
+      let randomIndex = Int(arc4random_uniform(UInt32(imageArray.count)))
+      homeUrl = imageArray[randomIndex]
+    } else {
+      // 未有缓冲，从服务器上取
+      ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+        print("server \(responseObject)")
+        if let array = responseObject as? NSArray {
+          for dic in array {
+            let url = dic["url"] as! String
+            self.urlArray.append(url)
+          }
+          self.homeUrl = self.urlArray[self.count]
+          StorageManager.sharedInstance().saveHomeImages(self.urlArray)
 //        self.tableView.reloadData()
-        self.refreshTableView()
+          self.refreshTableView()
+        }
+        }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+          
       }
-      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
   }
   
@@ -467,6 +478,74 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   }
 }
 
+// MARK: - AMapLocationManagerDelegate
+
+extension HomeVC: AMapLocationManagerDelegate {
+  
+  private func setupAMapLocationMonitor() {
+    naviManager.delegate = self
+    amapLocationManager.delegate = self
+
+    //设置允许后台定位参数，保持不会被系统挂起
+    amapLocationManager.pausesLocationUpdatesAutomatically = false
+    amapLocationManager.allowsBackgroundLocationUpdates = true
+    
+    //开始持续定位
+    amapLocationManager.startUpdatingLocation()
+  }
+  
+  func amapLocationManager(manager: AMapLocationManager!, didUpdateLocation location: CLLocation!) {
+    //获取客户当前的地理位置
+//    let coordinate = location.coordinate
+//    latitude = coordinate.latitude
+//    longitude = coordinate.longitude
+//    let startPoint = AMapNaviPoint.locationWithLatitude(CGFloat(latitude), longitude: CGFloat(longitude))
+//    let endPoint = AMapNaviPoint.locationWithLatitude(22.596568, longitude: 113.989823)  // 国家超级计算深圳中心
+//    if let startPoint = startPoint,
+//      let endPoint = endPoint {
+//      routeCallWithStartPoint(startPoint, endPoint: endPoint)
+//    }
+  }
+  
+  func amapLocationManager(manager: AMapLocationManager!, didFailWithError error: NSError!) {
+    print(error.description)
+  }
+  
+}
+
+// MARK: - AMapNaviManagerDelegate
+
+extension HomeVC: AMapNaviManagerDelegate {
+  
+  //路径规划
+  func routeCallWithStartPoint(startPoint: AMapNaviPoint, endPoint: AMapNaviPoint) {
+    //驾车路径规划
+    naviManager.calculateDriveRouteWithStartPoints([startPoint], endPoints: [endPoint], wayPoints: nil, drivingStrategy: AMapNaviDrivingStrategy.Default)
+  }
+  
+  // 算路成功的回调函数
+  func naviManagerOnCalculateRouteSuccess(naviManager: AMapNaviManager!) {
+    // App在后台时申请一段时间执行
+    var bgTask = UIBackgroundTaskIdentifier()
+    bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithName("") { () -> Void in
+      // Clean up
+      UIApplication.sharedApplication().endBackgroundTask(bgTask)
+      bgTask = UIBackgroundTaskInvalid
+    }
+    
+    // Start the long-running task and return immediately.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
+      // 后台任务
+      print("距离\(naviManager.naviRoute.routeLength)米")
+      //    print("\(naviManager.naviRoute.routeTime)秒")
+      
+      UIApplication.sharedApplication().endBackgroundTask(bgTask)
+      bgTask = UIBackgroundTaskInvalid
+    }
+  }
+
+}
+
 
 // MARK: - CLLocationManagerDelegate
 
@@ -488,7 +567,8 @@ extension HomeVC: CLLocationManagerDelegate {
       return
     }
     setupBeaconMonitor()
-    setupGPSMonitor()
+    setupAMapLocationMonitor()
+//    setupGPSMonitor()
   }
   
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -499,28 +579,34 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
   
-  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-    print("Error while updating location " + error.localizedDescription)
-  }
-  
-  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    locationManager.stopMonitoringSignificantLocationChanges()
-    //获取客户当前的地理位置
-    let coordinate = manager.location!.coordinate
-    longitude = coordinate.longitude
-    latution = coordinate.latitude
-  }
-  
-  private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    let traceTime = dateFormatter.stringFromDate(NSDate())
-    ZKJSHTTPSessionManager.sharedInstance().postGPSWithLongitude("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }
-  }
+//  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+//    print("Error while updating location " + error.localizedDescription)
+//  }
+//  
+//  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//    locationManager.stopMonitoringSignificantLocationChanges()
+//    
+//  }
+//  
+//  private func setupGPSMonitor() {
+//    if #available(iOS 9.0, *) {
+//      locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//      locationManager.requestLocation()
+//    } else {
+//      locationManager.startMonitoringSignificantLocationChanges()
+//    }
+//  }
+//  
+//  private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
+//    let dateFormatter = NSDateFormatter()
+//    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//    let traceTime = dateFormatter.stringFromDate(NSDate())
+//    ZKJSHTTPSessionManager.sharedInstance().postGPSWithLongitude("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        
+//    }
+//  }
   
   func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
     if region.identifier == "DetermineCurrentRegionState" {
@@ -725,15 +811,6 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
   
-  private func setupGPSMonitor() {
-    if #available(iOS 9.0, *) {
-      locationManager.desiredAccuracy = kCLLocationAccuracyBest
-      locationManager.requestLocation()
-    } else {
-      locationManager.startMonitoringSignificantLocationChanges()
-    }
-  }
-  
   private func removeAllMonitoredRegions() {
     for monitoredRegion in locationManager.monitoredRegions {
       let region = monitoredRegion as! CLBeaconRegion
@@ -741,6 +818,3 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
 }
-
-
-

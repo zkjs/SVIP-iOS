@@ -14,11 +14,14 @@ import UIKit
 //let ddLogLevel = DDLogLevel.Warning;
 //#endif
 
-//UM
+// 友盟
 let UMAppKey = "55c31431e0f55a65c1002597"
+let UMURL = ""
+// 微信
 let WXAppId = "wxe09e14fcb69825cc"
 let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
-let UMURL = ""
+// 高德
+let AMapKey = "7945ba33067bb07845e8a60d12135885"
 //var reach: TMReachability?
 
 @UIApplicationMain
@@ -37,13 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     networkState()
 //    setupBackgroundFetch()
     setupYunBa()
+    setupAMap()
+    setupUMStatistics()
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
     
     ZKJSHTTPSessionManager.sharedInstance().delegate = self
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
-    
+   
 //    // fir.im BugHD
 //    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
     return true
@@ -153,31 +158,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    completionHandler(.NewData)
   }
   
-//  // MARK: - Background Fetch
-//  
-//  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-//    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
-//    
-//    if AccountManager.sharedInstance().isLogin() == false {
-//      completionHandler(.Failed)
-//      return
-//    }
-//    
-//    let fetchStart = NSDate()
-//    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      print("Background Fetch: \(responseObject)")
-//      let shops = responseObject as! [(NSDictionary)]
-//      StorageManager.sharedInstance().saveShopsInfo(shops)
-//      completionHandler(.NewData)
-//      
-//      let fetchEnd = NSDate()
-//      print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        completionHandler(.Failed)
-//        let fetchEnd = NSDate()
-//        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
-//    }
-//  }
+  // MARK: - Background Fetch
+  
+  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
+    
+    
+    let fetchStart = NSDate()
+    ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+      print("Background Fetch: \(responseObject)")
+      if let array = responseObject as? NSArray {
+        var urlArray = [String]()
+        for dic in array {
+          if let url = dic["url"] as? String {
+            urlArray.append(url)
+          }
+        }
+        StorageManager.sharedInstance().saveHomeImages(urlArray)
+        completionHandler(.NewData)
+        
+        let fetchEnd = NSDate()
+        print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+      } else {
+        completionHandler(.Failed)
+        let fetchEnd = NSDate()
+        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+      }
+      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+        completionHandler(.Failed)
+        let fetchEnd = NSDate()
+        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
+    }
+  }
   
   // MARK: - HTTPSessionManagerDelegate
   
@@ -342,6 +354,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func setupYunBa() {
     let appKey = "566563014407a3cd028aa72f"
     YunBaService.setupWithAppkey(appKey)
+  }
+  
+  func setupAMap() {
+    AMapNaviServices.sharedServices().apiKey = AMapKey
+    AMapLocationServices.sharedServices().apiKey = AMapKey
+  }
+  
+  func setupUMStatistics() {
+    let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+    MobClick.setAppVersion(version)
+    MobClick.startWithAppkey(UMAppKey, reportPolicy: BATCH, channelId: nil)
   }
   
 }

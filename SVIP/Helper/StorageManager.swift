@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
+private let KHistoryArray = "HistoryArray.archive"
 private let kBeaconRegions = "BeaconRegions.archive"
 private let kLastOrder = "LastOrder.archive"
 private let kShopsInfo = "Shops.archive"
+private let kHomeImages = "HomeImage.archive"
 
 class StorageManager: NSObject {
   
@@ -32,6 +33,20 @@ class StorageManager: NSObject {
   func beaconRegions() -> [String: [String: String]] {
     return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(kBeaconRegions)) as! Dictionary
   }
+  
+  func saveHistoryArray(historyArray:[String]) {
+    NSKeyedArchiver.archiveRootObject(historyArray, toFile: documentDirectory().stringByAppendingPathComponent(KHistoryArray))
+  }
+  
+  func historyArray() -> [String] {
+    if let array = NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(KHistoryArray)) as? [String] {
+      return array
+    } else {
+      return [String]()
+    }
+  }
+  
+ 
   
   func lastOrder() -> BookOrder? {
     var lastOrder: BookOrder? = nil
@@ -113,6 +128,17 @@ class StorageManager: NSObject {
     let predicate = NSPredicate(format: "shopid = %@", shopID)
     let shopInfo = shopsInfo()?.filteredArrayUsingPredicate(predicate).first as! NSDictionary
     return shopInfo["phone"] as? String
+  }
+  
+  func saveHomeImages(images: [String]) {
+    let path = documentDirectory().stringByAppendingPathComponent(kHomeImages)
+    NSKeyedArchiver.archiveRootObject(images, toFile: path)
+  }
+  
+  func homeImage() -> [String]? {
+    let path = documentDirectory().stringByAppendingPathComponent(kHomeImages)
+    let images = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [String]
+    return images
   }
   
 }

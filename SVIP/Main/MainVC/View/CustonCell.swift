@@ -54,7 +54,7 @@ class CustonCell: UITableViewCell {
     hotelImageView.layer.addAnimation(animation, forKey: "scale-layer")
     if homeUrl != "" {
       let url = kImageURL + homeUrl
-      hotelImageView.sd_setImageWithURL(NSURL(string: url), placeholderImage: nil)
+      hotelImageView.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "img_background_qidong"))
     }
     let nowDate = NSDate()
     let hourFormatter = NSDateFormatter()
@@ -91,11 +91,11 @@ class CustonCell: UITableViewCell {
     
     if loginStats == false {
       userNameLabel.text = ""//没登陆时不显示名字(不要删掉)
-      loginButton.hidden = false
-      activeButton.hidden = true
       loginButton.setTitle("立即登录", forState: UIControlState.Normal)
       loginButton.tintColor = UIColor.ZKJS_mainColor()
       dynamicLabel.text = "使用超级身份，享受超凡个性服务"
+      loginButton.hidden = false
+      activeButton.hidden = true
     }
     if loginStats == true && activate == false {
       userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
@@ -106,15 +106,15 @@ class CustonCell: UITableViewCell {
       dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
     }
     if loginStats == true && activate == true {
-      activeButton.hidden = true
       userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
       dynamicLabel.text = "使用超级身份，享受超凡个性服务"
+      activeButton.hidden = true
     }
     if loginStats == true && activate == true && beacon != nil {
-      activeButton.hidden = true
       userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
 //      dynamicLabel.text = "欢迎光临\(beacon!["remark"])"
       dynamicLabel.text = ""
+      activeButton.hidden = true
     }
   }
   

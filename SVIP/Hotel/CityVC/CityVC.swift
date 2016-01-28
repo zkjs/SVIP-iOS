@@ -17,6 +17,8 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
   var latution: double_t!
   var cityArray = [String]()
   let citySearchBar = UISearchBar()
+  
+  var historyArray = [String]()
 //  //声明一个闭包
 //  var testClosure:sendValueClosure?
 //  var city:String!
@@ -70,7 +72,10 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
     let vc = MerchantsVC()
     vc.city = searchBar.text!
     navigationController?.pushViewController(vc, animated: true)
-      searchBar.resignFirstResponder()
+    searchBar.resignFirstResponder()
+    self.historyArray.insert(searchBar.text!, atIndex: 0)
+    StorageManager.sharedInstance().saveHistoryArray(self.historyArray)
+    self.tableView.reloadData()
   }
   
   
@@ -90,6 +95,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
     getCityListData()
     setupCoreLocationService()
     tableView.reloadData()
+    self.historyArray = StorageManager.sharedInstance().historyArray()
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -122,18 +128,34 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
   
   //MARK -TableView Data Source
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 1
+    return 2
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print(cityArray.count)
-    return cityArray.count
+    if section == 0 {
+      return cityArray.count
+    } else {
+      let array = StorageManager.sharedInstance().historyArray()
+      if array.count > 4 {
+        return 4
+      } else {
+        let array = StorageManager.sharedInstance().historyArray()
+        return array.count
+      }
+      
+    }
+    
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 50
+    if section == 0 {
+      return 50
+    } else {
+      return 30
+    }
     
   }
+  
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 50
@@ -142,19 +164,50 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCellWithIdentifier(HotCityCell.reuseIdentifier(), forIndexPath: indexPath) as! HotCityCell
       cell.selectionStyle = UITableViewCellSelectionStyle.None
+    if indexPath.section == 0 {
       cell.textLabel?.text = cityArray[indexPath.row]
+    }
+    if indexPath.section == 1 {
+      let array = StorageManager.sharedInstance().historyArray()
+      cell.textLabel?.text = array[indexPath.row]
+    }
       return cell
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    myView = NSBundle.mainBundle().loadNibNamed("CityHeaderView", owner: self, options: nil).first as! CityHeaderView
-    return myView
+    if section == 0 {
+      myView = NSBundle.mainBundle().loadNibNamed("CityHeaderView", owner: self, options: nil).first as! CityHeaderView
+      return myView
+    } else {
+      let label = UILabel()
+      label.frame = CGRectMake(20, -10, 100, 20)
+      label.text = "     历史记录"
+      label.font = UIFont(name: label.font.fontName, size: 12)
+      return label
     }
+    
+    }
+  
+  func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    let footerView = UIView()
+    return footerView
+  }
+  
+  func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 1
+  }
+  
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let vc = MerchantsVC()
-    vc.city = cityArray[indexPath.row]
-    print(vc.city)
+    if indexPath.section == 0 {
+     vc.city = cityArray[indexPath.row]
+    }
+    if indexPath.section == 1 {
+      vc.city = historyArray[indexPath.row]
+    }
+    
+    
     navigationController?.pushViewController(vc, animated: true)
   }
   

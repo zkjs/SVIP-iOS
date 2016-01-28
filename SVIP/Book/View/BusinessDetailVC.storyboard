@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pnW-vz-SMH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pnW-vz-SMH">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Business DetailVC-->
@@ -170,12 +170,32 @@
                             </tableViewSection>
                             <tableViewSection id="bqY-KL-xOc">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="330" id="qVx-Kf-s3n">
-                                        <rect key="frame" x="0.0" y="624" width="375" height="330"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qVx-Kf-s3n">
+                                        <rect key="frame" x="0.0" y="624" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qVx-Kf-s3n" id="CeU-c6-om5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="329"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" editable="NO" text="商家详细介绍" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exP-5N-2g0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="exP-5N-2g0" firstAttribute="leading" secondItem="CeU-c6-om5" secondAttribute="leading" id="CwU-X8-Sm1"/>
+                                                <constraint firstAttribute="bottom" secondItem="exP-5N-2g0" secondAttribute="bottom" id="JbS-oC-m32"/>
+                                                <constraint firstAttribute="trailing" secondItem="exP-5N-2g0" secondAttribute="trailing" id="wrF-Ji-Ljz"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="CwU-X8-Sm1"/>
+                                                    <exclude reference="JbS-oC-m32"/>
+                                                    <exclude reference="wrF-Ji-Ljz"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -193,6 +213,7 @@
                         <outlet property="commentsLabel" destination="Fsx-f0-FOP" id="KMM-ma-7HV"/>
                         <outlet property="pageControl" destination="oAO-Xg-8KU" id="8N6-O7-zS6"/>
                         <outlet property="scrollView" destination="iAe-XN-vJ9" id="Ijl-UE-LKC"/>
+                        <outlet property="shopDetailTextView" destination="exP-5N-2g0" id="1cO-LN-ptI"/>
                         <outlet property="telphoneLabel" destination="cTg-kV-qi6" id="5lw-OW-nBt"/>
                     </connections>
                 </tableViewController>

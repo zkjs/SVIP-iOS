@@ -19,7 +19,11 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   @IBOutlet weak var paymentLabel: UILabel!
   @IBOutlet weak var invoinceLabel: UILabel!
   @IBOutlet weak var breakfeastSwitch: UISwitch!
-  @IBOutlet weak var isSmokingSwitch: UISwitch!
+  @IBOutlet weak var isSmokingSwitch: UISwitch! {
+    didSet {
+      isSmokingSwitch.enabled = false
+    }
+  }
   @IBOutlet weak var remarkTextView: UITextView! {
     didSet {
       //      remarkTextView.layer.borderWidth = 1 //边框粗细
@@ -53,16 +57,17 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   var goods: RoomGoods!
   var paytypeArray = ["未设置", "在线支付", "到店支付", "挂帐"]
   var paytype = "0"
+  var startDate: NSDate?
+  var endDate: NSDate?
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
     title = shopName
-    tableView.backgroundColor = UIColor.hx_colorWithHexString("#EFEFF4")
+    tableView.backgroundColor = UIColor(hexString: "#EFEFF4")
     roomImage.image = UIImage(named: "bg_dingdanzhuangtai")
     tableView.bounces = false
     setUpUI()
-    
     if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
       tableView.separatorInset = UIEdgeInsetsZero
     }
@@ -103,8 +108,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   }
   
   func setUpUI() {
-    self.roomsTextField.text = String(roomsCount)
-    self.invoinceLabel.text = AccountManager.sharedInstance().invoice
+    self.roomsTextField.text           = String(roomsCount)
+    self.invoinceLabel.text            = AccountManager.sharedInstance().invoice
+    let phone = AccountManager.sharedInstance().phone
+    let username = AccountManager.sharedInstance().userName
+    telphoneTextField.text = phone
+    contactTextField.text = username
   }
   
   // MARK: - Table view data source
@@ -176,7 +185,12 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   func chooseDate() {
     let vc = BookDateSelectionViewController()
+    vc.startDate = startDate
+    vc.endDate = endDate
     vc.selection = { [unowned self] (startDate: NSDate, endDate: NSDate) ->() in
+      self.startDate = startDate
+      self.endDate = endDate
+      
       let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "M/dd"
       
@@ -209,8 +223,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     }
     navigationController?.pushViewController(vc, animated: true)
   }
-  
-  
+
   @IBAction func switchBreakfast(sender: AnyObject) {
     if  breakfeastSwitch.on == true {
       

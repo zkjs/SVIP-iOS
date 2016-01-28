@@ -28,7 +28,7 @@ class SettingTVC: UITableViewController {
           if set?.boolValue == true {
             // 清理系统缓存
             AccountManager.sharedInstance().clearAccountCache()
-            
+            MobClick.profileSignOff()//登出统计
             // 登出环信
             EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
             let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
@@ -58,10 +58,13 @@ class SettingTVC: UITableViewController {
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    
-    let aboutUs = NSIndexPath(forRow: 0, inSection: 0)
-    let logout = NSIndexPath(forRow: 1, inSection: 0)
+    let feedBack = NSIndexPath(forRow: 0, inSection: 0)
+    let aboutUs = NSIndexPath(forRow: 1, inSection: 0)
+    let logout = NSIndexPath(forRow: 2, inSection: 0)
     switch indexPath {
+    case feedBack:
+      let vc = FeedbackViewController()
+      self.navigationController?.pushViewController(vc, animated: true)
     case aboutUs:
       let vc = WebViewVC()
       vc.url = "http://www.zkjinshi.com/about_us/"

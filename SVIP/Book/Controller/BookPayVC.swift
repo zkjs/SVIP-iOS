@@ -13,6 +13,15 @@ enum BookPayVCType: Int {
   case Present = 1
 }
 
+enum PaymentStatusType: Int {
+  case Fail = 0
+  case Success = 1
+}
+
+protocol BookPayVCDelegate {
+  func didFinishPaymentWithStatus(status: PaymentStatusType)
+}
+
 class BookPayVC: UIViewController {
   
   @IBOutlet private weak var name: UILabel!
@@ -25,6 +34,7 @@ class BookPayVC: UIViewController {
   var dic: NSDictionary!
   var IP: String!
   var type = BookPayVCType.Push
+  var delegate: BookPayVCDelegate? = nil
   
   
   override func loadView() {
@@ -49,7 +59,7 @@ class BookPayVC: UIViewController {
     
     name.text = bkOrder.roomtype
     //    orderLabel.text = "\(bkOrder.room_type)   \(bkOrder.dayInt)晚"
-//    preference.text = bkOrder.remark
+    //    preference.text = bkOrder.remark
     money = bkOrder.roomprice
     price.text = "￥\(bkOrder.roomprice)"
     name.text = bkOrder.roomtype
@@ -100,7 +110,7 @@ class BookPayVC: UIViewController {
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg("请安装支付宝")
     }
-}
+  }
   
   @IBAction private func weixinzhifu(sender: UIButton) {
     dic = [
@@ -117,106 +127,28 @@ class BookPayVC: UIViewController {
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg("请安装微信")
     }
-}
-  
-  @IBAction private func payInHotel(sender: UIButton) {
-    //    let chatVC = JSHChatVC(chatType: .OldSession)
-    //    chatVC.order = bkOrder
-    //    chatVC.shopID = bkOrder.shopid.stringValue
-    //    chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_PAY_WHEN_CHECKIN", comment: "")
-    //    navigationController?.pushViewController(chatVC, animated: true)
   }
-
+  
   //MARK:- ALIPAY
   private func payAliOrder(charge:NSDictionary) {
     Pingpp.createPayment(charge,viewController: self, appURLScheme: "SVIPPAY") { (result:String!, error:PingppError!) -> Void in
       if result == "success" {
         ZKJSJavaHTTPSessionManager.sharedInstance().orderPayWithOrderno(self.bkOrder.orderno, success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
           print(responsObjects)
-          // 延迟一秒，让用户看清楚离店时间动画
-          ZKJSTool.showMsg("支付成功")
           self.sendMessageNotificationWithText("订单已成功支付")
-          let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-          dispatch_after(delayTime, dispatch_get_main_queue()) {
-            let appWindow = UIApplication.sharedApplication().keyWindow
-            let mainTBC = MainTBC()
-            mainTBC.selectedIndex = 3
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoOrderList)
-            let nc = BaseNC(rootViewController: mainTBC)
-            appWindow?.rootViewController = nc
-          }
+          self.navigationController?.popViewControllerAnimated(false)
+          self.delegate?.didFinishPaymentWithStatus(.Success)
           }, failure: { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
             print(error)
+            self.navigationController?.popViewControllerAnimated(false)
+            self.delegate?.didFinishPaymentWithStatus(.Fail)
         })
-             }else {
+      } else {
         print(error.getMsg())
-        ZKJSTool.showMsg("支付失败")
+        self.navigationController?.popViewControllerAnimated(false)
+        self.delegate?.didFinishPaymentWithStatus(.Fail)
       }
     }
-    //    let aliOrder = AlipayOrder()
-    //    aliOrder.partner = partner
-    //    aliOrder.seller = seller
-    ////    aliOrder.tradeNO = tradeNo  //need to fetch
-    //    aliOrder.tradeNO = AbookOrder.reservation_no
-    //    aliOrder.productName = AbookOrder.room_type
-    //    aliOrder.productDescription = "needtoknow"
-    //    if let rooms = AbookOrder.rooms {
-    //      let amount = AbookOrder.room_rate.doubleValue * rooms.doubleValue
-    //    aliOrder.amount = NSString(format:"%.2f", amount) as String
-    ////      aliOrder.amount = "0.02"
-    //    }
-    //
-    //    aliOrder.notifyURL = "http://api.zkjinshi.com/alipay/notify"
-    //    aliOrder.service = "mobile.securitypay.pay"
-    //    aliOrder.paymentType = "1"
-    //    aliOrder.inputCharset = "utf-8"
-    //    aliOrder.itBPay = "30m"
-    //    aliOrder.showUrl = "m.alipay.com"
-    //
-    //    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    //    let appScheme = "SVIPPAY"
-    //
-    //    //将商品信息拼接成字符串
-    //    let orderSpec = aliOrder.description
-    //    print(orderSpec, terminator: "")
-    //
-    //    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    ////    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-    ////    NSString *signedString = [signer signString:orderSpec];
-    //    let signer = CreateRSADataSigner(privateKey)
-    //    if let signedString = signer.signString(orderSpec) {
-    //      let orderString = String(format: "%@&sign=\"%@\"&sign_type=\"%@\"", orderSpec, signedString, "RSA")
-    //      let service = AlipaySDK .defaultService()
-    ////      service .payOrder("abc", fromScheme: "abc", callback: { (resultDic: AnyObject!) -> Void in
-    ////
-    ////      })
-    //      service .payOrder(orderString, fromScheme: appScheme, callback: { [unowned self] (aDictionary) -> Void in
-    //        let resultStatus = aDictionary["resultStatus"] as! String
-    //        let result = aDictionary["result"] as! NSString
-    //        if self.validateResult(result) && resultStatus == "9000" {
-    //          //支付成功,跳到聊天
-    //          let chatVC = JSHChatVC(chatType: .OldSession)
-    //          chatVC.order = self.bkOrder
-    //          chatVC.shopID = self.bkOrder.shopid.stringValue
-    //          chatVC.firstMessage = NSLocalizedString("FIRST_MESSAGE_ORDER_PAID", comment: "")
-    //          chatVC.navigationItem.hidesBackButton = true
-    //          self.navigationController?.pushViewController(chatVC, animated: true)
-    //        }else {
-    //          self.showHint("支付失败")
-    //        }
-    //        })
-    //    }
-    //将签名成功字符串格式化为订单字符串,请严格按照该格式
-    //    NSString *orderString = nil;
-    //    if (signedString != nil) {
-    //      orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-    //      orderSpec, signedString, @"RSA"];
-    //
-    //      [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-    //      NSLog(@"reslut = %@",resultDic);
-    //      }];
-    //
-    //    }
   }
   
   func sendMessageNotificationWithText(text: String) {

@@ -48,3 +48,8 @@
 #import "BrowserImageView.h"
 #import "MWPhotoBrowser.h"
 #import "Configure.h"
+#import "AMapNaviManager.h"
+#import "AMapNaviRoute.h"
+#import "AMapNaviServices.h"
+#import "MobClick.h"
+#import "AMapLocationKit.h"

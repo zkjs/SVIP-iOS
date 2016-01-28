@@ -5,9 +5,11 @@ inhibit_all_warnings!
 target 'SVIP' do
   pod 'ASIHTTPRequest', :git => 'https://github.com/hanton/asi-http-request'
   pod 'EaseMobSDKFull'
-  pod 'HexColors'
+  pod 'HexColors', '~> 2.3.0'
   pod 'JCTagListView'
   pod 'AMapSearch'
+  pod 'AMapLocation' #定位SDK
+  pod 'AMapNavi' #导航SDK
 #  pod 'CocoaLumberjack'
   pod 'SKTagView', :git => 'https://github.com/hanton/SKTagView', :branch => 'master'
   pod 'MIBadgeButton'
@@ -18,13 +20,14 @@ target 'SVIP' do
 #  pod 'PKYStepper'
 #  pod 'DateTools'
   pod 'MBProgressHUD'
-  pod 'AFNetworking'
+  pod 'AFNetworking', '~> 2.6.3'
 #  pod 'SSKeychain', '~> 1.2.3'
   pod 'JTSImageViewController'
   pod 'EDStarRating'
   pod 'XLPagerTabStrip'
   pod 'Pingpp', '~> 2.1.0'
   pod 'LTNavigationBar'
+  pod 'UMengAnalytics-NO-IDFA'#无IDFA版友盟SDK
 #  pod 'MWPhotoBrowser'
 #  pod 'WMPageController'
 #  pod 'FLAnimatedImage', '~> 1.0'
