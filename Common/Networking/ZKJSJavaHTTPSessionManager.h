@@ -36,9 +36,9 @@
 
 #pragma mark - 查询所有的酒店列表(未登录时的)
 - (void)getLoginOutShopListWithPage:(NSString *)page size:(NSString *)size success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 #pragma mark - 首页大图
 - (void)getHomeImageWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-
 
 #pragma mark - 获取用户推送消息(用户未登陆)
 - (void)getPushInfoToUserWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
@@ -55,28 +55,28 @@
 #pragma mark - 根据酒店区域获取用户特权
 - (void)getPrivilegeWithShopID:(NSString *)shopID Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 获取订单列表
+#pragma mark - 获取订单列表
 - (void)getOrderListWithPage:(NSString * )page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 获取订单详情
+#pragma mark - 获取订单详情
 - (void)getOrderDetailWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 订单新增
+#pragma mark - 订单新增
 - (void)addOrderWithCategory:(NSString *)category data:(NSDictionary *)data Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 获取商家详情
+#pragma mark - 获取商家详情
 - (void)getOrderDetailWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 订单确认
+#pragma mark - 订单确认
 - (void)confirmOrderWithOrderNo:(NSString *)orderno status:(int)status Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 取消订单
+#pragma mark - 取消订单
 - (void)cancleOrderWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 订单支付
+#pragma mark - 订单支付
 - (void)orderPayWithOrderno:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 获取未确认订单列表
+#pragma mark - 获取未确认订单列表
 - (void)getUnconfirmedOrderListWithPage:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 #pragma mark - 获取指定商家的商品列表
@@ -85,13 +85,13 @@
 #pragma mark - APP升级检查
 - (void)checkVersionWithVersion:(NSNumber *)version success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 获取未确认订单个数
+#pragma mark - 获取未确认订单个数
 - (void)getUnconfirmedOrderCountWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 #pragma mark - 订单评价
 - (void)evaluationWithData:(NSDictionary *)data success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-# pragma mark - 首页超级接口
+#pragma mark - 首页超级接口
 - (void)getMessagesWithCity:(NSString *)city success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 #pragma mark -  获取商家评论
