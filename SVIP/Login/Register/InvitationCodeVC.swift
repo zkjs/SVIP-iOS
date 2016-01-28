@@ -80,6 +80,7 @@ class InvitationCodeVC: UIViewController {
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
             if set.boolValue == true {
+              AccountManager.sharedInstance().saveActivated("1")
               self.hideHUD()
               self.sendInvitationCodeNotification()
               if self.type == InvitationCodeVCType.first {

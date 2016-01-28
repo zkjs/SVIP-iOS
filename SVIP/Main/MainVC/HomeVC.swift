@@ -277,12 +277,10 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   // Member Activate
   func memberActivation() {
     ZKJSHTTPSessionManager.sharedInstance().InvitationCodeActivatedSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-//      print(responsObject)
       if  let dic = responsObject as? NSDictionary {
         if let set = dic["set"] as? Bool {
           self.activate = set
         }
-//        self.tableView.reloadData()
         self.refreshTableView()
       }
      

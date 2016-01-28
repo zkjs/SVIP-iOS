@@ -129,6 +129,7 @@ class LoginVC: UIViewController {
       print(responseObject)
       if let data = responseObject as? [String : AnyObject] {
         AccountManager.sharedInstance().saveBaseInfo(data)
+        
         self.loginEaseMob()
         closure()
       }

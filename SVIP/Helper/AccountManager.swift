@@ -20,6 +20,7 @@ class AccountManager: NSObject {
   private(set) var email = ""
   private(set) var phone = ""
   private(set) var invoice = ""
+  private(set) var activated = ""
   
   var sexName: String? {
     get {
@@ -57,6 +58,7 @@ class AccountManager: NSObject {
     email = userDefaults.objectForKey("email") as? String ?? ""
     phone = userDefaults.objectForKey("phone") as? String ?? ""
     invoice = userDefaults.objectForKey("invoice") as? String ?? ""
+    activated = userDefaults.objectForKey("activated") as? String ?? ""
   }
   
   func isLogin() -> Bool {
@@ -89,13 +91,18 @@ class AccountManager: NSObject {
     sex =  baseInfo["sex"] as? String ?? ""
     email = baseInfo["email"] as? String ?? ""
     phone = baseInfo["phone"] as? String ?? ""
-    
+    if let activated = baseInfo["activated"] as? NSNumber {
+      self.activated = String(activated)
+    }
+//    activated = baseInfo["activated"] as? String ?? ""
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(avatarURL, forKey: "avatarURL")
     userDefaults.setObject(userName, forKey: "userName")
     userDefaults.setObject(sex, forKey: "sex")
     userDefaults.setObject(email, forKey: "email")
     userDefaults.setObject(phone, forKey: "phone")
+    userDefaults.setObject(activated, forKey: "activated")
+    
   }
   
   func saveDeviceToken(deviceToken: String) {
@@ -118,6 +125,12 @@ class AccountManager: NSObject {
     if let image = UIImage(data: imageData) {
       avatarImage = image
     }
+  }
+  
+  func saveActivated(activated: String) {
+    self.activated = activated
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(activated, forKey: "activated")
   }
   
   
@@ -154,6 +167,7 @@ class AccountManager: NSObject {
     email = ""
     phone = ""
     invoice = ""
+    activated = ""
   }
   
 }
