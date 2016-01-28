@@ -32,7 +32,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       title = "订单评论"
       //评价
       let starRating = EDStarRating()
-      starRating.frame = CGRectMake(0, 10, UIScreen.mainScreen().bounds.width, 60)
+      starRating.frame = CGRectMake(20, 10, UIScreen.mainScreen().bounds.width-20, 60)
       starRating.backgroundColor = UIColor.whiteColor()
       starRating.starImage = UIImage(named: "ic_star_nor")
       starRating.starHighlightedImage = UIImage(named: "ic_star_pre")
