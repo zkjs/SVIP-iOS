@@ -42,6 +42,8 @@ class InvitationCodeVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    customLabel.text = ""
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -139,7 +141,8 @@ extension InvitationCodeVC: UITextFieldDelegate {
               self.okButton.setTitle("确定", forState: .Normal)
               self.code = code
               self.sales_name = data["sales_name"] as? String ?? ""
-              self.saleNameTextField.text = "来自\(self.sales_name)的邀请码" 
+              self.saleNameTextField.text = "来自\(self.sales_name)的邀请码"
+              self.customLabel.text = "点击确认激活特权，他将成为您的专属客服"
               if let salesid = data["salesid"] as? String {
                 var url = NSURL(string: kImageURL)
                 url = url?.URLByAppendingPathComponent("/uploads/users/\(salesid).jpg")
@@ -171,9 +174,10 @@ extension InvitationCodeVC: UITextFieldDelegate {
           
       }
     } else {
-      self.okButton.setTitle("跳过", forState: .Normal)
-      self.animationViewHeight.constant = 0
+      okButton.setTitle("跳过", forState: .Normal)
+      animationViewHeight.constant = 0
       avatarImageHeight.constant = 0
+      customLabel.text = ""
       UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
         self.view.layoutIfNeeded()
         }, completion: nil)
