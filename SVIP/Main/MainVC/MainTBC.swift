@@ -289,7 +289,15 @@ extension MainTBC: EMCallManagerDelegate {
       presentViewController(alertView, animated: true, completion: nil)
     }
   }
-
+  
+  func showAddClientAlertWithInfo(info: [String: AnyObject]) {
+    let userName = info["userName"] as? String ?? ""
+    let alertMessage = "\(userName)已添加您为专属客人."
+    let alertView = UIAlertController(title: "专属客服", message: alertMessage, preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
+    alertView.addAction(okAction)
+    presentViewController(alertView, animated: true, completion: nil)
+  }
   
   func didReceiveCmdMessage(cmdMessage: EMMessage!) {
     if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
@@ -303,6 +311,12 @@ extension MainTBC: EMCallManagerDelegate {
         //客服取消订单
         if let order = cmdMessage.ext as? [String: AnyObject] {
           showCancleOrderAlertWithOrderInfo(order)
+        }
+      }
+      if chatObject.cmd == "addGuest" {
+        //客服添加客户
+        if let info = cmdMessage.ext as? [String: AnyObject] {
+          showAddClientAlertWithInfo(info)
         }
       }
     }
@@ -322,6 +336,12 @@ extension MainTBC: EMCallManagerDelegate {
             //客服取消订单
             if let order = cmdMessage.ext as? [String: AnyObject] {
               showCancleOrderAlertWithOrderInfo(order)
+            }
+          }
+          if chatObject.cmd == "addGuest" {
+            //客服添加客户
+            if let info = cmdMessage.ext as? [String: AnyObject] {
+              showAddClientAlertWithInfo(info)
             }
           }
         }

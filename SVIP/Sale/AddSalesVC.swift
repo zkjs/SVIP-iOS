@@ -104,6 +104,7 @@ class AddSalesVC: UIViewController {
           if set == true {
             NSNotificationCenter.defaultCenter().postNotificationName("addWaiterSuccess", object: self)
             self.showHint("添加成功")
+            self.sendInvitationCodeNotification()
             self.navigationController?.popViewControllerAnimated(true)
             self.hideHUD()
           }
@@ -120,21 +121,20 @@ class AddSalesVC: UIViewController {
         self.hideHUD()
     }
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
+  func sendInvitationCodeNotification() {
+    // 发送环信透传消息
+    let userID = AccountManager.sharedInstance().userID
+    let userName = AccountManager.sharedInstance().userName
+    let cmdChat = EMChatCommand()
+    cmdChat.cmd = "addSales"
+    let body = EMCommandMessageBody(chatObject: cmdChat)
+    let message = EMMessage(receiver: salesid, bodies: [body])
+    message.ext = [
+      "userId": userID,
+      "userName": userName]
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+  }
 
 }
