@@ -39,7 +39,11 @@ class StorageManager: NSObject {
   }
   
   func historyArray() -> [String] {
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(KHistoryArray)) as! [String]
+    if let array = NSKeyedUnarchiver.unarchiveObjectWithFile(documentDirectory().stringByAppendingPathComponent(KHistoryArray)) as? [String] {
+      return array
+    } else {
+      return [String]()
+    }
   }
   
  
