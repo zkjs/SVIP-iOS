@@ -46,11 +46,19 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
   }
   
   func add(sender: UIBarButtonItem) {
+    
     let alertController = UIAlertController(title: "添加联系人", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let checkAction = UIAlertAction(title: "查询", style: .Default) { (_) in
       let phoneTextField = alertController.textFields![0] as UITextField
       guard let phone = phoneTextField.text else { return }
       phoneTextField.resignFirstResponder()
+      
+      let activated = AccountManager.sharedInstance().activated
+      if activated == "0" {
+        let vc = InvitationCodeVC()
+        self.presentViewController(vc, animated: true, completion: nil)
+        return
+      }
       self.showHUDInView(self.view, withLoading: "正在查找...")
       ZKJSJavaHTTPSessionManager.sharedInstance().checkSalesWithPhone(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         self.hideHUD()
