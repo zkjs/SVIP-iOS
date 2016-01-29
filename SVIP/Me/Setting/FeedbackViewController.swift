@@ -40,14 +40,21 @@ class FeedbackViewController: UIViewController {
   }
 
   @IBAction func sendFeedBack(sender: AnyObject) {
+    
+    if feedBackTextView.text == "期待您的意见反馈" {
+      showHint("请填写反馈内容")
+      return
+    }
     showHUDInView(view, withLoading: "")
     ZKJSHTTPSessionManager.sharedInstance().addFeedbackWithContent(feedBackTextView.text, success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
       print(responsObjects)
       if let dic = responsObjects as? NSDictionary {
         if let set = dic["set"] as? NSNumber {
           if set.boolValue == true {
-            self.navigationController?.popViewControllerAnimated(true)
             self.hideHUD()
+            self.showHint("提交成功")
+            self.navigationController?.popViewControllerAnimated(true)
+            
           }
         }
       }
@@ -78,6 +85,7 @@ extension FeedbackViewController: UITextViewDelegate {
   func textViewDidBeginEditing(textView: UITextView) {
     if textView.text == "期待您的意见反馈" {
       textView.text = ""
+//      showHint("请填写反馈内容")
       textView.textColor = UIColor.blackColor()
     }
     textView.becomeFirstResponder()
@@ -86,7 +94,8 @@ extension FeedbackViewController: UITextViewDelegate {
   func textViewDidEndEditing(textView: UITextView) {
     if textView.text == "" {
       textView.text = "期待您的意见反馈"
-      textView.textColor = UIColor.lightGrayColor()
+//     showHint("请填写反馈内容")
+      textView.textColor = UIColor.blackColor()
     }
     textView.resignFirstResponder()
   }
