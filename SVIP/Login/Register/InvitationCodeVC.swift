@@ -33,6 +33,7 @@ class InvitationCodeVC: UIViewController {
   lazy var code = ""
   lazy var salesid = ""
   lazy var shopid = ""
+  lazy var shopname = ""
   lazy var sales_phone = ""
   lazy var sales_name = ""
   
@@ -77,14 +78,15 @@ class InvitationCodeVC: UIViewController {
      if codeTextField.text!.isEmpty == false {
       let phone = AccountManager.sharedInstance().phone
       showHUDInView(view, withLoading: "")
-      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: "", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopname, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
             if set.boolValue == true {
               AccountManager.sharedInstance().saveActivated("1")
               self.hideHUD()
-              self.sendInvitationCodeNotification()
+              self.sendInvitationCodeMessage()
+              self.sendInvitationCodeCmdMessage()
               if self.type == InvitationCodeVCType.first {
                 self.dismissViewControllerAnimated(true, completion: nil)
               } else {
@@ -98,7 +100,8 @@ class InvitationCodeVC: UIViewController {
           }
         }
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          
+          self.hideHUD()
+          ZKJSTool.showMsg("该邀请码无效,请重试")
       })
     }
     if codeTextField.text!.characters.count < 6 {
@@ -106,7 +109,7 @@ class InvitationCodeVC: UIViewController {
     }
   }
   
-  func sendInvitationCodeNotification() {
+  func sendInvitationCodeCmdMessage() {
     // 发送环信透传消息
     let userID = AccountManager.sharedInstance().userID
     let userName = AccountManager.sharedInstance().userName
@@ -121,6 +124,21 @@ class InvitationCodeVC: UIViewController {
       "userName": userName,
       "mobileNo": phone,
       "date": NSNumber(longLong: timestamp)]
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+  }
+  
+  func sendInvitationCodeMessage() {
+    // 发送环信消息
+    let userName = AccountManager.sharedInstance().userName
+    let txtChat = EMChatText(text: "我已绑定你的验证码")
+    let body = EMTextMessageBody(chatObject: txtChat)
+    let message = EMMessage(receiver: salesid, bodies: [body])
+    let ext = ["shopId": shopid,
+      "shopName": shopname,
+      "toName": sales_name,
+      "fromName": userName]
+    message.ext = ext
     message.messageType = .eMessageTypeChat
     EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
   }
@@ -158,6 +176,9 @@ extension InvitationCodeVC: UITextFieldDelegate {
               }
               if let shopid = data["shopid"] as? NSNumber {
                 self.shopid = shopid.stringValue
+              }
+              if let shopname = data["shopname"] as? String {
+                self.shopname = shopname
               }
               self.avatarImageHeight.constant = 48
               self.animationViewHeight.constant = 74

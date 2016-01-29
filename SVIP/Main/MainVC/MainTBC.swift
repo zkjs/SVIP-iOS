@@ -224,7 +224,7 @@ extension MainTBC: EMCallManagerDelegate {
   
   func showOrderAlertWithOrderInfo(order: [String: AnyObject]) {
     if let orderno = order["orderNo"] as? String {
-      let alertMessage = "您的订单\(orderno)已新增，请查看详情"
+      let alertMessage = "您的订单\(orderno)已更新，请查看详情"
       let alertView = UIAlertController(title: "订单新增", message: alertMessage, preferredStyle: .Alert)
       let checkAction = UIAlertAction(title: "查看", style: .Default, handler: { (action: UIAlertAction) -> Void in
         let index = orderno.startIndex.advancedBy(1)
@@ -291,10 +291,12 @@ extension MainTBC: EMCallManagerDelegate {
   }
   
   func showAddClientAlertWithInfo(info: [String: AnyObject]) {
-    let userName = info["userName"] as? String ?? ""
+    let userName = info["salesName"] as? String ?? ""
     let alertMessage = "\(userName)已添加您为专属客人."
     let alertView = UIAlertController(title: "专属客服", message: alertMessage, preferredStyle: .Alert)
-    let okAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
+    let okAction = UIAlertAction(title: "确定", style: .Default) { (action: UIAlertAction) -> Void in
+      self.tabBarController?.selectedIndex = 2
+    }
     alertView.addAction(okAction)
     presentViewController(alertView, animated: true, completion: nil)
   }
