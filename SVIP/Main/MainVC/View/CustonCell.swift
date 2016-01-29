@@ -103,7 +103,7 @@ class CustonCell: UITableViewCell {
       activeButton.frame = CGRectMake(CGRectGetMaxX(frame)+8, CGRectGetMinY(frame), CGRectGetWidth(activeButton.frame), CGRectGetHeight(activeButton.frame))
       activeButton.setTitle("立即激活", forState: UIControlState.Normal)
       activeButton.tintColor = UIColor.ZKJS_mainColor()
-      dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
+//      dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
     }
     if loginStats == true && activate == true {
       userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"

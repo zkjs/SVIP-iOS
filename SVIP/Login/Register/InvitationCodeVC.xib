@@ -52,7 +52,7 @@
                         <outlet property="delegate" destination="-1" id="jlR-yM-ZDi"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*输入邀请码能够激活特权" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7G-HY-4Pj">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*激活您的超级身份，让您享受最尊贵VIP服务" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7G-HY-4Pj">
                     <rect key="frame" x="0.0" y="205" width="600" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="mWE-GL-3Ve"/>
