@@ -32,6 +32,13 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
       rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
       super.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
+    
+    let bGotoContactList = NSUserDefaults.standardUserDefaults().boolForKey(kGotoContactList)
+    if bGotoContactList == true {
+      segmentedControl.selectedSegmentIndex = 1
+      moveToViewControllerAtIndex(1, animated: false)
+      NSUserDefaults.standardUserDefaults().setBool(false, forKey: kGotoContactList)
+    }
   }
   
   private func setupView() {

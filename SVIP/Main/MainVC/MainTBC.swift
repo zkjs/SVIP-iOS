@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+let kGotoContactList = "kGotoContactList"
+
 class MainTBC: UITabBarController {
   
   var heightDifference:CGFloat!
@@ -26,8 +29,6 @@ class MainTBC: UITabBarController {
     super.viewDidLoad()
     
     view.backgroundColor = UIColor.whiteColor()
-    
-    registerNotification()
     
     //首页
     let vc1 = HomeVC()
@@ -58,6 +59,8 @@ class MainTBC: UITabBarController {
     viewControllers = [nc1, nc2, nc3, nc4]
     tabBar.tintColor = UIColor.ZKJS_mainColor()
     
+    registerNotification()
+
     // 检查版本更新
     checkVersion()
     
@@ -66,6 +69,10 @@ class MainTBC: UITabBarController {
       NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
       showTipView()
     }
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
     
     if AccountManager.sharedInstance().isLogin() == true {
       let userID = AccountManager.sharedInstance().userID
@@ -295,27 +302,31 @@ extension MainTBC: EMCallManagerDelegate {
     let alertMessage = "\(userName)已添加您为专属客人."
     let alertView = UIAlertController(title: "专属客服", message: alertMessage, preferredStyle: .Alert)
     let okAction = UIAlertAction(title: "确定", style: .Default) { (action: UIAlertAction) -> Void in
-      self.tabBarController?.selectedIndex = 2
+      let appWindow = UIApplication.sharedApplication().keyWindow
+      let mainTBC = MainTBC()
+      mainTBC.selectedIndex = 2
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoContactList)
+      let nc = BaseNC(rootViewController: mainTBC)
+      appWindow?.rootViewController = nc
     }
     alertView.addAction(okAction)
     presentViewController(alertView, animated: true, completion: nil)
   }
   
   func didReceiveCmdMessage(cmdMessage: EMMessage!) {
+    print("透传消息\(cmdMessage)")
     if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
       if chatObject.cmd == "sureOrder" {
         // 客服发送订单过来
         if let order = cmdMessage.ext as? [String: AnyObject] {
           showOrderAlertWithOrderInfo(order)
         }
-      }
-      if chatObject.cmd == "cancleOrder" {
+      } else if chatObject.cmd == "cancleOrder" {
         //客服取消订单
         if let order = cmdMessage.ext as? [String: AnyObject] {
           showCancleOrderAlertWithOrderInfo(order)
         }
-      }
-      if chatObject.cmd == "addGuest" {
+      } else if chatObject.cmd == "addGuest" {
         //客服添加客户
         if let info = cmdMessage.ext as? [String: AnyObject] {
           showAddClientAlertWithInfo(info)
@@ -325,6 +336,7 @@ extension MainTBC: EMCallManagerDelegate {
   }
   
   func didReceiveOfflineCmdMessages(offlineCmdMessages: [AnyObject]!) {
+    print("透传消息\(offlineCmdMessages)")
     for cmdMessage in offlineCmdMessages {
       if let cmdMessage = cmdMessage as? EMMessage {
         if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
@@ -333,14 +345,12 @@ extension MainTBC: EMCallManagerDelegate {
             if let order = cmdMessage.ext as? [String: AnyObject] {
               showOrderAlertWithOrderInfo(order)
             }
-          }
-          if chatObject.cmd == "cancleOrder" {
+          } else if chatObject.cmd == "cancleOrder" {
             //客服取消订单
             if let order = cmdMessage.ext as? [String: AnyObject] {
               showCancleOrderAlertWithOrderInfo(order)
             }
-          }
-          if chatObject.cmd == "addGuest" {
+          } else if chatObject.cmd == "addGuest" {
             //客服添加客户
             if let info = cmdMessage.ext as? [String: AnyObject] {
               showAddClientAlertWithInfo(info)
