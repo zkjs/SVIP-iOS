@@ -147,10 +147,11 @@ class AddSalesVC: UIViewController {
       let txtChat = EMChatText(text: "我已添加你为联系人")
       let body = EMTextMessageBody(chatObject: txtChat)
       let message = EMMessage(receiver: salesid, bodies: [body])
-      let ext = ["shopId": sales.shopid,
+      let ext: [String: AnyObject] = ["shopId": sales.shopid,
         "shopName": sales.shop_name,
         "toName": sales.username,
-        "fromName": userName]
+        "fromName": userName,
+        "extType": 0]
       message.ext = ext
       message.messageType = .eMessageTypeChat
       EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)

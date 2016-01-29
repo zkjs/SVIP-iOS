@@ -134,10 +134,11 @@ class InvitationCodeVC: UIViewController {
     let txtChat = EMChatText(text: "我已绑定你的验证码")
     let body = EMTextMessageBody(chatObject: txtChat)
     let message = EMMessage(receiver: salesid, bodies: [body])
-    let ext = ["shopId": shopid,
+    let ext: [String: AnyObject] = ["shopId": shopid,
       "shopName": shopname,
       "toName": sales_name,
-      "fromName": userName]
+      "fromName": userName,
+      "extType": 0]
     message.ext = ext
     message.messageType = .eMessageTypeChat
     EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
