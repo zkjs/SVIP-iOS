@@ -20,12 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMapLocation (1.1.0)
+  - AMapLocation (1.1.1)
   - AMapNavi (1.5.0)
   - AMapSearch (3.2.0)
   - ASIHTTPRequest:
     - Reachability (~> 3.2)
-  - EaseMobSDKFull (2.1.7)
+  - EaseMobSDKFull (2.2.1.2)
   - EDStarRating (1.1)
   - HexColors (2.3.0)
   - JCTagListView (0.0.5)
@@ -61,7 +61,7 @@ DEPENDENCIES:
   - AMapNavi
   - AMapSearch
   - ASIHTTPRequest (from `https://github.com/hanton/asi-http-request`)
-  - EaseMobSDKFull
+  - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - EDStarRating
   - HexColors (~> 2.3.0)
   - JCTagListView
@@ -75,11 +75,13 @@ DEPENDENCIES:
   - SocketRocket
   - SWTableViewCell
   - UMengAnalytics-NO-IDFA
-  - XLPagerTabStrip
+  - XLPagerTabStrip (~> 3.0.0)
 
 EXTERNAL SOURCES:
   ASIHTTPRequest:
     :git: https://github.com/hanton/asi-http-request
+  EaseMobSDKFull:
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
     :branch: master
     :git: https://github.com/hanton/SKTagView
@@ -88,17 +90,20 @@ CHECKOUT OPTIONS:
   ASIHTTPRequest:
     :commit: ab2ddd63a6f33d55cfb8ece1a5d026b52445dfab
     :git: https://github.com/hanton/asi-http-request
+  EaseMobSDKFull:
+    :commit: f27db4da9c6285f91a71811c2d55af8427368dbf
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
     :commit: 29e0bcdbb112d80a84630de367b713c543c56e58
     :git: https://github.com/hanton/SKTagView
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AMapLocation: f0df6e8cc98461f16aae5638657e8b20a1be1995
+  AMapLocation: fc0245146ef90811f9590d428e9035a2a64f4526
   AMapNavi: 605e2dc3bad11fb2649ba4df61b82ab0da389d3f
   AMapSearch: a885f0702578a441a22cb66fa74f8918c6d19e6f
   ASIHTTPRequest: b2fb6b7703472faf6571f128ef5d4ed0bd21a563
-  EaseMobSDKFull: 43858ca9a62bbe1fa4c7c006f944a3e52a4bff48
+  EaseMobSDKFull: f8d6281b9b58b90d5594fe7d40e1529790035d65
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JCTagListView: f8184077bed41b700d0750fa10450cc22514e5b3

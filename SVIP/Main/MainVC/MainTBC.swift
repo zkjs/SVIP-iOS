@@ -368,6 +368,13 @@ extension MainTBC: EMChatManagerDelegate {
     print("didFinishedReceiveOfflineCmdMessages")
   }
   
+  func didReceiveMessage(message: EMMessage!) {
+    let notification = UILocalNotification()
+    notification.alertBody = "您有一条新消息"
+    notification.soundName = UILocalNotificationDefaultSoundName
+    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+  }
+  
 //  func canRecord() -> Bool {
 //    var bCanRecord = true
 //    let audioSession = AVAudioSession.sharedInstance()
