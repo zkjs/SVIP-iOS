@@ -85,6 +85,9 @@ class MainTBC: UITabBarController {
         showHint(error.debugDescription)
       }
       EaseMob.sharedInstance().chatManager.loadDataFromDatabase()
+      let options = EaseMob.sharedInstance().chatManager.pushNotificationOptions
+      options.displayStyle = .ePushNotificationDisplayStyle_simpleBanner
+      EaseMob.sharedInstance().chatManager.asyncUpdatePushOptions(options)
     }
   }
   
@@ -208,7 +211,7 @@ class MainTBC: UITabBarController {
 
 }
 
-extension MainTBC: EMCallManagerDelegate {
+extension MainTBC: EMChatManagerDelegate {
   
   // MARK: - Private
   
@@ -216,15 +219,15 @@ extension MainTBC: EMCallManagerDelegate {
     unregisterNotification()
     
     EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
-    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
+//    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callOutWithChatter:", name: KNOTIFICATION_CALL, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callControllerClose:", name: KNOTIFICATION_CALL_CLOSE, object: nil)
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callOutWithChatter:", name: KNOTIFICATION_CALL, object: nil)
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callControllerClose:", name: KNOTIFICATION_CALL_CLOSE, object: nil)
   }
   
   func unregisterNotification() {
     EaseMob.sharedInstance().chatManager.removeDelegate(self)
-    EaseMob.sharedInstance().callManager.removeDelegate(self)
+//    EaseMob.sharedInstance().callManager.removeDelegate(self)
     
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
@@ -314,7 +317,7 @@ extension MainTBC: EMCallManagerDelegate {
   }
   
   func didReceiveCmdMessage(cmdMessage: EMMessage!) {
-    print("透传消息\(cmdMessage)")
+    print("didReceiveCmdMessage透传消息\(cmdMessage)")
     if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
       if chatObject.cmd == "sureOrder" {
         // 客服发送订单过来
@@ -336,7 +339,7 @@ extension MainTBC: EMCallManagerDelegate {
   }
   
   func didReceiveOfflineCmdMessages(offlineCmdMessages: [AnyObject]!) {
-    print("透传消息\(offlineCmdMessages)")
+    print("didReceiveOfflineCmdMessages透传消息\(offlineCmdMessages)")
     for cmdMessage in offlineCmdMessages {
       if let cmdMessage = cmdMessage as? EMMessage {
         if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
@@ -361,58 +364,62 @@ extension MainTBC: EMCallManagerDelegate {
     }
   }
   
-  func canRecord() -> Bool {
-    var bCanRecord = true
-    let audioSession = AVAudioSession.sharedInstance()
-    if audioSession.respondsToSelector("requestRecordPermission:") {
-      audioSession.requestRecordPermission({ (granted: Bool) -> Void in
-        bCanRecord = granted
-      })
-    }
-    
-    if bCanRecord == false {
-      // Show Alert
-      showAlertWithTitle(NSLocalizedString("setting.microphoneNoAuthority", comment: "No microphone permissions"), message: NSLocalizedString("setting.microphoneAuthority", comment: "Please open in \"Setting\"-\"Privacy\"-\"Microphone\"."))
-    }
-    
-    return bCanRecord
+  func didFinishedReceiveOfflineCmdMessages(offlineCmdMessages: [AnyObject]!) {
+    print("didFinishedReceiveOfflineCmdMessages")
   }
   
-  func callOutWithChatter(notification: NSNotification) {
-    if let object = notification.object as? [String: AnyObject] {
-      if canRecord() == false {
-        return
-      }
-      
-      guard let chatter = object["chatter"] as? String else { return }
-      guard let type = object["type"] as? NSNumber else { return }
-      let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
-      var callSession: EMCallSession? = nil
-      switch type.integerValue {
-      case EMCallSessionType.eCallSessionTypeAudio.rawValue:
-        callSession = EaseMob.sharedInstance().callManager.asyncMakeVoiceCall(chatter, timeout: 50, error: error)
-      case EMCallSessionType.eCallSessionTypeVideo.rawValue:
-        callSession = EaseMob.sharedInstance().callManager.asyncMakeVideoCall(chatter, timeout: 50, error: error)
-        break
-      default:
-        break
-      }
-      
-      if callSession != nil && error == nil {
-        EaseMob.sharedInstance().callManager.removeDelegate(self)
-        
-        let callVC = CallViewController(session: callSession, isIncoming: false)
-        callVC.modalPresentationStyle = .OverFullScreen
-        presentViewController(callVC, animated: true, completion: nil)
-      } else if error != nil {
-        showAlertWithTitle(NSLocalizedString("error", comment: "error"), message: NSLocalizedString("ok", comment:"OK"))
-      }
-    }
-  }
-  
-  func callControllerClose(notification: NSNotification) {
-    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
-  }
+//  func canRecord() -> Bool {
+//    var bCanRecord = true
+//    let audioSession = AVAudioSession.sharedInstance()
+//    if audioSession.respondsToSelector("requestRecordPermission:") {
+//      audioSession.requestRecordPermission({ (granted: Bool) -> Void in
+//        bCanRecord = granted
+//      })
+//    }
+//    
+//    if bCanRecord == false {
+//      // Show Alert
+//      showAlertWithTitle(NSLocalizedString("setting.microphoneNoAuthority", comment: "No microphone permissions"), message: NSLocalizedString("setting.microphoneAuthority", comment: "Please open in \"Setting\"-\"Privacy\"-\"Microphone\"."))
+//    }
+//    
+//    return bCanRecord
+//  }
+//  
+//  func callOutWithChatter(notification: NSNotification) {
+//    if let object = notification.object as? [String: AnyObject] {
+//      if canRecord() == false {
+//        return
+//      }
+//      
+//      guard let chatter = object["chatter"] as? String else { return }
+//      guard let type = object["type"] as? NSNumber else { return }
+//      let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+//      var callSession: EMCallSession? = nil
+//      switch type.integerValue {
+//      case EMCallSessionType.eCallSessionTypeAudio.rawValue:
+//        callSession = EaseMob.sharedInstance().callManager.asyncMakeVoiceCall(chatter, timeout: 50, error: error)
+//      case EMCallSessionType.eCallSessionTypeVideo.rawValue:
+//        callSession = EaseMob.sharedInstance().callManager.asyncMakeVideoCall(chatter, timeout: 50, error: error)
+//        break
+//      default:
+//        break
+//      }
+//      
+//      if callSession != nil && error == nil {
+//        EaseMob.sharedInstance().callManager.removeDelegate(self)
+//        
+//        let callVC = CallViewController(session: callSession, isIncoming: false)
+//        callVC.modalPresentationStyle = .OverFullScreen
+//        presentViewController(callVC, animated: true, completion: nil)
+//      } else if error != nil {
+//        showAlertWithTitle(NSLocalizedString("error", comment: "error"), message: NSLocalizedString("ok", comment:"OK"))
+//      }
+//    }
+//  }
+//  
+//  func callControllerClose(notification: NSNotification) {
+//    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
+//  }
   
   // 未读消息数量变化回调
   
@@ -446,41 +453,41 @@ extension MainTBC: EMCallManagerDelegate {
 
 extension MainTBC: IChatManagerDelegate {
   
-  func callSessionStatusChanged(callSession: EMCallSession!, changeReason reason: EMCallStatusChangedReason, error: EMError!) {
-    if callSession.status == .eCallSessionStatusConnected {
-//      var error: EMError? = nil
-      let isShowPicker = NSUserDefaults.standardUserDefaults().objectForKey("isShowPicker")
-      if isShowPicker != nil && isShowPicker!.boolValue == true {
-//        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
-        return
-      }
-      
-      if canRecord() == false {
-//        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
-        return
-      }
-      
-      if callSession.type == EMCallSessionType.eCallSessionTypeVideo &&
-        (UIApplication.sharedApplication().applicationState != UIApplicationState.Active || CallViewController.canVideo() == false) {
-//          error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-          EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
-          return
-      }
-      
-      if isShowPicker == nil || isShowPicker!.boolValue == false {
-        EaseMob.sharedInstance().callManager.removeDelegate(self)
-        let callVC = CallViewController(session: callSession, isIncoming: true)
-        callVC.modalPresentationStyle = .OverFullScreen
-        presentViewController(callVC, animated: true, completion: nil)
-        if ((navigationController?.topViewController?.isKindOfClass(ChatViewController)) == true) {
-          let chatVC = navigationController?.topViewController as! ChatViewController
-          chatVC.isViewDidAppear = false
-        }
-      }
-    }
-  }
+//  func callSessionStatusChanged(callSession: EMCallSession!, changeReason reason: EMCallStatusChangedReason, error: EMError!) {
+//    if callSession.status == .eCallSessionStatusConnected {
+////      var error: EMError? = nil
+//      let isShowPicker = NSUserDefaults.standardUserDefaults().objectForKey("isShowPicker")
+//      if isShowPicker != nil && isShowPicker!.boolValue == true {
+////        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+//        return
+//      }
+//      
+//      if canRecord() == false {
+////        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+//        return
+//      }
+//      
+//      if callSession.type == EMCallSessionType.eCallSessionTypeVideo &&
+//        (UIApplication.sharedApplication().applicationState != UIApplicationState.Active || CallViewController.canVideo() == false) {
+////          error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//          EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+//          return
+//      }
+//      
+//      if isShowPicker == nil || isShowPicker!.boolValue == false {
+//        EaseMob.sharedInstance().callManager.removeDelegate(self)
+//        let callVC = CallViewController(session: callSession, isIncoming: true)
+//        callVC.modalPresentationStyle = .OverFullScreen
+//        presentViewController(callVC, animated: true, completion: nil)
+//        if ((navigationController?.topViewController?.isKindOfClass(ChatViewController)) == true) {
+//          let chatVC = navigationController?.topViewController as! ChatViewController
+//          chatVC.isViewDidAppear = false
+//        }
+//      }
+//    }
+//  }
   
   // MARK: - IChatManagerDelegate 登录状态变化
   

@@ -95,7 +95,7 @@ extension FeedbackViewController: UITextViewDelegate {
     if textView.text == "" {
       textView.text = "期待您的意见反馈"
 //     showHint("请填写反馈内容")
-      textView.textColor = UIColor.blackColor()
+      textView.textColor = UIColor.lightGrayColor()
     }
     textView.resignFirstResponder()
   }

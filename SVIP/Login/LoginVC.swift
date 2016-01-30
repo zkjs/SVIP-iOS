@@ -197,6 +197,9 @@ class LoginVC: UIViewController {
       showHint(error.debugDescription)
     }
     EaseMob.sharedInstance().chatManager.loadDataFromDatabase()
+    let options = EaseMob.sharedInstance().chatManager.pushNotificationOptions
+    options.displayStyle = .ePushNotificationDisplayStyle_simpleBanner
+    EaseMob.sharedInstance().chatManager.asyncUpdatePushOptions(options)
   }
 
   // MARK: Button Action
