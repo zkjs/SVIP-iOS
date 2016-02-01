@@ -1391,24 +1391,22 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
-				B2A6420F1B47C2A700AF0F28 /* Book */,
-				404FACD11B84790300352023 /* Extension */,
-				B20812B71B8DD8650070D96F /* Helper */,
-				40E3A1621BFEFA6400516EC4 /* Hotel */,
+				40D794BF1C41197F004C7DC9 /* Guide */,
 				B2564D351B4BFAED0098608F /* LaunchAnimation */,
 				FA02C5811C0D42B300D0D439 /* Login */,
 				4052664D1B41283900B277BE /* Main */,
+				40E3A1621BFEFA6400516EC4 /* Hotel */,
+				B2A6420F1B47C2A700AF0F28 /* Book */,
+				40E39FE01BFEFA0C00516EC4 /* MessageCenter */,
 				40EE4D781C1EEE34009C0311 /* Me */,
-				FAF7F5531C02E83200C84601 /* Privilege */,
-				40E39FE01BFEFA0C00516EC4 /* Sale */,
-				40E3A1831BFEFA8200516EC4 /* Search */,
-				40641EFB1B3E569700CF150D /* Supporting Files */,
+				404FACD11B84790300352023 /* Extension */,
+				B20812B71B8DD8650070D96F /* Helper */,
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
+				40641EFB1B3E569700CF150D /* Supporting Files */,
 				40641EFD1B3E569700CF150D /* AppDelegate.swift */,
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
-				40D412201BCB4FAB00FC28DB /* Localizable.strings */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
-				40D794BF1C41197F004C7DC9 /* Guide */,
+				40D412201BCB4FAB00FC28DB /* Localizable.strings */,
 				405826481BA11CC5005A2C8E /* PrefixHeader.pch */,
 				40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */,
 				404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */,
@@ -2251,7 +2249,7 @@
 			path = HeaderView;
 			sourceTree = "<group>";
 		};
-		40E39FE01BFEFA0C00516EC4 /* Sale */ = {
+		40E39FE01BFEFA0C00516EC4 /* MessageCenter */ = {
 			isa = PBXGroup;
 			children = (
 				4077DC591C1EAF9900E13D6B /* EaseMob */,
@@ -2266,12 +2264,14 @@
 				FAF02EF51C159DB000B86B28 /* SalesVC.swift */,
 				FAF02EF61C159DB000B86B28 /* SalesVC.xib */,
 			);
+			name = MessageCenter;
 			path = Sale;
 			sourceTree = "<group>";
 		};
 		40E3A1621BFEFA6400516EC4 /* Hotel */ = {
 			isa = PBXGroup;
 			children = (
+				40E3A1831BFEFA8200516EC4 /* Search */,
 				FAF4148A1BFC638700D3BED4 /* CityVC */,
 				40E3A1631BFEFA6400516EC4 /* Controller */,
 				FAFBFB731C22570900A1126B /* Model */,
@@ -2322,7 +2322,8 @@
 				40E3A1861BFEFA8200516EC4 /* SearchTVC.swift */,
 				40E3A1871BFEFA8200516EC4 /* SearchTVC.xib */,
 			);
-			path = Search;
+			name = Search;
+			path = ../Search;
 			sourceTree = "<group>";
 		};
 		40E3A18C1BFF01B000516EC4 /* 3rdparty */ = {
@@ -2798,6 +2799,7 @@
 		40EE4D781C1EEE34009C0311 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				FAF7F5531C02E83200C84601 /* Privilege */,
 				400959E11C210C8D00D3DA61 /* Account */,
 				40E39E1C1BFEF43800516EC4 /* OrderList */,
 				400959E21C210CB100D3DA61 /* Setting */,
@@ -3066,7 +3068,8 @@
 				B20812901B8DD7950070D96F /* SkipCheckIn */,
 				FAF7F5611C030A0B00C84601 /* View */,
 			);
-			path = Privilege;
+			name = Privilege;
+			path = ../Privilege;
 			sourceTree = "<group>";
 		};
 		FAF7F5601C0309F000C84601 /* Controller */ = {
