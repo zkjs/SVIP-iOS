@@ -13,8 +13,8 @@
 #define kImageURL @"http://svip02.oss-cn-shenzhen.aliyuncs.com"
 
 // 测试
-#define kBaseURL @"http://tst.zkjinshi.com/"  // PHP服务器
-#define kJavaBaseURL @"http://test.zkjinshi.com/japi/"  // Java服务器
+//#define kBaseURL @"http://tst.zkjinshi.com/"  // PHP服务器
+//#define kJavaBaseURL @"http://test.zkjinshi.com/japi/"  // Java服务器
 #define kEaseMobAppKey @"zkjs#svip"  // 环信
 
 
@@ -24,8 +24,8 @@
 //#define kEaseMobAppKey @"zkjs#sid"  // 环信
 
 // 正式
-//#define kBaseURL @"http://api.zkjinshi.com/" // PHP服务器
-//#define kJavaBaseURL @"http://mmm.zkjinshi.com/"  // Java服务器
+#define kBaseURL @"http://api.zkjinshi.com/" // PHP服务器
+#define kJavaBaseURL @"http://mmm.zkjinshi.com/"  // Java服务器
 //#define kEaseMobAppKey @"zkjs#prosvip"  // 环信
 
 #endif /* Configure_h */
