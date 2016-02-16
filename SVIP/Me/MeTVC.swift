@@ -183,7 +183,7 @@ class MeTVC: UITableViewController {
     
     let accountIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     let orderIndexPath = NSIndexPath(forRow: 1, inSection: 0)
-    let settingIndexPath = NSIndexPath(forRow: 4, inSection: 0)
+    let settingIndexPath = NSIndexPath(forRow: 2, inSection: 0)
     
     switch indexPath {
     case accountIndexPath:
