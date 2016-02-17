@@ -45,7 +45,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       privilegeButton.layer.cornerRadius = 30
     }
   }
-
+  
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
   }
@@ -74,7 +74,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     
     let footer = UIView(frame: CGRectMake(0, 0, 100, 40))
     tableView.tableFooterView = footer
-   
+    
     originOffsetY = privilegeButton.frame.origin.y
     print("userID: \(AccountManager.sharedInstance().userID)")
     print("Token: \(AccountManager.sharedInstance().token)")
@@ -119,30 +119,30 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       getPushInfoData()
     }
     
-//    //根据酒店区域获取用户特权
-//    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-//      if let array = responsObjcet as? [[String: AnyObject]] {
-//        if array.count > 0 {
-//          for data in array {
-//            let privilege = PrivilegeModel(dic: data)
-//            self.privilegeArray.append(privilege)
-//          }
-//          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-//          self.privilegeButton.userInteractionEnabled = true
-//          self.privilegeData = array
-////          for item in array.reverse() {
-////            self.privilegeData.insert(item, atIndex: 0)
-////          }
-//        }
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//    }
+    //    //根据酒店区域获取用户特权
+    //    ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID("120", success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+    //      if let array = responsObjcet as? [[String: AnyObject]] {
+    //        if array.count > 0 {
+    //          for data in array {
+    //            let privilege = PrivilegeModel(dic: data)
+    //            self.privilegeArray.append(privilege)
+    //          }
+    //          self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+    //          self.privilegeButton.userInteractionEnabled = true
+    //          self.privilegeData = array
+    ////          for item in array.reverse() {
+    ////            self.privilegeData.insert(item, atIndex: 0)
+    ////          }
+    //        }
+    //      }
+    //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+    //    }
   }
   
   func getAllMessages() {
     let city = "长沙"
     ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      print(responseObject)
+      //      print(responseObject)
       if let defaultNotitification = responseObject["defaultNotitification"] as? NSArray {
         self.pushInfoArray.removeAll()
         for dic in defaultNotitification {
@@ -180,23 +180,23 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     }else {
       self.homeUrl = self.urlArray[self.count]
     }
-     navigationController?.navigationBarHidden = false
+    navigationController?.navigationBarHidden = false
     navigationController?.navigationBar.translucent = false
   }
   
   
   //refreshHomeVCDelegate
   func refreshHomeVC(set: Bool) {
-//    getPushInfoData()
+    //    getPushInfoData()
     self.refreshTableView()
   }
   
   func refreshTableView() {
     tableView.reloadData()
-//    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-//    tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
+    //    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+    //    tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
     tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
-//    tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, 4)), withRowAnimation: .None)
+    //    tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, 4)), withRowAnimation: .None)
   }
   
   func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -204,11 +204,11 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
   }
   
-//  func scrollViewDidEndScroll(scrollView: UIScrollView) {
-//    let offsetY = scrollView.contentOffset.y
-//    privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
-//  }
-
+  //  func scrollViewDidEndScroll(scrollView: UIScrollView) {
+  //    let offsetY = scrollView.contentOffset.y
+  //    privilegeButton.frame.origin.y = originOffsetY - offsetY - 20
+  //  }
+  
   
   func loadData() {
     if let imageArray = StorageManager.sharedInstance().homeImage() {
@@ -227,7 +227,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
           }
           self.homeUrl = self.urlArray[self.count]
           StorageManager.sharedInstance().saveHomeImages(self.urlArray)
-//        self.tableView.reloadData()
+          //        self.tableView.reloadData()
           self.refreshTableView()
         }
         }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -243,14 +243,14 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   func getPushInfoData() {
     ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-//      print(responseObject)
+      //      print(responseObject)
       if let array = responseObject as? NSArray {
         self.pushInfoArray.removeAll()
         for dic in array {
-         let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-         self.pushInfoArray.append(pushInfo)
+          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
+          self.pushInfoArray.append(pushInfo)
         }
-//       self.tableView.reloadData()
+        //       self.tableView.reloadData()
         self.refreshTableView()
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
@@ -263,10 +263,10 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       if let array = responseObject as? NSArray {
         self.orderArray.removeAll()
         for dic in array {
-        let  order = PushInfoModel(dic: dic as! [String: AnyObject])
+          let  order = PushInfoModel(dic: dic as! [String: AnyObject])
           self.orderArray.append(order)
         }
-//        self.tableView.reloadData()
+        //        self.tableView.reloadData()
         self.refreshTableView()
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
@@ -283,7 +283,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
         }
         self.refreshTableView()
       }
-     
+      
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
     }
@@ -327,7 +327,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if indexPath.section == 0 {
       return CustonCell.height()
     } else {
-       return HomeCell.height()
+      return HomeCell.height()
     }
   }
   
@@ -340,7 +340,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       headercell.loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
       let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTap")
       headercell.bluetoolView.addGestureRecognizer(singleTap)
-//      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
+      //      headercell.PrivilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: .TouchUpInside)
       return headercell
     } else if indexPath.section == 1 {
       if privilegeArray.count != 0 {
@@ -422,17 +422,17 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       if indexPath.section == 3 {
         let pushInfo = pushInfoArray[indexPath.row]
         if pushInfo.shopid == "" {
-//          let vc = WebViewVC()
-//          vc.hidesBottomBarWhenPushed = true
-//          vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
-//          self.navigationController?.pushViewController(vc, animated: true)
+          //          let vc = WebViewVC()
+          //          vc.hidesBottomBarWhenPushed = true
+          //          vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
+          //          self.navigationController?.pushViewController(vc, animated: true)
         } else {
           pushToBookVC(pushInfo)
         }
       }
     }
   }
-
+  
   func pushToBookVC(pushinfo: PushInfoModel) {
     if pushinfo.shopid == "" {
       ZKJSTool.showMsg("暂无商家信息")
@@ -483,7 +483,7 @@ extension HomeVC: AMapLocationManagerDelegate {
   private func setupAMapLocationMonitor() {
     naviManager.delegate = self
     amapLocationManager.delegate = self
-
+    
     //设置允许后台定位参数，保持不会被系统挂起
     amapLocationManager.pausesLocationUpdatesAutomatically = false
     amapLocationManager.allowsBackgroundLocationUpdates = true
@@ -494,15 +494,15 @@ extension HomeVC: AMapLocationManagerDelegate {
   
   func amapLocationManager(manager: AMapLocationManager!, didUpdateLocation location: CLLocation!) {
     //获取客户当前的地理位置
-//    let coordinate = location.coordinate
-//    latitude = coordinate.latitude
-//    longitude = coordinate.longitude
-//    let startPoint = AMapNaviPoint.locationWithLatitude(CGFloat(latitude), longitude: CGFloat(longitude))
-//    let endPoint = AMapNaviPoint.locationWithLatitude(22.596568, longitude: 113.989823)  // 国家超级计算深圳中心
-//    if let startPoint = startPoint,
-//      let endPoint = endPoint {
-//      routeCallWithStartPoint(startPoint, endPoint: endPoint)
-//    }
+    //    let coordinate = location.coordinate
+    //    latitude = coordinate.latitude
+    //    longitude = coordinate.longitude
+    //    let startPoint = AMapNaviPoint.locationWithLatitude(CGFloat(latitude), longitude: CGFloat(longitude))
+    //    let endPoint = AMapNaviPoint.locationWithLatitude(22.596568, longitude: 113.989823)  // 国家超级计算深圳中心
+    //    if let startPoint = startPoint,
+    //      let endPoint = endPoint {
+    //      routeCallWithStartPoint(startPoint, endPoint: endPoint)
+    //    }
   }
   
   func amapLocationManager(manager: AMapLocationManager!, didFailWithError error: NSError!) {
@@ -541,7 +541,7 @@ extension HomeVC: AMapNaviManagerDelegate {
       bgTask = UIBackgroundTaskInvalid
     }
   }
-
+  
 }
 
 
@@ -566,7 +566,7 @@ extension HomeVC: CLLocationManagerDelegate {
     }
     setupBeaconMonitor()
     setupAMapLocationMonitor()
-//    setupGPSMonitor()
+    //    setupGPSMonitor()
   }
   
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -577,34 +577,34 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
   
-//  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-//    print("Error while updating location " + error.localizedDescription)
-//  }
-//  
-//  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//    locationManager.stopMonitoringSignificantLocationChanges()
-//    
-//  }
-//  
-//  private func setupGPSMonitor() {
-//    if #available(iOS 9.0, *) {
-//      locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//      locationManager.requestLocation()
-//    } else {
-//      locationManager.startMonitoringSignificantLocationChanges()
-//    }
-//  }
-//  
-//  private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
-//    let dateFormatter = NSDateFormatter()
-//    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//    let traceTime = dateFormatter.stringFromDate(NSDate())
-//    ZKJSHTTPSessionManager.sharedInstance().postGPSWithLongitude("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
-//  }
+  //  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+  //    print("Error while updating location " + error.localizedDescription)
+  //  }
+  //  
+  //  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  //    locationManager.stopMonitoringSignificantLocationChanges()
+  //    
+  //  }
+  //  
+  //  private func setupGPSMonitor() {
+  //    if #available(iOS 9.0, *) {
+  //      locationManager.desiredAccuracy = kCLLocationAccuracyBest
+  //      locationManager.requestLocation()
+  //    } else {
+  //      locationManager.startMonitoringSignificantLocationChanges()
+  //    }
+  //  }
+  //  
+  //  private func postGPSLocation(coordinate: CLLocationCoordinate2D) {
+  //    let dateFormatter = NSDateFormatter()
+  //    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+  //    let traceTime = dateFormatter.stringFromDate(NSDate())
+  //    ZKJSHTTPSessionManager.sharedInstance().postGPSWithLongitude("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", traceTime: traceTime, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+  //      
+  //      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+  //        
+  //    }
+  //  }
   
   func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
     if region.identifier == "DetermineCurrentRegionState" {
@@ -625,19 +625,28 @@ extension HomeVC: CLLocationManagerDelegate {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     print(region)
     if let beaconRegion = beaconRegions[region.identifier] {
-      let lastSendDate = NSUserDefaults.standardUserDefaults().objectForKey(region.identifier) as? NSDate
-      print(region.identifier + " Last Send Date: \(lastSendDate)" + " Now: \(NSDate())")
-      // 如果10分钟内再次触发该区域，则不发推送
-      if lastSendDate == nil || NSDate().timeIntervalSinceDate(lastSendDate!) >= 60 * 10 {
-        StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
+      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
+      if var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() {
+        if cachedBeaconRegions[region.identifier] == 1 {
+          // 还在区域内，不发推送
+        } else {
+          sendEnterRegionPacketWithBeacon(beaconRegion)
+          cachedBeaconRegions[region.identifier] = 1
+          StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
+        }
+      } else {
         sendEnterRegionPacketWithBeacon(beaconRegion)
-        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: region.identifier)
+        let cachedBeaconRegions: [String: Int] = [region.identifier: 1]
+        StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
       }
     }
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion!) {
-    
+    if var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() {
+      cachedBeaconRegions[region.identifier] = 0
+      StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
+    }
   }
   
   private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
@@ -692,17 +701,17 @@ extension HomeVC: CLLocationManagerDelegate {
     let alert = "\(userName)\(gender) 到达 \(locdesc)"
     let badge = NSNumber(integer: 1)
     let sound = "default"
-//    var avatarBase64 = ""
-//    if let avatar = AccountManager.sharedInstance().avatarImage {
-//      var avatarData = UIImageJPEGRepresentation(avatar, 1.0)!
-//      var i = 0
-//      while avatarData.length / 1024 > 30 {
-//        let persent = CGFloat(100 - i++) / 100.0
-//        avatarData = UIImageJPEGRepresentation(avatar, persent)!
-//      }
-//      avatarBase64 = avatarData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-//    }
-//    let avatarURL = AccountManager.sharedInstance().avatarURL
+    //    var avatarBase64 = ""
+    //    if let avatar = AccountManager.sharedInstance().avatarImage {
+    //      var avatarData = UIImageJPEGRepresentation(avatar, 1.0)!
+    //      var i = 0
+    //      while avatarData.length / 1024 > 30 {
+    //        let persent = CGFloat(100 - i++) / 100.0
+    //        avatarData = UIImageJPEGRepresentation(avatar, persent)!
+    //      }
+    //      avatarBase64 = avatarData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+    //    }
+    //    let avatarURL = AccountManager.sharedInstance().avatarURL
     let apnDict = ["aps": ["alert": ["body": alert, "title": "到店通知"], "badge": badge, "sound": sound, "category": "arrivalInfo"], "extra": extra]
     print(apnDict)
     let apnOption = YBApnOption(apnDict: apnDict as [NSObject : AnyObject])
@@ -717,22 +726,22 @@ extension HomeVC: CLLocationManagerDelegate {
     if activate == true {
       // 显示特权按钮
       //根据酒店区域获取用户特权
-//      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-////        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-////          target:self,selector:Selector("highLight"),
-////          userInfo:nil,repeats:true)
-//        if let array = responsObjcet as? [[String: AnyObject]] {
-//          if array.count > 0 {
-//            for data in array {
-//              let privilege = PrivilegeModel(dic: data)
-//              self.privilegeArray.append(privilege)
-//            }
-//            self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-//            self.privilegeButton.userInteractionEnabled = true
-//          }
-//        }
-//        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//      }
+      //      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
+      ////        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+      ////          target:self,selector:Selector("highLight"),
+      ////          userInfo:nil,repeats:true)
+      //        if let array = responsObjcet as? [[String: AnyObject]] {
+      //          if array.count > 0 {
+      //            for data in array {
+      //              let privilege = PrivilegeModel(dic: data)
+      //              self.privilegeArray.append(privilege)
+      //            }
+      //            self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+      //            self.privilegeButton.userInteractionEnabled = true
+      //          }
+      //        }
+      //        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+      //      }
       if privilegeArray.count != 0 {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
           target:self, selector:Selector("highLight"),
@@ -756,9 +765,9 @@ extension HomeVC: CLLocationManagerDelegate {
   
   func highLight() {
     countTimer++
-//    let image = AccountManager.sharedInstance().avatarImage
+    //    let image = AccountManager.sharedInstance().avatarImage
     if self.countTimer % 2 == 0 {
-//      privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+      //      privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
       UIView.animateWithDuration(0.3, animations: { () -> Void in
         self.privilegeButton.alpha = 0.3
       })
@@ -767,7 +776,7 @@ extension HomeVC: CLLocationManagerDelegate {
       UIView.animateWithDuration(0.3, animations: { () -> Void in
         self.privilegeButton.alpha = 1
       })
-//      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      //      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
     }
   }
   

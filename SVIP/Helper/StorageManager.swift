@@ -12,6 +12,7 @@ private let kBeaconRegions = "BeaconRegions.archive"
 private let kLastOrder = "LastOrder.archive"
 private let kShopsInfo = "Shops.archive"
 private let kHomeImages = "HomeImage.archive"
+private let kCachedBeaconRegions = "CachedBeaconRegions.archive"
 
 class StorageManager: NSObject {
   
@@ -45,8 +46,6 @@ class StorageManager: NSObject {
       return [String]()
     }
   }
-  
- 
   
   func lastOrder() -> BookOrder? {
     var lastOrder: BookOrder? = nil
@@ -139,6 +138,17 @@ class StorageManager: NSObject {
     let path = documentDirectory().stringByAppendingPathComponent(kHomeImages)
     let images = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [String]
     return images
+  }
+  
+  func cachedBeaconRegions() -> [String: Int]? {
+    let path = documentDirectory().stringByAppendingPathComponent(kCachedBeaconRegions)
+    let cachedBeaconRegions = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [String: Int]
+    return cachedBeaconRegions
+  }
+  
+  func saveCachedBeaconRegions(cachedBeaconRegions: [String: Int]) {
+    let path = documentDirectory().stringByAppendingPathComponent(kCachedBeaconRegions)
+    NSKeyedArchiver.archiveRootObject(cachedBeaconRegions, toFile: path)
   }
   
 }
