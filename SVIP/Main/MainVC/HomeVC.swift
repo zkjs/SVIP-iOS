@@ -621,6 +621,13 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
   
+  
+  func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+    if region is CLBeaconRegion {
+      didExitBeaconRegion(region as! CLBeaconRegion)
+    }
+  }
+  
   private func didEnterBeaconRegion(region: CLBeaconRegion!) {
     let beaconRegions = StorageManager.sharedInstance().beaconRegions()
     print(region)
@@ -646,6 +653,7 @@ extension HomeVC: CLLocationManagerDelegate {
     if var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() {
       cachedBeaconRegions[region.identifier] = 0
       StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
+//     ZKJSTool.showMsg("你已离开")
     }
   }
   
