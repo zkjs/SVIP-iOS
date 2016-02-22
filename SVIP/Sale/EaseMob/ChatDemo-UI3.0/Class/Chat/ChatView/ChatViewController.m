@@ -543,7 +543,7 @@
 
 - (void)_sendFirstMessage {
   if ([self.firstMessage length] != 0) {
-    if ([self.firstMessage isEqualToString:@"Card"]) {
+    if ([self.firstMessage isEqualToString:@"Card"] ) {
       NSMutableDictionary *content = [NSMutableDictionary dictionary];
       content[@"roomtype"] = self.order.roomtype;
       content[@"arrivaldate"] = self.order.arrivaldate;
