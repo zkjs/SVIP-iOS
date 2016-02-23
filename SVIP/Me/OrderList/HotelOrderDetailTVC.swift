@@ -105,7 +105,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     showHUDInView(view, withLoading: "")
     tableView.scrollEnabled = false
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-
+      print(responseObject)
       if let dic = responseObject as? NSDictionary {
         print(dic)
         self.orderDetail = OrderDetailModel(dic: dic)
@@ -225,7 +225,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     let alertController = UIAlertController(title: "取消订单提示", message: "您真的要取消吗", preferredStyle: .Alert)
     let upgradeAction = UIAlertAction(title: "确认", style: .Default, handler: { (action: UIAlertAction) -> Void in
         self.cancleOrder()
-        self.gotoChatVC()
+      
     })
     alertController.addAction(upgradeAction)
     let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
@@ -242,10 +242,29 @@ class HotelOrderDetailTVC:  UITableViewController {
       }
       print(responseObject)
       self.chooseChatterWithData(responseObject)
-       self.sendMessageNotificationWithText("您好，我已取消订单，请跟进")
+//       self.sendMessageNotificationWithText("您好，我已取消订单，请跟进")
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         print(error)
     }
+  }
+  
+  func sendMessageNotificationWithText(text: String) {
+    // 发送环信消息
+    let userName = AccountManager.sharedInstance().userName
+    let txtChat = EMChatText(text: text)
+    let body = EMTextMessageBody(chatObject: txtChat)
+    let message = EMMessage(receiver: orderDetail.saleid, bodies: [body])
+    let ext = ["shopId": orderDetail.shopid,
+      "shopName": orderDetail.shopname,
+      "toName": "",
+      "fromName": userName]
+    message.ext = ext
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+    
+    
+    //    NSNotificationCenter.defaultCenter().postNotificationName(kSendMessageNotification, object: nil, userInfo: ["text": text])
+    delegate?.shouldSendTextMessage(text)
   }
 
   
@@ -259,7 +278,7 @@ class HotelOrderDetailTVC:  UITableViewController {
             if responsObjects == nil {
               return
             }
-            print(responsObjects)
+            self.gotoChatVC()
 //            self.navigationController?.popViewControllerAnimated(true)
             self.hideHUD()
           }
@@ -269,6 +288,29 @@ class HotelOrderDetailTVC:  UITableViewController {
         
     }
 
+  }
+  
+  
+  func pay(sender:UIButton) {
+    if orderDetail.orderstatus == "待支付" && orderDetail.paytype.integerValue == 1 {
+      let payVC = BookPayVC()
+      payVC.type = .Push
+      payVC.delegate = self
+      payVC.bkOrder = orderDetail
+      navigationController?.pushViewController(payVC, animated: true)
+    } else {
+      showHUDInView(view, withLoading: "")
+      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+        print(responseObject)
+        self.sendMessageNotificationWithText("订单已确认")
+        self.hideHUD()
+        self.navigationController?.popViewControllerAnimated(true)
+        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+          print(error)
+          self.hideHUD()
+      })
+    }
+    
   }
   
   func chooseChatterWithData(data: AnyObject) {
@@ -306,47 +348,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       }
     }
   }
-  
-  func pay(sender:UIButton) {
-    if orderDetail.orderstatus == "待支付" && orderDetail.paytype.integerValue == 1 {
-      let payVC = BookPayVC()
-      payVC.type = .Push
-      payVC.delegate = self
-      payVC.bkOrder = orderDetail
-      navigationController?.pushViewController(payVC, animated: true)
-    } else {
-      showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        print(responseObject)
-        self.sendMessageNotificationWithText("订单已确认")
-        self.hideHUD()
-        self.navigationController?.popViewControllerAnimated(true)
-        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          print(error)
-          self.hideHUD()
-      })
-    }
-    
-  }
-  
-  func sendMessageNotificationWithText(text: String) {
-    // 发送环信消息
-    let userName = AccountManager.sharedInstance().userName
-    let txtChat = EMChatText(text: text)
-    let body = EMTextMessageBody(chatObject: txtChat)
-    let message = EMMessage(receiver: orderDetail.saleid, bodies: [body])
-    let ext = ["shopId": orderDetail.shopid,
-      "shopName": orderDetail.shopname,
-      "toName": "",
-      "fromName": userName]
-    message.ext = ext
-    message.messageType = .eMessageTypeChat
-    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
-    
-   
-//    NSNotificationCenter.defaultCenter().postNotificationName(kSendMessageNotification, object: nil, userInfo: ["text": text])
-    delegate?.shouldSendTextMessage(text)
-  }
+
   
   func createConversationWithSalesID(salesID: String, salesName: String) {
     hideHUD()
@@ -361,7 +363,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       "toName": salesName,
       "fromName": userName]
     vc.conversation.ext = ext
-    vc.firstMessage = "Card"
+    vc.cancleMessage = "card"
     vc.order = order
     self.navigationController?.pushViewController(vc, animated: true)
   }
@@ -369,11 +371,10 @@ class HotelOrderDetailTVC:  UITableViewController {
   func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {
     let order = OrderDetailModel()
     order.roomtype = roomTypeLabel.text!
-    order.arrivaldate = arrivateLabel.text
-    order.leavedate = nil
-//    let url = NSURL(string: kImageURL)
+    order.arrivaldate = self.orderDetail.arrivaldate
+    order.leavedate = self.orderDetail.leavedate
+
     if let shoplogo = orderDetail.imgurl {
-//      let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
       let urlStr = kImageURL + "\(shoplogo)"
       order.imgurl = urlStr
     }

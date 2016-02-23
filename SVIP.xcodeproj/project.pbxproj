@@ -340,6 +340,7 @@
 		FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F56E1C031F4100C84601 /* IntegralVC.xib */; };
 		FAF813B61C1FB81E008D96E2 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */; };
 		FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */; };
+		FAF8730F1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF8730E1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m */; };
 		FAF92CB61C4414B800671300 /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF92CB51C4414B800671300 /* CommentsModel.swift */; };
 		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
 		FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA518F1C16C62900BF04F2 /* HomeVC.xib */; };
@@ -1163,6 +1164,8 @@
 		FAF7F56E1C031F4100C84601 /* IntegralVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralVC.xib; sourceTree = "<group>"; };
 		FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
 		FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountTVC.storyboard; sourceTree = "<group>"; };
+		FAF8730D1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSLocationHTTPSessionManager.h; sourceTree = "<group>"; };
+		FAF8730E1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSLocationHTTPSessionManager.m; sourceTree = "<group>"; };
 		FAF92CB51C4414B800671300 /* CommentsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
 		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		FAFA518F1C16C62900BF04F2 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
@@ -1479,6 +1482,8 @@
 				40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */,
 				4077DE051C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.h */,
 				4077DE061C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m */,
+				FAF8730D1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.h */,
+				FAF8730E1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -3489,6 +3494,7 @@
 				4077DD8F1C1EAF9900E13D6B /* UIImageView+HeadImage.m in Sources */,
 				4077DDF51C1EAF9900E13D6B /* EaseBubbleView+Location.m in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
+				FAF8730F1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m in Sources */,
 				4077DDE91C1EAF9900E13D6B /* EaseConversationListViewController.m in Sources */,
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
 				4077DD9F1C1EAF9900E13D6B /* EMTextView.m in Sources */,
