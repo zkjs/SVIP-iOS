@@ -11,6 +11,8 @@
 #import "NSString+ZKJS.h"
 #import "SVIP-Swift.h"
 #import "EaseMob.h"
+//#define vCFBundleVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey]
+//#define vCFBundleShortVersionStr [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 @implementation ZKJSJavaHTTPSessionManager
 
@@ -47,10 +49,22 @@
 - (NSString *)userName {
   return [AccountManager sharedInstance].userName;
 }
+- (NSString *)phone {
+  return [AccountManager sharedInstance].phone;
+}
 
 #pragma mark - 区域位置变化通知
 - (void)regionalPositionChangeNoticeWithUserID:(NSString *)userID locID:(NSString *)locID shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSDictionary * dic = @{@"userid":userID,@"shopid":shopID,@"locid":locID};
+  NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
+  NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+  CFShow((__bridge CFTypeRef)(infoDictionary));
+  // app版本
+  NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+  // app build版本
+  NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
+  NSString * info = [NSString stringWithFormat:@"iOS%@;%@;%@;%@",phoneVersion,app_Version,app_build,[self phone]];
+  NSLog(@"%@",info);
+  NSDictionary * dic = @{@"userid":userID,@"shopid":shopID,@"locid":locID,@"info":info};
   [self POST:@"arrive/notice" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //    NSLog(@"%@", responseObject);
     success(task, responseObject);

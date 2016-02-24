@@ -274,6 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   func fetchBeaconRegions() {
     ZKJSHTTPSessionManager.sharedInstance().getBeaconRegionListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      print(responseObject)
       var beaconRegions = [String: [String: String]]()
       if let array = responseObject as? NSArray {
         for beaconInfo in array {
