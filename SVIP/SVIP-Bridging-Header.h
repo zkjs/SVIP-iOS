@@ -28,6 +28,7 @@
 #import "TimesSquare.h"//日历选择
 #import "HexColors.h"
 #import "ZKJSHTTPSMSSessionManager.h"
+#import "ZKJSLocationHTTPSessionManager.h"
 #import "JCTagListView.h"
 #import "EDStarRating.h"
 #import "XLSegmentedPagerTabStripViewController.h"

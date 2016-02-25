@@ -140,13 +140,13 @@ class StorageManager: NSObject {
     return images
   }
   
-  func cachedBeaconRegions() -> [String: Int]? {
+  func cachedBeaconRegions() -> [NSNumber: Int]? {
     let path = documentDirectory().stringByAppendingPathComponent(kCachedBeaconRegions)
-    let cachedBeaconRegions = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [String: Int]
+    let cachedBeaconRegions = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [NSNumber: Int]
     return cachedBeaconRegions
   }
   
-  func saveCachedBeaconRegions(cachedBeaconRegions: [String: Int]) {
+  func saveCachedBeaconRegions(cachedBeaconRegions: [NSNumber: Int]) {
     let path = documentDirectory().stringByAppendingPathComponent(kCachedBeaconRegions)
     NSKeyedArchiver.archiveRootObject(cachedBeaconRegions, toFile: path)
   }
