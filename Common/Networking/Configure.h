@@ -29,7 +29,7 @@
 //#define kEaseMobAppKey @"zkjs#prosvip"  // 环信
 
 //位置
-#define kBaseLocationURL @"http://120.25.80.143:3000/lbs/loc/beacon/" //推送/更新室内位置
-#define kJavaBaseGPSURL @"http://120.25.80.143:3000/lbs/loc/gps/" //推送/更新室外位置
+#define kBaseLocationURL @"http://192.168.0.138:8080/lbs/v1/loc/beacon" //推送/更新室内位置
+#define kJavaBaseGPSURL @"http://120.25.80.143:3000/lbs/loc/gps" //推送/更新室外位置
 
 #endif /* Configure_h */
