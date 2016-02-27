@@ -35,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     setupWindow()
     setupNotification()
 //    fetchShops()
-    fetchBeaconRegions()
 //    setupUMSocial()//UM
     networkState()
 //    setupBackgroundFetch()
@@ -272,60 +271,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    }
 //  }
   
-  func fetchBeaconRegions() {
-    ZKJSHTTPSessionManager.sharedInstance().getBeaconRegionListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
-      var beaconRegions = [String: [String: String]]()
-      if let array = responseObject as? NSArray {
-        for beaconInfo in array {
-          var shopID = ""
-          var UUID = ""
-          var major = ""
-          var minor = ""
-          var locid = ""
-          var locdesc = ""
-          var remark = ""
-          if let info = beaconInfo["shopid"] as? String {
-            shopID = info
-          }
-          if let info = beaconInfo["uuid"] as? String {
-            UUID = info.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
-          }
-          if let info = beaconInfo["major"] as? String {
-            major = info
-          }
-          if let info = beaconInfo["minior"] as? String {
-            minor = info
-          }
-          if let info = beaconInfo["locid"] as? String {
-            locid = info
-          }
-          if let info = beaconInfo["locdesc"] as? String {
-            locdesc = info
-          }
-          if let info = beaconInfo["remark"] as? String {
-            remark = info
-          }
-          let beacon = [
-            "shopid": shopID,
-            "uuid": UUID,
-            "major": major,
-            "minor": minor,
-            "locid": locid,
-            "locdesc": locdesc,
-            "remark": remark
-          ]
-          let regionKey = "\(shopID)-\(locid)"
-          beaconRegions[regionKey] = beacon
-        }
-        StorageManager.sharedInstance().saveBeaconRegions(beaconRegions)
-      }
-      
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      
-    })
-  }
-
   //UM
   func setupUMSocial() {
 //    UMSocialData.openLog(true);

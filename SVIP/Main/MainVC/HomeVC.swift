@@ -15,8 +15,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   let Identifier = "SettingVCCell"
   let locationManager = CLLocationManager()
-  let amapLocationManager = AMapLocationManager()
-  let naviManager = AMapNaviManager()
   
   var delegate:refreshHomeVCDelegate?
   var bluetoothManager = CBCentralManager()
@@ -36,9 +34,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var timer = NSTimer!()
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
-  var beacon = CLBeaconRegion()
-  let BEACONUUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
-  var major = NSNumber()
+  
+  let beaconMonitor = BeaconMonitor.sharedMonitor
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -459,76 +456,24 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       print(".Unsupported")
     }
   }
-}
-
-// MARK: - AMapLocationManagerDelegate
-
-extension HomeVC: AMapLocationManagerDelegate {
   
-  private func setupAMapLocationMonitor() {
-    naviManager.delegate = self
-    amapLocationManager.delegate = self
-    
-    //设置允许后台定位参数，保持不会被系统挂起
-    amapLocationManager.pausesLocationUpdatesAutomatically = false
-    amapLocationManager.allowsBackgroundLocationUpdates = true
-    
-    //开始持续定位
-    amapLocationManager.startUpdatingLocation()
-  }
-  
-  func amapLocationManager(manager: AMapLocationManager!, didUpdateLocation location: CLLocation!) {
-    //获取客户当前的地理位置
-    //    let coordinate = location.coordinate
-    //    latitude = coordinate.latitude
-    //    longitude = coordinate.longitude
-    //    let startPoint = AMapNaviPoint.locationWithLatitude(CGFloat(latitude), longitude: CGFloat(longitude))
-    //    let endPoint = AMapNaviPoint.locationWithLatitude(22.596568, longitude: 113.989823)  // 国家超级计算深圳中心
-    //    if let startPoint = startPoint,
-    //      let endPoint = endPoint {
-    //      routeCallWithStartPoint(startPoint, endPoint: endPoint)
-    //    }
-  }
-  
-  func amapLocationManager(manager: AMapLocationManager!, didFailWithError error: NSError!) {
-    print(error.description)
-  }
-  
-}
-
-// MARK: - AMapNaviManagerDelegate
-
-extension HomeVC: AMapNaviManagerDelegate {
-  
-  //路径规划
-  func routeCallWithStartPoint(startPoint: AMapNaviPoint, endPoint: AMapNaviPoint) {
-    //驾车路径规划
-    naviManager.calculateDriveRouteWithStartPoints([startPoint], endPoints: [endPoint], wayPoints: nil, drivingStrategy: AMapNaviDrivingStrategy.Default)
-  }
-  
-  // 算路成功的回调函数
-  func naviManagerOnCalculateRouteSuccess(naviManager: AMapNaviManager!) {
-    // App在后台时申请一段时间执行
-    var bgTask = UIBackgroundTaskIdentifier()
-    bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithName("") { () -> Void in
-      // Clean up
-      UIApplication.sharedApplication().endBackgroundTask(bgTask)
-      bgTask = UIBackgroundTaskInvalid
+  func highLight() {
+    countTimer++
+    //    let image = AccountManager.sharedInstance().avatarImage
+    if self.countTimer % 2 == 0 {
+      //      privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
+      UIView.animateWithDuration(0.3, animations: { () -> Void in
+        self.privilegeButton.alpha = 0.3
+      })
     }
-    
-    // Start the long-running task and return immediately.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
-      // 后台任务
-      print("距离\(naviManager.naviRoute.routeLength)米")
-      //    print("\(naviManager.naviRoute.routeTime)秒")
-      
-      UIApplication.sharedApplication().endBackgroundTask(bgTask)
-      bgTask = UIBackgroundTaskInvalid
+    else {
+      UIView.animateWithDuration(0.3, animations: { () -> Void in
+        self.privilegeButton.alpha = 1
+      })
+      //      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
     }
   }
-  
 }
-
 
 // MARK: - CLLocationManagerDelegate
 
@@ -549,11 +494,10 @@ extension HomeVC: CLLocationManagerDelegate {
       locationManager.requestAlwaysAuthorization()
       return
     }
-    self.beacon = CLBeaconRegion(proximityUUID: NSUUID.init(UUIDString: BEACONUUID)!, identifier: "1")
+
+    //开始监听beacon
+    beaconMonitor.startMonitoring()
     
-//    setupBeaconMonitor()
-//    setupAMapLocationMonitor()
-    //    setupGPSMonitor()
   }
   
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -562,289 +506,19 @@ extension HomeVC: CLLocationManagerDelegate {
       alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
       presentViewController(alertView, animated: true, completion: nil)
     } else {
-      self.locationManager.startMonitoringForRegion(self.beacon)
-      self.locationManager.startRangingBeaconsInRegion(self.beacon)
+      //开始监听beacon
+      beaconMonitor.startMonitoring()
     }
   }
   
   
   func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
-    if region.identifier == "DetermineCurrentRegionState" {
+    /*if region.identifier == "DetermineCurrentRegionState" {
       print("didDetermineState: \(state.rawValue)")
       if state != CLRegionState.Inside {
         StorageManager.sharedInstance().updateLastBeacon(nil)
       }
-    }
+    }*/
   }
   
-  func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-    if region is CLBeaconRegion {
-      self.locationManager.startRangingBeaconsInRegion(self.beacon)
-//      didEnterBeaconRegion(region as! CLBeaconRegion)
-    }
-  }
-  
-  func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
-    //测试POST
-    if region.proximityUUID.UUIDString != BEACONUUID {
-      self.locationManager.stopMonitoringForRegion(region)
-      self.locationManager.stopRangingBeaconsInRegion(region)
-    }
-    if beacons.count < 1 {
-      return
-    }
-//    var beaconsFound = [CLBeacon]()
-    for beacon  in beacons {
-//      if beaconsFound.filter({
-//        return beacon.proximityUUID.UUIDString == $0.proximityUUID.UUIDString && beacon.major == $0.major && beacon.minor == $0.minor
-//      }).count > 0 {
-//        continue
-//      }
-//      beaconsFound.append(beacon)
-//       self.major  = beacon.major
-      didEnterBeaconRegion(beacon)
-    }
-    
-   
-  }
-  
-  
-  func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-    if region is CLBeaconRegion {
-      didExitBeaconRegion(region as! CLBeaconRegion)
-    }
-  }
-  
-  private func didEnterBeaconRegion(region: CLBeacon!) {
-    let timeStamp = Int32(NSDate().timeIntervalSince1970)
-    if var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() {
-      if cachedBeaconRegions[region.major]! == 1 {
-        print("1")
-        // 还在区域内，不发推送
-      } else {
-        ZKJSLocationHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithMajor(String(region.major), minior: String(region.minor), uuid:BEACONUUID,sensorid:nil, timestamp:timeStamp, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
-          print(responObjects)
-          }, failure: { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-            print(error)
-        })
-        cachedBeaconRegions[region.major] = 1
-        StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
-      }
-    } else {
-      ZKJSLocationHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithMajor(String(region.major), minior: String(region.minor), uuid: BEACONUUID, sensorid: nil, timestamp: timeStamp, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
-        print(responObjects)
-        }, failure: { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-          
-      })
-      let cachedBeaconRegions: [NSNumber: Int] = [region.major: 1]
-      StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
-    }
-
-    // let beaconRegions = StorageManager.sharedInstance().beaconRegions()
-//    if let beaconRegion = beaconRegions[region.identifier]  {
-//      StorageManager.sharedInstance().updateLastBeacon(beaconRegion)
-//      if var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() {
-//        if cachedBeaconRegions[region.major!]! == 1 {
-//          print("1")
-//          // 还在区域内，不发推送
-//        } else {
-//          sendEnterRegionPacketWithBeacon(beaconRegion)
-//          cachedBeaconRegions[region.major!] = 1
-//          StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
-//        }
-//      } else {
-//        sendEnterRegionPacketWithBeacon(beaconRegion)
-//        let cachedBeaconRegions: [NSNumber: Int] = [region.major!: 1]
-//        StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
-//      }
-//    }
-    
-  }
-  
-  private func didExitBeaconRegion(region: CLBeaconRegion!) {
-    if var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() {
-      cachedBeaconRegions[region.major!] = 0
-      StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
-//     ZKJSTool.showMsg("你已离开")
-    }
-  }
-  
-  private func sendExitRegionPacketWithBeacon(beacon: [String: String]) {
-    
-  }
-  
-  private func sendEnterRegionPacketWithBeacon(beacon: [String: String]) {
-    if AccountManager.sharedInstance().isLogin() == false {
-      return
-    }
-    
-    guard let shopID = beacon["shopid"] else { return }
-    guard let locid = beacon["locid"] else { return }
-    guard let locdesc = beacon["locdesc"] else { return }
-    let userID = AccountManager.sharedInstance().userID
-    var userName = AccountManager.sharedInstance().userName
-    let sex = AccountManager.sharedInstance().sex
-    let topic = locid
-    var orderDict = [String: AnyObject]()
-    if let order = StorageManager.sharedInstance().lastOrder() {
-      orderDict["shopid"] = order.shopid
-      orderDict["fullname"] = order.fullname
-      orderDict["guest"] = order.guest
-      orderDict["rooms"] = order.rooms
-      orderDict["room_type"] = order.room_type
-      orderDict["room_rate"] = order.room_rate
-      orderDict["arrival_date"] = order.arrival_date
-      orderDict["departure_date"] = order.departure_date
-      orderDict["dayInt"] = order.dayInt
-      orderDict["reservation_no"] = order.reservation_no
-      orderDict["created"] = order.created
-      orderDict["status"] = order.status
-    }
-    var extra = [String: AnyObject]()
-    extra["locdesc"] = locdesc
-    extra["locid"] = locid
-    extra["shopid"] = shopID
-    extra["userid"] = userID
-    extra["username"] = userName
-    extra["sex"] = sex
-    extra["order"] = orderDict
-    let json = ZKJSTool.convertJSONStringFromDictionary(extra)
-    let data = json.dataUsingEncoding(NSUTF8StringEncoding)
-    let option = YBPublish2Option()
-    var gender = "先生"
-    if sex == "0" {
-      gender = "女士"
-    }
-    if userName.isEmpty {
-      userName = "游客"
-    }
-    let alert = "\(userName)\(gender) 到达 \(locdesc)"
-    let badge = NSNumber(integer: 1)
-    let sound = "default"
-    //    var avatarBase64 = ""
-    //    if let avatar = AccountManager.sharedInstance().avatarImage {
-    //      var avatarData = UIImageJPEGRepresentation(avatar, 1.0)!
-    //      var i = 0
-    //      while avatarData.length / 1024 > 30 {
-    //        let persent = CGFloat(100 - i++) / 100.0
-    //        avatarData = UIImageJPEGRepresentation(avatar, persent)!
-    //      }
-    //      avatarBase64 = avatarData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-    //    }
-    //    let avatarURL = AccountManager.sharedInstance().avatarURL
-    let apnDict = ["aps": ["alert": ["body": alert, "title": "到店通知"], "badge": badge, "sound": sound, "category": "arrivalInfo"], "extra": extra]
-    print(apnDict)
-    let apnOption = YBApnOption(apnDict: apnDict as [NSObject : AnyObject])
-    option.apnOption = apnOption
-    YunBaService.publish2(topic, data: data, option: option) { (success: Bool, error: NSError!) -> Void in
-      if success {
-        print("[result] publish2 data(\(json)) to topic(\(topic)) succeed")
-      } else {
-        print("[result] publish data(\(json)) to topic(\(topic)) failed: \(error), recovery suggestion: \(error.localizedRecoverySuggestion)")
-      }
-    }
-    if activate == true {
-      // 显示特权按钮
-      //根据酒店区域获取用户特权
-      //      ZKJSJavaHTTPSessionManager.sharedInstance().getPrivilegeWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responsObjcet: AnyObject!) -> Void in
-      ////        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-      ////          target:self,selector:Selector("highLight"),
-      ////          userInfo:nil,repeats:true)
-      //        if let array = responsObjcet as? [[String: AnyObject]] {
-      //          if array.count > 0 {
-      //            for data in array {
-      //              let privilege = PrivilegeModel(dic: data)
-      //              self.privilegeArray.append(privilege)
-      //            }
-      //            self.privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-      //            self.privilegeButton.userInteractionEnabled = true
-      //          }
-      //        }
-      //        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      //      }
-      if privilegeArray.count != 0 {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-          target:self, selector:Selector("highLight"),
-          userInfo:nil, repeats:true)
-        self.privilegeButton.userInteractionEnabled = true
-      }
-    }
-    //位置区域变化通知
-    ZKJSJavaHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithUserID(userID, locID: locid, shopID: shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-      if let data = responsObject as? [String: AnyObject] {
-        if let set = data["set"] as? NSNumber {
-          if set.boolValue == true {
-            print("告诉后台成功")
-          }
-        }
-      }
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
-    }
-  }
-  
-  func highLight() {
-    countTimer++
-    //    let image = AccountManager.sharedInstance().avatarImage
-    if self.countTimer % 2 == 0 {
-      //      privilegeButton.setBackgroundImage(UIImage(named: "ic_xintequan"), forState: UIControlState.Normal)
-      UIView.animateWithDuration(0.3, animations: { () -> Void in
-        self.privilegeButton.alpha = 0.3
-      })
-    }
-    else {
-      UIView.animateWithDuration(0.3, animations: { () -> Void in
-        self.privilegeButton.alpha = 1
-      })
-      //      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
-    }
-  }
-  
-  private func setupBeaconMonitor() {
-    removeAllMonitoredRegions()
-    beaconRegions = StorageManager.sharedInstance().beaconRegions()
-    for key in beaconRegions.keys {
-      if let beaconInfo = beaconRegions[key] {
-        let uuid = beaconInfo["uuid"]
-        let majorString = beaconInfo["major"]
-        let minorString = beaconInfo["minor"]
-        let identifier = key
-        var major = 0
-        var minor = 0
-        if let majorValue = Int((majorString)!) {
-          major = majorValue
-        }
-        if let minorValue = Int((minorString)!) {
-          minor = minorValue
-        }
-        
-        if minor == 0 && major == 0 {
-          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, identifier: identifier)
-          beaconRegion.notifyOnExit = true
-          beaconRegion.notifyOnEntry = true
-          beaconRegion.notifyEntryStateOnDisplay = true
-          locationManager.startMonitoringForRegion(beaconRegion)
-        } else if minor == 0 {
-          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, major: CLBeaconMajorValue(major), identifier: identifier)
-          beaconRegion.notifyOnExit = true
-          beaconRegion.notifyEntryStateOnDisplay = true
-          beaconRegion.notifyOnEntry = true
-          locationManager.startMonitoringForRegion(beaconRegion)
-        } else {
-          let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid!)!, major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: identifier)
-          beaconRegion.notifyOnExit = true
-          beaconRegion.notifyOnEntry = true
-          beaconRegion.notifyEntryStateOnDisplay = true
-          locationManager.startMonitoringForRegion(beaconRegion)
-        }
-      }
-    }
-  }
-  
-  private func removeAllMonitoredRegions() {
-    for monitoredRegion in locationManager.monitoredRegions {
-      let region = monitoredRegion as! CLBeaconRegion
-      locationManager.stopMonitoringForRegion(region)
-    }
-  }
 }

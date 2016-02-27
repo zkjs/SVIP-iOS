@@ -49,7 +49,7 @@
 }
 
 #pragma mark - 推送/更新室内位置
-- (void)regionalPositionChangeNoticeWithMajor:(NSString *)major minior:(NSString *)minior uuid:(NSString *)uuid sensorid:(NSString *)sensorid timestamp:(integer_t)timestamp success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (void)regionalPositionChangeNoticeWithMajor:(NSString *)major minior:(NSString *)minior uuid:(NSString *)uuid sensorid:(NSString *)sensorid timestamp:(NSInteger)timestamp success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
 
 //  NSDictionary * dic = @{@"locid":major,@"major":major,@"minior":minior,@"uuid":uuid,@"sensorid":@"",@"timestamp":[NSNumber numberWithInt:timestamp],@"token":[self token]};
     NSDictionary * dic = @{@"locid":@"1",@"major":@"2",@"minior":@"3",@"uuid":@"uuid-uuid-uuid-uuid",@"sensorid":@"sensorid",@"timestamp":@1455870706863,@"token":@"head.payload.sign"};
