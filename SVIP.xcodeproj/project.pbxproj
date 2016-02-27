@@ -235,6 +235,26 @@
 		40E3A18A1BFEFA8300516EC4 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A1861BFEFA8200516EC4 /* SearchTVC.swift */; };
 		40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A1871BFEFA8200516EC4 /* SearchTVC.xib */; };
 		40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E3A22F1BFF01C300516EC4 /* libopencore-amrnb.a */; };
+		40E8F0131C80691400D6F605 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0001C80691400D6F605 /* Alamofire.swift */; };
+		40E8F0141C80691400D6F605 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0011C80691400D6F605 /* Download.swift */; };
+		40E8F0151C80691400D6F605 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0021C80691400D6F605 /* Error.swift */; };
+		40E8F0161C80691400D6F605 /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E8F0031C80691400D6F605 /* Info-tvOS.plist */; };
+		40E8F0171C80691400D6F605 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E8F0041C80691400D6F605 /* Info.plist */; };
+		40E8F0181C80691400D6F605 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0051C80691400D6F605 /* Manager.swift */; };
+		40E8F0191C80691400D6F605 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0061C80691400D6F605 /* MultipartFormData.swift */; };
+		40E8F01A1C80691400D6F605 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0071C80691400D6F605 /* NetworkReachabilityManager.swift */; };
+		40E8F01B1C80691400D6F605 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0081C80691400D6F605 /* Notifications.swift */; };
+		40E8F01C1C80691400D6F605 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0091C80691400D6F605 /* ParameterEncoding.swift */; };
+		40E8F01D1C80691400D6F605 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F00A1C80691400D6F605 /* Request.swift */; };
+		40E8F01E1C80691400D6F605 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F00B1C80691400D6F605 /* Response.swift */; };
+		40E8F01F1C80691400D6F605 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F00C1C80691400D6F605 /* ResponseSerialization.swift */; };
+		40E8F0201C80691400D6F605 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F00D1C80691400D6F605 /* Result.swift */; };
+		40E8F0211C80691400D6F605 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F00E1C80691400D6F605 /* ServerTrustPolicy.swift */; };
+		40E8F0221C80691400D6F605 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F00F1C80691400D6F605 /* Stream.swift */; };
+		40E8F0231C80691400D6F605 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0101C80691400D6F605 /* Timeline.swift */; };
+		40E8F0241C80691400D6F605 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0111C80691400D6F605 /* Upload.swift */; };
+		40E8F0251C80691400D6F605 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0121C80691400D6F605 /* Validation.swift */; };
+		40E8F03A1C81409F00D6F605 /* BeaconMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0391C81409F00D6F605 /* BeaconMonitor.swift */; };
 		40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D791C1EEE58009C0311 /* MeTVC.swift */; };
 		40EE4D801C1EEF70009C0311 /* MeTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */; };
 		40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE4D871C1F0836009C0311 /* SettingTVC.swift */; };
@@ -1044,6 +1064,27 @@
 		40E3A28D1BFF01C300516EC4 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		40E3A28E1BFF01C300516EC4 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		40E3A28F1BFF01C300516EC4 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		40E8EFFF1C80691400D6F605 /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
+		40E8F0001C80691400D6F605 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		40E8F0011C80691400D6F605 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		40E8F0021C80691400D6F605 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		40E8F0031C80691400D6F605 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
+		40E8F0041C80691400D6F605 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40E8F0051C80691400D6F605 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		40E8F0061C80691400D6F605 /* MultipartFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
+		40E8F0071C80691400D6F605 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		40E8F0081C80691400D6F605 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		40E8F0091C80691400D6F605 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		40E8F00A1C80691400D6F605 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		40E8F00B1C80691400D6F605 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		40E8F00C1C80691400D6F605 /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerialization.swift; sourceTree = "<group>"; };
+		40E8F00D1C80691400D6F605 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		40E8F00E1C80691400D6F605 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		40E8F00F1C80691400D6F605 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		40E8F0101C80691400D6F605 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		40E8F0111C80691400D6F605 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
+		40E8F0121C80691400D6F605 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		40E8F0391C81409F00D6F605 /* BeaconMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconMonitor.swift; sourceTree = "<group>"; };
 		40EE4D791C1EEE58009C0311 /* MeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTVC.swift; sourceTree = "<group>"; };
 		40EE4D7F1C1EEF70009C0311 /* MeTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MeTVC.storyboard; sourceTree = "<group>"; };
 		40EE4D871C1F0836009C0311 /* SettingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -1394,6 +1435,7 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
+				40E8F0381C81408600D6F605 /* Monitoring */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
 				B2564D351B4BFAED0098608F /* LaunchAnimation */,
 				FA02C5811C0D42B300D0D439 /* Login */,
@@ -2569,6 +2611,7 @@
 		40E3A20E1BFF01C300516EC4 /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				40E8EFFE1C80691400D6F605 /* Alamofire */,
 				40E3A20F1BFF01C300516EC4 /* DeviceHelper */,
 				40E3A2341BFF01C300516EC4 /* MBProgressHUD */,
 				40E3A2371BFF01C300516EC4 /* MWPhotoBrowser */,
@@ -2799,6 +2842,41 @@
 				40E3A28E1BFF01C300516EC4 /* PSTGridLayoutSection.m */,
 			);
 			path = PSTCollectionView;
+			sourceTree = "<group>";
+		};
+		40E8EFFE1C80691400D6F605 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				40E8EFFF1C80691400D6F605 /* Alamofire.h */,
+				40E8F0001C80691400D6F605 /* Alamofire.swift */,
+				40E8F0011C80691400D6F605 /* Download.swift */,
+				40E8F0021C80691400D6F605 /* Error.swift */,
+				40E8F0031C80691400D6F605 /* Info-tvOS.plist */,
+				40E8F0041C80691400D6F605 /* Info.plist */,
+				40E8F0051C80691400D6F605 /* Manager.swift */,
+				40E8F0061C80691400D6F605 /* MultipartFormData.swift */,
+				40E8F0071C80691400D6F605 /* NetworkReachabilityManager.swift */,
+				40E8F0081C80691400D6F605 /* Notifications.swift */,
+				40E8F0091C80691400D6F605 /* ParameterEncoding.swift */,
+				40E8F00A1C80691400D6F605 /* Request.swift */,
+				40E8F00B1C80691400D6F605 /* Response.swift */,
+				40E8F00C1C80691400D6F605 /* ResponseSerialization.swift */,
+				40E8F00D1C80691400D6F605 /* Result.swift */,
+				40E8F00E1C80691400D6F605 /* ServerTrustPolicy.swift */,
+				40E8F00F1C80691400D6F605 /* Stream.swift */,
+				40E8F0101C80691400D6F605 /* Timeline.swift */,
+				40E8F0111C80691400D6F605 /* Upload.swift */,
+				40E8F0121C80691400D6F605 /* Validation.swift */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		40E8F0381C81408600D6F605 /* Monitoring */ = {
+			isa = PBXGroup;
+			children = (
+				40E8F0391C81409F00D6F605 /* BeaconMonitor.swift */,
+			);
+			name = Monitoring;
 			sourceTree = "<group>";
 		};
 		40EE4D781C1EEE34009C0311 /* Me */ = {
@@ -3273,6 +3351,7 @@
 			files = (
 				FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */,
 				40E39E351BFEF43800516EC4 /* OrderCell.xib in Resources */,
+				40E8F0161C80691400D6F605 /* Info-tvOS.plist in Resources */,
 				40D585E01C22AD6700C5267D /* RatingCell.xib in Resources */,
 				40817D1A1B8EDA7300EF188F /* NewItemFooterView.xib in Resources */,
 				40E3A17E1BFEFA6400516EC4 /* HotelCell.xib in Resources */,
@@ -3362,6 +3441,7 @@
 				40E3A1751BFEFA6400516EC4 /* FloatingWindowVC.xib in Resources */,
 				4077C7A21C26578F000DD7DC /* server.der in Resources */,
 				B2A642271B47C2A700AF0F28 /* BookVC.xib in Resources */,
+				40E8F0171C80691400D6F605 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3439,6 +3519,7 @@
 				40E39E431BFEF43800516EC4 /* OrderHistoryListTVC.swift in Sources */,
 				FAF7F5681C030E8B00C84601 /* CustomerServiceCell.swift in Sources */,
 				4077DDDA1C1EAF9900E13D6B /* EaseMessageModel.m in Sources */,
+				40E8F0181C80691400D6F605 /* Manager.swift in Sources */,
 				4077DDDE1C1EAF9900E13D6B /* NSObject+EaseMob.m in Sources */,
 				FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */,
 				B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */,
@@ -3473,6 +3554,7 @@
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				FAFBFB781C228E3B00A1126B /* RecommandCell.swift in Sources */,
 				4077DDD31C1EAF9900E13D6B /* PSTGridLayoutInfo.m in Sources */,
+				40E8F0151C80691400D6F605 /* Error.swift in Sources */,
 				4077DDF21C1EAF9900E13D6B /* EaseMessageTimeCell.m in Sources */,
 				4077DDBE1C1EAF9900E13D6B /* EMSDWebImageDownloaderOperation.m in Sources */,
 				40BBFFA01B9EDB3300D13F77 /* NameTVC.swift in Sources */,
@@ -3481,6 +3563,8 @@
 				B20812CC1B8DD8650070D96F /* Persistence.swift in Sources */,
 				4077DDDC1C1EAF9900E13D6B /* NSDate+Category.m in Sources */,
 				FAFBC44A1C33B404001E9155 /* BrowserImageView.m in Sources */,
+				40E8F0251C80691400D6F605 /* Validation.swift in Sources */,
+				40E8F03A1C81409F00D6F605 /* BeaconMonitor.swift in Sources */,
 				40D585DB1C22AD5200C5267D /* PhoneCell.swift in Sources */,
 				FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */,
 				40D585E21C22B0D100C5267D /* SalesModel.swift in Sources */,
@@ -3490,14 +3574,18 @@
 				4077DDC31C1EAF9900E13D6B /* UIButton+EMWebCache.m in Sources */,
 				4077DDAC1C1EAF9900E13D6B /* wav.mm in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
+				40E8F0241C80691400D6F605 /* Upload.swift in Sources */,
 				FAF249601BFF1008001E7E41 /* SearchResultVC.swift in Sources */,
 				4077DD8F1C1EAF9900E13D6B /* UIImageView+HeadImage.m in Sources */,
 				4077DDF51C1EAF9900E13D6B /* EaseBubbleView+Location.m in Sources */,
+				40E8F0141C80691400D6F605 /* Download.swift in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
 				FAF8730F1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m in Sources */,
 				4077DDE91C1EAF9900E13D6B /* EaseConversationListViewController.m in Sources */,
+				40E8F0191C80691400D6F605 /* MultipartFormData.swift in Sources */,
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
 				4077DD9F1C1EAF9900E13D6B /* EMTextView.m in Sources */,
+				40E8F0131C80691400D6F605 /* Alamofire.swift in Sources */,
 				FAF206141C3278CC0052EF74 /* BusinessDetailTVC.swift in Sources */,
 				4077DDC01C1EAF9900E13D6B /* EMSDWebImagePrefetcher.m in Sources */,
 				4077DD9A1C1EAF9900E13D6B /* GroupSubjectChangingViewController.m in Sources */,
@@ -3505,10 +3593,13 @@
 				4077DD9C1C1EAF9900E13D6B /* RealtimeSearchUtil.m in Sources */,
 				4077DDF41C1EAF9900E13D6B /* EaseBubbleView+Image.m in Sources */,
 				4077DDB91C1EAF9900E13D6B /* DACircularProgressView.m in Sources */,
+				40E8F01C1C80691400D6F605 /* ParameterEncoding.swift in Sources */,
 				FAF40DEA1BF0807E002C77A6 /* OrderModel.swift in Sources */,
 				4077DDDB1C1EAF9900E13D6B /* EaseUserModel.m in Sources */,
 				4077DDBA1C1EAF9900E13D6B /* EMSDImageCache.m in Sources */,
+				40E8F01E1C80691400D6F605 /* Response.swift in Sources */,
 				FAFBFB7B1C22CF3000A1126B /* BookHeaderView.swift in Sources */,
+				40E8F0211C80691400D6F605 /* ServerTrustPolicy.swift in Sources */,
 				4077DDB51C1EAF9900E13D6B /* MWPhotoBrowser.m in Sources */,
 				FAFE15A51C3A66CC0051410C /* LeisureOrderDetailTVC.swift in Sources */,
 				4077DDAB1C1EAF9900E13D6B /* amrFileCodec.mm in Sources */,
@@ -3527,6 +3618,7 @@
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				40D585CE1C22A8D900C5267D /* SalesDetailVC.swift in Sources */,
 				40E39E3F1BFEF43800516EC4 /* OrderDetailsVC.swift in Sources */,
+				40E8F01A1C80691400D6F605 /* NetworkReachabilityManager.swift in Sources */,
 				4077DDF31C1EAF9900E13D6B /* EaseBubbleView+File.m in Sources */,
 				4077DDEC1C1EAF9900E13D6B /* EaseRefreshTableViewController.m in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
@@ -3555,12 +3647,14 @@
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
 				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
+				40E8F01D1C80691400D6F605 /* Request.swift in Sources */,
 				4077DE011C1EAF9900E13D6B /* EaseRecordView.m in Sources */,
 				4077DE021C1EAF9900E13D6B /* EaseConversationCell.m in Sources */,
 				40095A001C2149B900D3DA61 /* InvoiceModel.swift in Sources */,
 				4077DDF91C1EAF9900E13D6B /* EaseBubbleView.m in Sources */,
 				4077DDDD1C1EAF9900E13D6B /* NSDateFormatter+Category.m in Sources */,
 				40EE4D881C1F0836009C0311 /* SettingTVC.swift in Sources */,
+				40E8F0201C80691400D6F605 /* Result.swift in Sources */,
 				40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */,
 				B2F4A9EC1B7EE229000DBD81 /* TSQCalendarMonthHeaderCell.m in Sources */,
 				40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */,
@@ -3617,6 +3711,7 @@
 				4077DE071C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m in Sources */,
 				40E3A1741BFEFA6400516EC4 /* FloatingWindowVC.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
+				40E8F0231C80691400D6F605 /* Timeline.swift in Sources */,
 				4077DDFB1C1EAF9900E13D6B /* EaseChatToolbarItem.m in Sources */,
 				4077DDF01C1EAF9900E13D6B /* EaseBaseMessageCell.m in Sources */,
 				4077DDB01C1EAF9900E13D6B /* MBProgressHUD+Add.m in Sources */,
@@ -3625,6 +3720,7 @@
 				4077DDF61C1EAF9900E13D6B /* EaseBubbleView+Text.m in Sources */,
 				FAA05E2D1C0995BF008605B7 /* ContactModel.swift in Sources */,
 				FAF02EF71C159DB000B86B28 /* SalesVC.swift in Sources */,
+				40E8F01F1C80691400D6F605 /* ResponseSerialization.swift in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
 				FAFB96301C1981AA0031EE09 /* ComprehensiveVC.swift in Sources */,
 				40E39E341BFEF43800516EC4 /* OrderCell.swift in Sources */,
@@ -3665,6 +3761,7 @@
 				4077DDB61C1EAF9900E13D6B /* MWTapDetectingImageView.m in Sources */,
 				4077C7A31C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m in Sources */,
 				4077DDA31C1EAF9900E13D6B /* EaseUI.m in Sources */,
+				40E8F0221C80691400D6F605 /* Stream.swift in Sources */,
 				4077DDB21C1EAF9900E13D6B /* MWGridCell.m in Sources */,
 				4077DDFA1C1EAF9900E13D6B /* EaseChatToolbar.m in Sources */,
 				4077DDA91C1EAF9900E13D6B /* EMCDDeviceManager+Remind.m in Sources */,
@@ -3675,6 +3772,7 @@
 				4077DDA21C1EAF9900E13D6B /* EMSearchDisplayController.m in Sources */,
 				FAFE15A11C3A669E0051410C /* KTVOrderDetailTVC.swift in Sources */,
 				4077DDD51C1EAF9900E13D6B /* PSTGridLayoutRow.m in Sources */,
+				40E8F01B1C80691400D6F605 /* Notifications.swift in Sources */,
 				4077DDB71C1EAF9900E13D6B /* MWTapDetectingView.m in Sources */,
 				4077DDC21C1EAF9900E13D6B /* NSData+EMImageContentType.m in Sources */,
 				40E39E441BFEF43800516EC4 /* OrderListTVC.swift in Sources */,
