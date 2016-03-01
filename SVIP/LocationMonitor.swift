@@ -60,6 +60,14 @@ extension LocationMonitor : CLLocationManagerDelegate {
   private func uploadLocation (location:CLLocation) {
     // TODO:  upload location to server
     
+    HttpService.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970)) { (error) -> () in
+      if let error = error {
+        print("gps upload fail")
+      } else {
+        print("gps upload success")
+      }
+    }
+    
     /////////////////////////////for test
     /*let state = afterResume ? "killed" : appState()
     let url = "http://api.lvzlv.com/index/location?source=simulator&type=\(state)&lat=\(location.coordinate.latitude)&lng=\(location.coordinate.longitude)"
@@ -71,7 +79,6 @@ extension LocationMonitor : CLLocationManagerDelegate {
       }
     }*/
     /////////////////////////////end of test
-    
   }
   
   private func appState() -> String {
