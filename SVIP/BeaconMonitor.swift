@@ -12,7 +12,7 @@ import CoreLocation
 
 let BEACON_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
 let BEACON_IDENTIFIER = "com.zkjinshi.svpi"
-let BEACON_INERVAL_MIN = 10 //BEACON 重复发起API请求最小时间间隔,单位：分钟
+let BEACON_INERVAL_MIN = 1 //BEACON 重复发起API请求最小时间间隔,单位：分钟
 
 class BeaconMonitor:NSObject {
   private static let sharedInstance = BeaconMonitor()
@@ -100,13 +100,21 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     if let ts = cachedBeaconRegions[beacon.major] where ts > currentTimeStamp - BEACON_INERVAL_MIN * 60 {//xx分钟以内，不发送通知
       return
     }
-    ZKJSLocationHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithMajor(String(beacon.major), minior: String(beacon.minor), uuid:BEACON_UUID,sensorid:nil, timestamp:currentTimeStamp, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
+    /*ZKJSLocationHTTPSessionManager.sharedInstance().regionalPositionChangeNoticeWithMajor(String(beacon.major), minior: String(beacon.minor), uuid:BEACON_UUID,sensorid:nil, timestamp:currentTimeStamp, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       print(responObjects)
       }, failure: { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         print(error)
-    })
+    })*/
+    
     cachedBeaconRegions[beacon.major] = currentTimeStamp
     StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
+    HttpService.sendBeaconChanges(BEACON_UUID, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp) { (error) -> () in
+      if let error = error {
+        print("beacon fial")
+      } else {
+        print("beacon success")
+      }
+    }
     
     /////////////////////////////for test , 数据测试代码
     /*let url = "http://api.lvzlv.com/index/beacon?source=svip&type=record&major=\(beacon.major)&minor=\(beacon.minor)&uuid=\(beacon.proximityUUID.UUIDString)"

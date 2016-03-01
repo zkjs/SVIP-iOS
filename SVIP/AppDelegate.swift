@@ -50,6 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
    
 //    // fir.im BugHD
 //    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
+    
+    // app was launched when significant location changed
+    if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
+      LocationMonitor.sharedInstance.afterResume = true
+      LocationMonitor.sharedInstance.startMonitoringLocation()
+    }
+
     return true
   }
   func networkState() {
@@ -112,6 +119,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //        }
 //      }
 //    }
+    
+    LocationMonitor.sharedInstance.afterResume = false
+    LocationMonitor.sharedInstance.startMonitoringLocation()
+
   }
 
   func applicationWillTerminate(application: UIApplication) {

@@ -43,6 +43,9 @@
 		40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */; };
 		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
+		406B0A241C83DEF4006C9C73 /* LocationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406B0A231C83DEF4006C9C73 /* LocationMonitor.swift */; };
+		406B0A261C83E959006C9C73 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406B0A251C83E959006C9C73 /* HttpService.swift */; };
+		406B0ACF1C855CCD006C9C73 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406B0ACA1C855CCD006C9C73 /* SwiftyJSON.swift */; };
 		4077C7A11C26578F000DD7DC /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077C79D1C26578F000DD7DC /* NSData+AES256.m */; };
 		4077C7A21C26578F000DD7DC /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = 4077C79E1C26578F000DD7DC /* server.der */; };
 		4077C7A31C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077C7A01C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m */; };
@@ -501,6 +504,10 @@
 		40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSMSSessionManager.m; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
+		406B0A231C83DEF4006C9C73 /* LocationMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMonitor.swift; sourceTree = "<group>"; };
+		406B0A251C83E959006C9C73 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
+		406B0AC91C855CCD006C9C73 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
+		406B0ACA1C855CCD006C9C73 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		4077C79C1C26578F000DD7DC /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
 		4077C79D1C26578F000DD7DC /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		4077C79E1C26578F000DD7DC /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.der; sourceTree = "<group>"; };
@@ -1435,6 +1442,7 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
+				406B0A251C83E959006C9C73 /* HttpService.swift */,
 				40E8F0381C81408600D6F605 /* Monitoring */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
 				B2564D351B4BFAED0098608F /* LaunchAnimation */,
@@ -1537,6 +1545,15 @@
 				40641F9C1B3E79A300CF150D /* ZKJSTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		406B0AC41C855CCD006C9C73 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				406B0AC91C855CCD006C9C73 /* SwiftyJSON.h */,
+				406B0ACA1C855CCD006C9C73 /* SwiftyJSON.swift */,
+			);
+			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		4077C79B1C26578F000DD7DC /* Cryptography */ = {
@@ -2611,6 +2628,7 @@
 		40E3A20E1BFF01C300516EC4 /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				406B0AC41C855CCD006C9C73 /* SwiftyJSON */,
 				40E8EFFE1C80691400D6F605 /* Alamofire */,
 				40E3A20F1BFF01C300516EC4 /* DeviceHelper */,
 				40E3A2341BFF01C300516EC4 /* MBProgressHUD */,
@@ -2875,6 +2893,7 @@
 			isa = PBXGroup;
 			children = (
 				40E8F0391C81409F00D6F605 /* BeaconMonitor.swift */,
+				406B0A231C83DEF4006C9C73 /* LocationMonitor.swift */,
 			);
 			name = Monitoring;
 			sourceTree = "<group>";
@@ -3509,6 +3528,7 @@
 				4077DDBC1C1EAF9900E13D6B /* EMSDWebImageDecoder.m in Sources */,
 				B277F8C61B4A59AA00A9F858 /* BlurDatePickerView.m in Sources */,
 				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
+				406B0ACF1C855CCD006C9C73 /* SwiftyJSON.swift in Sources */,
 				4077DDEF1C1EAF9900E13D6B /* EaseUserCell.m in Sources */,
 				FAFBC43F1C33740C001E9155 /* LeisureTVC.swift in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
@@ -3569,6 +3589,7 @@
 				FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */,
 				40D585E21C22B0D100C5267D /* SalesModel.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
+				406B0A261C83E959006C9C73 /* HttpService.swift in Sources */,
 				4077DDB41C1EAF9900E13D6B /* MWPhoto.m in Sources */,
 				401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */,
 				4077DDC31C1EAF9900E13D6B /* UIButton+EMWebCache.m in Sources */,
@@ -3769,6 +3790,7 @@
 				4077DD8E1C1EAF9900E13D6B /* CallViewController.m in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				B26C0E201B5FBC1A00F8AE46 /* BookHotelListTVC.swift in Sources */,
+				406B0A241C83DEF4006C9C73 /* LocationMonitor.swift in Sources */,
 				4077DDA21C1EAF9900E13D6B /* EMSearchDisplayController.m in Sources */,
 				FAFE15A11C3A669E0051410C /* KTVOrderDetailTVC.swift in Sources */,
 				4077DDD51C1EAF9900E13D6B /* PSTGridLayoutRow.m in Sources */,
