@@ -145,6 +145,11 @@ class LoginVC: UIViewController {
     
     showHUDInView(view, withLoading: "")
     HttpService.loginWithCode(code, phone: phone) { (json, error) -> () in
+      if let error = error {
+        // TODO: save new toke payload
+      } else {
+        self.loginWithPhone(phone)
+      }
       self.dismissSelf()
       self.hideHUD()
           }
@@ -153,14 +158,14 @@ class LoginVC: UIViewController {
 //      return
 //    }
 //    
-//    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
-//      if success {
-//        self.loginWithPhone(phone)
-//      } else {
-//        self.hideHUD()
-//        self.showHint("验证码不正确")
-//      }
-//    }
+    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
+      if success {
+        self.loginWithPhone(phone)
+      } else {
+        self.hideHUD()
+        self.showHint("验证码不正确")
+      }
+    }
   }
   
   func convertStringToDictionary(text: String) -> JSON? {

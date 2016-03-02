@@ -166,26 +166,11 @@ struct HttpService {
     let dict = ["phone":"\(phone)","code":"\(code)"]
     post(urlString, parameters: dict) { (json, error) -> Void in
       if let json = json {
-        let token = json["token"].string
-        let array:NSArray = (token?.componentsSeparatedByString("."))!
-        var tokenString :String
-        if array.count > 2 {
-          tokenString = array[1] as! String
-        } else {
+        guard let token = json["token"].string else {
           return
         }
-        let rem = tokenString.characters.count % 4
-        var ending = ""
-        if rem > 0 {
-          let amount = 4 - rem
-          ending = String(count: amount, repeatedValue: Character("="))
-        }
-        let base64 = tokenString.stringByReplacingOccurrencesOfString("-", withString: "+", options: NSStringCompareOptions(rawValue: 0), range: nil)
-          .stringByReplacingOccurrencesOfString("_", withString: "/", options: NSStringCompareOptions(rawValue: 0), range: nil) + ending
-        
-        let decodedData = NSData(base64EncodedString:base64, options:NSDataBase64DecodingOptions(rawValue: 0))
-        let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding) as! String
-        AccountManager.sharedInstance().saveDeviceToken(decodedString)
+        let tokenPayload = TokenPayload(tokenFullString: token)
+        // TODO: save token payload
       } else {
 //        self.showHint("手机号或验证码不正确")
       }
