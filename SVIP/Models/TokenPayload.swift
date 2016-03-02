@@ -1,16 +1,23 @@
 //
 //  TokenPayload.swift
 //  SVIP
-//
+//  Token 管理类
 //  Created by Qin Yejun on 3/2/16.
 //  Copyright © 2016 zkjinshi. All rights reserved.
 //
 
 import Foundation
 
-struct TokenPayload {
-  let token:String
-  let tokenPayload:String
+class TokenPayload:NSObject {
+  private static let kNSDefaults = "tokenPayload"
+  static let sharedInstance = TokenPayload()
+  private override init() {
+    super.init()
+    self.loadData()
+  }
+  
+  private(set) var token:String?
+  private(set) var tokenPayload:String?
   var userID:String? {
     return json?["sub"].string
   }
@@ -25,17 +32,21 @@ struct TokenPayload {
   }
   
   private var json: JSON? {
-    guard let data = self.tokenPayload.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) else {
+    guard let data = self.tokenPayload?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) else {
       return nil
     }
     return JSON(data: data)
   }
   
-//  init(tokenPayload:String){
-//    self.token = tokenPayload
-//  }
+  private func loadData() {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    if let token = userDefaults.objectForKey(TokenPayload.kNSDefaults) as? String {
+      parseToken(token)
+    }
+  }
   
-  init(tokenFullString:String) {
+  //// 解析token : JWT 格式
+  private func parseToken(tokenFullString:String) {
     let arr = tokenFullString.characters.split { $0 == "." }.map(String.init)
     let payload = arr.count > 1 ? arr[1] : ""
     
@@ -55,10 +66,12 @@ struct TokenPayload {
     self.token = tokenFullString
   }
   
-  func saveTokenPayload() {
-      let userDefaults = NSUserDefaults()
-      userDefaults.setObject(self.token, forKey: "tokenPayload")
-      userDefaults.synchronize()
+  //// 持久化保存token
+  func saveTokenPayload(tokenFullString:String) {
+    parseToken(tokenFullString)
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    userDefaults.setObject(tokenFullString, forKey: TokenPayload.kNSDefaults)
+    userDefaults.synchronize()
   }
 
   

@@ -35,23 +35,24 @@ struct HttpService {
   //位置
   private static let baseLocationURL = "http://120.25.80.143:8082" //推送/更新室内位置
   private static let baseCodeURL = "http://120.25.80.143:8080" //获取code
+//  private static let baseCodeURL = "http://192.168.199.112:8082" //局域网测试IP
   
   private enum ResourcePath: CustomStringConvertible {
-    case ApiURL(path:String)
-    case Beacon
-    case GPS
-    case CODE
-    case  Login
-    case TOKEN
+    case ApiURL(path:String)              // demo
+    case Beacon                           // PYXIS 位置服务API : Beacon 位置信息 : 
+    case GPS                              // PYXIS 位置服务API : GPS 位置信息 :
+    case Code                             // PAVO 认证服务API : 验证码 : HEADER不需要Token
+    case Login                            // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
+    case Token                            // PAVO 认证服务API : Token管理 :
     
     var description: String {
       switch self {
       case .ApiURL(let path): return "/api/\(path)"
       case .Beacon: return "/lbs/v1/loc/beacon"
       case .GPS: return "/lbs/v1/loc/gps"
-      case.CODE : return "/sso/vcode/v1/si"
-      case.Login: return "/sso/token/v1/phone/si"
-      case.TOKEN: return "/sso/token/v1"
+      case .Code : return "/sso/vcode/v1/si"
+      case .Login: return "/sso/token/v1/phone/si"
+      case .Token: return "/sso/token/v1"
       }
     }
   }
@@ -67,12 +68,52 @@ struct HttpService {
   }
   
   static func put(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
-    ///////////////////////////////// token for test
-    let token = "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJjXzU2YTZlN2I1NjM0OGMiLCJ0eXBlIjozLCJleHBpcmUiOjE0NTY4MjQxNDMxNjEsInNob3BpZCI6Ijg4ODgiLCJyb2xlcyI6W10sImZlYXR1cmUiOltdfQ.KSCmIWoc8Vuj7A03wFZhukgTlnq38WVLDgEbU7TO51pNTwuQ3Q36RSqMh4DOxlftkp7WLfvsn63KChZZGGZryoGEKZ8nOdVP4YCS7cJMN8WZKYt_3gdmt3l9eGAHa7d-EhqOpY-Qk0iZlHA_x134N-z9GFpE5sZJfaGllQ7W7pQ"
+    requestAPI(.PUT, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+      if let err = err {
+        completionHandler(json, err)
+      } else {
+        completionHandler(json, nil)
+      }
+    }
+  }
+  static func post(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.POST, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+      if let err = err {
+        completionHandler(json, err)
+      } else {
+        completionHandler(json, nil)
+      }
+    }
+  }
+  
+  static func get(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.GET, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+      if let err = err {
+        completionHandler(json, err)
+      } else {
+        completionHandler(json, nil)
+      }
+    }
+  }
+  
+  //HTTP REQUEST
+  static func requestAPI(method: Method, urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: ((JSON?, NSError?) -> Void)) {
     
-    request(.PUT, urlString, parameters: parameters, encoding: .JSON, headers: ["Content-Type":"application/json","Token":token]).response { (req, res, data, error) -> Void in
+    var headers = ["Content-Type":"application/json"]
+    if let token = TokenPayload.sharedInstance.token {
+      headers["Token"] = token
+    } else {
+      if tokenRequired {
+        return
+      }
+    }
+    
+    print(urlString)
+    print(parameters)
+    
+    request(method, urlString, parameters: parameters, encoding: .JSON, headers: headers).response { (req, res, data, error) -> Void in
       if let error = error {
-        print("api request[put] fail:\(error)")
+        print("api request fail:\(error)")
         completionHandler(nil,error)
       } else {
         print(jsonFromData(data))
@@ -85,46 +126,25 @@ struct HttpService {
           } else {
             let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
               code: -1,
-              userInfo: ["msg":"no data","res":"\(json["res"].int)","resDesc":json["resDesc"].string ?? ""])
+              userInfo: ["res":"\(json["res"].int)","resDesc":json["resDesc"].string ?? ""])
             completionHandler(json,e)
             print("error with reason: \(json["resDesc"].string)")
+            if let key = json["res"].int {
+              ZKJSTool.showMsg("\(key)")
+            }
           }
         } else {
-          completionHandler(nil,error)
-        }
-      }
-    }
-  }
-  static func post(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
-    ///////////////////////////////// token for test
-    let token = "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJjXzU2YTZlN2I1NjM0OGMiLCJ0eXBlIjozLCJleHBpcmUiOjE0NTY4MjQxNDMxNjEsInNob3BpZCI6Ijg4ODgiLCJyb2xlcyI6W10sImZlYXR1cmUiOltdfQ.KSCmIWoc8Vuj7A03wFZhukgTlnq38WVLDgEbU7TO51pNTwuQ3Q36RSqMh4DOxlftkp7WLfvsn63KChZZGGZryoGEKZ8nOdVP4YCS7cJMN8WZKYt_3gdmt3l9eGAHa7d-EhqOpY-Qk0iZlHA_x134N-z9GFpE5sZJfaGllQ7W7pQ"
-    
-    request(.POST, urlString, parameters: parameters, encoding: .JSON, headers: ["Content-Type":"application/json","Token":token]).response { (req, res, data, error) -> Void in
-      if let error = error {
-        print("api request[put] fail:\(error)")
-        completionHandler(nil,error)
-      } else {
-        print(jsonFromData(data))
-        
-        if let data = data {
-          let json = JSON(data: data)
-          if json["res"].int == 0 {
-            completionHandler(json,nil)
-            print(json["resDesc"].string)
-          } else {
-            let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier!,
-              code: -1,
-              userInfo: ["msg":"no data","res":"\(json["res"].int)","resDesc":json["resDesc"].string ?? ""])
-            completionHandler(json,e)
-            print("error with reason: \(json["resDesc"].string)")
-          }
-        } else {
-          completionHandler(nil,error)
+          let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+            code: -2,
+            userInfo: ["res":"-2","resDesc": "no data from server"])
+          completionHandler(nil,e)
+          print("error with reason: \(e)")
         }
       }
     }
   }
   
+  //// PYXIS 位置服务API : Beacon 位置信息 :
   static func sendBeaconChanges(uuid:String, major:String, minor:String, sensorID: String = "", timestamp:Int, completionHandler:(NSError?) -> ()){
     let urlString = baseLocationURL + ResourcePath.Beacon.description
     
@@ -136,6 +156,7 @@ struct HttpService {
     
   }
   
+  //// PYXIS 位置服务API : GPS 位置信息 :
   static func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int, completionHandler:(NSError?) -> ()){
     let urlString = baseLocationURL + ResourcePath.GPS.description
     
@@ -147,8 +168,9 @@ struct HttpService {
     
   }
   
+  //// PAVO 认证服务API : 验证码 : HEADER不需要Token
   static func requestSmsCodeWithPhoneNumber(phone:String,completionHandler:(JSON?, NSError?) -> ()){
-    let urlString = baseCodeURL + ResourcePath.CODE.description
+    let urlString = baseCodeURL + ResourcePath.Code.description
     let key = "X2VOV0+W7szslb+@kd7d44Im&JUAWO0y"
     let data: NSData = phone.dataUsingEncoding(NSUTF8StringEncoding)!
     let encryptedData = data.AES256EncryptWithKey(key).base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
@@ -159,20 +181,33 @@ struct HttpService {
   
     }
   
-  //pragma mark -使用手机验证码和手机获取Token
+  //// PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
   static func loginWithCode(code:String,phone:String,completionHandler:(JSON?,NSError?) -> ()) {
     let urlString = baseCodeURL + ResourcePath.Login.description
-    print(urlString)
+    
     let dict = ["phone":"\(phone)","code":"\(code)"]
     post(urlString, parameters: dict) { (json, error) -> Void in
       if let json = json {
         guard let token = json["token"].string else {
+          print("no token")
           return
         }
-        let tokenPayload = TokenPayload(tokenFullString: token)
-        // TODO: save token payload
+        let tokenPayload = TokenPayload.sharedInstance
+        tokenPayload.saveTokenPayload(token)
+        
+        //登录成功后订阅云巴推送
+        if let userID = tokenPayload.userID {
+          print("userID:\(userID)")
+          YunBaService.setAlias(userID, resultBlock: { (succ, err) -> Void in
+            if succ {
+              print("yunba setAlias success");
+            } else {
+              print("yunba setAlias fail");
+            }
+          })
+        }
       } else {
-//        self.showHint("手机号或验证码不正确")
+        
       }
 
       completionHandler(json, error)
@@ -180,10 +215,9 @@ struct HttpService {
 
   }
   
-  //pragma mark -TOKEN 管理
-  
+  //// PAVO 认证服务API : Token管理 :
   static func managerToken(token:String,completionHandler:(JSON?,NSError?) -> ()) {
-    let urlString = baseCodeURL + ResourcePath.TOKEN.description
+    let urlString = baseCodeURL + ResourcePath.Token.description
 
     put(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json, error)
