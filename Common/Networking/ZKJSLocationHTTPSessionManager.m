@@ -10,7 +10,8 @@
 #import "NSString+ZKJS.h"
 #import "SVIP-Swift.h"
 #import "EaseMob.h"
-
+#import "NSData+AES256.h"
+#import <CommonCrypto/CommonCryptor.h>
 
 @implementation ZKJSLocationHTTPSessionManager
 + (instancetype)sharedInstance {
@@ -25,11 +26,11 @@
 - (id)init {
   self = [super initWithBaseURL:[[NSURL alloc] initWithString:kBaseLocationURL]];
   if (self) {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    self.manager = [AFHTTPRequestOperationManager manager];
     AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
     [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    manager.requestSerializer = serializer;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    _manager.requestSerializer = serializer;
+    _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
   }
   return self;
 }
@@ -83,18 +84,53 @@
 - (void)GPSPositionChangeNoticeWithLatitude:(NSString *)latitude longitude:(NSString *)longitude altitude:(NSString *)altitude timestamp:(integer_t)timestamp success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSDictionary * dic = @{@"latitude":@"1",@"longitude":@"2",@"altitude":@"3",@"token":@"head.payload.sign",@"timestamp":@1455870706863};
   
-  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-  AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-  [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-  manager.requestSerializer = serializer;
-  manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-  [manager PUT:kJavaBaseGPSURL parameters:dic
+//  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//  AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+//  [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//  manager.requestSerializer = serializer;
+//  manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+  [_manager PUT:kJavaBaseGPSURL parameters:dic
        success:^(AFHTTPRequestOperation *operation,id responseObject) {
-         
        }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
          NSLog(@"Error: %@", error);
        }];
 
 }
+
+- (void)requestSmsCodeWithPhoneNumber:(NSString *)phone success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
+
+  NSString * string = @"http://120.25.80.143:8080/sso/vcode/v1/ss";
+  NSString *  key = @"X2VOV0+W7szslb+@kd7d44Im&JUAWO0y";
+//  NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:key options:0];
+//  NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+//  NSLog(@"%@/ %@",decodedData,decodedString);
+  NSData *data = [phone dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *encryptedData = [[data AES256EncryptWithKey:key] base64EncodedStringWithOptions:0];
+  NSDictionary * body = @{@"phone":encryptedData};
+
+  [_manager POST:string parameters:body
+       success:^(AFHTTPRequestOperation *operation,id responseObject) {
+         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+//         NSLog(@"Success: %@", dic);
+         success(nil,dic);
+       }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+         NSLog(@"Error: %@", error);
+       }];
+
+}
+#pragma mark -使用手机验证码和手机获取Token
+- (void)loginWithCode:(NSString *)code phone:(NSString *)phone success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  NSString * string = @"http://120.25.80.143:8080/sso/token/v1/phone/si";
+  NSDictionary * body = @{@"phone":phone,@"code":code};
+  [_manager POST:string parameters:body
+         success:^(AFHTTPRequestOperation *operation,id responseObject) {
+           NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+           NSLog(@"Success: %@", dic);
+           success(nil,dic);
+         }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+           NSLog(@"Error: %@", error);
+         }];
+}
+
 
 @end

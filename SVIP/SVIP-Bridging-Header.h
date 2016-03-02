@@ -1,7 +1,8 @@
 //
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
-
+#import "NSData+AES256.h"
+#import <CommonCrypto/CommonCryptor.h>
 #import "AFNetworking.h"
 #import "NSString+ZKJS.h"
 #import "MJRefresh.h"

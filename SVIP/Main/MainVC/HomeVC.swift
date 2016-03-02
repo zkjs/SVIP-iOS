@@ -58,7 +58,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
       tableView.layoutMargins = UIEdgeInsetsZero
     }
-    
+   
     setupCoreLocationService()
     setupBluetoothManager()
     self.navigationController!.navigationBar.translucent = true
@@ -74,13 +74,14 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     
     let footer = UIView(frame: CGRectMake(0, 0, 100, 40))
     tableView.tableFooterView = footer
-    
     originOffsetY = privilegeButton.frame.origin.y
     print("userID: \(AccountManager.sharedInstance().userID)")
     print("Token: \(AccountManager.sharedInstance().token)")
     
   }
   
+  
+
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     
     if cell.respondsToSelector(Selector("setSeparatorInset:")) {
@@ -522,3 +523,8 @@ extension HomeVC: CLLocationManagerDelegate {
   }
   
 }
+
+
+
+
+

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CryptoSwift
 class LoginVC: UIViewController {
   
   @IBOutlet weak var phoneTextField: UITextField!
@@ -30,7 +30,7 @@ class LoginVC: UIViewController {
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil)
-    
+
     setupView()
   }
   
@@ -144,20 +144,35 @@ class LoginVC: UIViewController {
     guard let code = codeTextField.text else { return }
     
     showHUDInView(view, withLoading: "")
-    
-    if phone == "18503027465" && code == "123456" {
-      loginWithPhone(phone)
-      return
-    }
-    
-    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
-      if success {
-        self.loginWithPhone(phone)
-      } else {
-        self.hideHUD()
-        self.showHint("验证码不正确")
+    HttpService.loginWithCode(code, phone: phone) { (json, error) -> () in
+      self.dismissSelf()
+      self.hideHUD()
+          }
+//    if phone == "18503027465" && code == "123456" {
+//      loginWithPhone(phone)
+//      return
+//    }
+//    
+//    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
+//      if success {
+//        self.loginWithPhone(phone)
+//      } else {
+//        self.hideHUD()
+//        self.showHint("验证码不正确")
+//      }
+//    }
+  }
+  
+  func convertStringToDictionary(text: String) -> JSON? {
+    if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+      do {
+        let js = JSON(data: data)
+        print(js)
+        return js
+        
       }
     }
+    return nil
   }
   
   private func setupView() {
@@ -206,24 +221,45 @@ class LoginVC: UIViewController {
   
   @IBAction func tappedCodeButton(sender: UIButton) {
     guard let phone = phoneTextField.text else { return }
+    
     if ZKJSTool.validateMobile(phone) {
-      // 发送验证码
-      ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phone, callback: { (success: Bool, error: NSError!) -> Void in
-        if success {
-          ZKJSTool.showMsg("验证码已发送")
-          self.codeTextField.becomeFirstResponder()
-          self.codeButton.enabled = false
-          self.codeButton.alpha = 0.5
-          self.count = 30
-          self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
-        } else {
-          if let userInfo = error.userInfo.first {
-            self.showHint(userInfo.1 as! String)
-          }
+      ZKJSTool.showMsg("验证码已发送")
+      HttpService.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
+        self.codeTextField.becomeFirstResponder()
+        self.codeButton.enabled = false
+        self.codeButton.alpha = 0.5
+        self.count = 30
+        self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+        if let json = json {
+         
         }
-      })
-    } else {
-      ZKJSTool.showMsg("手机格式错误")
+      })//      // 发送验证码
+//      ZKJSLocationHTTPSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phone, success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+//        print(responsObject)
+//        ZKJSTool.showMsg("验证码已发送")
+//        self.codeTextField.becomeFirstResponder()
+//        self.codeButton.enabled = false
+//        self.codeButton.alpha = 0.5
+//        self.count = 30
+//        self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+//        }, failure: { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
+//          
+////      })(phone, callback: { (success: Bool, error: NSError!) -> Void in
+////        if success {
+////          ZKJSTool.showMsg("验证码已发送")
+////          self.codeTextField.becomeFirstResponder()
+////          self.codeButton.enabled = false
+////          self.codeButton.alpha = 0.5
+////          self.count = 30
+////          self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+////        } else {
+////          if let userInfo = error.userInfo.first {
+////            self.showHint(userInfo.1 as! String)
+////          }
+////        }
+//      })
+//    } else {
+//      ZKJSTool.showMsg("手机格式错误")
     }
   }
 
@@ -325,3 +361,4 @@ extension LoginVC: UITextFieldDelegate {
   }
   
 }
+
