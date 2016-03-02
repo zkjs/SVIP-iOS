@@ -62,7 +62,7 @@ class AccountManager: NSObject {
   }
   
   func isLogin() -> Bool {
-    return (userID.isEmpty == false && token.isEmpty == false)
+    return (userID.isEmpty == false)
   }
   
   func saveAccountInfo(accountInfo: [String: AnyObject]) {
@@ -73,6 +73,7 @@ class AccountManager: NSObject {
         let userDefaults = NSUserDefaults()
         userDefaults.setObject(userid, forKey: "userID")
         userDefaults.setObject(token, forKey: "token")
+        userDefaults.synchronize()
     } else {
       print("弹框，返回的userid或token为空")
     }
@@ -107,6 +108,21 @@ class AccountManager: NSObject {
   
   func saveDeviceToken(deviceToken: String) {
     self.deviceToken = deviceToken
+    if let data = self.deviceToken.dataUsingEncoding(NSUTF8StringEncoding) {
+      do {
+        let js = JSON(data: data)
+        if let userid = js["sub"].string {
+            userID = userid
+            let userDefaults = NSUserDefaults()
+            userDefaults.setObject(userid, forKey: "userID")
+            userDefaults.setObject(self.deviceToken, forKey: "token")
+            userDefaults.synchronize()
+        } else {
+          print("弹框，返回的userid或token为空")
+        }
+
+      }
+    }
   }
   
   func saveUserName(userName: String) {

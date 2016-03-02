@@ -8,7 +8,8 @@
 
 #import "ZKJSHTTPSMSSessionManager.h"
 #import "CCPRestSDK.h"
-
+#import "NSData+AES256.h"
+#import <CommonCrypto/CommonCryptor.h>
 // 正式版
 static NSString* const appID = @"8a48b5514f73ea32014f8d1d3f71344d";
 static NSString* const token = @"137d18e0111643ffb9e06401f214cc8d";
@@ -82,5 +83,6 @@ static NSString* const templateID = @"50157";
   }
 #endif
 }
+
 
 @end
