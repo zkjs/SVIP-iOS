@@ -142,7 +142,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   // MARK: - Push Notification
   func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    //环信推送通知
     EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    
+    // 将DeviceToken 存储在YunBa的云端，那么可以通过YunBa发送APNs通知
+    YunBaService.storeDeviceToken(deviceToken) { (success, error) -> Void in
+      if success {
+        print("store device token to YunBa success")
+      } else {
+        print("store device token to YunBa failed due to: \(error)")
+      }
+    }
+    
     self.deviceToken = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
     self.deviceToken = self.deviceToken.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
     print("Device Token: \(self.deviceToken)")

@@ -76,7 +76,7 @@ struct HttpService {
             completionHandler(json,nil)
             print(json["resDesc"].string)
           } else {
-            let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier!,
+            let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
               code: -1,
               userInfo: ["msg":"no data","res":"\(json["res"].int)","resDesc":json["resDesc"].string ?? ""])
             completionHandler(json,e)
@@ -103,7 +103,7 @@ struct HttpService {
   static func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int, completionHandler:(NSError?) -> ()){
     let urlString = baseLocationURL + ResourcePath.GPS.description
     
-    let dict = ["latitude":"\(latitude)","longitude":"\(longitude)","altitude":"\(altitude)","timestamp":"\(timestamp)"]
+    let dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"),"timestamp":"\(timestamp)"]
     print(dict)
     put(urlString, parameters: dict) { (data, error) -> Void in
       completionHandler(error)
