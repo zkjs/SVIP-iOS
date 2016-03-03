@@ -100,8 +100,8 @@
                         <action selector="tappedLicense:" destination="-1" eventType="touchUpInside" id="8tm-5f-9la"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
-                    <rect key="frame" x="25" y="27" width="10" height="22"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
+                    <rect key="frame" x="8" y="16" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="O3U-j7-0Nd"/>
                         <constraint firstAttribute="width" constant="44" id="Vut-jq-DhT"/>
@@ -130,6 +130,21 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRX-EA-zQx">
+                    <rect key="frame" x="272" y="515" width="57" height="30"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="wfx-aG-gV4"/>
+                        <constraint firstAttribute="width" constant="57" id="yl5-DM-bOM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="立即注册">
+                        <color key="titleColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="register:" destination="-1" eventType="touchUpInside" id="gtb-Tc-VAU"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -152,8 +167,10 @@
                 <constraint firstItem="psG-UQ-JxR" firstAttribute="leading" secondItem="RYh-Oi-dzo" secondAttribute="leading" id="XeO-gT-HBf"/>
                 <constraint firstItem="Dcn-Qe-3h1" firstAttribute="trailing" secondItem="RYh-Oi-dzo" secondAttribute="trailing" id="YFl-gp-dak"/>
                 <constraint firstItem="67h-qf-gpa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eQ1-FN-ovx"/>
+                <constraint firstItem="67h-qf-gpa" firstAttribute="top" secondItem="qRX-EA-zQx" secondAttribute="bottom" constant="10" id="jPD-Wj-d9t"/>
                 <constraint firstAttribute="trailing" secondItem="rYD-AN-1zC" secondAttribute="trailing" constant="8" id="k5B-NV-TUV"/>
                 <constraint firstItem="5Ed-rq-zVe" firstAttribute="top" secondItem="rYD-AN-1zC" secondAttribute="bottom" constant="8" id="lgC-7q-FbR"/>
+                <constraint firstItem="qRX-EA-zQx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sfh-Bj-hFN"/>
                 <constraint firstItem="67h-qf-gpa" firstAttribute="top" secondItem="RYh-Oi-dzo" secondAttribute="bottom" constant="30" id="tRZ-VG-aSZ"/>
                 <constraint firstItem="Uom-Fn-ahM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uc7-fz-hSs"/>
                 <constraint firstItem="Dcn-Qe-3h1" firstAttribute="centerY" secondItem="psG-UQ-JxR" secondAttribute="centerY" id="udx-ms-NGG"/>

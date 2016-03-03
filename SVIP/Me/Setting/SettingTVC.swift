@@ -21,6 +21,13 @@ class SettingTVC: UITableViewController {
   // MARK: - Private
   
   func logout() {
+    
+    HttpService.deleteToken { (json, error) -> () in
+      //退出登录，主动把token消除
+      TokenPayload.sharedInstance.clearCacheTokenPayload()
+    }
+    
+    
     showHUDInView(view, withLoading: "")
     ZKJSHTTPSessionManager.sharedInstance().logoutWithSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       if let data = responsObject {

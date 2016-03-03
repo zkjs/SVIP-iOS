@@ -41,9 +41,9 @@ class BeaconMonitor:NSObject {
 extension BeaconMonitor : CLLocationManagerDelegate {
   func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
     if let region = region as? CLBeaconRegion {
-      print("enter beaconRegion:\(region)")
+//      print("enter beaconRegion:\(region)")
       self.locationManager.startRangingBeaconsInRegion(self.beaconRegion)
-      //didEnterBeaconRegion(region as! CLBeaconRegion)
+//      didEnterBeaconRegion(region as! CLBeaconRegion)
       
       /////////////////////////////for test, 数据测试代码
       /*let url = "http://api.lvzlv.com/index/beacon?source=svip&type=enter&major=\(region.major)&minor=\(region.minor)&uuid=\(region.proximityUUID.UUIDString)"
@@ -68,7 +68,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
     
     for beacon  in beacons {
-      print("range beacon:\(beacon)")
+//      print("range beacon:\(beacon)")
       didEnterBeaconRegion(beacon)
     }
   }

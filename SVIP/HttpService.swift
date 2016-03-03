@@ -44,6 +44,7 @@ struct HttpService {
     case Code                             // PAVO 认证服务API : 验证码 : HEADER不需要Token
     case Login                            // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
     case Token                            // PAVO 认证服务API : Token管理 :
+    case DeleteToken
     
     var description: String {
       switch self {
@@ -53,6 +54,7 @@ struct HttpService {
       case .Code : return "/sso/vcode/v1/si"
       case .Login: return "/sso/token/v1/phone/si"
       case .Token: return "/sso/token/v1"
+      case.DeleteToken: return "/sso/token/v1"
       }
     }
   }
@@ -76,6 +78,17 @@ struct HttpService {
       }
     }
   }
+  
+  static func delete(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.DELETE, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+      if let err = err {
+        completionHandler(json, err)
+      } else {
+        completionHandler(json, nil)
+      }
+    }
+  }
+  
   static func post(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
     requestAPI(.POST, urlString: urlString, parameters: parameters) { (json, err) -> Void in
       if let err = err {
@@ -216,13 +229,33 @@ struct HttpService {
   }
   
   //// PAVO 认证服务API : Token管理 :
-  static func managerToken(token:String,completionHandler:(JSON?,NSError?) -> ()) {
+  static func managerToken(completionHandler:(JSON?,NSError?) -> ()) {
     let urlString = baseCodeURL + ResourcePath.Token.description
 
     put(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json, error)
+      if let json = json {
+        guard let token = json["token"].string else {
+          print("no token")
+          return
+        }
+        print("success")
+        print(token)
+        let tokenPayload = TokenPayload.sharedInstance
+        tokenPayload.saveTokenPayload(token)
+        
+    }
     }
   }
   
+  //// PAVO 认证服务API : Token管理 :
+  static func deleteToken(completionHandler:(JSON?,NSError?) -> ()) {
+    let urlString = baseCodeURL + ResourcePath.Token.description
+    guard   let token = TokenPayload.sharedInstance.token else {return}
+    let dic = ["token":token]
+    put(urlString, parameters: dic) { (json, error) -> Void in
+      completionHandler(json, error)
+        }
+  }
   
 }

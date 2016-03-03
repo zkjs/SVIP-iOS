@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoEditVC" customModule="SVIP" customModuleProvider="target">
@@ -19,7 +19,6 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yv1-Gl-wp3">
                     <rect key="frame" x="252" y="60" width="96" height="96"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="96" id="2n2-Le-NCp"/>
                         <constraint firstAttribute="height" constant="96" id="wAa-OJ-n4o"/>
@@ -36,7 +35,6 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9OO-Gp-8H7">
                     <rect key="frame" x="145" y="226" width="210" height="48"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="06H-6d-cUO"/>
                         <constraint firstAttribute="height" constant="48" id="UV0-c6-ejW"/>
@@ -50,7 +48,6 @@
                 </textField>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E5A-nH-VeZ">
                     <rect key="frame" x="363" y="226" width="83" height="49"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="83" id="GvU-3W-hpX"/>
                         <constraint firstAttribute="height" constant="48" id="vff-t2-JHJ"/>
@@ -66,7 +63,6 @@
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dli-gz-gig">
                     <rect key="frame" x="0.0" y="552" width="600" height="48"/>
-                    <animations/>
                     <color key="backgroundColor" red="0.98431372549999996" green="0.61960784310000006" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="veT-dP-qpi"/>
@@ -80,13 +76,11 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请上传身份识别图片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMd-5A-g4b">
                     <rect key="frame" x="0.0" y="169" width="600" height="17"/>
-                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="9OO-Gp-8H7" firstAttribute="top" secondItem="yv1-Gl-wp3" secondAttribute="bottom" constant="70" id="111-zT-iGd"/>
