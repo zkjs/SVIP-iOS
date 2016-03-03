@@ -67,7 +67,7 @@ struct HttpService {
     return parsed
   }
   
-  static func put(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
+  static func put(urlString: String, parameters: [String : AnyObject]?,tokenRequired:Bool = true , completionHandler: ((JSON?, NSError?) -> Void)) {
     requestAPI(.PUT, urlString: urlString, parameters: parameters) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
@@ -76,7 +76,7 @@ struct HttpService {
       }
     }
   }
-  static func post(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
+  static func post(urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: ((JSON?, NSError?) -> Void)) {
     requestAPI(.POST, urlString: urlString, parameters: parameters) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
@@ -86,7 +86,7 @@ struct HttpService {
     }
   }
   
-  static func get(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
+  static func get(urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: ((JSON?, NSError?) -> Void)) {
     requestAPI(.GET, urlString: urlString, parameters: parameters) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
@@ -124,14 +124,15 @@ struct HttpService {
             completionHandler(json,nil)
             print(json["resDesc"].string)
           } else {
-            let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
-              code: -1,
-              userInfo: ["res":"\(json["res"].int)","resDesc":json["resDesc"].string ?? ""])
-            completionHandler(json,e)
-            print("error with reason: \(json["resDesc"].string)")
+            var resDesc = ""
             if let key = json["res"].int {
-              ZKJSTool.showMsg("\(key)")
+              resDesc = ZKJSErrorMessages.sharedInstance.errorString("\(key)") ?? "错误码:\(key)"
             }
+            let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+              code: json["res"].int ?? -1,
+              userInfo: ["res":"\(json["res"].int)","resDesc":resDesc])
+            completionHandler(json,e)
+            print("api request error with reason: \(json["res"].int):\(json["resDesc"].string)")
           }
         } else {
           let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
@@ -175,7 +176,7 @@ struct HttpService {
     let data: NSData = phone.dataUsingEncoding(NSUTF8StringEncoding)!
     let encryptedData = data.AES256EncryptWithKey(key).base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
     let dict = ["phone":"\(encryptedData)"]
-    post(urlString, parameters: dict) { (json, error) -> Void in
+    post(urlString, parameters: dict, tokenRequired: false) { (json, error) -> Void in
       completionHandler(json,error)
     }
   
@@ -186,7 +187,7 @@ struct HttpService {
     let urlString = baseCodeURL + ResourcePath.Login.description
     
     let dict = ["phone":"\(phone)","code":"\(code)"]
-    post(urlString, parameters: dict) { (json, error) -> Void in
+    post(urlString, parameters: dict, tokenRequired: false) { (json, error) -> Void in
       if let json = json {
         guard let token = json["token"].string else {
           print("no token")
