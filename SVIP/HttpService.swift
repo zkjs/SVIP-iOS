@@ -54,8 +54,8 @@ struct HttpService {
       case .ApiURL(let path): return "/api/\(path)"
       case .Beacon: return "/lbs/v1/loc/beacon"
       case .GPS: return "/lbs/v1/loc/gps"
-      case .CodeLogin : return "/sso/vcode/v1/si/login"
-      case .CodeRegister : return "/sso/vcode/v1/si/register"
+      case .CodeLogin : return "/sso/vcode/v1/si?source=login"
+      case .CodeRegister : return "/sso/vcode/v1/si?source=register"
       case .Login: return "/sso/token/v1/phone/si"
       case .Token: return "/sso/token/v1"
       case.DeleteToken: return "/sso/token/v1"
@@ -75,8 +75,8 @@ struct HttpService {
     return parsed
   }
   
-  static func put(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
-    requestAPI(.PUT, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+  static func put(urlString: String, parameters: [String : AnyObject]? , tokenRequired:Bool=true, completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.PUT, urlString: urlString, parameters: parameters,tokenRequired: tokenRequired) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
       } else {
@@ -87,8 +87,8 @@ struct HttpService {
   
 
   
-  static func delete(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
-    requestAPI(.DELETE, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+  static func delete(urlString: String, parameters: [String : AnyObject]? , tokenRequired:Bool=true, completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.DELETE, urlString: urlString, parameters: parameters,tokenRequired: tokenRequired) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
       } else {
@@ -97,8 +97,8 @@ struct HttpService {
     }
   }
   
-  static func post(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
-    requestAPI(.POST, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+  static func post(urlString: String, parameters: [String : AnyObject]? , tokenRequired:Bool=true, completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.POST, urlString: urlString, parameters: parameters,tokenRequired: tokenRequired) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
       } else {
@@ -108,11 +108,8 @@ struct HttpService {
   }
   
   
-  
-  
-  
-  static func get(urlString: String, parameters: [String : AnyObject]? , completionHandler: ((JSON?, NSError?) -> Void)) {
-    requestAPI(.GET, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+  static func get(urlString: String, parameters: [String : AnyObject]? , tokenRequired:Bool=true, completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.GET, urlString: urlString, parameters: parameters,tokenRequired: tokenRequired) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
       } else {
@@ -202,7 +199,7 @@ struct HttpService {
     let data: NSData = phone.dataUsingEncoding(NSUTF8StringEncoding)!
     let encryptedData = data.AES256EncryptWithKey(key).base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
     let dict = ["phone":"\(encryptedData)"]
-    post(urlString, parameters: dict) { (json, error) -> Void in
+    post(urlString, parameters: dict,tokenRequired: false) { (json, error) -> Void in
       completionHandler(json,error)
     }
   
@@ -213,7 +210,7 @@ struct HttpService {
   static func registerWithPhoneNumber(phone:String,code:String,completionHandler:(JSON?, NSError?) -> ()) {
     let urlString = baseCodeURL + ResourcePath.register.description
     let dict = ["phone":"\(phone)","code":code]
-    post(urlString, parameters: dict) { (json, error) -> Void in
+    post(urlString, parameters: dict,tokenRequired: false) { (json, error) -> Void in
       completionHandler(json,error)
       if let json = json {
         guard let token = json["token"].string else {
@@ -234,7 +231,7 @@ struct HttpService {
     let urlString = baseCodeURL + ResourcePath.Login.description
     
     let dict = ["phone":"\(phone)","code":"\(code)"]
-    post(urlString, parameters: dict) { (json, error) -> Void in
+    post(urlString, parameters: dict, tokenRequired: false) { (json, error) -> Void in
       if let json = json {
         guard let token = json["token"].string else {
           print("no token")
@@ -295,12 +292,12 @@ struct HttpService {
   
   //// PAVO 认证服务API : 验证码 : HEADER不需要Token(注册获取验证码)
   static func registerSmsCodeWithPhoneNumber(phone:String,completionHandler:(JSON?, NSError?) -> ()){
-    let urlString = baseCodeURL + ResourcePath.CodeLogin.description
+    let urlString = baseCodeURL + ResourcePath.CodeRegister.description
     let key = "X2VOV0+W7szslb+@kd7d44Im&JUAWO0y"
     let data: NSData = phone.dataUsingEncoding(NSUTF8StringEncoding)!
     let encryptedData = data.AES256EncryptWithKey(key).base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
     let dict = ["phone":"\(encryptedData)"]
-    post(urlString, parameters: dict) { (json, error) -> Void in
+    post(urlString, parameters: dict,tokenRequired: false) { (json, error) -> Void in
       completionHandler(json,error)
     }
     
