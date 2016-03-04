@@ -318,8 +318,6 @@
 		FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02C5831C0D42D100D0D439 /* LoginVC.xib */; };
 		FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */; };
 		FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */; };
-		FA0A59181C84237700352F83 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0A59171C84237700352F83 /* CryptoSwift.framework */; };
-		FA0A59191C84285000352F83 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA0A59171C84237700352F83 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B28B51C09453500E8B1C0 /* MailListCell.swift */; };
 		FA5B28B81C09453500E8B1C0 /* MailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5B28B61C09453500E8B1C0 /* MailListCell.xib */; };
 		FA6BC8361C1A748500D409E4 /* CustomServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */; };
@@ -432,7 +430,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FA0A59191C84285000352F83 /* CryptoSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1177,7 +1174,6 @@
 		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
-		FA0A59171C84237700352F83 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
 		FA5B28B61C09453500E8B1C0 /* MailListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListCell.xib; sourceTree = "<group>"; };
 		FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomServiceVC.swift; sourceTree = "<group>"; };
@@ -1285,7 +1281,6 @@
 				40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */,
 				B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */,
 				404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */,
-				FA0A59181C84237700352F83 /* CryptoSwift.framework in Frameworks */,
 				40C4B71B1BFACDD000CB2DA5 /* openssl.framework in Frameworks */,
 				B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */,
 				4077DDAF1C1EAF9900E13D6B /* libopencore-amrwb.a in Frameworks */,
@@ -3142,7 +3137,6 @@
 		D8D0F96B75FA018B7CF90312 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FA0A59171C84237700352F83 /* CryptoSwift.framework */,
 				40E3A20E1BFF01C300516EC4 /* 3rdparty */,
 				40E3A18C1BFF01B000516EC4 /* 3rdparty */,
 				B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */,

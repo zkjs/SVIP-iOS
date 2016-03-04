@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CryptoSwift
 class LoginVC: UIViewController {
   
   @IBOutlet weak var phoneTextField: UITextField!
