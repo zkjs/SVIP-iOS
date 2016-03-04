@@ -127,6 +127,7 @@ struct HttpService {
       headers["Token"] = token
     } else {
       if tokenRequired {
+        print("********* Token is required for [\(method)][\(urlString)] **********")
         return
       }
     }
@@ -272,7 +273,7 @@ struct HttpService {
           return
         }
         print("success")
-        print(token)
+        print("refresh token:\(token)")
         let tokenPayload = TokenPayload.sharedInstance
         tokenPayload.saveTokenPayload(token)
         

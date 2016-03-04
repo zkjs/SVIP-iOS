@@ -138,6 +138,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     print("applicationWillTerminate")
+    LocationMonitor.sharedInstance.stopUpdatingLocation()
+    LocationMonitor.sharedInstance.afterResume = false
+    LocationMonitor.sharedInstance.startMonitoringLocation()
   }
   
   // MARK: - Local Notification
