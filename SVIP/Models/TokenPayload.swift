@@ -30,6 +30,16 @@ class TokenPayload:NSObject {
   var roles:[String]? {
     return json?["roles"].array?.map{$0.string}.filter{$0 != nil}.map{$0!}
   }
+  var complete:Bool {
+    if let com  = json?["complete"] {
+      return com != 0
+    }
+    return true
+  }
+  
+  var isLogin:Bool {
+    return userID != nil
+  }
   
   private var json: JSON? {
     guard let data = self.tokenPayload?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) else {
@@ -76,9 +86,10 @@ class TokenPayload:NSObject {
   
   func clearCacheTokenPayload() {
     let userDefaults = NSUserDefaults()
-    userDefaults.setObject(nil, forKey: "tokenPayload")
+    userDefaults.setObject(nil, forKey: TokenPayload.kNSDefaults)
     userDefaults.synchronize()
-    token = ""
+    token = nil
+    tokenPayload = nil
   }
 
   

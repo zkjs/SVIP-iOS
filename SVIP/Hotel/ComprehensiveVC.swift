@@ -94,7 +94,7 @@ class ComprehensiveVC: UIViewController {
   }
   
   private func loadShopListData(page: Int) {
-    let stats = AccountManager.sharedInstance().isLogin()
+    let stats = TokenPayload.sharedInstance.isLogin
     if stats == true {
       //获取所有商家列表(登陆时的数据)
       ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithPage(String(orderPage),size:"10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in

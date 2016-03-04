@@ -49,7 +49,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   }
   
   func loadUserData() {
-    userImage.image = AccountManager.sharedInstance().avatarImage
+    userImage.sd_setImageWithURL(NSURL(string: AccountManager.sharedInstance().avatarURL), placeholderImage: UIImage(named: "logo_white"))
     surnameTextField.text = AccountManager.sharedInstance().userName
     emailTextFiled.text = AccountManager.sharedInstance().email
     sexTextField.text = AccountManager.sharedInstance().sexName
@@ -113,34 +113,27 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   func chooseSex() {
     let alertController = UIAlertController(title: "请选择性别", message: "", preferredStyle: .ActionSheet)
     let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "1", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        print(responseObject)
-        if let dic = responseObject as? NSDictionary {
-          let set = dic["set"]!.boolValue!
-          if set {
-            AccountManager.sharedInstance().saveSex("1")
-            self.refreshDataAndUI()
-          }
-        }
-        }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+      HttpService.updateUserInfo(false, realname:nil, sex: "1", image: nil, email: nil) { (json, error) -> () in
+        if let _ = error {
           
+        } else {
+          AccountManager.sharedInstance().saveSex(1)
+          self.refreshDataAndUI()
+        }
       }
     })
     alertController.addAction(manAction)
     let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: "0", email:nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        print(responseObject)
-        if let dic = responseObject as? NSDictionary {
-          let set = dic["set"]!.boolValue!
-          if set {
-            AccountManager.sharedInstance().saveSex("0")
-            self.refreshDataAndUI()
-          }
-        }
-        }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
+      HttpService.updateUserInfo(false, realname:nil, sex: "0", image: nil, email: nil) { (json, error) -> () in
+        if let _ = error {
           
+        } else {
+          AccountManager.sharedInstance().saveSex(0)
+          self.refreshDataAndUI()
+        }
       }
     })
+    
     alertController.addAction(womanAction)
     let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
     alertController.addAction(cancelAction)
@@ -163,19 +156,21 @@ extension AccountTVC: UIImagePickerControllerDelegate {
       let persent = CGFloat(100 - i++) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: imageData, sex: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      self.hideHUD()
-      if let dic = responseObject as? NSDictionary {
-        if dic["set"]?.boolValue == true {
-          AccountManager.sharedInstance().saveAvatarImageData(imageData)
-          self.refreshDataAndUI()
-          self.showHint("上传头像成功")
-        }
-      }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+    
+    HttpService.updateUserInfo(false, realname:nil, sex: nil, image: image,email: nil) {[unowned self] (json, error) -> () in
+      if let _ = error {
         self.hideHUD()
         self.showHint("上传头像失败")
+        print(error)
+      } else {
+        HttpService.getUserinfo({[unowned self] (json, error) -> () in
+          self.hideHUD()
+          self.refreshDataAndUI()
+          self.showHint("上传头像成功")
+        })
+      }
     }
+    
   }
   
 }

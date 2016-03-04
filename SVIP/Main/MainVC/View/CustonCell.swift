@@ -80,14 +80,10 @@ class CustonCell: UITableViewCell {
       hourLabel = "晚上好"
     }
     greetLabel.text = hourLabel
+    
+    let loginStats = TokenPayload.sharedInstance.isLogin
     let sex = AccountManager.sharedInstance().sex
-    if sex == "1" {
-      sexString = "先生"
-    } else {
-      sexString  = "女士"
-    }
-    let loginStats = AccountManager.sharedInstance().isLogin()
-//    let image = AccountManager.sharedInstance().avatarImage
+    sexString = loginStats ? (sex == 1 ? "先生" : "女士") : ""
     
     if loginStats == false {
       userNameLabel.text = ""//没登陆时不显示名字(不要删掉)
@@ -108,12 +104,6 @@ class CustonCell: UITableViewCell {
     if loginStats == true && activate == true {
       userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
       dynamicLabel.text = "使用超级身份，享受超凡个性服务"
-      activeButton.hidden = true
-    }
-    if loginStats == true && activate == true && beacon != nil {
-      userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
-//      dynamicLabel.text = "欢迎光临\(beacon!["remark"])"
-      dynamicLabel.text = ""
       activeButton.hidden = true
     }
   }

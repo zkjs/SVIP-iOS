@@ -35,19 +35,24 @@ struct HttpService {
   //位置
   private static let baseLocationURL = "http://120.25.80.143:8082" //推送/更新室内位置
   private static let baseCodeURL = "http://120.25.80.143:8080" //获取code
+  private static let baseRegisterURL = "http://120.25.80.143:8083" // 注册地址
+
+
 //  private static let baseCodeURL = "http://192.168.199.112:8082" //局域网测试IP
   
   private enum ResourcePath: CustomStringConvertible {
     case ApiURL(path:String)              // demo
-    case Beacon                           // PYXIS 位置服务API : Beacon 位置信息 : 
-    case GPS                              // PYXIS 位置服务API : GPS 位置信息 :
-    case CodeLogin                             // PAVO 认证服务API : 验证码 : HEADER不需要Token
-    case CodeRegister             //注册获取验证码
-    case register                         //注册获取token
-    case Login                            // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
-    case Token                            // PAVO 认证服务API : Token管理 :
+    case Beacon                                   // PYXIS 位置服务API : Beacon 位置信息 :
+    case GPS                                          // PYXIS 位置服务API : GPS 位置信息 :
+    case CodeLogin                            // PAVO 认证服务API : 验证码 : HEADER不需要Token
+    case CodeRegister                       //注册获取验证码
+    case register                                   //注册获取token
+    case Login                                      // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
+    case Token                                     // PAVO 认证服务API : Token管理 :
     case DeleteToken
-    case updata                      //更新资料
+    case RegisterUpdata                  //注册后更新资料
+    case UserInfo                                 //获取用户资料
+    case UserInfoUpdate                 //更新用户资料
     
     var description: String {
       switch self {
@@ -58,9 +63,11 @@ struct HttpService {
       case .CodeRegister : return "/sso/vcode/v1/si?source=register"
       case .Login: return "/sso/token/v1/phone/si"
       case .Token: return "/sso/token/v1"
-      case.DeleteToken: return "/sso/token/v1"
-      case.updata: return "/res/v1/register/update/si"
-      case.register: return "/res/v1/register/si"
+      case .DeleteToken: return "/sso/token/v1"
+      case .RegisterUpdata: return "/res/v1/register/update/si"
+      case .register: return "/res/v1/register/si"
+      case .UserInfo:return "/res/v1/query/si/all"
+      case .UserInfoUpdate: return "/res/v1/update/si"
       }
     }
   }
@@ -305,25 +312,40 @@ struct HttpService {
 
   
   //////注册流程 完善资料
-  static func updateUserInfoWithUsername(realname:String,sex:String,image:UIImage,completionHandler:(JSON?,NSError?) -> ()) {
-    let parameters = [
-      "realname": realname,
-      "sex": sex]
-    var headers = ["Content-Type":"application/json"]
-    if let token = TokenPayload.sharedInstance.token {
-      headers["Token"] = token
-    } else {
-      
+  static func updateUserInfo(isRegister: Bool, realname:String?,sex:String?,image:UIImage?,email:String?, completionHandler:(JSON?,NSError?) -> ()) {
+    if realname == nil && sex == nil && image == nil && email == nil {
+      return
     }
-    let urlString = baseCodeURL + ResourcePath.updata.description
+    
+    let urlString = baseRegisterURL + (isRegister ? ResourcePath.RegisterUpdata.description : ResourcePath.UserInfoUpdate.description)
+    
+    var parameters = [String:String]()
+    if isRegister {
+      if let realname = realname {
+        parameters["realname"] = realname
+      }
+    } else {
+      if let realname = realname {
+        parameters["username"] = realname
+      }
+    }
+    if let sex = sex {
+      parameters["sex"] = sex
+    }
+    if let email = email {
+      parameters["email"] = email
+    }
+    guard  let token = TokenPayload.sharedInstance.token else {return}
+    var headers = ["Content-Type":"multipart/form-data"]
+    headers["Token"] = token
+    
     upload(.POST, urlString,headers: headers,multipartFormData: {
       multipartFormData in
-        if let imageData = UIImageJPEGRepresentation(image, 1.0) {
-          multipartFormData.appendBodyPart(data: imageData, name: "file", fileName: "file.png", mimeType: "image/png")
+        if let image = image, let imageData = UIImageJPEGRepresentation(image, 1.0) {
+          multipartFormData.appendBodyPart(data: imageData, name: "image", fileName: "image", mimeType: "image/png")
         }
-      
       for (key, value) in parameters {
-        multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
+          multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
       }
       
       }, encodingCompletion: {
@@ -334,7 +356,35 @@ struct HttpService {
             if let error = error {
               print(error)
             } else {
-              completionHandler(nil,error)
+              print(jsonFromData(data))
+              if let data = data {
+                let json = JSON(data: data)
+                if json["res"].int == 0 {
+
+                  print(json["resDesc"].string)
+                  
+                  if isRegister {
+                    guard let token = json["token"].string else {
+                      return
+                    }
+                    print(token)
+                    let tokenPayload = TokenPayload.sharedInstance
+                    tokenPayload.saveTokenPayload(token)
+                  }
+                  
+                  completionHandler(json,nil)
+                
+                } else {
+                  let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+                    code: -1,
+                    userInfo: ["res":"\(json["res"].int)","resDesc":json["resDesc"].string ?? ""])
+                  completionHandler(json,e)
+                  print("error with reason: \(json["resDesc"].string)")
+                  if let key = json["res"].int {
+                    ZKJSTool.showMsg("\(key)")
+                  }
+                }
+              }
             }
           })
 
@@ -344,4 +394,19 @@ struct HttpService {
     })
 
   }
+  
+  static func getUserinfo(completionHandler:(JSON?, NSError?) -> ()){
+    let urlString = baseRegisterURL + ResourcePath.UserInfo.description
+    get(urlString, parameters: nil) { (json, error) -> Void in
+      completionHandler(json,error)
+      if let error = error {
+        print(error)
+      } else {
+        if let userData = json?["data"].dictionary  {
+          AccountManager.sharedInstance().saveBaseInfo(userData)
+        }
+      }
+    }
+  }
+  
 }

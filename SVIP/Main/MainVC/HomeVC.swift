@@ -94,11 +94,12 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
-    let loginStats = AccountManager.sharedInstance().isLogin()
-    let image = AccountManager.sharedInstance().avatarImage
+    let loginStats = TokenPayload.sharedInstance.isLogin
+//    let image = AccountManager.sharedInstance().avatarImage
+    let imageURL = AccountManager.sharedInstance().avatarURL
     if loginStats == true {
-      privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      //privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+      privilegeButton.sd_setBackgroundImageWithURL(NSURL(string: imageURL), forState: .Normal, placeholderImage: UIImage(named: "logo_white"))
       privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
       privilegeButton.userInteractionEnabled = false
     } else {
@@ -112,7 +113,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     navigationController?.navigationBar.translucent = true
     count++
     loadData()
-    let islogin = AccountManager.sharedInstance().isLogin()
+    let islogin = TokenPayload.sharedInstance.isLogin
     if islogin == true {
       memberActivation()
       getAllMessages()

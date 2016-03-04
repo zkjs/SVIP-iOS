@@ -60,7 +60,7 @@ class MeTVC: UITableViewController {
   }
   
   func loadUnconfirmedOrderList() {
-    if AccountManager.sharedInstance().isLogin() == false {
+    if TokenPayload.sharedInstance.isLogin == false {
       return
     }
     
@@ -158,9 +158,10 @@ class MeTVC: UITableViewController {
   func setupUI() {
     unconfirmedOrderCountLabel.hidden = true
 
-    if AccountManager.sharedInstance().isLogin() == true {
+    if TokenPayload.sharedInstance.isLogin == true {
       loginLabel.hidden = true
-      userImage.image = AccountManager.sharedInstance().avatarImage
+      let avatarURL = AccountManager.sharedInstance().avatarURL
+      userImage.sd_setImageWithURL(NSURL(string: avatarURL), placeholderImage: UIImage(named: "logo_white"))
     }
   }
   
@@ -175,7 +176,7 @@ class MeTVC: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
-    if AccountManager.sharedInstance().isLogin() == false {
+    if TokenPayload.sharedInstance.isLogin == false {
       let nc = BaseNC(rootViewController: LoginVC())
       presentViewController(nc, animated: true, completion: nil)
       return

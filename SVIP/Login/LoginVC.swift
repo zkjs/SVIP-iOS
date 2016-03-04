@@ -125,17 +125,23 @@ class LoginVC: UIViewController {
   }
   
   private func getUserInfo(closure: () -> Void) {
-    ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
-      if let data = responseObject as? [String : AnyObject] {
-        AccountManager.sharedInstance().saveBaseInfo(data)
-        
+//    ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+//      print(responseObject)
+//      if let data = responseObject as? [String : AnyObject] {
+////        AccountManager.sharedInstance().saveBaseInfo(data)
+//        self.loginEaseMob()
+//        closure()
+//      }
+//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+//        self.hideHUD()
+//        self.showHint("服务器返回数据异常")
+//    }
+    HttpService.getUserinfo { (json, error) -> () in
+      if let error = error {
         self.loginEaseMob()
-        closure()
+      } else {
+        
       }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        self.hideHUD()
-        self.showHint("服务器返回数据异常")
     }
   }
   
@@ -148,7 +154,10 @@ class LoginVC: UIViewController {
       if let error = error {
         // TODO: save new toke payload
       } else {
-        self.loginWithPhone(phone)
+        //self.loginWithPhone(phone)
+        self.getUserInfo({ () -> Void in
+          
+        })
       }
       self.dismissSelf()
       self.hideHUD()

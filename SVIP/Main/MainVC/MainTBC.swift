@@ -74,8 +74,8 @@ class MainTBC: UITabBarController {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     
-    if AccountManager.sharedInstance().isLogin() == true {
-      let userID = AccountManager.sharedInstance().userID
+    if TokenPayload.sharedInstance.isLogin == true {
+      let userID = TokenPayload.sharedInstance.userID
       print("EaseMob Login Name: \(userID)")
       let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
       print("登陆前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")

@@ -44,12 +44,15 @@ class NameVC: UIViewController {
       return
     }
     
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(userName, imageData: nil, sex: nil, email: nil, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    HttpService.updateUserInfo(false, realname: userName, sex: nil, image: nil, email: nil) { [unowned self](json, error) -> () in
+      if let _ = error {
+        self.showHint("修改姓名失败")
+      } else {
         AccountManager.sharedInstance().saveUserName(userName)
         self.navigationController?.popViewControllerAnimated(true)
-        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          
-      })
+      }
+    }
+
     }
 }
 

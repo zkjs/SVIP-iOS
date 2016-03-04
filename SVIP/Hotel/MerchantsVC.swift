@@ -83,7 +83,7 @@ class MerchantsVC: UIViewController {
   }
   
   private func getDataWithPage(page: Int) {
-    if AccountManager.sharedInstance().isLogin() {
+    if TokenPayload.sharedInstance.isLogin {
       ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
         print(responseObject)
         if let array = responseObject as? NSArray {

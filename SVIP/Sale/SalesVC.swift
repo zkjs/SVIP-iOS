@@ -23,7 +23,7 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    if AccountManager.sharedInstance().isLogin() == false {
+    if TokenPayload.sharedInstance.isLogin == false {
       let rightBarButtonItem = UIBarButtonItem(title: "请登录", style: .Plain, target: self, action: "login:")
       rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
       super.navigationItem.rightBarButtonItem = rightBarButtonItem
