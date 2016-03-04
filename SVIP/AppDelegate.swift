@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     setupAMap()
     setupUMStatistics()
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
-    
+    refreshToken()
     ZKJSHTTPSessionManager.sharedInstance().delegate = self
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
@@ -58,6 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     }
 
     return true
+  }
+  
+  func refreshToken() {
+    HttpService.managerToken { (json, error) -> () in
+      
+    }
   }
   func networkState() {
 //    // Allocate a reachability object

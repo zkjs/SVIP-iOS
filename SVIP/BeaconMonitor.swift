@@ -41,9 +41,11 @@ class BeaconMonitor:NSObject {
 extension BeaconMonitor : CLLocationManagerDelegate {
   func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
     if let region = region as? CLBeaconRegion {
-      print("enter beaconRegion:\(region)")
+//      print("enter beaconRegion:\(region)")
       self.locationManager.startRangingBeaconsInRegion(self.beaconRegion)
+
       //didEnterBeaconRegion(region as! CLBeaconRegion)
+
     }
   }
   
@@ -57,7 +59,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
     
     for beacon  in beacons {
-      print("range beacon:\(beacon)")
+//      print("range beacon:\(beacon)")
       didEnterBeaconRegion(beacon)
     }
   }

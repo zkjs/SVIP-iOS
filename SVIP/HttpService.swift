@@ -44,6 +44,7 @@ struct HttpService {
     case Code                             // PAVO 认证服务API : 验证码 : HEADER不需要Token
     case Login                            // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
     case Token                            // PAVO 认证服务API : Token管理 :
+    case DeleteToken
     
     var description: String {
       switch self {
@@ -53,6 +54,7 @@ struct HttpService {
       case .Code : return "/sso/vcode/v1/si"
       case .Login: return "/sso/token/v1/phone/si"
       case .Token: return "/sso/token/v1"
+      case.DeleteToken: return "/sso/token/v1"
       }
     }
   }
@@ -67,8 +69,8 @@ struct HttpService {
     return parsed
   }
   
-  static func put(urlString: String, parameters: [String : AnyObject]?,tokenRequired:Bool = true , completionHandler: ((JSON?, NSError?) -> Void)) {
-    requestAPI(.PUT, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+  static func put(urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: ((JSON?, NSError?) -> Void)) {
+    requestAPI(.PUT, urlString: urlString, parameters: parameters, tokenRequired: tokenRequired) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
       } else {
@@ -77,7 +79,7 @@ struct HttpService {
     }
   }
   static func post(urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: ((JSON?, NSError?) -> Void)) {
-    requestAPI(.POST, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+    requestAPI(.POST, urlString: urlString, parameters: parameters, tokenRequired: tokenRequired) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
       } else {
@@ -87,7 +89,7 @@ struct HttpService {
   }
   
   static func get(urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: ((JSON?, NSError?) -> Void)) {
-    requestAPI(.GET, urlString: urlString, parameters: parameters) { (json, err) -> Void in
+    requestAPI(.GET, urlString: urlString, parameters: parameters, tokenRequired: tokenRequired) { (json, err) -> Void in
       if let err = err {
         completionHandler(json, err)
       } else {
@@ -104,6 +106,7 @@ struct HttpService {
       headers["Token"] = token
     } else {
       if tokenRequired {
+        print("Token is required")
         return
       }
     }
@@ -137,14 +140,13 @@ struct HttpService {
         } else {
           let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
             code: -2,
-            userInfo: ["res":"-2","resDesc": "no data from server"])
+            userInfo: ["res":"-2","resDesc": "服务器未返回数据"])
           completionHandler(nil,e)
-          print("error with reason: \(e)")
+          print("api request error with reason: \(e)")
         }
       }
     }
   }
-  
   //// PYXIS 位置服务API : Beacon 位置信息 :
   static func sendBeaconChanges(uuid:String, major:String, minor:String, sensorID: String = "", timestamp:Int, completionHandler:(NSError?) -> ()){
     let urlString = baseLocationURL + ResourcePath.Beacon.description
@@ -217,13 +219,33 @@ struct HttpService {
   }
   
   //// PAVO 认证服务API : Token管理 :
-  static func managerToken(token:String,completionHandler:(JSON?,NSError?) -> ()) {
+  static func managerToken(completionHandler:(JSON?,NSError?) -> ()) {
     let urlString = baseCodeURL + ResourcePath.Token.description
 
     put(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json, error)
+      if let json = json {
+        guard let token = json["token"].string else {
+          print("no token")
+          return
+        }
+        print("success")
+        print(token)
+        let tokenPayload = TokenPayload.sharedInstance
+        tokenPayload.saveTokenPayload(token)
+        
+    }
     }
   }
   
+  //// PAVO 认证服务API : Token管理 :
+  static func deleteToken(completionHandler:(JSON?,NSError?) -> ()) {
+    let urlString = baseCodeURL + ResourcePath.Token.description
+    guard   let token = TokenPayload.sharedInstance.token else {return}
+    let dic = ["token":token]
+    put(urlString, parameters: dic) { (json, error) -> Void in
+      completionHandler(json, error)
+        }
+  }
   
 }

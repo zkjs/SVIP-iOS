@@ -73,6 +73,13 @@ class TokenPayload:NSObject {
     userDefaults.setObject(tokenFullString, forKey: TokenPayload.kNSDefaults)
     userDefaults.synchronize()
   }
+  
+  func clearCacheTokenPayload() {
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(nil, forKey: "tokenPayload")
+    userDefaults.synchronize()
+    token = ""
+  }
 
   
 }

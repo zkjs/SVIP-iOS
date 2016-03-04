@@ -316,6 +316,8 @@
 		FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */; };
 		FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02C5821C0D42D100D0D439 /* LoginVC.swift */; };
 		FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02C5831C0D42D100D0D439 /* LoginVC.xib */; };
+		FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */; };
+		FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */; };
 		FA0A59181C84237700352F83 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0A59171C84237700352F83 /* CryptoSwift.framework */; };
 		FA0A59191C84285000352F83 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA0A59171C84237700352F83 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B28B51C09453500E8B1C0 /* MailListCell.swift */; };
@@ -1173,6 +1175,8 @@
 		FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothDescriptionVC.xib; sourceTree = "<group>"; };
 		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
+		FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
 		FA0A59171C84237700352F83 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
 		FA5B28B61C09453500E8B1C0 /* MailListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListCell.xib; sourceTree = "<group>"; };
@@ -3157,6 +3161,8 @@
 				B2FB432B1B8EB49600C9BEBB /* Register */,
 				FA02C5821C0D42D100D0D439 /* LoginVC.swift */,
 				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
+				FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */,
+				FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3434,6 +3440,7 @@
 				40E39FBC1BFEF59700516EC4 /* HotCityCell.xib in Resources */,
 				B21250C41B74A1A50056835D /* BookListRightMenuCell.xib in Resources */,
 				FA6BC8371C1A748500D409E4 /* CustomServiceVC.xib in Resources */,
+				FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */,
 				4077DDD71C1EAF9900E13D6B /* MWPhotoBrowser.bundle in Resources */,
 				4077DD8D1C1EAF9900E13D6B /* callRing.mp3 in Resources */,
 				40817D181B8ED97500EF188F /* NewItemHeaderView.xib in Resources */,
@@ -3588,6 +3595,7 @@
 				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
 				406B0ACF1C855CCD006C9C73 /* SwiftyJSON.swift in Sources */,
 				4077DDEF1C1EAF9900E13D6B /* EaseUserCell.m in Sources */,
+				FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */,
 				FAFBC43F1C33740C001E9155 /* LeisureTVC.swift in Sources */,
 				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				FAFBFB751C22575000A1126B /* RecommendModel.swift in Sources */,

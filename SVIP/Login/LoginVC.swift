@@ -365,5 +365,10 @@ extension LoginVC: UITextFieldDelegate {
     return true
   }
   
+  @IBAction func register(sender: AnyObject) {
+    let vc = RegisterVC()
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
 }
 
