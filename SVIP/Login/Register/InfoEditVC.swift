@@ -15,7 +15,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   
   var avatarData: NSData? = nil
   var sex = "0"
-  
+var image = UIImage()
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("InfoEditVC", owner:self, options:nil)
@@ -77,6 +77,10 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
+    
+    HttpService.updateUserInfoWithUsername(userName, sex: sex, image: self.image) { (json, error) -> () in
+      
+    }
   }
   
   @IBAction func selectAvatar(sender: AnyObject) {
@@ -123,6 +127,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   //MARK:- UIImagePickerControllerDelegate
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    self.image = image
     var imageData = UIImageJPEGRepresentation(image, 1.0)!
     var i = 0
     while imageData.length / 1024 > 80 {
@@ -133,6 +138,22 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
     AccountManager.sharedInstance().saveAvatarImageData(avatarData!)
     self.avatarButton.setImage(UIImage(data: avatarData!), forState: UIControlState.Normal)
     picker.dismissViewControllerAnimated(true, completion: nil)
+    
+//    if let image = UIImage(named: "example.png") {
+//      if let data = UIImagePNGRepresentation(image) {
+//        self.filename = getDocumentsDirectory().stringByAppendingPathComponent("copy.png")
+//        data.writeToFile(filename, atomically: true)
+//      }
+//    }
+    
+    
+    
+  }
+  
+  func getDocumentsDirectory() -> NSString {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    let documentsDirectory = paths[0]
+    return documentsDirectory
   }
   
   //MARK:- UITextFieldDelegate

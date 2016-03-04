@@ -499,6 +499,7 @@ extension HomeVC: CLLocationManagerDelegate {
     //开始监听beacon
     beaconMonitor.startMonitoring()
     
+    
   }
   
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

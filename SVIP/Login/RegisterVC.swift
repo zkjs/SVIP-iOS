@@ -18,6 +18,9 @@ class RegisterVC: UIViewController {
   }
   @IBOutlet weak var codeTextField: UITextField!
   @IBOutlet weak var phoneTextField: UITextField!
+  
+  var count = 0
+  var countTimer = NSTimer()
     override func viewDidLoad() {
         super.viewDidLoad()
       title = "注册"
@@ -41,10 +44,24 @@ class RegisterVC: UIViewController {
     codeIV.contentMode = .Center
     codeTextField.leftViewMode = .Always
     codeTextField.leftView = codeIV
-
   }
 
   @IBAction func sendCode(sender: AnyObject) {
+    guard let phone = phoneTextField.text else { return }
+    
+    if ZKJSTool.validateMobile(phone) {
+      ZKJSTool.showMsg("验证码已发送")
+      HttpService.registerSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
+        self.codeTextField.becomeFirstResponder()
+        self.codeButton.enabled = false
+        self.codeButton.alpha = 0.5
+        self.count = 30
+        self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+        if let json = json {
+          print(json)
+        }
+      })
+    }
   }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,6 +72,13 @@ class RegisterVC: UIViewController {
     self.navigationController?.popViewControllerAnimated(true)
   }
     
+  @IBAction func register(sender: AnyObject) {
+    guard let phone = phoneTextField.text,let code = codeTextField.text else {return}
+    HttpService.registerWithPhoneNumber(phone, code: code) { (json, error) -> () in
+      let vc = InfoEditVC()
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
+  }
 
     /*
     // MARK: - Navigation
