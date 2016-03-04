@@ -100,6 +100,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     print("applicationDidEnterBackground")
+    LocationMonitor.sharedInstance.stopUpdatingLocation()
+    LocationMonitor.sharedInstance.afterResume = false
+    LocationMonitor.sharedInstance.startMonitoringLocation()
   }
 
   func applicationWillEnterForeground(application: UIApplication) {
@@ -127,7 +130,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    }
     
     LocationMonitor.sharedInstance.afterResume = false
-    LocationMonitor.sharedInstance.startMonitoringLocation()
+    LocationMonitor.sharedInstance.stopMonitoringLocation()
+    LocationMonitor.sharedInstance.startUpdatingLocation()
 
   }
 

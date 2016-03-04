@@ -15,11 +15,14 @@ class LocationMonitor:NSObject {
   private override init() {}
   
   var afterResume = false
-  
+  var lastLocation : CLLocation?
+  var lastTime: NSTimeInterval?
   var locationManager: CLLocationManager?
   
   func startMonitoringLocation () {
+    print("######startMonitoringLocation")
     if let locationManager = locationManager {
+      locationManager.stopUpdatingHeading()
       locationManager.stopMonitoringSignificantLocationChanges()
     }
     
@@ -45,6 +48,24 @@ class LocationMonitor:NSObject {
   func stopMonitoringLocation () {
     locationManager?.stopMonitoringSignificantLocationChanges()
   }
+  
+  func startUpdatingLocation () {
+    print("######startUpdatingLocation")
+    if let locationManager = locationManager {
+      locationManager.stopUpdatingLocation()
+      locationManager.stopMonitoringSignificantLocationChanges()
+    }
+    
+    locationManager = CLLocationManager()
+    locationManager?.delegate = self
+    locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    locationManager?.distanceFilter = 1000
+    locationManager?.startUpdatingLocation()
+  }
+  
+  func stopUpdatingLocation () {
+    locationManager?.stopUpdatingHeading()
+  }
 }
 
 extension LocationMonitor : CLLocationManagerDelegate {
@@ -58,27 +79,40 @@ extension LocationMonitor : CLLocationManagerDelegate {
   }
   
   private func uploadLocation (location:CLLocation) {
-    // TODO:  upload location to server
+    print("\n*****location:\(location)")
+    let ts = NSDate().timeIntervalSince1970
+    if let lastLocation = lastLocation {
+      let distance = lastLocation.distanceFromLocation(location)
+      print("distance:[\(distance)]")
+      print("current speed:[\(location.speed)]")
+      if distance < 500 {
+        self.lastLocation = location
+        self.lastTime = ts
+        print("distance less than 500m , don't send gps to server")
+        return
+      }
+      if let lastTime = lastTime {
+        if ts - lastTime < 0.01 {
+          return
+        }
+        let speed = distance / (ts - lastTime)
+        print("calculated speed : \(speed)")
+        if speed >  50{
+          print("return when too fast")
+          return
+        }
+      }
+    }
+    lastLocation = location
+    lastTime = ts
     
     HttpService.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970)) { (error) -> () in
       if let error = error {
-        print("gps upload fail")
+        print("gps upload fail:\(error)")
       } else {
         print("gps upload success")
       }
     }
-    
-    /////////////////////////////for test
-    /*let state = afterResume ? "killed" : appState()
-    let url = "http://api.lvzlv.com/index/location?source=simulator&type=\(state)&lat=\(location.coordinate.latitude)&lng=\(location.coordinate.longitude)"
-    request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
-      if let error = error {
-        print(error)
-      } else {
-        print("success")
-      }
-    }*/
-    /////////////////////////////end of test
   }
   
   private func appState() -> String {
