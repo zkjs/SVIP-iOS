@@ -14,13 +14,72 @@ class LocationMonitor:NSObject {
   static let sharedInstance = LocationMonitor()
   private override init() {}
   
+  enum LocationType {
+    case Updating,Significiant,None
+  }
+  
+  struct LastLocationInfo {
+    var locationType = LocationType.None
+    private var lastMortingLocation : CLLocation?
+    private var lastMortingTime: NSTimeInterval?
+    private var lastUpdatingLocation : CLLocation?
+    private var lastUpdatingTime: NSTimeInterval?
+    
+    var lastLocation : CLLocation? {
+      get {
+        switch locationType {
+        case .Updating:
+          return lastUpdatingLocation
+        case .Significiant:
+          return lastMortingLocation
+        default:
+          return nil
+        }
+      }
+      set(newValue) {
+        switch locationType {
+        case .Updating:
+          lastUpdatingLocation = newValue
+        case .Significiant:
+          lastMortingLocation = newValue
+        default:
+          break
+        }
+      }
+    }
+    
+    var lastTime : NSTimeInterval? {
+      get {
+        switch locationType {
+        case .Updating:
+          return lastUpdatingTime
+        case .Significiant:
+          return lastMortingTime
+        default:
+          return nil
+        }
+      }
+      set(newValue) {
+        switch locationType {
+        case .Updating:
+          lastUpdatingTime = newValue
+        case .Significiant:
+          lastMortingTime = newValue
+        default:
+          break
+        }
+      }
+    }
+  }
+  
   var afterResume = false
-  var lastLocation : CLLocation?
-  var lastTime: NSTimeInterval?
   var locationManager: CLLocationManager?
+  var lastLocationInfo = LastLocationInfo()
+  
   
   func startMonitoringLocation () {
     print("######startMonitoringLocation")
+    lastLocationInfo.locationType = .Significiant
     if let locationManager = locationManager {
       locationManager.stopUpdatingHeading()
       locationManager.stopMonitoringSignificantLocationChanges()
@@ -50,6 +109,7 @@ class LocationMonitor:NSObject {
   }
   
   func startUpdatingLocation () {
+    lastLocationInfo.locationType = .Updating
     print("######startUpdatingLocation")
     if let locationManager = locationManager {
       locationManager.stopUpdatingLocation()
@@ -79,32 +139,50 @@ extension LocationMonitor : CLLocationManagerDelegate {
   }
   
   private func uploadLocation (location:CLLocation) {
-    print("\n*****location:\(location)")
-    let ts = NSDate().timeIntervalSince1970
-    if let lastLocation = lastLocation {
+    let howRecent = location.timestamp.timeIntervalSinceNow
+    print("\n*****location since [\(howRecent)]:\(location)")
+    
+    // very important : if the location is too old, don't upload the location
+    if abs(howRecent) > 60 {
+      print("location too old.\(howRecent)")
+      return
+    }
+    var paramForTest = "[howRecent:\(howRecent)]"
+    let currentTime = NSDate().timeIntervalSince1970
+    if let lastLocation = lastLocationInfo.lastLocation {
       let distance = lastLocation.distanceFromLocation(location)
+      print("lastLocation:\(lastLocation)")
       print("distance:[\(distance)]")
       print("current speed:[\(location.speed)]")
+      paramForTest = paramForTest + "[distance:\(distance)]"
       if distance < 500 {
-        self.lastLocation = location
-        self.lastTime = ts
+        self.lastLocationInfo.lastLocation = location
+        self.lastLocationInfo.lastTime = currentTime
         print("distance less than 500m , don't send gps to server")
         return
       }
-      if let lastTime = lastTime {
-        if ts - lastTime < 0.01 {
+      if let lastTime = lastLocationInfo.lastTime {
+        self.lastLocationInfo.lastLocation = location
+        self.lastLocationInfo.lastTime = currentTime
+        //don't upload the location if too frequent
+        if currentTime - lastTime < 60 {
           return
         }
-        let speed = distance / (ts - lastTime)
+        let speed = distance / (currentTime - lastTime)
         print("calculated speed : \(speed)")
-        if speed >  50{
+        if speed >  70{
           print("return when too fast")
           return
         }
+        paramForTest = paramForTest + "[speed:\(speed)]"
+        paramForTest = paramForTest + "[time:\(currentTime - lastTime)]"
       }
+    } else {
+      print("============first time")
+      paramForTest = paramForTest + "[FirstTime]"
     }
-    lastLocation = location
-    lastTime = ts
+    lastLocationInfo.lastLocation = location
+    lastLocationInfo.lastTime = currentTime
     
     HttpService.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970)) { (error) -> () in
       if let error = error {
@@ -113,6 +191,7 @@ extension LocationMonitor : CLLocationManagerDelegate {
         print("gps upload success")
       }
     }
+    
   }
   
   private func appState() -> String {
