@@ -85,7 +85,6 @@ class LoginVC: UIViewController {
               let userid = AccountManager.sharedInstance().userID
               MobClick.profileSignInWithPUID(userid)
               
-              
             }
           } else {
             // 未注册要先注册一下

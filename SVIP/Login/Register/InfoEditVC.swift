@@ -61,7 +61,7 @@ var image = UIImage()
       return
     }
     
-//    showHUDInView(view, withLoading: "")
+    showHUDInView(view, withLoading: "")
     
     guard let userName = username.text else { return }
 //    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(userName, imageData: avatarData, sex: sex, email: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
