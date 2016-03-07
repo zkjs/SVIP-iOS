@@ -124,6 +124,11 @@ class RegisterVC: UIViewController {
     }
   }
 
- 
-
 }
+
+extension RegisterVC:UITextFieldDelegate {
+  func textFieldDidEndEditing(textField: UITextField) {
+    textField.resignFirstResponder()
+  }
+}
+
