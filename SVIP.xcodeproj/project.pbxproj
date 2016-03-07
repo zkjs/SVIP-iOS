@@ -32,6 +32,15 @@
 		404C184A1B53675300F11122 /* CompressingLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C18491B53675300F11122 /* CompressingLogFileManager.m */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
 		404FACD31B84792700352023 /* NSDate+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404FACD21B84792700352023 /* NSDate+Days.swift */; };
+		4053ADD51C8D6C5D00282240 /* HttpService+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADD41C8D6C5D00282240 /* HttpService+Token.swift */; };
+		4053ADD71C8D6ED400282240 /* HttpService+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADD61C8D6ED400282240 /* HttpService+Account.swift */; };
+		4053ADD91C8D6F5F00282240 /* HttpService+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADD81C8D6F5F00282240 /* HttpService+Location.swift */; };
+		4053ADDB1C8D7F1800282240 /* HttpErrorRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADDA1C8D7F1800282240 /* HttpErrorRecordingService.swift */; };
+		4053ADDE1C8D851400282240 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADDD1C8D851400282240 /* CoreDataStack.swift */; };
+		4053ADE31C8D899800282240 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADE21C8D899800282240 /* NSManagedObject+Extension.swift */; };
+		4053ADF61C8D9F3A00282240 /* BeaconErrors+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADF41C8D9F3A00282240 /* BeaconErrors+CoreDataProperties.swift */; };
+		4053ADF71C8D9F3A00282240 /* BeaconErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADF51C8D9F3A00282240 /* BeaconErrors.swift */; };
+		4053ADF91C8DA53400282240 /* ZKJSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ADF81C8DA53400282240 /* ZKJSHelper.swift */; };
 		4055ECCC1B903A5900C66797 /* BookingOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */; };
 		4055ECCD1B903A5900C66797 /* BookingOrderDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */; };
 		40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641EFD1B3E569700CF150D /* AppDelegate.swift */; };
@@ -490,6 +499,15 @@
 		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		404FACD21B84792700352023 /* NSDate+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Days.swift"; sourceTree = "<group>"; };
 		405352161BA66251007157FC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		4053ADD41C8D6C5D00282240 /* HttpService+Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Token.swift"; sourceTree = "<group>"; };
+		4053ADD61C8D6ED400282240 /* HttpService+Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Account.swift"; sourceTree = "<group>"; };
+		4053ADD81C8D6F5F00282240 /* HttpService+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Location.swift"; sourceTree = "<group>"; };
+		4053ADDA1C8D7F1800282240 /* HttpErrorRecordingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpErrorRecordingService.swift; sourceTree = "<group>"; };
+		4053ADDD1C8D851400282240 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		4053ADE21C8D899800282240 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
+		4053ADF41C8D9F3A00282240 /* BeaconErrors+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BeaconErrors+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4053ADF51C8D9F3A00282240 /* BeaconErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconErrors.swift; sourceTree = "<group>"; };
+		4053ADF81C8DA53400282240 /* ZKJSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZKJSHelper.swift; sourceTree = "<group>"; };
 		4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrder.storyboard; sourceTree = "<group>"; };
 		4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingOrderDetail.storyboard; sourceTree = "<group>"; };
 		405826481BA11CC5005A2C8E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -1431,6 +1449,15 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		4053ADDC1C8D850100282240 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4053ADDD1C8D851400282240 /* CoreDataStack.swift */,
+				4053ADE21C8D899800282240 /* NSManagedObject+Extension.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		40641EEF1B3E569700CF150D = {
 			isa = PBXGroup;
 			children = (
@@ -1575,6 +1602,7 @@
 		406B0AD31C858A8A006C9C73 /* CommonSwift */ = {
 			isa = PBXGroup;
 			children = (
+				4053ADDC1C8D850100282240 /* Classes */,
 				406B0AE01C85AA7D006C9C73 /* Models */,
 				406B0ADD1C859860006C9C73 /* Services */,
 				406B0AD41C858A98006C9C73 /* Extensions */,
@@ -1589,6 +1617,7 @@
 				406B0AD51C858ADC006C9C73 /* String+Extension+ZKJS.swift */,
 				406B0AD71C858F67006C9C73 /* RegexHelper.swift */,
 				406B0AD91C858FEE006C9C73 /* Double+Extension+ZKJS.swift */,
+				4053ADF81C8DA53400282240 /* ZKJSHelper.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1597,8 +1626,12 @@
 			isa = PBXGroup;
 			children = (
 				406B0A251C83E959006C9C73 /* HttpService.swift */,
+				4053ADD81C8D6F5F00282240 /* HttpService+Location.swift */,
+				4053ADD41C8D6C5D00282240 /* HttpService+Token.swift */,
+				4053ADD61C8D6ED400282240 /* HttpService+Account.swift */,
 				408C47D21C86DB3100F9B0C7 /* ZKJSErrorMessages.swift */,
 				408C47D41C86DBB900F9B0C7 /* errorMessages.plist */,
+				4053ADDA1C8D7F1800282240 /* HttpErrorRecordingService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1606,6 +1639,9 @@
 		406B0AE01C85AA7D006C9C73 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4053ADF41C8D9F3A00282240 /* BeaconErrors+CoreDataProperties.swift */,
+				4053ADF51C8D9F3A00282240 /* BeaconErrors.swift */,
+				B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */,
 				408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */,
 			);
 			name = Models;
@@ -2987,7 +3023,6 @@
 				B20812C01B8DD8650070D96F /* NSString+JSH.m */,
 				B20812C11B8DD8650070D96F /* Persistence.swift */,
 				B20812C21B8DD8650070D96F /* RuleEngine.swift */,
-				B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */,
 				B20812C31B8DD8650070D96F /* StorageManager.swift */,
 			);
 			path = Helper;
@@ -3581,6 +3616,7 @@
 				FAF4148D1BFC64B600D3BED4 /* HotCityCell.swift in Sources */,
 				4077DDCB1C1EAF9900E13D6B /* PSTCollectionView.m in Sources */,
 				4077DD971C1EAF9900E13D6B /* ContactView.m in Sources */,
+				4053ADDE1C8D851400282240 /* CoreDataStack.swift in Sources */,
 				FAFD27151C38C83A00B27C55 /* HotelOrderDetailTVC.swift in Sources */,
 				B2A6421E1B47C2A700AF0F28 /* BookConfirmVC.swift in Sources */,
 				FA6BC8361C1A748500D409E4 /* CustomServiceVC.swift in Sources */,
@@ -3644,7 +3680,9 @@
 				406B0AD61C858ADC006C9C73 /* String+Extension+ZKJS.swift in Sources */,
 				4077DDDC1C1EAF9900E13D6B /* NSDate+Category.m in Sources */,
 				FAFBC44A1C33B404001E9155 /* BrowserImageView.m in Sources */,
+				4053ADF71C8D9F3A00282240 /* BeaconErrors.swift in Sources */,
 				40E8F0251C80691400D6F605 /* Validation.swift in Sources */,
+				4053ADF91C8DA53400282240 /* ZKJSHelper.swift in Sources */,
 				40E8F03A1C81409F00D6F605 /* BeaconMonitor.swift in Sources */,
 				40D585DB1C22AD5200C5267D /* PhoneCell.swift in Sources */,
 				FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */,
@@ -3653,6 +3691,7 @@
 				406B0A261C83E959006C9C73 /* HttpService.swift in Sources */,
 				4077DDB41C1EAF9900E13D6B /* MWPhoto.m in Sources */,
 				401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */,
+				4053ADF61C8D9F3A00282240 /* BeaconErrors+CoreDataProperties.swift in Sources */,
 				4077DDC31C1EAF9900E13D6B /* UIButton+EMWebCache.m in Sources */,
 				4077DDAC1C1EAF9900E13D6B /* wav.mm in Sources */,
 				B2F4A9EB1B7EE229000DBD81 /* TSQCalendarCell.m in Sources */,
@@ -3689,6 +3728,7 @@
 				40DAA07F1B8B0E85005D56CA /* BookingOrderTVC.swift in Sources */,
 				4077DDE31C1EAF9900E13D6B /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				4077DDBB1C1EAF9900E13D6B /* EMSDWebImageCompat.m in Sources */,
+				4053ADD51C8D6C5D00282240 /* HttpService+Token.swift in Sources */,
 				B2A642201B47C2A700AF0F28 /* BookVC.swift in Sources */,
 				FAFA519B1C16F32000BF04F2 /* CityHeaderView.swift in Sources */,
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
@@ -3786,6 +3826,7 @@
 				4077DDB31C1EAF9900E13D6B /* MWGridViewController.m in Sources */,
 				4077DD911C1EAF9900E13D6B /* ChatViewController.m in Sources */,
 				4077DDBD1C1EAF9900E13D6B /* EMSDWebImageDownloader.m in Sources */,
+				4053ADDB1C8D7F1800282240 /* HttpErrorRecordingService.swift in Sources */,
 				4077DD951C1EAF9900E13D6B /* ChatGroupDetailViewController.m in Sources */,
 				401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
@@ -3833,6 +3874,7 @@
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				40E39E3B1BFEF43800516EC4 /* OrderListHeaderView.swift in Sources */,
 				40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */,
+				4053ADD91C8D6F5F00282240 /* HttpService+Location.swift in Sources */,
 				4077DDD91C1EAF9900E13D6B /* EaseConversationModel.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
 				4077DDA81C1EAF9900E13D6B /* EMCDDeviceManager+ProximitySensor.m in Sources */,
@@ -3846,9 +3888,11 @@
 				4077DDCA1C1EAF9900E13D6B /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				4077DDB61C1EAF9900E13D6B /* MWTapDetectingImageView.m in Sources */,
 				4077C7A31C26578F000DD7DC /* ZKJSDiffie-HellmanProtocol.m in Sources */,
+				4053ADE31C8D899800282240 /* NSManagedObject+Extension.swift in Sources */,
 				4077DDA31C1EAF9900E13D6B /* EaseUI.m in Sources */,
 				40E8F0221C80691400D6F605 /* Stream.swift in Sources */,
 				4077DDB21C1EAF9900E13D6B /* MWGridCell.m in Sources */,
+				4053ADD71C8D6ED400282240 /* HttpService+Account.swift in Sources */,
 				4077DDFA1C1EAF9900E13D6B /* EaseChatToolbar.m in Sources */,
 				4077DDA91C1EAF9900E13D6B /* EMCDDeviceManager+Remind.m in Sources */,
 				400959F51C213B3900D3DA61 /* PhoneSecondVC.swift in Sources */,
@@ -4243,7 +4287,8 @@
 				B20812C51B8DD8650070D96F /* SVIP.xcdatamodel */,
 			);
 			currentVersion = B20812C51B8DD8650070D96F /* SVIP.xcdatamodel */;
-			path = SVIP.xcdatamodeld;
+			name = SVIP.xcdatamodeld;
+			path = SVIP/Helper/SVIP.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

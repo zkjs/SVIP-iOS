@@ -51,7 +51,7 @@ class RegisterVC: UIViewController {
     
     if ZKJSTool.validateMobile(phone) {
       ZKJSTool.showMsg("验证码已发送")
-      HttpService.registerSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
+      HttpService.sharedInstance.registerSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
         self.codeTextField.becomeFirstResponder()
         self.codeButton.enabled = false
         self.codeButton.alpha = 0.5
@@ -118,7 +118,7 @@ class RegisterVC: UIViewController {
     
   @IBAction func register(sender: AnyObject) {
     guard let phone = phoneTextField.text,let code = codeTextField.text else {return}
-    HttpService.registerWithPhoneNumber(phone, code: code) { (json, error) -> () in
+    HttpService.sharedInstance.registerWithPhoneNumber(phone, code: code) { (json, error) -> () in
       let vc = InfoEditVC()
       self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 4.3">
+    <entity name="BeaconErrors" representedClassName=".BeaconErrors" syncable="YES">
+        <attribute name="error" attributeType="String" syncable="YES"/>
+        <attribute name="major" attributeType="String" syncable="YES"/>
+        <attribute name="minor" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Message" representedClassName="SVIP.Message" syncable="YES">
         <attribute name="avatar" optional="YES" attributeType="Binary" valueTransformerName="EncryptionBinaryTransformer" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="avatarUrl" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
@@ -24,5 +31,6 @@
     </entity>
     <elements>
         <element name="Message" positionX="-63" positionY="-18" width="128" height="345"/>
+        <element name="BeaconErrors" positionX="-54" positionY="144" width="128" height="120"/>
     </elements>
 </model>

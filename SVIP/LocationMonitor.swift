@@ -184,13 +184,7 @@ extension LocationMonitor : CLLocationManagerDelegate {
     lastLocationInfo.lastLocation = location
     lastLocationInfo.lastTime = currentTime
     
-    HttpService.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970)) { (error) -> () in
-      if let error = error {
-        print("gps upload fail:\(error)")
-      } else {
-        print("gps upload success")
-      }
-    }
+    HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970), completionHandler: nil)
     
   }
   

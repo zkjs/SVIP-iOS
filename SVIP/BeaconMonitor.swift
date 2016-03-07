@@ -12,7 +12,7 @@ import CoreLocation
 
 let BEACON_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
 let BEACON_IDENTIFIER = "com.zkjinshi.svpi"
-let BEACON_INERVAL_MIN = 60 //BEACON 重复发起API请求最小时间间隔,单位：分钟
+let BEACON_INERVAL_MIN = 20 //BEACON 重复发起API请求最小时间间隔,单位：分钟
 
 class BeaconMonitor:NSObject {
   private static let sharedInstance = BeaconMonitor()
@@ -40,7 +40,7 @@ class BeaconMonitor:NSObject {
 
 extension BeaconMonitor : CLLocationManagerDelegate {
   func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-    if let region = region as? CLBeaconRegion {
+    if let _ = region as? CLBeaconRegion {
 //      print("enter beaconRegion:\(region)")
       self.locationManager.startRangingBeaconsInRegion(self.beaconRegion)
 
@@ -59,7 +59,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
     
     for beacon  in beacons {
-//      print("range beacon:\(beacon)")
+      print("range beacon:\(beacon)")
       didEnterBeaconRegion(beacon)
     }
   }
@@ -83,13 +83,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     cachedBeaconRegions[beacon.major] = currentTimeStamp
     StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
-    HttpService.sendBeaconChanges(BEACON_UUID.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp) { (error) -> () in
-      if let _ = error {
-        print("beacon fial")
-      } else {
-        print("beacon success")
-      }
-    }
+    HttpService.sharedInstance.sendBeaconChanges(BEACON_UUID.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion) {

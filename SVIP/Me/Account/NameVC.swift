@@ -44,7 +44,7 @@ class NameVC: UIViewController {
       return
     }
     
-    HttpService.updateUserInfo(false, realname: userName, sex: nil, image: nil, email: nil) { [unowned self](json, error) -> () in
+    HttpService.sharedInstance.updateUserInfo(false, realname: userName, sex: nil, image: nil, email: nil) { [unowned self](json, error) -> () in
       if let _ = error {
         self.showHint("修改姓名失败")
       } else {

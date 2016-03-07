@@ -60,12 +60,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
       LocationMonitor.sharedInstance.afterResume = true
       LocationMonitor.sharedInstance.startMonitoringLocation()
     }
+    
+    //send error logs to server
+    sendErrorsToServerLater()
 
     return true
   }
   
   func refreshToken() {
-    HttpService.managerToken { (json, error) -> () in
+    HttpService.sharedInstance.managerToken { (json, error) -> () in
       
     }
   }
@@ -350,6 +353,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
     MobClick.setAppVersion(version)
     MobClick.startWithAppkey(UMAppKey, reportPolicy: BATCH, channelId: nil)
+  }
+  
+  //TODO: api not implemented yet
+  func sendErrorsToServer() {
+    if let allErrors = BeaconErrors.all() as? [BeaconErrors] {
+      for err in allErrors {
+        print("\(err)")
+      }
+    }
+  }
+  
+  func sendErrorsToServerLater() {
+    delay(seconds: 5, completion: sendErrorsToServer)
   }
   
 }

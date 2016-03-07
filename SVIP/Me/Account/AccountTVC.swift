@@ -113,7 +113,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   func chooseSex() {
     let alertController = UIAlertController(title: "请选择性别", message: "", preferredStyle: .ActionSheet)
     let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      HttpService.updateUserInfo(false, realname:nil, sex: "1", image: nil, email: nil) { (json, error) -> () in
+      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: "1", image: nil, email: nil) { (json, error) -> () in
         if let _ = error {
           
         } else {
@@ -124,7 +124,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     })
     alertController.addAction(manAction)
     let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      HttpService.updateUserInfo(false, realname:nil, sex: "0", image: nil, email: nil) { (json, error) -> () in
+      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: "0", image: nil, email: nil) { (json, error) -> () in
         if let _ = error {
           
         } else {
@@ -157,13 +157,13 @@ extension AccountTVC: UIImagePickerControllerDelegate {
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     
-    HttpService.updateUserInfo(false, realname:nil, sex: nil, image: image,email: nil) {[unowned self] (json, error) -> () in
+    HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: image,email: nil) {[unowned self] (json, error) -> () in
       if let _ = error {
         self.hideHUD()
         self.showHint("上传头像失败")
         print(error)
       } else {
-        HttpService.getUserinfo({[unowned self] (json, error) -> () in
+        HttpService.sharedInstance.getUserinfo({[unowned self] (json, error) -> () in
           self.hideHUD()
           self.refreshDataAndUI()
           self.showHint("上传头像成功")

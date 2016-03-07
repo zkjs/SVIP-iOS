@@ -134,7 +134,7 @@ class LoginVC: UIViewController {
 //        self.hideHUD()
 //        self.showHint("服务器返回数据异常")
 //    }
-    HttpService.getUserinfo { (json, error) -> () in
+    HttpService.sharedInstance.getUserinfo { (json, error) -> () in
       if let error = error {
         self.loginEaseMob()
       } else {
@@ -148,7 +148,7 @@ class LoginVC: UIViewController {
     guard let code = codeTextField.text else { return }
     
     showHUDInView(view, withLoading: "")
-    HttpService.loginWithCode(code, phone: phone) { (json, error) -> () in
+    HttpService.sharedInstance.loginWithCode(code, phone: phone) { (json, error) -> () in
       if let error = error {
         // TODO: save new toke payload
       } else {
@@ -236,7 +236,7 @@ class LoginVC: UIViewController {
     
     if ZKJSTool.validateMobile(phone) {
       ZKJSTool.showMsg("验证码已发送")
-      HttpService.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
+      HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
         self.codeTextField.becomeFirstResponder()
         self.codeButton.enabled = false
         self.codeButton.alpha = 0.5

@@ -78,7 +78,7 @@ var image = UIImage()
 //        
 //    }
     
-    HttpService.updateUserInfo(true, realname:userName, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
+    HttpService.sharedInstance.updateUserInfo(true, realname:userName, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
       AccountManager.sharedInstance().saveUserName(userName)
       if let error = error {
         

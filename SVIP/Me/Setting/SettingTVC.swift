@@ -22,7 +22,7 @@ class SettingTVC: UITableViewController {
   
   func logout() {
     
-    HttpService.deleteToken { (json, error) -> () in
+    HttpService.sharedInstance.deleteToken { (json, error) -> () in
       //退出登录，主动把token消除
       TokenPayload.sharedInstance.clearCacheTokenPayload()
     }
