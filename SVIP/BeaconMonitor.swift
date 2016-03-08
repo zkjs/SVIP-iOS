@@ -59,7 +59,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
     
     for beacon  in beacons {
-      print("range beacon:\(beacon)")
+      //print("range beacon:\(beacon)")
       didEnterBeaconRegion(beacon)
     }
   }

@@ -22,6 +22,10 @@
 		40095A001C2149B900D3DA61 /* InvoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400959FF1C2149B900D3DA61 /* InvoiceModel.swift */; };
 		40095A031C215C0F00D3DA61 /* InvoiceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */; };
 		40095A041C215C0F00D3DA61 /* InvoiceDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40095A021C215C0F00D3DA61 /* InvoiceDetailVC.xib */; };
+		40111DD71C8ED56E00DD2AE1 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DD61C8ED56E00DD2AE1 /* AsyncImageView.swift */; };
+		40111DD91C8ED57C00DD2AE1 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DD81C8ED57C00DD2AE1 /* ImageLoader.swift */; };
+		40111DE01C8ED5A300DD2AE1 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DDE1C8ED5A300DD2AE1 /* Misc.swift */; };
+		40111DE21C8ED5B300DD2AE1 /* SpringCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DE11C8ED5B300DD2AE1 /* SpringCombination.swift */; };
 		401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */; };
 		401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F381C2A2EEC003B9E69 /* XMLReader.m */; };
 		404A2F421BA94C7B006475D7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405352161BA66251007157FC /* NotificationCenter.framework */; };
@@ -482,6 +486,11 @@
 		400959FF1C2149B900D3DA61 /* InvoiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceModel.swift; sourceTree = "<group>"; };
 		40095A011C215C0F00D3DA61 /* InvoiceDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceDetailVC.swift; sourceTree = "<group>"; };
 		40095A021C215C0F00D3DA61 /* InvoiceDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceDetailVC.xib; sourceTree = "<group>"; };
+		40111DD61C8ED56E00DD2AE1 /* AsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		40111DD81C8ED57C00DD2AE1 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		40111DDE1C8ED5A300DD2AE1 /* Misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		40111DDF1C8ED5A300DD2AE1 /* Spring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spring.h; sourceTree = "<group>"; };
+		40111DE11C8ED5B300DD2AE1 /* SpringCombination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringCombination.swift; sourceTree = "<group>"; };
 		401C1F1C1C2A2EEC003B9E69 /* CCPRestSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCPRestSDK-Prefix.pch"; sourceTree = "<group>"; };
 		401C1F1D1C2A2EEC003B9E69 /* CCPRestSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPRestSDK.h; sourceTree = "<group>"; };
 		401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPRestSDK.m; sourceTree = "<group>"; };
@@ -1379,6 +1388,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		40111D991C8ED4D300DD2AE1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				40111D9A1C8ED4E200DD2AE1 /* Spring */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		40111D9A1C8ED4E200DD2AE1 /* Spring */ = {
+			isa = PBXGroup;
+			children = (
+				40111DDE1C8ED5A300DD2AE1 /* Misc.swift */,
+				40111DDF1C8ED5A300DD2AE1 /* Spring.h */,
+				40111DE11C8ED5B300DD2AE1 /* SpringCombination.swift */,
+				40111DD61C8ED56E00DD2AE1 /* AsyncImageView.swift */,
+				40111DD81C8ED57C00DD2AE1 /* ImageLoader.swift */,
+			);
+			path = Spring;
+			sourceTree = "<group>";
+		};
 		401C1F1B1C2A2EEC003B9E69 /* CCPRestSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -1602,6 +1631,7 @@
 		406B0AD31C858A8A006C9C73 /* CommonSwift */ = {
 			isa = PBXGroup;
 			children = (
+				40111D991C8ED4D300DD2AE1 /* Libraries */,
 				4053ADDC1C8D850100282240 /* Classes */,
 				406B0AE01C85AA7D006C9C73 /* Models */,
 				406B0ADD1C859860006C9C73 /* Services */,
@@ -3640,12 +3670,14 @@
 				FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */,
 				B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */,
 				4077DDB81C1EAF9900E13D6B /* MWZoomingScrollView.m in Sources */,
+				40111DE21C8ED5B300DD2AE1 /* SpringCombination.swift in Sources */,
 				4077DDCE1C1EAF9900E13D6B /* PSTCollectionViewData.m in Sources */,
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
 				4077DDF81C1EAF9900E13D6B /* EaseBubbleView+Voice.m in Sources */,
 				40E39E411BFEF43800516EC4 /* OrderDetailVC.swift in Sources */,
 				FAF7F55E1C0309D500C84601 /* CustomerServiceTVC.swift in Sources */,
 				4077DDAA1C1EAF9900E13D6B /* EMCDDeviceManagerBase.m in Sources */,
+				40111DE01C8ED5A300DD2AE1 /* Misc.swift in Sources */,
 				4077DDE51C1EAF9900E13D6B /* EaseEmoji.m in Sources */,
 				FAF72CDD1C34D81B0092CEFD /* BusinessDetailVC.swift in Sources */,
 				FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */,
@@ -3793,6 +3825,7 @@
 				40E39E381BFEF43800516EC4 /* OrderListCell.swift in Sources */,
 				4077DDA41C1EAF9900E13D6B /* EMAudioPlayerUtil.m in Sources */,
 				FAEDFD431C585A4900AAEEEF /* AddSalesVC.swift in Sources */,
+				40111DD91C8ED57C00DD2AE1 /* ImageLoader.swift in Sources */,
 				FAFD271F1C39275800B27C55 /* CommentsCell.swift in Sources */,
 				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
 				40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */,
@@ -3816,6 +3849,7 @@
 				B2A642211B47C2A700AF0F28 /* RoomGoods.swift in Sources */,
 				400959E91C21221F00D3DA61 /* EmailVC.swift in Sources */,
 				40E3A1881BFEFA8300516EC4 /* SearchBarView.swift in Sources */,
+				40111DD71C8ED56E00DD2AE1 /* AsyncImageView.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				4077DDFF1C1EAF9900E13D6B /* EaseFacialView.m in Sources */,
 				B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */,

@@ -9,8 +9,8 @@
 import UIKit
 class LoginVC: UIViewController {
   
-  @IBOutlet weak var phoneTextField: UITextField!
-  @IBOutlet weak var codeTextField: UITextField!
+  @IBOutlet weak var phoneTextField: DesignableTextField!
+  @IBOutlet weak var codeTextField: DesignableTextField!
   @IBOutlet weak var okButton: UIButton!
   @IBOutlet weak var codeButton: UIButton!
   
@@ -37,12 +37,13 @@ class LoginVC: UIViewController {
     super.viewWillAppear(animated)
     
     AccountManager.sharedInstance().clearAccountCache()
+    TokenPayload.sharedInstance.clearCacheTokenPayload()
     navigationController?.navigationBarHidden = true
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
+    view.endEditing(true)
     navigationController?.navigationBarHidden = false
   }
   
@@ -69,7 +70,7 @@ class LoginVC: UIViewController {
   }
   
   // MARK: - Private
-  
+  //TODO: 需要调用老的api登陆获取老的token供其他api调用
   private func loginWithPhone(phone: String) {
     ZKJSHTTPSessionManager.sharedInstance().verifyIsRegisteredWithID(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject as? [String: AnyObject] {
@@ -82,9 +83,6 @@ class LoginVC: UIViewController {
             self.getUserInfo() {
               self.hideHUD()
               self.dismissSelf()
-              let userid = AccountManager.sharedInstance().userID
-              MobClick.profileSignInWithPUID(userid)
-              
             }
           } else {
             // 未注册要先注册一下
@@ -122,7 +120,7 @@ class LoginVC: UIViewController {
     dismissViewControllerAnimated(true, completion: nil)
   }
   
-  private func getUserInfo(closure: () -> Void) {
+  private func getUserInfo(completionHandler: () -> Void) {
 //    ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
 //      print(responseObject)
 //      if let data = responseObject as? [String : AnyObject] {
@@ -135,44 +133,70 @@ class LoginVC: UIViewController {
 //        self.showHint("服务器返回数据异常")
 //    }
     HttpService.sharedInstance.getUserinfo { (json, error) -> () in
-      if let error = error {
-        self.loginEaseMob()
-      } else {
+      if let _ = error {
         
+      } else {
+        self.loginEaseMob()
+        completionHandler()
       }
     }
+  }
+  
+  private func isFormValid() -> Bool {
+    guard let phone = phoneTextField.text else { return false}
+    guard let code = codeTextField.text else { return false}
+    if phone.isEmpty {
+      phoneTextField.animation = "shake"
+      phoneTextField.animate()
+      return false
+    }
+    if code.isEmpty {
+      codeTextField.animation = "shake"
+      codeTextField.animate()
+      return false
+    }
+    return true
   }
   
   private func nextStep() {
     guard let phone = phoneTextField.text else { return }
     guard let code = codeTextField.text else { return }
+    if !isFormValid() {
+      return
+    }
     
     showHUDInView(view, withLoading: "")
     HttpService.sharedInstance.loginWithCode(code, phone: phone) { (json, error) -> () in
-      if let error = error {
-        // TODO: save new toke payload
+      if let _ = error {
       } else {
         //self.loginWithPhone(phone)
         self.getUserInfo({ () -> Void in
-          
+          //TODO: 暂时注释下面2行代码,代码放到旧api中回调，待旧api完全切换过来后取消注释
+          /*self.hideHUD()
+          self.dismissSelf()
+          */
+          MobClick.profileSignInWithPUID(TokenPayload.sharedInstance.userID)
         })
       }
-      self.dismissSelf()
-      self.hideHUD()
-          }
+      //self.dismissSelf()
+      //self.hideHUD()
+    }
+    //需要调用老的api登陆获取老的token供其他api调用
+    self.loginWithPhone(phone)
+    
 //    if phone == "18503027465" && code == "123456" {
 //      loginWithPhone(phone)
 //      return
 //    }
 //    
-    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
-      if success {
-        self.loginWithPhone(phone)
-      } else {
-        self.hideHUD()
-        self.showHint("验证码不正确")
-      }
-    }
+//    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
+//      if success {
+//        self.loginWithPhone(phone)
+//      } else {
+//        self.hideHUD()
+//        self.showHint("验证码不正确")
+//      }
+//    }
   }
   
   func convertStringToDictionary(text: String) -> JSON? {
@@ -353,8 +377,10 @@ extension LoginVC: UITextFieldDelegate {
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if textField == codeTextField {
-      textField.resignFirstResponder()
-      nextStep()
+      if isFormValid() {
+        textField.resignFirstResponder()
+        nextStep()
+      }
     }
     return true
   }
