@@ -357,10 +357,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   //TODO: api not implemented yet
   func sendErrorsToServer() {
-    if let allErrors = BeaconErrors.all() as? [BeaconErrors] {
-      for err in allErrors {
-        print("\(err)")
+    if let allErrors = BeaconErrors.allWithOrder(["timestamp":"ASC"])  as? [BeaconErrors] {
+      var logs : String = ""
+      for e in allErrors {
+        //print("\(e.timestamp)")
+        guard let ts = e.timestamp else {
+          e.remove()
+          continue
+        }
+        logs = logs + "\(ts):\(e.error)"
+        //print("remove:\(e.timestamp)")
+        e.remove()
       }
+      //TODO: send all logs to server here 
+      
+      
+      BeaconErrors.saveAllChanges()
     }
   }
   

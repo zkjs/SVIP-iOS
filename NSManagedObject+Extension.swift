@@ -166,4 +166,16 @@ extension NSManagedObject {
   func remove() {
     self.managedObjectContext?.deleteObject(self)
   }
+  
+  static func saveAllChanges () -> Bool {
+    if !CoreDataStack.sharedInstance.context.hasChanges {
+      return true
+    }
+    do {
+      try CoreDataStack.sharedInstance.context.save()
+    } catch {
+      return false
+    }
+    return true
+  }
 }
