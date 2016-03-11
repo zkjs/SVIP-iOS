@@ -114,7 +114,7 @@ extension HttpService {
       if let error = error {
         print(error)
       } else {
-        if let userData = json?["data"].dictionary  {
+        if let userData = json?["data"].array?.first?.dictionary  {
           AccountManager.sharedInstance().saveBaseInfo(userData)
         }
       }

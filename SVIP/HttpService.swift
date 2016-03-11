@@ -57,18 +57,18 @@ class HttpService {
 //  private static let baseCodeURL = "http://192.168.199.112:8082" //局域网测试IP
   
   enum ResourcePath: CustomStringConvertible {
-    case ApiURL(path:String)              // demo
-    case Beacon                                   // PYXIS 位置服务API : Beacon 位置信息 :
+    case ApiURL(path:String)                          // demo
+    case Beacon                                       // PYXIS 位置服务API : Beacon 位置信息 :
     case GPS                                          // PYXIS 位置服务API : GPS 位置信息 :
-    case CodeLogin                            // PAVO 认证服务API : 验证码 : HEADER不需要Token
-    case CodeRegister                       //注册获取验证码
-    case register                                   //注册获取token
-    case Login                                      // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
-    case Token                                     // PAVO 认证服务API : Token管理 :
+    case CodeLogin                                    // PAVO 认证服务API : 验证码 : HEADER不需要Token
+    case CodeRegister                                 //注册获取验证码
+    case register                                     //注册获取token
+    case Login                                        // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
+    case Token                                        // PAVO 认证服务API : Token管理 :
     case DeleteToken
-    case RegisterUpdata                  //注册后更新资料
-    case UserInfo                                 //获取用户资料
-    case UserInfoUpdate                 //更新用户资料
+    case RegisterUpdata                               //注册后更新资料
+    case UserInfo                                     //获取用户资料
+    case UserInfoUpdate                               //更新用户资料
     
     var description: String {
       switch self {
@@ -82,7 +82,7 @@ class HttpService {
       case .DeleteToken: return "/sso/token/v1"
       case .RegisterUpdata: return "/res/v1/register/update/si"
       case .register: return "/res/v1/register/si"
-      case .UserInfo:return "/res/v1/query/si/all"
+      case .UserInfo:return "/res/v1/query/user/all"
       case .UserInfoUpdate: return "/res/v1/update/si"
       }
     }
@@ -145,6 +145,7 @@ class HttpService {
     
     var headers = ["Content-Type":"application/json"]
     if let token = TokenPayload.sharedInstance.token {
+      print("request with token:\(token)")
       headers["Token"] = token
     } else {
       if tokenRequired {
@@ -195,9 +196,13 @@ class HttpService {
           completionHandler(json,nil)
           print(json["resDesc"].string)
         } else {
+          var resDesc = ""
+          if let key = json["res"].int {
+            resDesc = ZKJSErrorMessages.sharedInstance.errorString("\(key)") ?? "错误码:\(key)"
+          }
           let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
-            code: -1,
-            userInfo: ["res":"\(json["res"].int)","resDesc":json["resDesc"].string ?? ""])
+            code: json["res"].int ?? -1,
+            userInfo: ["res":"\(json["res"].int)","resDesc":resDesc])
           completionHandler(json,e)
           print("error with reason: \(json["resDesc"].string)")
           if let key = json["res"].int,

@@ -27,6 +27,9 @@ class TokenPayload:NSObject {
   var expire:Int? {
     return json?["expire"].int
   }
+  var shopid:String? {
+    return json?["shopid"].string
+  }
   var roles:[String]? {
     return json?["roles"].array?.map{$0.string}.filter{$0 != nil}.map{$0!}
   }
