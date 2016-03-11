@@ -357,7 +357,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   //send all beacon logs to server 10 seconds later
   func sendErrorsToServerLater() {
-    BeaconErrors.uploadLogs()
     delay(seconds: 20 ){BeaconErrors.uploadLogs()}
   }
   
