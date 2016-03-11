@@ -283,6 +283,8 @@
 		40EE4D8A1C1F0870009C0311 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */; };
 		40EE4D8C1C1F0943009C0311 /* OrderListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */; };
 		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
+		40FD343D1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343C1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift */; };
+		40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343E1C92C3F40019A8CA /* LocalStorage.swift */; };
 		B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */; };
 		B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */; };
 		B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */; };
@@ -1139,6 +1141,8 @@
 		40EE4D891C1F0870009C0311 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
 		40EE4D8B1C1F0943009C0311 /* OrderListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTVC.xib; sourceTree = "<group>"; };
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		40FD343C1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Days+ZKJS.swift"; path = "CommonSwift/Extensions/NSDate+Days+ZKJS.swift"; sourceTree = "<group>"; };
+		40FD343E1C92C3F40019A8CA /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalStorage.swift; path = CommonSwift/Models/LocalStorage.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingViewController.swift; sourceTree = "<group>"; };
 		B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionBinaryTransformer.swift; sourceTree = "<group>"; };
@@ -1648,6 +1652,7 @@
 				406B0AD71C858F67006C9C73 /* RegexHelper.swift */,
 				406B0AD91C858FEE006C9C73 /* Double+Extension+ZKJS.swift */,
 				4053ADF81C8DA53400282240 /* ZKJSHelper.swift */,
+				40FD343C1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1673,6 +1678,7 @@
 				4053ADF51C8D9F3A00282240 /* BeaconErrors.swift */,
 				B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */,
 				408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */,
+				40FD343E1C92C3F40019A8CA /* LocalStorage.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3701,6 +3707,7 @@
 				40E39E3A1BFEF43800516EC4 /* DotLine.swift in Sources */,
 				B2A642231B47C2A700AF0F28 /* BookItemButton.swift in Sources */,
 				FAFBFB781C228E3B00A1126B /* RecommandCell.swift in Sources */,
+				40FD343D1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift in Sources */,
 				4077DDD31C1EAF9900E13D6B /* PSTGridLayoutInfo.m in Sources */,
 				40E8F0151C80691400D6F605 /* Error.swift in Sources */,
 				4077DDF21C1EAF9900E13D6B /* EaseMessageTimeCell.m in Sources */,
@@ -3843,6 +3850,7 @@
 				B20812C81B8DD8650070D96F /* JSHAnimator.m in Sources */,
 				40D585DF1C22AD6700C5267D /* RatingCell.swift in Sources */,
 				40D585D81C22AB2B00C5267D /* SalesDetailHeaderView.swift in Sources */,
+				40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */,
 				4077DDEB1C1EAF9900E13D6B /* EaseMessageViewController.m in Sources */,
 				4077DDC81C1EAF9900E13D6B /* UIImageView+EMWebCache.m in Sources */,
 				4077DDC61C1EAF9900E13D6B /* UIImage+EMWebP.m in Sources */,

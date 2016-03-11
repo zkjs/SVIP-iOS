@@ -20,11 +20,15 @@ extension HttpService {
     
     requestTimeoutAPI(.PUT, urlString: urlString, parameters: dict,tokenRequired: true) {[unowned self] (json, error) -> Void in
       completionHandler?(json, error);
+      //增加总请求数
+      BeaconErrors.addTotalCount()
       if let error = error {
         print("beacon fail:\(error)")
         //还未超过最大重发次数
         if self.beaconRetryCount < self.maxBeaconRetryCount {
           self.beaconRetryCount += 1
+          //增加重复请求数
+          BeaconErrors.addRetryCount()
           self.sendBeaconChanges(uuid, major: major, minor: minor, sensorID: sensorID, timestamp: timestamp, completionHandler: completionHandler)
           HttpErrorRecordingService.sharedInstance.recordBeaconError(uuid, major: major, minor: minor, error: error)
         } else {
@@ -52,5 +56,40 @@ extension HttpService {
       }
     }
     
+  }
+  
+  func uploadLogs(filename:String!,file:NSData, completionHandler:HttpCompletionHandler) {
+    let urlString = baseURLNewApi + ResourcePath.UploadLogs.description
+    
+    let parameters = ["filename":filename,"category":"ios"]
+
+    guard  let token = TokenPayload.sharedInstance.token else {return}
+    let headers = ["Content-Type":"multipart/form-data","Token":token]
+    
+    upload(.POST, urlString,headers: headers,multipartFormData: {
+      multipartFormData in
+      multipartFormData.appendBodyPart(data: file, name: "file", fileName: filename, mimeType: "application/octet-stream")
+      for (key, value) in parameters {
+        multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
+      }
+      
+      }, encodingCompletion: {
+        encodingResult in
+        switch encodingResult {
+        case .Success(let upload, _, _):
+          upload.response(completionHandler: { (request, response, data, error) -> Void in
+            completionHandler(nil,error)
+            if let error = error {
+              print(error)
+            } else {
+              print(self.jsonFromData(data))
+            }
+            completionHandler(nil,error)
+          })
+          
+        case .Failure(let encodingError):
+          print(encodingError)
+        }
+    })
   }
 }
