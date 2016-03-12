@@ -172,6 +172,13 @@ class AccountManager: NSObject {
     userDefaults.synchronize()
   }
   
+  func saveImageUrl(url: String) {
+    if url.isEmpty { return }
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(url, forKey: "avatarURL")
+    userDefaults.synchronize()
+  }
+  
   func clearAccountCache() {
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(nil, forKey: "userID")
