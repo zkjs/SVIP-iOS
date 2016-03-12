@@ -55,11 +55,19 @@ extension String {
   }
   
   var fullImageUrl: String {
-    return ZKJSConfig.sharedInstance.BaseImageURL + self
+    return ZKJSConfig.sharedInstance.BaseImageURL.stringByTrimmingCharactersInSet(
+      NSCharacterSet(charactersInString: "/")
+      )  + "/" + self.stringByTrimmingCharactersInSet(
+      NSCharacterSet(charactersInString: "/")
+    )
   }
   
   var fullUrl:String {
-    return ZKJSConfig.sharedInstance.BaseURL + self
+    return ZKJSConfig.sharedInstance.BaseURL.stringByTrimmingCharactersInSet(
+      NSCharacterSet(charactersInString: "/")
+      ) + "/" + self.stringByTrimmingCharactersInSet(
+      NSCharacterSet(charactersInString: "/")
+    )
   }
   
 }
