@@ -257,6 +257,7 @@
 		40E3A18A1BFEFA8300516EC4 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A1861BFEFA8200516EC4 /* SearchTVC.swift */; };
 		40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A1871BFEFA8200516EC4 /* SearchTVC.xib */; };
 		40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E3A22F1BFF01C300516EC4 /* libopencore-amrnb.a */; };
+		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
 		40E8F0131C80691400D6F605 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0001C80691400D6F605 /* Alamofire.swift */; };
 		40E8F0141C80691400D6F605 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0011C80691400D6F605 /* Download.swift */; };
 		40E8F0151C80691400D6F605 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0021C80691400D6F605 /* Error.swift */; };
@@ -1117,6 +1118,7 @@
 		40E3A28D1BFF01C300516EC4 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		40E3A28E1BFF01C300516EC4 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		40E3A28F1BFF01C300516EC4 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZKJSConfig.swift; path = CommonSwift/ZKJSConfig.swift; sourceTree = "<group>"; };
 		40E8EFFF1C80691400D6F605 /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
 		40E8F0001C80691400D6F605 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		40E8F0011C80691400D6F605 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
@@ -1641,6 +1643,7 @@
 		406B0AD31C858A8A006C9C73 /* CommonSwift */ = {
 			isa = PBXGroup;
 			children = (
+				40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */,
 				40111D991C8ED4D300DD2AE1 /* Libraries */,
 				4053ADDC1C8D850100282240 /* Classes */,
 				406B0AE01C85AA7D006C9C73 /* Models */,
@@ -3879,6 +3882,7 @@
 				40111DD71C8ED56E00DD2AE1 /* AsyncImageView.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				4077DDFF1C1EAF9900E13D6B /* EaseFacialView.m in Sources */,
+				40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */,
 				B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */,
 				4077DDE81C1EAF9900E13D6B /* EaseEmotionManager.m in Sources */,
 				4077DD8B1C1EAF9900E13D6B /* EMAlertView.m in Sources */,

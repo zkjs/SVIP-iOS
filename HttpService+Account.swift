@@ -11,7 +11,7 @@ import Foundation
 extension HttpService {
   //// PAVO 认证服务API : 验证码 : HEADER不需要Token(注册获取验证码)
   func registerSmsCodeWithPhoneNumber(phone:String,completionHandler:HttpCompletionHandler){
-    let urlString = baseCodeURL + ResourcePath.CodeRegister.description
+    let urlString = ZKJSConfig.sharedInstance.BaseURL + ResourcePath.CodeRegister.description
     let key = "X2VOV0+W7szslb+@kd7d44Im&JUAWO0y"
     let data: NSData = phone.dataUsingEncoding(NSUTF8StringEncoding)!
     let encryptedData = data.AES256EncryptWithKey(key).base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
@@ -29,7 +29,7 @@ extension HttpService {
       return
     }
     
-    let urlString = baseURLNewApi + (isRegister ? ResourcePath.RegisterUpdata.description : ResourcePath.UserInfoUpdate.description)
+    let urlString = isRegister ? ResourcePath.RegisterUpdata.description.fullUrl : ResourcePath.UserInfoUpdate.description.fullUrl
     
     var parameters = [String:String]()
     if isRegister {
@@ -112,7 +112,7 @@ extension HttpService {
   }
   
   func getUserinfo(completionHandler:HttpCompletionHandler){
-    let urlString = baseRegisterURL + ResourcePath.UserInfo.description
+    let urlString = ResourcePath.UserInfo.description.fullUrl
     get(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json,error)
       if let error = error {

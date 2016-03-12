@@ -15,7 +15,7 @@ extension HttpService {
    *  strategy: 获取策略: 默认(空或default), 系统推荐(sys)
    */
   func getShopList(city city:String?, page:Int = 0, pageSize:Int = HttpService.DefaultPageSize, strategy:String? = "", completionHandler: ([Shop]?,NSError?)->Void) {
-    var urlString = baseURLNewApi + ResourcePath.ShopList.description
+    var urlString = ResourcePath.ShopList.description.fullUrl
     if let city = city?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) {
       urlString += "/" + city
     }

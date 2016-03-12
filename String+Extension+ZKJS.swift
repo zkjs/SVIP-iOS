@@ -55,7 +55,11 @@ extension String {
   }
   
   var fullImageUrl: String {
-    return kImageURL + self
+    return ZKJSConfig.sharedInstance.BaseImageURL + self
+  }
+  
+  var fullUrl:String {
+    return ZKJSConfig.sharedInstance.BaseURL + self
   }
   
 }
