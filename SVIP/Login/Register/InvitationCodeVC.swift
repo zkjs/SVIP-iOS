@@ -76,9 +76,35 @@ class InvitationCodeVC: UIViewController {
   
   @IBAction func nextStep(sender: AnyObject) {
      if codeTextField.text!.isEmpty == false {
-      let phone = AccountManager.sharedInstance().phone
+//      let phone = AccountManager.sharedInstance().phone
       showHUDInView(view, withLoading: "")
-      ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopname, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      HttpService.sharedInstance.codeActive(code, completionHandler: { (json, error) -> Void in
+        if let _ = error {
+          self.showHint("激活失败，请检查邀请码是否正确")
+        } else {
+          if let json = json {
+            if let res = json["res"].int {
+              if res == 0 {
+                self.hideHUD()
+                AccountManager.sharedInstance().saveActivated("1")
+                self.hideHUD()
+                self.sendInvitationCodeMessage()
+                self.sendInvitationCodeCmdMessage()
+                if self.type == InvitationCodeVCType.first {
+                  self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                  self.navigationController?.popViewControllerAnimated(true)
+                }
+              } else {
+                self.hideHUD()
+                ZKJSTool.showMsg("该邀请码无效,请重试")
+                self.navigationController?.popViewControllerAnimated(true)
+              }
+            }
+          }
+        }
+      })
+     /* ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopname, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
         if let data = responseObject {
           if let set = data["set"] as? NSNumber {
@@ -102,7 +128,7 @@ class InvitationCodeVC: UIViewController {
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           self.hideHUD()
           ZKJSTool.showMsg("该邀请码无效,请重试")
-      })
+      })*/
     }
     if codeTextField.text!.characters.count < 6 {
       self.dismissViewControllerAnimated(true, completion: nil)
@@ -152,51 +178,48 @@ extension InvitationCodeVC: UITextFieldDelegate {
     textField.layer.borderWidth = 0
     guard let code = codeTextField.text else { return }
     if code.characters.count == 6 {
-      ZKJSHTTPSessionManager.sharedInstance().getSaleInfoWithCode(code, success: { (task: NSURLSessionDataTask!,
-        responseObject: AnyObject!) -> Void in
-        print(responseObject)
-        if let data = responseObject {
-          if let set = data["set"] as? NSNumber {
-            if set.boolValue {
-              self.okButton.setTitle("确定", forState: .Normal)
-              self.code = code
-              self.sales_name = data["sales_name"] as? String ?? ""
-              self.saleNameTextField.text = "来自\(self.sales_name)的邀请码"
-              self.customLabel.text = "点击确认激活特权，他将成为您的专属客服"
-              if let salesid = data["salesid"] as? String {
-                var url = NSURL(string: kImageURL)
-                url = url?.URLByAppendingPathComponent("/uploads/users/\(salesid).jpg")
-                let placeImage = UIImage(named: "ic_zhijian")
-                self.saleAvatarImageView.sd_setImageWithURL(url, placeholderImage: placeImage)
-              }
-              if let sales_phone = data["sales_phone"] as? NSNumber {
-                self.sales_phone = sales_phone.stringValue
-              }
-              if let salesid = data["salesid"] as? String {
-                self.salesid = salesid
-              }
-              if let shopid = data["shopid"] as? NSNumber {
-                self.shopid = shopid.stringValue
-              }
-              if let shopname = data["shopname"] as? String {
-                self.shopname = shopname
-              }
-              self.avatarImageHeight.constant = 48
-              self.animationViewHeight.constant = 74
-              UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-                }, completion: nil)
-            } else {
-              let alertView = UIAlertController(title: "邀请码不正确，请重新输入", message: "", preferredStyle: .Alert)
-              alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-              self.presentViewController(alertView, animated: true, completion: nil)
-            }
+     HttpService.sharedInstance.querySalesFromCode(code, completionHandler: { (json, error) -> Void in
+      if let _ = error {
+        let alertView = UIAlertController(title: "邀请码不正确，请重新输入", message: "", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
+      } else {
+        if let json = json!["data"].dictionary {
+          self.okButton.setTitle("确定", forState: .Normal)
+          self.code = code
+          if let salesname = json["username"]?.string {
+            self.sales_name = salesname
           }
-        }
-        }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+          self.saleNameTextField.text = "来自\(self.sales_name)的邀请码"
+          self.customLabel.text = "点击确认激活特权，他将成为您的专属客服"
+          if let salesid = json["userimage"]?.string {
+            var url = NSURL(string: kImageURL)
+            url = url?.URLByAppendingPathComponent("\(salesid)")
+            let placeImage = UIImage(named: "ic_zhijian")
+            self.saleAvatarImageView.sd_setImageWithURL(url, placeholderImage: placeImage)
+          }
           
+          if let sales_phone = json["phone"]?.number{
+            self.sales_phone = sales_phone.stringValue
+          }
+          if let salesid = json["userid"]?.string {
+            self.salesid = salesid
+          }
+          if let shopid = json["shopid"]?.number {
+            self.shopid = shopid.stringValue
+          }
+          if let shopname = json["fullname"]?.string {
+            self.shopname = shopname
+          }
+          self.avatarImageHeight.constant = 48
+          self.animationViewHeight.constant = 74
+          UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
       }
-    } else {
+     })
+        } else {
       okButton.setTitle("跳过", forState: .Normal)
       animationViewHeight.constant = 0
       avatarImageHeight.constant = 0

@@ -44,6 +44,7 @@ class TokenPayload:NSObject {
     return userID != nil
   }
   
+  
   private var json: JSON? {
     guard let data = self.tokenPayload?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) else {
       return nil

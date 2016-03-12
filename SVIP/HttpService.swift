@@ -71,7 +71,9 @@ class HttpService {
     case RegisterUpdata                               // 注册后更新资料
     case UserInfo                                     // 获取用户资料
     case UserInfoUpdate                               // 更新用户资料
+    case querySaleFromCode               //根据邀请码查询销售员
     case UploadLogs                                   // 上传用户错误日志
+    case ActiveCode                               //邀请码激活
     //商家
     case ShopList                                     //商家列表
     
@@ -91,6 +93,8 @@ class HttpService {
       case .UserInfoUpdate:     return "/res/v1/update/user"
       case .UploadLogs:         return "/res/v1/upload/userlog"
       case .ShopList:           return "/res/v1/shop"
+      case.querySaleFromCode: return "/res/v1/salecode/saleuser?salecode="
+      case.ActiveCode: return "/res/v1/salecode/active/salecode"
       }
     }
   }
@@ -226,5 +230,6 @@ class HttpService {
       }
     }
   }
+  
   
 }

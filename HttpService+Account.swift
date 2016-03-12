@@ -112,7 +112,7 @@ extension HttpService {
   }
   
   func getUserinfo(completionHandler:HttpCompletionHandler){
-    let urlString = baseRegisterURL + ResourcePath.UserInfo.description
+    let urlString = baseURLNewApi + ResourcePath.UserInfo.description
     get(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json,error)
       if let error = error {
@@ -124,4 +124,34 @@ extension HttpService {
       }
     }
   }
+  
+  
+  //根据邀请码查询销售员
+  func querySalesFromCode(code:String,completionHandler:HttpCompletionHandler){
+    let urlString = baseURLNewApi + ResourcePath.querySaleFromCode.description + "\(code)"
+    get(urlString, parameters: nil) { (json, error) -> Void in
+      completionHandler(json,error)
+      if let error = error {
+        print(error)
+      } else {
+        completionHandler(json,nil)
+      }
+    }
+  }
+  //使用邀请码激活账号
+  func codeActive(code:String,completionHandler:HttpCompletionHandler){
+    let urlString = baseURLNewApi + ResourcePath.ActiveCode.description
+    let dic = ["salecode":code]
+    get(urlString, parameters: dic) { (json, error) -> Void in
+      completionHandler(json,error)
+      if let error = error {
+        print(error)
+      } else {
+        completionHandler(json,nil)
+      }
+    }
+  }
+
+  
+  
 }
