@@ -12,7 +12,7 @@ extension HttpService {
   
   //// PYXIS 位置服务API : Beacon 位置信息 :
   func sendBeaconChanges(uuid:String, major:String, minor:String, sensorID: String = "", timestamp:Int, completionHandler:HttpCompletionHandler?){
-    let urlString = baseLocationURL + ResourcePath.Beacon.description
+    let urlString = ResourcePath.Beacon.description.fullUrl
     guard  let token = TokenPayload.sharedInstance.token else {return}
     print(token)
     let dict = ["locid":major,"major":major,"minor":minor,"uuid":uuid,"sensorid":"","timestamp":"\(timestamp)"]
@@ -42,7 +42,7 @@ extension HttpService {
   
   //// PYXIS 位置服务API : GPS 位置信息 :
   func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int, completionHandler:HttpCompletionHandler?){
-    let urlString = baseLocationURL + ResourcePath.GPS.description
+    let urlString = ResourcePath.GPS.description.fullUrl
     
     let dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"),"timestamp":"\(timestamp)"]
     print(dict)
@@ -59,7 +59,7 @@ extension HttpService {
   }
   
   func uploadLogs(filename:String!,file:NSData, completionHandler:HttpCompletionHandler) {
-    let urlString = baseURLNewApi + ResourcePath.UploadLogs.description
+    let urlString = ResourcePath.UploadLogs.description.fullUrl
     
     let parameters = ["filename":filename,"category":"ios"]
 

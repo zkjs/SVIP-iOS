@@ -11,7 +11,7 @@ import Foundation
 extension HttpService {
   //// PAVO 认证服务API : 验证码 : HEADER不需要Token(登录)
   func requestSmsCodeWithPhoneNumber(phone:String,completionHandler:HttpCompletionHandler){
-    let urlString = self.baseCodeURL + ResourcePath.CodeLogin.description
+    let urlString = ResourcePath.CodeLogin.description.fullUrl
     let key = "X2VOV0+W7szslb+@kd7d44Im&JUAWO0y"
     let data: NSData = phone.dataUsingEncoding(NSUTF8StringEncoding)!
     let encryptedData = data.AES256EncryptWithKey(key).base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
@@ -25,7 +25,7 @@ extension HttpService {
   
   ////注册使用验证码获取token
   func registerWithPhoneNumber(phone:String,code:String,completionHandler:HttpCompletionHandler) {
-    let urlString = baseCodeURL + ResourcePath.register.description
+    let urlString = ResourcePath.register.description.fullUrl
     let dict = ["phone":"\(phone)","code":code]
     post(urlString, parameters: dict,tokenRequired: false) { (json, error) -> Void in
       completionHandler(json,error)
@@ -45,7 +45,7 @@ extension HttpService {
   
   //// PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
   func loginWithCode(code:String,phone:String,completionHandler:HttpCompletionHandler) {
-    let urlString = baseCodeURL + ResourcePath.Login.description
+    let urlString = ResourcePath.Login.description.fullUrl
     
     let dict = ["phone":"\(phone)","code":"\(code)"]
     post(urlString, parameters: dict, tokenRequired: false) { (json, error) -> Void in
@@ -79,7 +79,7 @@ extension HttpService {
   
   //// PAVO 认证服务API : Token管理 :
   func managerToken(completionHandler:HttpCompletionHandler) {
-    let urlString = baseCodeURL + ResourcePath.Token.description
+    let urlString = ResourcePath.Token.description.fullUrl
     
     put(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json, error)
@@ -99,7 +99,7 @@ extension HttpService {
   
   //// PAVO 认证服务API : Token管理 :
   func deleteToken(completionHandler:HttpCompletionHandler) {
-    let urlString = baseCodeURL + ResourcePath.Token.description
+    let urlString = ResourcePath.Token.description.fullUrl
     guard   let token = TokenPayload.sharedInstance.token else {return}
     let dic = ["token":token]
     put(urlString, parameters: dic) { (json, error) -> Void in

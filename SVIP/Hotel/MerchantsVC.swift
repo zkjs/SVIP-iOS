@@ -9,12 +9,12 @@
 import UIKit
 
 class MerchantsVC: UIViewController {
-  var dataArray = [Hotel]()
   lazy var type = ComprehensiveType.chat
-  var item1 = UIBarButtonItem()
-  var item2 = UIBarButtonItem()
-  var city = String()
-  var MerchantsPage = 1
+  var btnGoBack = UIBarButtonItem()
+  var btnCityName = UIBarButtonItem()
+  var city = ""
+  var viewModel = ShopViewModel(city: nil, strategy: nil)
+
   @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +29,10 @@ class MerchantsVC: UIViewController {
       tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")  // 上拉加载
       
       let image = UIImage(named: "ic_fanhui_orange")
-      item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "backToView:")
-      item2 = UIBarButtonItem(title: city, style: UIBarButtonItemStyle.Done, target: self, action:nil)
-      item2.tintColor = UIColor.ZKJS_navegationTextColor()
-      super.navigationItem.leftBarButtonItems = [item1,item2]
+      btnGoBack = UIBarButtonItem(image: image, style:.Done, target: self, action: "backToView:")
+      btnCityName = UIBarButtonItem(title: city, style: UIBarButtonItemStyle.Done, target: self, action:"backToView:")
+      btnCityName.tintColor = UIColor.ZKJS_navegationTextColor()
+      super.navigationItem.leftBarButtonItems = [btnGoBack,btnCityName]
       super.navigationController?.navigationBar.tintColor = UIColor.ZKJS_mainColor()
         // Do any additional setup after loading the view.
       
@@ -42,16 +42,33 @@ class MerchantsVC: UIViewController {
       if tableView.respondsToSelector(Selector("setLayoutMargins:")) {
         tableView.layoutMargins = UIEdgeInsetsZero
       }
+      
+      viewModel.setCity(city) { (hasMore, error) -> Void in
+        self.handlerResult(hasMore, error: error)
+      }
     }
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("MerchantsVC", owner:self, options:nil)
   }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  override func didReceiveMemoryWarning() {
+      super.didReceiveMemoryWarning()
+      // Dispose of any resources that can be recreated.
+  }
+  
+  func handlerResult(hasMore:Bool, error:NSError?) {
+    if let _ = error {
+      self.showHint("访问服务器失败")
+    } else {
+      if !hasMore {
+        self.tableView.mj_footer.hidden = true
+      }
+      self.tableView.mj_footer.endRefreshing()
+      self.tableView.mj_header.endRefreshing()
+      self.tableView.reloadData()
     }
+  }
   
    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     
@@ -69,131 +86,75 @@ class MerchantsVC: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    getDataWithPage(1)
   }
   
   func loadMoreData() {
-    MerchantsPage++
-    getDataWithPage(MerchantsPage)
+    viewModel.next { (hasMore, error) -> Void in
+      self.handlerResult(hasMore, error: error)
+    }
   }
   
   func refreshData() {
-    getDataWithPage(1)
     self.tableView.mj_footer.hidden = false
-  }
-  
-  private func getDataWithPage(page: Int) {
-    if TokenPayload.sharedInstance.isLogin {
-      ZKJSJavaHTTPSessionManager.sharedInstance().getShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-        print(responseObject)
-        if let array = responseObject as? NSArray {
-          if array.count == 0 {
-            self.tableView.mj_footer.endRefreshingWithNoMoreData()
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.hidden = true
-          } else {
-            if page == 1 {
-              self.dataArray.removeAll()
-            }
-            for dic in array {
-              let hotel = Hotel(dic: dic as! [String:AnyObject])
-              self.dataArray.append(hotel)
-            }
-            self.hideHUD()
-            self.tableView.reloadData()
-            self.tableView.mj_footer.endRefreshing()
-          }
-          self.tableView.mj_header.endRefreshing()
-        }
-        }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-      }
-    } else {
-      ZKJSJavaHTTPSessionManager.sharedInstance().getLoginOutShopListWithCity(city, page:String(page), size: "10", success: { (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-        print(responseObject)
-        if let array = responseObject as? NSArray {
-          if array.count == 0 {
-            self.tableView.mj_footer.endRefreshingWithNoMoreData()
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.hidden = true
-          } else {
-            if page == 1 {
-              self.dataArray.removeAll()
-            }
-            for dic in array {
-              let hotel = Hotel(dic: dic as! [String:AnyObject])
-              self.dataArray.append(hotel)
-            }
-            self.hideHUD()
-            self.tableView.reloadData()
-            self.tableView.mj_footer.endRefreshing()
-          }
-          self.tableView.mj_header.endRefreshing()
-        }
-        }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-      }
+    viewModel.load(0) { (hasMore, error) -> Void in
+      self.handlerResult(hasMore, error: error)
     }
   }
 
   // MARK: - Table view data source
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    // #warning Incomplete implementation, return the number of sections
     return 1
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
-    return dataArray.count
+    return viewModel.data.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.row == 0 {
-      return RecommandCell.height()
-    }
-    else {
-      return HotelCell.height()
-    }
+    return HotelCell.height()
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.row == 0 {
-      let cell = tableView.dequeueReusableCellWithIdentifier(RecommandCell.reuseIdentifier(), forIndexPath: indexPath) as! RecommandCell
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
-      let recommand = self.dataArray[0]
-      cell.setdata(recommand)
-      return cell
-    } else {
-      let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
-      cell.selectionStyle = UITableViewCellSelectionStyle.None
-      cell.userImageButton.tag = indexPath.row
-      let shop = dataArray[indexPath.row]
-      cell.setData(shop)
-      cell.userImageButton.addTarget(self, action: "pushToDetail:", forControlEvents: UIControlEvents.TouchUpInside)
-      return cell
+    let cell = tableView.dequeueReusableCellWithIdentifier(HotelCell.reuseIdentifier(), forIndexPath: indexPath) as! HotelCell
+    cell.configCell(viewModel.data[indexPath.row]) {[weak self] () -> Void in
+      if let strongSelf = self {
+        strongSelf.pushToSalesmanDetail(indexPath)
+      }
     }
+    return cell
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView .deselectRowAtIndexPath(indexPath, animated: true)
-    let hotel = self.dataArray[indexPath.row]
+    let shop = viewModel.data[indexPath.row]
+    if shop.shopid.isEmpty { return }
     if type == .chat {
+      guard let shopid = Int(shop.shopid) else { return }
+      
       let storyboard = UIStoryboard(name: "BusinessDetailVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailVC") as! BusinessDetailVC
-      if hotel.shopid == "" {
-        let web = WebViewVC()
-        web.url = hotel.shopaddress
-        web.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(web, animated: true)
-        return
-      }
-      vc.shopid = NSNumber(integer: Int(hotel.shopid)!)
-      vc.shopName = hotel.shopname
-      vc.saleid = hotel.salesid
-      self.navigationController?.pushViewController(vc, animated: true)
+      
+      vc.shopid = shopid
+      vc.shopName = shop.shopname
+      vc.saleid = shop.salesid
+      vc.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(vc, animated: true)
+
     } else if type == .customerService {
       let vc = CustomerServiceTVC()
-      vc.shopID = hotel.shopid
+      vc.shopID = shop.shopid
       self.navigationController?.pushViewController(vc, animated: true)
     }
+  }
+  
+  func pushToSalesmanDetail(indexPath:NSIndexPath) {
+    if viewModel.data.count <= indexPath.row { return }
+    let shop = viewModel.data[indexPath.row]
+    if shop.salesid.isEmpty { return }
+    let vc = SalesDetailVC()
+    vc.salesid = shop.salesid
+    vc.hidesBottomBarWhenPushed = true
+    navigationController?.pushViewController(vc, animated: true)
   }
 }

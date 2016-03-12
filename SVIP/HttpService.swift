@@ -28,73 +28,43 @@ class HttpService {
   var beaconRetryCount = 0 //beacon 上传失败后重新请求当前次数
   let maxBeaconRetryCount = 3 //beacon 上传失败后重新请求最多次数
   
-  let ImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com"  // 图片服务器
-  
-  // 测试
-  let baseURL = "http://tst.zkjinshi.com/"  // PHP服务器
-  let baseURLJava = "http://test.zkjinshi.com/japi/"  // Java服务器
-  let EaseMobAppKey = "zkjs#svip"  // 环信
-  
-  // 预上线
-  /*
-  let baseURL = "http://rap.zkjinshi.com/"  // PHP服务器
-  let baseURLJava = "http://p.zkjinshi.com/japi/"  // Java服务器
-  let EaseMobAppKey = "zkjs#sid"  // 环信
-  */
-  
-  // 正式
-  /*
-  let baseURL = "http://api.zkjinshi.com/"  // PHP服务器
-  let baseURLJava = "http://mmm.zkjinshi.com/"  // Java服务器
-  let EaseMobAppKey = "zkjs#prosvip"  // 环信
-  */
-  
-  //位置
-  let baseLocationURL = "http://p.zkjinshi.com/test/pyx" //推送/更新室内位置
-  let baseCodeURL = "http://p.zkjinshi.com/test/pav" //获取code
-  let baseRegisterURL = "http://p.zkjinshi.com/test/pav" // 注册地址
-  let baseURLNewApi = "http://p.zkjinshi.com/test/for"
-
-
-//  private static let baseCodeURL = "http://192.168.199.112:8082" //局域网测试IP
   
   enum ResourcePath: CustomStringConvertible {
-    case ApiURL(path:String)                          // demo
-    case Beacon                                       // PYXIS 位置服务API : Beacon 位置信息 :
-    case GPS                                          // PYXIS 位置服务API : GPS 位置信息 :
-    case CodeLogin                                    // PAVO 认证服务API : 验证码 : HEADER不需要Token
-    case CodeRegister                                 // 注册获取验证码
-    case register                                     // 注册获取token
-    case Login                                        // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
-    case Token                                        // PAVO 认证服务API : Token管理 :
+    case ApiURL(path:String)                               // demo
+    case Beacon                                                     // PYXIS 位置服务API : Beacon 位置信息 :
+    case GPS                                                            // PYXIS 位置服务API : GPS 位置信息 :
+    case CodeLogin                                              // PAVO 认证服务API : 验证码 : HEADER不需要Token
+    case CodeRegister                                         // 注册获取验证码
+    case register                                                      // 注册获取token
+    case Login                                                          // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
+    case Token                                                        // PAVO 认证服务API : Token管理 :
     case DeleteToken
-    case RegisterUpdata                               // 注册后更新资料
-    case UserInfo                                     // 获取用户资料
-    case UserInfoUpdate                               // 更新用户资料
-    case querySaleFromCode               //根据邀请码查询销售员
-    case UploadLogs                                   // 上传用户错误日志
-    case ActiveCode                               //邀请码激活
-    //商家
-    case ShopList                                     //商家列表
+    case RegisterUpdata                                     // 注册后更新资料
+    case UserInfo                                                    // 获取用户资料
+    case UserInfoUpdate                                     // 更新用户资料
+    case UploadLogs                                            // 上传用户错误日志
+    case ShopList                                                 //商家列表
+    case querySaleFromCode                       //根据邀请码查询销售员
+    case ActiveCode                                         //邀请码激活
     
     var description: String {
       switch self {
       case .ApiURL(let path):   return "/api/\(path)"
-      case .Beacon:             return "/lbs/v1/loc/beacon"
-      case .GPS:                return "/lbs/v1/loc/gps"
-      case .CodeLogin :         return "/sso/vcode/v1/si?source=login"
-      case .CodeRegister :      return "/sso/vcode/v1/si?source=register"
-      case .Login:              return "/sso/token/v1/phone/si"
-      case .Token:              return "/sso/token/v1"
-      case .DeleteToken:        return "/sso/token/v1"
-      case .RegisterUpdata:     return "/res/v1/register/update/si"
-      case .register:           return "/res/v1/register/si"
-      case .UserInfo:           return "/res/v1/query/user/all"
-      case .UserInfoUpdate:     return "/res/v1/update/user"
-      case .UploadLogs:         return "/res/v1/upload/userlog"
-      case .ShopList:           return "/res/v1/shop"
-      case.querySaleFromCode: return "/res/v1/salecode/saleuser?salecode="
-      case.ActiveCode: return "/res/v1/salecode/active/salecode"
+      case .Beacon:             return "/pyx/lbs/v1/loc/beacon"
+      case .GPS:                return "/pyx/lbs/v1/loc/gps"
+      case .CodeLogin :         return "/pav/sso/vcode/v1/si?source=login"
+      case .CodeRegister :      return "/pav/sso/vcode/v1/si?source=register"
+      case .Login:              return "/pav/sso/token/v1/phone/si"
+      case .Token:              return "/pav/sso/token/v1"
+      case .DeleteToken:        return "/pav/sso/token/v1"
+      case .register:           return "/pav/res/v1/register/si"
+      case .RegisterUpdata:     return "/for/res/v1/register/update/si"
+      case .UserInfo:           return "/for/res/v1/query/user/all"
+      case .UserInfoUpdate:     return "/for/res/v1/update/user"
+      case .UploadLogs:         return "/for/res/v1/upload/userlog"
+      case .ShopList:           return "/for/res/v1/shop"
+      case .querySaleFromCode: return "/for/res/v1/salecode/saleuser"
+      case .ActiveCode: return "/for/res/v1/salecode/active/salecode"
       }
     }
   }
@@ -217,8 +187,8 @@ class HttpService {
           completionHandler(json,e)
           print("error with reason: \(json["resDesc"].string)")
           if let key = json["res"].int,
-              let msg = ZKJSErrorMessages.sharedInstance.errorString("\(key)") {
-            ZKJSTool.showMsg(msg)
+            let msg = ZKJSErrorMessages.sharedInstance.errorString("\(key)") {
+              ZKJSTool.showMsg(msg)
           }
         }
       } else {
@@ -230,6 +200,5 @@ class HttpService {
       }
     }
   }
-  
   
 }

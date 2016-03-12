@@ -257,6 +257,7 @@
 		40E3A18A1BFEFA8300516EC4 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3A1861BFEFA8200516EC4 /* SearchTVC.swift */; };
 		40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A1871BFEFA8200516EC4 /* SearchTVC.xib */; };
 		40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E3A22F1BFF01C300516EC4 /* libopencore-amrnb.a */; };
+		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
 		40E8F0131C80691400D6F605 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0001C80691400D6F605 /* Alamofire.swift */; };
 		40E8F0141C80691400D6F605 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0011C80691400D6F605 /* Download.swift */; };
 		40E8F0151C80691400D6F605 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0021C80691400D6F605 /* Error.swift */; };
@@ -285,6 +286,9 @@
 		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
 		40FD343D1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343C1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift */; };
 		40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343E1C92C3F40019A8CA /* LocalStorage.swift */; };
+		40FD34411C92F1FB0019A8CA /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD34401C92F1FB0019A8CA /* Shop.swift */; };
+		40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD34421C92F4380019A8CA /* HttpService+Shops.swift */; };
+		40FD34461C92FE190019A8CA /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD34451C92FE190019A8CA /* ShopViewModel.swift */; };
 		B20812B51B8DD7950070D96F /* SkipCheckInSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */; };
 		B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */; };
 		B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812B91B8DD8650070D96F /* EncryptionTransformer.swift */; };
@@ -1114,6 +1118,7 @@
 		40E3A28D1BFF01C300516EC4 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		40E3A28E1BFF01C300516EC4 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		40E3A28F1BFF01C300516EC4 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZKJSConfig.swift; path = CommonSwift/ZKJSConfig.swift; sourceTree = "<group>"; };
 		40E8EFFF1C80691400D6F605 /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
 		40E8F0001C80691400D6F605 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		40E8F0011C80691400D6F605 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
@@ -1143,6 +1148,9 @@
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		40FD343C1C92BFAE0019A8CA /* NSDate+Days+ZKJS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Days+ZKJS.swift"; path = "CommonSwift/Extensions/NSDate+Days+ZKJS.swift"; sourceTree = "<group>"; };
 		40FD343E1C92C3F40019A8CA /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalStorage.swift; path = CommonSwift/Models/LocalStorage.swift; sourceTree = "<group>"; };
+		40FD34401C92F1FB0019A8CA /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		40FD34421C92F4380019A8CA /* HttpService+Shops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HttpService+Shops.swift"; path = "CommonSwift/Services/HttpService+Shops.swift"; sourceTree = "<group>"; };
+		40FD34451C92FE190019A8CA /* ShopViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopViewModel.swift; path = ViewModel/ShopViewModel.swift; sourceTree = "<group>"; };
 		46501E00CF356A221CE759C9 /* libPods-SVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20812931B8DD7950070D96F /* SkipCheckInSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipCheckInSettingViewController.swift; sourceTree = "<group>"; };
 		B20812B81B8DD8650070D96F /* EncryptionBinaryTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionBinaryTransformer.swift; sourceTree = "<group>"; };
@@ -1635,6 +1643,7 @@
 		406B0AD31C858A8A006C9C73 /* CommonSwift */ = {
 			isa = PBXGroup;
 			children = (
+				40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */,
 				40111D991C8ED4D300DD2AE1 /* Libraries */,
 				4053ADDC1C8D850100282240 /* Classes */,
 				406B0AE01C85AA7D006C9C73 /* Models */,
@@ -1664,6 +1673,7 @@
 				4053ADD81C8D6F5F00282240 /* HttpService+Location.swift */,
 				4053ADD41C8D6C5D00282240 /* HttpService+Token.swift */,
 				4053ADD61C8D6ED400282240 /* HttpService+Account.swift */,
+				40FD34421C92F4380019A8CA /* HttpService+Shops.swift */,
 				408C47D21C86DB3100F9B0C7 /* ZKJSErrorMessages.swift */,
 				408C47D41C86DBB900F9B0C7 /* errorMessages.plist */,
 				4053ADDA1C8D7F1800282240 /* HttpErrorRecordingService.swift */,
@@ -2462,6 +2472,7 @@
 		40E3A1621BFEFA6400516EC4 /* Hotel */ = {
 			isa = PBXGroup;
 			children = (
+				40FD34441C92FDCC0019A8CA /* ViewModel */,
 				40E3A1831BFEFA8200516EC4 /* Search */,
 				FAF4148A1BFC638700D3BED4 /* CityVC */,
 				40E3A1631BFEFA6400516EC4 /* Controller */,
@@ -3038,6 +3049,14 @@
 			path = Me;
 			sourceTree = "<group>";
 		};
+		40FD34441C92FDCC0019A8CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				40FD34451C92FE190019A8CA /* ShopViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B20812901B8DD7950070D96F /* SkipCheckIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -3349,6 +3368,7 @@
 			children = (
 				B27004091B608ABF00B1BEA7 /* Hotel.swift */,
 				FAFBFB741C22575000A1126B /* RecommendModel.swift */,
+				40FD34401C92F1FB0019A8CA /* Shop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3688,6 +3708,7 @@
 				FAF72CDD1C34D81B0092CEFD /* BusinessDetailVC.swift in Sources */,
 				FA5B28B71C09453500E8B1C0 /* MailListCell.swift in Sources */,
 				4077DD9B1C1EAF9900E13D6B /* ContactListSelectViewController.m in Sources */,
+				40FD34411C92F1FB0019A8CA /* Shop.swift in Sources */,
 				4077DDA11C1EAF9900E13D6B /* EMChooseViewController.m in Sources */,
 				4077DDE71C1EAF9900E13D6B /* EaseEmotionEscape.m in Sources */,
 				4077DDC91C1EAF9900E13D6B /* UIView+EMWebCacheOperation.m in Sources */,
@@ -3723,6 +3744,7 @@
 				40E8F0251C80691400D6F605 /* Validation.swift in Sources */,
 				4053ADF91C8DA53400282240 /* ZKJSHelper.swift in Sources */,
 				40E8F03A1C81409F00D6F605 /* BeaconMonitor.swift in Sources */,
+				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,
 				40D585DB1C22AD5200C5267D /* PhoneCell.swift in Sources */,
 				FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */,
 				40D585E21C22B0D100C5267D /* SalesModel.swift in Sources */,
@@ -3860,6 +3882,7 @@
 				40111DD71C8ED56E00DD2AE1 /* AsyncImageView.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				4077DDFF1C1EAF9900E13D6B /* EaseFacialView.m in Sources */,
+				40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */,
 				B20812C71B8DD8650070D96F /* EncryptionTransformer.swift in Sources */,
 				4077DDE81C1EAF9900E13D6B /* EaseEmotionManager.m in Sources */,
 				4077DD8B1C1EAF9900E13D6B /* EMAlertView.m in Sources */,
@@ -3936,6 +3959,7 @@
 				4077DDB21C1EAF9900E13D6B /* MWGridCell.m in Sources */,
 				4053ADD71C8D6ED400282240 /* HttpService+Account.swift in Sources */,
 				4077DDFA1C1EAF9900E13D6B /* EaseChatToolbar.m in Sources */,
+				40FD34461C92FE190019A8CA /* ShopViewModel.swift in Sources */,
 				4077DDA91C1EAF9900E13D6B /* EMCDDeviceManager+Remind.m in Sources */,
 				400959F51C213B3900D3DA61 /* PhoneSecondVC.swift in Sources */,
 				4077DD8E1C1EAF9900E13D6B /* CallViewController.m in Sources */,

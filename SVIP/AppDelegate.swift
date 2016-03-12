@@ -44,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    setupBackgroundFetch()
     
     setupYunBa()
-    setupAMap()
     setupUMStatistics()
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
     refreshToken()
@@ -343,11 +342,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   func setupYunBa() {
     let appKey = "566563014407a3cd028aa72f"
     YunBaService.setupWithAppkey(appKey)
-  }
-  
-  func setupAMap() {
-    AMapNaviServices.sharedServices().apiKey = AMapKey
-    AMapLocationServices.sharedServices().apiKey = AMapKey
   }
   
   func setupUMStatistics() {
