@@ -49,6 +49,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   }
   
   func loadUserData() {
+    print(AccountManager.sharedInstance().avatarURL)
     userImage.sd_setImageWithURL(NSURL(string: AccountManager.sharedInstance().avatarURL), placeholderImage: UIImage(named: "logo_white"))
     surnameTextField.text = AccountManager.sharedInstance().userName
     emailTextFiled.text = AccountManager.sharedInstance().email
@@ -158,13 +159,12 @@ extension AccountTVC: UIImagePickerControllerDelegate {
     }
     
     HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: image,email: nil) {[unowned self] (json, error) -> () in
-      if let _ = error {
-        self.hideHUD()
+      self.hideHUD()
+      if let error = error {
         self.showHint("上传头像失败")
         print(error)
       } else {
         HttpService.sharedInstance.getUserinfo({[unowned self] (json, error) -> () in
-          self.hideHUD()
           self.refreshDataAndUI()
           self.showHint("上传头像成功")
         })

@@ -13,6 +13,7 @@ import Foundation
 typealias HttpCompletionHandler = (JSON?, NSError?) -> Void
 
 class HttpService {
+  static let DefaultPageSize = 20
   static let TimeoutInterval:NSTimeInterval = 3    //设置api请求超时时间
   static let sharedInstance = HttpService()
   //custom manager used for timeout version
@@ -71,6 +72,8 @@ class HttpService {
     case UserInfo                                     // 获取用户资料
     case UserInfoUpdate                               // 更新用户资料
     case UploadLogs                                   // 上传用户错误日志
+    //商家
+    case ShopList                                     //商家列表
     
     var description: String {
       switch self {
@@ -85,8 +88,9 @@ class HttpService {
       case .RegisterUpdata:     return "/res/v1/register/update/si"
       case .register:           return "/res/v1/register/si"
       case .UserInfo:           return "/res/v1/query/user/all"
-      case .UserInfoUpdate:     return "/res/v1/update/si"
+      case .UserInfoUpdate:     return "/res/v1/update/user"
       case .UploadLogs:         return "/res/v1/upload/userlog"
+      case .ShopList:           return "/res/v1/shop"
       }
     }
   }
@@ -160,7 +164,7 @@ class HttpService {
     print(urlString)
     print(parameters)
     
-    request(method, urlString, parameters: parameters, encoding: .JSON, headers: headers).response { (req, res, data, error) -> Void in
+    request(method, urlString, parameters: parameters, encoding: method == .GET ? .URLEncodedInURL : .JSON, headers: headers).response { (req, res, data, error) -> Void in
       self.handleResult(data, error: error, completionHandler: completionHandler)
     }
   }
@@ -181,7 +185,7 @@ class HttpService {
     print(urlString)
     print(parameters)
     
-    self.alamoFireManager.request(method, urlString, parameters: parameters, encoding: .JSON, headers: headers).response { (req, res, data, error) -> Void in
+    self.alamoFireManager.request(method, urlString, parameters: parameters, encoding: method == .GET ? .URLEncodedInURL : .JSON, headers: headers).response { (req, res, data, error) -> Void in
       self.handleResult(data, error: error, completionHandler: completionHandler)
     }
   }

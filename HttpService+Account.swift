@@ -29,7 +29,7 @@ extension HttpService {
       return
     }
     
-    let urlString = baseRegisterURL + (isRegister ? ResourcePath.RegisterUpdata.description : ResourcePath.UserInfoUpdate.description)
+    let urlString = baseURLNewApi + (isRegister ? ResourcePath.RegisterUpdata.description : ResourcePath.UserInfoUpdate.description)
     
     var parameters = [String:String]()
     if isRegister {
@@ -75,13 +75,17 @@ extension HttpService {
                   
                   print(json["resDesc"].string)
                   
-                  if isRegister {
+                  if isRegister {//注册更新会返回新的token
                     guard let token = json["token"].string else {
                       return
                     }
                     print(token)
                     let tokenPayload = TokenPayload.sharedInstance
                     tokenPayload.saveTokenPayload(token)
+                  } else {//登陆后更新用户信息会返回不一样的数据结构，具体参考api文档
+                    if let imgUrl = json["data"]["userimage"].string where !imgUrl.isEmpty {
+                      AccountManager.sharedInstance().saveImageUrl(imgUrl)
+                    }
                   }
                   
                   completionHandler(json,nil)
