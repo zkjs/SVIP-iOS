@@ -258,6 +258,9 @@
 		40E3A18B1BFEFA8300516EC4 /* SearchTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E3A1871BFEFA8200516EC4 /* SearchTVC.xib */; };
 		40E3A2901BFF01DD00516EC4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E3A22F1BFF01C300516EC4 /* libopencore-amrnb.a */; };
 		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
+		40E88ACC1C940EBE00258E72 /* ShopDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88ACB1C940EBE00258E72 /* ShopDetailModel.swift */; };
+		40E88ACE1C94286000258E72 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88ACD1C94286000258E72 /* CommentModel.swift */; };
+		40E88AD11C9429A300258E72 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AD01C9429A300258E72 /* CommentViewModel.swift */; };
 		40E8F0131C80691400D6F605 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0001C80691400D6F605 /* Alamofire.swift */; };
 		40E8F0141C80691400D6F605 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0011C80691400D6F605 /* Download.swift */; };
 		40E8F0151C80691400D6F605 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8F0021C80691400D6F605 /* Error.swift */; };
@@ -356,7 +359,6 @@
 		FAF206101C32317A0052EF74 /* OrderListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2060F1C32317A0052EF74 /* OrderListModel.swift */; };
 		FAF206121C3269890052EF74 /* OrderDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF206111C3269890052EF74 /* OrderDetailModel.swift */; };
 		FAF206141C3278CC0052EF74 /* BusinessDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF206131C3278CC0052EF74 /* BusinessDetailTVC.swift */; };
-		FAF206161C3278DD0052EF74 /* BusinessDetailTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF206151C3278DD0052EF74 /* BusinessDetailTVC.storyboard */; };
 		FAF206181C329C5A0052EF74 /* HotelOrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF206171C329C5A0052EF74 /* HotelOrderTVC.swift */; };
 		FAF2061A1C329C680052EF74 /* HotelOrderTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF206191C329C680052EF74 /* HotelOrderTVC.storyboard */; };
 		FAF212D51BF71DD5002C1C73 /* CityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF212D31BF71DD5002C1C73 /* CityVC.swift */; };
@@ -1119,6 +1121,9 @@
 		40E3A28E1BFF01C300516EC4 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		40E3A28F1BFF01C300516EC4 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZKJSConfig.swift; path = CommonSwift/ZKJSConfig.swift; sourceTree = "<group>"; };
+		40E88ACB1C940EBE00258E72 /* ShopDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailModel.swift; sourceTree = "<group>"; };
+		40E88ACD1C94286000258E72 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		40E88AD01C9429A300258E72 /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		40E8EFFF1C80691400D6F605 /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
 		40E8F0001C80691400D6F605 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		40E8F0011C80691400D6F605 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
@@ -1232,7 +1237,6 @@
 		FAF2060F1C32317A0052EF74 /* OrderListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListModel.swift; sourceTree = "<group>"; };
 		FAF206111C3269890052EF74 /* OrderDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailModel.swift; sourceTree = "<group>"; };
 		FAF206131C3278CC0052EF74 /* BusinessDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailTVC.swift; sourceTree = "<group>"; };
-		FAF206151C3278DD0052EF74 /* BusinessDetailTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessDetailTVC.storyboard; sourceTree = "<group>"; };
 		FAF206171C329C5A0052EF74 /* HotelOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelOrderTVC.swift; sourceTree = "<group>"; };
 		FAF206191C329C680052EF74 /* HotelOrderTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HotelOrderTVC.storyboard; sourceTree = "<group>"; };
 		FAF212D31BF71DD5002C1C73 /* CityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityVC.swift; sourceTree = "<group>"; };
@@ -3000,6 +3004,14 @@
 			path = PSTCollectionView;
 			sourceTree = "<group>";
 		};
+		40E88ACF1C94298B00258E72 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				40E88AD01C9429A300258E72 /* CommentViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		40E8EFFE1C80691400D6F605 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
@@ -3098,6 +3110,7 @@
 		B2A6420F1B47C2A700AF0F28 /* Book */ = {
 			isa = PBXGroup;
 			children = (
+				40E88ACF1C94298B00258E72 /* ViewModel */,
 				FAFBC4441C33B32C001E9155 /* ScrollView */,
 				B2A642101B47C2A700AF0F28 /* Controller */,
 				B2A642141B47C2A700AF0F28 /* Model */,
@@ -3139,6 +3152,8 @@
 				FAF206111C3269890052EF74 /* OrderDetailModel.swift */,
 				FAFBC4421C338BC5001E9155 /* DetailModel.swift */,
 				FAF92CB51C4414B800671300 /* CommentsModel.swift */,
+				40E88ACB1C940EBE00258E72 /* ShopDetailModel.swift */,
+				40E88ACD1C94286000258E72 /* CommentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3161,7 +3176,6 @@
 				B2A6421C1B47C2A700AF0F28 /* BookVC.xib */,
 				4055ECCA1B903A5900C66797 /* BookingOrder.storyboard */,
 				4055ECCB1B903A5900C66797 /* BookingOrderDetail.storyboard */,
-				FAF206151C3278DD0052EF74 /* BusinessDetailTVC.storyboard */,
 				FAF72CDE1C34D8430092CEFD /* BusinessDetailVC.storyboard */,
 				FAF206191C329C680052EF74 /* HotelOrderTVC.storyboard */,
 				FAFBC43C1C336BD9001E9155 /* KTVTableView.storyboard */,
@@ -3546,7 +3560,6 @@
 				FAF2495D1BFF0F1C001E7E41 /* SearchHeaderView.xib in Resources */,
 				40E39E331BFEF43800516EC4 /* BookingOrderDetailVC.xib in Resources */,
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
-				FAF206161C3278DD0052EF74 /* BusinessDetailTVC.storyboard in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
 				FAF7F5571C02E88F00C84601 /* PrivilegeVC.xib in Resources */,
 				FAF7F55B1C02EB4400C84601 /* PrivilegeCVCell.xib in Resources */,
@@ -3747,6 +3760,7 @@
 				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,
 				40D585DB1C22AD5200C5267D /* PhoneCell.swift in Sources */,
 				FAF7F5561C02E88F00C84601 /* PrivilegeVC.swift in Sources */,
+				40E88AD11C9429A300258E72 /* CommentViewModel.swift in Sources */,
 				40D585E21C22B0D100C5267D /* SalesModel.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				406B0A261C83E959006C9C73 /* HttpService.swift in Sources */,
@@ -3893,6 +3907,7 @@
 				4077DDBD1C1EAF9900E13D6B /* EMSDWebImageDownloader.m in Sources */,
 				4053ADDB1C8D7F1800282240 /* HttpErrorRecordingService.swift in Sources */,
 				4077DD951C1EAF9900E13D6B /* ChatGroupDetailViewController.m in Sources */,
+				40E88ACC1C940EBE00258E72 /* ShopDetailModel.swift in Sources */,
 				401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */,
@@ -3917,6 +3932,7 @@
 				40E39E341BFEF43800516EC4 /* OrderCell.swift in Sources */,
 				FAFBC4431C338BC5001E9155 /* DetailModel.swift in Sources */,
 				40E39E361BFEF43800516EC4 /* OrderHistoryCell.swift in Sources */,
+				40E88ACE1C94286000258E72 /* CommentModel.swift in Sources */,
 				4077DDCC1C1EAF9900E13D6B /* PSTCollectionViewCell.m in Sources */,
 				40E3A18A1BFEFA8300516EC4 /* SearchTVC.swift in Sources */,
 				FAFBC43B1C336BC4001E9155 /* KTVTableView.swift in Sources */,

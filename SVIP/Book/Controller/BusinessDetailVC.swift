@@ -13,8 +13,8 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!
-  var shopDetail = DetailModel()
-  
+  var shopDetail : ShopDetailModel!
+  var childDetailTVC: BusinessDetailTVC?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,6 +32,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
         vc.shopid = shopid
         vc.shopName = shopName
         vc.saleid = self.saleid
+        self.childDetailTVC = vc
       }
     }
     navigationController?.navigationBar.translucent = true
@@ -41,14 +42,14 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
   
   func loadData() {
     showHUDInView(view, withLoading: "")
-    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-      if let dict = responsObject as? NSDictionary {
-        self.shopDetail = DetailModel(dic: dict)
-        self.addNextStepButton()
-      }
+    
+    HttpService.sharedInstance.getShopDetail(String(shopid)) { (shop, error) -> Void in
       self.hideHUD()
-      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-        
+      if let shop = shop {
+        self.shopDetail = shop
+        self.addNextStepButton()
+        self.childDetailTVC?.shopDetail = shop
+      }
     }
   }
   
@@ -56,7 +57,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
     let frame = CGRectMake(0, view.bounds.size.height-48, view.bounds.size.width, 48)
     let button = UIButton(frame: frame)
     button.backgroundColor = UIColor.ZKJS_mainColor()
-    if shopDetail.shopStatus == 0 {
+    if shopDetail.shopstatus == 0 {
       button.setTitle("即将入驻", forState: .Normal)
       button.backgroundColor = UIColor.lightGrayColor()
       button.enabled = false
@@ -90,7 +91,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
       return
     }
     
-    print(self.shopDetail.category)
+    /*print(self.shopDetail.category)
     if self.shopDetail.category == "50" {
       let storyboard = UIStoryboard(name: "HotelOrderTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("HotelOrderTVC") as! HotelOrderTVC
@@ -114,7 +115,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
       vc.shopid = shopid
       vc.saleid = self.saleid
       navigationController?.pushViewController(vc, animated: true)
-    }
+    }*/
   }
   
  

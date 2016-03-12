@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Shop {
+class Shop {
   
   let shopid:String               //商户编号
   let shoplogo:String             //商户LOGO

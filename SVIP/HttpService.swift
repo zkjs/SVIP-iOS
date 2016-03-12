@@ -30,41 +30,45 @@ class HttpService {
   
   
   enum ResourcePath: CustomStringConvertible {
-    case ApiURL(path:String)                               // demo
-    case Beacon                                                     // PYXIS 位置服务API : Beacon 位置信息 :
-    case GPS                                                            // PYXIS 位置服务API : GPS 位置信息 :
-    case CodeLogin                                              // PAVO 认证服务API : 验证码 : HEADER不需要Token
-    case CodeRegister                                         // 注册获取验证码
-    case register                                                      // 注册获取token
-    case Login                                                          // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
-    case Token                                                        // PAVO 认证服务API : Token管理 :
+    case ApiURL(path:String)         // demo
+    case Beacon                      // PYXIS 位置服务API : Beacon 位置信息 :
+    case GPS                         // PYXIS 位置服务API : GPS 位置信息 :
+    case CodeLogin                   // PAVO 认证服务API : 验证码 : HEADER不需要Token
+    case CodeRegister                // 注册获取验证码
+    case register                    // 注册获取token
+    case Login                       // PAVO 认证服务API : 使用手机验证码创建Token : HEADER不需要Token
+    case Token                       // PAVO 认证服务API : Token管理 :
     case DeleteToken
-    case RegisterUpdata                                     // 注册后更新资料
-    case UserInfo                                                    // 获取用户资料
-    case UserInfoUpdate                                     // 更新用户资料
-    case UploadLogs                                            // 上传用户错误日志
-    case ShopList                                                 //商家列表
-    case querySaleFromCode                       //根据邀请码查询销售员
-    case ActiveCode                                         //邀请码激活
+    case RegisterUpdata              // 注册后更新资料
+    case UserInfo                    // 获取用户资料
+    case UserInfoUpdate              // 更新用户资料
+    case UploadLogs                  // 上传用户错误日志
+    case ShopList                    // 商家列表
+    case ShopDetail(id:String)       // 商家详情
+    case ShopComments(shopid:String) // 商家评论
+    case querySaleFromCode           // 根据邀请码查询销售员
+    case ActiveCode                  // 邀请码激活
     
     var description: String {
       switch self {
-      case .ApiURL(let path):   return "/api/\(path)"
-      case .Beacon:             return "/pyx/lbs/v1/loc/beacon"
-      case .GPS:                return "/pyx/lbs/v1/loc/gps"
-      case .CodeLogin :         return "/pav/sso/vcode/v1/si?source=login"
-      case .CodeRegister :      return "/pav/sso/vcode/v1/si?source=register"
-      case .Login:              return "/pav/sso/token/v1/phone/si"
-      case .Token:              return "/pav/sso/token/v1"
-      case .DeleteToken:        return "/pav/sso/token/v1"
-      case .register:           return "/pav/res/v1/register/si"
-      case .RegisterUpdata:     return "/for/res/v1/register/update/si"
-      case .UserInfo:           return "/for/res/v1/query/user/all"
-      case .UserInfoUpdate:     return "/for/res/v1/update/user"
-      case .UploadLogs:         return "/for/res/v1/upload/userlog"
-      case .ShopList:           return "/for/res/v1/shop"
-      case .querySaleFromCode: return "/for/res/v1/salecode/saleuser"
-      case .ActiveCode: return "/for/res/v1/salecode/active/salecode"
+      case .ApiURL(let path):          return "/api/\(path)"
+      case .Beacon:                    return "/pyx/lbs/v1/loc/beacon"
+      case .GPS:                       return "/pyx/lbs/v1/loc/gps"
+      case .CodeLogin:                 return "/pav/sso/vcode/v1/si?source=login"
+      case .CodeRegister:              return "/pav/sso/vcode/v1/si?source=register"
+      case .Login:                     return "/pav/sso/token/v1/phone/si"
+      case .Token:                     return "/pav/sso/token/v1"
+      case .DeleteToken:               return "/pav/sso/token/v1"
+      case .register:                  return "/pav/res/v1/register/si"
+      case .RegisterUpdata:            return "/for/res/v1/register/update/si"
+      case .UserInfo:                  return "/for/res/v1/query/user/all"
+      case .UserInfoUpdate:            return "/for/res/v1/update/user"
+      case .UploadLogs:                return "/for/res/v1/upload/userlog"
+      case .ShopList:                  return "/for/res/v1/shop"
+      case .ShopDetail(let shopid):    return "/for/res/v1/shop/detail/\(shopid)"
+      case .ShopComments(let shopid):  return "/for/res/v1/shop/comments/\(shopid)"
+      case .querySaleFromCode:         return "/for/res/v1/salecode/saleuser"
+      case .ActiveCode:                return "/for/res/v1/salecode/active/salecode"
       }
     }
   }
