@@ -32,6 +32,10 @@ class RegisterVC: UIViewController {
 
     }
   
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("RegisterVC", owner:self, options:nil)
+  }
+  
   func setupView() {
     let phoneIV = UIImageView(image: UIImage(named: "ic_yonghu"))
     phoneIV.frame = CGRectMake(0.0, 0.0, phoneIV.frame.size.width + 10.0, phoneIV.frame.size.height)
@@ -109,7 +113,12 @@ class RegisterVC: UIViewController {
         self.showHint("服务器返回数据异常")
     })
   }
-
+  
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    super.touchesBegan(touches, withEvent: event)
+    view.endEditing(true)
+  }
 
   
   func backToLoginVC(sender:UIBarButtonItem) {

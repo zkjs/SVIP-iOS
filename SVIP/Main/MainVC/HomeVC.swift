@@ -267,9 +267,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
         }
         self.refreshTableView()
       }
-      
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
     }
   }
   

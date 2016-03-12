@@ -21,7 +21,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   @IBOutlet weak var breakfeastSwitch: UISwitch!
   @IBOutlet weak var isSmokingSwitch: UISwitch! {
     didSet {
-      isSmokingSwitch.enabled = false
     }
   }
   @IBOutlet weak var remarkTextView: UITextView! {
