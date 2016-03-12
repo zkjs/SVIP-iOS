@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    setupUMSocial()//UM
     networkState()
 //    setupBackgroundFetch()
+    
     setupYunBa()
     setupAMap()
     setupUMStatistics()
