@@ -129,7 +129,7 @@ class HttpService {
   func requestAPI(method: Method, urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: HttpCompletionHandler) {
     
     var headers = ["Content-Type":"application/json"]
-    if let token = TokenPayload.sharedInstance.token {
+    if let token = TokenPayload.sharedInstance.token where !token.isEmpty {
       print("request with token:\(token)")
       headers["Token"] = token
     } else {

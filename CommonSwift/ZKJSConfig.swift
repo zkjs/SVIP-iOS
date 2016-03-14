@@ -23,27 +23,29 @@ struct ZKJSConfig {
   // 环信
   let EaseMobAppKey = "zkjs#svip"
   
+  #elseif PRE_RELEASE
+  
+  //// 预上线
+  
+  // 新API服务器
+  let BaseURL = "http://rap.zkjinshi.com/"
+  // 图片服务器
+  let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
+  // 环信
+  let EaseMobAppKey = "zkjs#sid"
+  
   #else
   
   //// 生产环境
   
   // 新API服务器
-  let baseURL = "http://api.zkjinshi.com/"
+  let BaseURL = "http://api.zkjinshi.com/"
   // 图片服务器
-  let ImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
+  let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
   // 环信
   let EaseMobAppKey = "zkjs#prosvip"
   
   #endif
-  
-  
-  
-  // 预上线
-  /*
-  let baseURL = "http://rap.zkjinshi.com/"  // 新API服务器
-  let ImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com"  // 图片服务器
-  let EaseMobAppKey = "zkjs#sid"  // 环信
-  */
   
   
 }

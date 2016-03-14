@@ -179,7 +179,7 @@ class LoginVC: UIViewController {
         })
       }
       //self.dismissSelf()
-      //self.hideHUD()
+      self.hideHUD()
     }
     //需要调用老的api登陆获取老的token供其他api调用
     self.loginWithPhone(phone)

@@ -81,7 +81,7 @@ extension HttpService {
           for d in data {
             comments.append(CommentModel(json: d))
           }
-          print("shop count:\(comments.count)")
+          print("comments count:\(comments.count)")
         }
         completionHandler(comments,nil)
       }
