@@ -44,10 +44,11 @@ class MainTBC: UITabBarController {
     vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     
     //服务中心
-    salesVC = SalesVC()
+    //暂时屏蔽该功能入口 [commented at 2016-03-14]
+    /*salesVC = SalesVC()
     let nc3 = BaseNC(rootViewController: salesVC)
     salesVC.tabBarItem.image = UIImage(named: "ic_xiaoxi_gary")
-    salesVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+    salesVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)*/
     
     //我的设置
     let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
@@ -56,7 +57,7 @@ class MainTBC: UITabBarController {
     vc4.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     let nc4 = BaseNC(rootViewController: vc4)
     
-    viewControllers = [nc1, nc2, nc3, nc4]
+    viewControllers = [nc1, nc2, nc4]
     tabBar.tintColor = UIColor.ZKJS_mainColor()
     
     registerNotification()

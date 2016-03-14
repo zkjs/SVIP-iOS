@@ -54,7 +54,8 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
   }
   
   func addNextStepButton() {
-    let frame = CGRectMake(0, view.bounds.size.height-48, view.bounds.size.width, 48)
+    //暂时屏蔽预定功能 [commented at 2016-03-14]
+    /*let frame = CGRectMake(0, view.bounds.size.height-48, view.bounds.size.width, 48)
     let button = UIButton(frame: frame)
     button.backgroundColor = UIColor.ZKJS_mainColor()
     if shopDetail.shopstatus == 0 {
@@ -67,6 +68,7 @@ class BusinessDetailVC: UIViewController,PhotoViewerDelegate,CommentsViewerDeleg
     
     button.addTarget(self, action: "nextStep", forControlEvents: .TouchUpInside)
     view.addSubview(button)
+    */
   }
   
   override func viewWillAppear(animated: Bool) {

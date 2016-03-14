@@ -195,7 +195,8 @@ class MeTVC: UITableViewController {
     case orderIndexPath:
       let vc = OrderListTVC()
       vc.hidesBottomBarWhenPushed = true
-      navigationController?.pushViewController(vc, animated: true)
+      //暂时屏蔽订单管理功能 [commented at 2016-03-14]
+      //navigationController?.pushViewController(vc, animated: true)
     case settingIndexPath:
       let storyboard = UIStoryboard(name: "SettingTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("SettingTVC") as! SettingTVC
@@ -203,6 +204,16 @@ class MeTVC: UITableViewController {
       navigationController?.pushViewController(vc, animated: true)
     default:
       print("还没实现呢")
+    }
+  }
+  
+  //暂时屏蔽订单管理功能 [commented at 2016-03-14]
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    switch indexPath.row {
+    case 0: return 80
+    case 1: return 0
+    case 2: return 44
+    default: return 0
     }
   }
   
