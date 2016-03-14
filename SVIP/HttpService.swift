@@ -151,7 +151,7 @@ class HttpService {
   func requestTimeoutAPI(method: Method, urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: HttpCompletionHandler) {
     
     var headers = ["Content-Type":"application/json"]
-    if let token = TokenPayload.sharedInstance.token {
+    if let token = TokenPayload.sharedInstance.token  where !token.isEmpty{
       headers["Token"] = token
     } else {
       if tokenRequired {
@@ -192,7 +192,7 @@ class HttpService {
           print("error with reason: \(json["resDesc"].string)")
           if let key = json["res"].int,
             let msg = ZKJSErrorMessages.sharedInstance.errorString("\(key)") {
-              ZKJSTool.showMsg(msg)
+              //ZKJSTool.showMsg(msg)
           }
         }
       } else {

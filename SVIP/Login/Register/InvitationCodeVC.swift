@@ -91,7 +91,9 @@ class InvitationCodeVC: UIViewController {
                 self.sendInvitationCodeMessage()
                 self.sendInvitationCodeCmdMessage()
                 if self.type == InvitationCodeVCType.first {
-                  self.dismissViewControllerAnimated(true, completion: nil)
+                  HttpService.sharedInstance.getUserinfo{ (json, error) -> Void in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                  }
                 } else {
                   self.navigationController?.popViewControllerAnimated(true)
                 }
@@ -104,34 +106,14 @@ class InvitationCodeVC: UIViewController {
           }
         }
       })
-     /* ZKJSHTTPSessionManager.sharedInstance().pairInvitationCodeWith(code, salesID: salesid, phone: phone, salesName: sales_name, salesPhone: sales_phone, shopID: shopid, shopName: shopname, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-        print(responseObject)
-        if let data = responseObject {
-          if let set = data["set"] as? NSNumber {
-            if set.boolValue == true {
-              AccountManager.sharedInstance().saveActivated("1")
-              self.hideHUD()
-              self.sendInvitationCodeMessage()
-              self.sendInvitationCodeCmdMessage()
-              if self.type == InvitationCodeVCType.first {
-                self.dismissViewControllerAnimated(true, completion: nil)
-              } else {
-                self.navigationController?.popViewControllerAnimated(true)
-               }
-          } else {
-              self.hideHUD()
-              ZKJSTool.showMsg("该邀请码无效,请重试")
-              self.navigationController?.popViewControllerAnimated(true)
-            }
-          }
-        }
-        }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-          self.hideHUD()
-          ZKJSTool.showMsg("该邀请码无效,请重试")
-      })*/
+     
     }
-    if codeTextField.text!.characters.count < 6 {
-      self.dismissViewControllerAnimated(true, completion: nil)
+    if codeTextField.text!.characters.count < 6 {//跳过
+      showHUDInView(view, withLoading: "")
+      HttpService.sharedInstance.getUserinfo{ (json, error) -> Void in
+        self.hideHUD()
+        self.dismissViewControllerAnimated(true, completion: nil)
+      }
     }
   }
   
@@ -219,7 +201,7 @@ extension InvitationCodeVC: UITextFieldDelegate {
         }
       }
      })
-        } else {
+    } else {
       okButton.setTitle("跳过", forState: .Normal)
       animationViewHeight.constant = 0
       avatarImageHeight.constant = 0

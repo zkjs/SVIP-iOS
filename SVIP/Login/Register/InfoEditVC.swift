@@ -14,8 +14,8 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   @IBOutlet weak var username: UITextField!
   
   var avatarData: NSData? = nil
-  var sex = 0
-var image = UIImage()
+  var sex = 1
+  var image = UIImage()
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("InfoEditVC", owner:self, options:nil)
@@ -64,26 +64,17 @@ var image = UIImage()
     showHUDInView(view, withLoading: "")
     
     guard let userName = username.text else { return }
-//    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(userName, imageData: avatarData, sex: sex, email: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      if let data = responseObject as? [String: AnyObject] {
-//        if let set = data["set"] as? NSNumber {
-//          if set.boolValue == true {
-//            AccountManager.sharedInstance().saveUserName(userName)
-//            self.hideHUD()
-//            self.navigationController?.pushViewController(InvitationCodeVC(), animated: true)
-//          }
-//        }
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
     
     HttpService.sharedInstance.updateUserInfo(true, realname:userName, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
-      AccountManager.sharedInstance().saveUserName(userName)
+      self.hideHUD()
       if let error = error {
-        
+        if let msg = error.userInfo["resDesc"] as? String {
+          ZKJSTool.showMsg(msg)
+        } else {
+          ZKJSTool.showMsg("上传图片失败，请再次尝试")
+        }
       } else {
-        self.hideHUD()
+        AccountManager.sharedInstance().saveUserName(userName)
         self.navigationController?.pushViewController(InvitationCodeVC(), animated: true)
       }
     }
@@ -141,7 +132,7 @@ var image = UIImage()
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     avatarData = imageData
-    AccountManager.sharedInstance().saveAvatarImageData(avatarData!)
+//    AccountManager.sharedInstance().saveAvatarImageData(avatarData!)
     self.avatarButton.setImage(UIImage(data: avatarData!), forState: UIControlState.Normal)
     picker.dismissViewControllerAnimated(true, completion: nil)
     

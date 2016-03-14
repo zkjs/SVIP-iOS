@@ -124,7 +124,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
  }
   
   func getAllMessages() {
-    let city = "长沙"
+    /*let city = "长沙"
     ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       //      print(responseObject)
       if let defaultNotitification = responseObject["defaultNotitification"] as? NSArray {
@@ -153,7 +153,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       self.refreshTableView()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   // TableView Scroller Delegate
@@ -226,7 +226,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   }
   
   func getPushInfoData() {
-    ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       //      print(responseObject)
       if let array = responseObject as? NSArray {
         self.pushInfoArray.removeAll()
@@ -239,7 +239,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   func getlastOrder() {
@@ -383,8 +383,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     self.view.addSubview(floatingVC.view)
     self.addChildViewController(floatingVC)
     
-    let image = AccountManager.sharedInstance().avatarImage
-    privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
+    privilegeButton.sd_setBackgroundImageWithURL(NSURL(string: AccountManager.sharedInstance().avatarURL.fullImageUrl), forState: .Normal, placeholderImage: UIImage(named: "logo_white"))
     privilegeButton.userInteractionEnabled = false
   }
   

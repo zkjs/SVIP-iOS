@@ -32,10 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   var deviceToken = ""
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//    TokenPayload.sharedInstance.saveTokenPayload("eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJjX2E3NjI0OGZkOWJmY2Q2MDYiLCJ0eXBlIjoxLCJleHBpcmUiOjE0NTcxNjg5MDg5MjIsInJvbGVzIjpbXSwiZmVhdHVyZXMiOltdfQ.FuHY2h-VrOoikcvx5b25Z6bcAQikPqWrjEEOc-hfSl1tnVWQzMcuDb3H6p77t8t9sGw4-95M_aUxothrePQf4h4rRNSmqs29L30I1ye1MyxxjKI04O-8Nv3ZfW4UjHwXAu27n_3IDHVzKpJsMrNex19trVcUSsDbedxZCwDrepw generated for previous token eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJjX2E3NjI0OGZkOWJmY2Q2MDYiLCJ0eXBlIjoxLCJleHBpcmUiOjE0NTcxNjg5MDIwMDgsInJvbGVzIjpbXSwiZmVhdHVyZXMiOltdfQ.P3C374A_IboPS-S_Y5p6G7FdAyI3kMa9zj3OU8OTTbt0X8_e0hlCZVPUXonCkoIYnXVF-rEVfHRBur-krkr8GCD1MCiuqEgLOCclEzFryKYU7RGKp3zY4DOZ36nbhaFktZChuPJkURx786P0lnMUW2-iSmAyA_bSTDE7J3Ue-Z0")
-//    HttpService.sharedInstance.getUserinfo { (json, error) -> () in
-//      
-//    }
+    
+    HttpService.sharedInstance.getUserinfo(nil)
+    
     setupWindow()
     setupNotification()
 //    fetchShops()
@@ -340,8 +339,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   }
   
   func setupYunBa() {
-    let appKey = "566563014407a3cd028aa72f"
-    YunBaService.setupWithAppkey(appKey)
+    YunBaService.setupWithAppkey(ZKJSConfig.sharedInstance.YunBaAppKey)
+  }
+  
+  func unregisterRemoteNotification() {
+    UIApplication.sharedApplication().unregisterForRemoteNotifications()
   }
   
   func setupUMStatistics() {

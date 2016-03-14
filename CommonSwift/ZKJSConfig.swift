@@ -22,6 +22,8 @@ struct ZKJSConfig {
   let BaseImageURL = "http://for-testea01cc11-44f5-431f-a393-a6595c09410d.oss-cn-shenzhen.aliyuncs.com/"
   // 环信
   let EaseMobAppKey = "zkjs#svip"
+  // 云巴
+  let YunBaAppKey = "566563014407a3cd028aa72f"
   
   #elseif PRE_RELEASE
   
@@ -33,6 +35,8 @@ struct ZKJSConfig {
   let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
   // 环信
   let EaseMobAppKey = "zkjs#sid"
+  // 云巴
+  let YunBaAppKey = "566563014407a3cd028aa72f"
   
   #else
   
@@ -44,6 +48,8 @@ struct ZKJSConfig {
   let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
   // 环信
   let EaseMobAppKey = "zkjs#prosvip"
+  // 云巴
+  let YunBaAppKey = "566563014407a3cd028aa72f"
   
   #endif
   

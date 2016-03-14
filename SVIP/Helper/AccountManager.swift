@@ -13,7 +13,7 @@ class AccountManager: NSObject {
   private(set) var deviceToken = ""
   private(set) var userID = ""
   private(set) var token = ""
-  private(set) var avatarImage = UIImage(named: "logo_white")
+//  private(set) var avatarImage = UIImage(named: "logo_white")
   private(set) var userName = ""
   private(set) var sex = 1 // 0女 1男
   private(set) var email = ""
@@ -81,29 +81,15 @@ class AccountManager: NSObject {
     return (userID.isEmpty == false && token.isEmpty == false)
   }
   
-  func saveAccountInfo(accountInfo: [String: AnyObject]) {
-    if let userid = accountInfo["userid"] as? String,
-      let token = accountInfo["token"] as? String {
-        userID = userid
-        self.token = token
-        let userDefaults = NSUserDefaults()
-        userDefaults.setObject(userid, forKey: "userID")
-        userDefaults.setObject(token, forKey: "token")
-        userDefaults.synchronize()
-    } else {
-      print("弹框，返回的userid或token为空")
-    }
-  }
-  
   func saveBaseInfo(json: [String:JSON]) {
     let imgURL  = json["userimage"]?.string ?? ""
-    if let url = NSURL(string: imgURL) {
-      if let imageData = NSData(contentsOfURL: url) {
-        if let image = UIImage(data: imageData) {
-          avatarImage = image
-        }
-      }
-    }
+//    if let url = NSURL(string: imgURL) {
+//      if let imageData = NSData(contentsOfURL: url) {
+//        if let image = UIImage(data: imageData) {
+//          avatarImage = image
+//        }
+//      }
+//    }
     userID = json["userid"]?.string ?? ""
     userName = json["username"]?.string ?? ""
     sex =  json["sex"]?.int ?? 0
@@ -145,11 +131,11 @@ class AccountManager: NSObject {
     userDefaults.setObject(invoice, forKey: "invoice")
   }
   
-  func saveAvatarImageData(imageData: NSData) {
-    if let image = UIImage(data: imageData) {
-      avatarImage = image
-    }
-  }
+//  func saveAvatarImageData(imageData: NSData) {
+//    if let image = UIImage(data: imageData) {
+//      avatarImage = image
+//    }
+//  }
   
   func saveActivated(activated: String) {
     self.activated = activated
@@ -198,7 +184,7 @@ class AccountManager: NSObject {
     
     userID = ""
     token = ""
-    avatarImage = UIImage(named: "logo_white")
+//    avatarImage = UIImage(named: "logo_white")
     userName = ""
     sex = 1
     email = ""

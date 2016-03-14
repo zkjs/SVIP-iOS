@@ -111,10 +111,9 @@ extension HttpService {
     
   }
   
-  func getUserinfo(completionHandler:HttpCompletionHandler){
+  func getUserinfo(completionHandler:HttpCompletionHandler?){
     let urlString = ResourcePath.UserInfo.description.fullUrl
     get(urlString, parameters: nil) { (json, error) -> Void in
-      completionHandler(json,error)
       if let error = error {
         print(error)
       } else {
@@ -122,6 +121,7 @@ extension HttpService {
           AccountManager.sharedInstance().saveBaseInfo(userData)
         }
       }
+      completionHandler?(json,error)
     }
   }
   

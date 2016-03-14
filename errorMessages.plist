@@ -11,7 +11,7 @@
 		<key>3</key>
 		<string>不存在用户名</string>
 		<key>5</key>
-		<string>不存在的手机号</string>
+		<string>该手机号还未注册</string>
 		<key>4</key>
 		<string>验证码不正确或过期</string>
 		<key>6</key>

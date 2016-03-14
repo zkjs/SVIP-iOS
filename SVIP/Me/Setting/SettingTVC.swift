@@ -21,43 +21,30 @@ class SettingTVC: UITableViewController {
   // MARK: - Private
   
   func logout() {
-    
+    showHUDInView(view, withLoading: "")
     HttpService.sharedInstance.deleteToken { (json, error) -> () in
       //退出登录，主动把token消除
       TokenPayload.sharedInstance.clearCacheTokenPayload()
-    }
-    
-    
-    showHUDInView(view, withLoading: "")
-    ZKJSHTTPSessionManager.sharedInstance().logoutWithSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-      if let data = responsObject {
-        if let set = data["set"] {
-          if set?.boolValue == true {
-            // 清理系统缓存
-            AccountManager.sharedInstance().clearAccountCache()
-            MobClick.profileSignOff()//登出统计
-            // 登出环信
-            EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
-            let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
-            print("登出前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
-            EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
-            print("登出后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
-            self.hideHUD()
-            if error != nil {
-              self.showHint(error.debugDescription)
-            } else {
-              NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
-            }
-
-            let window =  UIApplication.sharedApplication().keyWindow
-            window?.rootViewController = MainTBC()
-          }
-        }
-      }
       self.hideHUD()
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        self.hideHUD()
-        self.showAlertWithTitle(error.description, message: "")
+      
+      // 清理系统缓存
+      AccountManager.sharedInstance().clearAccountCache()
+      //登出友盟统计
+      MobClick.profileSignOff()
+      // 登出环信
+      EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
+      let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+      print("登出前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+      EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
+      print("登出后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+      if error != nil {
+        self.showHint(error.debugDescription)
+      } else {
+        NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+      }
+      
+      let window =  UIApplication.sharedApplication().keyWindow
+      window?.rootViewController = MainTBC()
     }
   }
   

@@ -28,16 +28,10 @@ extension HttpService {
     let urlString = ResourcePath.register.description.fullUrl
     let dict = ["phone":"\(phone)","code":code]
     post(urlString, parameters: dict,tokenRequired: false) { (json, error) -> Void in
-      completionHandler(json,error)
-      if let json = json {
-        guard let token = json["token"].string else {
-          print("no token")
-          return
-        }
-        let tokenPayload = TokenPayload.sharedInstance
-        tokenPayload.saveTokenPayload(token)
-        
+      if let token = json?["token"].string where !token.isEmpty {
+        TokenPayload.sharedInstance.saveTokenPayload(token)
       }
+      completionHandler(json,error)
     }
     
   }
@@ -50,7 +44,7 @@ extension HttpService {
     let dict = ["phone":"\(phone)","code":"\(code)"]
     post(urlString, parameters: dict, tokenRequired: false) { (json, error) -> Void in
       if let json = json {
-        guard let token = json["token"].string else {
+        guard let token = json["token"].string where !token.isEmpty else {
           print("no token")
           return
         }
@@ -84,7 +78,7 @@ extension HttpService {
     put(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json, error)
       if let json = json {
-        guard let token = json["token"].string else {
+        guard let token = json["token"].string where !token.isEmpty else {
           print("no token")
           return
         }

@@ -62,7 +62,7 @@ class LoginVC: UIViewController {
   // MARK: - Button Action
   
   @IBAction func confirm(sender: AnyObject) {
-    nextStep()
+    loginAction()
   }
   
   @IBAction func dismiss(sender: AnyObject) {
@@ -70,74 +70,20 @@ class LoginVC: UIViewController {
   }
   
   // MARK: - Private
-  //TODO: 需要调用老的api登陆获取老的token供其他api调用
-  private func loginWithPhone(phone: String) {
-    ZKJSHTTPSessionManager.sharedInstance().verifyIsRegisteredWithID(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let data = responseObject as? [String: AnyObject] {
-        if let set = data["set"] as? NSNumber {
-          if set.boolValue == true {
-            // 已注册
-            // 缓存userid和token
-            AccountManager.sharedInstance().saveAccountInfo(data)
-            // 获取用户信息
-            self.getUserInfo() {
-              self.hideHUD()
-              self.dismissSelf()
-            }
-          } else {
-            // 未注册要先注册一下
-            self.signupWithPhone(phone)
-          }
-        }
-      }
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        self.hideHUD()
-        self.showHint("服务器返回数据异常")
-    })
-  }
-  
-  private func signupWithPhone(phone: String) {
-    ZKJSHTTPSessionManager.sharedInstance().userSignUpWithPhone(phone, openID: nil, success: { (task: NSURLSessionDataTask!, responseObject :AnyObject!) -> Void in
-      if let data = responseObject as? [String: AnyObject] {
-        if let set = data["set"] as? NSNumber {
-          if set.boolValue == true {
-            // 缓存userid和token
-            AccountManager.sharedInstance().saveAccountInfo(data)
-            // 获取用户信息
-            self.getUserInfo() {
-              self.navigationController?.pushViewController(InfoEditVC(), animated: true)
-            }
-          }
-        }
-      }
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        self.hideHUD()
-        self.showHint("服务器返回数据异常")
-    })
-  }
-  
   private func dismissSelf() {
     dismissViewControllerAnimated(true, completion: nil)
   }
   
-  private func getUserInfo(completionHandler: () -> Void) {
-//    ZKJSHTTPSessionManager.sharedInstance().getUserInfoWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      print(responseObject)
-//      if let data = responseObject as? [String : AnyObject] {
-////        AccountManager.sharedInstance().saveBaseInfo(data)
-//        self.loginEaseMob()
-//        closure()
-//      }
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        self.hideHUD()
-//        self.showHint("服务器返回数据异常")
-//    }
+  private func getUserInfo(completionHandler: (() -> Void)?) {
     HttpService.sharedInstance.getUserinfo { (json, error) -> () in
-      if let _ = error {
-        
-      } else {
+      self.hideHUD()
+      if let error = error {
+        if let msg = error.userInfo["resDesc"] as? String {
+          ZKJSTool.showMsg(msg)
+        }
+      } else {//登陆成功后再登陆环信
         self.loginEaseMob()
-        completionHandler()
+        completionHandler?()
       }
     }
   }
@@ -158,7 +104,7 @@ class LoginVC: UIViewController {
     return true
   }
   
-  private func nextStep() {
+  private func loginAction() {
     guard let phone = phoneTextField.text else { return }
     guard let code = codeTextField.text else { return }
     if !isFormValid() {
@@ -167,48 +113,25 @@ class LoginVC: UIViewController {
     
     showHUDInView(view, withLoading: "")
     HttpService.sharedInstance.loginWithCode(code, phone: phone) { (json, error) -> () in
-      if let _ = error {
-      } else {
-        //self.loginWithPhone(phone)
+      if let error = error {
+        if error.code == 11 {//还未完善用户资料就跳转到用户资料完善页面
+          self.getUserInfo() {
+            self.navigationController?.pushViewController(InfoEditVC(), animated: true)
+          }
+        } else {
+          self.hideHUD()
+          if let msg = error.userInfo["resDesc"] as? String {
+            ZKJSTool.showMsg(msg)
+          }
+        }
+      } else {//登陆成功后获取用户资料
         self.getUserInfo({ () -> Void in
-          //TODO: 暂时注释下面2行代码,代码放到旧api中回调，待旧api完全切换过来后取消注释
-          /*self.hideHUD()
           self.dismissSelf()
-          */
           MobClick.profileSignInWithPUID(TokenPayload.sharedInstance.userID)
         })
       }
-      //self.dismissSelf()
-      self.hideHUD()
     }
-    //需要调用老的api登陆获取老的token供其他api调用
-    self.loginWithPhone(phone)
     
-//    if phone == "18503027465" && code == "123456" {
-//      loginWithPhone(phone)
-//      return
-//    }
-//    
-//    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
-//      if success {
-//        self.loginWithPhone(phone)
-//      } else {
-//        self.hideHUD()
-//        self.showHint("验证码不正确")
-//      }
-//    }
-  }
-  
-  func convertStringToDictionary(text: String) -> JSON? {
-    if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
-      do {
-        let js = JSON(data: data)
-        print(js)
-        return js
-        
-      }
-    }
-    return nil
   }
   
   private func setupView() {
@@ -238,7 +161,7 @@ class LoginVC: UIViewController {
   }
   
   private func loginEaseMob() {
-    let userID = AccountManager.sharedInstance().userID
+    let userID = TokenPayload.sharedInstance.userID
     let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
     print("Username: \(userID)")
     print("登陆前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
@@ -259,43 +182,23 @@ class LoginVC: UIViewController {
     guard let phone = phoneTextField.text else { return }
     
     if ZKJSTool.validateMobile(phone) {
-      ZKJSTool.showMsg("验证码已发送")
+      self.codeButton.enabled = false
       HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
-        self.codeTextField.becomeFirstResponder()
-        self.codeButton.enabled = false
-        self.codeButton.alpha = 0.5
-        self.count = 30
-        self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
-        if let json = json {
-         
+        if let error = error {
+          self.codeButton.enabled = true
+          if let msg = error.userInfo["resDesc"] as? String {
+            ZKJSTool.showMsg(msg)
+          }
+        } else {
+          ZKJSTool.showMsg("验证码已发送")
+          self.codeTextField.becomeFirstResponder()
+          self.codeButton.alpha = 0.5
+          self.count = 30
+          self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
         }
-      })//      // 发送验证码
-//      ZKJSLocationHTTPSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phone, success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-//        print(responsObject)
-//        ZKJSTool.showMsg("验证码已发送")
-//        self.codeTextField.becomeFirstResponder()
-//        self.codeButton.enabled = false
-//        self.codeButton.alpha = 0.5
-//        self.count = 30
-//        self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
-//        }, failure: { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-//          
-////      })(phone, callback: { (success: Bool, error: NSError!) -> Void in
-////        if success {
-////          ZKJSTool.showMsg("验证码已发送")
-////          self.codeTextField.becomeFirstResponder()
-////          self.codeButton.enabled = false
-////          self.codeButton.alpha = 0.5
-////          self.count = 30
-////          self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
-////        } else {
-////          if let userInfo = error.userInfo.first {
-////            self.showHint(userInfo.1 as! String)
-////          }
-////        }
-//      })
-//    } else {
-//      ZKJSTool.showMsg("手机格式错误")
+      })
+    } else {
+      ZKJSTool.showMsg("手机格式错误")
     }
   }
 
@@ -313,6 +216,7 @@ class LoginVC: UIViewController {
       countTimer.invalidate()
       codeButton.enabled = true
       codeButton.alpha = 1.0
+      codeButton.setTitle("验证码", forState: .Disabled)
     }
   }
   
@@ -379,7 +283,7 @@ extension LoginVC: UITextFieldDelegate {
     if textField == codeTextField {
       if isFormValid() {
         textField.resignFirstResponder()
-        nextStep()
+        loginAction()
       }
     }
     return true
