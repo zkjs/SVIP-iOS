@@ -205,7 +205,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     HttpService.sharedInstance.getHomePictures { (imgs, error) -> Void in
       if let imgs = imgs {
         if imgs.count > 0 {
-          StorageManager.sharedInstance().saveHomeImages(imgs)
           completionHandler(.NewData)
         } else {
           completionHandler(.NoData)

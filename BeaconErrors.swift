@@ -89,8 +89,10 @@ class BeaconErrors: NSManagedObject {
           error.remove()
           continue
         }
-        
-        logs = logs + "[\(ts)]:[\(AccountManager.sharedInstance().phone)]:[iOS]:[Apple]:[no IMEI]:[\(error.error)]\n"
+        let userID = TokenPayload.sharedInstance.userID ?? ""
+        let connectionType = error.connectionType ?? "unknown"
+        let errorDesc = error.error ?? "unkknown reason"
+        logs = logs + "[\(ts)]:[\(userID)]:[\(AccountManager.sharedInstance().userName)]:[\(AccountManager.sharedInstance().phone)]:[iOS]:[Apple]:[\(connectionType)]:[\(errorDesc)]\n"
         //print("remove:\(e.timestamp)")
         error.remove()
       }

@@ -31,7 +31,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   var homeUrl = String()
   var count = 0
   var countTimer = 0
-  var timer = NSTimer!()
+  var timer = NSTimer()
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
   
@@ -101,7 +101,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       //privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
       privilegeButton.sd_setBackgroundImageWithURL(NSURL(string: imageURL), forState: .Normal, placeholderImage: UIImage(named: "logo_white"))
       privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
-      privilegeButton.userInteractionEnabled = false
+      privilegeButton.userInteractionEnabled = true
     } else {
       privilegeButton.setBackgroundImage(UIImage(named: "logo_white"), forState: UIControlState.Normal)
       privilegeButton.userInteractionEnabled = false
@@ -117,11 +117,22 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     if islogin == true {
       memberActivation()
       getAllMessages()
+      getPrivilegeInfo()
     } else {
       getPushInfoData()
     }
-  
  }
+  
+  func getPrivilegeInfo() {
+    HttpService.sharedInstance.getPrivilegeIntro { (privilege, error) -> Void in
+      if let privilege = privilege {
+        self.privilegeArray.append(privilege)
+        self.refreshTableView()
+      } else {
+        print(error)
+      }
+    }
+  }
   
   func getAllMessages() {
     /*let city = "长沙"
@@ -220,20 +231,14 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   }
   
   func getPushInfoData() {
-    /*ZKJSJavaHTTPSessionManager.sharedInstance().getPushInfoToUserWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      //      print(responseObject)
-      if let array = responseObject as? NSArray {
-        self.pushInfoArray.removeAll()
-        for dic in array {
-          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-          self.pushInfoArray.append(pushInfo)
-        }
-        //       self.tableView.reloadData()
+    HttpService.sharedInstance.getHomeRecom("长沙") { (results, error) -> Void in
+      if let results = results {
+        self.pushInfoArray = results
         self.refreshTableView()
+      } else {
+        print(error)
       }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }*/
+    }
   }
   
   func getlastOrder() {

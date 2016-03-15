@@ -23,4 +23,10 @@ class PrivilegeModel: NSObject {
     privilegeName = dic["privilegeName"] as? String ?? ""
   }
   
+  init(json:JSON) {
+    privilegeName = json["recommendTitle"].string ?? ""
+    privilegeDesc = json["recommendDesc"].string ?? ""
+    privilegeIcon = json["recommendIcon"].string ?? ""
+  }
+  
 }

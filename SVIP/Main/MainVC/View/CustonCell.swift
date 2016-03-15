@@ -53,8 +53,9 @@ class CustonCell: UITableViewCell {
     animation.toValue = NSNumber(double: 1.4)
     hotelImageView.layer.addAnimation(animation, forKey: "scale-layer")
     if homeUrl != "" {
-      let url = kImageURL + homeUrl
-      hotelImageView.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "img_background_qidong"))
+      hotelImageView.sd_setImageWithURL(NSURL(string: homeUrl.fullImageUrl), placeholderImage: UIImage(named: "img_background_qidong"))
+    } else {
+      hotelImageView.image = UIImage(named: "img_background_qidong")
     }
     let nowDate = NSDate()
     let hourFormatter = NSDateFormatter()

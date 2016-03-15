@@ -44,4 +44,16 @@ class PushInfoModel: NSObject {
     title = dic["title"] as? String ?? ""
   }
   
+  init(json:JSON) {
+    desc = json["desc"].string ?? ""
+    iconfilename = json["iconfilename"].string ?? ""
+    shopName = json["shopName"].string ?? ""
+    shopid = json["shopid"].string ?? ""
+    title = json["title"].string ?? ""
+    
+    iconbaseurl = json["iconbaseurl"].string ?? ""
+    orderNo = json["orderNo"].string ?? ""
+    
+  }
+  
 }

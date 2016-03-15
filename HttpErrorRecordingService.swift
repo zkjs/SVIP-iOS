@@ -21,6 +21,24 @@ class HttpErrorRecordingService {
     err.minor = minor
     err.error = "\(error)"
     err.timestamp = NSDate()
+    err.connectionType = getConnectType()
     err.save()
+  }
+  
+  func getConnectType () -> String {
+    var type = ""
+    do {
+      let reachability: Reachability = try Reachability.reachabilityForInternetConnection()
+      if reachability.isReachableViaWiFi() {
+        type = "wifi"
+      } else if reachability.isReachableViaWWAN() {
+        type = "wwan"
+      } else {
+        type = "no network"
+      }
+      return type
+    } catch {
+      return "no network"
+    }
   }
 }

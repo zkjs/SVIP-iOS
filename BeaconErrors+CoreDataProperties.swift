@@ -19,5 +19,6 @@ extension BeaconErrors {
     @NSManaged var minor: String?
     @NSManaged var timestamp: NSDate?
     @NSManaged var error: String?
+    @NSManaged var connectionType: String?
 
 }
