@@ -1225,8 +1225,8 @@
 		FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothDescriptionVC.xib; sourceTree = "<group>"; };
 		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
-		FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
-		FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
+		FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterVC.swift; path = SVIP/Login/RegisterVC.swift; sourceTree = SOURCE_ROOT; };
+		FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegisterVC.xib; path = SVIP/Login/RegisterVC.xib; sourceTree = SOURCE_ROOT; };
 		FA5B28B51C09453500E8B1C0 /* MailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailListCell.swift; sourceTree = "<group>"; };
 		FA5B28B61C09453500E8B1C0 /* MailListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailListCell.xib; sourceTree = "<group>"; };
 		FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomServiceVC.swift; sourceTree = "<group>"; };
@@ -3252,6 +3252,8 @@
 		B2FB432B1B8EB49600C9BEBB /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */,
+				FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */,
 				40D9C9E11C2037B200E992AB /* InfoEditVC.swift */,
 				40D9C9E21C2037B200E992AB /* InfoEditVC.xib */,
 				40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */,
@@ -3281,8 +3283,6 @@
 				B2FB432B1B8EB49600C9BEBB /* Register */,
 				FA02C5821C0D42D100D0D439 /* LoginVC.swift */,
 				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
-				FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */,
-				FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";

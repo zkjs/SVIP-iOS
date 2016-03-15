@@ -76,7 +76,6 @@ class InvitationCodeVC: UIViewController {
   
   @IBAction func nextStep(sender: AnyObject) {
      if codeTextField.text!.isEmpty == false {
-//      let phone = AccountManager.sharedInstance().phone
       showHUDInView(view, withLoading: "")
       HttpService.sharedInstance.codeActive(code, completionHandler: { (json, error) -> Void in
         if let _ = error {
@@ -119,7 +118,7 @@ class InvitationCodeVC: UIViewController {
   
   func sendInvitationCodeCmdMessage() {
     // 发送环信透传消息
-    let userID = AccountManager.sharedInstance().userID
+    guard   let userID = TokenPayload.sharedInstance.userID else {return}
     let userName = AccountManager.sharedInstance().userName
     let phone = AccountManager.sharedInstance().phone
     let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)

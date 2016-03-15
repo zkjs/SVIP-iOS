@@ -249,7 +249,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
           let  order = PushInfoModel(dic: dic as! [String: AnyObject])
           self.orderArray.append(order)
         }
-        //        self.tableView.reloadData()
         self.refreshTableView()
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
@@ -271,22 +270,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     }*/
   }
   
-  //  func positioningCity() {
-  //     let loc = CLLocation(latitude: latution, longitude: longitude)
-  //     let geocoder = CLGeocoder()
-  //    geocoder.reverseGeocodeLocation(loc) { (array:[CLPlacemark]?, error:NSError?) -> Void in
-  //      if array?.count > 0 {
-  //        let placemark = array![0]
-  //        var city = placemark.locality
-  //        if (city == nil) {
-  //          city = placemark.administrativeArea
-  //        }
-  //        self.currentCity = city
-  //        self.myView.currentCityLabe.text = city
-  //
-  //      }
-  //    }
-  //  }
+
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 4
