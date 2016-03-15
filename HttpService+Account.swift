@@ -152,17 +152,5 @@ extension HttpService {
       }
     }
   }
-  ////检查版本升级
-   func versionUpgrade(verno:String, completionHandler:(JSON?,NSError?) -> ()) {
-    let urlString = ResourcePath.VersionUpgrade.description.fullUrl
-    let dic = ["apptype":1,"devicetype":"IOS","verno":verno]
-    get(urlString, parameters: dic as? [String : AnyObject]) { (json, error) -> Void in
-      if let _ = error {
-        
-      } else {
-        completionHandler(json,nil)
-      }
-    }
-  }
-  
+
 }
