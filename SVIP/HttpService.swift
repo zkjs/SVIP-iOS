@@ -48,6 +48,7 @@ class HttpService {
     case ShopComments(shopid:String) // 商家评论
     case querySaleFromCode           // 根据邀请码查询销售员
     case ActiveCode                  // 邀请码激活
+    case HomePicture                 // 首页大图
     
     var description: String {
       switch self {
@@ -69,6 +70,7 @@ class HttpService {
       case .ShopComments(let shopid):  return "/for/res/v1/shop/comments/\(shopid)"
       case .querySaleFromCode:         return "/for/res/v1/salecode/saleuser"
       case .ActiveCode:                return "/for/res/v1/salecode/active/salecode"
+      case .HomePicture:               return "/for/res/v1/systempub/homepicture"
       }
     }
   }

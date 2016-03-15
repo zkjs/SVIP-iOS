@@ -202,22 +202,16 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       homeUrl = imageArray[randomIndex]
     } else {
       // 未有缓冲，从服务器上取
-      ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-        print("server \(responseObject)")
-        if let array = responseObject as? NSArray {
-          for dic in array {
-            let url = dic["url"] as! String
-            self.urlArray.append(url)
-          }
+      HttpService.sharedInstance.getHomePictures { (imgs, error) -> Void in
+        if let imgs = imgs {
+          self.urlArray = imgs
           self.homeUrl = self.urlArray[self.count]
           StorageManager.sharedInstance().saveHomeImages(self.urlArray)
-          //        self.tableView.reloadData()
           self.refreshTableView()
         }
-        }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-          
       }
     }
+    
   }
   
   func login(sender:UIButton) {
@@ -243,7 +237,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   }
   
   func getlastOrder() {
-    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
         self.orderArray.removeAll()
         for dic in array {
@@ -255,11 +249,12 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
-    }
+    }*/
   }
   
   // Member Activate
   func memberActivation() {
+    /*
     ZKJSHTTPSessionManager.sharedInstance().InvitationCodeActivatedSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       if  let dic = responsObject as? NSDictionary {
         if let set = dic["set"] as? Bool {
@@ -268,7 +263,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
         self.refreshTableView()
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-    }
+    }*/
   }
   
   //  func positioningCity() {

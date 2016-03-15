@@ -200,6 +200,7 @@
 		408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 408C47D41C86DBB900F9B0C7 /* errorMessages.plist */; };
 		408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408D28E61C3F8C3600183849 /* GuideVC.swift */; };
 		408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408D28E71C3F8C3600183849 /* GuideVC.xib */; };
+		4091D2101C97A73D0095AF7E /* HttpService+Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091D20F1C97A73D0095AF7E /* HttpService+Home.swift */; };
 		409587EA1BCD05CE00D212D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 409587EC1BCD05CE00D212D6 /* Localizable.strings */; };
 		40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */; };
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
@@ -833,6 +834,7 @@
 		408C47D41C86DBB900F9B0C7 /* errorMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = errorMessages.plist; sourceTree = "<group>"; };
 		408D28E61C3F8C3600183849 /* GuideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVC.swift; sourceTree = "<group>"; };
 		408D28E71C3F8C3600183849 /* GuideVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideVC.xib; sourceTree = "<group>"; };
+		4091D20F1C97A73D0095AF7E /* HttpService+Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Home.swift"; sourceTree = "<group>"; };
 		409587EB1BCD05CE00D212D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		409587ED1BCD05D000D212D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
@@ -1678,6 +1680,7 @@
 				4053ADD41C8D6C5D00282240 /* HttpService+Token.swift */,
 				4053ADD61C8D6ED400282240 /* HttpService+Account.swift */,
 				40FD34421C92F4380019A8CA /* HttpService+Shops.swift */,
+				4091D20F1C97A73D0095AF7E /* HttpService+Home.swift */,
 				408C47D21C86DB3100F9B0C7 /* ZKJSErrorMessages.swift */,
 				408C47D41C86DBB900F9B0C7 /* errorMessages.plist */,
 				4053ADDA1C8D7F1800282240 /* HttpErrorRecordingService.swift */,
@@ -3824,6 +3827,7 @@
 				FAF2495B1BFF0F0D001E7E41 /* SearchHeaderView.swift in Sources */,
 				4077DDB11C1EAF9900E13D6B /* MWCaptionView.m in Sources */,
 				4077DDA51C1EAF9900E13D6B /* EMAudioRecorderUtil.m in Sources */,
+				4091D2101C97A73D0095AF7E /* HttpService+Home.swift in Sources */,
 				4077DDC71C1EAF9900E13D6B /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				400959FD1C2148BA00D3DA61 /* InvoiceVC.swift in Sources */,
 				4077DDFC1C1EAF9900E13D6B /* EaseImageView.m in Sources */,

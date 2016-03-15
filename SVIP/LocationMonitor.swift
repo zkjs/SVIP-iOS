@@ -24,6 +24,8 @@ class LocationMonitor:NSObject {
     private var lastMortingTime: NSTimeInterval?
     private var lastUpdatingLocation : CLLocation?
     private var lastUpdatingTime: NSTimeInterval?
+    private var lastMortingUploadedTime: NSTimeInterval?
+    private var lastUPdatingUploadedTime: NSTimeInterval?
     
     var lastLocation : CLLocation? {
       get {
@@ -65,6 +67,29 @@ class LocationMonitor:NSObject {
           lastUpdatingTime = newValue
         case .Significiant:
           lastMortingTime = newValue
+        default:
+          break
+        }
+      }
+    }
+    
+    var lastUploadedTime : NSTimeInterval? {
+      get {
+        switch locationType {
+        case .Updating:
+          return lastUPdatingUploadedTime
+        case .Significiant:
+          return lastMortingUploadedTime
+        default:
+          return nil
+        }
+      }
+      set(newValue) {
+        switch locationType {
+        case .Updating:
+          lastUPdatingUploadedTime = newValue
+        case .Significiant:
+          lastMortingUploadedTime = newValue
         default:
           break
         }
@@ -119,7 +144,7 @@ class LocationMonitor:NSObject {
     locationManager = CLLocationManager()
     locationManager?.delegate = self
     locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
-    locationManager?.distanceFilter = 1000
+    locationManager?.distanceFilter = 500
     locationManager?.startUpdatingLocation()
   }
   
@@ -143,7 +168,7 @@ extension LocationMonitor : CLLocationManagerDelegate {
     print("\n*****location since [\(howRecent)]:\(location)")
     
     // very important : if the location is too old, don't upload the location
-    if abs(howRecent) > 60 {
+    if abs(howRecent) > 40 {
       print("location too old.\(howRecent)")
       return
     }
@@ -155,21 +180,23 @@ extension LocationMonitor : CLLocationManagerDelegate {
       print("distance:[\(distance)]")
       print("current speed:[\(location.speed)]")
       paramForTest = paramForTest + "[distance:\(distance)]"
-      if distance < 500 {
+      /*if distance < 400 {
         self.lastLocationInfo.lastLocation = location
         self.lastLocationInfo.lastTime = currentTime
         print("distance less than 500m , don't send gps to server")
         return
-      }
+      }*/
       if let lastTime = lastLocationInfo.lastTime {
         self.lastLocationInfo.lastLocation = location
         self.lastLocationInfo.lastTime = currentTime
         //don't upload the location if too frequent
-        if currentTime - lastTime < 60 {
+        if let lastUploadedTime = self.lastLocationInfo.lastUploadedTime where fabs(currentTime - lastUploadedTime) < 60 {
+          print("too frequent")
           return
         }
+        
         let speed = distance / (currentTime - lastTime)
-        print("calculated speed : \(speed)")
+        print("calculated speed : [\(speed)] in [\(currentTime - lastTime)]")
         if speed >  70{
           print("return when too fast")
           return
@@ -183,6 +210,7 @@ extension LocationMonitor : CLLocationManagerDelegate {
     }
     lastLocationInfo.lastLocation = location
     lastLocationInfo.lastTime = currentTime
+    lastLocationInfo.lastUploadedTime = currentTime
     
     HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970), completionHandler: nil)
     
