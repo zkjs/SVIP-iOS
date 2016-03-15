@@ -75,8 +75,8 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     let footer = UIView(frame: CGRectMake(0, 0, 100, 40))
     tableView.tableFooterView = footer
     originOffsetY = privilegeButton.frame.origin.y
-    print("userID: \(AccountManager.sharedInstance().userID)")
-    print("Token: \(AccountManager.sharedInstance().token)")
+    
+    self.activate = AccountManager.sharedInstance().userstatus == 1
     
   }
   
@@ -101,7 +101,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       //privilegeButton.setBackgroundImage(image, forState: UIControlState.Normal)
       privilegeButton.sd_setBackgroundImageWithURL(NSURL(string: imageURL), forState: .Normal, placeholderImage: UIImage(named: "logo_white"))
       privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
-      privilegeButton.userInteractionEnabled = true
+      privilegeButton.userInteractionEnabled = false
     } else {
       privilegeButton.setBackgroundImage(UIImage(named: "logo_white"), forState: UIControlState.Normal)
       privilegeButton.userInteractionEnabled = false
@@ -112,13 +112,12 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
     count++
-    loadData()
+    loadImageData()
     let islogin = TokenPayload.sharedInstance.isLogin
     if islogin == true {
-      memberActivation()
       getAllMessages()
-      getPrivilegeInfo()
     } else {
+      getPrivilegeInfo()
       getPushInfoData()
     }
  }
@@ -135,36 +134,23 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   }
   
   func getAllMessages() {
-    /*let city = "长沙"
-    ZKJSJavaHTTPSessionManager.sharedInstance().getMessagesWithCity(city.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      //      print(responseObject)
-      if let defaultNotitification = responseObject["defaultNotitification"] as? NSArray {
-        self.pushInfoArray.removeAll()
-        for dic in defaultNotitification {
-          let pushInfo = PushInfoModel(dic: dic as! [String: AnyObject])
-          self.pushInfoArray.append(pushInfo)
+    
+    HttpService.sharedInstance.getHomeAllMessages("长沙") { (privileges, orders, recom, error) -> Void in
+      if let error = error {
+        
+      } else {
+        if let orders = orders where orders.count > 0 {
+          self.orderArray = orders
         }
-      }
-      if let notificationForOrder = responseObject["notificationForOrder"] as? NSArray {
-        self.orderArray.removeAll()
-        for dic in notificationForOrder {
-          let  order = PushInfoModel(dic: dic as! [String: AnyObject])
-          self.orderArray.append(order)
+        if let privileges = privileges where privileges.count > 0{
+          self.privilegeArray = privileges
         }
-      }
-      if let userPrivilege = responseObject["userPrivilege"] as? [[String: AnyObject]] {
-        if userPrivilege.count > 0 {
-          self.privilegeArray.removeAll()
-          for data in userPrivilege {
-            let privilege = PrivilegeModel(dic: data)
-            self.privilegeArray.append(privilege)
-          }
+        if let recom = recom where recom.count > 0 {
+          self.pushInfoArray = recom
         }
       }
       self.refreshTableView()
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    }*/
+    }
   }
   
   // TableView Scroller Delegate
@@ -205,7 +191,7 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   //  }
   
   
-  func loadData() {
+  func loadImageData() {
     if let imageArray = StorageManager.sharedInstance().homeImage() {
       // 已有缓存
       print("cached \(imageArray)")
@@ -240,36 +226,6 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
       }
     }
   }
-  
-  func getlastOrder() {
-    /*ZKJSJavaHTTPSessionManager.sharedInstance().getOrderWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      if let array = responseObject as? NSArray {
-        self.orderArray.removeAll()
-        for dic in array {
-          let  order = PushInfoModel(dic: dic as! [String: AnyObject])
-          self.orderArray.append(order)
-        }
-        self.refreshTableView()
-      }
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-        
-    }*/
-  }
-  
-  // Member Activate
-  func memberActivation() {
-    /*
-    ZKJSHTTPSessionManager.sharedInstance().InvitationCodeActivatedSuccess({ (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
-      if  let dic = responsObject as? NSDictionary {
-        if let set = dic["set"] as? Bool {
-          self.activate = set
-        }
-        self.refreshTableView()
-      }
-      }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
-    }*/
-  }
-  
 
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -380,9 +336,9 @@ class HomeVC: UIViewController, CBCentralManagerDelegate, refreshHomeVCDelegate 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {  
     if pushInfoArray.count != 0 {
       if indexPath.section == 2 {
-        let vc = OrderListTVC()
+        /*let vc = OrderListTVC()
         vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)*/
       }
       if indexPath.section == 3 {
         let pushInfo = pushInfoArray[indexPath.row]

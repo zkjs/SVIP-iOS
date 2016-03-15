@@ -52,7 +52,13 @@ class PushInfoModel: NSObject {
     title = json["title"].string ?? ""
     
     iconbaseurl = json["iconbaseurl"].string ?? ""
-    orderNo = json["orderNo"].string ?? ""
+    orderNo = json["orderno"].string ?? ""
+    if let icon = json["icon"].string {
+      self.iconfilename = icon
+    }
+    if let shopname = json["shopname"].string {
+      self.shopName = shopname
+    }
     
   }
   
