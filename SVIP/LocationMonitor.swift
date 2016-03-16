@@ -144,7 +144,7 @@ class LocationMonitor:NSObject {
     locationManager = CLLocationManager()
     locationManager?.delegate = self
     locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
-    locationManager?.distanceFilter = 500
+    locationManager?.distanceFilter = 200
     locationManager?.startUpdatingLocation()
   }
   
@@ -167,7 +167,7 @@ extension LocationMonitor : CLLocationManagerDelegate {
     let howRecent = location.timestamp.timeIntervalSinceNow
     print("\n*****location since [\(howRecent)]:\(location)")
     
-    // very important : if the location is too old, don't upload the location
+    // very important : if the cached location is too old, don't upload the location
     if abs(howRecent) > 40 {
       print("location too old.\(howRecent)")
       return
@@ -190,13 +190,14 @@ extension LocationMonitor : CLLocationManagerDelegate {
         self.lastLocationInfo.lastLocation = location
         self.lastLocationInfo.lastTime = currentTime
         //don't upload the location if too frequent
-        if let lastUploadedTime = self.lastLocationInfo.lastUploadedTime where fabs(currentTime - lastUploadedTime) < 60 {
-          print("too frequent")
+        if let lastUploadedTime = self.lastLocationInfo.lastUploadedTime where fabs(currentTime - lastUploadedTime) < 10 {
+          print("too frequent:\(fabs(currentTime - lastUploadedTime))")
           return
         }
         
         let speed = distance / (currentTime - lastTime)
         print("calculated speed : [\(speed)] in [\(currentTime - lastTime)]")
+        // not real speed
         if speed >  70{
           print("return when too fast")
           return
