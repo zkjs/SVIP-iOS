@@ -36,9 +36,9 @@ class HomeViewModel {
   }
   
   // 是否已经激活
-  lazy var activate:Bool = {
+  var activate:Bool {
     return AccountManager.sharedInstance().userstatus == 1
-  }()
+  }
   
   var city = "长沙"
   

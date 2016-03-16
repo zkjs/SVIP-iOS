@@ -214,7 +214,7 @@ extension LocationMonitor : CLLocationManagerDelegate {
     lastLocationInfo.lastUploadedTime = currentTime
     
     HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970), completionHandler: nil)
-    
+
   }
   
   private func appState() -> String {

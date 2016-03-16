@@ -126,8 +126,9 @@ class LoginVC: UIViewController {
         }
       } else {//登陆成功后获取用户资料
         self.getUserInfo({ () -> Void in
-          self.dismissSelf()
           MobClick.profileSignInWithPUID(TokenPayload.sharedInstance.userID)
+          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+          self.dismissSelf()
         })
       }
     }

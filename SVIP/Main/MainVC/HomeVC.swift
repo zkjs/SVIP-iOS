@@ -50,7 +50,6 @@ class HomeVC: UIViewController {
       tableView.layoutMargins = UIEdgeInsetsZero
     }
    
-    
     LocationStateObserver.sharedInstance.start()
     setupBluetoothManager()
     self.navigationController!.navigationBar.translucent = true
@@ -78,6 +77,8 @@ class HomeVC: UIViewController {
     }
     
     refreshHomeDelegate = self
+    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
     
     reloadImages()
     reloadData()
@@ -270,6 +271,11 @@ class HomeVC: UIViewController {
   
   private func setupBluetoothManager() {
     bluetoothManager = CBCentralManager(delegate: self, queue: nil)
+  }
+  
+  func didLoginStateChange(notification: NSNotification) {
+    reloadData()
+    reloadImages()
   }
   
 }
