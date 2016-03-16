@@ -15,13 +15,9 @@ let BEACON_IDENTIFIER = "com.zkjinshi.svpi"
 let BEACON_INERVAL_MIN = 20 //BEACON 重复发起API请求最小时间间隔,单位：分钟
 
 class BeaconMonitor:NSObject {
-  private static let sharedInstance = BeaconMonitor()
+  static let sharedInstance = BeaconMonitor()
   let locationManager = CLLocationManager()
   let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: BEACON_UUID)!, identifier: BEACON_IDENTIFIER)
-  
-  class var sharedMonitor : BeaconMonitor {
-    return sharedInstance
-  }
   
   func startMonitoring () {
     locationManager.delegate = self

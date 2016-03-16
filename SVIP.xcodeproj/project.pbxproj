@@ -31,6 +31,8 @@
 		401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */; };
 		401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F381C2A2EEC003B9E69 /* XMLReader.m */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
+		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
+		404177D11C993EDD00113721 /* LocationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177D01C993EDD00113721 /* LocationStateObserver.swift */; };
 		404A2F421BA94C7B006475D7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405352161BA66251007157FC /* NotificationCenter.framework */; };
 		404A2F471BA94C7B006475D7 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404A2F461BA94C7B006475D7 /* TodayViewController.swift */; };
 		404A2F491BA94C7B006475D7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A2F481BA94C7B006475D7 /* MainInterface.storyboard */; };
@@ -512,6 +514,8 @@
 		401C1F371C2A2EEC003B9E69 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		401C1F381C2A2EEC003B9E69 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HttpService+Others.swift"; path = "CommonSwift/Services/HttpService+Others.swift"; sourceTree = "<group>"; };
+		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		404177D01C993EDD00113721 /* LocationStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationStateObserver.swift; path = SVIP/Main/Model/LocationStateObserver.swift; sourceTree = SOURCE_ROOT; };
 		404A2F411BA94C7B006475D7 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		404A2F451BA94C7B006475D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404A2F461BA94C7B006475D7 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -1462,6 +1466,15 @@
 				401C1F381C2A2EEC003B9E69 /* XMLReader.m */,
 			);
 			path = xml;
+			sourceTree = "<group>";
+		};
+		404177CF1C993E6100113721 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				404177CD1C99082300113721 /* HomeViewModel.swift */,
+				404177D01C993EDD00113721 /* LocationStateObserver.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		404A2F431BA94C7B006475D7 /* Today */ = {
@@ -3320,6 +3333,7 @@
 		FAF414891BFC635900D3BED4 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				404177CF1C993E6100113721 /* ViewModel */,
 				FAF253F41C12CE5600768A4D /* View */,
 				FA6BC8341C1A748500D409E4 /* CustomServiceVC.swift */,
 				FA6BC8351C1A748500D409E4 /* CustomServiceVC.xib */,
@@ -3798,6 +3812,8 @@
 				FAF249601BFF1008001E7E41 /* SearchResultVC.swift in Sources */,
 				4077DD8F1C1EAF9900E13D6B /* UIImageView+HeadImage.m in Sources */,
 				4077DDF51C1EAF9900E13D6B /* EaseBubbleView+Location.m in Sources */,
+				404177CE1C99082300113721 /* HomeViewModel.swift in Sources */,
+				404177D11C993EDD00113721 /* LocationStateObserver.swift in Sources */,
 				40E8F0141C80691400D6F605 /* Download.swift in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
 				FAF8730F1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m in Sources */,

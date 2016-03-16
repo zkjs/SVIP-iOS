@@ -10,13 +10,13 @@ import UIKit
 
 class PushInfoModel: NSObject {
   
-  var desc: String!
-  var iconbaseurl: String!
-  var iconfilename: String!
-  var shopid: String!
-  var shopName: String!
-  var title: String!
-  var orderNo: String!
+  var desc: String = ""
+  var iconbaseurl: String = ""
+  var iconfilename: String = ""
+  var shopid: String = ""
+  var shopName: String = ""
+  var title: String = ""
+  var orderNo: String = ""
   
   override init() {
     super.init()
