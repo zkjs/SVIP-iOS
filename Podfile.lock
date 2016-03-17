@@ -20,12 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMapLocation (1.1.0)
+  - AMapLocation (1.1.1)
   - AMapNavi (1.5.0)
   - AMapSearch (3.2.0)
   - ASIHTTPRequest:
     - Reachability (~> 3.2)
-  - EaseMobSDKFull (2.1.7)
+  - EaseMobSDKFull (2.2.1.2)
   - EDStarRating (1.1)
   - HexColors (2.3.0)
   - JCTagListView (0.0.5)
@@ -35,7 +35,6 @@ PODS:
   - MBProgressHUD (0.9.2)
   - MIBadgeButton (0.0.6)
   - MJRefresh (3.1.0)
-  - NYAlertViewController (1.3.0)
   - Pingpp (2.1.4):
     - Pingpp/Alipay (= 2.1.4)
     - Pingpp/Core (= 2.1.4)
@@ -62,7 +61,7 @@ DEPENDENCIES:
   - AMapNavi
   - AMapSearch
   - ASIHTTPRequest (from `https://github.com/hanton/asi-http-request`)
-  - EaseMobSDKFull
+  - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - EDStarRating
   - HexColors (~> 2.3.0)
   - JCTagListView
@@ -71,17 +70,18 @@ DEPENDENCIES:
   - MBProgressHUD
   - MIBadgeButton
   - MJRefresh
-  - NYAlertViewController
   - Pingpp (~> 2.1.0)
   - SKTagView (from `https://github.com/hanton/SKTagView`, branch `master`)
   - SocketRocket
   - SWTableViewCell
   - UMengAnalytics-NO-IDFA
-  - XLPagerTabStrip
+  - XLPagerTabStrip (~> 3.0.0)
 
 EXTERNAL SOURCES:
   ASIHTTPRequest:
     :git: https://github.com/hanton/asi-http-request
+  EaseMobSDKFull:
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
     :branch: master
     :git: https://github.com/hanton/SKTagView
@@ -90,17 +90,20 @@ CHECKOUT OPTIONS:
   ASIHTTPRequest:
     :commit: ab2ddd63a6f33d55cfb8ece1a5d026b52445dfab
     :git: https://github.com/hanton/asi-http-request
+  EaseMobSDKFull:
+    :commit: f27db4da9c6285f91a71811c2d55af8427368dbf
+    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
     :commit: 29e0bcdbb112d80a84630de367b713c543c56e58
     :git: https://github.com/hanton/SKTagView
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AMapLocation: f0df6e8cc98461f16aae5638657e8b20a1be1995
+  AMapLocation: fc0245146ef90811f9590d428e9035a2a64f4526
   AMapNavi: 605e2dc3bad11fb2649ba4df61b82ab0da389d3f
   AMapSearch: a885f0702578a441a22cb66fa74f8918c6d19e6f
   ASIHTTPRequest: b2fb6b7703472faf6571f128ef5d4ed0bd21a563
-  EaseMobSDKFull: 43858ca9a62bbe1fa4c7c006f944a3e52a4bff48
+  EaseMobSDKFull: f8d6281b9b58b90d5594fe7d40e1529790035d65
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JCTagListView: f8184077bed41b700d0750fa10450cc22514e5b3
@@ -110,7 +113,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  NYAlertViewController: b93f82e2c1fc6d5e9485512ddbe7b481f463a074
   Pingpp: 08415163eb1791bc07d7d939f1648d2e36a30eda
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SKTagView: 33378cfeb717df04f77489605b013506e91d1da5

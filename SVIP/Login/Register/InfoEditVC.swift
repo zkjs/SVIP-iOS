@@ -14,8 +14,8 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   @IBOutlet weak var username: UITextField!
   
   var avatarData: NSData? = nil
-  var sex = "0"
-  
+  var sex = 1
+  var image = UIImage()
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("InfoEditVC", owner:self, options:nil)
@@ -64,18 +64,19 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
     showHUDInView(view, withLoading: "")
     
     guard let userName = username.text else { return }
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(userName, imageData: avatarData, sex: sex, email: nil,success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let data = responseObject as? [String: AnyObject] {
-        if let set = data["set"] as? NSNumber {
-          if set.boolValue == true {
-            AccountManager.sharedInstance().saveUserName(userName)
-            self.hideHUD()
-            self.navigationController?.pushViewController(InvitationCodeVC(), animated: true)
-          }
+    
+    HttpService.sharedInstance.updateUserInfo(true, realname:userName, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
+      self.hideHUD()
+      if let error = error {
+        if let msg = error.userInfo["resDesc"] as? String {
+          ZKJSTool.showMsg(msg)
+        } else {
+          ZKJSTool.showMsg("上传图片失败，请再次尝试")
         }
+      } else {
+        AccountManager.sharedInstance().saveUserName(userName)
+        self.navigationController?.pushViewController(InvitationCodeVC(), animated: true)
       }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
     }
   }
   
@@ -105,9 +106,9 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   @IBAction func selectSex(sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0 :
-      sex = "1"
+      sex = 1
     case 1 :
-      sex = "0"
+      sex = 0
     default:
       print("default")
     }
@@ -123,6 +124,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   //MARK:- UIImagePickerControllerDelegate
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    self.image = image
     var imageData = UIImageJPEGRepresentation(image, 1.0)!
     var i = 0
     while imageData.length / 1024 > 80 {
@@ -130,9 +132,25 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     avatarData = imageData
-    AccountManager.sharedInstance().saveAvatarImageData(avatarData!)
+//    AccountManager.sharedInstance().saveAvatarImageData(avatarData!)
     self.avatarButton.setImage(UIImage(data: avatarData!), forState: UIControlState.Normal)
     picker.dismissViewControllerAnimated(true, completion: nil)
+    
+//    if let image = UIImage(named: "example.png") {
+//      if let data = UIImagePNGRepresentation(image) {
+//        self.filename = getDocumentsDirectory().stringByAppendingPathComponent("copy.png")
+//        data.writeToFile(filename, atomically: true)
+//      }
+//    }
+    
+    
+    
+  }
+  
+  func getDocumentsDirectory() -> NSString {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    let documentsDirectory = paths[0]
+    return documentsDirectory
   }
   
   //MARK:- UITextFieldDelegate

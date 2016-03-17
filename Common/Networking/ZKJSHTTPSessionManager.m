@@ -56,15 +56,15 @@
 }
 
 - (BOOL)isValidTokenWithObject:(id)responseObject {
-  if ([responseObject isKindOfClass:[NSDictionary class]] &&
-      responseObject[@"set"] &&
-      [responseObject[@"set"] boolValue] == NO &&
-      [responseObject[@"err"] integerValue] == 400) {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didReceiveInvalidToken)]) {
-      [self.delegate didReceiveInvalidToken];
-      return NO;
-    }
-  }
+//  if ([responseObject isKindOfClass:[NSDictionary class]] &&
+//      responseObject[@"set"] &&
+//      [responseObject[@"set"] boolValue] == NO &&
+//      [responseObject[@"err"] integerValue] == 400) {
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(didReceiveInvalidToken)]) {
+//      [self.delegate didReceiveInvalidToken];
+//      return NO;
+//    }
+//  }
   return YES;
 }
 

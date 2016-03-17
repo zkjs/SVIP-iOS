@@ -11,6 +11,8 @@
 #import "NSString+ZKJS.h"
 #import "SVIP-Swift.h"
 #import "EaseMob.h"
+//#define vCFBundleVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey]
+//#define vCFBundleShortVersionStr [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 @implementation ZKJSJavaHTTPSessionManager
 
@@ -47,14 +49,27 @@
 - (NSString *)userName {
   return [AccountManager sharedInstance].userName;
 }
+- (NSString *)phone {
+  return [AccountManager sharedInstance].phone;
+}
 
 #pragma mark - 区域位置变化通知
 - (void)regionalPositionChangeNoticeWithUserID:(NSString *)userID locID:(NSString *)locID shopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-  NSDictionary * dic = @{@"userid":userID,@"shopid":shopID,@"locid":locID};
+  NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
+  NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+  CFShow((__bridge CFTypeRef)(infoDictionary));
+  // app版本
+  NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+  // app build版本
+  NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
+  NSString * info = [NSString stringWithFormat:@"iOS%@;%@;%@;%@",phoneVersion,app_Version,app_build,[self phone]];
+  NSLog(@"%@",info);
+  NSDictionary * dic = @{@"userid":userID,@"shopid":shopID,@"locid":locID,@"info":info};
   [self POST:@"arrive/notice" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -63,9 +78,10 @@
 - (void)getSynchronizedStoreListWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"arrive/users/%@/%@/%@",shopID,[self userID],[self token]];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -73,9 +89,10 @@
 #pragma mark - 首页大图
 - (void)getHomeImageWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"firstpage/icons" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -85,9 +102,10 @@
   NSString * string = [NSString stringWithFormat:@"shop/list/%@/%@/%@",city,page,size];
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -97,9 +115,10 @@
   NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%@/%@/%@",[self userID],city,page,size];
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -108,9 +127,10 @@
 - (void)getLoginOutShopListWithPage:(NSString *)page size:(NSString *)size success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"shop/list/%d/%d",page.intValue,size.intValue];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"酒店列表%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -119,10 +139,10 @@
 - (void)getShopListWithPage:(NSString *)page size:(NSString *)size success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"shop/list/user/%@/%d/%d",[self userID],page.intValue,size.intValue];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"酒店列表%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-   // NSLog(@"酒店列表%@", [error description]);
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -132,9 +152,10 @@
   NSString * string = [NSString stringWithFormat:@"shop/recommended/%@",city];
   string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//传中文汉字需要解码
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -142,22 +163,23 @@
 #pragma mark - 获取用户推送消息(用户未登陆)
 - (void)getPushInfoToUserWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   [self GET:@"messages/default" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
-
 
 #pragma mark - 获取用户订单状态消息
 - (void)getOrderWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSDictionary * dic = @{@"token":[self token],@"userid":[self userID]};
   
   [self POST:@"messages/orders" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -166,10 +188,10 @@
 - (void)accordingMerchantNumberInquiryMerchantWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * string = [NSString stringWithFormat:@"shop/getshop/%@",shopID];
   [self GET:string parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-   // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-  //  NSLog(@"%@", [error description]);
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -178,9 +200,10 @@
 - (void)checkSalesWithPhone:(NSString *)phone Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"user/getuser/%@", phone];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -189,7 +212,7 @@
 - (void)getPrivilegeWithShopID:(NSString *)shopID Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"user/privilege/get/%@/%@", [self userID], shopID];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"%@", error);
@@ -201,7 +224,7 @@
 - (void)getOrderListWithPage:(NSString * )page size:(NSString *)size Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"order/list/%@/%@/%@", [self userID],page,size];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    NSLog(@"%@", responseObject);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"%@", [error description]);
@@ -213,9 +236,10 @@
 - (void)getOrderDetailWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"order/get/%@", orderno];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-     NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -227,11 +251,11 @@
   NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
   NSDictionary * dic = @{@"category":category,@"data":base64String};
   [self POST:@"order/add" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    failure(task, error);
     NSLog(@"%@", [error description]);
+    failure(task, error);
   }];
 }
 
@@ -239,9 +263,10 @@
 - (void)getOrderDetailWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"shop/get/%@", shopID];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -250,9 +275,10 @@
 - (void)confirmOrderWithOrderNo:(NSString *)orderno status:(int)status Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSDictionary * dic = @{@"orderno":orderno,@"status":[NSNumber numberWithInt:status]};
   [self POST:@"order/confirm" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -261,9 +287,10 @@
 - (void)cancleOrderWithOrderNo:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSDictionary * dic = @{@"orderno":orderno};
   [self POST:@"order/cancel" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -272,9 +299,10 @@
 - (void)orderPayWithOrderno:(NSString *)orderno Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSDictionary * dic = @{@"orderno":orderno};
   [self POST:@"order/pay" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -283,9 +311,10 @@
 - (void)getUnconfirmedOrderListWithPage:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"order/get/unconfirmed/%@/%@/50", [self userID], page];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -294,7 +323,7 @@
 - (void)getShopGoodsListWithShopID:(NSString *)shopID success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"goods/get/%@", shopID];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     NSLog(@"%@", error.description);
@@ -308,7 +337,7 @@
                           @"devicetype": @"ios",
                           @"appid": [NSNumber numberWithInt:1]};  //  应用编号(1:超级身份 2 超级服务)
   [self POST:@"app/upgrade" parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-    //    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     NSLog(@"%@", error.description);
@@ -320,9 +349,10 @@
 - (void)getUnconfirmedOrderCountWithSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"order/get/unconfirmed/count/%@", [self userID]];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    //NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -334,11 +364,11 @@
   NSString *base64String = [plainTextData base64EncodedStringWithOptions:0];
   NSDictionary * dic = @{@"data":base64String};
   [self POST:@"order/evaluation" parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-    NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    failure(task, error);
     NSLog(@"%@", [error description]);
+    failure(task, error);
   }];
 }
 
@@ -346,9 +376,10 @@
 - (void)getMessagesWithCity:(NSString *)city success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString * url = [NSString stringWithFormat:@"messages/%@/%@", [self userID], city];
   [self GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//    NSLog(@"%@", [responseObject description]);
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", [error description]);
     failure(task, error);
   }];
 }
@@ -357,15 +388,12 @@
 - (void)getevaluationWithshopid:(NSString * )shopid Page:(NSString *)page Success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   NSString *urlString = [NSString stringWithFormat:@"shop/evaluation/get/%@/%@/10", shopid,page];
   [self GET:urlString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    NSLog(@"%@", responseObject);
     success(task, responseObject);
-   // NSLog(@"%@", [responseObject description]);
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    failure(task, error);
     NSLog(@"%@", [error description]);
+    failure(task, error);
   }];
 }
-
-
-
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="SVIP" customModuleProvider="target">
             <connections>
-                <outlet property="codeButton" destination="Dcn-Qe-3h1" id="cUP-u0-J04"/>
+                <outlet property="codeButton" destination="Dcn-Qe-3h1" id="IY7-Ve-1ba"/>
                 <outlet property="codeTextField" destination="psG-UQ-JxR" id="jpH-QR-MZ5"/>
                 <outlet property="okButton" destination="67h-qf-gpa" id="VgM-PC-T0M"/>
                 <outlet property="phoneTextField" destination="RYh-Oi-dzo" id="6yN-dK-rcL"/>
@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RYh-Oi-dzo">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RYh-Oi-dzo" customClass="DesignableTextField" customModule="SVIP" customModuleProvider="target">
                     <rect key="frame" x="150" y="317" width="300" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="TfL-tM-aZj"/>
@@ -31,7 +31,7 @@
                         <outlet property="delegate" destination="-1" id="Myx-Jd-dSE"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="psG-UQ-JxR">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="psG-UQ-JxR" customClass="DesignableTextField" customModule="SVIP" customModuleProvider="target">
                     <rect key="frame" x="150" y="385" width="200" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="AqZ-hT-KmN"/>
@@ -83,7 +83,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="tappedCodeButton:" destination="-1" eventType="touchUpInside" id="OlE-bH-hAW"/>
+                        <action selector="tappedCodeButton:" destination="-1" eventType="touchUpInside" id="SQw-wT-gqY"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPh-Po-9EY">
@@ -100,8 +100,8 @@
                         <action selector="tappedLicense:" destination="-1" eventType="touchUpInside" id="8tm-5f-9la"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
-                    <rect key="frame" x="25" y="27" width="10" height="22"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
+                    <rect key="frame" x="8" y="16" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="O3U-j7-0Nd"/>
                         <constraint firstAttribute="width" constant="44" id="Vut-jq-DhT"/>
@@ -130,6 +130,21 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRX-EA-zQx">
+                    <rect key="frame" x="272" y="515" width="57" height="30"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="wfx-aG-gV4"/>
+                        <constraint firstAttribute="width" constant="57" id="yl5-DM-bOM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="立即注册">
+                        <color key="titleColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="register:" destination="-1" eventType="touchUpInside" id="gtb-Tc-VAU"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -152,8 +167,10 @@
                 <constraint firstItem="psG-UQ-JxR" firstAttribute="leading" secondItem="RYh-Oi-dzo" secondAttribute="leading" id="XeO-gT-HBf"/>
                 <constraint firstItem="Dcn-Qe-3h1" firstAttribute="trailing" secondItem="RYh-Oi-dzo" secondAttribute="trailing" id="YFl-gp-dak"/>
                 <constraint firstItem="67h-qf-gpa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eQ1-FN-ovx"/>
+                <constraint firstItem="67h-qf-gpa" firstAttribute="top" secondItem="qRX-EA-zQx" secondAttribute="bottom" constant="10" id="jPD-Wj-d9t"/>
                 <constraint firstAttribute="trailing" secondItem="rYD-AN-1zC" secondAttribute="trailing" constant="8" id="k5B-NV-TUV"/>
                 <constraint firstItem="5Ed-rq-zVe" firstAttribute="top" secondItem="rYD-AN-1zC" secondAttribute="bottom" constant="8" id="lgC-7q-FbR"/>
+                <constraint firstItem="qRX-EA-zQx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sfh-Bj-hFN"/>
                 <constraint firstItem="67h-qf-gpa" firstAttribute="top" secondItem="RYh-Oi-dzo" secondAttribute="bottom" constant="30" id="tRZ-VG-aSZ"/>
                 <constraint firstItem="Uom-Fn-ahM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uc7-fz-hSs"/>
                 <constraint firstItem="Dcn-Qe-3h1" firstAttribute="centerY" secondItem="psG-UQ-JxR" secondAttribute="centerY" id="udx-ms-NGG"/>

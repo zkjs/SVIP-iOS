@@ -21,7 +21,6 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   @IBOutlet weak var breakfeastSwitch: UISwitch!
   @IBOutlet weak var isSmokingSwitch: UISwitch! {
     didSet {
-      isSmokingSwitch.enabled = false
     }
   }
   @IBOutlet weak var remarkTextView: UITextView! {
@@ -172,6 +171,11 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   func choosePayStatus() {
     let alertView = UIAlertController(title: "选择订单状态", message: "", preferredStyle: .ActionSheet)
     for index in 1..<paytypeArray.count {
+      // 关闭在线支付选项
+      if index == 1 {
+        continue
+      }
+      
       alertView.addAction(UIAlertAction(title: paytypeArray[index], style: .Default, handler: { [unowned self] (action: UIAlertAction!) -> Void in
         self.paymentLabel.text = self.paytypeArray[index]
         // 更新订单

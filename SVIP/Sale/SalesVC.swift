@@ -23,7 +23,7 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    if AccountManager.sharedInstance().isLogin() == false {
+    if TokenPayload.sharedInstance.isLogin == false {
       let rightBarButtonItem = UIBarButtonItem(title: "请登录", style: .Plain, target: self, action: "login:")
       rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
       super.navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -31,6 +31,13 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
       let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_tianjia"), style: UIBarButtonItemStyle.Plain, target: self, action: "add:")
       rightBarButtonItem.tintColor = UIColor.ZKJS_mainColor()
       super.navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    
+    let bGotoContactList = NSUserDefaults.standardUserDefaults().boolForKey(kGotoContactList)
+    if bGotoContactList == true {
+      segmentedControl.selectedSegmentIndex = 1
+      moveToViewControllerAtIndex(1, animated: false)
+      NSUserDefaults.standardUserDefaults().setBool(false, forKey: kGotoContactList)
     }
   }
   
@@ -46,11 +53,19 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
   }
   
   func add(sender: UIBarButtonItem) {
+    
     let alertController = UIAlertController(title: "添加联系人", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let checkAction = UIAlertAction(title: "查询", style: .Default) { (_) in
       let phoneTextField = alertController.textFields![0] as UITextField
       guard let phone = phoneTextField.text else { return }
       phoneTextField.resignFirstResponder()
+      
+      let activated = AccountManager.sharedInstance().activated
+      if activated == "0" {
+        let vc = InvitationCodeVC()
+        self.presentViewController(vc, animated: true, completion: nil)
+        return
+      }
       self.showHUDInView(self.view, withLoading: "正在查找...")
       ZKJSJavaHTTPSessionManager.sharedInstance().checkSalesWithPhone(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         self.hideHUD()

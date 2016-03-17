@@ -145,7 +145,7 @@ class KTVTableView: UITableViewController {
   
   func submitOrder() {
     
-    if AccountManager.sharedInstance().isLogin() == false {
+    if TokenPayload.sharedInstance.isLogin == false {
       let nc = BaseNC(rootViewController: LoginVC())
       presentViewController(nc, animated: true, completion: nil)
       return

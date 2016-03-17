@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+let kGotoContactList = "kGotoContactList"
+
 class MainTBC: UITabBarController {
   
   var heightDifference:CGFloat!
@@ -27,8 +30,6 @@ class MainTBC: UITabBarController {
     
     view.backgroundColor = UIColor.whiteColor()
     
-    registerNotification()
-    
     //首页
     let vc1 = HomeVC()
     let nc1 = BaseNC(rootViewController: vc1)
@@ -43,10 +44,11 @@ class MainTBC: UITabBarController {
     vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     
     //服务中心
-    salesVC = SalesVC()
+    //暂时屏蔽该功能入口 [commented at 2016-03-14]
+    /*salesVC = SalesVC()
     let nc3 = BaseNC(rootViewController: salesVC)
     salesVC.tabBarItem.image = UIImage(named: "ic_xiaoxi_gary")
-    salesVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+    salesVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)*/
     
     //我的设置
     let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
@@ -55,9 +57,11 @@ class MainTBC: UITabBarController {
     vc4.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
     let nc4 = BaseNC(rootViewController: vc4)
     
-    viewControllers = [nc1, nc2, nc3, nc4]
+    viewControllers = [nc1, nc2, nc4]
     tabBar.tintColor = UIColor.ZKJS_mainColor()
     
+    registerNotification()
+
     // 检查版本更新
     checkVersion()
     
@@ -66,9 +70,13 @@ class MainTBC: UITabBarController {
       NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
       showTipView()
     }
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
     
-    if AccountManager.sharedInstance().isLogin() == true {
-      let userID = AccountManager.sharedInstance().userID
+    if TokenPayload.sharedInstance.isLogin == true {
+      let userID = TokenPayload.sharedInstance.userID
       print("EaseMob Login Name: \(userID)")
       let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
       print("登陆前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
@@ -78,6 +86,9 @@ class MainTBC: UITabBarController {
         showHint(error.debugDescription)
       }
       EaseMob.sharedInstance().chatManager.loadDataFromDatabase()
+      let options = EaseMob.sharedInstance().chatManager.pushNotificationOptions
+      options.displayStyle = .ePushNotificationDisplayStyle_simpleBanner
+      EaseMob.sharedInstance().chatManager.asyncUpdatePushOptions(options)
     }
   }
   
@@ -155,42 +166,32 @@ class MainTBC: UITabBarController {
   }
   
   func checkVersion() {
-    let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
-    let version = NSNumber(longLong: Int64(buildNumber)!)
-    ZKJSJavaHTTPSessionManager.sharedInstance().checkVersionWithVersion(version, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      print(responseObject)
-      if let isForceUpgrade = responseObject["isForceUpgrade"] as? NSNumber {
-        if let versionNo = responseObject["versionNo"] as? NSNumber {
-          if versionNo.longLongValue > version.longLongValue {
-            if isForceUpgrade.integerValue == 0 {
-              // 提示更新
-              let alertController = UIAlertController(title: "升级提示", message: "已有新版本可供升级", preferredStyle: .Alert)
-              let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
-                let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
-                if UIApplication.sharedApplication().canOpenURL(url!) {
-                  UIApplication.sharedApplication().openURL(url!)
-                }
-              })
-              alertController.addAction(upgradeAction)
-              let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
-              alertController.addAction(cancelAction)
-              self.presentViewController(alertController, animated: true, completion: nil)
-            } else if isForceUpgrade.integerValue == 1 {
-              // 强制更新
-              let alertController = UIAlertController(title: "升级提示", message: "请您升级到最新版本，以保证软件的正常使用", preferredStyle: .Alert)
-              let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
-                let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
-                if UIApplication.sharedApplication().canOpenURL(url!) {
-                  UIApplication.sharedApplication().openURL(url!)
-                }
-              })
-              alertController.addAction(upgradeAction)
-              self.presentViewController(alertController, animated: true, completion: nil)
-            }
+    HttpService.sharedInstance.checkNewVersion { (isForceUpgrade, hasNewVersion) -> Void in
+      if isForceUpgrade {
+        // 强制更新
+        let alertController = UIAlertController(title: "升级提示", message: "请您升级到最新版本，以保证软件的正常使用", preferredStyle: .Alert)
+        let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
+          let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
+          if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
           }
-        }
+        })
+        alertController.addAction(upgradeAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+      } else if hasNewVersion {
+        // 提示更新
+        let alertController = UIAlertController(title: "升级提示", message: "已有新版本可供升级", preferredStyle: .Alert)
+        let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
+          let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
+          if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
+          }
+        })
+        alertController.addAction(upgradeAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
       }
-      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
     }
   }
@@ -201,7 +202,7 @@ class MainTBC: UITabBarController {
 
 }
 
-extension MainTBC: EMCallManagerDelegate {
+extension MainTBC: EMChatManagerDelegate {
   
   // MARK: - Private
   
@@ -209,22 +210,22 @@ extension MainTBC: EMCallManagerDelegate {
     unregisterNotification()
     
     EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
-    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
+//    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callOutWithChatter:", name: KNOTIFICATION_CALL, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callControllerClose:", name: KNOTIFICATION_CALL_CLOSE, object: nil)
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callOutWithChatter:", name: KNOTIFICATION_CALL, object: nil)
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: "callControllerClose:", name: KNOTIFICATION_CALL_CLOSE, object: nil)
   }
   
   func unregisterNotification() {
     EaseMob.sharedInstance().chatManager.removeDelegate(self)
-    EaseMob.sharedInstance().callManager.removeDelegate(self)
+//    EaseMob.sharedInstance().callManager.removeDelegate(self)
     
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
   func showOrderAlertWithOrderInfo(order: [String: AnyObject]) {
     if let orderno = order["orderNo"] as? String {
-      let alertMessage = "您的订单\(orderno)已新增，请查看详情"
+      let alertMessage = "您的订单\(orderno)已更新，请查看详情"
       let alertView = UIAlertController(title: "订单新增", message: alertMessage, preferredStyle: .Alert)
       let checkAction = UIAlertAction(title: "查看", style: .Default, handler: { (action: UIAlertAction) -> Void in
         let index = orderno.startIndex.advancedBy(1)
@@ -289,26 +290,47 @@ extension MainTBC: EMCallManagerDelegate {
       presentViewController(alertView, animated: true, completion: nil)
     }
   }
-
+  
+  func showAddClientAlertWithInfo(info: [String: AnyObject]) {
+    let userName = info["salesName"] as? String ?? ""
+    let alertMessage = "\(userName)已添加您为专属客人."
+    let alertView = UIAlertController(title: "专属客服", message: alertMessage, preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "确定", style: .Default) { (action: UIAlertAction) -> Void in
+      let appWindow = UIApplication.sharedApplication().keyWindow
+      let mainTBC = MainTBC()
+      mainTBC.selectedIndex = 2
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey: kGotoContactList)
+      let nc = BaseNC(rootViewController: mainTBC)
+      appWindow?.rootViewController = nc
+    }
+    alertView.addAction(okAction)
+    presentViewController(alertView, animated: true, completion: nil)
+  }
   
   func didReceiveCmdMessage(cmdMessage: EMMessage!) {
+    print("didReceiveCmdMessage透传消息\(cmdMessage)")
     if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
       if chatObject.cmd == "sureOrder" {
         // 客服发送订单过来
         if let order = cmdMessage.ext as? [String: AnyObject] {
           showOrderAlertWithOrderInfo(order)
         }
-      }
-      if chatObject.cmd == "cancleOrder" {
+      } else if chatObject.cmd == "cancleOrder" {
         //客服取消订单
         if let order = cmdMessage.ext as? [String: AnyObject] {
           showCancleOrderAlertWithOrderInfo(order)
+        }
+      } else if chatObject.cmd == "addGuest" {
+        //客服添加客户
+        if let info = cmdMessage.ext as? [String: AnyObject] {
+          showAddClientAlertWithInfo(info)
         }
       }
     }
   }
   
   func didReceiveOfflineCmdMessages(offlineCmdMessages: [AnyObject]!) {
+    print("didReceiveOfflineCmdMessages透传消息\(offlineCmdMessages)")
     for cmdMessage in offlineCmdMessages {
       if let cmdMessage = cmdMessage as? EMMessage {
         if let chatObject = cmdMessage.messageBodies.first?.chatObject as? EMChatCommand {
@@ -317,11 +339,15 @@ extension MainTBC: EMCallManagerDelegate {
             if let order = cmdMessage.ext as? [String: AnyObject] {
               showOrderAlertWithOrderInfo(order)
             }
-          }
-          if chatObject.cmd == "cancleOrder" {
+          } else if chatObject.cmd == "cancleOrder" {
             //客服取消订单
             if let order = cmdMessage.ext as? [String: AnyObject] {
               showCancleOrderAlertWithOrderInfo(order)
+            }
+          } else if chatObject.cmd == "addGuest" {
+            //客服添加客户
+            if let info = cmdMessage.ext as? [String: AnyObject] {
+              showAddClientAlertWithInfo(info)
             }
           }
         }
@@ -329,58 +355,69 @@ extension MainTBC: EMCallManagerDelegate {
     }
   }
   
-  func canRecord() -> Bool {
-    var bCanRecord = true
-    let audioSession = AVAudioSession.sharedInstance()
-    if audioSession.respondsToSelector("requestRecordPermission:") {
-      audioSession.requestRecordPermission({ (granted: Bool) -> Void in
-        bCanRecord = granted
-      })
-    }
-    
-    if bCanRecord == false {
-      // Show Alert
-      showAlertWithTitle(NSLocalizedString("setting.microphoneNoAuthority", comment: "No microphone permissions"), message: NSLocalizedString("setting.microphoneAuthority", comment: "Please open in \"Setting\"-\"Privacy\"-\"Microphone\"."))
-    }
-    
-    return bCanRecord
+  func didFinishedReceiveOfflineCmdMessages(offlineCmdMessages: [AnyObject]!) {
+    print("didFinishedReceiveOfflineCmdMessages")
   }
   
-  func callOutWithChatter(notification: NSNotification) {
-    if let object = notification.object as? [String: AnyObject] {
-      if canRecord() == false {
-        return
-      }
-      
-      guard let chatter = object["chatter"] as? String else { return }
-      guard let type = object["type"] as? NSNumber else { return }
-      let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
-      var callSession: EMCallSession? = nil
-      switch type.integerValue {
-      case EMCallSessionType.eCallSessionTypeAudio.rawValue:
-        callSession = EaseMob.sharedInstance().callManager.asyncMakeVoiceCall(chatter, timeout: 50, error: error)
-      case EMCallSessionType.eCallSessionTypeVideo.rawValue:
-        callSession = EaseMob.sharedInstance().callManager.asyncMakeVideoCall(chatter, timeout: 50, error: error)
-        break
-      default:
-        break
-      }
-      
-      if callSession != nil && error == nil {
-        EaseMob.sharedInstance().callManager.removeDelegate(self)
-        
-        let callVC = CallViewController(session: callSession, isIncoming: false)
-        callVC.modalPresentationStyle = .OverFullScreen
-        presentViewController(callVC, animated: true, completion: nil)
-      } else if error != nil {
-        showAlertWithTitle(NSLocalizedString("error", comment: "error"), message: NSLocalizedString("ok", comment:"OK"))
-      }
-    }
+  func didReceiveMessage(message: EMMessage!) {
+    let notification = UILocalNotification()
+    notification.alertBody = "您有一条新消息"
+    notification.soundName = UILocalNotificationDefaultSoundName
+    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
   
-  func callControllerClose(notification: NSNotification) {
-    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
-  }
+//  func canRecord() -> Bool {
+//    var bCanRecord = true
+//    let audioSession = AVAudioSession.sharedInstance()
+//    if audioSession.respondsToSelector("requestRecordPermission:") {
+//      audioSession.requestRecordPermission({ (granted: Bool) -> Void in
+//        bCanRecord = granted
+//      })
+//    }
+//    
+//    if bCanRecord == false {
+//      // Show Alert
+//      showAlertWithTitle(NSLocalizedString("setting.microphoneNoAuthority", comment: "No microphone permissions"), message: NSLocalizedString("setting.microphoneAuthority", comment: "Please open in \"Setting\"-\"Privacy\"-\"Microphone\"."))
+//    }
+//    
+//    return bCanRecord
+//  }
+//  
+//  func callOutWithChatter(notification: NSNotification) {
+//    if let object = notification.object as? [String: AnyObject] {
+//      if canRecord() == false {
+//        return
+//      }
+//      
+//      guard let chatter = object["chatter"] as? String else { return }
+//      guard let type = object["type"] as? NSNumber else { return }
+//      let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+//      var callSession: EMCallSession? = nil
+//      switch type.integerValue {
+//      case EMCallSessionType.eCallSessionTypeAudio.rawValue:
+//        callSession = EaseMob.sharedInstance().callManager.asyncMakeVoiceCall(chatter, timeout: 50, error: error)
+//      case EMCallSessionType.eCallSessionTypeVideo.rawValue:
+//        callSession = EaseMob.sharedInstance().callManager.asyncMakeVideoCall(chatter, timeout: 50, error: error)
+//        break
+//      default:
+//        break
+//      }
+//      
+//      if callSession != nil && error == nil {
+//        EaseMob.sharedInstance().callManager.removeDelegate(self)
+//        
+//        let callVC = CallViewController(session: callSession, isIncoming: false)
+//        callVC.modalPresentationStyle = .OverFullScreen
+//        presentViewController(callVC, animated: true, completion: nil)
+//      } else if error != nil {
+//        showAlertWithTitle(NSLocalizedString("error", comment: "error"), message: NSLocalizedString("ok", comment:"OK"))
+//      }
+//    }
+//  }
+//  
+//  func callControllerClose(notification: NSNotification) {
+//    EaseMob.sharedInstance().callManager.addDelegate(self, delegateQueue: nil)
+//  }
   
   // 未读消息数量变化回调
   
@@ -414,41 +451,41 @@ extension MainTBC: EMCallManagerDelegate {
 
 extension MainTBC: IChatManagerDelegate {
   
-  func callSessionStatusChanged(callSession: EMCallSession!, changeReason reason: EMCallStatusChangedReason, error: EMError!) {
-    if callSession.status == .eCallSessionStatusConnected {
-//      var error: EMError? = nil
-      let isShowPicker = NSUserDefaults.standardUserDefaults().objectForKey("isShowPicker")
-      if isShowPicker != nil && isShowPicker!.boolValue == true {
-//        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
-        return
-      }
-      
-      if canRecord() == false {
-//        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
-        return
-      }
-      
-      if callSession.type == EMCallSessionType.eCallSessionTypeVideo &&
-        (UIApplication.sharedApplication().applicationState != UIApplicationState.Active || CallViewController.canVideo() == false) {
-//          error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
-          EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
-          return
-      }
-      
-      if isShowPicker == nil || isShowPicker!.boolValue == false {
-        EaseMob.sharedInstance().callManager.removeDelegate(self)
-        let callVC = CallViewController(session: callSession, isIncoming: true)
-        callVC.modalPresentationStyle = .OverFullScreen
-        presentViewController(callVC, animated: true, completion: nil)
-        if ((navigationController?.topViewController?.isKindOfClass(ChatViewController)) == true) {
-          let chatVC = navigationController?.topViewController as! ChatViewController
-          chatVC.isViewDidAppear = false
-        }
-      }
-    }
-  }
+//  func callSessionStatusChanged(callSession: EMCallSession!, changeReason reason: EMCallStatusChangedReason, error: EMError!) {
+//    if callSession.status == .eCallSessionStatusConnected {
+////      var error: EMError? = nil
+//      let isShowPicker = NSUserDefaults.standardUserDefaults().objectForKey("isShowPicker")
+//      if isShowPicker != nil && isShowPicker!.boolValue == true {
+////        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+//        return
+//      }
+//      
+//      if canRecord() == false {
+////        error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//        EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+//        return
+//      }
+//      
+//      if callSession.type == EMCallSessionType.eCallSessionTypeVideo &&
+//        (UIApplication.sharedApplication().applicationState != UIApplicationState.Active || CallViewController.canVideo() == false) {
+////          error = EMError(code: EMErrorType.InitFailure, andDescription: NSLocalizedString("call.initFailed", comment: "Establish call failure"))
+//          EaseMob.sharedInstance().callManager.asyncEndCall(callSession.sessionId, reason: .eCallReason_Hangup)
+//          return
+//      }
+//      
+//      if isShowPicker == nil || isShowPicker!.boolValue == false {
+//        EaseMob.sharedInstance().callManager.removeDelegate(self)
+//        let callVC = CallViewController(session: callSession, isIncoming: true)
+//        callVC.modalPresentationStyle = .OverFullScreen
+//        presentViewController(callVC, animated: true, completion: nil)
+//        if ((navigationController?.topViewController?.isKindOfClass(ChatViewController)) == true) {
+//          let chatVC = navigationController?.topViewController as! ChatViewController
+//          chatVC.isViewDidAppear = false
+//        }
+//      }
+//    }
+//  }
   
   // MARK: - IChatManagerDelegate 登录状态变化
   

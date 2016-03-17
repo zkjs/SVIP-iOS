@@ -10,13 +10,13 @@ import UIKit
 
 class PushInfoModel: NSObject {
   
-  var desc: String!
-  var iconbaseurl: String!
-  var iconfilename: String!
-  var shopid: String!
-  var shopName: String!
-  var title: String!
-  var orderNo: String!
+  var desc: String = ""
+  var iconbaseurl: String = ""
+  var iconfilename: String = ""
+  var shopid: String = ""
+  var shopName: String = ""
+  var title: String = ""
+  var orderNo: String = ""
   
   override init() {
     super.init()
@@ -42,6 +42,24 @@ class PushInfoModel: NSObject {
     iconbaseurl = dic["iconbaseurl"] as? String ?? ""
     iconfilename = dic["iconfilename"] as? String ?? ""
     title = dic["title"] as? String ?? ""
+  }
+  
+  init(json:JSON) {
+    desc = json["desc"].string ?? ""
+    iconfilename = json["iconfilename"].string ?? ""
+    shopName = json["shopName"].string ?? ""
+    shopid = json["shopid"].string ?? ""
+    title = json["title"].string ?? ""
+    
+    iconbaseurl = json["iconbaseurl"].string ?? ""
+    orderNo = json["orderno"].string ?? ""
+    if let icon = json["icon"].string {
+      self.iconfilename = icon
+    }
+    if let shopname = json["shopname"].string {
+      self.shopName = shopname
+    }
+    
   }
   
 }

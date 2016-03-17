@@ -9,6 +9,8 @@
 import UIKit
 
 class HotelCell: UITableViewCell {
+  typealias ButtonTapHandler = () -> Void
+  var salesmanTapHandler: ButtonTapHandler?
 
   
   @IBOutlet weak var userImageButton: UIButton! {
@@ -39,16 +41,12 @@ class HotelCell: UITableViewCell {
   }
 
   @IBOutlet weak var hotelImageView: UIImageView!
-//    {
-//    didSet {
-//      hotelImageView.layer.masksToBounds = true
-//      hotelImageView.layer.cornerRadius = 30
-//    }
-//  }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+
+  override func awakeFromNib() {
+      super.awakeFromNib()
+      // Initialization code
+  }
+  
   class func reuseIdentifier() -> String {
     return "HotelCell"
   }
@@ -61,30 +59,27 @@ class HotelCell: UITableViewCell {
     return 317
   }
   
-  
-  func setData(hotel:Hotel) {
-
-    hotelNameLabel.text = hotel.shopname
-    descriptionLabel.text = hotel.shopaddress
-    addressLabel.text = hotel.recommtitle
-    customLabel.text = hotel.shoptitle
+  func configCell(shop:Shop, salesmanTapHandler:ButtonTapHandler?) {
+    self.salesmanTapHandler = salesmanTapHandler
+    selectionStyle = UITableViewCellSelectionStyle.None
+    hotelNameLabel.text = shop.shopname
+    descriptionLabel.text = shop.shopaddress
+    addressLabel.text = shop.recomm
+    customLabel.text = shop.shoptitle
     customLabel.sizeToFit()
-    let url = NSURL(string: kImageURL)
-    let logoURL = url?.URLByAppendingPathComponent("\(hotel.bgImgUrl)")
-    hotelImageView.sd_setImageWithURL(logoURL, placeholderImage: nil)
-    if let shoplogo = hotel.shoplogo {
-      let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
-      userImageButton.sd_setBackgroundImageWithURL(urlStr, forState: UIControlState.Normal,placeholderImage: UIImage(named: "img_hotel_zhanwei"))
-    }
-
-   
+    hotelImageView.sd_setImageWithURL(NSURL(string: shop.bgimgurl.fullImageUrl), placeholderImage: nil)
+    userImageButton.sd_setBackgroundImageWithURL(NSURL(string: shop.shoplogo.fullImageUrl), forState: UIControlState.Normal,placeholderImage: UIImage(named: "img_hotel_zhanwei"))
   }
 
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+  override func setSelected(selected: Bool, animated: Bool) {
+      super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+      // Configure the view for the selected state
+  }
     
+  @IBAction func salesmanButtonTapped(sender: UIButton) {
+    salesmanTapHandler?()
+  }
+  
 }

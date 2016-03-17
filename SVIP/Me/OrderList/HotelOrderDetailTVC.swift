@@ -105,7 +105,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     showHUDInView(view, withLoading: "")
     tableView.scrollEnabled = false
     ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-
+      print(responseObject)
       if let dic = responseObject as? NSDictionary {
         print(dic)
         self.orderDetail = OrderDetailModel(dic: dic)
@@ -225,6 +225,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     let alertController = UIAlertController(title: "取消订单提示", message: "您真的要取消吗", preferredStyle: .Alert)
     let upgradeAction = UIAlertAction(title: "确认", style: .Default, handler: { (action: UIAlertAction) -> Void in
         self.cancleOrder()
+      
     })
     alertController.addAction(upgradeAction)
     let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
@@ -233,6 +234,40 @@ class HotelOrderDetailTVC:  UITableViewController {
     
      }
   
+  func gotoChatVC() {
+    showHUDInView(view, withLoading: "")
+    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(orderDetail.shopid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      if responseObject == nil {
+        return
+      }
+      print(responseObject)
+      self.chooseChatterWithData(responseObject)
+//       self.sendMessageNotificationWithText("您好，我已取消订单，请跟进")
+      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
+        print(error)
+    }
+  }
+  
+  func sendMessageNotificationWithText(text: String) {
+    // 发送环信消息
+    let userName = AccountManager.sharedInstance().userName
+    let txtChat = EMChatText(text: text)
+    let body = EMTextMessageBody(chatObject: txtChat)
+    let message = EMMessage(receiver: orderDetail.saleid, bodies: [body])
+    let ext = ["shopId": orderDetail.shopid,
+      "shopName": orderDetail.shopname,
+      "toName": "",
+      "fromName": userName]
+    message.ext = ext
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+    
+    
+    //    NSNotificationCenter.defaultCenter().postNotificationName(kSendMessageNotification, object: nil, userInfo: ["text": text])
+    delegate?.shouldSendTextMessage(text)
+  }
+
+  
   func cancleOrder() {
     showHUDInTableView(tableView, withLoading: "")
     ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
@@ -240,8 +275,11 @@ class HotelOrderDetailTVC:  UITableViewController {
         self.orderno = dic["data"] as! String
         if let result = dic["result"] as? NSNumber {
           if result.boolValue == true {
-            self.sendMessageNotificationWithText("订单已取消")
-            self.navigationController?.popViewControllerAnimated(true)
+            if responsObjects == nil {
+              return
+            }
+            self.gotoChatVC()
+//            self.navigationController?.popViewControllerAnimated(true)
             self.hideHUD()
           }
         }
@@ -251,6 +289,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     }
 
   }
+  
   
   func pay(sender:UIButton) {
     if orderDetail.orderstatus == "待支付" && orderDetail.paytype.integerValue == 1 {
@@ -274,22 +313,74 @@ class HotelOrderDetailTVC:  UITableViewController {
     
   }
   
-  func sendMessageNotificationWithText(text: String) {
-//    // 发送环信消息
-//    let userName = AccountManager.sharedInstance().userName
-//    let txtChat = EMChatText(text: text)
-//    let body = EMTextMessageBody(chatObject: txtChat)
-//    let message = EMMessage(receiver: orderDetail.saleid, bodies: [body])
-//    let ext = ["shopId": orderDetail.shopid,
-//      "shopName": orderDetail.shopname,
-//      "toName": "",
-//      "fromName": userName]
-//    message.ext = ext
-//    message.messageType = .eMessageTypeChat
-//    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
-    
-//    NSNotificationCenter.defaultCenter().postNotificationName(kSendMessageNotification, object: nil, userInfo: ["text": text])
-    delegate?.shouldSendTextMessage(text)
+  func chooseChatterWithData(data: AnyObject) {
+    if let head = data["head"] as? [String: AnyObject] {
+      if let exclusive_salesid = head["exclusive_salesid"] as? String {
+        // 有专属客服
+        var exclusive_name = ""
+        if let name = head["exclusive_name"] as? String {
+          exclusive_name = name
+        }
+        self.createConversationWithSalesID(exclusive_salesid, salesName: exclusive_name)
+      } else if let data = data["data"] as? [[String: AnyObject]] where data.count > 0 {
+        // 无专属客服，发给商家管理员
+        for sale in data {
+          if let roleid = sale["roleid"] as? String {
+            if roleid == "1" {
+              // 管理员
+              let salesid = sale["salesid"] as? String
+              let name = sale["name"] as? String
+              self.createConversationWithSalesID(salesid!, salesName: name!)
+            }
+          } else if let roleid = sale["roleid"] as? NSNumber {
+            if roleid.integerValue == 1 {
+              // 管理员
+              let salesid = sale["salesid"] as? String
+              let name = sale["name"] as? String
+              self.createConversationWithSalesID(salesid!, salesName: name!)
+            }
+          }
+        }
+      } else {
+        // 无可用客服
+        hideHUD()
+        ZKJSTool.showMsg("商家暂无客服")
+      }
+    }
+  }
+
+  
+  func createConversationWithSalesID(salesID: String, salesName: String) {
+    hideHUD()
+    let userName = AccountManager.sharedInstance().userName
+    let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
+    let order = self.packetOrderWithOrderNO(orderno)
+    print(order)
+    vc.title = userName
+    // 扩展字段
+    let ext = ["shopId": orderDetail.shopid,
+      "shopName": orderDetail.shopname,
+      "toName": salesName,
+      "fromName": userName]
+    vc.conversation.ext = ext
+    vc.cancleMessage = "card"
+    vc.order = order
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {
+    let order = OrderDetailModel()
+    order.roomtype = roomTypeLabel.text!
+    order.arrivaldate = self.orderDetail.arrivaldate
+    order.leavedate = self.orderDetail.leavedate
+
+    if let shoplogo = orderDetail.imgurl {
+      let urlStr = kImageURL + "\(shoplogo)"
+      order.imgurl = urlStr
+    }
+    order.orderno = orderNO
+    order.orderstatus = "已取消"
+    return order
   }
     
   @IBAction func comments(sender: AnyObject) {

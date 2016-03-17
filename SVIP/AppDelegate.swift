@@ -32,18 +32,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   var deviceToken = ""
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    HttpService.sharedInstance.getUserinfo(nil)
+    
     setupWindow()
     setupNotification()
 //    fetchShops()
-    fetchBeaconRegions()
 //    setupUMSocial()//UM
     networkState()
 //    setupBackgroundFetch()
+    
     setupYunBa()
-    setupAMap()
     setupUMStatistics()
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
-    
+    refreshToken()
     ZKJSHTTPSessionManager.sharedInstance().delegate = self
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
@@ -51,7 +53,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
    
 //    // fir.im BugHD
 //    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
+    
+    // app was launched when significant location changed
+    if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
+      LocationMonitor.sharedInstance.afterResume = true
+      LocationMonitor.sharedInstance.startMonitoringLocation()
+    }
+    
+    //send error logs to server
+    sendErrorsToServerLater()
+
     return true
+  }
+  
+  func refreshToken() {
+    HttpService.sharedInstance.managerToken { (json, error) -> () in
+      
+    }
   }
   func networkState() {
 //    // Allocate a reachability object
@@ -88,6 +106,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     print("applicationDidEnterBackground")
+    // 根据测试情况调整，Backgournd 模式下选择 startMonitoringSignificantLocationChanges 还是 startUpdatingLocation ?
+    // startMonitoringSignificantLocationChanges 省电但是频率慢，精度低
+    // startUpdatingLocation 精度高，上传频率有保证，但是耗电
+    /*LocationMonitor.sharedInstance.stopUpdatingLocation()
+    LocationMonitor.sharedInstance.afterResume = false
+    LocationMonitor.sharedInstance.startMonitoringLocation() */
   }
 
   func applicationWillEnterForeground(application: UIApplication) {
@@ -113,11 +137,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //        }
 //      }
 //    }
+    
+    LocationMonitor.sharedInstance.afterResume = false
+    LocationMonitor.sharedInstance.stopMonitoringLocation()
+    LocationMonitor.sharedInstance.startUpdatingLocation()
+
   }
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     print("applicationWillTerminate")
+    LocationMonitor.sharedInstance.stopUpdatingLocation()
+    LocationMonitor.sharedInstance.afterResume = false
+    LocationMonitor.sharedInstance.startMonitoringLocation()
   }
   
   // MARK: - Local Notification
@@ -132,7 +164,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   
   // MARK: - Push Notification
   func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    //环信推送通知
     EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    
+    // 将DeviceToken 存储在YunBa的云端，那么可以通过YunBa发送APNs通知
+    YunBaService.storeDeviceToken(deviceToken) { (success, error) -> Void in
+      if success {
+        print("store device token to YunBa success")
+      } else {
+        print("store device token to YunBa failed due to: \(error)")
+      }
+    }
+    
     self.deviceToken = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
     self.deviceToken = self.deviceToken.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
     print("Device Token: \(self.deviceToken)")
@@ -161,33 +204,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   // MARK: - Background Fetch
   
   func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-    /*The background execution time given to an application is not infinite. iOS provides a 30 seconds time frame in order the app to be woken up, fetch new data, update its interface and then go back to sleep again. It is your duty to make sure that any performed tasks will manage to get finished within these 30 seconds, otherwise the system will suddenly stop them. If more time is required though, then the Background Transfer Service API can be used.*/
     
-    
-    let fetchStart = NSDate()
-    ZKJSJavaHTTPSessionManager.sharedInstance().getHomeImageWithSuccess({ (task:NSURLSessionDataTask!, responseObject:AnyObject!) -> Void in
-      print("Background Fetch: \(responseObject)")
-      if let array = responseObject as? NSArray {
-        var urlArray = [String]()
-        for dic in array {
-          if let url = dic["url"] as? String {
-            urlArray.append(url)
-          }
+    HttpService.sharedInstance.getHomePictures { (imgs, error) -> Void in
+      if let imgs = imgs {
+        if imgs.count > 0 {
+          completionHandler(.NewData)
+        } else {
+          completionHandler(.NoData)
         }
-        StorageManager.sharedInstance().saveHomeImages(urlArray)
-        completionHandler(.NewData)
-        
-        let fetchEnd = NSDate()
-        print("Background Fetch Success Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
       } else {
         completionHandler(.Failed)
-        let fetchEnd = NSDate()
-        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
       }
-      }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
-        completionHandler(.Failed)
-        let fetchEnd = NSDate()
-        print("Background Fetch Fail Duration: \(fetchEnd.timeIntervalSinceDate(fetchStart))")
     }
   }
   
@@ -272,59 +299,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
 //    }
 //  }
   
-  func fetchBeaconRegions() {
-    ZKJSHTTPSessionManager.sharedInstance().getBeaconRegionListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      var beaconRegions = [String: [String: String]]()
-      if let array = responseObject as? NSArray {
-        for beaconInfo in array {
-          var shopID = ""
-          var UUID = ""
-          var major = ""
-          var minor = ""
-          var locid = ""
-          var locdesc = ""
-          var remark = ""
-          if let info = beaconInfo["shopid"] as? String {
-            shopID = info
-          }
-          if let info = beaconInfo["uuid"] as? String {
-            UUID = info.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
-          }
-          if let info = beaconInfo["major"] as? String {
-            major = info
-          }
-          if let info = beaconInfo["minior"] as? String {
-            minor = info
-          }
-          if let info = beaconInfo["locid"] as? String {
-            locid = info
-          }
-          if let info = beaconInfo["locdesc"] as? String {
-            locdesc = info
-          }
-          if let info = beaconInfo["remark"] as? String {
-            remark = info
-          }
-          let beacon = [
-            "shopid": shopID,
-            "uuid": UUID,
-            "major": major,
-            "minor": minor,
-            "locid": locid,
-            "locdesc": locdesc,
-            "remark": remark
-          ]
-          let regionKey = "\(shopID)-\(locid)"
-          beaconRegions[regionKey] = beacon
-        }
-        StorageManager.sharedInstance().saveBeaconRegions(beaconRegions)
-      }
-      
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-      
-    })
-  }
-
   //UM
   func setupUMSocial() {
 //    UMSocialData.openLog(true);
@@ -352,19 +326,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
   }
   
   func setupYunBa() {
-    let appKey = "566563014407a3cd028aa72f"
-    YunBaService.setupWithAppkey(appKey)
+    YunBaService.setupWithAppkey(ZKJSConfig.sharedInstance.YunBaAppKey)
   }
   
-  func setupAMap() {
-    AMapNaviServices.sharedServices().apiKey = AMapKey
-    AMapLocationServices.sharedServices().apiKey = AMapKey
+  func unregisterRemoteNotification() {
+    UIApplication.sharedApplication().unregisterForRemoteNotifications()
   }
   
   func setupUMStatistics() {
     let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
     MobClick.setAppVersion(version)
     MobClick.startWithAppkey(UMAppKey, reportPolicy: BATCH, channelId: nil)
+  }
+  
+  //send all beacon logs to server 10 seconds later
+  func sendErrorsToServerLater() {
+    delay(seconds: 20 ){BeaconErrors.uploadLogs()}
   }
   
 }

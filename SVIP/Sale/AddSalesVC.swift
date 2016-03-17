@@ -19,28 +19,29 @@ class AddSalesVC: UIViewController {
   var salesid = ""
   var sales: SalesModel? = nil
   var shopid = ""
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      title = "添加"
-      let image = UIImage(named: "ic_fanhui_orange")
-      let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
-      self.navigationItem.leftBarButtonItem = item1
-      
-      salesnameLabel.text = ""
-      shopnameLabel.text = ""
-      phonrLabel.text = ""
-      lastLoginLabel.text = ""
-        // Do any additional setup after loading the view.
-    }
+  
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("AddSalesVC", owner:self, options:nil)
   }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    title = "添加"
+    let image = UIImage(named: "ic_fanhui_orange")
+    let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "pop:")
+    self.navigationItem.leftBarButtonItem = item1
+    
+    salesnameLabel.text = ""
+    shopnameLabel.text = ""
+    phonrLabel.text = ""
+    lastLoginLabel.text = ""
+  }
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    loadData()
     
+    loadData()
   }
   
   func pop(sender:UIBarButtonItem) {
@@ -65,7 +66,7 @@ class AddSalesVC: UIViewController {
         lastLoginLabel.sizeToFit()
       }
     }
-
+    
   }
   
   func loadData() {
@@ -89,7 +90,7 @@ class AddSalesVC: UIViewController {
         
     }
   }
-
+  
   @IBAction func addWaiter(sender: AnyObject) {
     showHUDInView(view, withLoading: "")
     if let shopid = self.sales?.shopid
@@ -104,6 +105,9 @@ class AddSalesVC: UIViewController {
           if set == true {
             NSNotificationCenter.defaultCenter().postNotificationName("addWaiterSuccess", object: self)
             self.showHint("添加成功")
+            // 因为环信透传消息没有APNS推送，所以还要发一个文本消息
+            self.sendAddSalesCmdMessage()
+            self.sendAddSalesMessage()
             self.navigationController?.popViewControllerAnimated(true)
             self.hideHUD()
           }
@@ -120,21 +124,39 @@ class AddSalesVC: UIViewController {
         self.hideHUD()
     }
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  
+  func sendAddSalesCmdMessage() {
+    // 发送环信透传消息
+    let userID = AccountManager.sharedInstance().userID
+    let userName = AccountManager.sharedInstance().userName
+    let cmdChat = EMChatCommand()
+    cmdChat.cmd = "addSales"
+    let body = EMCommandMessageBody(chatObject: cmdChat)
+    let message = EMMessage(receiver: salesid, bodies: [body])
+    message.ext = [
+      "userId": userID,
+      "userName": userName,
+      "bindClient": true]
+    message.messageType = .eMessageTypeChat
+    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
+  }
+  
+  func sendAddSalesMessage() {
+    // 发送环信消息
+    if let sales = sales {
+      let userName = AccountManager.sharedInstance().userName
+      let txtChat = EMChatText(text: "我已添加你为联系人")
+      let body = EMTextMessageBody(chatObject: txtChat)
+      let message = EMMessage(receiver: salesid, bodies: [body])
+      let ext: [String: AnyObject] = ["shopId": sales.shopid,
+        "shopName": sales.shop_name,
+        "toName": sales.username,
+        "fromName": userName,
+        "extType": 0]
+      message.ext = ext
+      message.messageType = .eMessageTypeChat
+      EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  }
+  
 }

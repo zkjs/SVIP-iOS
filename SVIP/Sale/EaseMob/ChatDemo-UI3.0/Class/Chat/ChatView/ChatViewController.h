@@ -17,5 +17,6 @@
 @property(strong,nonatomic)NSString * chatter;
 @property (strong, nonatomic) OrderDetailModel *order;
 @property (strong, nonatomic) NSString *firstMessage;
+@property (strong, nonatomic) NSString *cancleMessage;
 
 @end

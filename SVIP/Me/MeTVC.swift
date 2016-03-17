@@ -60,11 +60,11 @@ class MeTVC: UITableViewController {
   }
   
   func loadUnconfirmedOrderList() {
-    if AccountManager.sharedInstance().isLogin() == false {
+    if TokenPayload.sharedInstance.isLogin == false {
       return
     }
     
-    ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderCountWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderCountWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let data = responseObject as? [String: AnyObject] {
         if let count = data["count"] as? String {
@@ -78,7 +78,7 @@ class MeTVC: UITableViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         print(error)
-    }
+    }*/
   }
   
   private func sendTestPushNotification() {
@@ -158,9 +158,10 @@ class MeTVC: UITableViewController {
   func setupUI() {
     unconfirmedOrderCountLabel.hidden = true
 
-    if AccountManager.sharedInstance().isLogin() == true {
+    if TokenPayload.sharedInstance.isLogin == true {
       loginLabel.hidden = true
-      userImage.image = AccountManager.sharedInstance().avatarImage
+      let avatarURL = AccountManager.sharedInstance().avatarURL
+      userImage.sd_setImageWithURL(NSURL(string: avatarURL), placeholderImage: UIImage(named: "logo_white"))
     }
   }
   
@@ -175,7 +176,7 @@ class MeTVC: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
-    if AccountManager.sharedInstance().isLogin() == false {
+    if TokenPayload.sharedInstance.isLogin == false {
       let nc = BaseNC(rootViewController: LoginVC())
       presentViewController(nc, animated: true, completion: nil)
       return
@@ -183,7 +184,7 @@ class MeTVC: UITableViewController {
     
     let accountIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     let orderIndexPath = NSIndexPath(forRow: 1, inSection: 0)
-    let settingIndexPath = NSIndexPath(forRow: 4, inSection: 0)
+    let settingIndexPath = NSIndexPath(forRow: 2, inSection: 0)
     
     switch indexPath {
     case accountIndexPath:
@@ -194,7 +195,8 @@ class MeTVC: UITableViewController {
     case orderIndexPath:
       let vc = OrderListTVC()
       vc.hidesBottomBarWhenPushed = true
-      navigationController?.pushViewController(vc, animated: true)
+      //暂时屏蔽订单管理功能 [commented at 2016-03-14]
+      //navigationController?.pushViewController(vc, animated: true)
     case settingIndexPath:
       let storyboard = UIStoryboard(name: "SettingTVC", bundle: nil)
       let vc = storyboard.instantiateViewControllerWithIdentifier("SettingTVC") as! SettingTVC
@@ -202,6 +204,16 @@ class MeTVC: UITableViewController {
       navigationController?.pushViewController(vc, animated: true)
     default:
       print("还没实现呢")
+    }
+  }
+  
+  //暂时屏蔽订单管理功能 [commented at 2016-03-14]
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    switch indexPath.row {
+    case 0: return 80
+    case 1: return 0
+    case 2: return 44
+    default: return 0
     }
   }
   

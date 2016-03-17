@@ -20,11 +20,11 @@ class CommentsCell: UITableViewCell {
     }
   }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-  
+  override func awakeFromNib() {
+      super.awakeFromNib()
+      // Initialization code
+  }
+
   class func reuseIdentifier() -> String {
     return "CommentsCell"
   }
@@ -36,22 +36,20 @@ class CommentsCell: UITableViewCell {
   class func height() -> CGFloat {
     return 130.0
   }
+
+  override func setSelected(selected: Bool, animated: Bool) {
+      super.setSelected(selected, animated: animated)
+
+      // Configure the view for the selected state
+  }
   
-  func setDate(comment:CommentsModel) {
-    appraiserNameLabel.text = comment.userName
+  func configCell(comment:CommentModel) {
+    selectionStyle = UITableViewCellSelectionStyle.None
+    appraiserNameLabel.text = comment.username
     let hotelUrl = "\(kImageURL)/uploads/users/\(comment.userid).jpg"
     appraiserImage.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     contentEvaluation.text = comment.content
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "dd-MM"
-    commentsDateLabel.text = dateFormatter.stringFromDate(comment.createDate)
-    
+    commentsDateLabel.text = comment.createtime
   }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
 }

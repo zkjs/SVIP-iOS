@@ -13,19 +13,31 @@ class AccountManager: NSObject {
   private(set) var deviceToken = ""
   private(set) var userID = ""
   private(set) var token = ""
-  private(set) var avatarURL = ""
-  private(set) var avatarImage = UIImage(named: "logo_white")
+//  private(set) var avatarImage = UIImage(named: "logo_white")
   private(set) var userName = ""
-  private(set) var sex = "0" // 0女 1男
+  private(set) var sex = 1 // 0女 1男
   private(set) var email = ""
   private(set) var phone = ""
   private(set) var invoice = ""
+  private(set) var activated = "0"
+  private(set) var realname = ""
+  private(set) var userstatus = 0
+  private(set) var viplevel = 0
+  private(set) var password = ""
+  var avatarURL : String {
+    let userDefaults = NSUserDefaults()
+    if let url = userDefaults.objectForKey("avatarURL") as? String {
+      return url.fullImageUrl
+    } else {
+      return ""
+    }
+  }
   
   var sexName: String? {
     get {
-      if sex == "1" {
+      if sex == 1 {
         return "男"
-      } else if sex == "0" {
+      } else if sex == 0 {
         return "女"
       } else {
         return nil
@@ -44,63 +56,68 @@ class AccountManager: NSObject {
     let userDefaults = NSUserDefaults()
     userID = userDefaults.objectForKey("userID") as? String ?? ""
     token = userDefaults.objectForKey("token") as? String ?? ""
-    avatarURL = userDefaults.objectForKey("avatarURL") as? String ?? ""
-    if let url = NSURL(string: avatarURL) {
-      if let imageData = NSData(contentsOfURL: url) {
-        if let image = UIImage(data: imageData) {
-          avatarImage = image
-        }
-      }
-    }
+    //avatarURL = userDefaults.objectForKey("avatarURL") as? String ?? ""
+//    if let url = NSURL(string: avatarURL) {
+//      if let imageData = NSData(contentsOfURL: url) {
+//        if let image = UIImage(data: imageData) {
+//          avatarImage = image
+//        }
+//      }
+//    }
     userName = userDefaults.objectForKey("userName") as? String ?? ""
-    sex = userDefaults.objectForKey("sex") as? String ?? ""
+    sex = userDefaults.objectForKey("sex") as? Int ?? 0
     email = userDefaults.objectForKey("email") as? String ?? ""
     phone = userDefaults.objectForKey("phone") as? String ?? ""
     invoice = userDefaults.objectForKey("invoice") as? String ?? ""
+    activated = userDefaults.objectForKey("activated") as? String ?? "0"
+    userstatus = userDefaults.objectForKey("userstatus") as? Int ?? 0
+    viplevel = userDefaults.objectForKey("viplevel") as? Int ?? 0
+    realname = userDefaults.objectForKey("realname") as? String ?? "0"
+    password = userDefaults.objectForKey("password") as? String ?? "0"
+    
   }
   
   func isLogin() -> Bool {
     return (userID.isEmpty == false && token.isEmpty == false)
   }
   
-  func saveAccountInfo(accountInfo: [String: AnyObject]) {
-    if let userid = accountInfo["userid"] as? String,
-      let token = accountInfo["token"] as? String {
-        userID = userid
-        self.token = token
-        let userDefaults = NSUserDefaults()
-        userDefaults.setObject(userid, forKey: "userID")
-        userDefaults.setObject(token, forKey: "token")
-    } else {
-      print("弹框，返回的userid或token为空")
-    }
-  }
-  
-  func saveBaseInfo(baseInfo: [String: AnyObject]) {
-    avatarURL = kImageURL + "/uploads/users/\(userID).jpg"
-    if let url = NSURL(string: avatarURL) {
-      if let imageData = NSData(contentsOfURL: url) {
-        if let image = UIImage(data: imageData) {
-          avatarImage = image
-        }
-      }
-    }
-    userName = baseInfo["username"] as? String ?? ""
-    sex =  baseInfo["sex"] as? String ?? ""
-    email = baseInfo["email"] as? String ?? ""
-    phone = baseInfo["phone"] as? String ?? ""
-    
+  func saveBaseInfo(json: [String:JSON]) {
+    let imgURL  = json["userimage"]?.string ?? ""
+//    if let url = NSURL(string: imgURL) {
+//      if let imageData = NSData(contentsOfURL: url) {
+//        if let image = UIImage(data: imageData) {
+//          avatarImage = image
+//        }
+//      }
+//    }
+    userID = json["userid"]?.string ?? ""
+    userName = json["username"]?.string ?? ""
+    sex =  json["sex"]?.int ?? 0
+    email = json["email"]?.string ?? ""
+    phone = json["phone"]?.string ?? ""
+    userstatus = json["userstatus"]?.int ?? 0
+    viplevel = json["viplevel"]?.int ?? 0
+    password = json["password"]?.string ?? ""
+    realname = json["realname"]?.string ?? ""
     let userDefaults = NSUserDefaults()
-    userDefaults.setObject(avatarURL, forKey: "avatarURL")
+    userDefaults.setObject(imgURL, forKey: "avatarURL")
     userDefaults.setObject(userName, forKey: "userName")
     userDefaults.setObject(sex, forKey: "sex")
     userDefaults.setObject(email, forKey: "email")
     userDefaults.setObject(phone, forKey: "phone")
+    userDefaults.setObject(activated, forKey: "activated")
+    userDefaults.setObject(viplevel, forKey: "viplevel")
+    userDefaults.setObject(realname, forKey: "realname")
+    userDefaults.setObject(userstatus, forKey: "userstatus")
+    userDefaults.setObject(password, forKey: "password")
+    userDefaults.synchronize()
   }
   
+    
   func saveDeviceToken(deviceToken: String) {
     self.deviceToken = deviceToken
   }
+
   
   func saveUserName(userName: String) {
     self.userName = userName
@@ -114,23 +131,38 @@ class AccountManager: NSObject {
     userDefaults.setObject(invoice, forKey: "invoice")
   }
   
-  func saveAvatarImageData(imageData: NSData) {
-    if let image = UIImage(data: imageData) {
-      avatarImage = image
-    }
+//  func saveAvatarImageData(imageData: NSData) {
+//    if let image = UIImage(data: imageData) {
+//      avatarImage = image
+//    }
+//  }
+  
+  func saveActivated(activated: String) {
+    self.activated = activated
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(activated, forKey: "activated")
   }
   
   
-  func saveSex(sex: String) {
+  func saveSex(sex: Int) {
     self.sex = sex
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(sex, forKey: "sex")
+    userDefaults.synchronize()
   }
   
   func saveEmail(email: String) {
     self.email = email
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(email, forKey: "email")
+    userDefaults.synchronize()
+  }
+  
+  func saveImageUrl(url: String) {
+    if url.isEmpty { return }
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(url, forKey: "avatarURL")
+    userDefaults.synchronize()
   }
   
   func clearAccountCache() {
@@ -143,17 +175,26 @@ class AccountManager: NSObject {
     userDefaults.setObject(nil, forKey: "email")
     userDefaults.setObject(nil, forKey: "phone")
     userDefaults.setObject(nil, forKey: "invoice")
+    userDefaults.setObject(nil, forKey: "activated")
+    userDefaults.setObject(nil, forKey: "userstatus")
+    userDefaults.setObject(nil, forKey: "password")
+    userDefaults.setObject(nil, forKey: "viplevel")
+    userDefaults.setObject(nil, forKey: "realname")
     userDefaults.synchronize()
     
     userID = ""
     token = ""
-    avatarURL = ""
-    avatarImage = UIImage(named: "logo_white")
+//    avatarImage = UIImage(named: "logo_white")
     userName = ""
-    sex = ""
+    sex = 1
     email = ""
     phone = ""
     invoice = ""
+    activated = ""
+    realname = ""
+    userstatus = 0
+    viplevel = 0
+    password = ""
   }
   
 }

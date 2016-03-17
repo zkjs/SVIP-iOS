@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 target 'SVIP' do
   pod 'ASIHTTPRequest', :git => 'https://github.com/hanton/asi-http-request'
-  pod 'EaseMobSDKFull'
+  pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-integration.git'
   pod 'HexColors', '~> 2.3.0'
   pod 'JCTagListView'
   pod 'AMapSearch'
@@ -24,7 +24,7 @@ target 'SVIP' do
 #  pod 'SSKeychain', '~> 1.2.3'
   pod 'JTSImageViewController'
   pod 'EDStarRating'
-  pod 'XLPagerTabStrip'
+  pod 'XLPagerTabStrip', '~> 3.0.0'
   pod 'Pingpp', '~> 2.1.0'
   pod 'LTNavigationBar'
   pod 'UMengAnalytics-NO-IDFA'#无IDFA版友盟SDK

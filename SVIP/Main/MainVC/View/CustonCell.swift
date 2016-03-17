@@ -53,8 +53,9 @@ class CustonCell: UITableViewCell {
     animation.toValue = NSNumber(double: 1.4)
     hotelImageView.layer.addAnimation(animation, forKey: "scale-layer")
     if homeUrl != "" {
-      let url = kImageURL + homeUrl
-      hotelImageView.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "img_background_qidong"))
+      hotelImageView.sd_setImageWithURL(NSURL(string: homeUrl.fullImageUrl), placeholderImage: UIImage(named: "img_background_qidong"))
+    } else {
+      hotelImageView.image = UIImage(named: "img_background_qidong")
     }
     let nowDate = NSDate()
     let hourFormatter = NSDateFormatter()
@@ -80,14 +81,10 @@ class CustonCell: UITableViewCell {
       hourLabel = "晚上好"
     }
     greetLabel.text = hourLabel
+    
+    let loginStats = TokenPayload.sharedInstance.isLogin
     let sex = AccountManager.sharedInstance().sex
-    if sex == "1" {
-      sexString = "先生"
-    } else {
-      sexString  = "女士"
-    }
-    let loginStats = AccountManager.sharedInstance().isLogin()
-//    let image = AccountManager.sharedInstance().avatarImage
+    sexString = loginStats ? (sex == 1 ? "先生" : "女士") : ""
     
     if loginStats == false {
       userNameLabel.text = ""//没登陆时不显示名字(不要删掉)
@@ -103,17 +100,11 @@ class CustonCell: UITableViewCell {
       activeButton.frame = CGRectMake(CGRectGetMaxX(frame)+8, CGRectGetMinY(frame), CGRectGetWidth(activeButton.frame), CGRectGetHeight(activeButton.frame))
       activeButton.setTitle("立即激活", forState: UIControlState.Normal)
       activeButton.tintColor = UIColor.ZKJS_mainColor()
-      dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
+//      dynamicLabel.text = "输入邀请码激活身份，享受超凡个性服务"
     }
     if loginStats == true && activate == true {
       userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
       dynamicLabel.text = "使用超级身份，享受超凡个性服务"
-      activeButton.hidden = true
-    }
-    if loginStats == true && activate == true && beacon != nil {
-      userNameLabel.text = AccountManager.sharedInstance().userName + " \(self.sexString)"
-//      dynamicLabel.text = "欢迎光临\(beacon!["remark"])"
-      dynamicLabel.text = ""
       activeButton.hidden = true
     }
   }

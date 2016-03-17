@@ -44,15 +44,22 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   var shopid: NSNumber!
   var shopName: String!
   var saleid: String!
-  var shopDetail = DetailModel()
   var timer = NSTimer()
-  var imgUrlArray = NSArray()
+  var imgUrlArray = [String]()
   var originOffsetY: CGFloat = 0.0
   var photosArray = NSMutableArray()
   var photo = MWPhoto()
   var thumb = MWPhoto()
   var web = UIWebView()
   var height = CGFloat()
+  var shopDetail : ShopDetailModel? {
+    didSet {
+      self.imgUrlArray = self.shopDetail?.images ?? []
+      self.setupUI()
+      self.tableView.reloadData()
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -84,7 +91,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       tableView.layoutMargins = UIEdgeInsetsZero
     }
     
-    loadData()
+    //loadData()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -115,7 +122,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   }
   
   func loadData() {
-    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       if let dict = responsObject as? NSDictionary {
         self.shopDetail = DetailModel(dic: dict)
         self.imgUrlArray = self.shopDetail.images
@@ -124,16 +131,23 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       self.tableView.reloadData()
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
+    }*/
+    
+    HttpService.sharedInstance.getShopDetail(String(shopid)) { (shop, error) -> Void in
+      if let shop = shop {
+        self.shopDetail = shop
+        self.imgUrlArray = self.shopDetail?.images ?? []
+      }
+      self.setupUI()
+      self.tableView.reloadData()
     }
+
   }
   
   func setupUI() {
-    if shopDetail.shopdescUrl != nil {
-//      web.loadHTMLString(shopDetail.shopdescUrl, baseURL: nil)
-//      web.scrollView.userInteractionEnabled = false
-//      web.delegate = self
+    if let shopDesc = shopDetail?.shopdesc  {
       do {
-        let attributedString = try NSAttributedString(data: shopDetail.shopdescUrl.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+        let attributedString = try NSAttributedString(data: shopDesc.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
         shopDetailTextView.attributedText = attributedString
         let fixedWidth = UIScreen.mainScreen().bounds.width
         let newSize = shopDetailTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
@@ -146,8 +160,10 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       }
     }
     
-    commentsLabel.text = shopDetail.evaluation
-    addressLabel.text = shopDetail.address
+    guard let shopDetail = shopDetail else { return }
+    
+    commentsLabel.text = String(shopDetail.evaluation) ?? ""
+    addressLabel.text = shopDetail.shopaddress
     telphoneLabel.text = shopDetail.telephone
     timer = NSTimer.scheduledTimerWithTimeInterval(7, target: self, selector: "runTimePage", userInfo: nil, repeats: true)
     let count = shopDetail.images.count
@@ -160,7 +176,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       imgView.addTarget(self, action: "photoViewer")
       imgView.contentMode = UIViewContentMode.ScaleAspectFill
       if let image = shopDetail.images[i] as? String {
-        let url = NSURL(string: kImageURL + image)
+        let url = NSURL(string: image)
         imgView.sd_setImageWithURL(url, placeholderImage: nil)
         self.photo = MWPhoto(URL: url!)
         self.photosArray.addObject(photo)
@@ -176,7 +192,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     imageView.addTarget(self, action: "photoViewer")
     imageView.clipsToBounds = true
     imageView.contentMode = UIViewContentMode.ScaleAspectFill
-    let url = NSURL(string: shopDetail.images[count - 1] as! String)
+    let url = NSURL(string: shopDetail.images[count - 1])
     imageView.sd_setImageWithURL(url, placeholderImage: nil)
     scrollView.addSubview(imageView)
     // 取数组第一张图片 放在最后1页
@@ -184,7 +200,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
     imageView.clipsToBounds = true
     imageView.contentMode = UIViewContentMode.ScaleAspectFill
     imageView.addTarget(self, action: "photoViewer")
-    let Url = NSURL(string: shopDetail.images[0] as! String)
+    let Url = NSURL(string: shopDetail.images[0] )
     imageView.sd_setImageWithURL(Url, placeholderImage: nil)
     scrollView.addSubview(imageView)
     scrollView.contentSize = CGSizeMake(view.bounds.size.width * CGFloat(count + 2), 400)//  +上第1页和第4页  原理：4-[1-2-3-4]-1
@@ -209,6 +225,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   
   //MARK: - ScrollView Delegate
   override func scrollViewDidScroll(scrollView: UIScrollView) {
+    guard let shopDetail = shopDetail else { return }
     let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
       var page = Int((self.scrollView.contentOffset.x - pageWidth/(CGFloat(shopDetail.images.count+2)))/pageWidth) + 1
@@ -228,6 +245,7 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
   }
   
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    guard let shopDetail = shopDetail else { return }
     let pageWidth:CGFloat = scrollView.frame.size.width
     if imgUrlArray.count != 0 {
       let currentPage = Int((self.scrollView.contentOffset.x - pageWidth/(CGFloat(shopDetail.images.count+2)))/pageWidth) + 1
@@ -260,8 +278,8 @@ class BusinessDetailTVC: UITableViewController,EDStarRatingProtocol, MWPhotoBrow
       starRating.maxRating = 5
       starRating.delegate = self
       starRating.horizontalMargin = 12
-      if let score = self.shopDetail.score {
-        starRating.rating = score.floatValue
+      if let score = self.shopDetail?.score {
+        starRating.rating = Float(score)
       }
       cell.accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
       cell.addSubview(starRating)

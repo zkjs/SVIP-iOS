@@ -543,7 +543,7 @@
 
 - (void)_sendFirstMessage {
   if ([self.firstMessage length] != 0) {
-    if ([self.firstMessage isEqualToString:@"Card"]) {
+    if ([self.firstMessage isEqualToString:@"Card"] ) {
       NSMutableDictionary *content = [NSMutableDictionary dictionary];
       content[@"roomtype"] = self.order.roomtype;
       content[@"arrivaldate"] = self.order.arrivaldate;
@@ -567,15 +567,45 @@
       }
     } else {
       [self sendTextMessage:self.firstMessage];
+  }
+  }
+  
+  if ([self.cancleMessage length] != 0) {
+    if ([self.cancleMessage isEqualToString:@"card"] ) {
+      NSMutableDictionary *content = [NSMutableDictionary dictionary];
+      content[@"roomtype"] = self.order.roomtype;
+      content[@"arrivaldate"] = self.order.arrivaldate;
+      content[@"leavedate"] = self.order.leavedate;
+      content[@"content"] = @"您好，我已取消订单，请跟进";
+      content[@"imgurl"] = self.order.imgurl;
+      content[@"orderno"] = self.order.orderno;
+      content[@"orderstatus"] = self.order.orderstatus;
+      NSError *error;
+      NSData *jsonData = [NSJSONSerialization dataWithJSONObject:content
+                                                         options:0
+                                                           error:&error];
+      if (!jsonData) {
+        NSLog(@"Got an error: %@", error);
+      } else {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:self.conversation.ext];
+        ext[@"extType"] = @(1);
+        [self sendTextMessage:jsonString withExt:ext];
+        [self sendTextMessage:@"您好，我已取消订单，请跟进"];
+      }
+    } else {
+      [self sendTextMessage:self.cancleMessage];
     }
   }
+  
+
 }
 
 #pragma mark - HotelOrderDetailTVCDelegate
 
 -(void)shouldSendTextMessage:(NSString *)message {
-  [self sendTextMessage: message];
-  NSLog(@"send: %@", message);
+      [self sendTextMessage: message];
+      NSLog(@"send: %@", message);
 }
 
 #pragma mark - public refresh

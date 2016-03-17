@@ -38,12 +38,15 @@ class EmailVC: UIViewController {
       showHint("邮箱格式有误")
       return
     }
-    ZKJSHTTPSessionManager.sharedInstance().updateUserInfoWithUsername(nil, imageData: nil, sex: nil, email: email, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+
+    HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: nil, email: email) {[unowned self] (json, error) -> () in
+      if let _ = error {
+        self.showHint("修改邮箱失败")
+      } else {
       AccountManager.sharedInstance().saveEmail(email)
       self.navigationController?.popViewControllerAnimated(true)
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        
-    })
+      }
+    }
   }
   
 }

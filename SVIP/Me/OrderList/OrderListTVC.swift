@@ -38,6 +38,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       tableView.layoutMargins = UIEdgeInsetsZero
     }
     
+    navigationController?.interactivePopGestureRecognizer?.enabled = false
   }
   
   override func viewWillAppear(animated: Bool) {

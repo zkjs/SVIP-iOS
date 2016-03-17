@@ -157,10 +157,11 @@ class BookPayVC: UIViewController {
     let txtChat = EMChatText(text: text)
     let body = EMTextMessageBody(chatObject: txtChat)
     let message = EMMessage(receiver: bkOrder.saleid, bodies: [body])
-    let ext = ["shopId": bkOrder.shopid,
+    let ext: [String: AnyObject] = ["shopId": bkOrder.shopid,
       "shopName": bkOrder.shopname,
       "toName": "",
-      "fromName": userName]
+      "fromName": userName,
+      "extType": 0]
     message.ext = ext
     message.messageType = .eMessageTypeChat
     EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
