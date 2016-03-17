@@ -3,16 +3,13 @@
 //
 #import "NSData+AES256.h"
 #import <CommonCrypto/CommonCryptor.h>
-#import "AFNetworking.h"
 #import "NSString+ZKJS.h"
 #import "MJRefresh.h"
-#import "ZKJSHTTPSessionManager.h"
 #import "ZKJSTool.h"
 #import "SWTableViewCell.h"
 #import "MIBadgeButton.h"
 #import "SKTagView.h"
 #import "Masonry.h"
-#import "ZKJSJavaHTTPSessionManager.h"
 #import "UIImageView+EMWebCache.h"
 #import "UIButton+EMWebCache.h"
 #import "BlurDatePickerView.h"
@@ -24,12 +21,9 @@
 #import <CommonCrypto/CommonDigest.h>
 //#import "UMSocial.h"
 //#import "UMSocialWechatHandler.h"
-#import "AMapSearchAPI.h"
 #import "NSString+JSH.h"
 #import "TimesSquare.h"//日历选择
 #import "HexColors.h"
-#import "ZKJSHTTPSMSSessionManager.h"
-#import "ZKJSLocationHTTPSessionManager.h"
 #import "JCTagListView.h"
 #import "EDStarRating.h"
 #import "XLSegmentedPagerTabStripViewController.h"
@@ -50,8 +44,4 @@
 #import "BrowserImageView.h"
 #import "MWPhotoBrowser.h"
 #import "Configure.h"
-#import "AMapNaviManager.h"
-#import "AMapNaviRoute.h"
-#import "AMapNaviServices.h"
 #import "MobClick.h"
-#import "AMapLocationKit.h"

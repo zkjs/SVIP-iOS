@@ -59,7 +59,7 @@ class BookHotelListTVC: UITableViewController {
   }
   
   private func loadData() {
-    ZKJSHTTPSessionManager .sharedInstance() .getAllShopInfoWithPage(1, key: nil, isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager .sharedInstance() .getAllShopInfoWithPage(1, key: nil, isDesc: true, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let array = responseObject as? NSArray {
         for dic in array {
           let hotelData = Hotel(dic: dic as! NSDictionary)
@@ -69,7 +69,7 @@ class BookHotelListTVC: UITableViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.showHint("加载数据失败")
-    }
+    }*/
   }
   
   // MARK: - Table view data source

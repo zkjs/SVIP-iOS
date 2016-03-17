@@ -46,14 +46,14 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
   
   // MARK: - Public
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getGuestListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getGuestListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? NSArray {
         self.dataArray.addObjectsFromArray(arr as [AnyObject])
         self.tableView.reloadData()
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.showHint("加载失败")
-    })
+    })*/
   }
   func done() {
     if headerView.textField.text!.isEmpty {
@@ -73,7 +73,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
     }
     let param = ["realname" :headerView.textField.text!]
     let paramDic = NSDictionary(dictionary: param)
-    ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(paramDic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().addGuestWithParam(paramDic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
@@ -81,7 +81,7 @@ class NameTVC: UITableViewController, UITextFieldDelegate {
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    })
+    })*/
 }
   
   func hideKeyboard() {

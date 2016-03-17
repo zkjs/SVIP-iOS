@@ -44,7 +44,7 @@ class KTVOrderDetailTVC: UITableViewController {
   
   func loadData() {
     //获取订单详情
-    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let dic = responseObject as? NSDictionary {
         self.orderDetail = OrderDetailModel(dic: dic)
@@ -52,7 +52,7 @@ class KTVOrderDetailTVC: UITableViewController {
       self.tableView.reloadData()
       self.setUI()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-    }
+    }*/
     
   }
   
@@ -91,7 +91,7 @@ class KTVOrderDetailTVC: UITableViewController {
       vc.bkOrder = self.orderDetail
       self.navigationController?.pushViewController(vc, animated: true)
     } else {
-      showHUDInView(view, withLoading: "")
+      /*showHUDInView(view, withLoading: "")
       ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:1, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         print(responsObjects)
         if let dic = responsObjects as? NSDictionary {
@@ -106,14 +106,14 @@ class KTVOrderDetailTVC: UITableViewController {
         }
         }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
           
-      }
+      }*/
     }
     
   }
   
   func cancle(sender:UIButton) {
     showHUDInView(view, withLoading: "")
-    ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
         self.orderno = dic["data"] as! String
         if let result = dic["result"] as? NSNumber {
@@ -125,7 +125,7 @@ class KTVOrderDetailTVC: UITableViewController {
       }
       }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   func pay(sender:UIButton) {
@@ -136,14 +136,14 @@ class KTVOrderDetailTVC: UITableViewController {
       navigationController?.pushViewController(payVC, animated: true)
     } else {
       showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      /*ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:1, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
         self.hideHUD()
         self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           print(error)
           self.hideHUD()
-      })
+      })*/
     }
     
   }

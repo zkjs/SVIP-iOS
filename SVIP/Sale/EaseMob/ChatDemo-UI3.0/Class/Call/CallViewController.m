@@ -14,7 +14,6 @@
 #import <CoreTelephony/CTCall.h>
 #import "CallViewController.h"
 #import "EaseUI.h"
-#import "ZKJSHTTPSessionManager.h"
 
 #define kAlertViewTag_Close 100
 #define kLocalCallBitrate @"EaseMobLocalCallBitrate"
@@ -80,13 +79,13 @@
     
     [self _setupSubviews];
   
-  [[ZKJSHTTPSessionManager sharedInstance] getUserInfoWithChatterID:_chatter success:^(NSURLSessionDataTask *task, id responseObject) {
+  /*[[ZKJSHTTPSessionManager sharedInstance] getUserInfoWithChatterID:_chatter success:^(NSURLSessionDataTask *task, id responseObject) {
     dispatch_async(dispatch_get_main_queue(), ^{
       _nameLabel.text = responseObject[@"username"];
     });
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     
-  }];
+  }];*/
 //    _nameLabel.text = _chatter;
     if (_callSession.type == eCallSessionTypeVideo) {
         [self _initializeCamera];

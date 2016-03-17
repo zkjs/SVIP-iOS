@@ -60,7 +60,7 @@ class InvoiceDetailVC: UIViewController {
       showHint("请填写发票信息")
       return
     }
-    ZKJSHTTPSessionManager.sharedInstance().addInvoiceWithTitle(title, isDefault: isDefaultButton.selected, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().addInvoiceWithTitle(title, isDefault: isDefaultButton.selected, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject as? [String: AnyObject] {
         if let set = data["set"] as? NSNumber {
           if set.boolValue {
@@ -71,12 +71,12 @@ class InvoiceDetailVC: UIViewController {
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    })
+    })*/
   }
   
   func updateInvoice() {
     guard let title = titleTextField.text else { return }
-    ZKJSHTTPSessionManager.sharedInstance().modifyInvoiceWithInvoiceid(invoice.id, title: title, isDefault: isDefaultButton.selected, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().modifyInvoiceWithInvoiceid(invoice.id, title: title, isDefault: isDefaultButton.selected, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let data = responseObject as? [String: AnyObject] {
         if let set = data["set"] as? NSNumber {
           if set.boolValue {
@@ -87,7 +87,7 @@ class InvoiceDetailVC: UIViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
 }

@@ -79,12 +79,9 @@ class BookConfirmVC: UIViewController {
   private func setupUI() {
     inDate.baseTitle = "入住时间"
     outDate.baseTitle = "离开时间"
-    let baseUrl = kImageURL
     if let goodsImage = goods?.image {
       let placeholderImage = UIImage(named: "星空中心")
-      var url = NSURL(string: baseUrl)
-      url = url?.URLByAppendingPathComponent(goodsImage)
-      roomLook.sd_setImageWithURL(url,
+      roomLook.sd_setImageWithURL(NSURL(string: goodsImage.fullImageUrl),
         placeholderImage: placeholderImage,
         options: [.LowPriority, .RetryFailed],
         completed: nil)
@@ -165,7 +162,7 @@ class BookConfirmVC: UIViewController {
     }
     order.arrival_date = inDate.dateString
     order.departure_date = outDate.dateString
-    ZKJSHTTPSessionManager.sharedInstance().postBookingInfoWithShopID(order.shopid.stringValue,
+    /*ZKJSHTTPSessionManager.sharedInstance().postBookingInfoWithShopID(order.shopid.stringValue,
       goodsID: order.room_typeid,
       guest: order.guest,
       guestPhone: order.guesttel,
@@ -185,7 +182,7 @@ class BookConfirmVC: UIViewController {
         self.navigationController?.pushViewController(payVC, animated: true)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
 }

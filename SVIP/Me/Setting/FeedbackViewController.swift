@@ -46,7 +46,7 @@ class FeedbackViewController: UIViewController {
       return
     }
     showHUDInView(view, withLoading: "")
-    ZKJSHTTPSessionManager.sharedInstance().addFeedbackWithContent(feedBackTextView.text, success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().addFeedbackWithContent(feedBackTextView.text, success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
       print(responsObjects)
       if let dic = responsObjects as? NSDictionary {
         if let set = dic["set"] as? NSNumber {
@@ -60,7 +60,7 @@ class FeedbackViewController: UIViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

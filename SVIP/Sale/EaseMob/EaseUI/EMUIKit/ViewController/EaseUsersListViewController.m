@@ -9,7 +9,6 @@
 #import "EaseUsersListViewController.h"
 
 #import "UIViewController+HUD.h"
-#import "ZKJSHTTPSessionManager.h"
 
 @interface EaseUsersListViewController ()<EMChatManagerDelegate>
 

@@ -218,11 +218,8 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       self.roomsTypeLabel.text = goods.room
       self.roomsTypeLabel.textColor = UIColor.ZKJS_navTitleColor()
       self.goods = goods
-      let baseUrl = kImageURL
       if let goodsImage = goods.image {
-        var url = NSURL(string: baseUrl)
-        url = url?.URLByAppendingPathComponent(goodsImage)
-        self.roomImage.sd_setImageWithURL(url)
+        self.roomImage.sd_setImageWithURL(NSURL(string: goodsImage.fullImageUrl))
       }
     }
     navigationController?.pushViewController(vc, animated: true)
@@ -250,7 +247,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
   
   func gotoChatVC() {
     showHUDInView(view, withLoading: "")
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if responseObject == nil {
         return
       }
@@ -258,7 +255,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         print(error)
-    }
+    }*/
   }
   
   func chooseChatterWithData(data: AnyObject) {
@@ -336,7 +333,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
     dic["company"] = invoinceLabel.text
     dic["remark"] = self.remarkTextView.text
     
-    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("0", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       if let orderno = responObjects["data"] as? String {
         let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
         let order = self.packetOrderWithOrderNO(orderno)
@@ -355,7 +352,7 @@ class HotelOrderTVC: UITableViewController,UITextFieldDelegate {
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         print(error)
-    }
+    }*/
   }
   
   func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {

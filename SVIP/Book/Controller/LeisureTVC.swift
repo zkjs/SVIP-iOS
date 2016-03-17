@@ -146,12 +146,12 @@ class LeisureTVC: UITableViewController {
   }
   
   func gotoChatVC() {
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   func chooseChatterWithData(data: AnyObject) {
@@ -213,7 +213,7 @@ class LeisureTVC: UITableViewController {
     dic["company"] = ""
     dic["remark"] = self.remarkTextView.text
     
-    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("2", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("2", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       print(responObjects)
       if let orderno = responObjects["data"] as? String {
         let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
@@ -233,7 +233,7 @@ class LeisureTVC: UITableViewController {
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         
-    }
+    }*/
   }
   
   func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {

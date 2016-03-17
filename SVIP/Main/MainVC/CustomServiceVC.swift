@@ -44,11 +44,11 @@ class CustomServiceVC: UIViewController {
    // registerNotification()
      let order = StorageManager.sharedInstance().lastOrder()
      let shopID = order?.shopid
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID!.stringValue, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID!.stringValue, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
     self.view.removeFromSuperview()
 
   }

@@ -50,8 +50,7 @@ class AddSalesVC: UIViewController {
   
   func setupUI() {
     if let sales = self.sales {
-      let url = NSURL(string: kImageURL)?.URLByAppendingPathComponent("/uploads/users/\(sales.userid).jpg")
-      imageView.sd_setImageWithURL(url)
+      imageView.sd_setImageWithURL(NSURL(string: "\(ZKJSConfig.sharedInstance.BaseImageURL)/uploads/users/\(sales.userid).jpg"))
       salesnameLabel.text = sales.username
       salesnameLabel.sizeToFit()
       shopnameLabel.text = sales.shop_name
@@ -70,7 +69,7 @@ class AddSalesVC: UIViewController {
   }
   
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getSalesWithID(salesid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getSalesWithID(salesid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let data = responseObject as? [String: AnyObject] {
         if let set = data["set"] as? NSNumber {
@@ -88,7 +87,7 @@ class AddSalesVC: UIViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   @IBAction func addWaiter(sender: AnyObject) {
@@ -98,7 +97,7 @@ class AddSalesVC: UIViewController {
       self.shopid = String(shopid)
     }
     
-    ZKJSHTTPSessionManager.sharedInstance().userAddwaiterWithSalesID(salesid, shopID: shopid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().userAddwaiterWithSalesID(salesid, shopID: shopid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let data = responseObject as? [String: AnyObject] {
         if let set = data["set"] as? Bool {
@@ -122,7 +121,7 @@ class AddSalesVC: UIViewController {
         self.showHint("您已经添加过该服务员")
         self.navigationController?.popViewControllerAnimated(true)
         self.hideHUD()
-    }
+    }*/
   }
   
   func sendAddSalesCmdMessage() {

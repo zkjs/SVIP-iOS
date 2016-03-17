@@ -45,7 +45,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
   }
   
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getInvoiceListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let arr = responseObject as? [AnyObject] {
         self.dataArray.removeAllObjects()
         for dic in arr {
@@ -62,7 +62,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    })
+    })*/
   }
   // MARK: - Public
   
@@ -83,7 +83,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
       }
     }
     
-    ZKJSHTTPSessionManager.sharedInstance().addInvoiceWithTitle(headerView.textField.text, isDefault:false, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().addInvoiceWithTitle(headerView.textField.text, isDefault:false, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let dic = responseObject as? NSDictionary {
         let set = dic["set"]!.boolValue!
         if set {
@@ -92,7 +92,7 @@ class ReceiptTVC: UITableViewController, UITextFieldDelegate {
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    })
+    })*/
   }
   
   func hideKeyboard() {

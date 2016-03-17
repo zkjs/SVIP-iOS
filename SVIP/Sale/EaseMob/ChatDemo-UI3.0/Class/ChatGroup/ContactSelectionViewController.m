@@ -17,7 +17,6 @@
 #import "EMSearchDisplayController.h"
 #import "RealtimeSearchUtil.h"
 #import "EaseUI.h"
-#import "ZKJSHTTPSessionManager.h"
 //#import "SuperService-Swift.h"
 
 @interface ContactSelectionViewController ()<UISearchBarDelegate, UISearchDisplayDelegate>

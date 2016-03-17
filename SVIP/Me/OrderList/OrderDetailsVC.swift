@@ -104,7 +104,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
     dic["userid"] = userID
     showHUDInView(view, withLoading: "")
     print(dic)
-    ZKJSJavaHTTPSessionManager.sharedInstance().evaluationWithData(dic, success: { (task: NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().evaluationWithData(dic, success: { (task: NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
       self.hideHUD()
       if let dic = responsObjects as? NSDictionary {
         if let result = dic["result"] as? NSNumber {
@@ -117,7 +117,7 @@ class OrderDetailsVC: UIViewController,EDStarRatingProtocol {
       }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
 }
 

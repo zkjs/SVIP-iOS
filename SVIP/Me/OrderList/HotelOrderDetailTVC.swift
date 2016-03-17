@@ -104,7 +104,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     guard let reservation_no = reservation_no else { return }
     showHUDInView(view, withLoading: "")
     tableView.scrollEnabled = false
-    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let dic = responseObject as? NSDictionary {
         print(dic)
@@ -119,7 +119,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       self.tableView.scrollEnabled = true
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.hideHUD()
-    }
+    }*/
   }
   
   func setUI() {
@@ -130,10 +130,8 @@ class HotelOrderDetailTVC:  UITableViewController {
     roomsCountLabel.text = String(orderDetail.roomcount)
     privilageLabel.text = orderDetail.privilegeName
     ordernoLabel.text = orderDetail.orderno
-    let url = NSURL(string: kImageURL)
     if let shoplogo = orderDetail.imgurl {
-      let urlStr = url?.URLByAppendingPathComponent("\(shoplogo)")
-      hotelImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "bg_zuijinliulan"))
+      hotelImageView.sd_setImageWithURL(NSURL(string: shoplogo.fullImageUrl), placeholderImage: UIImage(named: "bg_zuijinliulan"))
     }
     if orderDetail.orderstatus == "已取消" {
       pendingConfirmationLabel.text = "  您的订单已取消"
@@ -202,7 +200,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   
   func confirm(sender:UIButton) {
       showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
+      /*ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
         if let dic = responsObjects as? NSDictionary {
           self.orderno = dic["data"] as! String
           if let result = dic["result"] as? NSNumber {
@@ -216,7 +214,7 @@ class HotelOrderDetailTVC:  UITableViewController {
         }
         }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
           
-      }
+      }*/
     
     
   }
@@ -236,7 +234,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   
   func gotoChatVC() {
     showHUDInView(view, withLoading: "")
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(orderDetail.shopid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(orderDetail.shopid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if responseObject == nil {
         return
       }
@@ -245,7 +243,7 @@ class HotelOrderDetailTVC:  UITableViewController {
 //       self.sendMessageNotificationWithText("您好，我已取消订单，请跟进")
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         print(error)
-    }
+    }*/
   }
   
   func sendMessageNotificationWithText(text: String) {
@@ -270,7 +268,7 @@ class HotelOrderDetailTVC:  UITableViewController {
   
   func cancleOrder() {
     showHUDInTableView(tableView, withLoading: "")
-    ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().cancleOrderWithOrderNo(orderDetail.orderno, success: { (task: NSURLSessionDataTask!, responsObjects:AnyObject!)-> Void in
       if let dic = responsObjects as? NSDictionary {
         self.orderno = dic["data"] as! String
         if let result = dic["result"] as? NSNumber {
@@ -286,7 +284,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       }
       }) { (task: NSURLSessionDataTask!, eeror: NSError!) -> Void in
         
-    }
+    }*/
 
   }
   
@@ -300,7 +298,7 @@ class HotelOrderDetailTVC:  UITableViewController {
       navigationController?.pushViewController(payVC, animated: true)
     } else {
       showHUDInView(view, withLoading: "")
-      ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      /*ZKJSJavaHTTPSessionManager.sharedInstance().confirmOrderWithOrderNo(orderDetail.orderno,status:2, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         print(responseObject)
         self.sendMessageNotificationWithText("订单已确认")
         self.hideHUD()
@@ -308,7 +306,7 @@ class HotelOrderDetailTVC:  UITableViewController {
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           print(error)
           self.hideHUD()
-      })
+      })*/
     }
     
   }
@@ -375,8 +373,7 @@ class HotelOrderDetailTVC:  UITableViewController {
     order.leavedate = self.orderDetail.leavedate
 
     if let shoplogo = orderDetail.imgurl {
-      let urlStr = kImageURL + "\(shoplogo)"
-      order.imgurl = urlStr
+      order.imgurl = shoplogo.fullImageUrl
     }
     order.orderno = orderNO
     order.orderstatus = "已取消"

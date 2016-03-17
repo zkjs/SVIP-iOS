@@ -155,12 +155,12 @@ class KTVTableView: UITableViewController {
   }
   
   func gotoChatVC() {
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(String(shopid), success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   func chooseChatterWithData(data: AnyObject) {
@@ -227,7 +227,7 @@ class KTVTableView: UITableViewController {
     dic["remark"] = self.remarkView.text
    
     
-    ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("1", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().addOrderWithCategory("1", data: dic, success: { (task:NSURLSessionDataTask!, responObjects:AnyObject!) -> Void in
       print(responObjects)
       if let orderno = responObjects["data"] as? String {
         let vc = ChatViewController(conversationChatter: salesID, conversationType: .eConversationTypeChat)
@@ -247,7 +247,7 @@ class KTVTableView: UITableViewController {
       }
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         print(error)
-    }
+    }*/
   }
   
   func packetOrderWithOrderNO(orderNO: String) -> OrderDetailModel {

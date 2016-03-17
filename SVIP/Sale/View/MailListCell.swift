@@ -34,8 +34,7 @@ class MailListCell: UITableViewCell {
   func setData(contact:ContactModel) {
     shopNameLabel.text = contact.shop_name
     contactNameLabel.text = contact.fname
-    let url = NSURL(string: kImageURL)
-    let urlStr = url?.URLByAppendingPathComponent("/uploads/users/\(contact.fuid).jpg")
+    let urlStr = NSURL(string: "\(ZKJSConfig.sharedInstance.BaseImageURL)/uploads/users/\(contact.fuid).jpg")
     contactImageView.sd_setImageWithURL(urlStr, placeholderImage: UIImage(named: "ic_home_nor"))
   }
   

@@ -25,7 +25,7 @@ let AMapKey = "7945ba33067bb07845e8a60d12135885"
 //var reach: TMReachability?
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var loginManager: LoginManager?
   var window: UIWindow?
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, HTTPSessionManagerDelegat
     setupUMStatistics()
     setupEaseMobWithApplication(application, launchOptions: launchOptions)
     refreshToken()
-    ZKJSHTTPSessionManager.sharedInstance().delegate = self
+    //ZKJSHTTPSessionManager.sharedInstance().delegate = self
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()

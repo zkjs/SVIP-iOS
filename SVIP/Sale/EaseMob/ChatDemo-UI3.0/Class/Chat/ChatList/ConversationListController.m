@@ -9,7 +9,6 @@
 #import "ConversationListController.h"
 
 #import "ChatViewController.h"
-#import "ZKJSHTTPSessionManager.h"
 #import "SVIP-Swift.h"
 #import "EaseUI.h"
 #import "ContactSelectionViewController.h"
@@ -243,7 +242,7 @@
       model.avatarImage = [UIImage imageNamed:@"ic_home_nor"];
     } else {
       NSString *url = [NSString stringWithFormat:@"/uploads/users/%@.jpg", conversation.chatter];
-      model.avatarURLPath = [kImageURL stringByAppendingString:url];
+      //model.avatarURLPath = [kImageURL stringByAppendingString:url];
     }
   } else if (model.conversation.conversationType == eConversationTypeGroupChat) {
     if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"]) {

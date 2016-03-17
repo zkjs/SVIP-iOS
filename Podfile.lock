@@ -1,30 +1,4 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - AMapLocation (1.1.1)
-  - AMapNavi (1.5.0)
-  - AMapSearch (3.2.0)
-  - ASIHTTPRequest:
-    - Reachability (~> 3.2)
   - EaseMobSDKFull (2.2.1.2)
   - EDStarRating (1.1)
   - HexColors (2.3.0)
@@ -47,20 +21,13 @@ PODS:
     - Pingpp/Core
   - Pingpp/Wx (2.1.4):
     - Pingpp/Core
-  - Reachability (3.2)
   - SKTagView (0.7):
     - Masonry
-  - SocketRocket (0.4.2)
   - SWTableViewCell (0.3.7)
   - UMengAnalytics-NO-IDFA (3.6.7)
   - XLPagerTabStrip (3.0.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.6.3)
-  - AMapLocation
-  - AMapNavi
-  - AMapSearch
-  - ASIHTTPRequest (from `https://github.com/hanton/asi-http-request`)
   - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - EDStarRating
   - HexColors (~> 2.3.0)
@@ -72,14 +39,11 @@ DEPENDENCIES:
   - MJRefresh
   - Pingpp (~> 2.1.0)
   - SKTagView (from `https://github.com/hanton/SKTagView`, branch `master`)
-  - SocketRocket
   - SWTableViewCell
   - UMengAnalytics-NO-IDFA
   - XLPagerTabStrip (~> 3.0.0)
 
 EXTERNAL SOURCES:
-  ASIHTTPRequest:
-    :git: https://github.com/hanton/asi-http-request
   EaseMobSDKFull:
     :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
   SKTagView:
@@ -87,9 +51,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/hanton/SKTagView
 
 CHECKOUT OPTIONS:
-  ASIHTTPRequest:
-    :commit: ab2ddd63a6f33d55cfb8ece1a5d026b52445dfab
-    :git: https://github.com/hanton/asi-http-request
   EaseMobSDKFull:
     :commit: f27db4da9c6285f91a71811c2d55af8427368dbf
     :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
@@ -98,11 +59,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/hanton/SKTagView
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AMapLocation: fc0245146ef90811f9590d428e9035a2a64f4526
-  AMapNavi: 605e2dc3bad11fb2649ba4df61b82ab0da389d3f
-  AMapSearch: a885f0702578a441a22cb66fa74f8918c6d19e6f
-  ASIHTTPRequest: b2fb6b7703472faf6571f128ef5d4ed0bd21a563
   EaseMobSDKFull: f8d6281b9b58b90d5594fe7d40e1529790035d65
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
@@ -114,9 +70,7 @@ SPEC CHECKSUMS:
   MIBadgeButton: 96adf626951b013749d86e9ac252ee4673edbab8
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   Pingpp: 08415163eb1791bc07d7d939f1648d2e36a30eda
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SKTagView: 33378cfeb717df04f77489605b013506e91d1da5
-  SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
   XLPagerTabStrip: 0f9f94246c84e7cb60a06ca435da68ac75c8b56e

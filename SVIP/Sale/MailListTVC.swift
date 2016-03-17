@@ -78,7 +78,7 @@ class MailListTVC: UITableViewController {
   }
   
   func loadFriendListData() {
-    ZKJSHTTPSessionManager.sharedInstance().managerFreindListWithFuid("", set: "showFriend", success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().managerFreindListWithFuid("", set: "showFriend", success: { (task:NSURLSessionDataTask!, responsObjects: AnyObject!) -> Void in
 //      print(responsObjects)
       if let array = responsObjects as? NSArray {
         self.contactArray.removeAll()
@@ -100,7 +100,7 @@ class MailListTVC: UITableViewController {
       self.tableView.mj_header.endRefreshing()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.tableView.mj_header.endRefreshing()
-    }
+    }*/
   }
   
   func dismissSelf() {

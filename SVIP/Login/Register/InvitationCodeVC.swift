@@ -174,10 +174,8 @@ extension InvitationCodeVC: UITextFieldDelegate {
           self.saleNameTextField.text = "来自\(self.sales_name)的邀请码"
           self.customLabel.text = "点击确认激活特权，他将成为您的专属客服"
           if let salesid = json["userimage"]?.string {
-            var url = NSURL(string: kImageURL)
-            url = url?.URLByAppendingPathComponent("\(salesid)")
             let placeImage = UIImage(named: "ic_zhijian")
-            self.saleAvatarImageView.sd_setImageWithURL(url, placeholderImage: placeImage)
+            self.saleAvatarImageView.sd_setImageWithURL(NSURL(string: salesid.fullImageUrl), placeholderImage: placeImage)
           }
           
           if let sales_phone = json["phone"]?.number{

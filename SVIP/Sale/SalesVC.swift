@@ -67,7 +67,7 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
         return
       }
       self.showHUDInView(self.view, withLoading: "正在查找...")
-      ZKJSJavaHTTPSessionManager.sharedInstance().checkSalesWithPhone(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      /*ZKJSJavaHTTPSessionManager.sharedInstance().checkSalesWithPhone(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         self.hideHUD()
 //        print(responseObject)
         if let array = responseObject as? [[String: AnyObject]] {
@@ -84,7 +84,7 @@ class SalesVC: XLSegmentedPagerTabStripViewController {
         }
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           self.hideHUD()
-      }
+      }*/
     }
     checkAction.enabled = false
     let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { (_) in

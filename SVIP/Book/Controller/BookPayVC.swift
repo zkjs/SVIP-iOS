@@ -77,13 +77,13 @@ class BookPayVC: UIViewController {
   
   func cancelOrder() {
     showHUDInView(view, withLoading: "正在取消订单")
-    ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithReservationNO(bkOrder.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager .sharedInstance() .cancelOrderWithReservationNO(bkOrder.orderno, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       self.showHint("订单已取消")
       self.dismissViewControllerAnimated(true, completion: nil)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         self.showHint("订单取消失败，请进入订单列表取消订单")
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
+    }*/
   }
   
   func dismissSelf() -> Void {
@@ -104,12 +104,12 @@ class BookPayVC: UIViewController {
       "body":"\(bkOrder.roomtype)" + "\(bkOrder.orderedby)"
     ]
     
-    ZKJSHTTPSessionManager.sharedInstance().pingPayWithDic(dic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().pingPayWithDic(dic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
       self.payAliOrder(dic)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg("请安装支付宝")
-    }
+    }*/
   }
   
   @IBAction private func weixinzhifu(sender: UIButton) {
@@ -121,19 +121,19 @@ class BookPayVC: UIViewController {
       "subject":"\(bkOrder.shopname)" + "\(bkOrder.roomcount)" + "\(bkOrder.roomtype)" + "\(bkOrder.dayInt)晚",
       "body":"\(bkOrder.roomtype)" + "\(bkOrder.orderedby)"
     ]
-    ZKJSHTTPSessionManager.sharedInstance().pingPayWithDic(dic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().pingPayWithDic(dic as [NSObject : AnyObject], success: { (task: NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
       self.payAliOrder(dic)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         ZKJSTool.showMsg("请安装微信")
-    }
+    }*/
   }
   
   //MARK:- ALIPAY
   private func payAliOrder(charge:NSDictionary) {
     Pingpp.createPayment(charge,viewController: self, appURLScheme: "SVIPPAY") { (result:String!, error:PingppError!) -> Void in
       if result == "success" {
-        ZKJSJavaHTTPSessionManager.sharedInstance().orderPayWithOrderno(self.bkOrder.orderno, success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
+        /*ZKJSJavaHTTPSessionManager.sharedInstance().orderPayWithOrderno(self.bkOrder.orderno, success: { (task:NSURLSessionDataTask!, responsObjects:AnyObject!) -> Void in
           print(responsObjects)
           self.sendMessageNotificationWithText("订单已成功支付")
           self.navigationController?.popViewControllerAnimated(false)
@@ -142,7 +142,7 @@ class BookPayVC: UIViewController {
             print(error)
             self.navigationController?.popViewControllerAnimated(false)
             self.delegate?.didFinishPaymentWithStatus(.Fail)
-        })
+        })*/
       } else {
         print(error.getMsg())
         self.navigationController?.popViewControllerAnimated(false)

@@ -40,7 +40,7 @@ class OrderCell: SWTableViewCell {
   }
   
   func setOrder(order: BookOrder) {
-    let urlString = "\(kImageURL)uploads/shops/\(order.shopid).png"
+    let urlString = "\(ZKJSConfig.sharedInstance.BaseImageURL)uploads/shops/\(order.shopid).png"
     let logoURL = NSURL(string: urlString)
     let placeholderImage = UIImage(named: "img_hotel_zhanwei")
     logoImageView.sd_setImageWithURL(logoURL, placeholderImage: placeholderImage, options: [.ProgressiveDownload, .RetryFailed], completed: nil)

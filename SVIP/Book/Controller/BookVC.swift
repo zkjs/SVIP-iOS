@@ -40,7 +40,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   }
   
   func loadRoomTypes() {
-    ZKJSJavaHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getShopGoodsListWithShopID(String(shopid), success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let arr = responseObject as? NSArray {
         for dict in arr {
@@ -53,7 +53,7 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   private func setUI() {
@@ -66,14 +66,14 @@ class BookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   private func loadData() {
     showHUDInView(view, withLoading: "")
-    ZKJSJavaHTTPSessionManager.sharedInstance().accordingMerchantNumberInquiryMerchantWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().accordingMerchantNumberInquiryMerchantWithShopID(String(shopid), success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       self.hideHUD()
       let dic = responsObject as! NSDictionary
       self.hotel = Hotel(dic: dic as! [String:AnyObject])
       self.tableView.reloadData()
       }) { (task:NSURLSessionDataTask!, error:NSError!) -> Void in
         self.hideHUD()
-    }
+    }*/
   }
   
   // MARK: - TABLEVIEW

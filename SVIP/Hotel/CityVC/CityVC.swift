@@ -111,7 +111,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
   }
   
   func getCityListData() {
-    ZKJSHTTPSessionManager.sharedInstance().getCityListSuccess({ (task: NSURLSessionDataTask!, responsObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getCityListSuccess({ (task: NSURLSessionDataTask!, responsObject: AnyObject!) -> Void in
       if let array = responsObject as? NSArray {
         self.cityArray.removeAll()
         for dic in array {
@@ -122,7 +122,7 @@ class CityVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearc
       }
       }) { (task:NSURLSessionDataTask!, error: NSError!) -> Void in
         print(error.description)
-    }
+    }*/
   }
   
   

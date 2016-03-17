@@ -138,7 +138,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
   
   private func loadData() {
     //获取订单详情
-    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getOrderDetailWithOrderNo(bkOrder.reservation_no, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let dic = responseObject as? NSDictionary {
         self.orderDetail = OrderDetailModel(dic: dic)
@@ -150,7 +150,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       self.setupServiceTagView()
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
 //    ZKJSHTTPSessionManager.sharedInstance().getOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
 //      if let dic = responseObject as? NSDictionary {
 //        self.invoiceDic = dic["invoice"] as? [String: AnyObject]
@@ -344,7 +344,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       navigationController?.pushViewController(payVC, animated: true)
     } else {
       // 直接确定订单
-      ZKJSHTTPSessionManager.sharedInstance().modifyOrderWithReservation_no(bkOrder.reservation_no, param: mutDic as [NSObject : AnyObject], success: {[unowned self]  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      /*ZKJSHTTPSessionManager.sharedInstance().modifyOrderWithReservation_no(bkOrder.reservation_no, param: mutDic as [NSObject : AnyObject], success: {[unowned self]  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         ZKJSTool.showMsg("订单已确认")
         if self.type == .Push {
           self.navigationController?.popViewControllerAnimated(true)
@@ -353,7 +353,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         }
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           ZKJSTool.showMsg(error.localizedDescription)
-      })
+      })*/
     }
   }
   
@@ -362,7 +362,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
       //申请退款
     }
     if bkOrder.status.integerValue == OrderStatus.Pending.rawValue {
-      ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      /*ZKJSHTTPSessionManager.sharedInstance().cancelOrderWithReservation_no(bkOrder.reservation_no, success: { [unowned self] (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         ZKJSTool.showMsg("订单已取消")
         if self.type == .Push {
           self.navigationController?.popViewControllerAnimated(true)
@@ -371,7 +371,7 @@ class BookingOrderDetailTVC: UITableViewController, UITextFieldDelegate {
         }
         }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           ZKJSTool.showMsg(error.localizedDescription)
-      })
+      })*/
     }
   }
   

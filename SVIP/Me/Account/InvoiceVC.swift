@@ -39,7 +39,7 @@ class InvoiceVC: UIViewController {
   }
   
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getInvoiceListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getInvoiceListWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       if let array = responseObject as? [[String: AnyObject]] {
         self.dataArray.removeAll()
         for dict in array {
@@ -58,7 +58,7 @@ class InvoiceVC: UIViewController {
       }
       }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    })
+    })*/
   }
   
   
@@ -80,7 +80,7 @@ extension InvoiceVC: SWTableViewCellDelegate {
       showHUDInView(view, withLoading: "正在删除发票...")
       let indexPath = tableView.indexPathForCell(cell)!
       let invoice = dataArray[indexPath.section]
-      ZKJSHTTPSessionManager.sharedInstance().deleteInvoiceWithInvoiceid(invoice.id, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+      /*ZKJSHTTPSessionManager.sharedInstance().deleteInvoiceWithInvoiceid(invoice.id, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
         if let data = responseObject as? [String: AnyObject] {
           if let set = data["set"] as? NSNumber {
             if set.boolValue {
@@ -94,7 +94,7 @@ extension InvoiceVC: SWTableViewCellDelegate {
         }
         }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
           
-      }
+      }*/
     default:
       break
     }

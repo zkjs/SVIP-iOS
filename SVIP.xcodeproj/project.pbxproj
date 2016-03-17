@@ -28,8 +28,6 @@
 		40111DD91C8ED57C00DD2AE1 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DD81C8ED57C00DD2AE1 /* ImageLoader.swift */; };
 		40111DE01C8ED5A300DD2AE1 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DDE1C8ED5A300DD2AE1 /* Misc.swift */; };
 		40111DE21C8ED5B300DD2AE1 /* SpringCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DE11C8ED5B300DD2AE1 /* SpringCombination.swift */; };
-		401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */; };
-		401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 401C1F381C2A2EEC003B9E69 /* XMLReader.m */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404177D11C993EDD00113721 /* LocationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177D01C993EDD00113721 /* LocationStateObserver.swift */; };
@@ -58,8 +56,6 @@
 		40641F141B3E569800CF150D /* SVIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641F131B3E569800CF150D /* SVIPTests.swift */; };
 		40641F9D1B3E79A300CF150D /* NSString+ZKJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F891B3E79A300CF150D /* NSString+ZKJS.m */; };
 		40641F9E1B3E79A300CF150D /* UIImage+ZKJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F8B1B3E79A300CF150D /* UIImage+ZKJS.m */; };
-		40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */; };
-		40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
 		406B0A241C83DEF4006C9C73 /* LocationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406B0A231C83DEF4006C9C73 /* LocationMonitor.swift */; };
 		406B0A261C83E959006C9C73 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406B0A251C83E959006C9C73 /* HttpService.swift */; };
@@ -191,7 +187,6 @@
 		4077DE011C1EAF9900E13D6B /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DD871C1EAF9900E13D6B /* EaseRecordView.m */; };
 		4077DE021C1EAF9900E13D6B /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DD8A1C1EAF9900E13D6B /* EaseConversationCell.m */; };
 		4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE031C1EB74B00E13D6B /* AccountManager.swift */; };
-		4077DE071C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE061C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m */; };
 		4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE081C1EC62200E13D6B /* UIColor+Theme.swift */; };
 		40817D041B8EAB2300EF188F /* ReceiptTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D031B8EAB2300EF188F /* ReceiptTVC.swift */; };
 		40817D071B8EAB8800EF188F /* NewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40817D051B8EAB8800EF188F /* NewItemCell.swift */; };
@@ -398,7 +393,6 @@
 		FAF7F5701C031F4100C84601 /* IntegralVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7F56E1C031F4100C84601 /* IntegralVC.xib */; };
 		FAF813B61C1FB81E008D96E2 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */; };
 		FAF813B81C1FB841008D96E2 /* AccountTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */; };
-		FAF8730F1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF8730E1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m */; };
 		FAF92CB61C4414B800671300 /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF92CB51C4414B800671300 /* CommentsModel.swift */; };
 		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
 		FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA518F1C16C62900BF04F2 /* HomeVC.xib */; };
@@ -508,11 +502,6 @@
 		40111DDE1C8ED5A300DD2AE1 /* Misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		40111DDF1C8ED5A300DD2AE1 /* Spring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spring.h; sourceTree = "<group>"; };
 		40111DE11C8ED5B300DD2AE1 /* SpringCombination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringCombination.swift; sourceTree = "<group>"; };
-		401C1F1C1C2A2EEC003B9E69 /* CCPRestSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCPRestSDK-Prefix.pch"; sourceTree = "<group>"; };
-		401C1F1D1C2A2EEC003B9E69 /* CCPRestSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPRestSDK.h; sourceTree = "<group>"; };
-		401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPRestSDK.m; sourceTree = "<group>"; };
-		401C1F371C2A2EEC003B9E69 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
-		401C1F381C2A2EEC003B9E69 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HttpService+Others.swift"; path = "CommonSwift/Services/HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404177D01C993EDD00113721 /* LocationStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationStateObserver.swift; path = SVIP/Main/Model/LocationStateObserver.swift; sourceTree = SOURCE_ROOT; };
@@ -553,10 +542,6 @@
 		40641F891B3E79A300CF150D /* NSString+ZKJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZKJS.m"; sourceTree = "<group>"; };
 		40641F8A1B3E79A300CF150D /* UIImage+ZKJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZKJS.h"; sourceTree = "<group>"; };
 		40641F8B1B3E79A300CF150D /* UIImage+ZKJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZKJS.m"; sourceTree = "<group>"; };
-		40641F921B3E79A300CF150D /* ZKJSHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPSessionManager.h; sourceTree = "<group>"; };
-		40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSessionManager.m; sourceTree = "<group>"; };
-		40641F941B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSHTTPSMSSessionManager.h; sourceTree = "<group>"; };
-		40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSHTTPSMSSessionManager.m; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
 		406B0A231C83DEF4006C9C73 /* LocationMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMonitor.swift; sourceTree = "<group>"; };
@@ -830,8 +815,6 @@
 		4077DD891C1EAF9900E13D6B /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
 		4077DD8A1C1EAF9900E13D6B /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
 		4077DE031C1EB74B00E13D6B /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
-		4077DE051C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSJavaHTTPSessionManager.h; sourceTree = "<group>"; };
-		4077DE061C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSJavaHTTPSessionManager.m; sourceTree = "<group>"; };
 		4077DE081C1EC62200E13D6B /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		40817D031B8EAB2300EF188F /* ReceiptTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptTVC.swift; sourceTree = "<group>"; };
 		40817D051B8EAB8800EF188F /* NewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemCell.swift; sourceTree = "<group>"; };
@@ -873,7 +856,7 @@
 		40D9C9E11C2037B200E992AB /* InfoEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoEditVC.swift; sourceTree = "<group>"; };
 		40D9C9E21C2037B200E992AB /* InfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoEditVC.xib; sourceTree = "<group>"; };
 		40DAA07E1B8B0E85005D56CA /* BookingOrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderTVC.swift; sourceTree = "<group>"; };
-		40DCE2521C46276C00C44E89 /* Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configure.h; sourceTree = "<group>"; };
+		40DCE2521C46276C00C44E89 /* Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configure.h; path = Networking/Configure.h; sourceTree = "<group>"; };
 		40E39E1D1BFEF43800516EC4 /* BookingOrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOrderDetailVC.swift; sourceTree = "<group>"; };
 		40E39E1E1BFEF43800516EC4 /* BookingOrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOrderDetailVC.xib; sourceTree = "<group>"; };
 		40E39E201BFEF43800516EC4 /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
@@ -1284,8 +1267,6 @@
 		FAF7F56E1C031F4100C84601 /* IntegralVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralVC.xib; sourceTree = "<group>"; };
 		FAF813B51C1FB81E008D96E2 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
 		FAF813B71C1FB841008D96E2 /* AccountTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountTVC.storyboard; sourceTree = "<group>"; };
-		FAF8730D1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSLocationHTTPSessionManager.h; sourceTree = "<group>"; };
-		FAF8730E1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSLocationHTTPSessionManager.m; sourceTree = "<group>"; };
 		FAF92CB51C4414B800671300 /* CommentsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
 		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		FAFA518F1C16C62900BF04F2 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
@@ -1448,26 +1429,6 @@
 			path = Spring;
 			sourceTree = "<group>";
 		};
-		401C1F1B1C2A2EEC003B9E69 /* CCPRestSDK */ = {
-			isa = PBXGroup;
-			children = (
-				401C1F1C1C2A2EEC003B9E69 /* CCPRestSDK-Prefix.pch */,
-				401C1F1D1C2A2EEC003B9E69 /* CCPRestSDK.h */,
-				401C1F1E1C2A2EEC003B9E69 /* CCPRestSDK.m */,
-				401C1F361C2A2EEC003B9E69 /* xml */,
-			);
-			path = CCPRestSDK;
-			sourceTree = "<group>";
-		};
-		401C1F361C2A2EEC003B9E69 /* xml */ = {
-			isa = PBXGroup;
-			children = (
-				401C1F371C2A2EEC003B9E69 /* XMLReader.h */,
-				401C1F381C2A2EEC003B9E69 /* XMLReader.m */,
-			);
-			path = xml;
-			sourceTree = "<group>";
-		};
 		404177CF1C993E6100113721 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1620,11 +1581,10 @@
 		40641F861B3E79A300CF150D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				401C1F1B1C2A2EEC003B9E69 /* CCPRestSDK */,
+				40DCE2521C46276C00C44E89 /* Configure.h */,
 				40641F871B3E79A300CF150D /* Category */,
 				404C18471B53675300F11122 /* Compressor */,
 				4077C79B1C26578F000DD7DC /* Cryptography */,
-				40641F8F1B3E79A300CF150D /* Networking */,
 				40641F9A1B3E79A300CF150D /* Tool */,
 				4077DC551C1EAF4B00E13D6B /* YunBaSDK */,
 				40C4B71A1BFACDD000CB2DA5 /* openssl.framework */,
@@ -1641,22 +1601,6 @@
 				40641F8B1B3E79A300CF150D /* UIImage+ZKJS.m */,
 			);
 			path = Category;
-			sourceTree = "<group>";
-		};
-		40641F8F1B3E79A300CF150D /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				40DCE2521C46276C00C44E89 /* Configure.h */,
-				40641F941B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.h */,
-				40641F951B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m */,
-				40641F921B3E79A300CF150D /* ZKJSHTTPSessionManager.h */,
-				40641F931B3E79A300CF150D /* ZKJSHTTPSessionManager.m */,
-				4077DE051C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.h */,
-				4077DE061C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m */,
-				FAF8730D1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.h */,
-				FAF8730E1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		40641F9A1B3E79A300CF150D /* Tool */ = {
@@ -3733,7 +3677,6 @@
 				4077DDEF1C1EAF9900E13D6B /* EaseUserCell.m in Sources */,
 				FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */,
 				FAFBC43F1C33740C001E9155 /* LeisureTVC.swift in Sources */,
-				40641FA11B3E79A300CF150D /* ZKJSHTTPSessionManager.m in Sources */,
 				FAFBFB751C22575000A1126B /* RecommendModel.swift in Sources */,
 				4077DD961C1EAF9900E13D6B /* ContactSelectionViewController.m in Sources */,
 				4077DDA71C1EAF9900E13D6B /* EMCDDeviceManager+Microphone.m in Sources */,
@@ -3803,7 +3746,6 @@
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				406B0A261C83E959006C9C73 /* HttpService.swift in Sources */,
 				4077DDB41C1EAF9900E13D6B /* MWPhoto.m in Sources */,
-				401C1F391C2A2EEC003B9E69 /* CCPRestSDK.m in Sources */,
 				4053ADF61C8D9F3A00282240 /* BeaconErrors+CoreDataProperties.swift in Sources */,
 				4077DDC31C1EAF9900E13D6B /* UIButton+EMWebCache.m in Sources */,
 				4077DDAC1C1EAF9900E13D6B /* wav.mm in Sources */,
@@ -3816,7 +3758,6 @@
 				404177D11C993EDD00113721 /* LocationStateObserver.swift in Sources */,
 				40E8F0141C80691400D6F605 /* Download.swift in Sources */,
 				B277F8C51B4A59AA00A9F858 /* UIImageEffects.m in Sources */,
-				FAF8730F1C7C576600851E64 /* ZKJSLocationHTTPSessionManager.m in Sources */,
 				4077DDE91C1EAF9900E13D6B /* EaseConversationListViewController.m in Sources */,
 				40E8F0191C80691400D6F605 /* MultipartFormData.swift in Sources */,
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
@@ -3884,7 +3825,6 @@
 				B2F4A9F01B7EE2C3000DBD81 /* BookDateSelectionViewController.swift in Sources */,
 				40D794C61C4130C9004C7DC9 /* FloatCell.swift in Sources */,
 				B277F8C81B4A5D3900A9F858 /* BookDateButton.swift in Sources */,
-				40641FA21B3E79A300CF150D /* ZKJSHTTPSMSSessionManager.m in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				40E8F01D1C80691400D6F605 /* Request.swift in Sources */,
 				4077DE011C1EAF9900E13D6B /* EaseRecordView.m in Sources */,
@@ -3950,12 +3890,10 @@
 				4053ADDB1C8D7F1800282240 /* HttpErrorRecordingService.swift in Sources */,
 				4077DD951C1EAF9900E13D6B /* ChatGroupDetailViewController.m in Sources */,
 				40E88ACC1C940EBE00258E72 /* ShopDetailModel.swift in Sources */,
-				401C1F431C2A2EEC003B9E69 /* XMLReader.m in Sources */,
 				B20812CA1B8DD8650070D96F /* LogManager.swift in Sources */,
 				40EE4D7A1C1EEE58009C0311 /* MeTVC.swift in Sources */,
 				B2564D4B1B4BFC370098608F /* JSHTextField.m in Sources */,
 				4077DDC41C1EAF9900E13D6B /* UIImage+EMGIF.m in Sources */,
-				4077DE071C1EBC1000E13D6B /* ZKJSJavaHTTPSessionManager.m in Sources */,
 				40E3A1741BFEFA6400516EC4 /* FloatingWindowVC.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40E8F0231C80691400D6F605 /* Timeline.swift in Sources */,

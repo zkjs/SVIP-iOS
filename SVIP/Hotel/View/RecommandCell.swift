@@ -31,7 +31,7 @@ class RecommandCell: UITableViewCell {
   }
   func setdata(hotel:Hotel) {
     titleLabel.text = hotel.shopname
-    let logoURL = NSURL(string: kImageURL + hotel.bgImgUrl)
+    let logoURL = NSURL(string: hotel.bgImgUrl.fullImageUrl)
     backImageView.sd_setImageWithURL(logoURL)
     contentLabel.text = hotel.shoptitle
     contentLabel.sizeToFit()

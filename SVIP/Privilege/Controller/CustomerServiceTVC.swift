@@ -22,7 +22,7 @@ class CustomerServiceTVC: UITableViewController {
 
     }
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task:NSURLSessionDataTask!, responsObject:AnyObject!) -> Void in
       let dic = responsObject as! NSDictionary
      if  let array = dic["data"] as? NSArray {
       for dic in array {
@@ -33,7 +33,7 @@ class CustomerServiceTVC: UITableViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
       
-    }
+    }*/
   }
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("CustomerServiceTVC", owner:self, options:nil)

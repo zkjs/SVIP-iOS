@@ -46,7 +46,7 @@ class CommentsCell: UITableViewCell {
   func configCell(comment:CommentModel) {
     selectionStyle = UITableViewCellSelectionStyle.None
     appraiserNameLabel.text = comment.username
-    let hotelUrl = "\(kImageURL)/uploads/users/\(comment.userid).jpg"
+    let hotelUrl = "\(ZKJSConfig.sharedInstance.BaseImageURL)/uploads/users/\(comment.userid).jpg"
     appraiserImage.sd_setImageWithURL(NSURL(string: hotelUrl), placeholderImage: UIImage(named: "img_hotel_zhanwei"))
     contentEvaluation.text = comment.content
     commentsDateLabel.text = comment.createtime

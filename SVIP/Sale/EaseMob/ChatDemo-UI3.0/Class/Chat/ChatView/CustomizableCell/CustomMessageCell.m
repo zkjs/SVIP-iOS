@@ -63,8 +63,8 @@
     NSLog(@"%@", model.text);
 
     OrderDetailModel *order = [[OrderDetailModel alloc] initWithJson:model.text];
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kImageURL, order.imgurl]];
-    [_bubbleView.locationImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"bg_dingdanzhuangtai"]];
+//    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kImageURL, order.imgurl]];
+    [_bubbleView.locationImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"bg_dingdanzhuangtai"]];
     NSString *roomInfo = order.roomInfo;
     NSString *cardInfo = [NSString stringWithFormat:@" %@", roomInfo];
     _bubbleView.locationLabel.text = cardInfo;

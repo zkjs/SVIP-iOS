@@ -59,7 +59,7 @@ class SalesDetailVC: UIViewController {
   }
   
   func loadData() {
-    ZKJSHTTPSessionManager.sharedInstance().getSalesWithID(salesid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getSalesWithID(salesid, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let data = responseObject as? [String: AnyObject] {
         if let set = data["set"] as? NSNumber {
@@ -77,7 +77,7 @@ class SalesDetailVC: UIViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   @IBAction func chat(sender: AnyObject) {
@@ -120,7 +120,7 @@ extension SalesDetailVC: UITableViewDataSource, UITableViewDelegate {
     if section == 0 {
       let headerView = NSBundle.mainBundle().loadNibNamed("SalesDetailHeaderView", owner: self, options: nil).first as! SalesDetailHeaderView
       if let sales = self.sales {
-        let url = NSURL(string: kImageURL)?.URLByAppendingPathComponent("/uploads/users/\(sales.userid).jpg")
+        let url = NSURL(string: "\(ZKJSConfig.sharedInstance.BaseImageURL)/uploads/users/\(sales.userid).jpg")
         headerView.avatarImageView.sd_setImageWithURL(url)
         headerView.nameLabel.text = sales.username
         headerView.shopNameLabel.text = sales.shop_name

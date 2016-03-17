@@ -65,7 +65,7 @@ class PhoneFirstVC: UIViewController {
     guard let phone = phoneTextField.text else { return }
     if ZKJSTool.validateMobile(phone) {
       // 发送验证码
-      ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phone, callback: { (success: Bool, error: NSError!) -> Void in
+      /*ZKJSHTTPSMSSessionManager.sharedInstance().requestSmsCodeWithPhoneNumber(phone, callback: { (success: Bool, error: NSError!) -> Void in
         if success {
           ZKJSTool.showMsg("验证码已发送")
           self.codeTextField.becomeFirstResponder()
@@ -78,7 +78,7 @@ class PhoneFirstVC: UIViewController {
             self.showHint(userInfo.1 as! String)
           }
         }
-      })
+      })*/
     } else {
       ZKJSTool.showMsg("手机格式错误")
     }
@@ -90,13 +90,13 @@ class PhoneFirstVC: UIViewController {
     
     showHUDInView(view, withLoading: "")
     
-    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
+    /*ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
       if success {
         self.navigationController?.pushViewController(PhoneSecondVC(), animated: true)
       } else {
         ZKJSTool.showMsg("验证码不正确")
       }
-    }
+    }*/
   }
   
 }

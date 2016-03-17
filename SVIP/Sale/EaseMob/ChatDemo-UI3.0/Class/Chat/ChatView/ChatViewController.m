@@ -9,7 +9,6 @@
 #import "ChatViewController.h"
 #import "CustomMessageCell.h"
 //#import "ContactListSelectViewController.h"
-#import "ZKJSHTTPSessionManager.h"
 #import "MJRefresh.h"
 #import "SVIP-Swift.h"
 #import "EaseUI.h"
@@ -260,7 +259,7 @@
     model = [[EaseMessageModel alloc] initWithMessage:message];
     model.avatarImage = [UIImage imageNamed:@"ic_home_nor"];
     NSString *url = [NSString stringWithFormat:@"/uploads/users/%@.jpg", model.nickname];
-    model.avatarURLPath = [kImageURL stringByAppendingString:url];
+//    model.avatarURLPath = [kImageURL stringByAppendingString:url];
     model.nickname = message.ext[@"fromName"];
     model.failImageName = @"imageDownloadFail";
     return model;

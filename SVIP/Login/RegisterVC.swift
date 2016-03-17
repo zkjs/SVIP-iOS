@@ -68,16 +68,6 @@ class RegisterVC: UIViewController {
       })
     }
     
-    guard let code = codeTextField.text else {return}
-    
-    ZKJSHTTPSMSSessionManager.sharedInstance().verifySmsCode(code, mobilePhoneNumber: phone) { (success: Bool, error: NSError!) -> Void in
-      if success {
-        self.loginWithPhone(phone)
-      } else {
-        self.hideHUD()
-        self.showHint("验证码不正确")
-      }
-    }
   }
   
   func refreshCount() {
@@ -88,33 +78,6 @@ class RegisterVC: UIViewController {
       codeButton.alpha = 1.0
     }
   }
-  
-  private func loginWithPhone(phone: String) {
-    ZKJSHTTPSessionManager.sharedInstance().verifyIsRegisteredWithID(phone, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-      if let data = responseObject as? [String: AnyObject] {
-        if let set = data["set"] as? NSNumber {
-          if set.boolValue == true {
-            // 已注册
-            // 缓存userid和token
-//            AccountManager.sharedInstance().saveAccountInfo(data)
-            // 获取用户信息
-//            self.getUserInfo() {
-//              self.hideHUD()
-//              self.dismissSelf()
-//              let userid = AccountManager.sharedInstance().userID
-//              MobClick.profileSignInWithPUID(userid)
-//              
-//            }
-          } else {
-          }
-        }
-      }
-      }, failure: { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-        self.hideHUD()
-        self.showHint("服务器返回数据异常")
-    })
-  }
-  
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     super.touchesBegan(touches, withEvent: event)

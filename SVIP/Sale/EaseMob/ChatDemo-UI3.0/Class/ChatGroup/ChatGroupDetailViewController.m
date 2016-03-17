@@ -22,7 +22,6 @@
 #import "EaseUI.h"
 #import "UIImageView+HeadImage.h"
 //#import "SuperService-Swift.h"
-#import "ZKJSHTTPSessionManager.h"
 
 #pragma mark - ChatGroupDetailViewController
 

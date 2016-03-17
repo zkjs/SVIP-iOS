@@ -187,7 +187,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
     view.frame = UIScreen.mainScreen().bounds
     showHUDInView(view, withLoading: "")
     let page = String(orderPage)
-    ZKJSJavaHTTPSessionManager.sharedInstance().getOrderListWithPage(page, size: "10", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getOrderListWithPage(page, size: "10", success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       let orderArray = responseObject as! NSArray
       if page == "1" {
         self.orders.removeAllObjects()
@@ -213,7 +213,7 @@ class OrderListTVC: UITableViewController, SWTableViewCellDelegate, BookingOrder
       }) { (task: NSURLSessionDataTask!, error: NSError!)-> Void in
         self.hideHUD()
         ZKJSTool.showMsg("数据异常")
-    }
+    }*/
   }
   
 }

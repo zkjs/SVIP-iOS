@@ -63,22 +63,22 @@ class BookingOrderTVC: UITableViewController, UITextFieldDelegate {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     roomType.text = goods.type
-    let baseUrl = kImageURL
     let placeholderImage = UIImage(named: "星空中心")
-    var url = NSURL(string: baseUrl)
-    url = url?.URLByAppendingPathComponent(goods.image!)
-    print(url)
-    roomImage.sd_setImageWithURL(url, placeholderImage: placeholderImage)
+    if let img = goods.image {
+      roomImage.sd_setImageWithURL(NSURL(string: img.fullImageUrl), placeholderImage: placeholderImage)
+    } else {
+      roomImage.image = placeholderImage
+    }
     roomPriceLabel.text = "￥" + goods.price!
   }
   
   func gotoChatVC() {
-    ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSHTTPSessionManager.sharedInstance().getMerchanCustomerServiceListWithShopID(shopID, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       self.chooseChatterWithData(responseObject)
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         
-    }
+    }*/
   }
   
   override func loadView() {
