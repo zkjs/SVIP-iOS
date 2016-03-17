@@ -111,7 +111,7 @@ extension HttpService {
             recommendShops.append(PushInfoModel(json: d))
           }
         }
-        if let data = json?["data"]["homeOrderModel"] {
+        if let data = json?["data"]["homeOrderModel"]  where data.count > 0{ 
           homeOrder.append(PushInfoModel(json: data))
         }
         completionHandler(privileges.count > 0 ? privileges : nil,

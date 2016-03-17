@@ -180,20 +180,15 @@ extension LocationMonitor : CLLocationManagerDelegate {
       print("distance:[\(distance)]")
       print("current speed:[\(location.speed)]")
       paramForTest = paramForTest + "[distance:\(distance)]"
-      /*if distance < 400 {
-        self.lastLocationInfo.lastLocation = location
-        self.lastLocationInfo.lastTime = currentTime
-        print("distance less than 500m , don't send gps to server")
-        return
-      }*/
+
       if let lastTime = lastLocationInfo.lastTime {
         self.lastLocationInfo.lastLocation = location
         self.lastLocationInfo.lastTime = currentTime
         //don't upload the location if too frequent
-        if let lastUploadedTime = self.lastLocationInfo.lastUploadedTime where fabs(currentTime - lastUploadedTime) < 10 {
-          print("too frequent:\(fabs(currentTime - lastUploadedTime))")
-          return
-        }
+//        if let lastUploadedTime = self.lastLocationInfo.lastUploadedTime where fabs(currentTime - lastUploadedTime) < 10 {
+//          print("too frequent:\(fabs(currentTime - lastUploadedTime))")
+//          return
+//        }
         
         let speed = distance / (currentTime - lastTime)
         print("calculated speed : [\(speed)] in [\(currentTime - lastTime)]")
