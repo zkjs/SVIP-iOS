@@ -52,17 +52,33 @@ class HomeCell: UITableViewCell {
     // Configure the view for the selected state
   }
   
-  func setData(pushInfo:PushInfoModel) {
+  func configCell(pushInfo pushInfo:PushInfoModel) {
+    selectionStyle = UITableViewCellSelectionStyle.None
     resolution = ZKJSTool.getResolution()
-    let BaseURL = kImageURL + "/\(pushInfo.iconbaseurl)" + "picture/ios/" + "\(resolution)" + "\(pushInfo.iconfilename)"
+    let BaseURL = ZKJSConfig.sharedInstance.BaseImageURL + "\(pushInfo.iconbaseurl)" + "picture/ios/" + "\(resolution)" + "\(pushInfo.iconfilename)"
     let url = NSURL(string: BaseURL)
     pushImage.sd_setImageWithURL(url, placeholderImage: UIImage(named: "ic_v_orange"))
     subjectLabel.text = pushInfo.title
     subjectLabel.sizeToFit()
-    nextLabel.text = pushInfo.desc
+    nextLabel.text = pushInfo.desc.isEmpty ? pushInfo.shopName : pushInfo.desc
     nextLabel.sizeToFit()
     let frame = nextLabel.frame
     nextLabel.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMaxY(subjectLabel.frame)+8, CGRectGetWidth(frame), CGRectGetHeight(frame))
+    if pushInfo.shopid.isEmpty {//&& pushInfo.orderNo.isEmpty {
+      accessoryView = nil
+    } else {
+      accessoryView = UIImageView(image: UIImage(named: "ic_right_orange"))
+    }
+  }
+  
+  func configCell(privilege privilege:PrivilegeModel) {
+    let pushInfo = PushInfoModel()
+    pushInfo.iconbaseurl = privilege.privilegeIcon
+    pushInfo.title = privilege.privilegeName
+    pushInfo.desc = privilege.privilegeDesc
+    
+    configCell(pushInfo: pushInfo)
+    accessoryView = nil
   }
   
 }

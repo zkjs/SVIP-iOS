@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="labs.coruscantconsulting.co.uk" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.coruscantconsulting.co.uk">
+      <text>Coruscant Consulting Ltd. Labs</text>
+    </link>
+    <!--desc>Map data copyright 2015 Google</desc-->
+    <!--copyright author="Google Inc">
+    	<year>2015</year>
+    	<license>https://developers.google.com/maps/terms</license>
+    </copyright-->
+    <!--url>https://www.google.co.uk/maps/dir/Xili/Zhong+Guo+Ke+Xue+Yuan+Da+Xue+Shen+Zhen+Xian+Jin+Ji+Shu+Xue+Yuan,+Nanshan+Qu,+Shenzhen+Shi,+Guangdong+Sheng,+China/@22.5873473,113.9637741,15z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x3403f2788f5a641b:0xe189bbc1a3f26cad!2m2!1d113.953842!2d22.580682!1m5!1m1!1s0x3403f2e533083d7b:0x7a021ad8f9031816!2m2!1d113.9913295!2d22.5940658!3e0?hl=en</url-->
+    <time>2016-03-16T08:33:07Z</time>
+  </metadata>
+  <wpt lat="22.580682" lon="113.953842">
+    <name>Xili</name>
+    <desc>Xili, China</desc>
+    <time>2016-03-16T08:33:07Z</time>
+  </wpt>
+  <wpt lat="22.5806667" lon="113.953861">
+    <name>WP001</name>
+    <time>2016-03-16T08:34:32Z</time>
+  </wpt>
+  <wpt lat="22.5806656" lon="113.9532018">
+    <name>WP002</name>
+    <time>2016-03-16T08:35:58Z</time>
+  </wpt>
+  <wpt lat="22.5841105" lon="113.9798867">
+    <name>WP003</name>
+    <time>2016-03-16T08:37:24Z</time>
+  </wpt>
+  <wpt lat="22.5838827" lon="113.9828208">
+    <name>WP004</name>
+    <time>2016-03-16T08:38:49Z</time>
+  </wpt>
+  <wpt lat="22.5898399" lon="113.9820207">
+    <name>WP005</name>
+    <time>2016-03-16T08:40:15Z</time>
+  </wpt>
+  <wpt lat="22.5922375" lon="113.9918903">
+    <name>WP006</name>
+    <time>2016-03-16T08:41:41Z</time>
+  </wpt>
+  <wpt lat="22.5940658" lon="113.9913295">
+    <name>Zhong Guo Ke Xue Yuan Da Xue Shen Zhen Xian Jin Ji Shu Xue Yuan</name>
+    <desc>Zhong Guo Ke Xue Yuan Da Xue Shen Zhen Xian Jin Ji Shu Xue Yuan, Nanshan Qu, Shenzhen Shi, Guangdong Sheng, China</desc>
+    <time>2016-03-16T08:43:06Z</time>
+  </wpt>
+</gpx>

@@ -83,6 +83,44 @@ extension HttpService {
       }
     }
   }
+  
+  /**
+   * 登录后获取首页详情-订单-特权
+   */
+  func getHomeAllMessages(city:String, completionHandler: ([PrivilegeModel]?,[PushInfoModel]?,[PushInfoModel]?,NSError?)->Void) {
+    guard let city = city.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) else {
+      return
+    }
+    let urlString = ResourcePath.HomeAllMessages(city: city).description.fullUrl
+    
+    get(urlString, parameters: nil) { (json, error) -> Void in
+      if let error = error {
+        print(error)
+        completionHandler(nil,nil,nil,error)
+      } else {
+        var privileges = [PrivilegeModel]()
+        var homeOrder = [PushInfoModel]()
+        var recommendShops = [PushInfoModel]()
+        if let data = json?["data"]["homePrivilegeModels"].array where data.count > 0 {
+          for d in data {
+            privileges.append(PrivilegeModel(json: d))
+          }
+        }
+        if let data = json?["data"]["recommendShops"].array where data.count > 0 {
+          for d in data {
+            recommendShops.append(PushInfoModel(json: d))
+          }
+        }
+        if let data = json?["data"]["homeOrderModel"] {
+          homeOrder.append(PushInfoModel(json: data))
+        }
+        completionHandler(privileges.count > 0 ? privileges : nil,
+          homeOrder.count > 0 ? homeOrder : nil,
+          recommendShops.count > 0 ? recommendShops : nil,
+          nil)
+      }
+    }
+  }
 
   
 }

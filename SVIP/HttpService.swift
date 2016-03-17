@@ -52,6 +52,7 @@ class HttpService {
     case HomePicture                    // 首页大图
     case HomePrivilegeIntro             // 首页大图
     case HomeRecom(city:String)         // 首页服务推荐
+    case HomeAllMessages(city:String)   // 登陆用户首页详情-订单-特权
     case CheckVersion(version:String)   // 检查App版本
     
     var description: String {
@@ -77,6 +78,7 @@ class HttpService {
       case .HomePicture:                return "/for/res/v1/systempub/homepicture"
       case .HomePrivilegeIntro:         return "/for/res/v1/systempub/ssintroduction"
       case .HomeRecom(let city):        return "/for/res/v1/systempub/localservice/recommend/\(city)"
+      case .HomeAllMessages(let city):  return "/for/res/v1/system/sihomedetail/\(city)"
       case .CheckVersion(let version):  return "/for/res/v1/systempub/upgrade/newestversion/1/IOS/\(version)"
       }
     }

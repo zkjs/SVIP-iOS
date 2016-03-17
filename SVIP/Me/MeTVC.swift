@@ -64,7 +64,7 @@ class MeTVC: UITableViewController {
       return
     }
     
-    ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderCountWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+    /*ZKJSJavaHTTPSessionManager.sharedInstance().getUnconfirmedOrderCountWithSuccess({ (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
       print(responseObject)
       if let data = responseObject as? [String: AnyObject] {
         if let count = data["count"] as? String {
@@ -78,7 +78,7 @@ class MeTVC: UITableViewController {
       }
       }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
         print(error)
-    }
+    }*/
   }
   
   private func sendTestPushNotification() {

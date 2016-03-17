@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="SVIP" customModuleProvider="target">
             <connections>
                 <outlet property="privilegeButton" destination="dH8-Mk-X5n" id="Awt-At-7X8"/>
+                <outlet property="privilegeButtonConstraintTop" destination="gxr-2m-ta8" id="Izv-Hh-nhr"/>
                 <outlet property="tableView" destination="AMJ-qA-CwZ" id="MbL-7o-F17"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Ull-wK-ExY"/>
             </connections>
