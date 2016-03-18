@@ -16,17 +16,33 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="b07-iw-zlD">
+                    <rect key="frame" x="270" y="240" width="60" height="60"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级身份,静享尊贵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GwF-BI-Ucw">
+                    <rect key="frame" x="176" y="320" width="249" height="36"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B1X-v1-U1l">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.14117647058823529" green="0.12549019607843137" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="GwF-BI-Ucw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8eZ-Z8-xQF"/>
+                <constraint firstItem="GwF-BI-Ucw" firstAttribute="top" secondItem="b07-iw-zlD" secondAttribute="bottom" constant="20" id="GlZ-SU-hmT"/>
+                <constraint firstItem="b07-iw-zlD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-30" id="RCu-9k-9Zv"/>
                 <constraint firstAttribute="bottom" secondItem="B1X-v1-U1l" secondAttribute="bottom" id="SKx-Es-C3t"/>
                 <constraint firstItem="B1X-v1-U1l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o81-SB-Jbe"/>
                 <constraint firstItem="B1X-v1-U1l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rql-h3-1u4"/>
                 <constraint firstAttribute="trailing" secondItem="B1X-v1-U1l" secondAttribute="trailing" id="vJq-VS-sZl"/>
+                <constraint firstItem="b07-iw-zlD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yFR-TW-UQg"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="logo_white" width="60" height="60"/>
+    </resources>
 </document>

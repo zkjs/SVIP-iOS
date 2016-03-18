@@ -51,6 +51,8 @@ class HomeVC: UIViewController {
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
     
+    self.homeBGImage.hidden = AccountManager.sharedInstance().isDemoAccount
+    
  }
   
   // TableView Scroller Delegate

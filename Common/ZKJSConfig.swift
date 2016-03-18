@@ -14,6 +14,8 @@ let KNOTIFICATION_LOGINCHANGE = "loginStateChange"
 struct ZKJSConfig {
   static let sharedInstance = ZKJSConfig()
   
+  let DEMO_ACCOUNT = "18503027465"
+  
   #if DEBUG
   
   //// 测试环境

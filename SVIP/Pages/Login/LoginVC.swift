@@ -130,6 +130,9 @@ class LoginVC: UIViewController {
         self.getUserInfo({ () -> Void in
           MobClick.profileSignInWithPUID(TokenPayload.sharedInstance.userID)
           NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+          
+          AccountManager.sharedInstance().setDemoAccount(phone == ZKJSConfig.sharedInstance.DEMO_ACCOUNT)
+          
           if let window = UIApplication.sharedApplication().delegate?.window {
             window!.rootViewController = BaseNC(rootViewController: HomeVC())
           }

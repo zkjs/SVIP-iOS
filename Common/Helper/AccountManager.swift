@@ -46,6 +46,20 @@ class AccountManager: NSObject {
     }
   }
   
+  var isDemoAccount:Bool {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    if let isDemo = userDefaults.objectForKey("DEMO_ACCOUNT") as? Bool {
+      return isDemo
+    }
+    return false
+  }
+  
+  func setDemoAccount(isDemo:Bool) {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    userDefaults.setBool(isDemo, forKey: "DEMO_ACCOUNT")
+    userDefaults.synchronize()
+  }
+  
   class func sharedInstance() -> AccountManager {
     struct Singleton {
       static let instance = AccountManager()
