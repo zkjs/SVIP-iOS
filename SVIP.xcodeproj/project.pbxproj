@@ -405,7 +405,6 @@
 				4053ADDC1C8D850100282240 /* Classes */,
 				406B0AD41C858A98006C9C73 /* Extensions */,
 				40DE24FF1C9BFBF100CA7F26 /* Helper */,
-				B20812B71B8DD8650070D96F /* Helper */,
 				406B0AE01C85AA7D006C9C73 /* Models */,
 				40E8F0381C81408600D6F605 /* Monitoring */,
 				406B0ADD1C859860006C9C73 /* Services */,
@@ -525,6 +524,8 @@
 		40DE24FF1C9BFBF100CA7F26 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				4077DE031C1EB74B00E13D6B /* AccountManager.swift */,
+				B20812C31B8DD8650070D96F /* StorageManager.swift */,
 				40DE25001C9BFBF100CA7F26 /* RegexHelper.swift */,
 				40DE25011C9BFBF100CA7F26 /* ZKJSHelper.swift */,
 			);
@@ -548,15 +549,6 @@
 				40DE25101C9BFE6600CA7F26 /* LocationStateObserver.swift */,
 			);
 			path = Monitoring;
-			sourceTree = "<group>";
-		};
-		B20812B71B8DD8650070D96F /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				4077DE031C1EB74B00E13D6B /* AccountManager.swift */,
-				B20812C31B8DD8650070D96F /* StorageManager.swift */,
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 		B2564D351B4BFAED0098608F /* LaunchAnimation */ = {

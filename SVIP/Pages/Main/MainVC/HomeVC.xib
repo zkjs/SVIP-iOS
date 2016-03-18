@@ -7,9 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="SVIP" customModuleProvider="target">
             <connections>
-                <outlet property="privilegeButton" destination="dH8-Mk-X5n" id="Awt-At-7X8"/>
-                <outlet property="privilegeButtonConstraintTop" destination="gxr-2m-ta8" id="Izv-Hh-nhr"/>
-                <outlet property="tableView" destination="AMJ-qA-CwZ" id="MbL-7o-F17"/>
+                <outlet property="homeBGImage" destination="B1X-v1-U1l" id="NVG-J3-6ev"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Ull-wK-ExY"/>
             </connections>
         </placeholder>
@@ -18,36 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-qA-CwZ">
-                    <rect key="frame" x="0.0" y="-20" width="600" height="660"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="LnF-EG-Ydy"/>
-                        <outlet property="delegate" destination="-1" id="Vg0-6R-sgi"/>
-                    </connections>
-                </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dH8-Mk-X5n">
-                    <rect key="frame" x="510" y="309" width="60" height="60"/>
-                    <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="oXn-Uu-doM"/>
-                        <constraint firstAttribute="height" constant="60" id="x8V-qo-WJb"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="logo_white"/>
-                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B1X-v1-U1l">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="AMJ-qA-CwZ" secondAttribute="bottom" constant="-40" id="2i7-99-Ihc"/>
-                <constraint firstItem="AMJ-qA-CwZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GkJ-u9-A0g"/>
-                <constraint firstItem="dH8-Mk-X5n" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="309" id="gxr-2m-ta8"/>
-                <constraint firstItem="AMJ-qA-CwZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-20" id="hBV-36-FhR"/>
-                <constraint firstAttribute="trailing" secondItem="AMJ-qA-CwZ" secondAttribute="trailing" id="sqk-mT-jEp"/>
-                <constraint firstAttribute="trailing" secondItem="dH8-Mk-X5n" secondAttribute="trailing" constant="30" id="ysv-wC-o9S"/>
+                <constraint firstAttribute="bottom" secondItem="B1X-v1-U1l" secondAttribute="bottom" id="SKx-Es-C3t"/>
+                <constraint firstItem="B1X-v1-U1l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o81-SB-Jbe"/>
+                <constraint firstItem="B1X-v1-U1l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rql-h3-1u4"/>
+                <constraint firstAttribute="trailing" secondItem="B1X-v1-U1l" secondAttribute="trailing" id="vJq-VS-sZl"/>
             </constraints>
         </view>
     </objects>
-    <resources>
-        <image name="logo_white" width="60" height="60"/>
-    </resources>
 </document>

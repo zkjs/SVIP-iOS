@@ -100,7 +100,7 @@
                         <action selector="tappedLicense:" destination="-1" eventType="touchUpInside" id="8tm-5f-9la"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-zL-HSf">
                     <rect key="frame" x="8" y="16" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="O3U-j7-0Nd"/>

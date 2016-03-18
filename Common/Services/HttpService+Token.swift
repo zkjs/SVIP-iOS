@@ -46,6 +46,7 @@ extension HttpService {
       if let json = json {
         guard let token = json["token"].string where !token.isEmpty else {
           print("no token")
+          completionHandler(nil, error)
           return
         }
         let tokenPayload = TokenPayload.sharedInstance
@@ -92,12 +93,12 @@ extension HttpService {
   }
   
   //// PAVO 认证服务API : Token管理 :
-  func deleteToken(completionHandler:HttpCompletionHandler) {
+  func deleteToken(completionHandler:HttpCompletionHandler?) {
     let urlString = ResourcePath.Token.description.fullUrl
     guard   let token = TokenPayload.sharedInstance.token else {return}
     let dic = ["token":token]
-    put(urlString, parameters: dic) { (json, error) -> Void in
-      completionHandler(json, error)
+    delete(urlString, parameters: dic) { (json, error) -> Void in
+      completionHandler?(json, error)
     }
   }
   
