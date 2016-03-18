@@ -297,14 +297,14 @@ class GuideVC: UIViewController {
   // MARK: - Button Action
   
   func gotoMain() {
-    UIApplication.sharedApplication().keyWindow?.backgroundColor = UIColor(hexString: "F5F5F5")
+    UIApplication.sharedApplication().keyWindow?.backgroundColor = UIColor(hex: "#F5F5F5")
     
     UIView.animateWithDuration(0.4, animations: { () -> Void in
       self.view.transform = CGAffineTransformMakeScale(1.5, 1.5)
       self.view.alpha = 0.0
       }) { (finished: Bool) -> Void in
         if finished {
-          let nc = BaseNC(rootViewController: MainTBC())
+          let nc = BaseNC(rootViewController: HomeVC())
           UIApplication.sharedApplication().keyWindow?.rootViewController = nc
         }
     }

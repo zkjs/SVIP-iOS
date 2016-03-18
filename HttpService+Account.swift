@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 extension HttpService {
   //// PAVO 认证服务API : 验证码 : HEADER不需要Token(注册获取验证码)

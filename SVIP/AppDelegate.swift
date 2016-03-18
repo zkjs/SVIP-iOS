@@ -17,12 +17,6 @@ import UIKit
 // 友盟
 let UMAppKey = "55c31431e0f55a65c1002597"
 let UMURL = ""
-// 微信
-let WXAppId = "wxe09e14fcb69825cc"
-let WXAppSecret = "8b6355edfcedb88defa7fae31056a3f0"
-// 高德
-let AMapKey = "7945ba33067bb07845e8a60d12135885"
-//var reach: TMReachability?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,22 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     setupWindow()
     setupNotification()
-//    fetchShops()
-//    setupUMSocial()//UM
-    networkState()
+
 //    setupBackgroundFetch()
     
     setupYunBa()
     setupUMStatistics()
-    setupEaseMobWithApplication(application, launchOptions: launchOptions)
     refreshToken()
     //ZKJSHTTPSessionManager.sharedInstance().delegate = self
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
    
-//    // fir.im BugHD
-//    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
     
     // app was launched when significant location changed
     if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
@@ -70,30 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     HttpService.sharedInstance.managerToken { (json, error) -> () in
       
     }
-  }
-  func networkState() {
-//    // Allocate a reachability object
-//    reach = TMReachability.reachabilityForInternetConnection()
-//    
-//    // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
-//    reach!.reachableOnWWAN = false
-//    
-//    // Here we set up a NSNotification observer. The Reachability that caused the notification
-//    // is passed in the object parameter
-//    NSNotificationCenter.defaultCenter().addObserver(self,
-//      selector: "reachabilityChanged:",
-//      name: kReachabilityChangedNotification,
-//      object: nil)
-//    
-//    reach!.startNotifier()
-  }
-  
-  func reachabilityChanged(notification: NSNotification) {
-//    if reach!.isReachableViaWiFi() || reach!.isReachableViaWWAN() {
-//      print("Service avalaible!!!")
-//    } else {
-//      print("No service avalaible!!!")
-//    }
   }
 
   func applicationWillResignActive(application: UIApplication) {
@@ -122,21 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     print("applicationDidBecomeActive")
-//    UMSocialSnsService.applicationDidBecomeActive()//UM
-    
-//    println(window?.rootViewController)
-//    if let navigationController = window?.rootViewController as? UINavigationController {
-//      println(navigationController.visibleViewController)
-//      if navigationController.visibleViewController is JSHChatVC {
-//        let chatVC = navigationController.visibleViewController as! JSHChatVC
-//        requestOfflineMessages()
-//        
-//        if var shopMessageBadge = StorageManager.sharedInstance().shopMessageBadge() {
-//          shopMessageBadge[chatVC.shopID] = 0
-//          StorageManager.sharedInstance().updateShopMessageBadge(shopMessageBadge)
-//        }
-//      }
-//    }
+
     
     LocationMonitor.sharedInstance.afterResume = false
     LocationMonitor.sharedInstance.stopMonitoringLocation()
@@ -164,8 +115,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   // MARK: - Push Notification
   func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-    //环信推送通知
-    EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     
     // 将DeviceToken 存储在YunBa的云端，那么可以通过YunBa发送APNs通知
     YunBaService.storeDeviceToken(deviceToken) { (success, error) -> Void in
@@ -182,13 +131,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-    EaseMob.sharedInstance().application(application, didFailToRegisterForRemoteNotificationsWithError: error)
     print(error)
   }
-  
-//  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-//    print(userInfo)
-//  }
+
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
     print(userInfo)
@@ -224,39 +169,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 清理系统缓存
     AccountManager.sharedInstance().clearAccountCache()
     
-    // 登出环信
-    EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
-    let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
-    print("登出前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
-    EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
-    print("登出后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
-    if error != nil {
-      print(error.debugDescription)
-    } else {
-      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
-    }
-    
     // 弹出登录框
     let nc = BaseNC(rootViewController: LoginVC())
     window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
     ZKJSTool.showMsg("账号在别处登录，请重新重录")
   }
   
-  //UM
-  //iOS 8 及以下
-  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    let canHandleURL = Pingpp.handleOpenURL(url, withCompletion: nil) 
-    let urlStr = url.absoluteString
-    if urlStr.hasPrefix("SVIPPAY") {
-    }
-    return canHandleURL
-  }
-  //iOS 9 及以上
-
-  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-     let canHandleURL = Pingpp.handleOpenURL(url, withCompletion: nil)
-      return canHandleURL
-  }
   
   // MARK: - Private Method
   
@@ -272,58 +190,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     loginManager?.showAnimation()
   }
   
-  func setupLogger() {
-//    DDLog.addLogger(DDASLLogger.sharedInstance())
-//    DDLog.addLogger(DDTTYLogger.sharedInstance())
-//    
-//    let logFileManager = CompressingLogFileManager(logsDirectory: LogManager.sharedInstance().logsDirectory())
-//    print(logFileManager.logsDirectory())
-//    let fileLogger = DDFileLogger(logFileManager: logFileManager)
-//    fileLogger.maximumFileSize = 1024 * 512
-////    fileLogger.rollingFrequency = 60 * 60 * 24
-//    fileLogger.logFileManager.maximumNumberOfLogFiles = 1
-//    DDLog.addLogger(fileLogger)
-  }
 
   func setupNotification() {
     UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
     UIApplication.sharedApplication().registerForRemoteNotifications()
   }
   
-//  func fetchShops() {
-//    ZKJSHTTPSessionManager.sharedInstance().getAllShopInfoWithPage(1, key: "", isDesc: true, success: {  (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-//      let shops = responseObject as! [(NSDictionary)]
-//      StorageManager.sharedInstance().saveShopsInfo(shops)
-//      }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-//        
-//    }
-//  }
-  
-  //UM
-  func setupUMSocial() {
-//    UMSocialData.openLog(true);
-//    UMSocialData.setAppKey(UMAppKey)
-//    UMSocialWechatHandler.setWXAppId(WXAppId, appSecret: WXAppSecret, url: UMURL)
-  }
-  
-//  func setupBackgroundFetch() {
-//    UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-//  }
-  
-  func setupEaseMobWithApplication(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
-    #if DEBUG
-      let cert = "SVIP_dev"
-    #else
-      let cert = "SVIP"
-    #endif
-    let appKey = "zkjs#svip"
-    
-    EaseSDKHelper.shareHelper().easemobApplication(application,
-      didFinishLaunchingWithOptions: launchOptions,
-      appkey: appKey,
-      apnsCertName: cert,
-      otherConfig: [kSDKConfigEnableConsoleLogger: NSNumber(bool: false)])
-  }
   
   func setupYunBa() {
     YunBaService.setupWithAppkey(ZKJSConfig.sharedInstance.YunBaAppKey)

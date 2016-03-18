@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class PrivilegeModel: NSObject {
   var privilegeDesc: String!

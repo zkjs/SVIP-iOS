@@ -35,3 +35,16 @@ extension NSDate {
   }
   
 }
+
+extension NSDate {
+  var formatted:String {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    return formatter.stringFromDate(self)
+  }
+  func formattedWith(format:String) -> String {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = format
+    return formatter.stringFromDate(self)
+  }
+}

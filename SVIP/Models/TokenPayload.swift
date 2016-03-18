@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class TokenPayload:NSObject {
   private static let kNSDefaults = "tokenPayload"

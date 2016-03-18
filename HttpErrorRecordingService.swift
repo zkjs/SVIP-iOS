@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+import ReachabilitySwift
 
 class HttpErrorRecordingService {
   static let sharedInstance = HttpErrorRecordingService()

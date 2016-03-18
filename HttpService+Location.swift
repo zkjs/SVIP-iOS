@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import CoreLocation
+import Alamofire
 
 extension HttpService {
   
@@ -66,7 +68,7 @@ extension HttpService {
     guard  let token = TokenPayload.sharedInstance.token else {return}
     let headers = ["Content-Type":"multipart/form-data","Token":token]
     
-    upload(.POST, urlString,headers: headers,multipartFormData: {
+    Alamofire.upload(.POST, urlString,headers: headers,multipartFormData: {
       multipartFormData in
       multipartFormData.appendBodyPart(data: file, name: "file", fileName: filename, mimeType: "application/octet-stream")
       for (key, value) in parameters {

@@ -87,8 +87,6 @@ class InvitationCodeVC: UIViewController {
                 self.hideHUD()
                 AccountManager.sharedInstance().saveActivated("1")
                 self.hideHUD()
-                self.sendInvitationCodeMessage()
-                self.sendInvitationCodeCmdMessage()
                 if self.type == InvitationCodeVCType.first {
                   HttpService.sharedInstance.getUserinfo{ (json, error) -> Void in
                     self.dismissViewControllerAnimated(true, completion: nil)
@@ -116,40 +114,6 @@ class InvitationCodeVC: UIViewController {
     }
   }
   
-  func sendInvitationCodeCmdMessage() {
-    // 发送环信透传消息
-    guard   let userID = TokenPayload.sharedInstance.userID else {return}
-    let userName = AccountManager.sharedInstance().userName
-    let phone = AccountManager.sharedInstance().phone
-    let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-    let cmdChat = EMChatCommand()
-    cmdChat.cmd = "inviteAdd"
-    let body = EMCommandMessageBody(chatObject: cmdChat)
-    let message = EMMessage(receiver: salesid, bodies: [body])
-    message.ext = [
-      "userId": userID,
-      "userName": userName,
-      "mobileNo": phone,
-      "date": NSNumber(longLong: timestamp)]
-    message.messageType = .eMessageTypeChat
-    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
-  }
-  
-  func sendInvitationCodeMessage() {
-    // 发送环信消息
-    let userName = AccountManager.sharedInstance().userName
-    let txtChat = EMChatText(text: "我已绑定你的验证码")
-    let body = EMTextMessageBody(chatObject: txtChat)
-    let message = EMMessage(receiver: salesid, bodies: [body])
-    let ext: [String: AnyObject] = ["shopId": shopid,
-      "shopName": shopname,
-      "toName": sales_name,
-      "fromName": userName,
-      "extType": 0]
-    message.ext = ext
-    message.messageType = .eMessageTypeChat
-    EaseMob.sharedInstance().chatManager.asyncSendMessage(message, progress: nil)
-  }
   
 }
 

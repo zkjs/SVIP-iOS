@@ -6,7 +6,8 @@
 //  Copyright (c) 2013年 itcast. All rights reserved.
 //
 
-#import "MBProgressHUD.h"
+//#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MBProgressHUD (Add)
 + (void)showError:(NSString *)error toView:(UIView *)view;

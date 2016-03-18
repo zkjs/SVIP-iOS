@@ -47,23 +47,6 @@ class StorageManager: NSObject {
     }
   }
   
-  func lastOrder() -> BookOrder? {
-    var lastOrder: BookOrder? = nil
-    if let data = NSUserDefaults.standardUserDefaults().objectForKey("LastOrder") as? NSData {
-      lastOrder = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? BookOrder
-    }
-    return lastOrder
-  }
-  
-  func updateLastOrder(order: BookOrder?) {
-    var encodedObject: NSData? = nil
-    if let lastOrder = order {
-      encodedObject = NSKeyedArchiver.archivedDataWithRootObject(lastOrder)
-    }
-    let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setObject(encodedObject, forKey: "LastOrder")
-    defaults.synchronize()
-  }
   
   func lastBeacon() -> [String: String]? {
     return NSUserDefaults.standardUserDefaults().objectForKey("LastBeacon") as? [String: String]

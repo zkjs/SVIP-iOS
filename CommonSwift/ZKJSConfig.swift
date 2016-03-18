@@ -8,6 +8,8 @@
 
 import Foundation
 
+let KNOTIFICATION_LOGINCHANGE = "loginStateChange"
+
 //TODO: api调试完成后在,在根据 build config 配置不同环境url
 struct ZKJSConfig {
   static let sharedInstance = ZKJSConfig()
@@ -20,8 +22,6 @@ struct ZKJSConfig {
   let BaseURL = "http://p.zkjinshi.com/test"
   // 图片服务器
   let BaseImageURL = "http://for-testea01cc11-44f5-431f-a393-a6595c09410d.oss-cn-shenzhen.aliyuncs.com/"
-  // 环信
-  let EaseMobAppKey = "zkjs#svip"
   // 云巴
   let YunBaAppKey = "566563014407a3cd028aa72f"
   
@@ -33,8 +33,6 @@ struct ZKJSConfig {
   let BaseURL = "http://rap.zkjinshi.com/"
   // 图片服务器
   let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
-  // 环信
-  let EaseMobAppKey = "zkjs#sid"
   // 云巴
   let YunBaAppKey = "566563014407a3cd028aa72f"
   
@@ -46,8 +44,6 @@ struct ZKJSConfig {
   let BaseURL = "http://api.zkjinshi.com/"
   // 图片服务器
   let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
-  // 环信
-  let EaseMobAppKey = "zkjs#prosvip"
   // 云巴
   let YunBaAppKey = "566563014407a3cd028aa72f"
   

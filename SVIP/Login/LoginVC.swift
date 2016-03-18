@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Spring
+
 class LoginVC: UIViewController {
   
   @IBOutlet weak var phoneTextField: DesignableTextField!
@@ -82,7 +84,7 @@ class LoginVC: UIViewController {
           ZKJSTool.showMsg(msg)
         }
       } else {//登陆成功后再登陆环信
-        self.loginEaseMob()
+//        self.loginEaseMob()
         completionHandler?()
       }
     }
@@ -155,27 +157,12 @@ class LoginVC: UIViewController {
     okButton.alpha = 0.5
     
     codeButton.layer.borderWidth = 0.6
-    codeButton.layer.borderColor = UIColor(hexString: "C7C7CD").CGColor
+    codeButton.layer.borderColor = UIColor(hex: "#C7C7CD").CGColor
     codeButton.backgroundColor = UIColor.whiteColor()
-    codeButton.setTitleColor(UIColor(hexString: "C7C7CD"), forState: .Normal)
+    codeButton.setTitleColor(UIColor(hex: "#C7C7CD"), forState: .Normal)
     codeButton.enabled = false
   }
   
-  private func loginEaseMob() {
-    let userID = TokenPayload.sharedInstance.userID
-    let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
-    print("Username: \(userID)")
-    print("登陆前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
-    EaseMob.sharedInstance().chatManager.loginWithUsername(userID, password: "123456", error: error)
-    print("登陆后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
-    if error != nil {
-      showHint(error.debugDescription)
-    }
-    EaseMob.sharedInstance().chatManager.loadDataFromDatabase()
-    let options = EaseMob.sharedInstance().chatManager.pushNotificationOptions
-    options.displayStyle = .ePushNotificationDisplayStyle_simpleBanner
-    EaseMob.sharedInstance().chatManager.asyncUpdatePushOptions(options)
-  }
 
   // MARK: Button Action
   
@@ -254,9 +241,9 @@ extension LoginVC: UITextFieldDelegate {
         codeButton.enabled = true
       } else {
         codeButton.layer.borderWidth = 0.6
-        codeButton.layer.borderColor = UIColor(hexString: "C7C7CD").CGColor
+        codeButton.layer.borderColor = UIColor(hex: "#C7C7CD").CGColor
         codeButton.backgroundColor = UIColor.whiteColor()
-        codeButton.setTitleColor(UIColor(hexString: "C7C7CD"), forState: .Normal)
+        codeButton.setTitleColor(UIColor(hex: "#C7C7CD"), forState: .Normal)
         codeButton.enabled = false
       }
       

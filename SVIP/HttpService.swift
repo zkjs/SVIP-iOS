@@ -9,6 +9,8 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 typealias HttpCompletionHandler = (JSON?, NSError?) -> Void
 
@@ -137,7 +139,7 @@ class HttpService {
   
   
   //HTTP REQUEST
-  func requestAPI(method: Method, urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: HttpCompletionHandler) {
+  func requestAPI(method: Alamofire.Method, urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: HttpCompletionHandler) {
     
     var headers = ["Content-Type":"application/json"]
     if let token = TokenPayload.sharedInstance.token where !token.isEmpty {
@@ -159,7 +161,7 @@ class HttpService {
   }
   
   //HTTP REQUEST
-  func requestTimeoutAPI(method: Method, urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: HttpCompletionHandler) {
+  func requestTimeoutAPI(method: Alamofire.Method, urlString: String, parameters: [String : AnyObject]? ,tokenRequired:Bool = true, completionHandler: HttpCompletionHandler) {
     
     var headers = ["Content-Type":"application/json"]
     if let token = TokenPayload.sharedInstance.token  where !token.isEmpty{

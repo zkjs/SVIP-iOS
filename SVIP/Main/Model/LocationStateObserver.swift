@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class LocationStateObserver:NSObject {
   static let sharedInstance = LocationStateObserver()

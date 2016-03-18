@@ -15,9 +15,7 @@ class HomeVC: UIViewController {
   let Identifier = "HomeVCCell"
   let locationManager = CLLocationManager()
   
-  var refreshHomeDelegate:refreshHomeVCDelegate?
   var bluetoothManager = CBCentralManager()
-  var floatingVC = FloatingWindowVC()
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
   
@@ -76,7 +74,6 @@ class HomeVC: UIViewController {
       privilegeButton.userInteractionEnabled = false
     }
     
-    refreshHomeDelegate = self
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
     
@@ -250,24 +247,12 @@ class HomeVC: UIViewController {
           //          vc.url = "http://www.zkjinshi.com/about_us/about_svip.html"
           //          self.navigationController?.pushViewController(vc, animated: true)
         } else {
-          pushToBookVC(pushInfo)
+//          pushToBookVC(pushInfo)
         }
       }
     }
   }
   
-  func pushToBookVC(pushinfo: PushInfoModel) {
-    if pushinfo.shopid == "" {
-      ZKJSTool.showMsg("暂无商家信息")
-      return
-    }
-    let storyboard = UIStoryboard(name: "BusinessDetailVC", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("BusinessDetailVC") as! BusinessDetailVC
-    vc.shopid = NSNumber(integer: Int(pushinfo.shopid)!)
-    vc.shopName = pushinfo.shopName
-    vc.hidesBottomBarWhenPushed = true
-    navigationController?.pushViewController(vc, animated: true)
-  }
   
   private func setupBluetoothManager() {
     bluetoothManager = CBCentralManager(delegate: self, queue: nil)
@@ -307,13 +292,5 @@ extension HomeVC: CBCentralManagerDelegate {
     case .Unsupported:
       print(".Unsupported")
     }
-  }
-}
-
-extension HomeVC: refreshHomeVCDelegate {
-  //refreshHomeVCDelegate
-  func refreshHomeVC(set: Bool) {
-    //    getPushInfoData()
-    self.refreshTableView()
   }
 }
