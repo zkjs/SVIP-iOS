@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 import UIKit
-
+import SystemConfiguration.CaptiveNetwork
 class LocationMonitor:NSObject {
   static let sharedInstance = LocationMonitor()
   private override init() {}
@@ -207,8 +207,14 @@ extension LocationMonitor : CLLocationManagerDelegate {
     lastLocationInfo.lastLocation = location
     lastLocationInfo.lastTime = currentTime
     lastLocationInfo.lastUploadedTime = currentTime
-    
-    HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970), completionHandler: nil)
+    var bssid = ""
+    var ssid = ""
+
+    if let ssID = getSSIDInfo(){
+      bssid = completionMacString(ssID["BSSID"]!)
+      ssid = ssID["SSID"]!
+    }
+    HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970),mac:bssid,ssid:ssid,signal:-50, completionHandler: nil)
 
   }
   
@@ -223,5 +229,32 @@ extension LocationMonitor : CLLocationManagerDelegate {
     case .Inactive:
       return "Inactive"
     }
+  }
+  
+  func getSSIDInfo() -> [String:String]? {
+    if let interfaces:CFArray = CNCopySupportedInterfaces() {
+      if CFArrayGetCount(interfaces) <= 0 {
+        return nil
+      }
+      for i in 0..<CFArrayGetCount(interfaces)  {
+        let interfaceName: UnsafePointer<Void> = CFArrayGetValueAtIndex(interfaces, i)
+        let rec = unsafeBitCast(interfaceName, AnyObject.self)
+        let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)")
+        if unsafeInterfaceData != nil {
+          let interfaceData = unsafeInterfaceData! as Dictionary!
+          return ["SSID": interfaceData["SSID"] as! String,
+            "BSSID": interfaceData["BSSID"] as! String,
+          ]
+        }
+      }
+    }
+    return nil
+  }
+  
+  func completionMacString(bssid:String) -> String {
+    let mac = bssid.characters.split{ $0 == ":" }.map(String.init).map {
+      return $0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) < 2 ? "0\($0)" : $0
+      }.joinWithSeparator(":").uppercaseString
+    return mac
   }
 }
