@@ -63,6 +63,7 @@
 		40DE25131C9BFE6600CA7F26 /* LocationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25101C9BFE6600CA7F26 /* LocationStateObserver.swift */; };
 		40DE25171C9C07C700CA7F26 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40DE25161C9C07C700CA7F26 /* openssl.framework */; };
 		40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */; };
+		40DE251C1C9D3E4200CA7F26 /* BreathLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE251B1C9D3E4200CA7F26 /* BreathLight.swift */; };
 		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
 		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
 		40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343E1C92C3F40019A8CA /* LocalStorage.swift */; };
@@ -219,6 +220,7 @@
 		40DE25101C9BFE6600CA7F26 /* LocationStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStateObserver.swift; sourceTree = "<group>"; };
 		40DE25161C9C07C700CA7F26 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
 		40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = Views/RoundedImageView.swift; sourceTree = "<group>"; };
+		40DE251B1C9D3E4200CA7F26 /* BreathLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BreathLight.swift; path = Views/BreathLight.swift; sourceTree = "<group>"; };
 		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZKJSConfig.swift; sourceTree = "<group>"; };
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		40FD343E1C92C3F40019A8CA /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */,
+				40DE251B1C9D3E4200CA7F26 /* BreathLight.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
+				40DE251C1C9D3E4200CA7F26 /* BreathLight.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				40DE24F11C9BFA9300CA7F26 /* BeaconErrors.swift in Sources */,

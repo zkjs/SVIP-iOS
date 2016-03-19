@@ -19,6 +19,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var moneyLabel: UILabel!
   @IBOutlet weak var moneyButton: UIButton!
   @IBOutlet weak var notifyButton: UIButton!
+  @IBOutlet weak var breathLight: BreathLight!
   
   
   var bluetoothManager = CBCentralManager()
