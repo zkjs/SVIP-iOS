@@ -32,13 +32,16 @@ class PayListTVC: UITableViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
+    self.showHUDInView(view, withLoading: "")
     HttpService.sharedInstance.userPaylistInfo(orderStatus, page: 0) { (data,error) -> Void in
       if let _ = error {
+        self.hideHUD()
 
       } else {
         if let json = data {
          self.paylistArr = json
          self.tableView.reloadData()
+         self.hideHUD()
         }
 
       }
@@ -77,19 +80,15 @@ class PayListTVC: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let pay = paylistArr[indexPath.row]
     if pay.status == .NotPaid {
-      self.showHUDInView(view, withLoading: "")
-      HttpService.sharedInstance.userPay(pay.orderno,action:1) { (json,error) -> Void in
-        if let _ = error {
-          self.hideHUD()
-          self.showHint("支付失败")
-        }
-        self.hideHUD()
-        if let Json = json where Json == "success"{
-          self.showHint("支付成功")
-        }
-      }
+      let vc = PayInfoVC()
+      let childView = vc.view
+      self.view.addSubview(childView)
+      self.addChildViewController(vc)
+      vc.payInfo = pay
+      vc.didMoveToParentViewController(self)
+      childView.frame = self.view.frame
     }
-  }
+   }
 
 
     /*

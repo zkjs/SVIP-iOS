@@ -42,14 +42,26 @@ class PayInfoVC: UIViewController {
     self.view.removeFromSuperview()
   }
   @IBAction func rejectpay(sender: AnyObject) {
-    HttpService.sharedInstance.userPay(payInfo.orderno,action:2) { (json) -> Void in
-
+    self.showHUDInView(view, withLoading: "")
+    HttpService.sharedInstance.userPay(payInfo.orderno,action:2) { (json,error) -> Void in
+            self.hideHUD()
+      if let Json = json where Json == "success"{
+        self.showHint("已拒绝支付")
+      }
     }
   }
 
   @IBAction func ensurePay(sender: AnyObject) {
-    HttpService.sharedInstance.userPay(payInfo.orderno,action:1) { (json) -> Void in
-
+      self.showHUDInView(view, withLoading: "")
+      HttpService.sharedInstance.userPay(payInfo.orderno,action:1) { (json,error) -> Void in
+        if let _ = error {
+          self.hideHUD()
+          self.showHint("支付失败")
+        }
+        self.hideHUD()
+        if let Json = json where Json == "success"{
+          self.showHint("支付成功")
+        }
     }
   }
     /*
