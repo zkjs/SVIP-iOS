@@ -44,17 +44,31 @@ class HomeVC: UIViewController {
     
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "payInfo", name:kPaymentInfoNotification, object: nil)
     
   }
   
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
-    
+    payInfo()
     getBalance()
+  }
+
+  func payInfo() {
+    //付款消息通知
+    let vc = PayInfoVC()
+
+    let childView = vc.view
+
+    self.view.addSubview(childView)
+    self.addChildViewController(vc)
+    vc.didMoveToParentViewController(self)
+    childView.frame = self.view.frame
+
+
   }
   
   // TableView Scroller Delegate

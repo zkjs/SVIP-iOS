@@ -17,7 +17,7 @@ import UIKit
 // 友盟
 let UMAppKey = "55c31431e0f55a65c1002597"
 let UMURL = ""
-
+let kPaymentInfoNotification = "kPaymentInfoNotification"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -144,6 +144,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    localNotification.category = "INVITE_CATEGORY";
 //    UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
 //    completionHandler(.NewData)
+
+    if let msg = userInfo["msg"] as? NSDictionary {
+      if let data = msg["data"] as? NSDictionary where data.count > 0 {
+      let  pay = PaylistmModel(json: data)
+        NSNotificationCenter.defaultCenter().postNotificationName(kPaymentInfoNotification, object:pay)
+
+
+      }
+
+    }
   }
   
   // MARK: - Background Fetch
