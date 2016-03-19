@@ -94,12 +94,12 @@ extension HttpService {
   }
   
   //// PAVO 认证服务API : Token管理 :
-  func deleteToken(completionHandler:HttpCompletionHandler) {
+  func deleteToken(completionHandler:HttpCompletionHandler?) {
     let urlString = ResourcePath.Token.description.fullUrl
     guard   let token = TokenPayload.sharedInstance.token else {return}
     let dic = ["token":token]
     put(urlString, parameters: dic) { (json, error) -> Void in
-      completionHandler(json, error)
+      completionHandler?(json, error)
     }
   }
   

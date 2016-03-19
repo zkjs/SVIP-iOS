@@ -47,7 +47,12 @@ class LoginManager: NSObject {
       let guideViewController = GuideVC()
       appWindow.rootViewController = guideViewController
     } else {
-      let nc = BaseNC(rootViewController: HomeVC())
+      var nc: BaseNC
+      if TokenPayload.sharedInstance.isLogin {
+        nc = BaseNC(rootViewController: HomeVC())
+      } else {
+        nc = BaseNC(rootViewController: LoginVC())
+      }
       appWindow.rootViewController = nc
     }
   }

@@ -62,6 +62,7 @@
 		40DE25121C9BFE6600CA7F26 /* LocationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE250F1C9BFE6600CA7F26 /* LocationMonitor.swift */; };
 		40DE25131C9BFE6600CA7F26 /* LocationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25101C9BFE6600CA7F26 /* LocationStateObserver.swift */; };
 		40DE25171C9C07C700CA7F26 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40DE25161C9C07C700CA7F26 /* openssl.framework */; };
+		40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */; };
 		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
 		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
 		40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343E1C92C3F40019A8CA /* LocalStorage.swift */; };
@@ -213,6 +214,7 @@
 		40DE250F1C9BFE6600CA7F26 /* LocationMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMonitor.swift; sourceTree = "<group>"; };
 		40DE25101C9BFE6600CA7F26 /* LocationStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStateObserver.swift; sourceTree = "<group>"; };
 		40DE25161C9C07C700CA7F26 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
+		40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = Views/RoundedImageView.swift; sourceTree = "<group>"; };
 		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZKJSConfig.swift; sourceTree = "<group>"; };
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		40FD343E1C92C3F40019A8CA /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		406B0AD31C858A8A006C9C73 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				40DE25181C9D17AC00CA7F26 /* Views */,
 				40DE25161C9C07C700CA7F26 /* openssl.framework */,
 				4053ADDC1C8D850100282240 /* Classes */,
 				406B0AD41C858A98006C9C73 /* Extensions */,
@@ -532,6 +535,14 @@
 				40DE25011C9BFBF100CA7F26 /* ZKJSHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		40DE25181C9D17AC00CA7F26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		40E3A18C1BFF01B000516EC4 /* 3rdparty-oc */ = {
@@ -862,6 +873,7 @@
 				40DE24E91C9BF96C00CA7F26 /* HttpErrorRecordingService.swift in Sources */,
 				40DE24ED1C9BF96C00CA7F26 /* HttpService+Token.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
+				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				40DE24F21C9BFA9300CA7F26 /* BeaconErrors+CoreDataProperties.swift in Sources */,
 				409E73FC1C9BE1950040186C /* NSData+AES256.m in Sources */,

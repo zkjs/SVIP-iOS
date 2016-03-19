@@ -304,7 +304,12 @@ class GuideVC: UIViewController {
       self.view.alpha = 0.0
       }) { (finished: Bool) -> Void in
         if finished {
-          let nc = BaseNC(rootViewController: HomeVC())
+          var nc: BaseNC
+          if TokenPayload.sharedInstance.isLogin {
+            nc = BaseNC(rootViewController: HomeVC())
+          } else {
+            nc = BaseNC(rootViewController: LoginVC())
+          }
           UIApplication.sharedApplication().keyWindow?.rootViewController = nc
         }
     }

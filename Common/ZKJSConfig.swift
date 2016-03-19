@@ -9,6 +9,7 @@
 import Foundation
 
 let KNOTIFICATION_LOGINCHANGE = "loginStateChange"
+let APP_GLOBAL_TINT_COLOR = UIColor(hex: "#ffc56e")
 
 //TODO: api调试完成后在,在根据 build config 配置不同环境url
 struct ZKJSConfig {
