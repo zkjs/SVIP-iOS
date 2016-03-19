@@ -46,6 +46,7 @@ extension HttpService {
       if let json = json {
         guard let token = json["token"].string where !token.isEmpty else {
           print("no token")
+          completionHandler(nil, error)
           return
         }
         let tokenPayload = TokenPayload.sharedInstance
@@ -80,6 +81,7 @@ extension HttpService {
       if let json = json {
         guard let token = json["token"].string where !token.isEmpty else {
           print("no token")
+          completionHandler(nil, error)
           return
         }
         print("success")
