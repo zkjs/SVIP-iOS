@@ -32,7 +32,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_wyndham" translatesAutoresizingMaskIntoConstraints="NO" id="cNW-pJ-VSy">
                     <rect key="frame" x="199" y="214" width="202" height="96"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星空中心大一圈" translatesAutoresizingMaskIntoConstraints="NO" id="YCF-Iy-Uvs" customClass="RoundedImageView" customModule="SVIP" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="YCF-Iy-Uvs" customClass="RoundedImageView" customModule="SVIP" customModuleProvider="target">
                     <rect key="frame" x="15" y="484" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="XOR-h3-aXd"/>
@@ -124,7 +124,7 @@
         <image name="ic_huxideng" width="25" height="25"/>
         <image name="ic_money" width="80" height="87"/>
         <image name="ic_wallet" width="27" height="27"/>
+        <image name="logo_white" width="60" height="60"/>
         <image name="logo_wyndham" width="202" height="96"/>
-        <image name="星空中心大一圈" width="479" height="852"/>
     </resources>
 </document>

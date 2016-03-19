@@ -57,9 +57,10 @@ class HttpService {
     case HomeRecom(city:String)         // 首页服务推荐
     case HomeAllMessages(city:String)   // 登陆用户首页详情-订单-特权
     case CheckVersion(version:String)   // 检查App版本
-    case BeaconNearUsersList            //beacon附近商家用户列表
-    case UserEnsurePay                  //用户确认付款
-    case PaymentInfo                    //获取首付款列表，含明细
+    case BeaconNearUsersList            // beacon附近商家用户列表
+    case UserEnsurePay                  // 用户确认付款
+    case PaymentInfo                    // 获取首付款列表，含明细
+    case Balance                        // 账户余额
     
     var description: String {
       switch self {
@@ -86,9 +87,10 @@ class HttpService {
       case .HomeRecom(let city):        return "/for/res/v1/systempub/localservice/recommend/\(city)"
       case .HomeAllMessages(let city):  return "/for/res/v1/system/sihomedetail/\(city)"
       case .CheckVersion(let version):  return "/for/res/v1/systempub/upgrade/newestversion/1/IOS/\(version)"
-      case.BeaconNearUsersList:         return "/pyx/lbs/v1/loc/beacon/"
-      case.UserEnsurePay:               return "/for/res/v1/payment"
-      case.PaymentInfo :                return "/for/res/v1/payment/si"
+      case .BeaconNearUsersList:        return "/pyx/lbs/v1/loc/beacon/"
+      case .UserEnsurePay:              return "/for/res/v1/payment"
+      case .PaymentInfo:                return "/for/res/v1/payment/si"
+      case .Balance:                    return "/for/res/v1/payment/balance"
       }
     }
   }
