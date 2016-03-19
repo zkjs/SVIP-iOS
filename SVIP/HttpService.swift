@@ -13,6 +13,8 @@ import Foundation
 typealias HttpCompletionHandler = (JSON?, NSError?) -> Void
 
 class HttpService {
+  // 豪庭
+  static let DIST = "568e8db288b8a95d7ecfeb9a5d6936b9c521253f3cad30cd9b83ed2d87db9605"
   static let DefaultPageSize = 20
   //设置api请求超时时间
   static let TimeoutInterval:NSTimeInterval = 3
@@ -60,12 +62,12 @@ class HttpService {
       case .ApiURL(let path):           return "/api/\(path)"
       case .Beacon:                     return "/pyx/lbs/v1/loc/beacon"
       case .GPS:                        return "/pyx/lbs/v1/loc/gps"
-      case .CodeLogin:                  return "/pav/sso/vcode/v1/si?source=login"
-      case .CodeRegister:               return "/pav/sso/vcode/v1/si?source=register"
-      case .Login:                      return "/pav/sso/token/v1/phone/si"
+      case .CodeLogin:                  return "/pav/sso/vcode/v1/si?source=login&dist=\(DIST)"
+      case .CodeRegister:               return "/pav/sso/vcode/v1/si?source=register&dist=\(DIST)"
+      case .Login:                      return "/pav/sso/token/v1/phone/si?dist=\(DIST)"
       case .Token:                      return "/pav/sso/token/v1"
       case .DeleteToken:                return "/pav/sso/token/v1"
-      case .register:                   return "/pav/res/v1/register/si"
+      case .register:                   return "/pav/res/v1/register/si?dist=\(DIST)"
       case .RegisterUpdata:             return "/for/res/v1/register/update/si"
       case .UserInfo:                   return "/for/res/v1/query/user/all"
       case .UserInfoUpdate:             return "/for/res/v1/update/user"
