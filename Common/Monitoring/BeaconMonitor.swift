@@ -12,7 +12,7 @@ import CoreLocation
 
 let BEACON_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
 let BEACON_IDENTIFIER = "com.zkjinshi.svpi"
-let BEACON_INERVAL_MIN = 20 //BEACON 重复发起API请求最小时间间隔,单位：分钟
+let BEACON_INERVAL_MIN = 1 //BEACON 重复发起API请求最小时间间隔,单位：分钟
 
 class BeaconMonitor:NSObject {
   static let sharedInstance = BeaconMonitor()

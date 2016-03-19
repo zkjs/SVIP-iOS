@@ -54,8 +54,9 @@ class HomeVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
-    payInfo()
+    //payInfo()
     getBalance()
+    refreshUserInfo()
   }
 
   func payInfo() {
@@ -83,6 +84,10 @@ class HomeVC: UIViewController {
     self.view.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
     self.lineView.backgroundColor = UIColor(patternImage: UIImage(named: "home_line")!)
     toggleMoney()
+    refreshUserInfo()
+  }
+  
+  func refreshUserInfo() {
     self.avatarsImageView.sd_setImageWithURL(NSURL(string: AccountManager.sharedInstance().avatarURL), placeholderImage: UIImage(named: "logo_white"))
     self.nameLabel.text = AccountManager.sharedInstance().userName
   }
@@ -115,6 +120,7 @@ class HomeVC: UIViewController {
   
   // 点击头像到账号管理页面
   @IBAction func accountAction(sender: AnyObject) {
+    gotoSetting()
   }
   
   // 点击钱包打开金额气泡
@@ -126,11 +132,21 @@ class HomeVC: UIViewController {
   @IBAction func moneyAction(sender: AnyObject) {
     toggleMoney()
     let vc = PayListTVC()
+    vc.orderStatus = .Paid
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
   // 点击呼吸灯打开付款请求
   @IBAction func billAction(sender: AnyObject) {
+    let vc = PayListTVC()
+    vc.orderStatus = .NotPaid
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  func gotoSetting() {
+    let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
+    let vcMe = storyboard.instantiateViewControllerWithIdentifier("MeTVC") as! MeTVC
+    self.navigationController?.pushViewController(vcMe, animated: true)
   }
   
 }

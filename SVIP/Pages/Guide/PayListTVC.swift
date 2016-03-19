@@ -9,6 +9,7 @@
 import UIKit
 
 class PayListTVC: UITableViewController {
+  var orderStatus: FacePayOrderStatus!
   var paylistArr = [PaylistmModel]()
         
 
@@ -17,7 +18,11 @@ class PayListTVC: UITableViewController {
       let nibName = UINib(nibName: PaylistCell.nibName(), bundle: nil)
       tableView.registerNib(nibName, forCellReuseIdentifier: PaylistCell.reuseIdentifier())
 
-
+      if orderStatus == .NotPaid {
+        self.title = "支付确认"
+      } else if orderStatus == .Paid {
+        self.title = "支付记录"
+      }
 
     }
 
@@ -27,7 +32,7 @@ class PayListTVC: UITableViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
-    HttpService.sharedInstance.userPaylistInfo(.Paid, page: 0) { (data,error) -> Void in
+    HttpService.sharedInstance.userPaylistInfo(orderStatus, page: 0) { (data,error) -> Void in
       if let _ = error {
 
       } else {

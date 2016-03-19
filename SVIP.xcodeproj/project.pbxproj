@@ -64,6 +64,21 @@
 		40DE25171C9C07C700CA7F26 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40DE25161C9C07C700CA7F26 /* openssl.framework */; };
 		40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */; };
 		40DE251C1C9D3E4200CA7F26 /* BreathLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE251B1C9D3E4200CA7F26 /* BreathLight.swift */; };
+		40DE256F1C9D6CCB00CA7F26 /* AccountTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DE251F1C9D6CCB00CA7F26 /* AccountTVC.storyboard */; };
+		40DE25701C9D6CCB00CA7F26 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25201C9D6CCB00CA7F26 /* AccountTVC.swift */; };
+		40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25211C9D6CCB00CA7F26 /* EmailVC.swift */; };
+		40DE25721C9D6CCB00CA7F26 /* EmailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DE25221C9D6CCB00CA7F26 /* EmailVC.xib */; };
+		40DE25771C9D6CCB00CA7F26 /* InvoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25281C9D6CCB00CA7F26 /* InvoiceModel.swift */; };
+		40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25291C9D6CCB00CA7F26 /* NameVC.swift */; };
+		40DE25791C9D6CCB00CA7F26 /* NameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DE252A1C9D6CCB00CA7F26 /* NameVC.xib */; };
+		40DE257A1C9D6CCB00CA7F26 /* PhoneFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE252B1C9D6CCB00CA7F26 /* PhoneFirstVC.swift */; };
+		40DE257B1C9D6CCB00CA7F26 /* PhoneFirstVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DE252C1C9D6CCB00CA7F26 /* PhoneFirstVC.xib */; };
+		40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE252D1C9D6CCB00CA7F26 /* PhoneSecondVC.swift */; };
+		40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DE252E1C9D6CCB00CA7F26 /* PhoneSecondVC.xib */; };
+		40DE25801C9D6CCB00CA7F26 /* MeTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DE25321C9D6CCB00CA7F26 /* MeTVC.storyboard */; };
+		40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25331C9D6CCB00CA7F26 /* MeTVC.swift */; };
+		40DE25B01C9D6CCB00CA7F26 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DE256D1C9D6CCB00CA7F26 /* SettingTVC.storyboard */; };
+		40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */; };
 		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
 		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
 		40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343E1C92C3F40019A8CA /* LocalStorage.swift */; };
@@ -224,6 +239,21 @@
 		40DE25161C9C07C700CA7F26 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
 		40DE25191C9D17DD00CA7F26 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = Views/RoundedImageView.swift; sourceTree = "<group>"; };
 		40DE251B1C9D3E4200CA7F26 /* BreathLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BreathLight.swift; path = Views/BreathLight.swift; sourceTree = "<group>"; };
+		40DE251F1C9D6CCB00CA7F26 /* AccountTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountTVC.storyboard; sourceTree = "<group>"; };
+		40DE25201C9D6CCB00CA7F26 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
+		40DE25211C9D6CCB00CA7F26 /* EmailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailVC.swift; sourceTree = "<group>"; };
+		40DE25221C9D6CCB00CA7F26 /* EmailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailVC.xib; sourceTree = "<group>"; };
+		40DE25281C9D6CCB00CA7F26 /* InvoiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceModel.swift; sourceTree = "<group>"; };
+		40DE25291C9D6CCB00CA7F26 /* NameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameVC.swift; sourceTree = "<group>"; };
+		40DE252A1C9D6CCB00CA7F26 /* NameVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameVC.xib; sourceTree = "<group>"; };
+		40DE252B1C9D6CCB00CA7F26 /* PhoneFirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneFirstVC.swift; sourceTree = "<group>"; };
+		40DE252C1C9D6CCB00CA7F26 /* PhoneFirstVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneFirstVC.xib; sourceTree = "<group>"; };
+		40DE252D1C9D6CCB00CA7F26 /* PhoneSecondVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSecondVC.swift; sourceTree = "<group>"; };
+		40DE252E1C9D6CCB00CA7F26 /* PhoneSecondVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneSecondVC.xib; sourceTree = "<group>"; };
+		40DE25321C9D6CCB00CA7F26 /* MeTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MeTVC.storyboard; sourceTree = "<group>"; };
+		40DE25331C9D6CCB00CA7F26 /* MeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTVC.swift; sourceTree = "<group>"; };
+		40DE256D1C9D6CCB00CA7F26 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
+		40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
 		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZKJSConfig.swift; sourceTree = "<group>"; };
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		40FD343E1C92C3F40019A8CA /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
@@ -516,6 +546,7 @@
 		409E73F01C9B99F80040186C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				40DE251D1C9D6CA700CA7F26 /* Settings */,
 				FA0D360C1C9D284000E0AA78 /* PaymentList */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
 				B2564D351B4BFAED0098608F /* LaunchAnimation */,
@@ -561,6 +592,52 @@
 				40DE251B1C9D3E4200CA7F26 /* BreathLight.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		40DE251D1C9D6CA700CA7F26 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				40DE251E1C9D6CCB00CA7F26 /* Account */,
+				40DE25321C9D6CCB00CA7F26 /* MeTVC.storyboard */,
+				40DE25331C9D6CCB00CA7F26 /* MeTVC.swift */,
+				40DE25691C9D6CCB00CA7F26 /* Setting */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		40DE251E1C9D6CCB00CA7F26 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				40DE251F1C9D6CCB00CA7F26 /* AccountTVC.storyboard */,
+				40DE25201C9D6CCB00CA7F26 /* AccountTVC.swift */,
+				40DE25211C9D6CCB00CA7F26 /* EmailVC.swift */,
+				40DE25221C9D6CCB00CA7F26 /* EmailVC.xib */,
+				40DE25271C9D6CCB00CA7F26 /* Model */,
+				40DE25291C9D6CCB00CA7F26 /* NameVC.swift */,
+				40DE252A1C9D6CCB00CA7F26 /* NameVC.xib */,
+				40DE252B1C9D6CCB00CA7F26 /* PhoneFirstVC.swift */,
+				40DE252C1C9D6CCB00CA7F26 /* PhoneFirstVC.xib */,
+				40DE252D1C9D6CCB00CA7F26 /* PhoneSecondVC.swift */,
+				40DE252E1C9D6CCB00CA7F26 /* PhoneSecondVC.xib */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		40DE25271C9D6CCB00CA7F26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40DE25281C9D6CCB00CA7F26 /* InvoiceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		40DE25691C9D6CCB00CA7F26 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				40DE256D1C9D6CCB00CA7F26 /* SettingTVC.storyboard */,
+				40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		40E3A18C1BFF01B000516EC4 /* 3rdparty-oc */ = {
@@ -794,19 +871,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40DE257B1C9D6CCB00CA7F26 /* PhoneFirstVC.xib in Resources */,
 				FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */,
 				FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */,
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
+				40DE25801C9D6CCB00CA7F26 /* MeTVC.storyboard in Resources */,
+				40DE25791C9D6CCB00CA7F26 /* NameVC.xib in Resources */,
 				40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */,
 				FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
 				FA0D36141C9D28FB00E0AA78 /* PaylistCell.xib in Resources */,
 				40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */,
+				40DE25721C9D6CCB00CA7F26 /* EmailVC.xib in Resources */,
 				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
 				FA1414E41C9D48B000A0666F /* PayInfoVC.xib in Resources */,
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
+				40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */,
 				408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
@@ -815,7 +897,9 @@
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
 				FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */,
 				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
+				40DE25B01C9D6CCB00CA7F26 /* SettingTVC.storyboard in Resources */,
 				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
+				40DE256F1C9D6CCB00CA7F26 /* AccountTVC.storyboard in Resources */,
 				4077C7A21C26578F000DD7DC /* server.der in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -900,9 +984,13 @@
 				FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */,
 				409E74001C9BE51E0040186C /* MBProgressHUD+Add.m in Sources */,
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
+				40DE25771C9D6CCB00CA7F26 /* InvoiceModel.swift in Sources */,
+				40DE257A1C9D6CCB00CA7F26 /* PhoneFirstVC.swift in Sources */,
 				40DE25111C9BFE6600CA7F26 /* BeaconMonitor.swift in Sources */,
 				40DE24FC1C9BFBC700CA7F26 /* Double+Extension+ZKJS.swift in Sources */,
+				40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */,
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
+				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
 				FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */,
 				40DE24EC1C9BF96C00CA7F26 /* HttpService+Location.swift in Sources */,
@@ -910,6 +998,7 @@
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
 				40DE24E91C9BF96C00CA7F26 /* HttpErrorRecordingService.swift in Sources */,
 				40DE24ED1C9BF96C00CA7F26 /* HttpService+Token.swift in Sources */,
+				40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
@@ -924,6 +1013,7 @@
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
 				40DE25051C9BFC9B00CA7F26 /* ZKJSErrorMessages.swift in Sources */,
 				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
+				40DE25701C9D6CCB00CA7F26 /* AccountTVC.swift in Sources */,
 				40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */,
 				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
@@ -934,7 +1024,9 @@
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
+				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
+				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
