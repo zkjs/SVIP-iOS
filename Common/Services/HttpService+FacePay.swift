@@ -9,7 +9,7 @@
 import Foundation
 
 enum FacePayOrderStatus:Int {
-  case NotPaid = 0,Rejected,Paid
+  case NotPaid = 0,Rejected,Paid,Unknown
 }
 
 extension HttpService {

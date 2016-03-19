@@ -37,8 +37,8 @@ class PaylistCell: UITableViewCell {
   }
 
   func setData(pay:PaylistmModel) {
-    moneyPayLabel.text = String(pay.amount)
-    timeLabel.text = pay.confirmtime
+    moneyPayLabel.text = (Double(pay.amount) / 100).format(".2")
+    timeLabel.text = pay.createtime
     hotelNamelabel.text = pay.shopname
   }
     

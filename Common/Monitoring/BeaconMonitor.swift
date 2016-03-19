@@ -10,14 +10,22 @@
 import Foundation
 import CoreLocation
 
-let BEACON_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
+//let BEACON_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
+let BEACON_UUIDS = ["FDA50693-A4E2-4FB1-AFCF-C6EB07647835","931DDF8E-10E4-11E5-9493-1697F925EC7B"]
 let BEACON_IDENTIFIER = "com.zkjinshi.svpi"
 let BEACON_INERVAL_MIN = 1 //BEACON 重复发起API请求最小时间间隔,单位：分钟
 
 class BeaconMonitor:NSObject {
   static let sharedInstance = BeaconMonitor()
   let locationManager = CLLocationManager()
-  let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: BEACON_UUID)!, identifier: BEACON_IDENTIFIER)
+  var beaconRegions = [CLBeaconRegion]()
+  private override init () {
+    for uuid in BEACON_UUIDS {
+      let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid)!, identifier: BEACON_IDENTIFIER)
+      beaconRegions.append(beaconRegion)
+    }
+  }
+  
   
   func startMonitoring () {
     locationManager.delegate = self
@@ -27,10 +35,12 @@ class BeaconMonitor:NSObject {
   
   private func startMonitoringRegion() {
     //beaconRegion.notifyEntryStateOnDisplay = true
-    beaconRegion.notifyOnEntry = true
-    beaconRegion.notifyOnExit = true
-    locationManager.startMonitoringForRegion(beaconRegion)
-    locationManager.startRangingBeaconsInRegion(beaconRegion)
+    for beaconRegion in beaconRegions {
+      beaconRegion.notifyOnEntry = true
+      beaconRegion.notifyOnExit = true
+      locationManager.startMonitoringForRegion(beaconRegion)
+      locationManager.startRangingBeaconsInRegion(beaconRegion)
+    }
   }
 }
 
@@ -38,16 +48,17 @@ extension BeaconMonitor : CLLocationManagerDelegate {
   func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
     if let _ = region as? CLBeaconRegion {
 //      print("enter beaconRegion:\(region)")
-      self.locationManager.startRangingBeaconsInRegion(self.beaconRegion)
-
+      for beaconRegion in beaconRegions {
+        self.locationManager.startRangingBeaconsInRegion(beaconRegion)
+      }
       //didEnterBeaconRegion(region as! CLBeaconRegion)
-
     }
   }
   
   func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+    print(beacons)
     //测试POST
-    if region.proximityUUID.UUIDString.uppercaseString != BEACON_UUID.uppercaseString {
+    if !BEACON_UUIDS.contains(region.proximityUUID.UUIDString.uppercaseString) {
       return
     }
     if beacons.count < 1 {
@@ -79,7 +90,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     cachedBeaconRegions[beacon.major] = currentTimeStamp
     StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
-    HttpService.sharedInstance.sendBeaconChanges(BEACON_UUID.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
+    HttpService.sharedInstance.sendBeaconChanges(beacon.proximityUUID.UUIDString.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion) {

@@ -15,7 +15,7 @@ class PaylistmModel: NSObject {
   var amount: Int = 0
   var orderno: String = ""
   var paymentno: String = ""
-  var status: String = ""
+  var status = FacePayOrderStatus.Unknown
   var statusdesc: String = ""
   var confirmtime: String = ""
   override init() {
@@ -28,9 +28,11 @@ class PaylistmModel: NSObject {
     amount = json["amount"] as? Int ?? 0
     orderno = json["orderno"] as? String ?? ""
     paymentno = json["paymentno"] as? String ?? ""
-    status = json["status"] as? String ?? ""
     statusdesc = json["statusdesc"] as? String ?? ""
     confirmtime = json["confirmtime"] as? String ?? ""
+    if let s = json["status"] as? Int {
+      status = FacePayOrderStatus(rawValue: s) ?? .Unknown
+    }
   }
 
   init(json:JSON) {
@@ -40,9 +42,11 @@ class PaylistmModel: NSObject {
     amount = json["amount"].int ?? 0
     orderno = json["orderno"].string ?? ""
     paymentno = json["paymentno"].string ?? ""
-    status = json["status"].string ?? ""
     statusdesc = json["statusdesc"].string ?? ""
     confirmtime = json["confirmtime"].string ?? ""
+    if let s = json["status"].int {
+      status = FacePayOrderStatus(rawValue: s) ?? .Unknown
+    }
 
   }
 

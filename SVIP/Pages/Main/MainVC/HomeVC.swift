@@ -96,7 +96,7 @@ class HomeVC: UIViewController {
   func getBalance() {
     HttpService.sharedInstance.getBalance { (balance, error) -> Void in
       if error == nil {
-        self.moneyLabel.text = balance.format(".2")
+        self.moneyLabel.text = (balance / 100).format(".2")
       }
     }
   }
