@@ -56,6 +56,7 @@ class HomeVC: UIViewController {
     navigationController?.navigationBar.translucent = true
     //payInfo()
     getBalance()
+    getOrderList()
     refreshUserInfo()
   }
 
@@ -71,6 +72,16 @@ class HomeVC: UIViewController {
     childView.frame = self.view.frame
 
 
+  }
+  
+  func getOrderList() {
+    HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) { (data,error) -> Void in
+      if let data = data where data.count > 0 {
+        self.breathLight.startAnimation()
+      } else {
+        self.breathLight.stopAnimation()
+      }
+    }
   }
   
   // TableView Scroller Delegate

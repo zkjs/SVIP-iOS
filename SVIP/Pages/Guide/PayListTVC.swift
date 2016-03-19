@@ -82,7 +82,7 @@ class PayListTVC: UITableViewController {
     if pay.status == .NotPaid {
       let vc = PayInfoVC()
       let childView = vc.view
-      self.view.addSubview(childView)
+      self.tableView.addSubview(childView)
       self.addChildViewController(vc)
       vc.payInfo = pay
       vc.didMoveToParentViewController(self)
