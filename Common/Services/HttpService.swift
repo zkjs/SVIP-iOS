@@ -19,6 +19,7 @@ class HttpService {
   //设置api请求超时时间
   static let TimeoutInterval:NSTimeInterval = 3
   static let sharedInstance = HttpService()
+  static let RITZ = "0dcbe53ce80e0f41db57b90184ee31e9b3d2cea0ba799ec3cf829ce4b933297f"
   //custom manager used for timeout version
   lazy var alamoFireManager : Manager = {
     let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -62,9 +63,9 @@ class HttpService {
       case .ApiURL(let path):           return "/api/\(path)"
       case .Beacon:                     return "/pyx/lbs/v1/loc/beacon"
       case .GPS:                        return "/pyx/lbs/v1/loc/gps"
-      case .CodeLogin:                  return "/pav/sso/vcode/v1/si?source=login"
-      case .CodeRegister:               return "/pav/sso/vcode/v1/si?source=register"
-      case .Login:                      return "/pav/sso/token/v1/phone/si"
+      case .CodeLogin:                  return "/pav/sso/vcode/v1/si?source=login&dist=\(RITZ)"
+      case .CodeRegister:               return "/pav/sso/vcode/v1/si?source=register&dist=\(RITZ)"
+      case .Login:                      return "/pav/sso/token/v1/phone/si?dist=\(RITZ)"
       case .Token:                      return "/pav/sso/token/v1"
       case .DeleteToken:                return "/pav/sso/token/v1"
       case .register:                   return "/pav/res/v1/register/si"
