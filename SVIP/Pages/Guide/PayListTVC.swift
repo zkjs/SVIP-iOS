@@ -9,6 +9,7 @@
 import UIKit
 
 class PayListTVC: UITableViewController {
+  var paylistArr = [PaylistmModel]()
         
 
     override func viewDidLoad() {
@@ -26,7 +27,15 @@ class PayListTVC: UITableViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
-    HttpService.sharedInstance.userPaylistInfo(0, page: 0) { (json) -> Void in
+    HttpService.sharedInstance.userPaylistInfo(.Paid, page: 0) { (data,error) -> Void in
+      if let _ = error {
+
+      } else {
+        if let json = data {
+         self.paylistArr = json
+        }
+
+      }
 
     }
   }
@@ -45,18 +54,17 @@ class PayListTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return paylistArr.count
     }
 
-    /*
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+      let cell = tableView.dequeueReusableCellWithIdentifier(PaylistCell.reuseIdentifier(), forIndexPath: indexPath) as! PaylistCell
+      let pay:PaylistmModel = paylistArr[indexPath.row]
+      cell.setData(pay)
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

@@ -31,7 +31,11 @@ extension HttpService {
     
   }
   
-  func userPaylistInfo(status:FacePayOrderStatus,page:Int = 0,completionHandler:([PaylistmModel]?,NSError?) ->Void) {
+<<<<<<< HEAD
+  func userPaylistInfo(status:Int,page:Int,completionHandler:HttpCompletionHandler ->Void ) {
+=======
+  func userPaylistInfo(status:FacePayOrderStatus,page:Int = 0,completionHandler:HttpCompletionHandler ) {
+>>>>>>> origin/branch-fp
     let urlString = ResourcePath.PaymentInfo.description.fullUrl
     let dict = ["status":status.rawValue,"page":page,"page_size":HttpService.DefaultPageSize]
     get(urlString, parameters: dict) { (json, error) -> Void in
@@ -39,15 +43,9 @@ extension HttpService {
         print(error)
         completionHandler(nil,error)
       } else {
-        var payArr = [PaylistmModel]()
         if let data = json?["data"].array where data.count > 0 {
-          for dic in data {
-            let pay = PaylistmModel(json:dic)
-            payArr.append(pay)
-          }
-
+          
         }
-        completionHandler(payArr,nil)
       }
     }
     

@@ -83,8 +83,7 @@ class HomeVC: UIViewController {
     moneyButton.hidden = hideMoney
     moneyLabel.hidden = hideMoney
     hideMoney = !hideMoney
-    let vc = PayListTVC()
-    self.navigationController?.pushViewController(vc, animated: true)
+
   }
   
   // 点击头像到账号管理页面
@@ -99,6 +98,8 @@ class HomeVC: UIViewController {
   // 点击气泡打开账单列表
   @IBAction func moneyAction(sender: AnyObject) {
     toggleMoney()
+    let vc = PayListTVC()
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   // 点击呼吸灯打开付款请求
