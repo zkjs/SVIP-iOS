@@ -31,10 +31,7 @@ class SettingTVC: UITableViewController {
       AccountManager.sharedInstance().clearAccountCache()
       //登出友盟统计
       MobClick.profileSignOff()
-      
-
-        NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
-      
+      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
       let window =  UIApplication.sharedApplication().keyWindow
       window?.rootViewController = MainTBC()
     }

@@ -57,10 +57,12 @@ class PayInfoVC: UIViewController {
         if let _ = error {
           self.hideHUD()
           self.showHint("支付失败")
+          self.view.removeFromSuperview()
         }
         self.hideHUD()
         if let Json = json where Json == "success"{
           self.showHint("支付成功")
+          self.view.removeFromSuperview()
         }
     }
   }
