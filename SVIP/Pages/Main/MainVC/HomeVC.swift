@@ -83,6 +83,8 @@ class HomeVC: UIViewController {
     moneyButton.hidden = hideMoney
     moneyLabel.hidden = hideMoney
     hideMoney = !hideMoney
+    let vc = PayListTVC()
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   // 点击头像到账号管理页面

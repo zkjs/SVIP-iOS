@@ -82,6 +82,10 @@
 		FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02C5831C0D42D100D0D439 /* LoginVC.xib */; };
 		FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */; };
 		FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */; };
+		FA0D360F1C9D28BA00E0AA78 /* PayListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */; };
+		FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */; };
+		FA0D36131C9D28FB00E0AA78 /* PaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */; };
+		FA0D36141C9D28FB00E0AA78 /* PaylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */; };
 		FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */; };
 		FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */; };
 		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
@@ -237,6 +241,10 @@
 		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
+		FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayListTVC.swift; sourceTree = "<group>"; };
+		FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayListTVC.xib; sourceTree = "<group>"; };
+		FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaylistCell.swift; sourceTree = "<group>"; };
+		FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaylistCell.xib; sourceTree = "<group>"; };
 		FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeModel.swift; sourceTree = "<group>"; };
 		FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+FacePay.swift"; sourceTree = "<group>"; };
 		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
@@ -500,6 +508,7 @@
 		409E73F01C9B99F80040186C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				FA0D360C1C9D284000E0AA78 /* PaymentList */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
 				B2564D351B4BFAED0098608F /* LaunchAnimation */,
 				FA02C5811C0D42B300D0D439 /* Login */,
@@ -626,6 +635,18 @@
 				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		FA0D360C1C9D284000E0AA78 /* PaymentList */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */,
+				FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */,
+				FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */,
+				FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */,
+			);
+			name = PaymentList;
+			path = Guide;
 			sourceTree = "<group>";
 		};
 		FAF253F41C12CE5600768A4D /* View */ = {
@@ -769,6 +790,7 @@
 				40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */,
 				FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
+				FA0D36141C9D28FB00E0AA78 /* PaylistCell.xib in Resources */,
 				40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */,
 				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
@@ -778,6 +800,7 @@
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
+				FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */,
 				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
 				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
 				4077C7A21C26578F000DD7DC /* server.der in Resources */,
@@ -856,6 +879,8 @@
 				40DE24FD1C9BFBC700CA7F26 /* NSManagedObject+Extension.swift in Sources */,
 				40DE25131C9BFE6600CA7F26 /* LocationStateObserver.swift in Sources */,
 				404177CC1C98143700113721 /* HttpService+Others.swift in Sources */,
+				FA0D36131C9D28FB00E0AA78 /* PaylistCell.swift in Sources */,
+				FA0D360F1C9D28BA00E0AA78 /* PayListTVC.swift in Sources */,
 				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				404177CE1C99082300113721 /* HomeViewModel.swift in Sources */,

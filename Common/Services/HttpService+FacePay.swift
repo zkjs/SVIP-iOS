@@ -8,21 +8,7 @@
 
 import Foundation
 extension HttpService {
-  
-  func getBeaconNearUsersList(shopid:String,locids:String,page:NSNumber, completionHandler: HttpCompletionHandler ->Void ) {
-    let dict = ["shopid":shopid,"locids":locids,"page":page,"page_size":15]
-    let urlString = ResourcePath.BeaconNearUsersList.description.fullUrl
-    get(urlString, parameters: dict,tokenRequired: false) { (json, error) -> Void in
-      if let error = error {
-        print(error)
-      } else {
-        if let data = json?["users"].array where data.count > 0 {
-         
-        }
-      }
-    }
-    
-  }
+
   
   
   func userPay(orderno:String, completionHandler: HttpCompletionHandler ->Void ) {
@@ -40,7 +26,7 @@ extension HttpService {
     
   }
   
-  func userPaylistInfo(completionHandler:HttpCompletionHandler ->Void ) {
+  func userPaylistInfo(status:Int,page:Int,completionHandler:HttpCompletionHandler ->Void ) {
     let urlString = ResourcePath.PaymentInfo.description.fullUrl
     get(urlString, parameters: nil,tokenRequired: false) { (json, error) -> Void in
       if let error = error {
