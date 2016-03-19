@@ -87,6 +87,7 @@
 		FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */; };
 		FA0D36131C9D28FB00E0AA78 /* PaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */; };
 		FA0D36141C9D28FB00E0AA78 /* PaylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */; };
+		FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */; };
 		FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */; };
 		FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */; };
 		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
@@ -247,6 +248,7 @@
 		FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayListTVC.xib; sourceTree = "<group>"; };
 		FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaylistCell.swift; sourceTree = "<group>"; };
 		FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaylistCell.xib; sourceTree = "<group>"; };
+		FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaylistmModel.swift; sourceTree = "<group>"; };
 		FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeModel.swift; sourceTree = "<group>"; };
 		FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+FacePay.swift"; sourceTree = "<group>"; };
 		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 				FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */,
 				FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */,
 				FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */,
+				FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */,
 			);
 			name = PaymentList;
 			path = Guide;
@@ -922,6 +925,7 @@
 				40DE24F71C9BFB1800CA7F26 /* String+Extension+ZKJS.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
+				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,

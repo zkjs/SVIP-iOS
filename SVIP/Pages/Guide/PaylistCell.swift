@@ -35,5 +35,11 @@ class PaylistCell: UITableViewCell {
   class func height() -> CGFloat {
     return 100
   }
+
+  func setData(pay:PaylistmModel) {
+    moneyPayLabel.text = String(pay.amount)
+    timeLabel.text = pay.confirmtime
+    hotelNamelabel.text = pay.shopname
+  }
     
 }

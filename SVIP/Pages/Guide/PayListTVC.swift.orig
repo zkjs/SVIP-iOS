@@ -27,6 +27,7 @@ class PayListTVC: UITableViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
+<<<<<<< HEAD
     HttpService.sharedInstance.userPaylistInfo(.Paid, page: 0) { (data,error) -> Void in
       if let _ = error {
 
@@ -36,6 +37,9 @@ class PayListTVC: UITableViewController {
         }
 
       }
+=======
+    HttpService.sharedInstance.userPaylistInfo(.Paid, page: 0) { (json) -> Void in
+>>>>>>> origin/branch-fp
 
     }
   }
