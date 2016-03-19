@@ -7,6 +7,11 @@
 //
 
 import Foundation
+
+enum FacePayOrderStatus:Int {
+  case NotPaid = 0,Rejected,Paid
+}
+
 extension HttpService {
 
   
@@ -26,11 +31,13 @@ extension HttpService {
     
   }
   
-  func userPaylistInfo(status:Int,page:Int,completionHandler:HttpCompletionHandler ->Void ) {
+  func userPaylistInfo(status:FacePayOrderStatus,page:Int = 0,completionHandler:HttpCompletionHandler ) {
     let urlString = ResourcePath.PaymentInfo.description.fullUrl
-    get(urlString, parameters: nil,tokenRequired: false) { (json, error) -> Void in
+    let dict = ["status":status.rawValue,"page":page,"page_size":HttpService.DefaultPageSize]
+    get(urlString, parameters: dict) { (json, error) -> Void in
       if let error = error {
         print(error)
+        completionHandler(nil,error)
       } else {
         if let data = json?["data"].array where data.count > 0 {
           
@@ -40,6 +47,20 @@ extension HttpService {
     
   }
   
-  
+  // 查询账户余额 GET /for/res/v1/payment/balance
+  func getBalance(completionHandler:(Double,NSError?)->Void) {
+    let urlString = ResourcePath.Balance.description.fullUrl
+    
+    get(urlString, parameters: nil) { (json, error) -> Void in
+      if let error = error {
+        completionHandler(0,error)
+      } else {
+        if let data = json?["balance"].double {
+          completionHandler(data,nil)
+        }
+        completionHandler(0,nil)
+      }
+    }
+  }
   
 }
