@@ -54,6 +54,7 @@ class HomeVC: UIViewController {
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
     
+    getBalance()
   }
   
   // TableView Scroller Delegate
@@ -67,6 +68,17 @@ class HomeVC: UIViewController {
     self.view.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
     self.lineView.backgroundColor = UIColor(patternImage: UIImage(named: "home_line")!)
     toggleMoney()
+    self.avatarsImageView.sd_setImageWithURL(NSURL(string: AccountManager.sharedInstance().avatarURL), placeholderImage: UIImage(named: "logo_white"))
+    self.nameLabel.text = AccountManager.sharedInstance().userName
+  }
+  
+  // 账户余额
+  func getBalance() {
+    HttpService.sharedInstance.getBalance { (balance, error) -> Void in
+      if error == nil {
+        self.moneyLabel.text = balance.format(".2")
+      }
+    }
   }
   
   func login(sender:UIButton) {
