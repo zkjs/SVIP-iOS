@@ -75,10 +75,10 @@ class HomeVC: UIViewController {
   }
   
   func doSingleTap() {
-    let alertVC = UIAlertController(title: "提示", message: "您无需任何操作即可享受我们的尊贵VIP服务,连续点击屏幕3次退出登录", preferredStyle: .Alert)
+    /*let alertVC = UIAlertController(title: "提示", message: "您无需任何操作即可享受我们的尊贵VIP服务,连续点击屏幕3次退出登录", preferredStyle: .Alert)
     let okButton = UIAlertAction(title: "确认", style: .Cancel, handler: nil)
     alertVC.addAction(okButton)
-    self.navigationController?.presentViewController(alertVC, animated: true, completion: nil)
+    self.navigationController?.presentViewController(alertVC, animated: true, completion: nil)*/
   }
   
   func doTripleTap() {
