@@ -10,6 +10,7 @@ import UIKit
 
 class PaylistCell: UITableViewCell {
 
+  @IBOutlet weak var payStatusLabel: UILabel!
   @IBOutlet weak var moneyPayLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var hotelNamelabel: UILabel!
@@ -38,6 +39,7 @@ class PaylistCell: UITableViewCell {
 
   func setData(pay:PaylistmModel) {
     moneyPayLabel.text = (Double(pay.amount) / 100).format(".2")
+    payStatusLabel.text = pay.statusdesc
     timeLabel.text = pay.createtime
     hotelNamelabel.text = pay.shopname
   }

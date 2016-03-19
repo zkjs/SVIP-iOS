@@ -27,6 +27,10 @@ class PayInfoVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+  override func loadView() {
+    NSBundle.mainBundle().loadNibNamed("PayInfoVC", owner:self, options:nil)
+  }
+
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
     ordernoLabel.text = "支付单号:\( payInfo.orderno)"

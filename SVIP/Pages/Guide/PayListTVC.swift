@@ -73,6 +73,23 @@ class PayListTVC: UITableViewController {
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return PaylistCell.height()
   }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let pay = paylistArr[indexPath.row]
+    if pay.status == .NotPaid {
+      self.showHUDInView(view, withLoading: "")
+      HttpService.sharedInstance.userPay(pay.orderno,action:1) { (json,error) -> Void in
+        if let _ = error {
+          self.hideHUD()
+          self.showHint("支付失败")
+        }
+        self.hideHUD()
+        if let Json = json where Json == "success"{
+          self.showHint("支付成功")
+        }
+      }
+    }
+  }
 
 
     /*
