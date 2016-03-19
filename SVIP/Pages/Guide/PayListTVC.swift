@@ -70,7 +70,8 @@ class PayListTVC: UITableViewController {
       let cell = tableView.dequeueReusableCellWithIdentifier(PaylistCell.reuseIdentifier(), forIndexPath: indexPath) as! PaylistCell
       let pay:PaylistmModel = paylistArr[indexPath.row]
       cell.setData(pay)
-        return cell
+      cell.selectionStyle = UITableViewCellSelectionStyle.None
+      return cell
     }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -82,11 +83,12 @@ class PayListTVC: UITableViewController {
     if pay.status == .NotPaid {
       let vc = PayInfoVC()
       let childView = vc.view
-      self.tableView.addSubview(childView)
+      vc.payInfo = pay
+      self.view.addSubview(childView)
       self.addChildViewController(vc)
       vc.payInfo = pay
       vc.didMoveToParentViewController(self)
-      childView.frame = self.view.frame
+      childView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-100, self.view.frame.size.width, self.view.frame.size.height+100)
     }
    }
 
