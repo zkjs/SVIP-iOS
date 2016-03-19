@@ -8,6 +8,7 @@
 
 import UIKit
 
+let FACEPAY_RESULT_NOTIFICATION = "FACEPAY_RESULT_NOTIFICATION"
 class PayInfoVC: UIViewController {
 
   @IBOutlet weak var ordernoLabel: UILabel!
@@ -34,7 +35,7 @@ class PayInfoVC: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
     ordernoLabel.text = "支付单号:\( payInfo.orderno)"
-    payamountLabel.text = String(payInfo.amount)
+    payamountLabel.text = payInfo.displayAmount
     shopnameLabel.text = payInfo.shopname
   }
     
@@ -47,6 +48,8 @@ class PayInfoVC: UIViewController {
             self.hideHUD()
       if let Json = json where Json == "success"{
         self.showHint("已拒绝支付")
+        self.view.removeFromSuperview()
+        NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
       }
     }
   }
@@ -63,6 +66,7 @@ class PayInfoVC: UIViewController {
         if let Json = json where Json == "success"{
           self.showHint("支付成功")
           self.view.removeFromSuperview()
+          NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
         }
     }
   }

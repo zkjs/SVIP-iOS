@@ -23,35 +23,41 @@ class PayListTVC: UITableViewController {
       } else if orderStatus == .Paid {
         self.title = "支付记录"
       }
+      
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: "paymentResult", name: FACEPAY_RESULT_NOTIFICATION, object: nil)
 
     }
 
-  override func loadView() {
-    NSBundle.mainBundle().loadNibNamed("PayListTVC", owner:self, options:nil)
-  }
-
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(true)
-    self.showHUDInView(view, withLoading: "")
-    HttpService.sharedInstance.userPaylistInfo(orderStatus, page: 0) { (data,error) -> Void in
-      if let _ = error {
-        self.hideHUD()
-
-      } else {
-        if let json = data {
-         self.paylistArr = json
-         self.tableView.reloadData()
-         self.hideHUD()
-        }
-
-      }
-
+    override func loadView() {
+      NSBundle.mainBundle().loadNibNamed("PayListTVC", owner:self, options:nil)
     }
-  }
+
+    override func viewWillAppear(animated: Bool) {
+      super.viewWillAppear(true)
+      self.showHUDInView(view, withLoading: "")
+      
+      loadOrderList()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+  
+    func loadOrderList() {
+      HttpService.sharedInstance.userPaylistInfo(orderStatus, page: 0) { (data,error) -> Void in
+        if let _ = error {
+          self.hideHUD()
+          
+        } else {
+          if let json = data {
+            self.paylistArr = json
+            self.tableView.reloadData()
+            self.hideHUD()
+          }
+        }
+        
+      }
     }
 
     // MARK: - Table view data source
@@ -91,6 +97,10 @@ class PayListTVC: UITableViewController {
       childView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-100, self.view.frame.size.width, self.view.frame.size.height+100)
     }
    }
+  
+  func paymentResult() {
+    loadOrderList()
+  }
 
 
     /*
