@@ -21,6 +21,17 @@ class PaylistmModel: NSObject {
   override init() {
     super.init()
   }
+  init(json:NSDictionary) {
+    shopid = json["shopid"] as? String ?? ""
+    shopname = json["shopname"] as? String ?? ""
+    createtime = json["createtime"] as? String ?? ""
+    amount = json["amount"] as? Int ?? 0
+    orderno = json["orderno"] as? String ?? ""
+    paymentno = json["paymentno"] as? String ?? ""
+    status = json["status"] as? String ?? ""
+    statusdesc = json["statusdesc"] as? String ?? ""
+    confirmtime = json["confirmtime"] as? String ?? ""
+  }
 
   init(json:JSON) {
     shopid = json["shopid"].string ?? ""
