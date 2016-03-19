@@ -57,8 +57,9 @@ extension HttpService {
       } else {
         if let data = json?["balance"].double {
           completionHandler(data,nil)
+        } else {
+          completionHandler(0,nil)
         }
-        completionHandler(0,nil)
       }
     }
   }

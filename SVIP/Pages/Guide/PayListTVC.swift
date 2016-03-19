@@ -26,7 +26,7 @@ class PayListTVC: UITableViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
-    HttpService.sharedInstance.userPaylistInfo(0, page: 0) { (json) -> Void in
+    HttpService.sharedInstance.userPaylistInfo(.Paid, page: 0) { (json) -> Void in
 
     }
   }
