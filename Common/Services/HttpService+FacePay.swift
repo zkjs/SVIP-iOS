@@ -19,7 +19,7 @@ extension HttpService {
   func userPay(orderno:String,action:Int,completionHandler:(String?,NSError?) ->Void ) {
     let urlString = ResourcePath.UserEnsurePay.description.fullUrl
     let dict = ["orderno":orderno,"action":action]
-    get(urlString, parameters: dict as? [String : AnyObject],tokenRequired: false) { (json, error) -> Void in
+    put(urlString, parameters: dict as? [String : AnyObject],tokenRequired: false) { (json, error) -> Void in
       if let error = error {
         print(error)
       } else {
