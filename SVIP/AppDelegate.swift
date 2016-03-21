@@ -37,11 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     setupYunBa()
     setupUMStatistics()
     refreshToken()
-    //ZKJSHTTPSessionManager.sharedInstance().delegate = self
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
    
+    // 监控Token是否过期
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLogout", name: KNOTIFICATION_LOGOUTCHANGE, object: nil)
     
     // app was launched when significant location changed
     if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
@@ -224,6 +225,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   //send all beacon logs to server 10 seconds later
   func sendErrorsToServerLater() {
     delay(seconds: 20 ){BeaconErrors.uploadLogs()}
+  }
+  
+  func didLogout() {
+    let window =  UIApplication.sharedApplication().keyWindow
+    window?.rootViewController = BaseNC(rootViewController: LoginVC())
   }
   
 }

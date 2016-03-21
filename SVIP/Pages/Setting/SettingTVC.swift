@@ -33,7 +33,7 @@ class SettingTVC: UITableViewController {
       MobClick.profileSignOff()
       NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
       let window =  UIApplication.sharedApplication().keyWindow
-      window?.rootViewController = MainTBC()
+      window?.rootViewController = BaseNC(rootViewController: HomeVC())
     }
   }
   
