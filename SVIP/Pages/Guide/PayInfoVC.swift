@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+typealias Closure = (Bool) ->Void
 let FACEPAY_RESULT_NOTIFICATION = "FACEPAY_RESULT_NOTIFICATION"
 class PayInfoVC: UIViewController {
 
@@ -17,6 +17,7 @@ class PayInfoVC: UIViewController {
 
   @IBOutlet weak var rootView: UIView!
   var payInfo = PaylistmModel()
+  var closure: Closure!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,8 +39,15 @@ class PayInfoVC: UIViewController {
     payamountLabel.text = payInfo.displayAmount
     shopnameLabel.text = payInfo.shopname
   }
+  
+  func callBack(closure: Closure!) {
+    self.closure = closure
+  }
     
   @IBAction func dismiss(sender: AnyObject) {
+    if let closure = self.closure {
+      closure(true)
+    }
     self.view.removeFromSuperview()
   }
   @IBAction func rejectpay(sender: AnyObject) {
@@ -48,6 +56,9 @@ class PayInfoVC: UIViewController {
             self.hideHUD()
       if let Json = json where Json == "success"{
         self.showHint("已拒绝支付")
+        if let closure = self.closure {
+          closure(true)
+        }
         self.view.removeFromSuperview()
         NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
       }
@@ -65,19 +76,17 @@ class PayInfoVC: UIViewController {
         self.hideHUD()
         if let Json = json where Json == "success"{
           self.showHint("支付成功")
+          if let closure = self.closure {
+            closure(true)
+          }
+          
+        }
+          self.dismissViewControllerAnimated(true, completion: nil)
           self.view.removeFromSuperview()
           NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
+          
         }
     }
   }
-    /*
-    // MARK: - Navigation
+ 
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}

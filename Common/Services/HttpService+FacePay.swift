@@ -13,8 +13,6 @@ enum FacePayOrderStatus:Int {
 }
 
 extension HttpService {
-
-  
   
   func userPay(orderno:String,action:Int,completionHandler:(String?,NSError?) ->Void ) {
     let urlString = ResourcePath.UserEnsurePay.description.fullUrl

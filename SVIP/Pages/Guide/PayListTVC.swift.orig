@@ -11,7 +11,6 @@ import UIKit
 class PayListTVC: UITableViewController {
   var orderStatus: FacePayOrderStatus!
   var paylistArr = [PaylistmModel]()
-
         
 
     override func viewDidLoad() {
@@ -24,22 +23,41 @@ class PayListTVC: UITableViewController {
       } else if orderStatus == .Paid {
         self.title = "支付记录"
       }
-      self.tableView.tableFooterView = UIView()
+<<<<<<< Updated upstream
+      
       NSNotificationCenter.defaultCenter().addObserver(self, selector: "paymentResult", name: FACEPAY_RESULT_NOTIFICATION, object: nil)
+=======
+      self.tableView.tableFooterView = UIView()
+>>>>>>> Stashed changes
 
     }
 
     override func loadView() {
       NSBundle.mainBundle().loadNibNamed("PayListTVC", owner:self, options:nil)
     }
-  
-  
 
     override func viewWillAppear(animated: Bool) {
       super.viewWillAppear(true)
       self.showHUDInView(view, withLoading: "")
+<<<<<<< Updated upstream
       
       loadOrderList()
+=======
+      HttpService.sharedInstance.userPaylistInfo(orderStatus, page: 0) { (data,error) -> Void in
+        if let _ = error {
+          self.hideHUD()
+
+        } else {
+          if let json = data {
+           self.paylistArr = json
+           self.tableView.reloadData()
+           self.hideHUD()
+          }
+
+        }
+
+      }
+>>>>>>> Stashed changes
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +101,7 @@ class PayListTVC: UITableViewController {
       return cell
     }
   
+<<<<<<< Updated upstream
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return PaylistCell.height()
   }
@@ -97,12 +116,6 @@ class PayListTVC: UITableViewController {
       self.addChildViewController(vc)
       vc.payInfo = pay
       vc.didMoveToParentViewController(self)
-      vc.callBack({(Bool) -> Void in
-        if Bool == true {
-          self.tableView.scrollEnabled = true
-        }
-      })
-      self.tableView.scrollEnabled = false
       childView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-100, self.view.frame.size.width, self.view.frame.size.height+100)
     }
    }
@@ -110,6 +123,24 @@ class PayListTVC: UITableViewController {
   func paymentResult() {
     loadOrderList()
   }
+=======
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      return PaylistCell.height()
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      let pay = paylistArr[indexPath.row]
+      if pay.status == .NotPaid {
+        let vc = PayInfoVC()
+        let childView = vc.view
+        vc.payInfo = pay
+        self.view.addSubview(childView)
+        self.addChildViewController(vc)
+        vc.didMoveToParentViewController(self)
+        childView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-100, self.view.frame.size.width, self.view.frame.size.height+100)
+      }
+     }
+>>>>>>> Stashed changes
 
 
     /*
