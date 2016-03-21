@@ -24,6 +24,9 @@ class BreathLight: UIControl {
       setNeedsDisplay()
     }
   }
+  //let outerCircleLayer = CAShapeLayer()
+  //let middleCircleLayer = CAShapeLayer()
+  //let innerDotLayer = CAShapeLayer()
   
   override func drawRect(rect: CGRect) {
     let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
@@ -68,14 +71,71 @@ class BreathLight: UIControl {
     innerDot.stroke()
   }
   
-  func startAnimation(duration:NSTimeInterval = 0.5) {
+  /*
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    
+    let maxRadius: CGFloat = max(bounds.width, bounds.height) / 2
+    let pathWidth = CGFloat(lineWidth)
+    
+    outerCircleLayer.strokeColor = lineColor.CGColor
+    outerCircleLayer.fillColor = UIColor.clearColor().CGColor
+    outerCircleLayer.lineWidth = pathWidth
+    outerCircleLayer.path = UIBezierPath(ovalInRect: CGRect(
+      x: frame.size.width/2 - maxRadius,
+      y: frame.size.height/2 - maxRadius,
+      width: 2 * maxRadius,
+      height: 2 * maxRadius)
+      ).CGPath
+    layer.addSublayer(outerCircleLayer)
+    
+    middleCircleLayer.strokeColor = lineColor.CGColor
+    middleCircleLayer.fillColor = UIColor.clearColor().CGColor
+    middleCircleLayer.lineWidth = pathWidth
+    middleCircleLayer.path = UIBezierPath(ovalInRect: CGRect(
+      x: frame.size.width/2 - maxRadius/2 - pathWidth/2,
+      y: frame.size.height/2 - maxRadius/2 - pathWidth/2,
+      width: maxRadius + pathWidth,
+      height: maxRadius + pathWidth)
+      ).CGPath
+    layer.addSublayer(middleCircleLayer)
+    
+    innerDotLayer.strokeColor = lineColor.CGColor
+    innerDotLayer.fillColor = lineColor.CGColor
+    innerDotLayer.lineWidth = pathWidth
+    innerDotLayer.path = UIBezierPath(ovalInRect: CGRect(
+      x: frame.size.width/2 - pathWidth,
+      y: frame.size.height/2 - pathWidth,
+      width: pathWidth * 2,
+      height: pathWidth * 2)
+      ).CGPath
+    layer.addSublayer(innerDotLayer)
+  }*/
+  
+  func startAnimation(duration:NSTimeInterval = 1.0) {
     let opacityAnim = CABasicAnimation(keyPath: "opacity")
-    opacityAnim.fromValue = 1.0
-    opacityAnim.toValue = 0.5
-    opacityAnim.autoreverses = true
-    opacityAnim.duration = duration
-    opacityAnim.repeatCount = .infinity
-    self.layer.addAnimation(opacityAnim, forKey: "keyBreath")
+    opacityAnim.fromValue = 0.2
+    opacityAnim.toValue = 1.0
+    
+    let scaleAnim = CABasicAnimation(keyPath: "transform.scale")
+    scaleAnim.fromValue = 1.0
+    scaleAnim.toValue = 1.2
+
+    /*let colorAnim = CABasicAnimation(keyPath: "strokeColor")
+    colorAnim.fromValue = lineColor.CGColor
+    colorAnim.toValue = UIColor.yellowColor().CGColor
+    colorAnim.autoreverses = true
+    colorAnim.duration = duration
+    colorAnim.repeatCount = .infinity
+    self.innerDotLayer.addAnimation(colorAnim, forKey: nil)*/
+    
+    let groupAnim = CAAnimationGroup()
+    groupAnim.autoreverses = true
+    groupAnim.duration = duration
+    groupAnim.repeatCount = .infinity
+    groupAnim.animations = [opacityAnim,scaleAnim]
+    
+    self.layer.addAnimation(groupAnim, forKey: "keyBreath")
   }
   
   func stopAnimation() {

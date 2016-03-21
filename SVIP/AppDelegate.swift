@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
+    refreshToken()
+    
     HttpService.sharedInstance.getUserinfo(nil)
     
     setupWindow()
@@ -36,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     setupYunBa()
     setupUMStatistics()
-    refreshToken()
         
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
@@ -228,8 +229,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func didLogout() {
+    // 清理系统缓存
+    AccountManager.sharedInstance().clearAccountCache()
+    TokenPayload.sharedInstance.clearCacheTokenPayload()
+    
     let window =  UIApplication.sharedApplication().keyWindow
     window?.rootViewController = BaseNC(rootViewController: LoginVC())
+    ZKJSTool.showMsg("登录过期，请重新重录")
   }
   
 }

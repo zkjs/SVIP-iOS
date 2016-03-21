@@ -32,9 +32,9 @@ class SettingTVC: UITableViewController {
       //登出友盟统计
       MobClick.profileSignOff()
       NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
-      let window =  UIApplication.sharedApplication().keyWindow
-      window?.rootViewController = BaseNC(rootViewController: HomeVC())
     }
+    let window =  UIApplication.sharedApplication().keyWindow
+    window?.rootViewController = BaseNC(rootViewController: LoginVC())
   }
   
   // MARK: - Table view delegate

@@ -72,9 +72,11 @@ extension HttpService {
     
   }
   
-  //// PAVO 认证服务API : Token管理 :
+  //// PAVO 认证服务API : Token管理 : 刷新Token
   func managerToken(completionHandler:HttpCompletionHandler) {
     let urlString = ResourcePath.Token.description.fullUrl
+    
+    self.refreshTokenTime = NSDate().timeIntervalSince1970
     
     put(urlString, parameters: nil) { (json, error) -> Void in
       completionHandler(json, error)
