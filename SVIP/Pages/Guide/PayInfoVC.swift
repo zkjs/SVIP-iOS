@@ -59,6 +59,7 @@ class PayInfoVC: UIViewController {
         if let closure = self.closure {
           closure(true)
         }
+        self.dismissViewControllerAnimated(true, completion: nil)
         self.view.removeFromSuperview()
         NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
       }

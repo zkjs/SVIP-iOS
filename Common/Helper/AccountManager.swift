@@ -25,6 +25,7 @@ class AccountManager: NSObject {
   private(set) var userstatus = 0
   private(set) var viplevel = 0
   private(set) var password = ""
+  private(set) var payCreatetime = ""
   var avatarURL : String {
     let userDefaults = NSUserDefaults()
     if let url = userDefaults.objectForKey("avatarURL") as? String {
@@ -75,6 +76,7 @@ class AccountManager: NSObject {
     viplevel = userDefaults.objectForKey("viplevel") as? Int ?? 0
     realname = userDefaults.objectForKey("realname") as? String ?? "0"
     password = userDefaults.objectForKey("password") as? String ?? "0"
+    payCreatetime = userDefaults.objectForKey("payCreatetime") as? String ?? ""
     
   }
   
@@ -163,6 +165,13 @@ class AccountManager: NSObject {
     if url.isEmpty { return }
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(url, forKey: "avatarURL")
+    userDefaults.synchronize()
+  }
+  
+   func savePayCreatetime(payCreatetime: String) {
+    if payCreatetime.isEmpty { return }
+    let userDefaults = NSUserDefaults()
+    userDefaults.setObject(payCreatetime, forKey: "payCreatetime")
     userDefaults.synchronize()
   }
   

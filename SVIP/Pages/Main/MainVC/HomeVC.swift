@@ -75,13 +75,41 @@ class HomeVC: UIViewController {
   }
   
   func getOrderList() {
+    let timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "notifacation:", userInfo: nil, repeats: true)
+    timer.fire()
+    
+  }
+  
+  func notifacation(timer:NSTimer) {
     HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) { (data,error) -> Void in
       if let data = data where data.count > 0 {
         self.breathLight.startAnimation()
+        let pay:PaylistmModel = data[0]
+        if let createtime:String = AccountManager.sharedInstance().payCreatetime where createtime != pay.createtime {
+          self.showPayInfo(pay)
+        }
+        
       } else {
         self.breathLight.stopAnimation()
       }
     }
+  }
+  
+  func showPayInfo(pay:PaylistmModel) {
+    let vc = PayInfoVC()
+    let childView = vc.view
+    vc.payInfo = pay
+    self.view.addSubview(childView)
+    self.addChildViewController(vc)
+    vc.payInfo = pay
+    vc.callBack { (bool) -> Void in
+      if bool == true {
+      self.breathLight.stopAnimation()
+      }
+    }
+    AccountManager.sharedInstance().savePayCreatetime(pay.createtime)
+    vc.didMoveToParentViewController(self)
+    childView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-100, self.view.frame.size.width, self.view.frame.size.height+100)
   }
   
   // TableView Scroller Delegate
