@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
    
+    // 监控Token是否过期
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLogout", name: KNOTIFICATION_LOGOUTCHANGE, object: nil)
     
     // app was launched when significant location changed
     if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
@@ -163,18 +165,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
   
-  // MARK: - HTTPSessionManagerDelegate
-  
-  func didReceiveInvalidToken() {
-    // 清理系统缓存
-    AccountManager.sharedInstance().clearAccountCache()
-    
-    // 弹出登录框
-    let nc = BaseNC(rootViewController: LoginVC())
-    window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
-    ZKJSTool.showMsg("账号在别处登录，请重新重录")
-  }
-  
   
   // MARK: - Private Method
   
@@ -216,5 +206,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     delay(seconds: 20 ){BeaconErrors.uploadLogs()}
   }
   
+  func didLogout() {
+    // 清理系统缓存
+    AccountManager.sharedInstance().clearAccountCache()
+    TokenPayload.sharedInstance.clearCacheTokenPayload()
+    
+    // 弹出登录框
+    let nc = BaseNC(rootViewController: LoginVC())
+    window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
+    ZKJSTool.showMsg("登录过期，请重新重录")
+  }
 }
 
