@@ -75,8 +75,9 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
         }
       } else {
         AccountManager.sharedInstance().saveUserName(userName)
-        self.navigationController?.pushViewController(InvitationCodeVC(), animated: true)
+        self.navigationController?.pushViewController(HomeVC(), animated: true)
       }
+      
     }
   }
   
@@ -132,18 +133,8 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     avatarData = imageData
-//    AccountManager.sharedInstance().saveAvatarImageData(avatarData!)
     self.avatarButton.setImage(UIImage(data: avatarData!), forState: UIControlState.Normal)
     picker.dismissViewControllerAnimated(true, completion: nil)
-    
-//    if let image = UIImage(named: "example.png") {
-//      if let data = UIImagePNGRepresentation(image) {
-//        self.filename = getDocumentsDirectory().stringByAppendingPathComponent("copy.png")
-//        data.writeToFile(filename, atomically: true)
-//      }
-//    }
-    
-    
     
   }
   
