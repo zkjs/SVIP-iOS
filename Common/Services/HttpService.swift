@@ -157,7 +157,7 @@ class HttpService {
     print(parameters)
     
     request(method, urlString, parameters: parameters, encoding: method == .GET ? .URLEncodedInURL : .JSON, headers: headers).response { (req, res, data, error) -> Void in
-      self.handleResult(data, error: error, completionHandler: completionHandler)
+      self.handleResult(request:req, response: res, data: data, error: error, completionHandler: completionHandler)
     }
   }
   
@@ -178,13 +178,29 @@ class HttpService {
     print(parameters)
     
     self.alamoFireManager.request(method, urlString, parameters: parameters, encoding: method == .GET ? .URLEncodedInURL : .JSON, headers: headers).response { (req, res, data, error) -> Void in
-      self.handleResult(data, error: error, completionHandler: completionHandler)
+      self.handleResult(request:req, response: res, data: data, error: error, completionHandler: completionHandler)
     }
   }
   
-  func handleResult(data:NSData?, error:NSError?, record:Bool = false ,completionHandler:HttpCompletionHandler) -> Void {
+  func handleResult(request request:NSURLRequest?, response:NSHTTPURLResponse?, data:NSData?, error:NSError?, record:Bool = false ,completionHandler:HttpCompletionHandler) -> Void {
+    print("statusCode:\(response?.statusCode)")
+    guard let statusCode = response?.statusCode else{
+      return
+    }
+    if statusCode == 401 {//token过期
+      TokenPayload.sharedInstance.clearCacheTokenPayload()
+      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
+      return
+    } else if statusCode != 200 {
+      let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+        code: statusCode,
+        userInfo: ["res":"\(statusCode)","resDesc":"网络错误:\(statusCode)"])
+      completionHandler(nil,e)
+      return
+    }
+    
     if let error = error {
-      print("api request fail:\(error)")
+      print("api request fail [res code:,\(response?.statusCode)]:\(error)")
       completionHandler(nil,error)
     } else {
       print(self.jsonFromData(data))
@@ -198,6 +214,9 @@ class HttpService {
           var resDesc = ""
           if let key = json["res"].int {
             resDesc = ZKJSErrorMessages.sharedInstance.errorString("\(key)") ?? "错误码:\(key)"
+          }
+          if let key = json["res"].int where key == 6 || key == 8 {//token过期
+            NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
           }
           let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
             code: json["res"].int ?? -1,
