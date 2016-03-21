@@ -212,8 +212,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     TokenPayload.sharedInstance.clearCacheTokenPayload()
     
     // 弹出登录框
-    let nc = BaseNC(rootViewController: LoginVC())
-    window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
+    let window =  UIApplication.sharedApplication().keyWindow
+    window?.rootViewController = BaseNC(rootViewController: LoginVC())
     ZKJSTool.showMsg("登录过期，请重新重录")
   }
 }

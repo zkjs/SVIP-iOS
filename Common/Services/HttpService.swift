@@ -32,6 +32,7 @@ class HttpService {
   var beaconRetryCount = 0              //beacon 上传失败后重新请求当前次数
   let maxBeaconRetryCount = 3           //beacon 上传失败后重新请求最多次数
   
+  var refreshTokenTime: NSTimeInterval = NSDate().timeIntervalSince1970
   
   enum ResourcePath: CustomStringConvertible {
     case ApiURL(path:String)            // demo
@@ -188,9 +189,13 @@ class HttpService {
       return
     }
     if statusCode == 401 {//token过期
-      TokenPayload.sharedInstance.clearCacheTokenPayload()
-      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
-      return
+      // 由于异步请求，其他请求在token刷新后立即到达server会被判定失效，导致用户被登出
+      if NSDate().timeIntervalSince1970 > self.refreshTokenTime + 100 {
+        print("invalid token:\(request)")
+        TokenPayload.sharedInstance.clearCacheTokenPayload()
+        NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
+        return
+      }
     } else if statusCode != 200 {
       let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
         code: statusCode,

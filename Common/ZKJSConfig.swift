@@ -23,7 +23,7 @@ struct ZKJSConfig {
   //// 测试环境
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com/test"
+  let BaseURL = "http://p.zkjinshi.com/alpha"
   // 图片服务器
   let BaseImageURL = "http://for-testea01cc11-44f5-431f-a393-a6595c09410d.oss-cn-shenzhen.aliyuncs.com/"
   // 云巴
