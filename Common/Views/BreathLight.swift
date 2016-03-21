@@ -24,6 +24,7 @@ class BreathLight: UIControl {
       setNeedsDisplay()
     }
   }
+  private(set) var isAnimating = false
   //let outerCircleLayer = CAShapeLayer()
   //let middleCircleLayer = CAShapeLayer()
   //let innerDotLayer = CAShapeLayer()
@@ -113,6 +114,8 @@ class BreathLight: UIControl {
   }*/
   
   func startAnimation(duration:NSTimeInterval = 1.0) {
+    isAnimating = true
+    
     let opacityAnim = CABasicAnimation(keyPath: "opacity")
     opacityAnim.fromValue = 0.2
     opacityAnim.toValue = 1.0
@@ -139,6 +142,7 @@ class BreathLight: UIControl {
   }
   
   func stopAnimation() {
+    isAnimating = false
     self.layer.removeAnimationForKey("keyBreath")
   }
 }

@@ -170,6 +170,7 @@ class AccountManager: NSObject {
   
    func savePayCreatetime(payCreatetime: String) {
     if payCreatetime.isEmpty { return }
+    self.payCreatetime = payCreatetime
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(payCreatetime, forKey: "payCreatetime")
     userDefaults.synchronize()

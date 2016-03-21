@@ -12,7 +12,7 @@ class PaylistmModel: NSObject {
   var shopid: String = ""
   var shopname: String = ""
   var createtime: String = ""
-  var amount: Int = 0
+  var amount: Int = 0  // 注意：单位是分
   var orderno: String = ""
   var paymentno: String = ""
   var status = FacePayOrderStatus.Unknown

@@ -97,7 +97,7 @@ class PayListTVC: UITableViewController {
       self.addChildViewController(vc)
       vc.payInfo = pay
       vc.didMoveToParentViewController(self)
-      vc.callBack{(bool) -> Void in
+      vc.payInfoDismissClosure = {(bool) -> Void in
         if bool == true {
           self.tableView.scrollEnabled = true
         }

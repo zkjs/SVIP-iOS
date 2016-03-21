@@ -7,8 +7,10 @@
 //
 
 import UIKit
-typealias Closure = (Bool) ->Void
+
+typealias PayInfoDismissClosure = (Bool) ->Void
 let FACEPAY_RESULT_NOTIFICATION = "FACEPAY_RESULT_NOTIFICATION"
+
 class PayInfoVC: UIViewController {
 
   @IBOutlet weak var ordernoLabel: UILabel!
@@ -17,17 +19,16 @@ class PayInfoVC: UIViewController {
 
   @IBOutlet weak var rootView: UIView!
   var payInfo = PaylistmModel()
-  var closure: Closure!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  //
+  var payInfoDismissClosure: PayInfoDismissClosure?
+    
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
 
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("PayInfoVC", owner:self, options:nil)
@@ -39,14 +40,10 @@ class PayInfoVC: UIViewController {
     payamountLabel.text = payInfo.displayAmount
     shopnameLabel.text = payInfo.shopname
   }
-  
-  func callBack(closure: Closure!) {
-    self.closure = closure
-  }
     
   @IBAction func dismiss(sender: AnyObject) {
-    if let closure = self.closure {
-      closure(true)
+    if let closure = self.payInfoDismissClosure {
+      closure(false)
     }
     self.view.removeFromSuperview()
   }
@@ -56,7 +53,7 @@ class PayInfoVC: UIViewController {
             self.hideHUD()
       if let Json = json where Json == "success"{
         self.showHint("已拒绝支付")
-        if let closure = self.closure {
+        if let closure = self.payInfoDismissClosure {
           closure(true)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -69,24 +66,24 @@ class PayInfoVC: UIViewController {
   @IBAction func ensurePay(sender: AnyObject) {
       self.showHUDInView(view, withLoading: "")
       HttpService.sharedInstance.userPay(payInfo.orderno,action:1) { (json,error) -> Void in
+        self.hideHUD()
         if let _ = error {
-          self.hideHUD()
           self.showHint("支付失败")
           self.view.removeFromSuperview()
-        }
-        self.hideHUD()
-        if let Json = json where Json == "success"{
-          self.showHint("支付成功")
-          if let closure = self.closure {
-            closure(true)
+        } else {
+          if let Json = json where Json == "success"{
+            self.showHint("支付成功")
+            if let closure = self.payInfoDismissClosure {
+              closure(true)
+            }
+            
           }
-          
-        }
           self.dismissViewControllerAnimated(true, completion: nil)
           self.view.removeFromSuperview()
           NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
-          
         }
+        
+      }
     }
   }
  

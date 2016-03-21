@@ -26,6 +26,7 @@ class HomeVC: UIViewController {
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
   var hideMoney: Bool = true
+  var timer: NSTimer?
   
   
   override func loadView() {
@@ -47,6 +48,7 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "payInfo", name:kPaymentInfoNotification, object: nil)
     
+    addGuestures()
   }
   
   
@@ -56,8 +58,12 @@ class HomeVC: UIViewController {
     navigationController?.navigationBar.translucent = true
     //payInfo()
     getBalance()
-    getOrderList()
+    getOrderListTimer()
     refreshUserInfo()
+  }
+  
+  deinit {
+    timer?.invalidate()
   }
 
   func payInfo() {
@@ -74,16 +80,17 @@ class HomeVC: UIViewController {
 
   }
   
-  func getOrderList() {
-    let timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "notifacation:", userInfo: nil, repeats: true)
-    timer.fire()
-    
+  func getOrderListTimer() {
+    timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getOrderList:", userInfo: nil, repeats: true)
+    timer!.fire()
   }
   
-  func notifacation(timer:NSTimer) {
+  func getOrderList(timer:NSTimer) {
     HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) { (data,error) -> Void in
       if let data = data where data.count > 0 {
-        self.breathLight.startAnimation()
+        if !self.breathLight.isAnimating {
+          self.breathLight.startAnimation()
+        }
         let pay:PaylistmModel = data[0]
         if let createtime:String = AccountManager.sharedInstance().payCreatetime where createtime != pay.createtime {
           self.showPayInfo(pay)
@@ -102,9 +109,9 @@ class HomeVC: UIViewController {
     self.view.addSubview(childView)
     self.addChildViewController(vc)
     vc.payInfo = pay
-    vc.callBack { (bool) -> Void in
-      if bool == true {
-      self.breathLight.stopAnimation()
+    vc.payInfoDismissClosure = { (stopAnimation) -> Void in
+      if stopAnimation {
+        self.breathLight.stopAnimation()
       }
     }
     AccountManager.sharedInstance().savePayCreatetime(pay.createtime)
@@ -159,7 +166,8 @@ class HomeVC: UIViewController {
   
   // 点击头像到账号管理页面
   @IBAction func accountAction(sender: AnyObject) {
-    gotoSetting()
+    // 产品要求暂时屏蔽该功能 2016-03-21
+    //gotoSetting()
   }
   
   // 点击钱包打开金额气泡
@@ -186,6 +194,22 @@ class HomeVC: UIViewController {
     let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
     let vcMe = storyboard.instantiateViewControllerWithIdentifier("MeTVC") as! MeTVC
     self.navigationController?.pushViewController(vcMe, animated: true)
+  }
+  
+  func addGuestures() {
+    
+    let tripleTap = UITapGestureRecognizer(target: self, action: "doTripleTap")
+    tripleTap.numberOfTapsRequired = 3
+    self.view.addGestureRecognizer(tripleTap)
+    
+  }
+  
+  // 点击屏幕三次退出登录
+  func doTripleTap() {
+    HttpService.sharedInstance.deleteToken(nil)
+    TokenPayload.sharedInstance.clearCacheTokenPayload()
+    let window = UIApplication.sharedApplication().keyWindow
+    window?.rootViewController = BaseNC(rootViewController: LoginVC())
   }
   
 }

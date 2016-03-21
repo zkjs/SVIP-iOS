@@ -9,11 +9,14 @@
 import Foundation
 
 enum FacePayOrderStatus:Int {
-  case NotPaid = 0,Rejected,Paid,Unknown
+  case NotPaid = 0 //未支付
+  case Rejected    //拒绝支付
+  case Paid        //已支付
+  case Unknown     //未知状态
 }
 
 extension HttpService {
-  
+  // 用户确认付款
   func userPay(orderno:String,action:Int,completionHandler:(String?,NSError?) ->Void ) {
     let urlString = ResourcePath.UserEnsurePay.description.fullUrl
     let dict = ["orderno":orderno,"action":action]
@@ -30,6 +33,7 @@ extension HttpService {
     
   }
   
+  // 获取付款列表，含明细
   func userPaylistInfo(status:FacePayOrderStatus,page:Int = 0,completionHandler:([PaylistmModel]?,NSError?) ->Void) {
     let urlString = ResourcePath.PaymentInfo.description.fullUrl
     let dict = ["status":status.rawValue,"page":page,"page_size":HttpService.DefaultPageSize]
