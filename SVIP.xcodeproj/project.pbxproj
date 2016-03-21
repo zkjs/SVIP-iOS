@@ -35,8 +35,6 @@
 		40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */; };
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
 		40BC848F1BFC570700038C81 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */; };
-		40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */; };
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
 		40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
@@ -209,8 +207,6 @@
 		409E73FF1C9BE51E0040186C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
-		40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
-		40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationCodeVC.xib; sourceTree = "<group>"; };
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTBouncyTextField.swift; sourceTree = "<group>"; };
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -691,8 +687,6 @@
 			children = (
 				40D9C9E11C2037B200E992AB /* InfoEditVC.swift */,
 				40D9C9E21C2037B200E992AB /* InfoEditVC.xib */,
-				40CC73821BEC943500A49E09 /* InvitationCodeVC.swift */,
-				40CC73831BEC943500A49E09 /* InvitationCodeVC.xib */,
 				FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */,
 				FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */,
 			);
@@ -879,7 +873,6 @@
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
 				40DE25801C9D6CCB00CA7F26 /* MeTVC.storyboard in Resources */,
 				40DE25791C9D6CCB00CA7F26 /* NameVC.xib in Resources */,
-				40CC73851BEC943500A49E09 /* InvitationCodeVC.xib in Resources */,
 				FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
 				FA0D36141C9D28FB00E0AA78 /* PaylistCell.xib in Resources */,
@@ -1006,7 +999,6 @@
 				409E73FC1C9BE1950040186C /* NSData+AES256.m in Sources */,
 				408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
-				40CC73841BEC943500A49E09 /* InvitationCodeVC.swift in Sources */,
 				409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */,
 				FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */,
 				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
