@@ -68,7 +68,7 @@ class HttpService {
       case .Login:                      return "/pav/sso/token/v1/phone/si?dist=\(RITZ)"
       case .Token:                      return "/pav/sso/token/v1"
       case .DeleteToken:                return "/pav/sso/token/v1"
-      case .register:                   return "/pav/res/v1/register/si"
+      case .register:                   return "/pav/res/v1/register/si?dist=\(RITZ)"
       case .RegisterUpdata:             return "/for/res/v1/register/update/si"
       case .UserInfo:                   return "/for/res/v1/query/user/all"
       case .UserInfoUpdate:             return "/for/res/v1/update/user"
