@@ -64,6 +64,7 @@ class HomeVC: UIViewController {
   
   deinit {
     timer?.invalidate()
+    timer = nil
   }
 
   func payInfo() {
@@ -81,23 +82,33 @@ class HomeVC: UIViewController {
   }
   
   func getOrderListTimer() {
-    timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getOrderList:", userInfo: nil, repeats: true)
+    if timer != nil {
+      timer?.invalidate()
+      timer = nil
+    }
+    
+    timer = NSTimer.scheduledTimerWithTimeInterval(10, block: { [weak self] () -> () in
+        if let strongSelf = self {
+          strongSelf.getOrderList()
+        }
+      }, repeats: true)
     timer!.fire()
   }
   
-  func getOrderList(timer:NSTimer) {
-    HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) { (data,error) -> Void in
+  func getOrderList() {
+    HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) {[weak self] (data,error) -> Void in
+      guard let strongSelf = self else { return }
       if let data = data where data.count > 0 {
-        if !self.breathLight.isAnimating {
-          self.breathLight.startAnimation()
+        if !strongSelf.breathLight.isAnimating {
+          strongSelf.breathLight.startAnimation()
         }
         let pay:PaylistmModel = data[0]
         if let createtime:String = AccountManager.sharedInstance().payCreatetime where createtime != pay.createtime {
-          self.showPayInfo(pay)
+          strongSelf.showPayInfo(pay)
         }
         
       } else {
-        self.breathLight.stopAnimation()
+        strongSelf.breathLight.stopAnimation()
       }
     }
   }

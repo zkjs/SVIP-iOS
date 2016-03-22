@@ -11,6 +11,7 @@
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
 		404FACD31B84792700352023 /* NSDate+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404FACD21B84792700352023 /* NSDate+Days.swift */; };
+		4051F1D81CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4051F1D71CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift */; };
 		40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641EFD1B3E569700CF150D /* AppDelegate.swift */; };
 		40641F051B3E569700CF150D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40641F041B3E569700CF150D /* Images.xcassets */; };
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
@@ -168,6 +169,7 @@
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
 		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		404FACD21B84792700352023 /* NSDate+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Days.swift"; sourceTree = "<group>"; };
+		4051F1D71CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimer+Extension+ZKJS.swift"; sourceTree = "<group>"; };
 		405352161BA66251007157FC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		405826481BA11CC5005A2C8E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		40641EF81B3E569700CF150D /* SVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -473,6 +475,7 @@
 				40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */,
 				40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */,
 				40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */,
+				4051F1D71CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -983,6 +986,7 @@
 				40DE24FC1C9BFBC700CA7F26 /* Double+Extension+ZKJS.swift in Sources */,
 				40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */,
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
+				4051F1D81CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift in Sources */,
 				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
 				FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */,
