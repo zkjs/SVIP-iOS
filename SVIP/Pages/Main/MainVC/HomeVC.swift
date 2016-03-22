@@ -26,8 +26,6 @@ class HomeVC: UIViewController {
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
   var hideMoney: Bool = true
-  var timer: NSTimer?
-  
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
@@ -46,7 +44,8 @@ class HomeVC: UIViewController {
     
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "payInfo", name:kPaymentInfoNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:kPaymentInfoNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
     
     addGuestures()
   }
@@ -58,76 +57,49 @@ class HomeVC: UIViewController {
     navigationController?.navigationBar.translucent = true
     //payInfo()
     getBalance()
-    getOrderListTimer()
+    getOrderList()
     refreshUserInfo()
   }
-  
-  deinit {
-    timer?.invalidate()
-    timer = nil
-  }
 
-  func payInfo() {
+  func alertPayInfo(notification: NSNotification) {
+    guard let userInfo = notification.userInfo, let payInfo = userInfo["payInfo"] as? PaylistmModel else {
+      return
+    }
+    print(userInfo)
     //付款消息通知
     let vc = PayInfoVC()
-
+    vc.payInfo = payInfo
+    
+    vc.payInfoDismissClosure = { (stopAnimation) -> Void in
+      if stopAnimation {
+        self.breathLight.stopAnimation()
+      }
+    }
+    AccountManager.sharedInstance().savePayCreatetime(payInfo.createtime)
+    
     let childView = vc.view
-
     self.view.addSubview(childView)
     self.addChildViewController(vc)
     vc.didMoveToParentViewController(self)
     childView.frame = self.view.frame
 
-
-  }
-  
-  func getOrderListTimer() {
-    if timer != nil {
-      timer?.invalidate()
-      timer = nil
-    }
-    
-    timer = NSTimer.scheduledTimerWithTimeInterval(10, block: { [weak self] () -> () in
-        if let strongSelf = self {
-          strongSelf.getOrderList()
-        }
-      }, repeats: true)
-    timer!.fire()
   }
   
   func getOrderList() {
     HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) {[weak self] (data,error) -> Void in
       guard let strongSelf = self else { return }
       if let data = data where data.count > 0 {
-        if !strongSelf.breathLight.isAnimating {
-          strongSelf.breathLight.startAnimation()
-        }
         let pay:PaylistmModel = data[0]
         if let createtime:String = AccountManager.sharedInstance().payCreatetime where createtime != pay.createtime {
-          strongSelf.showPayInfo(pay)
+          //if !strongSelf.breathLight.isAnimating {
+            strongSelf.breathLight.startAnimation()
+          //}
         }
         
       } else {
         strongSelf.breathLight.stopAnimation()
       }
     }
-  }
-  
-  func showPayInfo(pay:PaylistmModel) {
-    let vc = PayInfoVC()
-    let childView = vc.view
-    vc.payInfo = pay
-    self.view.addSubview(childView)
-    self.addChildViewController(vc)
-    vc.payInfo = pay
-    vc.payInfoDismissClosure = { (stopAnimation) -> Void in
-      if stopAnimation {
-        self.breathLight.stopAnimation()
-      }
-    }
-    AccountManager.sharedInstance().savePayCreatetime(pay.createtime)
-    vc.didMoveToParentViewController(self)
-    childView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-100, self.view.frame.size.width, self.view.frame.size.height+100)
   }
   
   // TableView Scroller Delegate
@@ -183,6 +155,7 @@ class HomeVC: UIViewController {
   
   // 点击钱包打开金额气泡
   @IBAction func walletAction(sender: AnyObject) {
+    getBalance()
     toggleMoney()
   }
   
@@ -196,6 +169,7 @@ class HomeVC: UIViewController {
   
   // 点击呼吸灯打开付款请求
   @IBAction func billAction(sender: AnyObject) {
+    self.breathLight.stopAnimation()
     let vc = PayListTVC()
     vc.orderStatus = .NotPaid
     self.navigationController?.pushViewController(vc, animated: true)

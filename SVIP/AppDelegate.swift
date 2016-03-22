@@ -14,9 +14,7 @@ import UIKit
 //let ddLogLevel = DDLogLevel.Warning;
 //#endif
 
-// 友盟
-let UMAppKey = "55c31431e0f55a65c1002597"
-let UMURL = ""
+
 let kPaymentInfoNotification = "kPaymentInfoNotification"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -84,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     print("applicationWillEnterForeground")
+    UIApplication.sharedApplication().applicationIconBadgeNumber = 0
   }
 
   func applicationDidBecomeActive(application: UIApplication) {
@@ -138,24 +137,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    print("didReceiveRemoteNotification:fetchCompletionHandler")
     print(userInfo)
-//    let localNotification:UILocalNotification = UILocalNotification()
-//    localNotification.alertAction = "Testing notifications on iOS8"
-//    localNotification.alertBody = "Woww it works!!"
-//    localNotification.fireDate = NSDate(timeIntervalSinceNow: 3)
-//    localNotification.category = "INVITE_CATEGORY";
-//    UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-//    completionHandler(.NewData)
 
-    if let msg = userInfo["msg"] as? NSDictionary {
-      if let data = msg["data"] as? NSDictionary where data.count > 0 {
-      let  pay = PaylistmModel(json: data)
-        NSNotificationCenter.defaultCenter().postNotificationName(kPaymentInfoNotification, object:pay)
-
-
+    if let aps = userInfo["aps"], let msg = aps["message"] as? NSDictionary {
+      if let data = msg["data"] as? NSDictionary,
+          let type = msg["type"] as? String where data.count > 0 && type == "PAYMENT_CONFIRM" {
+        let  payInfo = PaylistmModel(dict: data)
+        NSNotificationCenter.defaultCenter().postNotificationName(kPaymentInfoNotification, object: nil, userInfo: ["payInfo":payInfo])
       }
-
     }
+    completionHandler(.NewData)
+  }
+  
+  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    print("didReceiveRemoteNotification")
+    print(userInfo)
   }
   
   // MARK: - Background Fetch
@@ -211,6 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func setupYunBa() {
     YunBaService.setupWithAppkey(ZKJSConfig.sharedInstance.YunBaAppKey)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "onMessageReceived:", name: kYBDidReceiveMessageNotification, object: nil)
   }
   
   func unregisterRemoteNotification() {
@@ -220,7 +218,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func setupUMStatistics() {
     let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
     MobClick.setAppVersion(version)
-    MobClick.startWithAppkey(UMAppKey, reportPolicy: BATCH, channelId: nil)
+    MobClick.startWithAppkey(ZKJSConfig.sharedInstance.UMAppKey, reportPolicy: BATCH, channelId: nil)
   }
   
   //send all beacon logs to server 10 seconds later
@@ -236,6 +234,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let window =  UIApplication.sharedApplication().keyWindow
     window?.rootViewController = BaseNC(rootViewController: LoginVC())
     ZKJSTool.showMsg("登录过期，请重新重录")
+  }
+  
+  func onMessageReceived(notification: NSNotification) {
+    if let message = notification.object as? YBMessage {
+      if let payloadString = NSString(data:message.data, encoding:NSUTF8StringEncoding) as? String {
+        print("[Message] \(message.topic) -> \(payloadString)")
+        
+      }
+    }
   }
   
 }

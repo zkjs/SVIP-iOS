@@ -24,16 +24,16 @@ class PaylistmModel: NSObject {
   override init() {
     super.init()
   }
-  init(json:NSDictionary) {
-    shopid = json["shopid"] as? String ?? ""
-    shopname = json["shopname"] as? String ?? ""
-    createtime = json["createtime"] as? String ?? ""
-    amount = json["amount"] as? Int ?? 0
-    orderno = json["orderno"] as? String ?? ""
-    paymentno = json["paymentno"] as? String ?? ""
-    statusdesc = json["statusdesc"] as? String ?? ""
-    confirmtime = json["confirmtime"] as? String ?? ""
-    if let s = json["status"] as? Int {
+  init(dict:NSDictionary) {
+    shopid = dict["shopid"] as? String ?? ""
+    shopname = dict["shopname"] as? String ?? ""
+    createtime = dict["createtime"] as? String ?? ""
+    amount = dict["amount"] as? Int ?? 0
+    orderno = dict["orderno"] as? String ?? ""
+    paymentno = dict["paymentno"] as? String ?? ""
+    statusdesc = dict["statusdesc"] as? String ?? ""
+    confirmtime = dict["confirmtime"] as? String ?? ""
+    if let s = dict["status"] as? Int {
       status = FacePayOrderStatus(rawValue: s) ?? .Unknown
     }
   }

@@ -57,6 +57,9 @@ class PayListTVC: UITableViewController {
             self.paylistArr = json
             self.tableView.reloadData()
             self.hideHUD()
+            if json.count > 0 {
+              AccountManager.sharedInstance().savePayCreatetime(json[0].createtime)
+            }
           }
         }
         

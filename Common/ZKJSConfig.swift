@@ -25,7 +25,10 @@ struct ZKJSConfig {
   // 图片服务器
   let BaseImageURL = "http://for-testea01cc11-44f5-431f-a393-a6595c09410d.oss-cn-shenzhen.aliyuncs.com/"
   // 云巴
-  let YunBaAppKey = "566563014407a3cd028aa72f"
+  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
+  // 友盟
+  let UMAppKey = "55c31431e0f55a65c1002597"
+  let UMURL = ""
   
   #elseif PRE_RELEASE
   
@@ -36,7 +39,10 @@ struct ZKJSConfig {
   // 图片服务器
   let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
   // 云巴
-  let YunBaAppKey = "566563014407a3cd028aa72f"
+  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
+  // 友盟
+  let UMAppKey = "55c31431e0f55a65c1002597"
+  let UMURL = ""
   
   #else
   
@@ -47,7 +53,10 @@ struct ZKJSConfig {
   // 图片服务器
   let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
   // 云巴
-  let YunBaAppKey = "566563014407a3cd028aa72f"
+  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
+  // 友盟
+  let UMAppKey = "55c31431e0f55a65c1002597"
+  let UMURL = ""
   
   #endif
   

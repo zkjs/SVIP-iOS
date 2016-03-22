@@ -49,6 +49,7 @@ class PayInfoVC: UIViewController {
     if let closure = self.payInfoDismissClosure {
       closure(false)
     }
+    self.dismissViewControllerAnimated(true, completion: nil)
     self.view.removeFromSuperview()
   }
   @IBAction func rejectpay(sender: AnyObject) {
