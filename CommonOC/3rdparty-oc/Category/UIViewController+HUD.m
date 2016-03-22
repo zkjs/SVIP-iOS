@@ -90,6 +90,19 @@ static const void *HttpRequestHUDKey = &HttpRequestHUDKey;
     [HUD hide:YES afterDelay:2];
 }
 
+- (void)showErrorHint:(NSError *)error
+{
+  //显示提示信息
+  NSString *msg;
+  if(error.userInfo[@"resDesc"]) {
+    msg = error.userInfo[@"resDesc"];
+  } else {
+    msg = [NSString stringWithFormat:@"数据请求错误:%ld", error.code];
+  }
+  [self showHint:msg];
+}
+
+
 - (void)hideHUD {
     [[self HUD] hide:YES];
 }

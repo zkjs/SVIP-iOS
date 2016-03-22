@@ -17,17 +17,19 @@ enum FacePayOrderStatus:Int {
 
 extension HttpService {
   // 用户确认付款
-  func userPay(orderno:String,action:Int,completionHandler:(String?,NSError?) ->Void ) {
+  func userPay(orderno:String,action:Int,completionHandler:(success:Bool,NSError?) ->Void ) {
     let urlString = ResourcePath.UserEnsurePay.description.fullUrl
     let dict = ["orderno":orderno,"action":action]
     put(urlString, parameters: dict as? [String : AnyObject],tokenRequired: false) { (json, error) -> Void in
       if let error = error {
         print(error)
+        completionHandler(success: false,error)
       } else {
-        if let data = json?["resDesc"].string {
-          completionHandler(data,nil)
+        if let res = json?["res"].int where res == 0 {
+          completionHandler(success: true,nil)
+        } else {
+          completionHandler(success: false,error)
         }
-        
       }
     }
     

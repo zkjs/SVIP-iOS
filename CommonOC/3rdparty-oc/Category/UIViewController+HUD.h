@@ -28,4 +28,6 @@
 
 - (void)showHint:(NSString *)hint;
 
+- (void)showErrorHint:(NSError *)error;
+
 @end

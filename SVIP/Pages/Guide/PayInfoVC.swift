@@ -8,7 +8,11 @@
 
 import UIKit
 
+/* 当前支付弹窗消失是被调用的闭包
+ * 参数: true: 订单被处理（确认/拒绝）， false: 订单未处理(直接关闭窗口)
+ */
 typealias PayInfoDismissClosure = (Bool) ->Void
+
 let FACEPAY_RESULT_NOTIFICATION = "FACEPAY_RESULT_NOTIFICATION"
 
 class PayInfoVC: UIViewController {
@@ -19,7 +23,7 @@ class PayInfoVC: UIViewController {
 
   @IBOutlet weak var rootView: UIView!
   var payInfo = PaylistmModel()
-  //
+  
   var payInfoDismissClosure: PayInfoDismissClosure?
     
   override func viewDidLoad() {
@@ -49,29 +53,32 @@ class PayInfoVC: UIViewController {
   }
   @IBAction func rejectpay(sender: AnyObject) {
     self.showHUDInView(view, withLoading: "")
-    HttpService.sharedInstance.userPay(payInfo.orderno,action:2) { (json,error) -> Void in
-            self.hideHUD()
-      if let Json = json where Json == "success"{
+    HttpService.sharedInstance.userPay(payInfo.orderno,action:2) { (succ,error) -> Void in
+      self.hideHUD()
+      if succ {
         self.showHint("已拒绝支付")
+        AccountManager.sharedInstance().savePayCreatetime("0")
         if let closure = self.payInfoDismissClosure {
           closure(true)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
         self.view.removeFromSuperview()
         NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
+      } else {
+        self.showErrorHint(error)
       }
     }
   }
 
   @IBAction func ensurePay(sender: AnyObject) {
       self.showHUDInView(view, withLoading: "")
-      HttpService.sharedInstance.userPay(payInfo.orderno,action:1) { (json,error) -> Void in
+      HttpService.sharedInstance.userPay(payInfo.orderno,action:1) { (succ,error) -> Void in
         self.hideHUD()
-        if let _ = error {
-          self.showHint("支付失败")
+        if let error = error {
+          self.showErrorHint(error)
           self.view.removeFromSuperview()
         } else {
-          if let Json = json where Json == "success"{
+          if succ {
             self.showHint("支付成功")
             if let closure = self.payInfoDismissClosure {
               closure(true)
