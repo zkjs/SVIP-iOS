@@ -40,13 +40,13 @@ extension HttpService {
   }
   
   //// PYXIS 位置服务API : GPS 位置信息 :
-  func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int,mac:String,ssid:String,signal:NSNumber, completionHandler:HttpCompletionHandler?){
+  func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int, mac:String, ssid:String, completionHandler:HttpCompletionHandler?){
     let urlString = ResourcePath.GPS.description.fullUrl
     
-    let dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"),"mac":mac,"ssid":String(ssid),"signal":Int(signal),"timestamp":"\(timestamp)"]
+    let dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"),"mac":mac,"ssid":ssid, "timestamp":"\(timestamp)"]
     print(dict)
     
-    requestTimeoutAPI(.PUT, urlString: urlString, parameters: dict as? [String : AnyObject],tokenRequired: true) { (json, error) -> Void in
+    requestTimeoutAPI(.PUT, urlString: urlString, parameters: dict, tokenRequired: true) { (json, error) -> Void in
       completionHandler?(json, error);
       if let error = error {
         print("gps upload fail:\(error)")
