@@ -13,12 +13,13 @@ import CoreLocation
 //let BEACON_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
 let BEACON_UUIDS = ["FDA50693-A4E2-4FB1-AFCF-C6EB07647835","931DDF8E-10E4-11E5-9493-1697F925EC7B"]
 let BEACON_IDENTIFIER = "com.zkjinshi.svip.beacon"
-let BEACON_INERVAL_MIN = 30 //BEACON 重复发起API请求最小时间间隔,单位：分钟
+let BEACON_INERVAL_MIN = 1 //BEACON 重复发起API请求最小时间间隔,单位：分钟
 
 class BeaconMonitor:NSObject {
   static let sharedInstance = BeaconMonitor()
   let locationManager = CLLocationManager()
   var beaconRegions = [CLBeaconRegion]()
+  var beaconInfoCache = [String:BeaconInfo]()
   private override init () {
     for (idx,uuid) in BEACON_UUIDS.enumerate() {
       let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid)!, identifier: "\(BEACON_IDENTIFIER).\(idx)")
@@ -80,25 +81,46 @@ extension BeaconMonitor : CLLocationManagerDelegate {
   
   private func didEnterBeaconRegion(beacon: CLBeacon!) {
     let currentTimeStamp = Int(NSDate().timeIntervalSince1970)
-    //将当前beacon被扫描到的当前timestamp记录下来，如果上次扫描时间在xx分钟以内则不发送通知
-    var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() ?? [NSNumber: Int]()
+
+    // for test
+    if beacon.major != 809 {return}
+    let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)"
     
-    if let ts = cachedBeaconRegions[beacon.major] where ts > currentTimeStamp - BEACON_INERVAL_MIN * 60 {//xx分钟以内，不发送通知
+    print("\(key) : \(beacon.proximity.rawValue)")
+    
+    // beacon足够接近才发送到服务器
+    if beacon.proximity == .Unknown {
+      beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity)
       return
     }
     
-    cachedBeaconRegions[beacon.major] = currentTimeStamp
-    StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
+    if let cachedInfo = beaconInfoCache[key] {
+      // xx分钟以内，不发送通知
+      if fabs(cachedInfo.timestamp.timeIntervalSinceNow) < Double(BEACON_INERVAL_MIN) * 60 {
+        return
+      }
+      
+      // 用户位置变化太小则不发送
+      if !cachedInfo.proximityChangedSince(beacon.proximity) {
+        beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity)
+        return
+      }
+    }
+    
+    
+    beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity,date: NSDate())
+    
     HttpService.sharedInstance.sendBeaconChanges(beacon.proximityUUID.UUIDString.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
+    
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion) {
     guard let major = region.major else {
       return
     }
-    if var cachedBeaconRegions = StorageManager.sharedInstance().cachedBeaconRegions() {
-      cachedBeaconRegions[major] = 0
-      StorageManager.sharedInstance().saveCachedBeaconRegions(cachedBeaconRegions)
+    if var cachedBeaconInfo = StorageManager.sharedInstance().cachedBeaconInfo() {
+      cachedBeaconInfo["\(region.proximityUUID.UUIDString)-\(major)"] = nil
+      StorageManager.sharedInstance().saveCachedBeaconInfo(cachedBeaconInfo)
     }
   }
 }

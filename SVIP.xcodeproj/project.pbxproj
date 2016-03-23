@@ -28,6 +28,7 @@
 		40111DD91C8ED57C00DD2AE1 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DD81C8ED57C00DD2AE1 /* ImageLoader.swift */; };
 		40111DE01C8ED5A300DD2AE1 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DDE1C8ED5A300DD2AE1 /* Misc.swift */; };
 		40111DE21C8ED5B300DD2AE1 /* SpringCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40111DE11C8ED5B300DD2AE1 /* SpringCombination.swift */; };
+		402627EC1CA2C8F30042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627EB1CA2C8F30042382B /* BeaconInfo.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404177D11C993EDD00113721 /* LocationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177D01C993EDD00113721 /* LocationStateObserver.swift */; };
@@ -502,6 +503,7 @@
 		40111DDE1C8ED5A300DD2AE1 /* Misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		40111DDF1C8ED5A300DD2AE1 /* Spring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spring.h; sourceTree = "<group>"; };
 		40111DE11C8ED5B300DD2AE1 /* SpringCombination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringCombination.swift; sourceTree = "<group>"; };
+		402627EB1CA2C8F30042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BeaconInfo.swift; path = CommonSwift/Models/BeaconInfo.swift; sourceTree = SOURCE_ROOT; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HttpService+Others.swift"; path = "CommonSwift/Services/HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404177D01C993EDD00113721 /* LocationStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationStateObserver.swift; path = SVIP/Main/Model/LocationStateObserver.swift; sourceTree = SOURCE_ROOT; };
@@ -3023,6 +3025,7 @@
 			children = (
 				40E8F0391C81409F00D6F605 /* BeaconMonitor.swift */,
 				406B0A231C83DEF4006C9C73 /* LocationMonitor.swift */,
+				402627EB1CA2C8F30042382B /* BeaconInfo.swift */,
 			);
 			name = Monitoring;
 			sourceTree = "<group>";
@@ -3695,6 +3698,7 @@
 				B20812C61B8DD8650070D96F /* EncryptionBinaryTransformer.swift in Sources */,
 				4077DDF81C1EAF9900E13D6B /* EaseBubbleView+Voice.m in Sources */,
 				40E39E411BFEF43800516EC4 /* OrderDetailVC.swift in Sources */,
+				402627EC1CA2C8F30042382B /* BeaconInfo.swift in Sources */,
 				FAF7F55E1C0309D500C84601 /* CustomerServiceTVC.swift in Sources */,
 				4077DDAA1C1EAF9900E13D6B /* EMCDDeviceManagerBase.m in Sources */,
 				40111DE01C8ED5A300DD2AE1 /* Misc.swift in Sources */,
