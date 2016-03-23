@@ -13,7 +13,7 @@ import CoreLocation
 //let BEACON_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647835"
 let BEACON_UUIDS = ["FDA50693-A4E2-4FB1-AFCF-C6EB07647835","931DDF8E-10E4-11E5-9493-1697F925EC7B"]
 let BEACON_IDENTIFIER = "com.zkjinshi.svip.beacon"
-let BEACON_INERVAL_MIN = 1 //BEACON 重复发起API请求最小时间间隔,单位：分钟
+let BEACON_INERVAL_MIN = 30 //BEACON 重复发起API请求最小时间间隔,单位：分钟
 
 class BeaconMonitor:NSObject {
   static let sharedInstance = BeaconMonitor()
@@ -65,7 +65,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
     
     for beacon  in beacons {
-      print("range beacon:\(beacon)")
+      //print("range beacon:\(beacon)")
       didEnterBeaconRegion(beacon)
     }
   }

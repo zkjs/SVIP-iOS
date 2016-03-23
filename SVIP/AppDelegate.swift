@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIApplication.sharedApplication().cancelAllLocalNotifications()
    
     // 监控Token是否过期
-    //NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLogout", name: KNOTIFICATION_LOGOUTCHANGE, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLogout", name: KNOTIFICATION_LOGOUTCHANGE, object: nil)
     
     // app was launched when significant location changed
     if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {

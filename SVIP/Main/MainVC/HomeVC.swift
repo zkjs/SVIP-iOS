@@ -274,6 +274,7 @@ class HomeVC: UIViewController {
   }
   
   func didLoginStateChange(notification: NSNotification) {
+    self.tableView.reloadData()
     reloadData()
     reloadImages()
   }

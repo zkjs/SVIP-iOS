@@ -188,7 +188,7 @@ class HttpService {
     }
     if statusCode == 401 {//token过期
       // 由于异步请求，其他请求在token刷新后立即到达server会被判定失效，导致用户被登出
-      if NSDate().timeIntervalSince1970 > self.refreshTokenTime + 100 {
+      if NSDate().timeIntervalSince1970 > self.refreshTokenTime + 60 {
         print("invalid token:\(request)")
         TokenPayload.sharedInstance.clearCacheTokenPayload()
         NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
