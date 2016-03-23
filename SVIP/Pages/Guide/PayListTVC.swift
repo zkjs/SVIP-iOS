@@ -48,16 +48,19 @@ class PayListTVC: UITableViewController {
     }
   
     func loadOrderList() {
-      HttpService.sharedInstance.userPaylistInfo(orderStatus, page: 0) { (data,error) -> Void in
+      HttpService.sharedInstance.userPaylistInfo(orderStatus, page: 0) {[weak self] (data,error) -> Void in
+        guard let strongSelf = self else {
+          return
+        }
         if let _ = error {
-          self.hideHUD()
+          strongSelf.hideHUD()
           
         } else {
           if let json = data {
-            self.paylistArr = json
-            self.tableView.reloadData()
-            self.hideHUD()
-            if json.count > 0 {
+            strongSelf.paylistArr = json
+            strongSelf.tableView.reloadData()
+            strongSelf.hideHUD()
+            if json.count > 0 && strongSelf.orderStatus == .NotPaid {
               AccountManager.sharedInstance().savePayCreatetime(json[0].createtime)
             }
           }
