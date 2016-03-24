@@ -115,7 +115,7 @@ class LocationMonitor:NSObject {
     locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     locationManager?.activityType = CLActivityType.OtherNavigation
     if #available(iOS 9.0, *) {
-        locationManager?.allowsBackgroundLocationUpdates = true
+      locationManager?.allowsBackgroundLocationUpdates = true
     }
     
     locationManager?.requestAlwaysAuthorization()
@@ -180,15 +180,15 @@ extension LocationMonitor : CLLocationManagerDelegate {
       print("distance:[\(distance)]")
       print("current speed:[\(location.speed)]")
       paramForTest = paramForTest + "[distance:\(distance)]"
-
+      
       if let lastTime = lastLocationInfo.lastTime {
         self.lastLocationInfo.lastLocation = location
         self.lastLocationInfo.lastTime = currentTime
         //don't upload the location if too frequent
-//        if let lastUploadedTime = self.lastLocationInfo.lastUploadedTime where fabs(currentTime - lastUploadedTime) < 10 {
-//          print("too frequent:\(fabs(currentTime - lastUploadedTime))")
-//          return
-//        }
+        //        if let lastUploadedTime = self.lastLocationInfo.lastUploadedTime where fabs(currentTime - lastUploadedTime) < 10 {
+        //          print("too frequent:\(fabs(currentTime - lastUploadedTime))")
+        //          return
+        //        }
         
         let speed = distance / (currentTime - lastTime)
         print("calculated speed : [\(speed)] in [\(currentTime - lastTime)]")
@@ -207,15 +207,16 @@ extension LocationMonitor : CLLocationManagerDelegate {
     lastLocationInfo.lastLocation = location
     lastLocationInfo.lastTime = currentTime
     lastLocationInfo.lastUploadedTime = currentTime
+    
     var bssid = ""
     var ssid = ""
-
-    if let ssID = getSSIDInfo(){
-      bssid = completionMacString(ssID["BSSID"]!)
-      ssid = ssID["SSID"]!
+    
+    if let wifiInfo = getWifiInfo() {
+      bssid = convertToValidMac(wifiInfo["BSSID"]!)
+      ssid = wifiInfo["SSID"]!
     }
-    HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970),mac:bssid,ssid:ssid,signal:-50, completionHandler: nil)
-
+    HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970),mac:bssid,ssid:ssid, completionHandler: nil)
+    
   }
   
   private func appState() -> String {
@@ -231,7 +232,10 @@ extension LocationMonitor : CLLocationManagerDelegate {
     }
   }
   
-  func getSSIDInfo() -> [String:String]? {
+  /**
+   * 获取wifi信息
+   */
+  func getWifiInfo() -> [String:String]? {
     if let interfaces:CFArray = CNCopySupportedInterfaces() {
       if CFArrayGetCount(interfaces) <= 0 {
         return nil
@@ -251,7 +255,10 @@ extension LocationMonitor : CLLocationManagerDelegate {
     return nil
   }
   
-  func completionMacString(bssid:String) -> String {
+  /**
+   * mac地址段只有一位前面补0, 且转换成大写, 比如 f => 0F
+   */
+  func convertToValidMac(bssid:String) -> String {
     let mac = bssid.characters.split{ $0 == ":" }.map(String.init).map {
       return $0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) < 2 ? "0\($0)" : $0
       }.joinWithSeparator(":").uppercaseString
