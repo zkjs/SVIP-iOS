@@ -46,8 +46,13 @@ extension HttpService {
   func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int,mac:String,ssid:String, completionHandler:HttpCompletionHandler?){
     let urlString = ResourcePath.GPS.description.fullUrl
     
-    let dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"),"mac":mac,"ssid":String(ssid),"timestamp":"\(timestamp)"]
-    print(dict)
+    var dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"), "timestamp":"\(timestamp)"]
+    if !mac.isEmpty {
+      dict["mac"] = mac
+    }
+    if !ssid.isEmpty {
+      dict["ssid"] = ssid
+    }
     
     requestTimeoutAPI(.PUT, urlString: urlString, parameters: dict, tokenRequired: true) { (json, error) -> Void in
       completionHandler?(json, error);
