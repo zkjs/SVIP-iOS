@@ -39,7 +39,11 @@ class HomeVC: UIViewController {
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
     
-    self.homeBGImage.image = UIImage(named: imgUrl)
+    if AccountManager.sharedInstance().isDemoAccount {
+      self.homeBGImage.image = UIImage(named: "home_bg_default")
+    } else {
+      self.homeBGImage.image = UIImage(named: imgUrl)
+    }
     
     addGuestures()
   }
@@ -51,7 +55,7 @@ class HomeVC: UIViewController {
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
     
-    self.homeBGImage.hidden = AccountManager.sharedInstance().isDemoAccount
+    //self.homeBGImage.hidden = AccountManager.sharedInstance().isDemoAccount
     
  }
   
