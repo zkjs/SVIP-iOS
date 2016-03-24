@@ -149,7 +149,7 @@ class LocationMonitor:NSObject {
   }
   
   func stopUpdatingLocation () {
-    locationManager?.stopUpdatingHeading()
+    locationManager?.stopUpdatingLocation()
   }
 }
 

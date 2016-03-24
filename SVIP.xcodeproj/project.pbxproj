@@ -1435,7 +1435,6 @@
 			isa = PBXGroup;
 			children = (
 				404177CD1C99082300113721 /* HomeViewModel.swift */,
-				404177D01C993EDD00113721 /* LocationStateObserver.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -3023,6 +3022,7 @@
 		40E8F0381C81408600D6F605 /* Monitoring */ = {
 			isa = PBXGroup;
 			children = (
+				404177D01C993EDD00113721 /* LocationStateObserver.swift */,
 				40E8F0391C81409F00D6F605 /* BeaconMonitor.swift */,
 				406B0A231C83DEF4006C9C73 /* LocationMonitor.swift */,
 				402627EB1CA2C8F30042382B /* BeaconInfo.swift */,
