@@ -28,6 +28,14 @@ class PayInfoVC: UIViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let blur = UIBlurEffect(style: .Dark)
+    let blurView = UIVisualEffectView(effect: blur)
+    blurView.frame = self.view.bounds
+    blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+    blurView.translatesAutoresizingMaskIntoConstraints = true
+    self.view.insertSubview(blurView, atIndex: 0)
+    
   }
 
   override func didReceiveMemoryWarning() {
@@ -50,8 +58,8 @@ class PayInfoVC: UIViewController {
       closure(false)
     }
     self.dismissViewControllerAnimated(true, completion: nil)
-    self.view.removeFromSuperview()
   }
+  
   @IBAction func rejectpay(sender: AnyObject) {
     self.showHUDInView(view, withLoading: "")
     HttpService.sharedInstance.userPay(payInfo.orderno,action:2) { (succ,error) -> Void in
@@ -63,7 +71,6 @@ class PayInfoVC: UIViewController {
           closure(true)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
-        self.view.removeFromSuperview()
         NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
       } else {
         self.showErrorHint(error)
@@ -87,7 +94,6 @@ class PayInfoVC: UIViewController {
             
           }
           self.dismissViewControllerAnimated(true, completion: nil)
-          self.view.removeFromSuperview()
           NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
         }
         

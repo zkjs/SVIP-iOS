@@ -19,7 +19,7 @@ class PaylistmModel: NSObject {
   var statusdesc: String = ""
   var confirmtime: String = ""
   var displayAmount:String {
-    return (Double(amount) / 100).format(".2")
+    return "￥" + (Double(amount) / 100).format(".2")
   }
   override init() {
     super.init()

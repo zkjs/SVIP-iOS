@@ -26,6 +26,8 @@
 		408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 408C47D41C86DBB900F9B0C7 /* errorMessages.plist */; };
 		408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408D28E61C3F8C3600183849 /* GuideVC.swift */; };
 		408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408D28E71C3F8C3600183849 /* GuideVC.xib */; };
+		408F503B1CA3E51700AEBA83 /* TableViewCellNoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408F50391CA3E51700AEBA83 /* TableViewCellNoData.swift */; };
+		408F503C1CA3E51700AEBA83 /* TableViewCellNoData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408F503A1CA3E51700AEBA83 /* TableViewCellNoData.xib */; };
 		409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73DF1C9B98B30040186C /* NSDate+Category.m */; };
 		409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73E11C9B98B30040186C /* NSDateFormatter+Category.m */; };
 		409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73E51C9B98B30040186C /* NSString+Valid.m */; };
@@ -194,6 +196,8 @@
 		408C47D41C86DBB900F9B0C7 /* errorMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = errorMessages.plist; sourceTree = "<group>"; };
 		408D28E61C3F8C3600183849 /* GuideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVC.swift; sourceTree = "<group>"; };
 		408D28E71C3F8C3600183849 /* GuideVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideVC.xib; sourceTree = "<group>"; };
+		408F50391CA3E51700AEBA83 /* TableViewCellNoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellNoData.swift; sourceTree = "<group>"; };
+		408F503A1CA3E51700AEBA83 /* TableViewCellNoData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCellNoData.xib; sourceTree = "<group>"; };
 		409E73DE1C9B98B30040186C /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		409E73DF1C9B98B30040186C /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		409E73E01C9B98B30040186C /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
@@ -527,6 +531,15 @@
 			path = YunBaSDK;
 			sourceTree = "<group>";
 		};
+		408F50381CA3E51700AEBA83 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				408F50391CA3E51700AEBA83 /* TableViewCellNoData.swift */,
+				408F503A1CA3E51700AEBA83 /* TableViewCellNoData.xib */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		409E73DD1C9B98B30040186C /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +560,7 @@
 		409E73F01C9B99F80040186C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				408F50381CA3E51700AEBA83 /* Common */,
 				40DE251D1C9D6CA700CA7F26 /* Settings */,
 				FA0D360C1C9D284000E0AA78 /* PaymentList */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
@@ -885,6 +899,7 @@
 				40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */,
 				40DE25721C9D6CCB00CA7F26 /* EmailVC.xib in Resources */,
 				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
+				408F503C1CA3E51700AEBA83 /* TableViewCellNoData.xib in Resources */,
 				FA1414E41C9D48B000A0666F /* PayInfoVC.xib in Resources */,
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
 				40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */,
@@ -1015,6 +1030,7 @@
 				40DE25701C9D6CCB00CA7F26 /* AccountTVC.swift in Sources */,
 				40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */,
 				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
+				408F503B1CA3E51700AEBA83 /* TableViewCellNoData.swift in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
