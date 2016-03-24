@@ -540,6 +540,34 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		408F503E1CA3F15E00AEBA83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		408F503F1CA3F17500AEBA83 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */,
+				FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */,
+				FA1414E11C9D48B000A0666F /* PayInfoVC.swift */,
+				FA1414E21C9D48B000A0666F /* PayInfoVC.xib */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		408F50401CA3F19400AEBA83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */,
+				FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		409E73DD1C9B98B30040186C /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,13 +768,9 @@
 		FA0D360C1C9D284000E0AA78 /* PaymentList */ = {
 			isa = PBXGroup;
 			children = (
-				FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */,
-				FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */,
-				FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */,
-				FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */,
-				FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */,
-				FA1414E11C9D48B000A0666F /* PayInfoVC.swift */,
-				FA1414E21C9D48B000A0666F /* PayInfoVC.xib */,
+				408F50401CA3F19400AEBA83 /* View */,
+				408F503F1CA3F17500AEBA83 /* ViewController */,
+				408F503E1CA3F15E00AEBA83 /* Model */,
 			);
 			name = PaymentList;
 			path = Guide;
