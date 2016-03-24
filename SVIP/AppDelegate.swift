@@ -93,7 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     LocationMonitor.sharedInstance.afterResume = false
     LocationMonitor.sharedInstance.stopMonitoringLocation()
-    LocationMonitor.sharedInstance.startUpdatingLocation()
+    if StorageManager.sharedInstance().settingMonitoring() {
+      LocationMonitor.sharedInstance.startUpdatingLocation()
+    }
 
   }
 
