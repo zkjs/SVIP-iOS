@@ -42,6 +42,13 @@ class BeaconMonitor:NSObject {
       locationManager.startRangingBeaconsInRegion(beaconRegion)
     }
   }
+  
+  func stopMonitoring() {
+    for beaconRegion in beaconRegions {
+      locationManager.stopMonitoringForRegion(beaconRegion)
+      locationManager.stopRangingBeaconsInRegion(beaconRegion)
+    }
+  }
 }
 
 extension BeaconMonitor : CLLocationManagerDelegate {
@@ -66,7 +73,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     for beacon  in beacons {
       //print("range beacon:\(beacon)")
-      didEnterBeaconRegion(beacon)
+      didRangeBeacons(beacon)
     }
   }
   
@@ -78,12 +85,12 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
   }
   
-  private func didEnterBeaconRegion(beacon: CLBeacon!) {
+  private func didRangeBeacons(beacon: CLBeacon!) {
     let currentTimeStamp = Int(NSDate().timeIntervalSince1970)
     
     let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)"
     
-    //print("\(key) : \(beacon.proximity.rawValue)")
+    print("\(key) : \(beacon.proximity.rawValue)")
     
     // beacon足够接近才发送到服务器
     /*if beacon.proximity == .Unknown {

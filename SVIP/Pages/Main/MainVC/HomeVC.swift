@@ -12,6 +12,7 @@ import CoreBluetooth
 
 class HomeVC: UIViewController {
   @IBOutlet weak var homeBGImage: UIImageView!
+  @IBOutlet weak var monitoringButton: UIButton!
   
   var bluetoothManager = CBCentralManager()
   var originOffsetY: CGFloat = 0.0
@@ -45,6 +46,8 @@ class HomeVC: UIViewController {
       self.homeBGImage.image = UIImage(named: imgUrl)
     }
     
+    setButtonView()
+    
     addGuestures()
   }
   
@@ -64,6 +67,14 @@ class HomeVC: UIViewController {
     super.viewWillDisappear(animated)
     navigationController?.navigationBarHidden = false
     navigationController?.navigationBar.translucent = false
+  }
+  
+  private func setButtonView() {
+    if StorageManager.sharedInstance().settingMonitoring() {
+      monitoringButton.setImage(UIImage(named: "btn_notify"), forState: .Normal)
+    } else {
+      monitoringButton.setImage(UIImage(named: "btn_mute"), forState: .Normal)
+    }
   }
   
   func addGuestures() {
@@ -107,6 +118,19 @@ class HomeVC: UIViewController {
   func didLoginStateChange(notification: NSNotification) {
   }
   
+  @IBAction func toggleBeaconMonitoring(sender: UIButton) {
+    let monitoring = StorageManager.sharedInstance().settingMonitoring()
+    if monitoring {// stop monitoring
+      BeaconMonitor.sharedInstance.stopMonitoring()
+      LocationMonitor.sharedInstance.stopUpdatingLocation()
+      LocationMonitor.sharedInstance.stopMonitoringLocation()
+    } else { // start monitoring
+      BeaconMonitor.sharedInstance.startMonitoring()
+      LocationMonitor.sharedInstance.startUpdatingLocation()
+    }
+    StorageManager.sharedInstance().settingMonitoring(!monitoring)
+    setButtonView()
+  }
 }
 
 
@@ -118,7 +142,9 @@ extension HomeVC: CBCentralManagerDelegate {
     switch central.state {
     case .PoweredOn:
       self.bluetoothStats = true
-      BeaconMonitor.sharedInstance.startMonitoring()
+      if StorageManager.sharedInstance().settingMonitoring() {
+        BeaconMonitor.sharedInstance.startMonitoring()
+      }
       print(".PoweredOn")
     case .PoweredOff:
       self.bluetoothStats = false
