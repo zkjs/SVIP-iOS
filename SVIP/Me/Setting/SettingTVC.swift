@@ -9,6 +9,7 @@
 import UIKit
 
 class SettingTVC: UITableViewController {
+  @IBOutlet weak var aboutLabel: UILabel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,6 +17,9 @@ class SettingTVC: UITableViewController {
     title = "设置"
     
     tableView.tableFooterView = UIView()
+    
+    let bundleVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String ?? "1.0"
+    aboutLabel.text = "关于我们 (v\(bundleVersion))"
   }
   
   // MARK: - Private

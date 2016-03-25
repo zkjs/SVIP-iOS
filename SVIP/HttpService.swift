@@ -31,6 +31,7 @@ class HttpService {
   var beaconRetryCount = 0              //beacon 上传失败后重新请求当前次数
   let maxBeaconRetryCount = 3           //beacon 上传失败后重新请求最多次数
   
+  var refreshTokenTime: NSTimeInterval = NSDate().timeIntervalSince1970
   
   enum ResourcePath: CustomStringConvertible {
     case ApiURL(path:String)            // demo
@@ -156,7 +157,7 @@ class HttpService {
     print(parameters)
     
     request(method, urlString, parameters: parameters, encoding: method == .GET ? .URLEncodedInURL : .JSON, headers: headers).response { (req, res, data, error) -> Void in
-      self.handleResult(data, error: error, completionHandler: completionHandler)
+      self.handleResult(request:req, response: res, data: data, error: error, completionHandler: completionHandler)
     }
   }
   
@@ -177,13 +178,32 @@ class HttpService {
     print(parameters)
     
     self.alamoFireManager.request(method, urlString, parameters: parameters, encoding: method == .GET ? .URLEncodedInURL : .JSON, headers: headers).response { (req, res, data, error) -> Void in
-      self.handleResult(data, error: error, completionHandler: completionHandler)
+      self.handleResult(request:req, response: res, data: data, error: error, completionHandler: completionHandler)
     }
   }
   
-  func handleResult(data:NSData?, error:NSError?, record:Bool = false ,completionHandler:HttpCompletionHandler) -> Void {
+  func handleResult(request request:NSURLRequest?, response:NSHTTPURLResponse?, data:NSData?, error:NSError?, record:Bool = false ,completionHandler:HttpCompletionHandler) -> Void {
+    guard let statusCode = response?.statusCode else{
+      return
+    }
+    if statusCode == 401 {//token过期
+      // 由于异步请求，其他请求在token刷新后立即到达server会被判定失效，导致用户被登出
+      if NSDate().timeIntervalSince1970 > self.refreshTokenTime + 60 {
+        print("invalid token:\(request)")
+        TokenPayload.sharedInstance.clearCacheTokenPayload()
+        NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
+        return
+      }
+    } else if statusCode != 200 {
+      let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+        code: statusCode,
+        userInfo: ["res":"\(statusCode)","resDesc":"网络错误:\(statusCode)"])
+      completionHandler(nil,e)
+      return
+    }
+    
     if let error = error {
-      print("api request fail:\(error)")
+      print("api request fail [res code:,\(response?.statusCode)]:\(error)")
       completionHandler(nil,error)
     } else {
       print(self.jsonFromData(data))
@@ -194,6 +214,9 @@ class HttpService {
           completionHandler(json,nil)
           print(json["resDesc"].string)
         } else {
+          if let key = json["res"].int where key == 6 || key == 8 {//token过期
+            NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
+          }
           var resDesc = ""
           if let key = json["res"].int {
             resDesc = ZKJSErrorMessages.sharedInstance.errorString("\(key)") ?? "错误码:\(key)"

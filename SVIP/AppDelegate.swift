@@ -51,8 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 因为注册的Local Notification会持久化在设备中，所以需要重置一下才能删除掉不在需要的Local Notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
    
-//    // fir.im BugHD
-//    FIR.handleCrashWithKey("60de6e415871c3b153cf0fabee951b58")
+    // 监控Token是否过期
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLogout", name: KNOTIFICATION_LOGOUTCHANGE, object: nil)
     
     // app was launched when significant location changed
     if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
@@ -342,6 +342,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   //send all beacon logs to server 10 seconds later
   func sendErrorsToServerLater() {
     delay(seconds: 20 ){BeaconErrors.uploadLogs()}
+  }
+  
+  func didLogout() {
+    // 清理系统缓存
+    AccountManager.sharedInstance().clearAccountCache()
+    TokenPayload.sharedInstance.clearCacheTokenPayload()
+    
+    // 登出环信
+    EaseMob.sharedInstance().chatManager.removeAllConversationsWithDeleteMessages!(true, append2Chat: true)
+    let error: AutoreleasingUnsafeMutablePointer<EMError?> = nil
+    print("登出前环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+    EaseMob.sharedInstance().chatManager.logoffWithUnbindDeviceToken(true, error: error)
+    print("登出后环信:\(EaseMob.sharedInstance().chatManager.loginInfo)")
+    if error != nil {
+      print(error.debugDescription)
+    } else {
+      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+    }
+    
+    // 弹出登录框
+    let nc = BaseNC(rootViewController: LoginVC())
+    window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
+    ZKJSTool.showMsg("登录过期，请重新重录")
   }
   
 }
