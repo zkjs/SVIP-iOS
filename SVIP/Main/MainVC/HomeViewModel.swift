@@ -73,7 +73,7 @@ class HomeViewModel {
    * 获取未登陆用户特权消息
    */
   private func getPrivilegeInfo(completionHandler:((NSError?)->Void)?) {
-    HttpService.sharedInstance.getPrivilegeIntro { (privilege, error) -> Void in
+    /*HttpService.sharedInstance.getPrivilegeIntro { (privilege, error) -> Void in
       self.fetchDataError = (error != nil)
       if let privilege = privilege {
         self.privilegeArray = [privilege]
@@ -82,7 +82,7 @@ class HomeViewModel {
         print(error)
         completionHandler?(error)
       }
-    }
+    }*/
   }
   
   /**

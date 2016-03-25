@@ -19,16 +19,20 @@ extension HttpService {
     
     requestTimeoutAPI(.PUT, urlString: urlString, parameters: dict,tokenRequired: true) {[unowned self] (json, error) -> Void in
       completionHandler?(json, error);
-      //增加总请求数
+      // 增加总请求数
       BeaconErrors.addTotalCount()
       if let error = error {
         print("beacon fail:\(error)")
-        //还未超过最大重发次数
+        // 还未超过最大重发次数
         if self.beaconRetryCount < self.maxBeaconRetryCount {
           self.beaconRetryCount += 1
-          //增加重复请求数
+          // 增加重复请求数
           BeaconErrors.addRetryCount()
-          self.sendBeaconChanges(uuid, major: major, minor: minor, sensorID: sensorID, timestamp: timestamp, completionHandler: completionHandler)
+          // 延迟x秒后重新发送请求
+          delay(seconds: Double(self.beaconRetryDelay), completion: {
+            self.sendBeaconChanges(uuid, major: major, minor: minor, sensorID: sensorID, timestamp: timestamp, completionHandler: completionHandler)
+          })
+          // 记录错误日志
           HttpErrorRecordingService.sharedInstance.recordBeaconError(uuid, major: major, minor: minor, error: error)
         } else {
           self.beaconRetryCount = 0
