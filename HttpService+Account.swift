@@ -143,7 +143,7 @@ extension HttpService {
   func codeActive(code:String,completionHandler:HttpCompletionHandler){
     let urlString = ResourcePath.ActiveCode.description.fullUrl
     let dic = ["salecode":code]
-    get(urlString, parameters: dic) { (json, error) -> Void in
+    post(urlString, parameters: dic) { (json, error) -> Void in
       completionHandler(json,error)
       if let error = error {
         print(error)

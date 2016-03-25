@@ -75,6 +75,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
         }
       } else {
         AccountManager.sharedInstance().saveUserName(userName)
+        NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
         self.navigationController?.pushViewController(InvitationCodeVC(), animated: true)
       }
     }
@@ -125,9 +126,9 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
     self.image = image
-    var imageData = UIImageJPEGRepresentation(image, 1.0)!
+    var imageData = UIImageJPEGRepresentation(image, 1)!
     var i = 0
-    while imageData.length / 1024 > 80 {
+    while imageData.length / 1024 > 10 {
       let persent = CGFloat(100 - i++) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }

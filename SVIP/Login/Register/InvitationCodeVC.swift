@@ -80,6 +80,7 @@ class InvitationCodeVC: UIViewController {
       HttpService.sharedInstance.codeActive(code, completionHandler: { (json, error) -> Void in
         if let _ = error {
           self.showHint("激活失败，请检查邀请码是否正确")
+          self.hideHUD()
         } else {
           if let json = json {
             if let res = json["res"].int {
@@ -91,6 +92,7 @@ class InvitationCodeVC: UIViewController {
                 self.sendInvitationCodeCmdMessage()
                 if self.type == InvitationCodeVCType.first {
                   HttpService.sharedInstance.getUserinfo{ (json, error) -> Void in
+                    NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
                     self.dismissViewControllerAnimated(true, completion: nil)
                   }
                 } else {
