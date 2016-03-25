@@ -18,6 +18,7 @@
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
 		40641F141B3E569800CF150D /* SVIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641F131B3E569800CF150D /* SVIPTests.swift */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
+		406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */; };
 		4077C7A21C26578F000DD7DC /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = 4077C79E1C26578F000DD7DC /* server.der */; };
 		4077DC581C1EAF4B00E13D6B /* libYunBa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4077DC561C1EAF4B00E13D6B /* libYunBa.a */; };
 		4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE031C1EB74B00E13D6B /* AccountManager.swift */; };
@@ -187,6 +188,7 @@
 		40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVIP-Bridging-Header.h"; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
+		406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillListVC.swift; path = BillList/BillListVC.swift; sourceTree = "<group>"; };
 		4077C79E1C26578F000DD7DC /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.der; sourceTree = "<group>"; };
 		4077DC561C1EAF4B00E13D6B /* libYunBa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYunBa.a; sourceTree = "<group>"; };
 		4077DC571C1EAF4B00E13D6B /* YunBaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YunBaService.h; sourceTree = "<group>"; };
@@ -512,6 +514,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		406C4B5F1CA41F5600B7E241 /* BillList */ = {
+			isa = PBXGroup;
+			children = (
+				406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */,
+			);
+			name = BillList;
+			sourceTree = "<group>";
+		};
 		4077C79B1C26578F000DD7DC /* Cryptography */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,12 +599,13 @@
 			isa = PBXGroup;
 			children = (
 				408F50381CA3E51700AEBA83 /* Common */,
-				40DE251D1C9D6CA700CA7F26 /* Settings */,
+				4052664D1B41283900B277BE /* Main */,
+				406C4B5F1CA41F5600B7E241 /* BillList */,
 				FA0D360C1C9D284000E0AA78 /* PaymentList */,
+				40DE251D1C9D6CA700CA7F26 /* Settings */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
 				B2564D351B4BFAED0098608F /* LaunchAnimation */,
 				FA02C5811C0D42B300D0D439 /* Login */,
-				4052664D1B41283900B277BE /* Main */,
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
 			);
@@ -1073,6 +1084,7 @@
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
+				406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */,
 				40DE251C1C9D3E4200CA7F26 /* BreathLight.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,

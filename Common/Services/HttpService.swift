@@ -29,8 +29,9 @@ class HttpService {
   }()
   private init() {}
   
-  var beaconRetryCount = 0              //beacon 上传失败后重新请求当前次数
-  let maxBeaconRetryCount = 3           //beacon 上传失败后重新请求最多次数
+  var beaconRetryCount = 0              // beacon 上传失败后重新请求当前次数
+  let maxBeaconRetryCount = 3           // beacon 上传失败后重新请求最多次数
+  let beaconRetryDelay = 5              // beacon 上传失败后重新请求延迟时间
   
   var refreshTokenTime: NSTimeInterval = NSDate().timeIntervalSince1970
   
