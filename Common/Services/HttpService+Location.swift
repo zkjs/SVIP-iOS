@@ -31,7 +31,11 @@ extension HttpService {
           self.beaconRetryCount += 1
           //增加重复请求数
           BeaconErrors.addRetryCount()
-          self.sendBeaconChanges(uuid, major: major, minor: minor, sensorID: sensorID, timestamp: timestamp, completionHandler: completionHandler)
+          // 延迟x秒后重新发送请求
+          delay(seconds: Double(self.beaconRetryDelay), completion: {
+            self.sendBeaconChanges(uuid, major: major, minor: minor, sensorID: sensorID, timestamp: timestamp, completionHandler: completionHandler)
+          })
+          // 记录错误日志
           HttpErrorRecordingService.sharedInstance.recordBeaconError(uuid, major: major, minor: minor, error: error)
         } else {
           self.beaconRetryCount = 0
