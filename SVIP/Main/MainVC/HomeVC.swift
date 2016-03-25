@@ -66,15 +66,7 @@ class HomeVC: UIViewController {
     tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 100, 40))
     originOffsetY = privilegeButton.frame.origin.y
     
-    let imageURL = AccountManager.sharedInstance().avatarURL
-    if TokenPayload.sharedInstance.isLogin {
-      privilegeButton.sd_setBackgroundImageWithURL(NSURL(string: imageURL), forState: .Normal, placeholderImage: UIImage(named: "logo_white"))
-      privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
-      privilegeButton.userInteractionEnabled = false
-    } else {
-      privilegeButton.setBackgroundImage(UIImage(named: "logo_white"), forState: UIControlState.Normal)
-      privilegeButton.userInteractionEnabled = false
-    }
+    
     
     refreshHomeDelegate = self
     
@@ -107,6 +99,16 @@ class HomeVC: UIViewController {
     }
     if viewModel.fetchImageError {
       reloadImages()
+    }
+    
+    let imageURL = AccountManager.sharedInstance().avatarURL
+    if TokenPayload.sharedInstance.isLogin {
+      privilegeButton.sd_setBackgroundImageWithURL(NSURL(string: imageURL), forState: .Normal, placeholderImage: UIImage(named: "logo_white"))
+      privilegeButton.addTarget(self, action: "getPrivilege", forControlEvents: UIControlEvents.TouchUpInside)
+      privilegeButton.userInteractionEnabled = false
+    } else {
+      privilegeButton.setBackgroundImage(UIImage(named: "logo_white"), forState: UIControlState.Normal)
+      privilegeButton.userInteractionEnabled = false
     }
  }
   
