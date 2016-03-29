@@ -95,6 +95,9 @@
 		B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3C1B73493D00CA5158 /* libc++.dylib */; };
 		B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */; };
 		D8945633F4C6945FD4AAB411 /* Pods_SVIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67993CCF61D2F89ACCD5A76A /* Pods_SVIP.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F626F6541CA63C7200263C4B /* BillList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F626F6531CA63C7200263C4B /* BillList.storyboard */; };
+		F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B467501CA63E8E008AF9A1 /* BillListCell.swift */; };
+		F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B467521CA64A93008AF9A1 /* BillListLayout.swift */; };
 		FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */; };
 		FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */; };
 		FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02C5821C0D42D100D0D439 /* LoginVC.swift */; };
@@ -276,6 +279,9 @@
 		B2B2EC3C1B73493D00CA5158 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
+		F626F6531CA63C7200263C4B /* BillList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BillList.storyboard; path = BillList/BillList.storyboard; sourceTree = "<group>"; };
+		F6B467501CA63E8E008AF9A1 /* BillListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillListCell.swift; path = BillList/BillListCell.swift; sourceTree = "<group>"; };
+		F6B467521CA64A93008AF9A1 /* BillListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillListLayout.swift; path = BillList/BillListLayout.swift; sourceTree = "<group>"; };
 		FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDescriptionVC.swift; sourceTree = "<group>"; };
 		FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothDescriptionVC.xib; sourceTree = "<group>"; };
 		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -518,6 +524,9 @@
 			isa = PBXGroup;
 			children = (
 				406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */,
+				F626F6531CA63C7200263C4B /* BillList.storyboard */,
+				F6B467501CA63E8E008AF9A1 /* BillListCell.swift */,
+				F6B467521CA64A93008AF9A1 /* BillListLayout.swift */,
 			);
 			name = BillList;
 			sourceTree = "<group>";
@@ -939,6 +948,7 @@
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
 				40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */,
 				408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */,
+				F626F6541CA63C7200263C4B /* BillList.storyboard in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
@@ -1049,6 +1059,7 @@
 				40DE24E91C9BF96C00CA7F26 /* HttpErrorRecordingService.swift in Sources */,
 				40DE24ED1C9BF96C00CA7F26 /* HttpService+Token.swift in Sources */,
 				40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */,
+				F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
@@ -1075,6 +1086,7 @@
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
+				F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
 				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
@@ -1290,8 +1302,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

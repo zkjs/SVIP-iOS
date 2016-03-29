@@ -162,8 +162,11 @@ class HomeVC: UIViewController {
   // 点击气泡打开账单列表
   @IBAction func moneyAction(sender: AnyObject) {
     toggleMoney()
-    let vc = PayListTVC()
+    /*let vc = PayListTVC()
     vc.orderStatus = .Paid
+    self.navigationController?.pushViewController(vc, animated: true)*/
+    let billStoryboard = UIStoryboard(name:"BillList",bundle: nil)
+    let vc = billStoryboard.instantiateViewControllerWithIdentifier("BillListVC") as! BillListVC
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
