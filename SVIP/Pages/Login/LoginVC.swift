@@ -11,7 +11,8 @@ import Spring
 
 class LoginVC: UIViewController {
   
-  @IBOutlet weak var phoneTextField: DesignableTextField!
+  @IBOutlet weak var phoneLabel: UILabel!
+
   @IBOutlet weak var codeTextField: DesignableTextField!
   @IBOutlet weak var okButton: UIButton!
   @IBOutlet weak var codeButton: UIButton!
@@ -91,13 +92,13 @@ class LoginVC: UIViewController {
   }
   
   private func isFormValid() -> Bool {
-    guard let phone = phoneTextField.text else { return false}
+//    guard let phone = phoneLabel.text else { return false}
     guard let code = codeTextField.text else { return false}
-    if phone.isEmpty {
-      phoneTextField.animation = "shake"
-      phoneTextField.animate()
-      return false
-    }
+//    if phone.isEmpty {
+//      phoneTextField.animation = "shake"
+//      phoneTextField.animate()
+//      return false
+//    }
     if code.isEmpty {
       codeTextField.animation = "shake"
       codeTextField.animate()
@@ -107,7 +108,7 @@ class LoginVC: UIViewController {
   }
   
   private func loginAction() {
-    guard let phone = phoneTextField.text else { return }
+    guard let phone = phoneLabel.text else { return }
     guard let code = codeTextField.text else { return }
     if !isFormValid() {
       return
@@ -146,8 +147,6 @@ class LoginVC: UIViewController {
     let phoneIV = UIImageView(image: UIImage(named: "ic_yonghu"))
     phoneIV.frame = CGRectMake(0.0, 0.0, phoneIV.frame.size.width + 10.0, phoneIV.frame.size.height)
     phoneIV.contentMode = .Center
-    phoneTextField.leftViewMode = .Always
-    phoneTextField.leftView = phoneIV
     
     let codeIV = UIImageView(image: UIImage(named: "ic_mima"))
     codeIV.frame = CGRectMake(0.0, 0.0, codeIV.frame.size.width + 10.0, phoneIV.frame.size.height)
@@ -169,7 +168,7 @@ class LoginVC: UIViewController {
   // MARK: Button Action
   
   @IBAction func tappedCodeButton(sender: UIButton) {
-    guard let phone = phoneTextField.text else { return }
+    guard let phone = phoneLabel.text else { return }
     
     if ZKJSTool.validateMobile(phone) {
       self.codeButton.enabled = false
@@ -233,7 +232,7 @@ class LoginVC: UIViewController {
 extension LoginVC: UITextFieldDelegate {
   
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    if textField == phoneTextField {
+    if textField == phoneLabel {
       // 只有当手机号码填全时，才能验证码按钮可按
       if (range.location + string.characters.count >= 11) {
         codeButton.layer.borderWidth = 0.0

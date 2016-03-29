@@ -105,6 +105,8 @@
 		FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1414E11C9D48B000A0666F /* PayInfoVC.swift */; };
 		FA1414E41C9D48B000A0666F /* PayInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1414E21C9D48B000A0666F /* PayInfoVC.xib */; };
 		FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */; };
+		FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */; };
+		FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */; };
 		FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */; };
 		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
 		FAF139271C26947700B84F47 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139261C26947700B84F47 /* loading@3x.gif */; };
@@ -282,6 +284,8 @@
 		FA1414E11C9D48B000A0666F /* PayInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayInfoVC.swift; sourceTree = "<group>"; };
 		FA1414E21C9D48B000A0666F /* PayInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayInfoVC.xib; sourceTree = "<group>"; };
 		FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeModel.swift; sourceTree = "<group>"; };
+		FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFirstVC.swift; sourceTree = "<group>"; };
+		FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginFirstVC.xib; sourceTree = "<group>"; };
 		FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+FacePay.swift"; sourceTree = "<group>"; };
 		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
 		FAF139261C26947700B84F47 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
@@ -716,6 +720,8 @@
 				409E73F11C9B9A040040186C /* AboutUsVC.swift */,
 				FA02C5821C0D42D100D0D439 /* LoginVC.swift */,
 				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
+				FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */,
+				FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -873,6 +879,7 @@
 				FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */,
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
+				FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
 				40DE25801C9D6CCB00CA7F26 /* MeTVC.storyboard in Resources */,
 				40DE25791C9D6CCB00CA7F26 /* NameVC.xib in Resources */,
@@ -963,6 +970,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
+				FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */,
 				FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */,
 				4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */,
 				FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */,

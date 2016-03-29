@@ -194,7 +194,7 @@ class HomeVC: UIViewController {
     HttpService.sharedInstance.deleteToken(nil)
     TokenPayload.sharedInstance.clearCacheTokenPayload()
     let window = UIApplication.sharedApplication().keyWindow
-    window?.rootViewController = BaseNC(rootViewController: LoginVC())
+    window?.rootViewController = BaseNC(rootViewController: LoginFirstVC())
   }
   
 }
