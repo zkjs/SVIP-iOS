@@ -52,7 +52,6 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
     }
     
     showHUDInView(view, withLoading: "")
-    
     HttpService.sharedInstance.updateUserInfo(true, realname:username, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
       self.hideHUD()
       if let error = error {

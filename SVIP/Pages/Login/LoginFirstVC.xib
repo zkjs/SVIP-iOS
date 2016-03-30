@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginFirstVC" customModule="SVIP" customModuleProvider="target">
@@ -61,7 +61,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOg-7W-YBZ">
-                    <rect key="frame" x="40" y="481" width="240" height="44"/>
+                    <rect key="frame" x="180" y="491" width="240" height="44"/>
                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="2cQ-Di-AEW"/>
@@ -82,6 +82,7 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="z59-iY-maR" firstAttribute="top" secondItem="fgF-zk-JPL" secondAttribute="bottom" constant="92" id="17c-JT-2sI"/>
                 <constraint firstItem="4Eh-zG-WPL" firstAttribute="top" secondItem="3HV-yV-WUS" secondAttribute="bottom" constant="34" id="6TJ-Xy-PKO"/>
                 <constraint firstItem="fgF-zk-JPL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ER7-dN-eN4"/>
                 <constraint firstAttribute="bottom" secondItem="AOg-7W-YBZ" secondAttribute="bottom" constant="43" id="LnW-be-GvH"/>
