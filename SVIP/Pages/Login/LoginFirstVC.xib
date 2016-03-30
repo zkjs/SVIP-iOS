@@ -25,7 +25,7 @@
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="请输入您的手机号" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z59-iY-maR">
                     <rect key="frame" x="50" y="321" width="220" height="45"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="qmR-oR-eYw"/>
                     </constraints>
@@ -80,11 +80,11 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="z59-iY-maR" firstAttribute="top" secondItem="fgF-zk-JPL" secondAttribute="bottom" constant="92" id="17c-JT-2sI"/>
                 <constraint firstItem="4Eh-zG-WPL" firstAttribute="top" secondItem="3HV-yV-WUS" secondAttribute="bottom" constant="34" id="6TJ-Xy-PKO"/>
                 <constraint firstItem="fgF-zk-JPL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ER7-dN-eN4"/>
+                <constraint firstAttribute="bottom" secondItem="AOg-7W-YBZ" secondAttribute="bottom" constant="43" id="LnW-be-GvH"/>
                 <constraint firstItem="AOg-7W-YBZ" firstAttribute="top" secondItem="4Eh-zG-WPL" secondAttribute="bottom" constant="30" id="PNJ-Cg-1tF"/>
                 <constraint firstItem="3HV-yV-WUS" firstAttribute="top" secondItem="z59-iY-maR" secondAttribute="bottom" constant="5" id="a2S-dD-uGe"/>
                 <constraint firstAttribute="trailing" secondItem="z59-iY-maR" secondAttribute="trailing" constant="50" id="gxV-tJ-DuU"/>

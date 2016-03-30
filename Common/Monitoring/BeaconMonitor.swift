@@ -83,7 +83,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)"
     
-    //print("\(key) : \(beacon.proximity.rawValue)")
+    print("\(key) : \(beacon.proximity.rawValue)")
     
     // beacon足够接近才发送到服务器
     /*if beacon.proximity == .Unknown {
@@ -123,6 +123,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     cachedBeaconInfo["\(region.proximityUUID.UUIDString)-\(major)"] = nil
     StorageManager.sharedInstance().saveCachedBeaconInfo(cachedBeaconInfo)
     }*/
+    print("didExitBeaconRegion")
     for (key,info) in beaconInfoCache {
       let ts = fabs(info.timestamp.timeIntervalSinceNow)
       if ts > 5 {// check the beacon exit

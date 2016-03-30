@@ -18,7 +18,6 @@ class HomeVC: UIViewController {
   @IBOutlet weak var walletButton: UIButton!
   @IBOutlet weak var moneyLabel: UILabel!
   @IBOutlet weak var moneyButton: UIButton!
-  @IBOutlet weak var notifyButton: UIButton!
   @IBOutlet weak var breathLight: BreathLight!
   
   
@@ -48,6 +47,10 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
     
     addGuestures()
+    
+    // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
+    walletButton.hidden = true
+    breathLight.hidden = true
   }
   
   
