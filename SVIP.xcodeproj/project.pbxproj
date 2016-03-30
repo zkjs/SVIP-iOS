@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
@@ -17,6 +18,7 @@
 		40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40641F061B3E569700CF150D /* LaunchScreen.xib */; };
 		40641F141B3E569800CF150D /* SVIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40641F131B3E569800CF150D /* SVIPTests.swift */; };
 		40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 40641F9C1B3E79A300CF150D /* ZKJSTool.m */; };
+		406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */; };
 		4077C7A21C26578F000DD7DC /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = 4077C79E1C26578F000DD7DC /* server.der */; };
 		4077DC581C1EAF4B00E13D6B /* libYunBa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4077DC561C1EAF4B00E13D6B /* libYunBa.a */; };
 		4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE031C1EB74B00E13D6B /* AccountManager.swift */; };
@@ -25,6 +27,8 @@
 		408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 408C47D41C86DBB900F9B0C7 /* errorMessages.plist */; };
 		408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408D28E61C3F8C3600183849 /* GuideVC.swift */; };
 		408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408D28E71C3F8C3600183849 /* GuideVC.xib */; };
+		408F503B1CA3E51700AEBA83 /* TableViewCellNoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408F50391CA3E51700AEBA83 /* TableViewCellNoData.swift */; };
+		408F503C1CA3E51700AEBA83 /* TableViewCellNoData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408F503A1CA3E51700AEBA83 /* TableViewCellNoData.xib */; };
 		409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73DF1C9B98B30040186C /* NSDate+Category.m */; };
 		409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73E11C9B98B30040186C /* NSDateFormatter+Category.m */; };
 		409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73E51C9B98B30040186C /* NSString+Valid.m */; };
@@ -91,6 +95,9 @@
 		B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3C1B73493D00CA5158 /* libc++.dylib */; };
 		B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */; };
 		D8945633F4C6945FD4AAB411 /* Pods_SVIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67993CCF61D2F89ACCD5A76A /* Pods_SVIP.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F626F6541CA63C7200263C4B /* BillList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F626F6531CA63C7200263C4B /* BillList.storyboard */; };
+		F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B467501CA63E8E008AF9A1 /* BillListCell.swift */; };
+		F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B467521CA64A93008AF9A1 /* BillListLayout.swift */; };
 		FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */; };
 		FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */; };
 		FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02C5821C0D42D100D0D439 /* LoginVC.swift */; };
@@ -166,6 +173,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
@@ -185,6 +193,7 @@
 		40641F821B3E796D00CF150D /* SVIP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVIP-Bridging-Header.h"; sourceTree = "<group>"; };
 		40641F9B1B3E79A300CF150D /* ZKJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKJSTool.h; sourceTree = "<group>"; };
 		40641F9C1B3E79A300CF150D /* ZKJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJSTool.m; sourceTree = "<group>"; };
+		406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillListVC.swift; path = BillList/BillListVC.swift; sourceTree = "<group>"; };
 		4077C79E1C26578F000DD7DC /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.der; sourceTree = "<group>"; };
 		4077DC561C1EAF4B00E13D6B /* libYunBa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYunBa.a; sourceTree = "<group>"; };
 		4077DC571C1EAF4B00E13D6B /* YunBaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YunBaService.h; sourceTree = "<group>"; };
@@ -194,6 +203,8 @@
 		408C47D41C86DBB900F9B0C7 /* errorMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = errorMessages.plist; sourceTree = "<group>"; };
 		408D28E61C3F8C3600183849 /* GuideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVC.swift; sourceTree = "<group>"; };
 		408D28E71C3F8C3600183849 /* GuideVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideVC.xib; sourceTree = "<group>"; };
+		408F50391CA3E51700AEBA83 /* TableViewCellNoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellNoData.swift; sourceTree = "<group>"; };
+		408F503A1CA3E51700AEBA83 /* TableViewCellNoData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCellNoData.xib; sourceTree = "<group>"; };
 		409E73DE1C9B98B30040186C /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		409E73DF1C9B98B30040186C /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		409E73E01C9B98B30040186C /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
@@ -270,6 +281,9 @@
 		B2B2EC3C1B73493D00CA5158 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
+		F626F6531CA63C7200263C4B /* BillList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BillList.storyboard; path = BillList/BillList.storyboard; sourceTree = "<group>"; };
+		F6B467501CA63E8E008AF9A1 /* BillListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillListCell.swift; path = BillList/BillListCell.swift; sourceTree = "<group>"; };
+		F6B467521CA64A93008AF9A1 /* BillListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillListLayout.swift; path = BillList/BillListLayout.swift; sourceTree = "<group>"; };
 		FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDescriptionVC.swift; sourceTree = "<group>"; };
 		FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothDescriptionVC.xib; sourceTree = "<group>"; };
 		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -510,6 +524,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		406C4B5F1CA41F5600B7E241 /* BillList */ = {
+			isa = PBXGroup;
+			children = (
+				406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */,
+				F626F6531CA63C7200263C4B /* BillList.storyboard */,
+				F6B467501CA63E8E008AF9A1 /* BillListCell.swift */,
+				F6B467521CA64A93008AF9A1 /* BillListLayout.swift */,
+			);
+			name = BillList;
+			sourceTree = "<group>";
+		};
 		4077C79B1C26578F000DD7DC /* Cryptography */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +552,43 @@
 				4077DC561C1EAF4B00E13D6B /* libYunBa.a */,
 			);
 			path = YunBaSDK;
+			sourceTree = "<group>";
+		};
+		408F50381CA3E51700AEBA83 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				408F50391CA3E51700AEBA83 /* TableViewCellNoData.swift */,
+				408F503A1CA3E51700AEBA83 /* TableViewCellNoData.xib */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		408F503E1CA3F15E00AEBA83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		408F503F1CA3F17500AEBA83 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */,
+				FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */,
+				FA1414E11C9D48B000A0666F /* PayInfoVC.swift */,
+				FA1414E21C9D48B000A0666F /* PayInfoVC.xib */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		408F50401CA3F19400AEBA83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */,
+				FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		409E73DD1C9B98B30040186C /* Category */ = {
@@ -549,12 +611,14 @@
 		409E73F01C9B99F80040186C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				40DE251D1C9D6CA700CA7F26 /* Settings */,
+				408F50381CA3E51700AEBA83 /* Common */,
+				4052664D1B41283900B277BE /* Main */,
+				406C4B5F1CA41F5600B7E241 /* BillList */,
 				FA0D360C1C9D284000E0AA78 /* PaymentList */,
+				40DE251D1C9D6CA700CA7F26 /* Settings */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
 				B2564D351B4BFAED0098608F /* LaunchAnimation */,
 				FA02C5811C0D42B300D0D439 /* Login */,
-				4052664D1B41283900B277BE /* Main */,
 				40CC73861BECA36D00A49E09 /* BaseNC.swift */,
 				B21250B01B74586F0056835D /* LoginManager.swift */,
 			);
@@ -658,6 +722,7 @@
 				40DE250E1C9BFE6600CA7F26 /* BeaconMonitor.swift */,
 				40DE250F1C9BFE6600CA7F26 /* LocationMonitor.swift */,
 				40DE25101C9BFE6600CA7F26 /* LocationStateObserver.swift */,
+				402627E91CA2C2010042382B /* BeaconInfo.swift */,
 			);
 			path = Monitoring;
 			sourceTree = "<group>";
@@ -729,13 +794,9 @@
 		FA0D360C1C9D284000E0AA78 /* PaymentList */ = {
 			isa = PBXGroup;
 			children = (
-				FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */,
-				FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */,
-				FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */,
-				FA0D36121C9D28FB00E0AA78 /* PaylistCell.xib */,
-				FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */,
-				FA1414E11C9D48B000A0666F /* PayInfoVC.swift */,
-				FA1414E21C9D48B000A0666F /* PayInfoVC.xib */,
+				408F50401CA3F19400AEBA83 /* View */,
+				408F503F1CA3F17500AEBA83 /* ViewController */,
+				408F503E1CA3F15E00AEBA83 /* Model */,
 			);
 			name = PaymentList;
 			path = Guide;
@@ -889,10 +950,12 @@
 				40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */,
 				40DE25721C9D6CCB00CA7F26 /* EmailVC.xib in Resources */,
 				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
+				408F503C1CA3E51700AEBA83 /* TableViewCellNoData.xib in Resources */,
 				FA1414E41C9D48B000A0666F /* PayInfoVC.xib in Resources */,
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
 				40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */,
 				408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */,
+				F626F6541CA63C7200263C4B /* BillList.storyboard in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
@@ -1004,6 +1067,7 @@
 				40DE24E91C9BF96C00CA7F26 /* HttpErrorRecordingService.swift in Sources */,
 				40DE24ED1C9BF96C00CA7F26 /* HttpService+Token.swift in Sources */,
 				40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */,
+				F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
@@ -1020,6 +1084,7 @@
 				40DE25701C9D6CCB00CA7F26 /* AccountTVC.swift in Sources */,
 				40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */,
 				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
+				408F503B1CA3E51700AEBA83 /* TableViewCellNoData.swift in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
@@ -1029,6 +1094,7 @@
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
+				F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
 				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
@@ -1038,12 +1104,14 @@
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
+				406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */,
 				40DE251C1C9D3E4200CA7F26 /* BreathLight.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				40DE24F11C9BFA9300CA7F26 /* BeaconErrors.swift in Sources */,
 				40DE25071C9BFCFD00CA7F26 /* HttpService.swift in Sources */,
 				40DE25121C9BFE6600CA7F26 /* LocationMonitor.swift in Sources */,
+				402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,8 +1310,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

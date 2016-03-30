@@ -31,7 +31,11 @@ extension HttpService {
           self.beaconRetryCount += 1
           //增加重复请求数
           BeaconErrors.addRetryCount()
-          self.sendBeaconChanges(uuid, major: major, minor: minor, sensorID: sensorID, timestamp: timestamp, completionHandler: completionHandler)
+          // 延迟x秒后重新发送请求
+          delay(seconds: Double(self.beaconRetryDelay), completion: {
+            self.sendBeaconChanges(uuid, major: major, minor: minor, sensorID: sensorID, timestamp: timestamp, completionHandler: completionHandler)
+          })
+          // 记录错误日志
           HttpErrorRecordingService.sharedInstance.recordBeaconError(uuid, major: major, minor: minor, error: error)
         } else {
           self.beaconRetryCount = 0
@@ -43,13 +47,18 @@ extension HttpService {
   }
   
   //// PYXIS 位置服务API : GPS 位置信息 :
-  func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int,mac:String,ssid:String,signal:NSNumber, completionHandler:HttpCompletionHandler?){
+  func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int,mac:String,ssid:String, completionHandler:HttpCompletionHandler?){
     let urlString = ResourcePath.GPS.description.fullUrl
     
-    let dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"),"mac":mac,"ssid":String(ssid),"signal":Int(signal),"timestamp":"\(timestamp)"]
-    print(dict)
+    var dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"), "timestamp":"\(timestamp)"]
+    if !mac.isEmpty {
+      dict["mac"] = mac
+    }
+    if !ssid.isEmpty {
+      dict["ssid"] = ssid
+    }
     
-    requestTimeoutAPI(.PUT, urlString: urlString, parameters: dict as? [String : AnyObject],tokenRequired: true) { (json, error) -> Void in
+    requestTimeoutAPI(.PUT, urlString: urlString, parameters: dict, tokenRequired: true) { (json, error) -> Void in
       completionHandler?(json, error);
       if let error = error {
         print("gps upload fail:\(error)")

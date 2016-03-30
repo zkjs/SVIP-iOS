@@ -38,7 +38,7 @@ extension HttpService {
   // 获取付款列表，含明细
   func userPaylistInfo(status:FacePayOrderStatus,page:Int = 0,completionHandler:([PaylistmModel]?,NSError?) ->Void) {
     let urlString = ResourcePath.PaymentInfo.description.fullUrl
-    let dict = ["status":status.rawValue,"page":page,"page_size":HttpService.DefaultPageSize]
+    let dict = ["status":status.rawValue,"page":page,"page_size":100]
     get(urlString, parameters: dict) { (json, error) -> Void in
       if let error = error {
         print(error)

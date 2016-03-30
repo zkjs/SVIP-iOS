@@ -12,10 +12,10 @@ class BaseNC: UINavigationController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-//    navigationBar.barTintColor = UIColor.blackColor()
+    navigationBar.barTintColor = UIColor.ZKJS_mainColor()
     navigationBar.translucent = true
-    navigationBar.tintColor = UIColor.ZKJS_mainColor()
-    navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ZKJS_textColor()]
+    navigationBar.tintColor = UIColor.whiteColor()
+    navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     
   }
   
