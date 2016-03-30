@@ -10,7 +10,8 @@ import UIKit
 
 class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
   
-  @IBOutlet weak var avatarButton: UIButton!
+  @IBOutlet weak var userImageView: UIImageView!
+
   var username:String!
   
   var avatarData: NSData? = nil
@@ -23,16 +24,12 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setUI()
-  }
-  
-  func setUI() {
 
   }
   
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
     navigationController?.navigationBarHidden = true
   }
   
@@ -49,19 +46,12 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
       return
     }
     
-    if username.characters.count > 6 {
-      showHint("用户名最多6位")
-      return
-    }
-    
     if avatarData == nil {
       showHint("头像不能为空")
       return
     }
     
     showHUDInView(view, withLoading: "")
-    
-   
     
     HttpService.sharedInstance.updateUserInfo(true, realname:username, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
       self.hideHUD()
@@ -120,7 +110,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     avatarData = imageData
-    self.avatarButton.setImage(UIImage(data: avatarData!), forState: UIControlState.Normal)
+    self.userImageView.image = UIImage(data:avatarData!)
     picker.dismissViewControllerAnimated(true, completion: nil)
     
   }

@@ -45,7 +45,8 @@ class LoginFirstVC: UIViewController {
     }
     vc.phone = str
     vc.type = CodeType.Register
-    self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+    let nv = BaseNC(rootViewController:vc)
+    self.navigationController?.presentViewController(nv, animated: true, completion: nil)
     
   }
 
@@ -60,7 +61,7 @@ class LoginFirstVC: UIViewController {
       self.showHint("请输入正确的手机号")
       return
     }
-    vc.phoneLabel.text = str
+    vc.phone = str
     vc.type = CodeType.Login
     self.navigationController?.presentViewController(vc, animated: true, completion: { () -> Void in
     
@@ -90,6 +91,7 @@ extension LoginFirstVC:UITextFieldDelegate {
     textField.layer.cornerRadius = 3.0
     textField.layer.borderWidth = 1.0
     textField.layer.borderColor = UIColor.ZKJS_mainColor().CGColor
+    self.view.frame.origin = CGPoint(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y-50)
     return true
   }
   func textFieldDidEndEditing(textField: UITextField) {
@@ -100,6 +102,7 @@ extension LoginFirstVC:UITextFieldDelegate {
   
   func textFieldShouldEndEditing(textField: UITextField) -> Bool {
     textField.layer.borderWidth = 0
+    self.view.frame.origin = CGPoint(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y)
     return true
   }
   

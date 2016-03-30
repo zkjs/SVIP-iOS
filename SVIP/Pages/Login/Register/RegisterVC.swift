@@ -26,18 +26,36 @@ class RegisterVC: UIViewController {
     NSBundle.mainBundle().loadNibNamed("RegisterVC", owner:self, options:nil)
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(true)
+    self.navigationController?.navigationBarHidden = true
+  }
+  
   @IBAction func nextStep(sender: AnyObject) {
     let vc = InfoEditVC()
     guard let str = nameTextFiled.text where !str.isEmpty else {
       self.showHint("请填写姓名")
       return
     }
+    if nameTextFiled.text!.characters.count > 6 {
+      showHint("用户名最多6位")
+      return
+    }
     vc.username = str
-    self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+    let nv = BaseNC(rootViewController:vc)
+    self.navigationController?.presentViewController(nv, animated: true, completion: nil)
      
     
   }
   
+}
+
+extension RegisterVC:UITextFieldDelegate {
+  func textFieldDidBeginEditing(textField: UITextField) {
+    if textField.text == "仅用于支付识别与安全认证" {
+      textField.text = ""
+    }
+  }
 }
    
 

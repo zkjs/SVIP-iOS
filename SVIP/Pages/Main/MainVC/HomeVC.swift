@@ -43,9 +43,9 @@ class HomeVC: UIViewController {
     self.navigationController!.navigationBar.shadowImage = UIImage()
     
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didLoginStateChange(_:)), name: KNOTIFICATION_LOGINCHANGE, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(alertPayInfo(_:)), name:kPaymentInfoNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(getOrderList), name: UIApplicationWillEnterForegroundNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:kPaymentInfoNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
     
     addGuestures()
   }
@@ -186,7 +186,7 @@ class HomeVC: UIViewController {
   
   func addGuestures() {
     
-    let tripleTap = UITapGestureRecognizer(target: self, action: #selector(doTripleTap))
+    let tripleTap = UITapGestureRecognizer(target: self, action: "doTripleTap")
     tripleTap.numberOfTapsRequired = 3
     self.view.addGestureRecognizer(tripleTap)
     

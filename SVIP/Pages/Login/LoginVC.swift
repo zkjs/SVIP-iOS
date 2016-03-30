@@ -155,7 +155,8 @@ class LoginVC: UIViewController {
           }
         } else {
           let vc = RegisterVC()
-          self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+          let nv = BaseNC(rootViewController: vc)
+          self.navigationController?.presentViewController(nv, animated: true, completion: nil)
         }
       }
       
@@ -326,11 +327,13 @@ extension LoginVC: UITextFieldDelegate {
     textField.layer.cornerRadius = 3.0
     textField.layer.borderWidth = 1.0
     textField.layer.borderColor = UIColor.ZKJS_mainColor().CGColor
+    self.view.frame.origin = CGPoint(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y-50)
     return true
   }
   
   func textFieldShouldEndEditing(textField: UITextField) -> Bool {
     textField.layer.borderWidth = 0
+    self.view.frame.origin = CGPoint(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y)
     return true
   }
   
