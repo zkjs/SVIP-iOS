@@ -12,7 +12,7 @@ import UIKit
 struct BillListLayoutConstants {
   struct Cell {
     /* The height of the non-featured cell */
-    static let standardHeight: CGFloat = 60
+    static let standardHeight: CGFloat = 70
     /* The height of the first visible cell */
     static let featuredHeight: CGFloat = 220
   }
@@ -22,7 +22,7 @@ class BillListLayout: UICollectionViewLayout {
   // MARK: Properties and Variables
   
   /* The amount the user needs to scroll before the featured cell changes */
-  let dragOffset: CGFloat = 160.0
+  let dragOffset: CGFloat = 150.0
   
   var cache = [UICollectionViewLayoutAttributes]()
   

@@ -77,11 +77,8 @@ class HomeVC: UIViewController {
     }
     AccountManager.sharedInstance().savePayCreatetime(payInfo.createtime)
     
-    let childView = vc.view
-    self.view.addSubview(childView)
-    self.addChildViewController(vc)
-    vc.didMoveToParentViewController(self)
-    childView.frame = self.view.frame
+    vc.modalPresentationStyle = .OverFullScreen
+    self.presentViewController(vc, animated: true, completion: nil)
 
   }
   

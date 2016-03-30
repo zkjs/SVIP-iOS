@@ -24,6 +24,7 @@
 		4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE031C1EB74B00E13D6B /* AccountManager.swift */; };
 		4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077DE081C1EC62200E13D6B /* UIColor+Theme.swift */; };
 		407DA3611CABB7E0009855E5 /* YunbaSubscribeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DA3601CABB7E0009855E5 /* YunbaSubscribeService.swift */; };
+		407DA3631CABD658009855E5 /* WalletBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DA3621CABD658009855E5 /* WalletBubble.swift */; };
 		408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */; };
 		408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 408C47D41C86DBB900F9B0C7 /* errorMessages.plist */; };
 		408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408D28E61C3F8C3600183849 /* GuideVC.swift */; };
@@ -201,6 +202,7 @@
 		4077DE031C1EB74B00E13D6B /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		4077DE081C1EC62200E13D6B /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		407DA3601CABB7E0009855E5 /* YunbaSubscribeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YunbaSubscribeService.swift; sourceTree = "<group>"; };
+		407DA3621CABD658009855E5 /* WalletBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletBubble.swift; sourceTree = "<group>"; };
 		408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPayload.swift; sourceTree = "<group>"; };
 		408C47D41C86DBB900F9B0C7 /* errorMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = errorMessages.plist; sourceTree = "<group>"; };
 		408D28E61C3F8C3600183849 /* GuideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVC.swift; sourceTree = "<group>"; };
@@ -814,6 +816,7 @@
 				FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */,
 				FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */,
 				FAFA51971C16D80400BF04F2 /* OrderCustomCell.xib */,
+				407DA3621CABD658009855E5 /* WalletBubble.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1091,6 +1094,7 @@
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
+				407DA3631CABD658009855E5 /* WalletBubble.swift in Sources */,
 				40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */,
 				40DE24F71C9BFB1800CA7F26 /* String+Extension+ZKJS.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,

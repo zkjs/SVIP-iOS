@@ -17,9 +17,10 @@ class BillListCell: UICollectionViewCell {
   @IBOutlet private weak var hotelNameLabel: UILabel!
   @IBOutlet private var titleLabels: Array<UILabel>?
   
-  static let gradientRows = 6
+  static let gradientRows = 8
   
   private let hue:CGFloat = 32.0
+  private let minSaturation:CGFloat = 0.4
   
   static func reuseIdentifier() -> String {
     return "BillListCell"
@@ -75,21 +76,21 @@ class BillListCell: UICollectionViewCell {
   var currentSaturation: CGFloat {
     let rows = self.dynamicType.gradientRows
     let delta = CGFloat(rows - min(max(indexPath.row - featuredItemIndex, 0), rows)) / CGFloat(rows)
-    return max(delta * 1.0, 0.3)
+    return max(delta * 1.0, minSaturation)
   }
   
   /* Returns the color saturation the cell header will become */
   var nextSaturation: CGFloat {
     let rows = self.dynamicType.gradientRows
     let delta = CGFloat(rows - min(max(indexPath.row - featuredItemIndex - 1, 0), rows)) / CGFloat(rows)
-    return max(delta * 1.0, 0.3)
+    return max(delta * 1.0, minSaturation)
   }
   
   /* Returns the color of current cell */
   private func currentColorForIndexPath(indexPath:NSIndexPath) -> UIColor {
     let rows = self.dynamicType.gradientRows
     let delta = CGFloat(rows - min(max(indexPath.row - featuredItemIndex, 0), rows)) / CGFloat(rows)
-    return UIColor(hue: 32/360.0, saturation: max(delta * 1.0, 0.3), brightness: 1.0, alpha: 1.0)
+    return UIColor(hue: 32/360.0, saturation: max(delta * 1.0, minSaturation), brightness: 1.0, alpha: 1.0)
   }
   
   override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
