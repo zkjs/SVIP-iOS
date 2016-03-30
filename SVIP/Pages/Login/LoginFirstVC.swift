@@ -21,19 +21,50 @@ class LoginFirstVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
   
-
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(true)
+    self.navigationController?.navigationBarHidden = true
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    super.touchesBegan(touches, withEvent: event)
+    
+    view.endEditing(true)
+  }
+    
   @IBAction func register(sender: AnyObject) {
-    let vc = RegisterVC()
-    self.navigationController?.pushViewController(vc, animated: true)
+    let vc = LoginVC()
+    guard let  str = self.phonetextFiled.text where str != "请输入您的手机号" else {
+      self.showHint("请输入手机号")
+      return
+    }
+    if !str.isMobile {
+      self.showHint("请输入正确的手机号")
+      return
+    }
+    vc.phone = str
+    vc.type = CodeType.Register
+    self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+    
   }
 
 
   @IBAction func start(sender: AnyObject) {
     let vc = LoginVC()
-    vc.phoneLabel.text = self.phonetextFiled.text
-    self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+    guard let  str = self.phonetextFiled.text where str != "请输入您的手机号" else {
+      self.showHint("请输入手机号")
+      return
+    }
+    if !str.isMobile {
+      self.showHint("请输入正确的手机号")
+      return
+    }
+    vc.phoneLabel.text = str
+    vc.type = CodeType.Login
+    self.navigationController?.presentViewController(vc, animated: true, completion: { () -> Void in
+    
+    })
   }
     /*
     // MARK: - Navigation
@@ -45,4 +76,34 @@ class LoginFirstVC: UIViewController {
     }
     */
 
+}
+
+extension LoginFirstVC:UITextFieldDelegate {
+  
+ 
+  
+  func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    if textField.text == "请输入您的手机号" {
+      textField.text = ""
+    }
+    textField.layer.masksToBounds = true
+    textField.layer.cornerRadius = 3.0
+    textField.layer.borderWidth = 1.0
+    textField.layer.borderColor = UIColor.ZKJS_mainColor().CGColor
+    return true
+  }
+  func textFieldDidEndEditing(textField: UITextField) {
+    if textField.text == "" {
+      textField.text = "请输入您的手机号"
+    }
+  }
+  
+  func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    textField.layer.borderWidth = 0
+    return true
+  }
+  
+  
+
+  
 }

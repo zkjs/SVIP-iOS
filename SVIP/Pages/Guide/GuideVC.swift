@@ -308,7 +308,7 @@ class GuideVC: UIViewController {
           if TokenPayload.sharedInstance.isLogin {
             nc = BaseNC(rootViewController: HomeVC())
           } else {
-            nc = BaseNC(rootViewController: LoginVC())
+            nc = BaseNC(rootViewController: LoginFirstVC())
           }
           UIApplication.sharedApplication().keyWindow?.rootViewController = nc
         }

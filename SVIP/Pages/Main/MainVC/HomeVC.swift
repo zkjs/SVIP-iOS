@@ -131,7 +131,7 @@ class HomeVC: UIViewController {
   }
   
   func login(sender:UIButton) {
-    let nc = BaseNC(rootViewController: LoginVC())
+    let nc = BaseNC(rootViewController: LoginFirstVC())
     self.presentViewController(nc, animated: true, completion: nil)
   }
   

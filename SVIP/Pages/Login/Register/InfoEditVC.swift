@@ -11,7 +11,7 @@ import UIKit
 class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
   
   @IBOutlet weak var avatarButton: UIButton!
-  @IBOutlet weak var username: UITextField!
+  var username:String!
   
   var avatarData: NSData? = nil
   var sex = 1
@@ -23,7 +23,6 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setUI()
   }
   
@@ -39,19 +38,18 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
     navigationController?.navigationBarHidden = false
   }
   
   //MARK:- Button Action
   
   @IBAction func nextStep(sender: AnyObject) {
-    if username.text!.isEmpty {
+    if username.isEmpty {
       showHint("用户名不能为空")
       return
     }
     
-    if username.text!.characters.count > 6 {
+    if username.characters.count > 6 {
       showHint("用户名最多6位")
       return
     }
@@ -63,9 +61,9 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
     
     showHUDInView(view, withLoading: "")
     
-    guard let userName = username.text else { return }
+   
     
-    HttpService.sharedInstance.updateUserInfo(true, realname:userName, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
+    HttpService.sharedInstance.updateUserInfo(true, realname:username, sex: "\(sex)", image: self.image,email: nil) {[unowned self] (json, error) -> () in
       self.hideHUD()
       if let error = error {
         if let msg = error.userInfo["resDesc"] as? String {
@@ -74,7 +72,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
           ZKJSTool.showMsg("上传图片失败，请再次尝试")
         }
       } else {
-        AccountManager.sharedInstance().saveUserName(userName)
+        AccountManager.sharedInstance().saveUserName(self.username)
         self.navigationController?.pushViewController(HomeVC(), animated: true)
       }
       
@@ -104,17 +102,6 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
     presentViewController(alertController, animated: true, completion: nil)
   }
   
-  @IBAction func selectSex(sender: UISegmentedControl) {
-    switch sender.selectedSegmentIndex {
-    case 0 :
-      sex = 1
-    case 1 :
-      sex = 0
-    default:
-      print("default")
-    }
-    AccountManager.sharedInstance().saveSex(sex)
-  }
   
   // MARK: - Gesture
   

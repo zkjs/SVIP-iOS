@@ -9,6 +9,9 @@
 import UIKit
 import Spring
 
+enum CodeType {
+  case Login, Register
+}
 class LoginVC: UIViewController {
   
   @IBOutlet weak var phoneLabel: UILabel!
@@ -20,6 +23,8 @@ class LoginVC: UIViewController {
   var originCenter = CGPointZero
   var count = 0
   var countTimer = NSTimer()
+  var type = CodeType.Login
+  var phone:String!
   
   // MARK: - View Lifecycle
   
@@ -42,6 +47,7 @@ class LoginVC: UIViewController {
     AccountManager.sharedInstance().clearAccountCache()
     TokenPayload.sharedInstance.clearCacheTokenPayload()
     navigationController?.navigationBarHidden = true
+    tappedCodeButton(codeButton)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -108,35 +114,54 @@ class LoginVC: UIViewController {
   }
   
   private func loginAction() {
-    guard let phone = phoneLabel.text else { return }
-    guard let code = codeTextField.text else { return }
-    if !isFormValid() {
-      return
-    }
-    
-    showHUDInView(view, withLoading: "")
-    HttpService.sharedInstance.loginWithCode(code, phone: phone) { (json, error) -> () in
-      if let error = error {
-        if error.code == 11 {//还未完善用户资料就跳转到用户资料完善页面
-          self.getUserInfo() {
-            self.navigationController?.pushViewController(InfoEditVC(), animated: true)
+    if type == CodeType.Login {
+      guard let phone = phoneLabel.text else { return }
+      guard let code = codeTextField.text else { return }
+      if !isFormValid() {
+        return
+      }
+      
+      showHUDInView(view, withLoading: "")
+      HttpService.sharedInstance.loginWithCode(code, phone: phone) { (json, error) -> () in
+        if let error = error {
+          if error.code == 11 {//还未完善用户资料就跳转到用户资料完善页面
+            self.getUserInfo() {
+          self.navigationController?.pushViewController(RegisterVC(), animated: true)
+            }
+          } else {
+            self.hideHUD()
+            if let msg = error.userInfo["resDesc"] as? String {
+              ZKJSTool.showMsg(msg)
+            }
           }
-        } else {
-          self.hideHUD()
+        } else {//登陆成功后获取用户资料
+          self.getUserInfo({ () -> Void in
+            MobClick.profileSignInWithPUID(TokenPayload.sharedInstance.userID)
+            NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
+            if let window = UIApplication.sharedApplication().delegate?.window {
+              window!.rootViewController = BaseNC(rootViewController: HomeVC())
+            }
+          })
+        }
+      }
+    } else {
+      guard let code = codeTextField.text else {return}
+      showHUDInView(view, withLoading: "")
+      HttpService.sharedInstance.registerWithPhoneNumber(phone, code: code) { (json, error) -> () in
+        self.hideHUD()
+        if let error = error {
           if let msg = error.userInfo["resDesc"] as? String {
             ZKJSTool.showMsg(msg)
           }
+        } else {
+          let vc = RegisterVC()
+          self.navigationController?.presentViewController(vc, animated: true, completion: nil)
         }
-      } else {//登陆成功后获取用户资料
-        self.getUserInfo({ () -> Void in
-          MobClick.profileSignInWithPUID(TokenPayload.sharedInstance.userID)
-          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
-          if let window = UIApplication.sharedApplication().delegate?.window {
-            window!.rootViewController = BaseNC(rootViewController: HomeVC())
-          }
-        })
       }
+      
+      
     }
+    
     
   }
   
@@ -157,19 +182,17 @@ class LoginVC: UIViewController {
     okButton.enabled = false
     okButton.alpha = 0.5
     
-    codeButton.layer.borderWidth = 0.6
-    codeButton.layer.borderColor = UIColor(hex: "#C7C7CD").CGColor
-    codeButton.backgroundColor = UIColor.whiteColor()
     codeButton.setTitleColor(UIColor(hex: "#C7C7CD"), forState: .Normal)
     codeButton.enabled = false
+    phoneLabel.text = phone
   }
   
 
   // MARK: Button Action
   
   @IBAction func tappedCodeButton(sender: UIButton) {
+    if type == CodeType.Login {//登录验证码
     guard let phone = phoneLabel.text else { return }
-    
     if ZKJSTool.validateMobile(phone) {
       self.codeButton.enabled = false
       HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
@@ -188,6 +211,23 @@ class LoginVC: UIViewController {
       })
     } else {
       ZKJSTool.showMsg("手机格式错误")
+    }
+  } else {//注册验证码
+      guard let phone = phone else { return }
+      
+      if ZKJSTool.validateMobile(phone) {
+        ZKJSTool.showMsg("验证码已发送")
+        HttpService.sharedInstance.registerSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
+          self.codeTextField.becomeFirstResponder()
+          self.codeButton.enabled = false
+          self.codeButton.alpha = 0.5
+          self.count = 30
+          self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+          if let json = json {
+            print(json)
+          }
+        })
+      }
     }
   }
 
@@ -279,6 +319,9 @@ extension LoginVC: UITextFieldDelegate {
   }
   
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    if textField.text == "短信验证码" {
+      textField.text = ""
+    }
     textField.layer.masksToBounds = true
     textField.layer.cornerRadius = 3.0
     textField.layer.borderWidth = 1.0

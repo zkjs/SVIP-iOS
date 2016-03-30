@@ -77,7 +77,7 @@ class MeTVC: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
     if TokenPayload.sharedInstance.isLogin == false {
-      let nc = BaseNC(rootViewController: LoginVC())
+      let nc = BaseNC(rootViewController: LoginFirstVC())
       presentViewController(nc, animated: true, completion: nil)
       return
     }

@@ -51,7 +51,7 @@ class LoginManager: NSObject {
       if TokenPayload.sharedInstance.isLogin {
         nc = BaseNC(rootViewController: HomeVC())
       } else {
-        nc = BaseNC(rootViewController: LoginVC())
+        nc = BaseNC(rootViewController: LoginFirstVC())
       }
       appWindow.rootViewController = nc
     }

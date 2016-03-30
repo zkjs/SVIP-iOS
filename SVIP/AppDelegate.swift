@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     AccountManager.sharedInstance().clearAccountCache()
     
     // 弹出登录框
-    let nc = BaseNC(rootViewController: LoginVC())
+    let nc = BaseNC(rootViewController: LoginFirstVC())
     window?.rootViewController?.presentViewController(nc, animated: true, completion: nil)
     ZKJSTool.showMsg("账号在别处登录，请重新重录")
   }
@@ -232,7 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     TokenPayload.sharedInstance.clearCacheTokenPayload()
     
     let window =  UIApplication.sharedApplication().keyWindow
-    window?.rootViewController = BaseNC(rootViewController: LoginVC())
+    window?.rootViewController = BaseNC(rootViewController: LoginFirstVC())
     ZKJSTool.showMsg("登录过期，请重新重录")
   }
   
