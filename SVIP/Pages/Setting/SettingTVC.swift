@@ -33,6 +33,8 @@ class SettingTVC: UITableViewController {
       MobClick.profileSignOff()
       NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
     }
+    YunbaSubscribeService.sharedInstance.unsubscribeAllTopics()
+    
     let window =  UIApplication.sharedApplication().keyWindow
     window?.rootViewController = BaseNC(rootViewController: LoginVC())
   }
