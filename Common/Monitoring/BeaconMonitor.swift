@@ -66,7 +66,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     for beacon  in beacons {
       //print("range beacon:\(beacon)")
-      didEnterBeaconRegion(beacon)
+      didRangeBeacons(beacon)
     }
   }
   
@@ -78,7 +78,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
   }
   
-  private func didEnterBeaconRegion(beacon: CLBeacon!) {
+  private func didRangeBeacons(beacon: CLBeacon!) {
     let currentTimeStamp = Int(NSDate().timeIntervalSince1970)
     
     let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)"
@@ -87,9 +87,9 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     // beacon足够接近才发送到服务器
     /*if beacon.proximity == .Unknown {
-    beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity)
-    return
-    }*/
+     beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity)
+     return
+     }*/
     
     if let cachedInfo = beaconInfoCache[key] {
       //print("\(key) : \(beacon.proximity.rawValue) : update time")
@@ -102,10 +102,10 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       
       // 用户位置变化太小则不发送
       if !cachedInfo.proximityChangedSince(beacon.proximity) {
-        return
+        //return
       }
       // 已经发送过通知到server就返回
-      // return
+      return
     }
     
     print("\(key) : \(beacon.proximity.rawValue) : upload")
