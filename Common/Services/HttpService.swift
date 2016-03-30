@@ -225,7 +225,7 @@ class HttpService {
         } else {
           var resDesc = ""
           if let key = json["res"].int {
-            resDesc = ZKJSErrorMessages.sharedInstance.errorString("\(key)") ?? "错误码:\(key)"
+            resDesc = ZKJSErrorMessages.sharedInstance.errorString("\(key)") ?? (json["resDesc"].string != nil ? json["resDesc"].string! : "错误码:\(key)")
           }
           if let key = json["res"].int where key == 6 || key == 8 {//token过期
             NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)

@@ -199,9 +199,7 @@ class LoginVC: UIViewController {
       HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
         if let error = error {
           self.codeButton.enabled = true
-          if let msg = error.userInfo["resDesc"] as? String {
-            ZKJSTool.showMsg(msg)
-          }
+          self.showErrorHint(error)
         } else {
           ZKJSTool.showMsg("验证码已发送")
           self.codeTextField.becomeFirstResponder()
@@ -217,15 +215,21 @@ class LoginVC: UIViewController {
       guard let phone = phone else { return }
       
       if ZKJSTool.validateMobile(phone) {
-        ZKJSTool.showMsg("验证码已发送")
+        
         HttpService.sharedInstance.registerSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
-          self.codeTextField.becomeFirstResponder()
-          self.codeButton.enabled = false
-          self.codeButton.alpha = 0.5
-          self.count = 30
-          self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
-          if let json = json {
-            print(json)
+          if let error = error {
+            self.showErrorHint(error)
+
+          } else {
+            ZKJSTool.showMsg("验证码已发送")
+            self.codeTextField.becomeFirstResponder()
+            self.codeButton.enabled = false
+            self.codeButton.alpha = 0.5
+            self.count = 30
+            self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+            if let json = json {
+              print(json)
+            }
           }
         })
       }
