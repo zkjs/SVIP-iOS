@@ -26,6 +26,14 @@ class RegisterVC: UIViewController {
     NSBundle.mainBundle().loadNibNamed("RegisterVC", owner:self, options:nil)
   }
   
+  // MARK: - Gesture
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    super.touchesBegan(touches, withEvent: event)
+    
+    view.endEditing(true)
+  }
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
     self.navigationController?.navigationBarHidden = true
