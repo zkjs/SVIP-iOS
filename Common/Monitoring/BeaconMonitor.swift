@@ -84,7 +84,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)"
     
-    print("\(key) : \(beacon.proximity.rawValue)")
+    //print("\(key) : \(beacon.proximity.rawValue)")
     
     // beacon足够接近才发送到服务器
     /*if beacon.proximity == .Unknown {
@@ -130,14 +130,16 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     HttpService.sharedInstance.sendBeaconChanges(beacon.proximityUUID.UUIDString.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
     
-    let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=\(beacon.major)&minor=\(beacon.minor)&uuid=\(beacon.proximityUUID.UUIDString)"
+    /*
+     //for test
+     let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=\(beacon.major)&minor=\(beacon.minor)&uuid=\(beacon.proximityUUID.UUIDString)"
     Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
       if let error = error {
         print(error)
       } else {
         print("success")
       }
-    }
+    }*/
     
   }
   
@@ -157,14 +159,16 @@ extension BeaconMonitor : CLLocationManagerDelegate {
         
         print("exit: \(key) : \(ts)")
         
-        let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=exit&minor=0&uuid=\(key)"
+        /*
+         //for test
+         let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=exit&minor=0&uuid=\(key)"
         Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
           if let error = error {
             print(error)
           } else {
             print("success")
           }
-        }
+        }*/
         
       }
     }

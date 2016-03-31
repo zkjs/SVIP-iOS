@@ -82,7 +82,11 @@ class BillListVC: UICollectionViewController {
   // MARK: UICollectionViewDelegate
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    //collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+    guard let layout = collectionView.collectionViewLayout as? BillListLayout else {
+      return
+    }
+    let y = CGFloat(indexPath.item) * layout.dragOffset
+    collectionView.scrollRectToVisible(CGRectMake(0, y, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 64), animated: true)
   }
 
 }
