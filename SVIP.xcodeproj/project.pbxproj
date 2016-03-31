@@ -43,6 +43,10 @@
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
 		40BC848F1BFC570700038C81 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
+		40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */; };
+		40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2C1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m */; };
+		40CE7F331CAD0DD40027E715 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2E1CAD0DD40027E715 /* TPKeyboardAvoidingTableView.m */; };
+		40CE7F341CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F301CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */; };
 		40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D412201BCB4FAB00FC28DB /* Localizable.strings */; };
 		40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */; };
@@ -227,6 +231,14 @@
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
+		40CE7F291CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		40CE7F2B1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		40CE7F2C1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		40CE7F2D1CAD0DD40027E715 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		40CE7F2E1CAD0DD40027E715 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		40CE7F2F1CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		40CE7F301CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		40D0D3EA1C1FFE310015C00D /* LTBouncyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTBouncyTextField.swift; sourceTree = "<group>"; };
 		40D412211BCB4FB100FC28DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		40D412221BCB4FBB00FC28DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -639,6 +651,21 @@
 			path = "MBProgressHUD+Add";
 			sourceTree = "<group>";
 		};
+		40CE7F281CAD0DD40027E715 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				40CE7F291CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.h */,
+				40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */,
+				40CE7F2B1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.h */,
+				40CE7F2C1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m */,
+				40CE7F2D1CAD0DD40027E715 /* TPKeyboardAvoidingTableView.h */,
+				40CE7F2E1CAD0DD40027E715 /* TPKeyboardAvoidingTableView.m */,
+				40CE7F2F1CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				40CE7F301CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
 		40D794BF1C41197F004C7DC9 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,6 +742,7 @@
 		40E3A18C1BFF01B000516EC4 /* 3rdparty-oc */ = {
 			isa = PBXGroup;
 			children = (
+				40CE7F281CAD0DD40027E715 /* TPKeyboardAvoiding */,
 				409E73DD1C9B98B30040186C /* Category */,
 				409E73FD1C9BE51E0040186C /* MBProgressHUD+Add */,
 			);
@@ -1039,6 +1067,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
+				40CE7F341CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */,
 				FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */,
 				4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */,
@@ -1059,6 +1088,7 @@
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
 				40DE25771C9D6CCB00CA7F26 /* InvoiceModel.swift in Sources */,
 				40DE257A1C9D6CCB00CA7F26 /* PhoneFirstVC.swift in Sources */,
+				40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				40DE25111C9BFE6600CA7F26 /* BeaconMonitor.swift in Sources */,
 				40DE24FC1C9BFBC700CA7F26 /* Double+Extension+ZKJS.swift in Sources */,
 				40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */,
@@ -1073,8 +1103,10 @@
 				40DE24E91C9BF96C00CA7F26 /* HttpErrorRecordingService.swift in Sources */,
 				40DE24ED1C9BF96C00CA7F26 /* HttpService+Token.swift in Sources */,
 				40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */,
+				40CE7F331CAD0DD40027E715 /* TPKeyboardAvoidingTableView.m in Sources */,
 				F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
+				40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				40DE24F21C9BFA9300CA7F26 /* BeaconErrors+CoreDataProperties.swift in Sources */,

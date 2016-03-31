@@ -19,6 +19,7 @@ class LoginVC: UIViewController {
   @IBOutlet weak var codeTextField: DesignableTextField!
   @IBOutlet weak var okButton: UIButton!
   @IBOutlet weak var codeButton: UIButton!
+  @IBOutlet weak var bottomBorder: UILabel!
   
   var originCenter = CGPointZero
   var count = 0
@@ -47,7 +48,6 @@ class LoginVC: UIViewController {
     AccountManager.sharedInstance().clearAccountCache()
     TokenPayload.sharedInstance.clearCacheTokenPayload()
     navigationController?.navigationBarHidden = true
-    tappedCodeButton(codeButton)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -80,6 +80,7 @@ class LoginVC: UIViewController {
   
   // MARK: - Private
   private func dismissSelf() {
+    self.view.endEditing(true)
     dismissViewControllerAnimated(true, completion: nil)
   }
   
@@ -114,6 +115,7 @@ class LoginVC: UIViewController {
   }
   
   private func loginAction() {
+    self.view.endEditing(true)
     if type == CodeType.Login {
       guard let phone = phoneLabel.text else { return }
       guard let code = codeTextField.text else { return }
@@ -186,6 +188,11 @@ class LoginVC: UIViewController {
     codeButton.setTitleColor(UIColor(hex: "#C7C7CD"), forState: .Normal)
     codeButton.enabled = false
     phoneLabel.text = phone
+    
+    self.codeTextField.becomeFirstResponder()
+    self.codeButton.alpha = 0.5
+    self.count = 30
+    self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
   }
   
 
@@ -196,10 +203,12 @@ class LoginVC: UIViewController {
     guard let phone = phoneLabel.text else { return }
     if ZKJSTool.validateMobile(phone) {
       self.codeButton.enabled = false
+      showHUDInView(view, withLoading: "")
       HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
+        self.hideHUD()
+        self.codeButton.enabled = true
         if let error = error {
-          self.codeButton.enabled = true
-          self.showErrorHint(error)
+          self.showErrorHint(error, withFontSize: 16)
         } else {
           ZKJSTool.showMsg("验证码已发送")
           self.codeTextField.becomeFirstResponder()
@@ -215,11 +224,13 @@ class LoginVC: UIViewController {
       guard let phone = phone else { return }
       
       if ZKJSTool.validateMobile(phone) {
-        
+        self.codeButton.enabled = false
+        showHUDInView(view, withLoading: "")
         HttpService.sharedInstance.registerSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
+          self.hideHUD()
+          self.codeButton.enabled = true
           if let error = error {
-            self.showErrorHint(error)
-
+            self.showErrorHint(error, withFontSize: 16)
           } else {
             ZKJSTool.showMsg("验证码已发送")
             self.codeTextField.becomeFirstResponder()
@@ -227,9 +238,6 @@ class LoginVC: UIViewController {
             self.codeButton.alpha = 0.5
             self.count = 30
             self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
-            if let json = json {
-              print(json)
-            }
           }
         })
       }
@@ -331,13 +339,13 @@ extension LoginVC: UITextFieldDelegate {
     textField.layer.cornerRadius = 3.0
     textField.layer.borderWidth = 1.0
     textField.layer.borderColor = UIColor.ZKJS_mainColor().CGColor
-    self.view.frame.origin = CGPoint(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y-50)
+    bottomBorder.hidden = true
     return true
   }
   
   func textFieldShouldEndEditing(textField: UITextField) -> Bool {
     textField.layer.borderWidth = 0
-    self.view.frame.origin = CGPoint(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y)
+    bottomBorder.hidden = false
     return true
   }
   
