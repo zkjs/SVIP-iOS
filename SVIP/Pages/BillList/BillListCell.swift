@@ -17,10 +17,14 @@ class BillListCell: UICollectionViewCell {
   @IBOutlet private weak var hotelNameLabel: UILabel!
   @IBOutlet private var titleLabels: Array<UILabel>?
   
-  static let gradientRows = 8
+  static let gradientRows = 5
   
-  private let hue:CGFloat = 32.0
-  private let minSaturation:CGFloat = 0.4
+  private let hue:CGFloat = 36.0
+  private let minSaturation:CGFloat = 0.64
+  private let maxSaturation:CGFloat = 1.0
+  private var deltaSaturation:CGFloat {
+    return maxSaturation - minSaturation
+  }
   
   static func reuseIdentifier() -> String {
     return "BillListCell"
@@ -75,22 +79,22 @@ class BillListCell: UICollectionViewCell {
   /* Returns the color saturation of current cell header */
   var currentSaturation: CGFloat {
     let rows = self.dynamicType.gradientRows
-    let delta = CGFloat(rows - min(max(indexPath.row - featuredItemIndex, 0), rows)) / CGFloat(rows)
-    return max(delta * 1.0, minSaturation)
+    let delta = CGFloat(min(max(indexPath.row - featuredItemIndex, 0), rows)) / CGFloat(rows)
+    return min(minSaturation + delta * deltaSaturation, maxSaturation)
   }
   
   /* Returns the color saturation the cell header will become */
   var nextSaturation: CGFloat {
     let rows = self.dynamicType.gradientRows
-    let delta = CGFloat(rows - min(max(indexPath.row - featuredItemIndex - 1, 0), rows)) / CGFloat(rows)
-    return max(delta * 1.0, minSaturation)
+    let delta = CGFloat(min(max(indexPath.row - featuredItemIndex - 1, 0), rows)) / CGFloat(rows)
+    return min(minSaturation + delta * deltaSaturation, maxSaturation)
   }
   
   /* Returns the color of current cell */
   private func currentColorForIndexPath(indexPath:NSIndexPath) -> UIColor {
     let rows = self.dynamicType.gradientRows
-    let delta = CGFloat(rows - min(max(indexPath.row - featuredItemIndex, 0), rows)) / CGFloat(rows)
-    return UIColor(hue: 32/360.0, saturation: max(delta * 1.0, minSaturation), brightness: 1.0, alpha: 1.0)
+    let delta = CGFloat(min(max(indexPath.row - featuredItemIndex, 0), rows)) / CGFloat(rows)
+    return UIColor(hue: hue/360.0, saturation:min(minSaturation + delta * deltaSaturation, maxSaturation), brightness: 1.0, alpha: 1.0)
   }
   
   override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -113,10 +117,10 @@ class BillListCell: UICollectionViewCell {
     if let item = nextItem {
       nextItemHeight = CGRectGetHeight(item.frame)
     }
-    let deltaSaturation = nextSaturation - currentSaturation
+    let deltaSaturation = fabs(nextSaturation - currentSaturation)
     let deltaColor = 1 - ((featuredHeight - nextItemHeight) / (featuredHeight - standardHeight))
     
-    headerView.backgroundColor = UIColor(hue: hue/360.0, saturation: deltaColor * deltaSaturation + currentSaturation, brightness: 1.0, alpha: 1.0)
+    headerView.backgroundColor = UIColor(hue: hue/360.0, saturation: currentSaturation - deltaColor * deltaSaturation, brightness: 1.0, alpha: 1.0)
     
   }
   
