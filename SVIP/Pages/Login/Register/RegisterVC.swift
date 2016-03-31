@@ -11,13 +11,14 @@ import Spring
 
 class RegisterVC: UIViewController {
   
+  @IBOutlet weak var bottomBorder: UILabel!
   @IBOutlet weak var nameTextFiled: UITextField!
   override func viewDidLoad() {
     super.viewDidLoad()
 
-  let image = UIImage(named: "ic_fanhui_orange")
-  let item = UIBarButtonItem(image: image, style:.Done, target: self, action: "backToLoginVC:")
-  self.navigationController?.navigationItem.leftBarButtonItem = item
+  //let image = UIImage(named: "ic_fanhui_orange")
+  //let item = UIBarButtonItem(image: image, style:.Done, target: self, action: "backToLoginVC:")
+  //self.navigationController?.navigationItem.leftBarButtonItem = item
   
 
 }
@@ -37,6 +38,9 @@ class RegisterVC: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
     self.navigationController?.navigationBarHidden = true
+    
+    let str = NSAttributedString(string: "仅用于支付识别与安全认证", attributes: [NSForegroundColorAttributeName:UIColor(hex: "#888888")])
+    nameTextFiled.attributedPlaceholder = str
   }
   
   @IBAction func nextStep(sender: AnyObject) {

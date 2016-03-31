@@ -43,6 +43,13 @@ class BeaconMonitor:NSObject {
       locationManager.startRangingBeaconsInRegion(beaconRegion)
     }
   }
+  
+  func stopMonitoring() {
+    for beaconRegion in beaconRegions {
+      locationManager.stopMonitoringForRegion(beaconRegion)
+      locationManager.stopRangingBeaconsInRegion(beaconRegion)
+    }
+  }
 }
 
 extension BeaconMonitor : CLLocationManagerDelegate {

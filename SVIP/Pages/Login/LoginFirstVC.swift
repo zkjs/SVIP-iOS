@@ -31,6 +31,8 @@ class LoginFirstVC: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
     self.navigationController?.navigationBarHidden = true
+    
+    stopMonitor()
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -38,13 +40,20 @@ class LoginFirstVC: UIViewController {
     
     view.endEditing(true)
   }
+  
+  func stopMonitor() {
+    BeaconMonitor.sharedInstance.stopMonitoring()
+    LocationMonitor.sharedInstance.stopUpdatingLocation()
+    LocationMonitor.sharedInstance.stopMonitoringLocation()
+  }
     
   @IBAction func register(sender: AnyObject) {
     if !isPhoneValid() {
       return
     }
     self.view.endEditing(true)
-    sendVCode(.Register, phone: self.phonetextFiled.text!)
+    //sendVCode(.Register, phone: self.phonetextFiled.text!)
+    self.gotoVCodeVC(.Register)
   }
 
 
@@ -53,7 +62,8 @@ class LoginFirstVC: UIViewController {
       return
     }
     self.view.endEditing(true)
-    sendVCode(.Login, phone: self.phonetextFiled.text!)
+    //sendVCode(.Login, phone: self.phonetextFiled.text!)
+    self.gotoVCodeVC(.Login)
   }
   
   private func isPhoneValid() -> Bool {
@@ -98,7 +108,8 @@ class LoginFirstVC: UIViewController {
     let vc = LoginVC()
     vc.phone = self.phonetextFiled.text!
     vc.type = type
-    self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+    let nv = BaseNC(rootViewController:vc)
+    self.navigationController?.presentViewController(nv, animated: true, completion: nil)
   }
 
 }

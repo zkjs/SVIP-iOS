@@ -49,8 +49,13 @@ extension HttpService {
           completionHandler(nil, error)
           return
         }
+        
         let tokenPayload = TokenPayload.sharedInstance
-        tokenPayload.saveTokenPayload(token)
+        if let res = json["res"].int where res == 11 {// 未完善资料
+          tokenPayload.saveTemporaryTokenPayload(token)
+        } else {
+          tokenPayload.saveTokenPayload(token)
+        }
         
         //登录成功后订阅云巴推送
         if let userID = tokenPayload.userID {

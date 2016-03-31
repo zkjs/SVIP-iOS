@@ -62,6 +62,9 @@ class HomeVC: UIViewController {
     getBalance()
     getOrderList()
     refreshUserInfo()
+    HttpService.sharedInstance.getUserinfo { (json, error) in
+      self.refreshUserInfo()
+    }
   }
 
   func alertPayInfo(notification: NSNotification) {

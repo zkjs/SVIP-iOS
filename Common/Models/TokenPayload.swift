@@ -96,6 +96,11 @@ class TokenPayload:NSObject {
     token = nil
     tokenPayload = nil
   }
+  
+  //// 临时保存token
+  func saveTemporaryTokenPayload(tokenFullString:String) {
+    parseToken(tokenFullString)
+  }
 
   
 }

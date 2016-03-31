@@ -84,17 +84,17 @@ class PayInfoVC: UIViewController {
         self.hideHUD()
         if let error = error {
           self.showErrorHint(error)
+          self.dismissViewControllerAnimated(true, completion: nil)
         } else {
           if succ {
             self.showHint("支付成功")
             if let closure = self.payInfoDismissClosure {
               closure(true)
             }
-            
           }
+          self.dismissViewControllerAnimated(true, completion: nil)
           NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
       }
     }
   }

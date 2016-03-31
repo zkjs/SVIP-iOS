@@ -124,20 +124,23 @@ class LoginVC: UIViewController {
       }
       
       showHUDInView(view, withLoading: "")
-      HttpService.sharedInstance.loginWithCode(code, phone: phone) { (json, error) -> () in
+      HttpService.sharedInstance.loginWithCode(code, phone: phone) {[weak self] (json, error) -> () in
+        guard let strongSelf = self else {
+          return
+        }
+        strongSelf.hideHUD()
         if let error = error {
           if error.code == 11 {//还未完善用户资料就跳转到用户资料完善页面
-            self.getUserInfo() {
-          self.navigationController?.pushViewController(RegisterVC(), animated: true)
-            }
+            //strongSelf.getUserInfo() {
+            strongSelf.presentViewController(BaseNC(rootViewController: RegisterVC()), animated: true, completion: nil)
+            //}
           } else {
-            self.hideHUD()
             if let msg = error.userInfo["resDesc"] as? String {
               ZKJSTool.showMsg(msg)
             }
           }
         } else {//登陆成功后获取用户资料
-          self.getUserInfo({ () -> Void in
+          strongSelf.getUserInfo({ () -> Void in
             MobClick.profileSignInWithPUID(TokenPayload.sharedInstance.userID)
             NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
             if let window = UIApplication.sharedApplication().delegate?.window {
@@ -189,10 +192,14 @@ class LoginVC: UIViewController {
     codeButton.enabled = false
     phoneLabel.text = phone
     
-    self.codeTextField.becomeFirstResponder()
+    let str = NSAttributedString(string: "请输入短信验证码", attributes: [NSForegroundColorAttributeName:UIColor(hex: "#888888")])
+    codeTextField.attributedPlaceholder = str
+    
+    /*self.codeTextField.becomeFirstResponder()
     self.codeButton.alpha = 0.5
     self.count = 30
-    self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+    self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)*/
+    tappedCodeButton(codeButton)
   }
   
 
@@ -206,14 +213,15 @@ class LoginVC: UIViewController {
       showHUDInView(view, withLoading: "")
       HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
         self.hideHUD()
-        self.codeButton.enabled = true
         if let error = error {
+          self.codeButton.enabled = true
           self.showErrorHint(error, withFontSize: 16)
         } else {
-          ZKJSTool.showMsg("验证码已发送")
+          self.showHint("验证码已发送", withFontSize: 18)
           self.codeTextField.becomeFirstResponder()
+          self.codeButton.enabled = false
           self.codeButton.alpha = 0.5
-          self.count = 30
+          self.count = 60
           self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
         }
       })
@@ -228,15 +236,15 @@ class LoginVC: UIViewController {
         showHUDInView(view, withLoading: "")
         HttpService.sharedInstance.registerSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
           self.hideHUD()
-          self.codeButton.enabled = true
           if let error = error {
+            self.codeButton.enabled = true
             self.showErrorHint(error, withFontSize: 16)
           } else {
-            ZKJSTool.showMsg("验证码已发送")
+            self.showHint("验证码已发送", withFontSize: 18)
             self.codeTextField.becomeFirstResponder()
             self.codeButton.enabled = false
             self.codeButton.alpha = 0.5
-            self.count = 30
+            self.count = 60
             self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
           }
         })
