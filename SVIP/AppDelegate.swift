@@ -142,9 +142,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     if let aps = userInfo["aps"], let msg = aps["message"] as? NSDictionary {
       if let data = msg["data"] as? NSDictionary,
-          let type = msg["type"] as? String where data.count > 0 && type == "PAYMENT_CONFIRM" {
-        let  payInfo = PaylistmModel(dict: data)
-        NSNotificationCenter.defaultCenter().postNotificationName(kPaymentInfoNotification, object: nil, userInfo: ["payInfo":payInfo])
+          let type = msg["type"] as? String where data.count > 0 {
+        // 支付通知
+        if type == "PAYMENT_CONFIRM" {
+          let  payInfo = PaylistmModel(dict: data)
+          NSNotificationCenter.defaultCenter().postNotificationName(kPaymentInfoNotification, object: nil, userInfo: ["payInfo":payInfo])
+        }
+        // 到店欢迎,营销推送通知
+        else if type == "BLE_ACTIVITY" {
+          guard let title = data["title"] as? String,
+            let content = data["content"] as? String else {
+              return
+          }
+          let alert = UIAlertView(title: title, message: content, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "确认")
+          alert.show()
+        }
       }
     }
     completionHandler(.NewData)

@@ -9,6 +9,7 @@
 
 import Foundation
 import CoreLocation
+import Alamofire
 
 let BEACON_UUIDS = ["FDA50693-A4E2-4FB1-AFCF-C6EB07647835","931DDF8E-10E4-11E5-9493-1697F925EC7B"]
 let BEACON_IDENTIFIER = "com.zkjinshi.svip.beacon"
@@ -93,7 +94,18 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     if let cachedInfo = beaconInfoCache[key] {
       //print("\(key) : \(beacon.proximity.rawValue) : update time")
-      beaconInfoCache[key]?.timestamp = NSDate()
+      
+      /* 距离为 Far, Near, Immediate 三种情况记录当前时间戳。 Unknown忽略
+       * 在10秒以内beacon状态一直未Unknown则判定beacon已经退出
+       * 此处代码为了解决测试中发现, Beacon不稳定，没有调用 didExitBeaconRegion: 的情况
+       */
+      /*if beacon.proximity != .Unknown {
+        beaconInfoCache[key]?.timestamp = NSDate()
+      }
+      if fabs(cachedInfo.timestamp.timeIntervalSinceNow) > 10 {
+        print("exit in range: \(key):\(cachedInfo.timestamp)")
+        beaconInfoCache.removeValueForKey(key)
+      } */
       
       // xx分钟以内，不发送通知
       if fabs(cachedInfo.timestamp.timeIntervalSinceNow) < Double(BEACON_INERVAL_MIN) * 30 {
@@ -108,10 +120,24 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       return
     }
     
-    print("\(key) : \(beacon.proximity.rawValue) : upload")
     beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity, uploadTime: NSDate())
     
+    /*if beacon.proximity == .Unknown {
+      return
+    }*/
+    
+    print("\(key) : \(beacon.proximity.rawValue) : upload")
+    
     HttpService.sharedInstance.sendBeaconChanges(beacon.proximityUUID.UUIDString.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
+    
+    let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=\(beacon.major)&minor=\(beacon.minor)&uuid=\(beacon.proximityUUID.UUIDString)"
+    Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
+      if let error = error {
+        print(error)
+      } else {
+        print("success")
+      }
+    }
     
   }
   
@@ -127,9 +153,18 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     for (key,info) in beaconInfoCache {
       let ts = fabs(info.timestamp.timeIntervalSinceNow)
       if ts > 5 {// check the beacon exit
-        beaconInfoCache[key] = nil
+        beaconInfoCache.removeValueForKey(key)
         
         print("exit: \(key) : \(ts)")
+        
+        let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=exit&minor=0&uuid=\(key)"
+        Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
+          if let error = error {
+            print(error)
+          } else {
+            print("success")
+          }
+        }
         
       }
     }

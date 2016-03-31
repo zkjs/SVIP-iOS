@@ -84,7 +84,6 @@ class PayInfoVC: UIViewController {
         self.hideHUD()
         if let error = error {
           self.showErrorHint(error)
-          self.view.removeFromSuperview()
         } else {
           if succ {
             self.showHint("支付成功")
@@ -93,10 +92,9 @@ class PayInfoVC: UIViewController {
             }
             
           }
-          self.dismissViewControllerAnimated(true, completion: nil)
           NSNotificationCenter.defaultCenter().postNotificationName(FACEPAY_RESULT_NOTIFICATION, object: nil)
         }
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
       }
     }
   }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginFirstVC" customModule="SVIP" customModuleProvider="target">
@@ -36,7 +36,7 @@
                         <outlet property="delegate" destination="-1" id="MIK-MM-JaT"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HV-yV-WUS">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HV-yV-WUS">
                     <rect key="frame" x="50" y="371" width="220" height="1"/>
                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -61,7 +61,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOg-7W-YBZ">
-                    <rect key="frame" x="180" y="491" width="240" height="44"/>
+                    <rect key="frame" x="40" y="481" width="240" height="44"/>
                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="2cQ-Di-AEW"/>
@@ -93,7 +93,6 @@
                 <constraint firstItem="3HV-yV-WUS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="olR-ld-I2O"/>
                 <constraint firstItem="4Eh-zG-WPL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qef-iB-ufW"/>
                 <constraint firstItem="AOg-7W-YBZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="txh-lK-LTT"/>
-                <constraint firstItem="fgF-zk-JPL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="140" id="vSK-ly-nqH"/>
                 <constraint firstItem="3HV-yV-WUS" firstAttribute="width" secondItem="z59-iY-maR" secondAttribute="width" id="wdn-Uk-U0F"/>
                 <constraint firstItem="z59-iY-maR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zGI-Vy-NPt"/>
             </constraints>
