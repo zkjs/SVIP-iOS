@@ -71,6 +71,11 @@ class GuideVC: UIViewController {
     super.viewDidLoad()
     
     setupView()
+    
+    /* clear alias
+     * 解决app被删除后再次安装还能收到云巴推送的问题
+     */
+    YunBaService.setAlias("") { (succ, err) in  }
   }
   
   private func setupView() {

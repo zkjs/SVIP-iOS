@@ -52,8 +52,7 @@ class LoginFirstVC: UIViewController {
       return
     }
     self.view.endEditing(true)
-    //sendVCode(.Register, phone: self.phonetextFiled.text!)
-    self.gotoVCodeVC(.Register)
+    sendVCode(.Register, phone: self.phonetextFiled.text!)
   }
 
 
@@ -62,8 +61,7 @@ class LoginFirstVC: UIViewController {
       return
     }
     self.view.endEditing(true)
-    //sendVCode(.Login, phone: self.phonetextFiled.text!)
-    self.gotoVCodeVC(.Login)
+    sendVCode(.Login, phone: self.phonetextFiled.text!)
   }
   
   private func isPhoneValid() -> Bool {
@@ -85,7 +83,9 @@ class LoginFirstVC: UIViewController {
           self.hideHUD()
           if let error = error {
             self.showErrorHint(error, withFontSize: 16)
-            self.gotoVCodeVC(.Login)
+            if error.code != 5 {// 未注册用户不跳转
+              self.gotoVCodeVC(.Login)
+            }
           } else {
             self.showHint("验证码已发送", withFontSize: 18)
             self.gotoVCodeVC(.Login)

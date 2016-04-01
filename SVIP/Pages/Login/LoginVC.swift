@@ -22,6 +22,7 @@ class LoginVC: UIViewController {
   @IBOutlet weak var bottomBorder: UILabel!
   
   var originCenter = CGPointZero
+  private var maxCountDown = 60
   var count = 0
   var countTimer = NSTimer()
   var type = CodeType.Login
@@ -188,18 +189,18 @@ class LoginVC: UIViewController {
     okButton.enabled = false
     okButton.alpha = 0.5
     
-    codeButton.setTitleColor(UIColor(hex: "#C7C7CD"), forState: .Normal)
+    //codeButton.setTitleColor(UIColor(hex: "#C7C7CD"), forState: .Normal)
     codeButton.enabled = false
     phoneLabel.text = phone
     
-    let str = NSAttributedString(string: "请输入短信验证码", attributes: [NSForegroundColorAttributeName:UIColor(hex: "#888888")])
+    let str = NSAttributedString(string: "短信验证码", attributes: [NSForegroundColorAttributeName:UIColor(hex: "#888888")])
     codeTextField.attributedPlaceholder = str
     
-    /*self.codeTextField.becomeFirstResponder()
+    self.codeButton.enabled = false
     self.codeButton.alpha = 0.5
-    self.count = 30
-    self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)*/
-    tappedCodeButton(codeButton)
+    self.count = maxCountDown
+    self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
+    //tappedCodeButton(codeButton)
   }
   
 
@@ -221,7 +222,7 @@ class LoginVC: UIViewController {
           self.codeTextField.becomeFirstResponder()
           self.codeButton.enabled = false
           self.codeButton.alpha = 0.5
-          self.count = 60
+          self.count = self.maxCountDown
           self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
         }
       })
@@ -244,7 +245,7 @@ class LoginVC: UIViewController {
             self.codeTextField.becomeFirstResponder()
             self.codeButton.enabled = false
             self.codeButton.alpha = 0.5
-            self.count = 60
+            self.count = self.maxCountDown
             self.countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshCount", userInfo: nil, repeats: true)
           }
         })
@@ -266,7 +267,7 @@ class LoginVC: UIViewController {
       countTimer.invalidate()
       codeButton.enabled = true
       codeButton.alpha = 1.0
-      codeButton.setTitle("验证码", forState: .Disabled)
+      codeButton.setTitle("重发验证码", forState: .Disabled)
     }
   }
   

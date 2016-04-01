@@ -98,13 +98,13 @@
                                     </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y0-V0-BqZ">
-                                    <rect key="frame" x="229" y="329" width="45" height="30"/>
+                                    <rect key="frame" x="199" y="329" width="75" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="8Eq-35-6Oj"/>
                                         <constraint firstAttribute="height" constant="30" id="fQJ-fd-yAZ"/>
                                     </constraints>
-                                    <state key="normal" title="验证码">
+                                    <state key="normal" title="重发验证码">
                                         <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
