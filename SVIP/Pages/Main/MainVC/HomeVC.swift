@@ -50,8 +50,8 @@ class HomeVC: UIViewController {
     addGuestures()
     
     // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
-//    walletButton.hidden = true
-//    breathLight.hidden = true
+    walletButton.hidden = true
+    breathLight.hidden = true
   }
   
   

@@ -35,7 +35,7 @@ struct ZKJSConfig {
   //// 预上线
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com/belta"
+  let BaseURL = "http://p.zkjinshi.com/beta"
   // 图片服务器
   let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
   // 云巴
