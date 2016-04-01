@@ -20,8 +20,6 @@
 		<string>非法签名</string>
 		<key>8</key>
 		<string>无效Token,请重新登录</string>
-		<key>9</key>
-		<string>请求验证码过于频繁</string>
 		<key>10</key>
 		<string>号码解密失败</string>
 	</dict>

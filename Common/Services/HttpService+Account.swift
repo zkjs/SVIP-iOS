@@ -84,6 +84,12 @@ extension HttpService {
                     print(token)
                     let tokenPayload = TokenPayload.sharedInstance
                     tokenPayload.saveTokenPayload(token)
+                    
+                    //注册成功后订阅云巴
+                    if let userID = tokenPayload.userID {
+                      print("register userID:\(userID)")
+                      YunbaSubscribeService.sharedInstance.setAlias(userID)
+                    }
                   } else {//登陆后更新用户信息会返回不一样的数据结构，具体参考api文档
                     if let imgUrl = json["data"]["userimage"].string where !imgUrl.isEmpty {
                       AccountManager.sharedInstance().saveImageUrl(imgUrl)

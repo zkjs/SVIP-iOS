@@ -19,6 +19,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var moneyLabel: UILabel!
   @IBOutlet weak var moneyButton: UIButton!
   @IBOutlet weak var breathLight: BreathLight!
+  @IBOutlet weak var logoutView: UIView!
   
   
   var bluetoothManager = CBCentralManager()
@@ -49,8 +50,8 @@ class HomeVC: UIViewController {
     addGuestures()
     
     // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
-    walletButton.hidden = true
-    breathLight.hidden = true
+//    walletButton.hidden = true
+//    breathLight.hidden = true
   }
   
   
@@ -189,14 +190,14 @@ class HomeVC: UIViewController {
   
   func addGuestures() {
     
-    let tripleTap = UITapGestureRecognizer(target: self, action: "doTripleTap")
-    tripleTap.numberOfTapsRequired = 3
-    self.view.addGestureRecognizer(tripleTap)
+    let multiTap = UITapGestureRecognizer(target: self, action: "doMultipleTap")
+    multiTap.numberOfTapsRequired = 6
+    self.logoutView.addGestureRecognizer(multiTap)
     
   }
   
   // 点击屏幕三次退出登录
-  func doTripleTap() {
+  func doMultipleTap() {
     HttpService.sharedInstance.deleteToken(nil)
     TokenPayload.sharedInstance.clearCacheTokenPayload()
     let window = UIApplication.sharedApplication().keyWindow

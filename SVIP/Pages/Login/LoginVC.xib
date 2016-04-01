@@ -27,14 +27,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_suo" translatesAutoresizingMaskIntoConstraints="NO" id="nxF-Xn-q9T">
-                                    <rect key="frame" x="125" y="140" width="70" height="89"/>
+                                    <rect key="frame" x="125" y="160" width="70" height="89"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="70" id="2cq-14-jXv"/>
                                         <constraint firstAttribute="height" constant="89" id="os4-x2-ER2"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15815507102" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyT-cc-ahB">
-                                    <rect key="frame" x="100" y="269" width="120" height="30"/>
+                                    <rect key="frame" x="100" y="289" width="120" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="FNt-t2-rZJ"/>
                                         <constraint firstAttribute="width" constant="120" id="MPY-l3-DLX"/>
@@ -44,7 +44,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yw8-NS-Ttg">
-                                    <rect key="frame" x="40" y="367" width="240" height="1"/>
+                                    <rect key="frame" x="40" y="387" width="240" height="1"/>
                                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="240" id="kf2-l2-WeM"/>
@@ -55,7 +55,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyp-Sp-Sfq">
-                                    <rect key="frame" x="40" y="415" width="240" height="45"/>
+                                    <rect key="frame" x="40" y="435" width="240" height="45"/>
                                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="240" id="HvG-sd-h5W"/>
@@ -74,7 +74,7 @@
                                     </connections>
                                 </button>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="短信验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KW2-el-C3V" customClass="DesignableTextField" customModule="Spring">
-                                    <rect key="frame" x="40" y="321" width="240" height="45"/>
+                                    <rect key="frame" x="40" y="341" width="240" height="45"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="97" id="36Z-Nl-H25"/>
@@ -98,7 +98,7 @@
                                     </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y0-V0-BqZ">
-                                    <rect key="frame" x="199" y="329" width="75" height="30"/>
+                                    <rect key="frame" x="199" y="349" width="75" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="8Eq-35-6Oj"/>
@@ -123,7 +123,7 @@
                             <constraints>
                                 <constraint firstItem="Yw8-NS-Ttg" firstAttribute="centerX" secondItem="hXq-2v-lOF" secondAttribute="centerX" id="01j-Z2-lU7"/>
                                 <constraint firstItem="Yw8-NS-Ttg" firstAttribute="top" secondItem="KW2-el-C3V" secondAttribute="bottom" constant="1" id="3f6-ZR-h38"/>
-                                <constraint firstItem="zyT-cc-ahB" firstAttribute="centerY" secondItem="hXq-2v-lOF" secondAttribute="centerY" id="7kK-aM-jGD"/>
+                                <constraint firstItem="zyT-cc-ahB" firstAttribute="centerY" secondItem="hXq-2v-lOF" secondAttribute="centerY" constant="20" id="7kK-aM-jGD"/>
                                 <constraint firstItem="8Y0-V0-BqZ" firstAttribute="centerY" secondItem="KW2-el-C3V" secondAttribute="centerY" id="Bn5-FV-tpP"/>
                                 <constraint firstItem="8Y0-V0-BqZ" firstAttribute="trailing" secondItem="Yw8-NS-Ttg" secondAttribute="trailing" constant="-6" id="JbI-jS-U83"/>
                                 <constraint firstItem="zyT-cc-ahB" firstAttribute="top" secondItem="nxF-Xn-q9T" secondAttribute="bottom" constant="40" id="LRr-f1-HYA"/>

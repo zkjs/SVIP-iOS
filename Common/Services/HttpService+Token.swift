@@ -59,14 +59,8 @@ extension HttpService {
         
         //登录成功后订阅云巴推送
         if let userID = tokenPayload.userID {
-          print("userID:\(userID)")
-          YunBaService.setAlias(userID, resultBlock: { (succ, err) -> Void in
-            if succ {
-              print("yunba setAlias success");
-            } else {
-              print("yunba setAlias fail");
-            }
-          })
+          print("login userID:\(userID)")
+          YunbaSubscribeService.sharedInstance.setAlias(userID)
         }
       } else {
         

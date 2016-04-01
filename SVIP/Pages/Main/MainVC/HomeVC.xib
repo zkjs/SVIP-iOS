@@ -10,6 +10,7 @@
                 <outlet property="avatarsImageView" destination="YCF-Iy-Uvs" id="GkI-Ao-WLI"/>
                 <outlet property="breathLight" destination="HIq-fp-PWO" id="zXY-GY-Vbr"/>
                 <outlet property="lineView" destination="waA-wE-0fQ" id="gz7-vo-TVT"/>
+                <outlet property="logoutView" destination="Wl2-r5-YWc" id="csr-M5-CpB"/>
                 <outlet property="moneyButton" destination="PDh-Zc-8WF" id="UQs-IF-hja"/>
                 <outlet property="moneyLabel" destination="zQ4-wY-tUN" id="mlN-bg-IQE"/>
                 <outlet property="nameLabel" destination="AE5-FI-XLy" id="uuN-ck-uHb"/>
@@ -96,6 +97,16 @@
                         <action selector="accountAction:" destination="-1" eventType="touchUpInside" id="duD-fH-w7X"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wl2-r5-YWc">
+                    <rect key="frame" x="127" y="40" width="120" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="aRi-uc-NYB"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="jig-eQ-5WW"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="rvX-fx-T3B"/>
+                        <constraint firstAttribute="height" constant="60" id="teh-eh-i42"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIq-fp-PWO" customClass="BreathLight" customModule="SVIP" customModuleProvider="target">
                     <rect key="frame" x="335" y="38" width="25" height="25"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -129,6 +140,7 @@
                 <constraint firstItem="AE5-FI-XLy" firstAttribute="centerY" secondItem="YCF-Iy-Uvs" secondAttribute="centerY" id="J8M-fL-Esx"/>
                 <constraint firstItem="zQ4-wY-tUN" firstAttribute="centerX" secondItem="PDh-Zc-8WF" secondAttribute="centerX" id="JDL-Vl-yDA"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="height" secondItem="YCF-Iy-Uvs" secondAttribute="height" id="Lij-o5-6wI"/>
+                <constraint firstItem="Wl2-r5-YWc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N43-aT-ciR"/>
                 <constraint firstAttribute="trailing" secondItem="PDh-Zc-8WF" secondAttribute="trailing" constant="8" id="QsJ-VU-nfL"/>
                 <constraint firstItem="HIq-fp-PWO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="38" id="SP4-Or-QTD"/>
                 <constraint firstAttribute="trailing" secondItem="HIq-fp-PWO" secondAttribute="trailing" constant="15" id="SRT-D1-jCc"/>
@@ -138,6 +150,7 @@
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y9a-wI-CzT"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="width" secondItem="YCF-Iy-Uvs" secondAttribute="width" id="Zzk-da-2Yh"/>
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cQB-nz-EZX"/>
+                <constraint firstItem="Wl2-r5-YWc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="cqk-1a-iPT"/>
                 <constraint firstAttribute="trailing" secondItem="f9b-Ss-psd" secondAttribute="trailing" constant="34" id="lqQ-dQ-Pke"/>
                 <constraint firstItem="f9b-Ss-psd" firstAttribute="top" secondItem="PDh-Zc-8WF" secondAttribute="bottom" constant="12" id="v96-Bc-JLa"/>
                 <constraint firstItem="zQ4-wY-tUN" firstAttribute="centerY" secondItem="PDh-Zc-8WF" secondAttribute="centerY" constant="5" id="xQO-TL-ubG"/>
