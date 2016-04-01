@@ -193,6 +193,10 @@ class HttpService {
   func handleResult(request request:NSURLRequest?, response:NSHTTPURLResponse?,data:NSData?, error:NSError?, record:Bool = false ,completionHandler:HttpCompletionHandler) -> Void {
     print("statusCode:\(response?.statusCode)")
     guard let statusCode = response?.statusCode else{
+      let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+                      code: 0,
+                      userInfo: ["res":"0","resDesc":"未知网络错误:)"])
+      completionHandler(nil,e)
       return
     }
     if statusCode == 401 {//token过期
