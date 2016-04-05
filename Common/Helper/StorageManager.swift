@@ -134,4 +134,20 @@ class StorageManager: NSObject {
     NSKeyedArchiver.archiveRootObject(cachedBeaconRegions, toFile: path)
   }
   
+  /**
+   * 是否监听beacon,默认返回true
+   */
+  func settingMonitoring() -> Bool {
+    return NSUserDefaults.standardUserDefaults().objectForKey("settingMonitoringBeacon") as? Bool ?? true
+  }
+  
+  /**
+   * 设置是否监听beacon
+   */
+  func settingMonitoring(monitoring:Bool) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setBool(monitoring, forKey: "settingMonitoringBeacon")
+    defaults.synchronize()
+  }
+  
 }

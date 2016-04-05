@@ -20,6 +20,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var moneyButton: UIButton!
   @IBOutlet weak var breathLight: BreathLight!
   @IBOutlet weak var logoutView: UIView!
+  @IBOutlet weak var monitoringButton: UIButton!
   
   
   var bluetoothManager = CBCentralManager()
@@ -50,8 +51,8 @@ class HomeVC: UIViewController {
     addGuestures()
     
     // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
-    walletButton.hidden = true
-    breathLight.hidden = true
+    //walletButton.hidden = true
+    //breathLight.hidden = true
   }
   
   
@@ -65,6 +66,14 @@ class HomeVC: UIViewController {
     refreshUserInfo()
     HttpService.sharedInstance.getUserinfo { (json, error) in
       self.refreshUserInfo()
+    }
+  }
+  
+  private func setButtonView() {
+    if StorageManager.sharedInstance().settingMonitoring() {
+      monitoringButton.setImage(UIImage(named: "btn_notify"), forState: .Normal)
+    } else {
+      monitoringButton.setImage(UIImage(named: "btn_mute"), forState: .Normal)
     }
   }
 
@@ -182,6 +191,31 @@ class HomeVC: UIViewController {
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
+  @IBAction func toggleBeaconMonitoring(sender: UIButton) {
+    let monitoring = StorageManager.sharedInstance().settingMonitoring()
+    if monitoring {// stop monitoring
+      let confirmAlert = UIAlertController(title: "提示", message: "确定要关闭身份吗?", preferredStyle: .Alert)
+      let confirmAction = UIAlertAction(title: "确定", style: .Default) { (_) in
+        BeaconMonitor.sharedInstance.stopMonitoring()
+        LocationMonitor.sharedInstance.stopUpdatingLocation()
+        LocationMonitor.sharedInstance.stopMonitoringLocation()
+        StorageManager.sharedInstance().settingMonitoring(!monitoring)
+        self.setButtonView()
+      }
+      let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { (_) in }
+      confirmAlert.addAction(confirmAction)
+      confirmAlert.addAction(cancelAction)
+      presentViewController(confirmAlert, animated: true, completion: nil)
+      
+    } else { // start monitoring
+      BeaconMonitor.sharedInstance.startMonitoring()
+      LocationMonitor.sharedInstance.startUpdatingLocation()
+      StorageManager.sharedInstance().settingMonitoring(!monitoring)
+      setButtonView()
+    }
+    
+  }
+  
   func gotoSetting() {
     let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
     let vcMe = storyboard.instantiateViewControllerWithIdentifier("MeTVC") as! MeTVC
@@ -189,14 +223,12 @@ class HomeVC: UIViewController {
   }
   
   func addGuestures() {
-    
     let multiTap = UITapGestureRecognizer(target: self, action: "doMultipleTap")
     multiTap.numberOfTapsRequired = 6
     self.logoutView.addGestureRecognizer(multiTap)
-    
   }
   
-  // 点击屏幕三次退出登录
+  // 点击屏幕6次退出登录
   func doMultipleTap() {
     HttpService.sharedInstance.deleteToken(nil)
     TokenPayload.sharedInstance.clearCacheTokenPayload()
@@ -219,7 +251,9 @@ extension HomeVC: CBCentralManagerDelegate {
     switch central.state {
     case .PoweredOn:
       self.bluetoothStats = true
-      BeaconMonitor.sharedInstance.startMonitoring()
+      if StorageManager.sharedInstance().settingMonitoring() {
+        BeaconMonitor.sharedInstance.startMonitoring()
+      }
       print(".PoweredOn")
     case .PoweredOff:
       self.bluetoothStats = false

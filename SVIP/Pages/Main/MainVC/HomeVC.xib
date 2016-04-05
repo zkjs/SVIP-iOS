@@ -13,6 +13,7 @@
                 <outlet property="logoutView" destination="Wl2-r5-YWc" id="csr-M5-CpB"/>
                 <outlet property="moneyButton" destination="PDh-Zc-8WF" id="UQs-IF-hja"/>
                 <outlet property="moneyLabel" destination="zQ4-wY-tUN" id="mlN-bg-IQE"/>
+                <outlet property="monitoringButton" destination="zrB-WU-zoV" id="qPr-FK-BHj"/>
                 <outlet property="nameLabel" destination="AE5-FI-XLy" id="uuN-ck-uHb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Ull-wK-ExY"/>
                 <outlet property="walletButton" destination="f9b-Ss-psd" id="QWk-zc-pHm"/>
@@ -126,11 +127,19 @@
                         <action selector="billAction:" destination="-1" eventType="touchUpInside" id="42B-99-roK"/>
                     </connections>
                 </view>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrB-WU-zoV">
+                    <rect key="frame" x="140" y="397" width="95" height="113"/>
+                    <state key="normal" image="btn_notify"/>
+                    <connections>
+                        <action selector="toggleBeaconMonitoring:" destination="-1" eventType="touchUpInside" id="k9I-50-IoD"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="YCF-Iy-Uvs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="1mw-AI-L46"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="top" secondItem="pOl-5E-Pt4" secondAttribute="bottom" constant="20" id="2Td-zK-iZd"/>
+                <constraint firstItem="zrB-WU-zoV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Wc-Cs-drk"/>
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="939-Yx-3k7"/>
                 <constraint firstAttribute="bottom" secondItem="f9b-Ss-psd" secondAttribute="bottom" constant="73" id="AAz-SC-HZ1"/>
                 <constraint firstAttribute="trailing" secondItem="pOl-5E-Pt4" secondAttribute="trailing" id="Ag3-2p-6XL"/>
@@ -151,6 +160,7 @@
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="width" secondItem="YCF-Iy-Uvs" secondAttribute="width" id="Zzk-da-2Yh"/>
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cQB-nz-EZX"/>
                 <constraint firstItem="Wl2-r5-YWc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="cqk-1a-iPT"/>
+                <constraint firstItem="waA-wE-0fQ" firstAttribute="top" secondItem="zrB-WU-zoV" secondAttribute="bottom" constant="8" id="kDP-eF-1vT"/>
                 <constraint firstAttribute="trailing" secondItem="f9b-Ss-psd" secondAttribute="trailing" constant="34" id="lqQ-dQ-Pke"/>
                 <constraint firstItem="f9b-Ss-psd" firstAttribute="top" secondItem="PDh-Zc-8WF" secondAttribute="bottom" constant="12" id="v96-Bc-JLa"/>
                 <constraint firstItem="zQ4-wY-tUN" firstAttribute="centerY" secondItem="PDh-Zc-8WF" secondAttribute="centerY" constant="5" id="xQO-TL-ubG"/>
@@ -159,6 +169,7 @@
         </view>
     </objects>
     <resources>
+        <image name="btn_notify" width="95" height="113"/>
         <image name="ic_money" width="80" height="87"/>
         <image name="ic_wallet" width="27" height="27"/>
         <image name="logo_white" width="60" height="60"/>

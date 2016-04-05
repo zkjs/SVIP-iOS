@@ -16,6 +16,8 @@ import UIKit
 
 
 let kPaymentInfoNotification = "kPaymentInfoNotification"
+let kWelcomNotification = "kWelcomNotification"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -92,7 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     LocationMonitor.sharedInstance.afterResume = false
     LocationMonitor.sharedInstance.stopMonitoringLocation()
-    LocationMonitor.sharedInstance.startUpdatingLocation()
+    if StorageManager.sharedInstance().settingMonitoring() {
+      LocationMonitor.sharedInstance.startUpdatingLocation()
+    }
 
   }
 
@@ -101,7 +105,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print("applicationWillTerminate")
     LocationMonitor.sharedInstance.stopUpdatingLocation()
     LocationMonitor.sharedInstance.afterResume = false
-    LocationMonitor.sharedInstance.startMonitoringLocation()
+    if StorageManager.sharedInstance().settingMonitoring() {
+      LocationMonitor.sharedInstance.startMonitoringLocation()
+    }
   }
   
   // MARK: - Local Notification
@@ -154,8 +160,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let content = data["content"] as? String else {
               return
           }
-          let alert = UIAlertView(title: title, message: content, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "确认")
-          alert.show()
+          //let alert = UIAlertView(title: title, message: content, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "确认")
+          //alert.show()
+          
+          let  payInfo = PushMessageModel(dict: data)
+          NSNotificationCenter.defaultCenter().postNotificationName(kWelcomNotification, object: nil, userInfo: ["welcomeInfo":payInfo])
         }
       }
     }

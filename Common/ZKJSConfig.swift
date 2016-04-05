@@ -21,7 +21,7 @@ struct ZKJSConfig {
   //// 测试环境
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com"
+  let BaseURL = "http://p.zkjinshi.com/demo"
   // 图片服务器
   let BaseImageURL = "http://cdn.zkjinshi.com"
   // 云巴

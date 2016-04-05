@@ -17,7 +17,7 @@ class BillListCell: UICollectionViewCell {
   @IBOutlet private weak var hotelNameLabel: UILabel!
   @IBOutlet private var titleLabels: Array<UILabel>?
   
-  static let gradientRows = 7
+  static let gradientRows = 6
   
   private let hue:CGFloat = 36.0
   private let minSaturation:CGFloat = 0.64

@@ -40,7 +40,10 @@ class LocationStateObserver:NSObject {
     }
     
     //开始监听beacon
-    BeaconMonitor.sharedInstance.startMonitoring()
+    if StorageManager.sharedInstance().settingMonitoring() {
+      BeaconMonitor.sharedInstance.startMonitoring()
+      LocationMonitor.sharedInstance.startUpdatingLocation()
+    }
   }
 }
 
@@ -51,7 +54,10 @@ extension LocationStateObserver: CLLocationManagerDelegate {
       alert.show()
     } else {
       //开始监听beacon
-      BeaconMonitor.sharedInstance.startMonitoring()
+      if StorageManager.sharedInstance().settingMonitoring() {
+        BeaconMonitor.sharedInstance.startMonitoring()
+        LocationMonitor.sharedInstance.startUpdatingLocation()
+      }
     }
   }
   
