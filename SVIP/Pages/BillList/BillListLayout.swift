@@ -48,7 +48,7 @@ class BillListLayout: UICollectionViewLayout {
     }
   }
   
-  /* Returns the height of the collection view */
+  /* Returns the height of the collection view */ 
   var height: CGFloat {
     get {
       return CGRectGetHeight(collectionView!.bounds)
