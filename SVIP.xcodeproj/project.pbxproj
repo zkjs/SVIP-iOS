@@ -34,6 +34,10 @@
 		4096FD4E1CB36C6D00E8E31E /* PushMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4096FD4D1CB36C6D00E8E31E /* PushMessageModel.swift */; };
 		4096FD501CB36CA400E8E31E /* PushMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4096FD4F1CB36CA400E8E31E /* PushMessageVC.swift */; };
 		4096FD531CB36D1700E8E31E /* PushMessageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4096FD521CB36D1700E8E31E /* PushMessageVC.xib */; };
+		4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4096FD561CB4AC8A00E8E31E /* FlipAnimationController.swift */; };
+		4096FD591CB4B5BE00E8E31E /* ShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4096FD581CB4B5BE00E8E31E /* ShopDetailVC.swift */; };
+		4096FD621CB4BCE800E8E31E /* ShopDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4096FD611CB4BCE800E8E31E /* ShopDetail.storyboard */; };
+		4096FD651CB4D3ED00E8E31E /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4096FD641CB4D3ED00E8E31E /* SwipeInteractionController.swift */; };
 		409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73DF1C9B98B30040186C /* NSDate+Category.m */; };
 		409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73E11C9B98B30040186C /* NSDateFormatter+Category.m */; };
 		409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73E51C9B98B30040186C /* NSString+Valid.m */; };
@@ -113,8 +117,6 @@
 		FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02C5831C0D42D100D0D439 /* LoginVC.xib */; };
 		FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */; };
 		FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */; };
-		FA06C2551CB4EA2A00B19149 /* ShopDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06C2541CB4EA2A00B19149 /* ShopDetailTVC.swift */; };
-		FA06C2571CB4EA4000B19149 /* ShopDetailTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA06C2561CB4EA4000B19149 /* ShopDetailTVC.storyboard */; };
 		FA0D360F1C9D28BA00E0AA78 /* PayListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */; };
 		FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */; };
 		FA0D36131C9D28FB00E0AA78 /* PaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */; };
@@ -221,6 +223,10 @@
 		4096FD4D1CB36C6D00E8E31E /* PushMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushMessageModel.swift; sourceTree = "<group>"; };
 		4096FD4F1CB36CA400E8E31E /* PushMessageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushMessageVC.swift; sourceTree = "<group>"; };
 		4096FD521CB36D1700E8E31E /* PushMessageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushMessageVC.xib; sourceTree = "<group>"; };
+		4096FD561CB4AC8A00E8E31E /* FlipAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlipAnimationController.swift; path = Transitioning/FlipAnimationController.swift; sourceTree = "<group>"; };
+		4096FD581CB4B5BE00E8E31E /* ShopDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopDetailVC.swift; path = ShopDetail/ShopDetailVC.swift; sourceTree = "<group>"; };
+		4096FD611CB4BCE800E8E31E /* ShopDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShopDetail.storyboard; path = ShopDetail/ShopDetail.storyboard; sourceTree = "<group>"; };
+		4096FD641CB4D3ED00E8E31E /* SwipeInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeInteractionController.swift; path = Transitioning/SwipeInteractionController.swift; sourceTree = "<group>"; };
 		409E73DE1C9B98B30040186C /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		409E73DF1C9B98B30040186C /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		409E73E01C9B98B30040186C /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
@@ -314,8 +320,6 @@
 		FA02C5831C0D42D100D0D439 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		FA06ADE51C87E2E30060DD33 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
-		FA06C2541CB4EA2A00B19149 /* ShopDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailTVC.swift; sourceTree = "<group>"; };
-		FA06C2561CB4EA4000B19149 /* ShopDetailTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShopDetailTVC.storyboard; sourceTree = "<group>"; };
 		FA0D360D1C9D28BA00E0AA78 /* PayListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayListTVC.swift; sourceTree = "<group>"; };
 		FA0D360E1C9D28BA00E0AA78 /* PayListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayListTVC.xib; sourceTree = "<group>"; };
 		FA0D36111C9D28FB00E0AA78 /* PaylistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaylistCell.swift; sourceTree = "<group>"; };
@@ -494,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				4053ADDC1C8D850100282240 /* Classes */,
+				4096FD631CB4D3BA00E8E31E /* Transitioning */,
 				406B0AD41C858A98006C9C73 /* Extensions */,
 				B20812B71B8DD8650070D96F /* Helper */,
 				40DE24FF1C9BFBF100CA7F26 /* Helper */,
@@ -644,6 +649,24 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		4096FD5A1CB4B5C500E8E31E /* ShopDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4096FD611CB4BCE800E8E31E /* ShopDetail.storyboard */,
+				4096FD581CB4B5BE00E8E31E /* ShopDetailVC.swift */,
+			);
+			name = ShopDetail;
+			sourceTree = "<group>";
+		};
+		4096FD631CB4D3BA00E8E31E /* Transitioning */ = {
+			isa = PBXGroup;
+			children = (
+				4096FD561CB4AC8A00E8E31E /* FlipAnimationController.swift */,
+				4096FD641CB4D3ED00E8E31E /* SwipeInteractionController.swift */,
+			);
+			name = Transitioning;
+			sourceTree = "<group>";
+		};
 		409E73DD1C9B98B30040186C /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,6 +687,7 @@
 		409E73F01C9B99F80040186C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				4096FD5A1CB4B5C500E8E31E /* ShopDetail */,
 				406C4B5F1CA41F5600B7E241 /* BillList */,
 				408F50381CA3E51700AEBA83 /* Common */,
 				40D794BF1C41197F004C7DC9 /* Guide */,
@@ -903,8 +927,6 @@
 				FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */,
 				FAFA518E1C16C62900BF04F2 /* HomeVC.swift */,
 				FAFA518F1C16C62900BF04F2 /* HomeVC.xib */,
-				FA06C2541CB4EA2A00B19149 /* ShopDetailTVC.swift */,
-				FA06C2561CB4EA4000B19149 /* ShopDetailTVC.storyboard */,
 				FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */,
 			);
 			path = MainVC;
@@ -1016,7 +1038,6 @@
 				4096FD531CB36D1700E8E31E /* PushMessageVC.xib in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
 				40DE25801C9D6CCB00CA7F26 /* MeTVC.storyboard in Resources */,
-				FA06C2571CB4EA4000B19149 /* ShopDetailTVC.storyboard in Resources */,
 				40DE25791C9D6CCB00CA7F26 /* NameVC.xib in Resources */,
 				FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
@@ -1029,6 +1050,7 @@
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
 				40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */,
 				408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */,
+				4096FD621CB4BCE800E8E31E /* ShopDetail.storyboard in Resources */,
 				F626F6541CA63C7200263C4B /* BillList.storyboard in Resources */,
 				40641F081B3E569700CF150D /* LaunchScreen.xib in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
@@ -1122,7 +1144,6 @@
 				FA0D360F1C9D28BA00E0AA78 /* PayListTVC.swift in Sources */,
 				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
-				FA06C2551CB4EA2A00B19149 /* ShopDetailTVC.swift in Sources */,
 				404177CE1C99082300113721 /* HomeViewModel.swift in Sources */,
 				FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */,
 				409E74001C9BE51E0040186C /* MBProgressHUD+Add.m in Sources */,
@@ -1134,6 +1155,7 @@
 				40DE24FC1C9BFBC700CA7F26 /* Double+Extension+ZKJS.swift in Sources */,
 				40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */,
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
+				4096FD591CB4B5BE00E8E31E /* ShopDetailVC.swift in Sources */,
 				4051F1D81CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift in Sources */,
 				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
@@ -1155,6 +1177,7 @@
 				408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */,
+				4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */,
 				FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */,
 				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
@@ -1184,6 +1207,7 @@
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
+				4096FD651CB4D3ED00E8E31E /* SwipeInteractionController.swift in Sources */,
 				407DA3611CABB7E0009855E5 /* YunbaSubscribeService.swift in Sources */,
 				406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */,
 				4096FD4E1CB36C6D00E8E31E /* PushMessageModel.swift in Sources */,

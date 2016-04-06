@@ -27,6 +27,8 @@ class HomeVC: UIViewController {
   var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
   var hideMoney: Bool = true
+  let flipAnimationController = FlipAnimationController()
+  let swipeInteractionController = SwipeInteractionController()
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
@@ -50,6 +52,8 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:kWelcomNotification, object: nil)
     addGuestures()
     
+    navigationController?.delegate = self
+    
     // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
     //walletButton.hidden = true
     //breathLight.hidden = true
@@ -61,7 +65,6 @@ class HomeVC: UIViewController {
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
     //payInfo()
-
     getBalance()
     getOrderList()
     refreshUserInfo()
@@ -109,7 +112,6 @@ class HomeVC: UIViewController {
     
     vc.modalPresentationStyle = .OverFullScreen
     self.presentViewController(vc, animated: true, completion: nil)
-    
 
   }
   
@@ -241,19 +243,10 @@ class HomeVC: UIViewController {
     let multiTap = UITapGestureRecognizer(target: self, action: "doMultipleTap")
     multiTap.numberOfTapsRequired = 6
     self.logoutView.addGestureRecognizer(multiTap)
-    //向左轻扫手势
-    let swipeGester = UISwipeGestureRecognizer(target: self, action: "pushToShopDetail:")
-    swipeGester.direction = UISwipeGestureRecognizerDirection.Left
-    view.addGestureRecognizer(swipeGester)
-  }
-  
-  func pushToShopDetail(sender:UISwipeGestureRecognizer) {
-    let storyboard = UIStoryboard(name: "ShopDetailTVC", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("ShopDetailTVC") as! ShopDetailTVC
-    UIView.transitionWithView((self.navigationController?.view)!, duration: 1.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: { () -> Void in
-      vc.navigationController?.navigationBarHidden = true
-      self.navigationController?.pushViewController(vc, animated: false)
-      }, completion: nil)
+    
+    let swipeGesture = UISwipeGestureRecognizer(target: self, action: "gotoShopDetail:")
+    swipeGesture.direction = .Left
+    self.view.addGestureRecognizer(swipeGesture)
   }
   
   // 点击屏幕6次退出登录
@@ -262,6 +255,15 @@ class HomeVC: UIViewController {
     TokenPayload.sharedInstance.clearCacheTokenPayload()
     let window = UIApplication.sharedApplication().keyWindow
     window?.rootViewController = BaseNC(rootViewController: LoginFirstVC())
+  }
+  
+  func gotoShopDetail(gestureRecognizer:UISwipeGestureRecognizer) {
+    if gestureRecognizer.state != .Ended {
+      return
+    }
+    let storyBoard = UIStoryboard(name: "ShopDetail", bundle: nil)
+    let shopVC = storyBoard.instantiateViewControllerWithIdentifier("ShopDetailVC") as! ShopDetailVC
+    self.navigationController?.pushViewController(shopVC, animated: true)
   }
   
 }
@@ -295,5 +297,27 @@ extension HomeVC: CBCentralManagerDelegate {
     case .Unsupported:
       print(".Unsupported")
     }
+  }
+}
+
+// MARK: UINavigationControllerDelegate
+
+extension HomeVC: UINavigationControllerDelegate {
+  func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    
+    if !fromVC.isKindOfClass(ShopDetailVC) && !toVC.isKindOfClass(ShopDetailVC) {
+      return nil
+    }
+    
+    if (operation == .Push) {
+      swipeInteractionController.wireToViewController(toVC)
+    }
+    
+    flipAnimationController.reverse = operation == .Pop
+    return flipAnimationController
+  }
+  
+  func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    return swipeInteractionController.interactionInProgress ? swipeInteractionController : nil
   }
 }
