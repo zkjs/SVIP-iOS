@@ -47,7 +47,7 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:kPaymentInfoNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
-    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:kWelcomNotification, object: nil)
     addGuestures()
     
     // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
@@ -61,6 +61,7 @@ class HomeVC: UIViewController {
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
     //payInfo()
+
     getBalance()
     getOrderList()
     refreshUserInfo()
@@ -75,6 +76,19 @@ class HomeVC: UIViewController {
     } else {
       monitoringButton.setImage(UIImage(named: "btn_mute"), forState: .Normal)
     }
+  }
+  
+  
+  func welcomeInfo(notification: NSNotification) {
+    guard let userInfo = notification.userInfo, let pushInfo = userInfo["welcomeInfo"] as? PushMessageModel else {
+      return
+    }
+    let vc = PushMessageVC()
+    vc.modalPresentationStyle = .OverFullScreen
+
+    vc.pushTitle.setTitle(pushInfo.title, forState: UIControlState.Normal)
+    vc.pushContens.text = pushInfo.content
+    self.presentViewController(vc, animated: true, completion: nil)
   }
 
   func alertPayInfo(notification: NSNotification) {
@@ -95,6 +109,7 @@ class HomeVC: UIViewController {
     
     vc.modalPresentationStyle = .OverFullScreen
     self.presentViewController(vc, animated: true, completion: nil)
+    
 
   }
   
@@ -226,6 +241,19 @@ class HomeVC: UIViewController {
     let multiTap = UITapGestureRecognizer(target: self, action: "doMultipleTap")
     multiTap.numberOfTapsRequired = 6
     self.logoutView.addGestureRecognizer(multiTap)
+    //向左轻扫手势
+    let swipeGester = UISwipeGestureRecognizer(target: self, action: "pushToShopDetail:")
+    swipeGester.direction = UISwipeGestureRecognizerDirection.Left
+    view.addGestureRecognizer(swipeGester)
+  }
+  
+  func pushToShopDetail(sender:UISwipeGestureRecognizer) {
+    let storyboard = UIStoryboard(name: "ShopDetailTVC", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("ShopDetailTVC") as! ShopDetailTVC
+    UIView.transitionWithView((self.navigationController?.view)!, duration: 1.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: { () -> Void in
+      vc.navigationController?.navigationBarHidden = true
+      self.navigationController?.pushViewController(vc, animated: false)
+      }, completion: nil)
   }
   
   // 点击屏幕6次退出登录
