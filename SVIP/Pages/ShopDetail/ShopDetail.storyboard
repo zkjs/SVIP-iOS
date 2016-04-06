@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Shop DetailVC-->
+        <scene sceneID="LaD-hI-oCf">
+            <objects>
+                <viewController storyboardIdentifier="ShopDetailVC" id="SL7-wl-chs" customClass="ShopDetailVC" customModule="SVIP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r7r-FE-rbe"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hx4-Li-BIf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hhr-w9-veY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHQ-Y2-tXH">
+                                <rect key="frame" x="126" y="274" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NHQ-Y2-tXH" firstAttribute="centerY" secondItem="Hhr-w9-veY" secondAttribute="centerY" id="ObJ-2d-W0P"/>
+                            <constraint firstItem="NHQ-Y2-tXH" firstAttribute="centerX" secondItem="Hhr-w9-veY" secondAttribute="centerX" id="UMZ-mo-EdU"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1p4-Gs-6OI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="277" y="290"/>
+        </scene>
+    </scenes>
+</document>
