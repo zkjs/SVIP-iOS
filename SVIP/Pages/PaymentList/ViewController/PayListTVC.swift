@@ -12,6 +12,8 @@ class PayListTVC: UITableViewController {
   var orderStatus: FacePayOrderStatus!
   var paylistArr = [PaylistmModel]()
   
+  let shrinkDismissAnimationController = ShrinkDismissAnimationController()
+  
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -111,6 +113,7 @@ class PayListTVC: UITableViewController {
       let vc = PayInfoVC()
       vc.payInfo = pay
       
+      vc.transitioningDelegate = self
       vc.modalPresentationStyle = .OverFullScreen
       self.presentViewController(vc, animated: false, completion: nil)
       
@@ -122,4 +125,10 @@ class PayListTVC: UITableViewController {
   }
 
     
+}
+
+extension PayListTVC: UIViewControllerTransitioningDelegate {
+  func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return shrinkDismissAnimationController
+  }
 }

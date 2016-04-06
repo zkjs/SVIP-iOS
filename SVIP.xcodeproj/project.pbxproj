@@ -49,6 +49,7 @@
 		40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */; };
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
 		40BC848F1BFC570700038C81 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */; };
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
 		40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */; };
 		40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2C1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m */; };
@@ -244,6 +245,7 @@
 		409E73FF1C9BE51E0040186C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkDismissAnimationController.swift; sourceTree = "<group>"; };
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		40CE7F291CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
 		40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
@@ -663,6 +665,7 @@
 			children = (
 				4096FD561CB4AC8A00E8E31E /* FlipAnimationController.swift */,
 				4096FD641CB4D3ED00E8E31E /* SwipeInteractionController.swift */,
+				40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */,
 			);
 			name = Transitioning;
 			sourceTree = "<group>";
@@ -1160,6 +1163,7 @@
 				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
 				FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */,
+				40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */,
 				40DE24EC1C9BF96C00CA7F26 /* HttpService+Location.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
