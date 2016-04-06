@@ -87,10 +87,11 @@ class HomeVC: UIViewController {
       return
     }
     let vc = PushMessageVC()
-    vc.modalPresentationStyle = .OverFullScreen
 
-    vc.pushTitle.setTitle(pushInfo.title, forState: UIControlState.Normal)
-    vc.pushContens.text = pushInfo.content
+    vc.alertTitle = pushInfo.title
+    vc.alertContent = pushInfo.content
+
+    vc.modalPresentationStyle = .OverFullScreen
     self.presentViewController(vc, animated: true, completion: nil)
   }
 

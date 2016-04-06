@@ -49,6 +49,7 @@ class BeaconMonitor:NSObject {
       locationManager.stopMonitoringForRegion(beaconRegion)
       locationManager.stopRangingBeaconsInRegion(beaconRegion)
     }
+    beaconInfoCache.removeAll()
   }
 }
 

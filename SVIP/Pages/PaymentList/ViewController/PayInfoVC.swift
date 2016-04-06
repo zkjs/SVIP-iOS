@@ -34,6 +34,7 @@ class PayInfoVC: UIViewController {
     blurView.frame = self.view.bounds
     blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
     blurView.translatesAutoresizingMaskIntoConstraints = true
+    blurView.alpha = 0.8
     self.view.insertSubview(blurView, atIndex: 0)
     
   }

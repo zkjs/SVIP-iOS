@@ -9,9 +9,11 @@
 import UIKit
 
 class PushMessageVC: UIViewController {
+  var alertTitle: String?
+  var alertContent: String?
 
-  @IBOutlet weak var pushContens: UILabel!
-  @IBOutlet weak var pushTitle: UIButton!
+  @IBOutlet weak var contentLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var pushView: UIView!
   
   override func loadView() {
@@ -25,11 +27,16 @@ class PushMessageVC: UIViewController {
     blurView.frame = self.view.bounds
     blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
     blurView.translatesAutoresizingMaskIntoConstraints = true
+    blurView.alpha = 0.8
     self.view.insertSubview(blurView, atIndex: 0)
+    
+    titleLabel.text = alertTitle ?? ""
+    contentLabel.text = alertContent ?? ""
   }
-  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    super.touchesBegan(touches, withEvent: event)
-    self.view.removeFromSuperview()
+  
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    super.touchesEnded(touches, withEvent: event)
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
 }
