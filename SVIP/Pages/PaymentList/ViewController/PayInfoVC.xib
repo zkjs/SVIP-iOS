@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PayInfoVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="constraintCenterY" destination="Gt5-PN-ThC" id="yrO-vL-E6C"/>
                 <outlet property="ordernoLabel" destination="sMw-ds-rY1" id="7X4-Mc-EOq"/>
                 <outlet property="payamountLabel" destination="BcX-C7-Cwh" id="7tr-f7-t03"/>
                 <outlet property="rootView" destination="13u-ep-wQE" id="ugB-GA-rrO"/>

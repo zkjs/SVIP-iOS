@@ -27,7 +27,7 @@
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOl-5E-Pt4" userLabel="LogoContainerView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="531"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo_wyndham" translatesAutoresizingMaskIntoConstraints="NO" id="cNW-pJ-VSy">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_wyndham" translatesAutoresizingMaskIntoConstraints="NO" id="cNW-pJ-VSy">
                             <rect key="frame" x="87" y="218" width="202" height="96"/>
                         </imageView>
                     </subviews>

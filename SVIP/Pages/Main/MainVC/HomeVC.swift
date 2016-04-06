@@ -112,7 +112,7 @@ class HomeVC: UIViewController {
     AccountManager.sharedInstance().savePayCreatetime(payInfo.createtime)
     
     vc.modalPresentationStyle = .OverFullScreen
-    self.presentViewController(vc, animated: true, completion: nil)
+    self.presentViewController(vc, animated: false, completion: nil)
 
   }
   

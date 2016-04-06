@@ -112,7 +112,7 @@ class PayListTVC: UITableViewController {
       vc.payInfo = pay
       
       vc.modalPresentationStyle = .OverFullScreen
-      self.presentViewController(vc, animated: true, completion: nil)
+      self.presentViewController(vc, animated: false, completion: nil)
       
     }
    }

@@ -20,6 +20,7 @@ class PayInfoVC: UIViewController {
   @IBOutlet weak var ordernoLabel: UILabel!
   @IBOutlet weak var payamountLabel: UILabel!
   @IBOutlet weak var shopnameLabel: UILabel!
+  @IBOutlet weak var constraintCenterY: NSLayoutConstraint!
 
   @IBOutlet weak var rootView: UIView!
   var payInfo = PaylistmModel()
@@ -37,6 +38,7 @@ class PayInfoVC: UIViewController {
     blurView.alpha = 0.8
     self.view.insertSubview(blurView, atIndex: 0)
     
+    //constraintCenterY.constant = SCREEN_HEIGHT
   }
 
   override func didReceiveMemoryWarning() {
@@ -52,6 +54,20 @@ class PayInfoVC: UIViewController {
     ordernoLabel.text = "支付单号:\( payInfo.orderno)"
     payamountLabel.text = payInfo.displayAmount
     shopnameLabel.text = payInfo.shopname
+    animateView()
+  }
+  
+  private func animateView() {
+    rootView.frame = CGRectOffset(rootView.frame, 0, SCREEN_HEIGHT)
+    UIView.animateWithDuration(0.5, delay: 0.0,
+                   usingSpringWithDamping: 0.6,
+                    initialSpringVelocity: 0.0,
+                                  options: .CurveEaseInOut,
+                                  animations: {
+        self.rootView.frame = CGRectOffset(self.rootView.frame, 0, -SCREEN_HEIGHT)
+      },completion: { (finished) in
+        
+    })
   }
     
   @IBAction func dismiss(sender: AnyObject) {
