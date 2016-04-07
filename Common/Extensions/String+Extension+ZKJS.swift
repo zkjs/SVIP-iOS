@@ -70,12 +70,4 @@ extension String {
     )
   }
   
-  var testFullUrl:String {
-    return ZKJSConfig.sharedInstance.TestBaseURL.stringByTrimmingCharactersInSet(
-      NSCharacterSet(charactersInString: "/")
-      ) + "/" + self.stringByTrimmingCharactersInSet(
-        NSCharacterSet(charactersInString: "/")
-    )
-  }
-  
 }
