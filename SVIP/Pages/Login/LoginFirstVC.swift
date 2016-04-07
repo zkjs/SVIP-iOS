@@ -12,11 +12,15 @@ class LoginFirstVC: UIViewController {
 
   @IBOutlet weak var bottomBorder: UILabel!
   @IBOutlet weak var phonetextFiled: UITextField!
+  @IBOutlet weak var registerButton: UIButton!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
     let str = NSAttributedString(string: "请输入您的手机号码", attributes: [NSForegroundColorAttributeName:UIColor(hex: "#888888")])
     phonetextFiled.attributedPlaceholder = str
+    
+    registerButton.hidden = true
   }
   
   override func loadView() {
@@ -82,9 +86,11 @@ class LoginFirstVC: UIViewController {
         HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
           self.hideHUD()
           if let error = error {
-            self.showErrorHint(error, withFontSize: 16)
-            if error.code != 5 {// 未注册用户不跳转
+            if error.code != 5 {// 未注册用户/不在白名单用户 不跳转
+              self.showErrorHint(error, withFontSize: 16)
               self.gotoVCodeVC(.Login)
+            } else {
+              self.showRegisterAlert()
             }
           } else {
             self.showHint("验证码已发送", withFontSize: 18)
@@ -110,6 +116,13 @@ class LoginFirstVC: UIViewController {
     vc.type = type
     let nv = BaseNC(rootViewController:vc)
     self.navigationController?.presentViewController(nv, animated: true, completion: nil)
+  }
+  
+  func showRegisterAlert() {
+    let storyboard = UIStoryboard(name: "RegisterAlertVC", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("RegisterAlertVC")
+    vc.modalPresentationStyle = .OverFullScreen
+    presentViewController(vc, animated: false, completion: nil)
   }
 
 }

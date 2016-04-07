@@ -67,8 +67,33 @@ extension HttpService {
         switch encodingResult {
         case .Success(let upload, _, _):
           upload.response(completionHandler: { (request, response, data, error) -> Void in
+            print("statusCode:\(response?.statusCode)")
+            guard let statusCode = response?.statusCode else{
+              let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+                code: 0,
+                userInfo: ["res":"0","resDesc":"未知网络错误:)"])
+              completionHandler(nil,e)
+              return
+            }
+            if statusCode == 401 {//token过期
+              // 由于异步请求，其他请求在token刷新后立即到达server会被判定失效，导致用户被登出
+              if NSDate().timeIntervalSince1970 > self.refreshTokenTime + 100 {
+                print("invalid token:\(request)")
+                TokenPayload.sharedInstance.clearCacheTokenPayload()
+                NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
+                return
+              }
+            } else if statusCode != 200 {
+              let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+                code: statusCode,
+                userInfo: ["res":"\(statusCode)","resDesc":"网络错误:\(statusCode)"])
+              completionHandler(nil,e)
+              return
+            }
+            
             if let error = error {
-              print(error)
+              print("api request fail [res code:,\(response?.statusCode)]:\(error)")
+              completionHandler(nil,error)
             } else {
               print(self.jsonFromData(data))
               if let data = data {
@@ -113,6 +138,10 @@ extension HttpService {
           })
           
         case .Failure(let encodingError):
+          let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+            code: 0,
+            userInfo: ["res":"0","resDesc":"上传数据失败:)"])
+          completionHandler(nil,e)
           print(encodingError)
         }
     })
