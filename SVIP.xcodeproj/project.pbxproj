@@ -50,6 +50,8 @@
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
 		40BC848F1BFC570700038C81 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */; };
+		40CB68C21CB6441E001AF6CF /* RegisterAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB68C11CB6441E001AF6CF /* RegisterAlertVC.swift */; };
+		40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CB68C51CB647B1001AF6CF /* RegisterAlertVC.storyboard */; };
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
 		40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */; };
 		40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2C1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m */; };
@@ -246,6 +248,8 @@
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkDismissAnimationController.swift; sourceTree = "<group>"; };
+		40CB68C11CB6441E001AF6CF /* RegisterAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAlertVC.swift; sourceTree = "<group>"; };
+		40CB68C51CB647B1001AF6CF /* RegisterAlertVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegisterAlertVC.storyboard; path = SVIP/Pages/Login/RegisterAlertVC.storyboard; sourceTree = SOURCE_ROOT; };
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		40CE7F291CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
 		40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
@@ -882,6 +886,8 @@
 				409E73F11C9B9A040040186C /* AboutUsVC.swift */,
 				FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */,
 				FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */,
+				40CB68C51CB647B1001AF6CF /* RegisterAlertVC.storyboard */,
+				40CB68C11CB6441E001AF6CF /* RegisterAlertVC.swift */,
 				FA02C5821C0D42D100D0D439 /* LoginVC.swift */,
 				FA02C5831C0D42D100D0D439 /* LoginVC.xib */,
 			);
@@ -1039,6 +1045,7 @@
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
 				FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */,
 				4096FD531CB36D1700E8E31E /* PushMessageVC.xib in Resources */,
+				40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
 				40DE25801C9D6CCB00CA7F26 /* MeTVC.storyboard in Resources */,
 				40DE25791C9D6CCB00CA7F26 /* NameVC.xib in Resources */,
@@ -1212,6 +1219,7 @@
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
 				4096FD651CB4D3ED00E8E31E /* SwipeInteractionController.swift in Sources */,
+				40CB68C21CB6441E001AF6CF /* RegisterAlertVC.swift in Sources */,
 				407DA3611CABB7E0009855E5 /* YunbaSubscribeService.swift in Sources */,
 				406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */,
 				4096FD4E1CB36C6D00E8E31E /* PushMessageModel.swift in Sources */,

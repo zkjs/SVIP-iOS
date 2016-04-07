@@ -23,6 +23,10 @@ class WebViewVC: UIViewController {
     self.navigationItem.leftBarButtonItem = item1
   }
   
+  override func viewWillAppear(animated: Bool) {
+    navigationController?.navigationBarHidden = false
+  }
+  
   func initSubviews() {
     webView = UIWebView(frame: UIScreen.mainScreen().bounds)
     webView.scalesPageToFit = true

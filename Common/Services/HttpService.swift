@@ -205,6 +205,12 @@ class HttpService {
         print("invalid token:\(request)")
         TokenPayload.sharedInstance.clearCacheTokenPayload()
         NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGOUTCHANGE, object: nil)
+        let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
+                        code: 401,
+                        userInfo: ["res":"401","resDesc":"invalid token"])
+        
+        completionHandler(nil,e)
+        completionHandler(nil,e)
         return
       }
     } else if statusCode != 200 {

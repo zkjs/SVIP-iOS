@@ -33,6 +33,8 @@ struct ZKJSConfig {
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
   
+  let RegisterURL = "http://www.zkjinshi.com/about_us/"
+  
   #elseif PRE_RELEASE
   
   //// 预上线
@@ -47,6 +49,8 @@ struct ZKJSConfig {
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
   
+  let RegisterURL = "http://www.zkjinshi.com/about_us/"
+  
   #else
   
   //// 生产环境
@@ -60,6 +64,8 @@ struct ZKJSConfig {
   // 友盟
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
+  
+  let RegisterURL = "http://www.zkjinshi.com/about_us/"
   
   #endif
   
