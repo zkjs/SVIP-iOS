@@ -134,6 +134,10 @@
 		FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F11C12C5C800768A4D /* CustonCell.xib */; };
 		FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */; };
 		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
+		FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */; };
+		FAF6B6911CB5FA0E0043164C /* ShopDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B68F1CB5FA0E0043164C /* ShopDetailCell.xib */; };
+		FAF6B6971CB6351F0043164C /* ShopDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */; };
+		FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6981CB635620043164C /* ShopmodsModel.swift */; };
 		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
 		FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */; };
 		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
@@ -337,6 +341,10 @@
 		FAF253F11C12C5C800768A4D /* CustonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustonCell.xib; sourceTree = "<group>"; };
 		FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushInfoModel.swift; sourceTree = "<group>"; };
 		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
+		FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailCell.swift; sourceTree = "<group>"; };
+		FAF6B68F1CB5FA0E0043164C /* ShopDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopDetailCell.xib; sourceTree = "<group>"; };
+		FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailModel.swift; sourceTree = "<group>"; };
+		FAF6B6981CB635620043164C /* ShopmodsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopmodsModel.swift; sourceTree = "<group>"; };
 		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -654,6 +662,10 @@
 			children = (
 				4096FD611CB4BCE800E8E31E /* ShopDetail.storyboard */,
 				4096FD581CB4B5BE00E8E31E /* ShopDetailVC.swift */,
+				FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */,
+				FAF6B68F1CB5FA0E0043164C /* ShopDetailCell.xib */,
+				FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */,
+				FAF6B6981CB635620043164C /* ShopmodsModel.swift */,
 			);
 			name = ShopDetail;
 			sourceTree = "<group>";
@@ -1057,6 +1069,7 @@
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
+				FAF6B6911CB5FA0E0043164C /* ShopDetailCell.xib in Resources */,
 				FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */,
 				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
 				40DE25B01C9D6CCB00CA7F26 /* SettingTVC.storyboard in Resources */,
@@ -1133,6 +1146,7 @@
 				FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */,
 				FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */,
 				4077DE041C1EB74B00E13D6B /* AccountManager.swift in Sources */,
+				FAF6B6971CB6351F0043164C /* ShopDetailModel.swift in Sources */,
 				FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */,
 				40DE24EA1C9BF96C00CA7F26 /* HttpService+Account.swift in Sources */,
 				409E73F21C9B9A040040186C /* AboutUsVC.swift in Sources */,
@@ -1195,6 +1209,7 @@
 				40DE24F71C9BFB1800CA7F26 /* String+Extension+ZKJS.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
+				FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
 				F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */,
@@ -1216,6 +1231,7 @@
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				40DE24F11C9BFA9300CA7F26 /* BeaconErrors.swift in Sources */,
 				4096FD501CB36CA400E8E31E /* PushMessageVC.swift in Sources */,
+				FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */,
 				40DE25071C9BFCFD00CA7F26 /* HttpService.swift in Sources */,
 				40DE25121C9BFE6600CA7F26 /* LocationMonitor.swift in Sources */,
 				402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */,

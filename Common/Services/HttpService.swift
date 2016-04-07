@@ -62,6 +62,8 @@ class HttpService {
     case UserEnsurePay                  // 用户确认付款
     case PaymentInfo                    // 获取首付款列表，含明细
     case Balance                        // 账户余额
+
+     
     
     var description: String {
       switch self {
@@ -91,6 +93,8 @@ class HttpService {
       case .UserEnsurePay:              return "/for/res/v1/payment"
       case .PaymentInfo:                return "/for/res/v1/payment/si"
       case .Balance:                    return "/for/res/v1/payment/balance"
+  
+        
       }
     }
   }
