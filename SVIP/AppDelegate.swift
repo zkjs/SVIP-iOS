@@ -15,9 +15,6 @@ import UIKit
 //#endif
 
 
-let kPaymentInfoNotification = "kPaymentInfoNotification"
-let kWelcomNotification = "kWelcomNotification"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -152,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 支付通知
         if type == "PAYMENT_CONFIRM" {
           let  payInfo = PaylistmModel(dict: data)
-          NSNotificationCenter.defaultCenter().postNotificationName(kPaymentInfoNotification, object: nil, userInfo: ["payInfo":payInfo])
+          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_PAYMENT, object: nil, userInfo: ["payInfo":payInfo])
         }
         // 到店欢迎,营销推送通知
         else if type == "BLE_ACTIVITY" {
@@ -164,7 +161,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           //alert.show()
           
           let  payInfo = PushMessageModel(dict: data)
-          NSNotificationCenter.defaultCenter().postNotificationName(kWelcomNotification, object: nil, userInfo: ["welcomeInfo":payInfo])
+          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_WELCOME, object: nil, userInfo: ["welcomeInfo":payInfo])
+        }
+        // change logo
+        else if type == "ANOTHER_SHOP" {
+          let  shopLogo = ShopLogoModel(dic: data)
+          StorageManager.sharedInstance().saveShopLogoToCache(shopLogo)
+          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_CHANGELOGO, object: nil, userInfo: ["logoInfo":shopLogo])
         }
       }
     }

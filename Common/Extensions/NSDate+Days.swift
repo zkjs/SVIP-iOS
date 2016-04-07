@@ -42,9 +42,17 @@ extension NSDate {
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     return formatter.stringFromDate(self)
   }
+  
   func formattedWith(format:String) -> String {
     let formatter = NSDateFormatter()
     formatter.dateFormat = format
     return formatter.stringFromDate(self)
+  }
+  
+  class func dateFromString(dateString: String, dateFormat: String = "yyyy-MM-dd HH:mm:ss") -> NSDate? {
+    let dateFormat = NSDateFormatter()
+    dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    guard let date = dateFormat.dateFromString(dateString) else { return nil }
+    return date
   }
 }

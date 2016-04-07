@@ -15,6 +15,7 @@
                 <outlet property="moneyLabel" destination="zQ4-wY-tUN" id="mlN-bg-IQE"/>
                 <outlet property="monitoringButton" destination="zrB-WU-zoV" id="qPr-FK-BHj"/>
                 <outlet property="nameLabel" destination="AE5-FI-XLy" id="uuN-ck-uHb"/>
+                <outlet property="shopLogoImageView" destination="cNW-pJ-VSy" id="ckk-gQ-cPE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Ull-wK-ExY"/>
                 <outlet property="walletButton" destination="f9b-Ss-psd" id="QWk-zc-pHm"/>
             </connections>

@@ -21,6 +21,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var breathLight: BreathLight!
   @IBOutlet weak var logoutView: UIView!
   @IBOutlet weak var monitoringButton: UIButton!
+  @IBOutlet weak var shopLogoImageView: UIImageView!
   
   
   var bluetoothManager = CBCentralManager()
@@ -47,9 +48,11 @@ class HomeVC: UIViewController {
     
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:kPaymentInfoNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:KNOTIFICATION_PAYMENT, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:kWelcomNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:KNOTIFICATION_WELCOME, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name:KNOTIFICATION_CHANGELOGO, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
     addGuestures()
     
     navigationController?.delegate = self
@@ -68,6 +71,7 @@ class HomeVC: UIViewController {
     getBalance()
     getOrderList()
     refreshUserInfo()
+    updateLogo()
     HttpService.sharedInstance.getUserinfo { (json, error) in
       self.refreshUserInfo()
     }
@@ -93,6 +97,10 @@ class HomeVC: UIViewController {
 
     vc.modalPresentationStyle = .OverFullScreen
     self.presentViewController(vc, animated: true, completion: nil)
+  }
+  
+  func changeLogo(notification: NSNotification) {
+    updateLogo()
   }
 
   func alertPayInfo(notification: NSNotification) {
@@ -143,8 +151,19 @@ class HomeVC: UIViewController {
   func setupView() {
     self.view.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
     self.lineView.backgroundColor = UIColor(patternImage: UIImage(named: "home_line")!)
+    //updateLogo()
     toggleMoney()
     refreshUserInfo()
+  }
+  
+  func updateLogo() {
+    let shop = StorageManager.sharedInstance().cachedShopLogo()
+    if let shopLogo = StorageManager.sharedInstance().cachedShopLogo()
+       where shopLogo.validthru.timeIntervalSinceNow > 0 {
+      shopLogoImageView.sd_setImageWithURL(NSURL(string: shopLogo.logo.fullImageUrl), placeholderImage: UIImage(named: "shop_logo_default"))
+    } else {
+      shopLogoImageView.image = UIImage(named: "shop_logo_default")
+    }
   }
   
   func refreshUserInfo() {

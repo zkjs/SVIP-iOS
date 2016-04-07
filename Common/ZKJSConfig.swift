@@ -8,13 +8,6 @@
 
 import Foundation
 
-let KNOTIFICATION_LOGINCHANGE = "loginStateChange"
-let KNOTIFICATION_LOGOUTCHANGE = "logoutStateChange"
-let APP_GLOBAL_TINT_COLOR = UIColor(hex: "#ffc56e")
-
-let SCREEN_WIDTH = CGRectGetWidth(UIScreen.mainScreen().bounds)
-let SCREEN_HEIGHT = CGRectGetHeight(UIScreen.mainScreen().bounds)
-
 //TODO: api调试完成后在,在根据 build config 配置不同环境url
 struct ZKJSConfig {
   static let sharedInstance = ZKJSConfig()
@@ -24,7 +17,7 @@ struct ZKJSConfig {
   //// 测试环境
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com/demo"
+  let BaseURL = "http://p.zkjinshi.com/test"
   // 图片服务器
   let BaseImageURL = "http://cdn.zkjinshi.com"
   // 云巴

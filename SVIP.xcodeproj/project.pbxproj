@@ -52,6 +52,8 @@
 		40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */; };
 		40CB68C21CB6441E001AF6CF /* RegisterAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB68C11CB6441E001AF6CF /* RegisterAlertVC.swift */; };
 		40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CB68C51CB647B1001AF6CF /* RegisterAlertVC.storyboard */; };
+		40CB68C81CB652FD001AF6CF /* ShopLogoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB68C71CB652FD001AF6CF /* ShopLogoModel.swift */; };
+		40CB68CA1CB66399001AF6CF /* ZKJSConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB68C91CB66399001AF6CF /* ZKJSConstant.swift */; };
 		40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC73861BECA36D00A49E09 /* BaseNC.swift */; };
 		40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */; };
 		40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE7F2C1CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m */; };
@@ -250,6 +252,8 @@
 		40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkDismissAnimationController.swift; sourceTree = "<group>"; };
 		40CB68C11CB6441E001AF6CF /* RegisterAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAlertVC.swift; sourceTree = "<group>"; };
 		40CB68C51CB647B1001AF6CF /* RegisterAlertVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegisterAlertVC.storyboard; path = SVIP/Pages/Login/RegisterAlertVC.storyboard; sourceTree = SOURCE_ROOT; };
+		40CB68C71CB652FD001AF6CF /* ShopLogoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopLogoModel.swift; sourceTree = "<group>"; };
+		40CB68C91CB66399001AF6CF /* ZKJSConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZKJSConstant.swift; sourceTree = "<group>"; };
 		40CC73861BECA36D00A49E09 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		40CE7F291CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
 		40CE7F2A1CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
@@ -514,6 +518,7 @@
 				B2F4A9DF1B7EE229000DBD81 /* Vendor */,
 				40DE25181C9D17AC00CA7F26 /* Views */,
 				40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */,
+				40CB68C91CB66399001AF6CF /* ZKJSConstant.swift */,
 				40DE25161C9C07C700CA7F26 /* openssl.framework */,
 			);
 			path = Common;
@@ -923,6 +928,7 @@
 			children = (
 				FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */,
 				FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */,
+				40CB68C71CB652FD001AF6CF /* ShopLogoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1155,6 +1161,7 @@
 				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				404177CE1C99082300113721 /* HomeViewModel.swift in Sources */,
+				40CB68CA1CB66399001AF6CF /* ZKJSConstant.swift in Sources */,
 				FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */,
 				409E74001C9BE51E0040186C /* MBProgressHUD+Add.m in Sources */,
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
@@ -1214,6 +1221,7 @@
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
+				40CB68C81CB652FD001AF6CF /* ShopLogoModel.swift in Sources */,
 				40DE24F31C9BFA9300CA7F26 /* CoreDataStack.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,

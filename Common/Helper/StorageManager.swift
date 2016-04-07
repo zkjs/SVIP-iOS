@@ -13,6 +13,7 @@ private let kLastOrder = "LastOrder.archive"
 private let kShopsInfo = "Shops.archive"
 private let kHomeImages = "HomeImage.archive"
 private let kCachedBeaconRegions = "CachedBeaconRegions.archive"
+private let kCachedLogos = "ShopLogos.archive"
 
 class StorageManager: NSObject {
   
@@ -148,6 +149,23 @@ class StorageManager: NSObject {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.setBool(monitoring, forKey: "settingMonitoringBeacon")
     defaults.synchronize()
+  }
+  
+  /*
+   * 商家logo
+   */
+  func cachedShopLogo() -> ShopLogoModel? {
+    let path = documentDirectory().stringByAppendingPathComponent(kCachedLogos)
+    let cachedLogo = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? ShopLogoModel
+    return cachedLogo
+  }
+  
+  /*
+   * 保存商家logo
+   */
+  func saveShopLogoToCache(cachedLogo: ShopLogoModel) {
+    let path = documentDirectory().stringByAppendingPathComponent(kCachedLogos)
+    NSKeyedArchiver.archiveRootObject(cachedLogo, toFile: path)
   }
   
 }

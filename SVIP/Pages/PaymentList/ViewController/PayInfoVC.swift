@@ -58,13 +58,13 @@ class PayInfoVC: UIViewController {
   }
   
   private func animateView() {
-    rootView.frame = CGRectOffset(rootView.frame, 0, SCREEN_HEIGHT)
+    rootView.frame = CGRectOffset(rootView.frame, 0, ScreenSize.SCREEN_HEIGHT)
     UIView.animateWithDuration(0.5, delay: 0.0,
                    usingSpringWithDamping: 0.6,
                     initialSpringVelocity: 0.0,
                                   options: .CurveEaseInOut,
                                   animations: {
-        self.rootView.frame = CGRectOffset(self.rootView.frame, 0, -SCREEN_HEIGHT)
+        self.rootView.frame = CGRectOffset(self.rootView.frame, 0, -ScreenSize.SCREEN_HEIGHT)
       },completion: { (finished) in
         
     })
