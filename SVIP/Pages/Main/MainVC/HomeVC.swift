@@ -283,7 +283,11 @@ class HomeVC: UIViewController {
     }
     let storyBoard = UIStoryboard(name: "ShopDetail", bundle: nil)
     let shopVC = storyBoard.instantiateViewControllerWithIdentifier("ShopDetailVC") as! ShopDetailVC
-    self.navigationController?.pushViewController(shopVC, animated: true)
+
+    
+    UIView.transitionWithView((self.navigationController?.view)!, duration: 1.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: { () -> Void in
+        self.navigationController?.pushViewController(shopVC, animated: false)
+      }, completion: nil)
   }
   
 }

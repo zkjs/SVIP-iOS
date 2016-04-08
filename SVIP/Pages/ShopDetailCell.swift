@@ -7,8 +7,10 @@
 //
 
 import UIKit
-
-class ShopDetailCell: UITableViewCell {
+protocol PhotoViewerDelegate {
+  func gotoPhotoViewerDelegate(brower:AnyObject)
+}
+class ShopDetailCell: UITableViewCell,MWPhotoBrowserDelegate {
 
   @IBOutlet weak var introduceLabel: UILabel!
   @IBOutlet weak var customImageView: UIImageView!
@@ -17,6 +19,9 @@ class ShopDetailCell: UITableViewCell {
   @IBOutlet weak var titleConstraint: NSLayoutConstraint!
   @IBOutlet weak var titleAndImageConstraint: NSLayoutConstraint!
   @IBOutlet weak var seperatorLine: UIView!
+  var photosArray = NSMutableArray()
+  var photo = MWPhoto()
+  var delegate:PhotoViewerDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
       
@@ -50,7 +55,15 @@ class ShopDetailCell: UITableViewCell {
     if shopmod.photos.count > 0  {
       titleAndImageConstraint.constant = 25
       imageHeightConstraint.constant = 210
-      
+      let tapGR = UITapGestureRecognizer(target: self, action: "photoViewer")
+      customImageView.addGestureRecognizer(tapGR)
+      photosArray.removeAllObjects()
+      for image in shopmod.photos {
+        let url = NSURL(string: image)
+        self.photo = MWPhoto(URL: url!)
+        self.photosArray.addObject(photo)
+      }
+
       customImageView.sd_setImageWithURL(NSURL(string: shopmod.photos[0]))
     } else {
       titleAndImageConstraint.constant = 0
@@ -61,6 +74,31 @@ class ShopDetailCell: UITableViewCell {
       introduceLabel.text = body
     }
     
+  }
+  
+  func photoViewer() {
+    let browser = MWPhotoBrowser(delegate: self)
+    browser.displayActionButton = false
+    browser.displayNavArrows = false
+    browser.displaySelectionButtons = false
+    browser.alwaysShowControls = false
+    browser.zoomPhotosToFill = true
+    browser.enableGrid = true
+    browser.startOnGrid = true
+    browser.enableSwipeToDismiss = false
+    browser.setCurrentPhotoIndex(0)
+    self.delegate?.gotoPhotoViewerDelegate(browser)
+  }
+  
+  func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    return UInt(photosArray.count)
+  }
+  
+  func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    if index < UInt(self.photosArray.count) {
+      return self.photosArray.objectAtIndex(Int(index)) as! MWPhotoProtocol
+    }
+    return nil
   }
     
 }

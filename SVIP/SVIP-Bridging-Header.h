@@ -14,3 +14,4 @@
 //#import <AVFoundation/AVFoundation.h>
 #import "YunBaService.h"
 #import "MobClick.h"
+#import "MWPhotoBrowser.h"
