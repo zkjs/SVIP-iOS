@@ -16,7 +16,6 @@ target 'SVIP' do
   pod 'SDWebImage', '~> 3.7'
   pod 'MBProgressHUD', '~> 0.9.2'
   pod 'HexColors', '~> 4.0'
-  pod 'MWPhotoBrowser'
 end
 
 target 'SVIPTests' do

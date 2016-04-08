@@ -22,19 +22,20 @@ class ShopDetailCell: UITableViewCell,MWPhotoBrowserDelegate {
   var photosArray = NSMutableArray()
   var photo = MWPhoto()
   var delegate:PhotoViewerDelegate?
-    override func awakeFromNib() {
-        super.awakeFromNib()
-      
-      self.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
-      seperatorLine.backgroundColor = UIColor(patternImage: UIImage(named: "home_line")!)
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
   
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    
+    self.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
+    seperatorLine.backgroundColor = UIColor(patternImage: UIImage(named: "home_line")!)
+  }
+
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+
+    // Configure the view for the selected state
+  }
+
   
   class func reuseIdentifier() -> String {
     return "ShopDetailCell"
@@ -64,7 +65,7 @@ class ShopDetailCell: UITableViewCell,MWPhotoBrowserDelegate {
         self.photosArray.addObject(photo)
       }
 
-      customImageView.sd_setImageWithURL(NSURL(string: shopmod.photos[0]))
+      customImageView.sd_setImageWithURL(NSURL(string: shopmod.photos[0]), placeholderImage: UIImage(named: "img_placeholder"))
     } else {
       titleAndImageConstraint.constant = 0
       imageHeightConstraint.constant = 0
