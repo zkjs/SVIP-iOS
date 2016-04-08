@@ -10,6 +10,8 @@ import UIKit
 
 class RegisterAlertVC: UIViewController {
   
+  @IBOutlet weak var containerView: UIView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -23,6 +25,25 @@ class RegisterAlertVC: UIViewController {
     
     let tap = UITapGestureRecognizer(target: self, action: "dismiss")
     view.addGestureRecognizer(tap)
+    containerView.alpha = 0
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    animateView()
+  }
+  
+  private func animateView() {
+    containerView.frame = CGRectOffset(containerView.frame, 0, -ScreenSize.SCREEN_HEIGHT)
+    UIView.animateWithDuration(0.5, delay: 0.0,
+                   usingSpringWithDamping: 0.6,
+                    initialSpringVelocity: 0.0,
+                                  options: .CurveEaseInOut,
+                               animations: {
+        self.containerView.frame = CGRectOffset(self.containerView.frame, 0, +ScreenSize.SCREEN_HEIGHT)
+        self.containerView.alpha = 1
+      },completion: { (finished) in
+        
+    })
   }
   
   @IBAction func registerAction(sender: UIButton) {

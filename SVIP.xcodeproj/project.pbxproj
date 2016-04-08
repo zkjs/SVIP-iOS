@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400888E31CB74E5A0004E0A1 /* TipsBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400888E11CB74E5A0004E0A1 /* TipsBubble.swift */; };
+		400888E41CB74E5A0004E0A1 /* TipsBubble.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400888E21CB74E5A0004E0A1 /* TipsBubble.xib */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
@@ -238,6 +240,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		400888E11CB74E5A0004E0A1 /* TipsBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsBubble.swift; sourceTree = "<group>"; };
+		400888E21CB74E5A0004E0A1 /* TipsBubble.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsBubble.xib; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -973,6 +977,8 @@
 		B2FB432B1B8EB49600C9BEBB /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				400888E11CB74E5A0004E0A1 /* TipsBubble.swift */,
+				400888E21CB74E5A0004E0A1 /* TipsBubble.xib */,
 				40D9C9E11C2037B200E992AB /* InfoEditVC.swift */,
 				40D9C9E21C2037B200E992AB /* InfoEditVC.xib */,
 				FA06ADE41C87E2E30060DD33 /* RegisterVC.swift */,
@@ -1281,6 +1287,7 @@
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FA60C2131CB74D79005711A2 /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
+				400888E41CB74E5A0004E0A1 /* TipsBubble.xib in Resources */,
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
 				FA60C20B1CB74D79005711A2 /* PlayButtonOverlayLarge@3x.png in Resources */,
@@ -1411,6 +1418,7 @@
 				F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
 				40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				400888E31CB74E5A0004E0A1 /* TipsBubble.swift in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				40DE24F21C9BFA9300CA7F26 /* BeaconErrors+CoreDataProperties.swift in Sources */,
