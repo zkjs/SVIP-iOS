@@ -121,7 +121,7 @@ class LoginFirstVC: UIViewController {
   func showRegisterAlert() {
     let storyboard = UIStoryboard(name: "RegisterAlertVC", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("RegisterAlertVC")
-    vc.modalPresentationStyle = .OverFullScreen
+    vc.modalPresentationStyle = .Custom
     presentViewController(vc, animated: false, completion: nil)
   }
 

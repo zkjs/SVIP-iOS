@@ -18,16 +18,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiK-VK-AEE">
-                                <rect key="frame" x="60" y="228" width="200" height="112"/>
+                                <rect key="frame" x="30" y="188" width="260" height="193"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您不是邀请用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Eu-gIe">
-                                        <rect key="frame" x="41" y="24" width="119" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您注册的手机号码无激活权限！若需激活，需得到本平台内合作闪家的认证推荐！如果您是平台内任一合作商家的协议客户或者vip会员，请您联系在该商家的专属经理并提出激活申请。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Eu-gIe">
+                                        <rect key="frame" x="25" y="25" width="210" height="143"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THH-V2-ylU">
-                                        <rect key="frame" x="64" y="62" width="72" height="34"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THH-V2-ylU">
+                                        <rect key="frame" x="94" y="185" width="72" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="HIt-XK-hWN"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="立即申请">
                                             <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,12 +42,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ahW-Eu-gIe" firstAttribute="centerX" secondItem="HiK-VK-AEE" secondAttribute="centerX" id="DjE-24-mHm"/>
-                                    <constraint firstAttribute="width" constant="200" id="OyL-yB-w8s"/>
-                                    <constraint firstAttribute="height" constant="112" id="QiV-ya-4ie"/>
+                                    <constraint firstAttribute="trailing" secondItem="ahW-Eu-gIe" secondAttribute="trailing" constant="25" id="6cD-z2-luY"/>
+                                    <constraint firstAttribute="bottom" secondItem="ahW-Eu-gIe" secondAttribute="bottom" constant="25" id="MB8-rc-JtP"/>
                                     <constraint firstItem="THH-V2-ylU" firstAttribute="centerX" secondItem="HiK-VK-AEE" secondAttribute="centerX" id="ZdE-UA-8uo"/>
                                     <constraint firstItem="THH-V2-ylU" firstAttribute="top" secondItem="ahW-Eu-gIe" secondAttribute="bottom" constant="17" id="g0H-zE-jgA"/>
-                                    <constraint firstItem="ahW-Eu-gIe" firstAttribute="top" secondItem="HiK-VK-AEE" secondAttribute="top" constant="24" id="out-IC-euW"/>
+                                    <constraint firstItem="ahW-Eu-gIe" firstAttribute="top" secondItem="HiK-VK-AEE" secondAttribute="top" constant="25" id="out-IC-euW"/>
+                                    <constraint firstItem="ahW-Eu-gIe" firstAttribute="leading" secondItem="HiK-VK-AEE" secondAttribute="leading" constant="25" id="uXv-LA-ZSG"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -57,9 +60,14 @@
                         <constraints>
                             <constraint firstItem="HiK-VK-AEE" firstAttribute="centerX" secondItem="xGE-pm-NyU" secondAttribute="centerX" id="3OP-ON-raz"/>
                             <constraint firstItem="HiK-VK-AEE" firstAttribute="centerY" secondItem="xGE-pm-NyU" secondAttribute="centerY" id="Ymv-UL-gHh"/>
+                            <constraint firstAttribute="trailing" secondItem="HiK-VK-AEE" secondAttribute="trailing" constant="30" id="egE-Kg-2ef"/>
+                            <constraint firstItem="HiK-VK-AEE" firstAttribute="leading" secondItem="xGE-pm-NyU" secondAttribute="leading" constant="30" id="lzW-0z-Kry"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="containerView" destination="HiK-VK-AEE" id="H0b-gv-XDU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhC-3c-UvC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
