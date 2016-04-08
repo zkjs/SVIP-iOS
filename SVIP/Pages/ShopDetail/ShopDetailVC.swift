@@ -50,7 +50,7 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     if gestureRecognizer.state != .Ended {
       return
     }
-    UIView.transitionWithView((self.navigationController?.view)!, duration: 1.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+    UIView.transitionWithView((self.navigationController?.view)!, duration: 0.8, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
       self.navigationController?.popViewControllerAnimated(false)
       }, completion: nil)
   }
