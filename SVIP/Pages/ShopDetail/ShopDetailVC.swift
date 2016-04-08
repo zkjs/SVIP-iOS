@@ -17,7 +17,7 @@ class ShopDetailVC: UITableViewController {
   @IBOutlet weak var shopnameLabel: UILabel!
   @IBOutlet weak var shoplogoImageView: UIImageView!
   var shopDetailArray = [ShopmodsModel]() 
-  var shopDetail = ShopDetailModel!()
+  var shopDetail: ShopDetailModel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,7 +26,7 @@ class ShopDetailVC: UITableViewController {
     tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0)
     self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
     headerView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
-    tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+    tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     tableView.separatorColor = UIColor(hex: "#B8B8B8")
     //分割线往左移
     if tableView.respondsToSelector(Selector("setSeparatorInset:")) {
@@ -36,14 +36,14 @@ class ShopDetailVC: UITableViewController {
       tableView.layoutMargins = UIEdgeInsetsZero
     }
     self.tableView.rowHeight = UITableViewAutomaticDimension
-    self.tableView.estimatedRowHeight = 44.0
+    self.tableView.estimatedRowHeight = 365.0
 
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBarHidden = true
-    navigationController?.navigationBar.translucent = true
+//    navigationController?.navigationBarHidden = true
+//    navigationController?.navigationBar.translucent = true
     loadData()
     
   }
@@ -52,7 +52,7 @@ class ShopDetailVC: UITableViewController {
   
   func setupView() {
     guard let url:String = shopDetail.shoplogo,let shopname:String = shopDetail.shopname,let shopAddress:String = shopDetail.shopaddress,phone:String = shopDetail.telephone else {return}
-    shoplogoImageView.sd_setImageWithURL(NSURL(string: url))
+    shoplogoImageView.sd_setImageWithURL(NSURL(string: url.fullImageUrl))
     shopnameLabel.text = shopname
     shopAddressLabel.text = shopAddress
     phoneLabel.text = phone
@@ -100,6 +100,5 @@ class ShopDetailVC: UITableViewController {
     cell.configCell(shopmod)
     return cell
   }
-  
   
 }

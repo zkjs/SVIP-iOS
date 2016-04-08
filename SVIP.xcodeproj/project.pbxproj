@@ -140,7 +140,6 @@
 		FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */; };
 		FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */; };
 		FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */; };
-		FAF6B6911CB5FA0E0043164C /* ShopDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B68F1CB5FA0E0043164C /* ShopDetailCell.xib */; };
 		FAF6B6971CB6351F0043164C /* ShopDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */; };
 		FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6981CB635620043164C /* ShopmodsModel.swift */; };
 		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
@@ -352,7 +351,6 @@
 		FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushInfoModel.swift; sourceTree = "<group>"; };
 		FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailCell.swift; sourceTree = "<group>"; };
-		FAF6B68F1CB5FA0E0043164C /* ShopDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopDetailCell.xib; sourceTree = "<group>"; };
 		FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailModel.swift; sourceTree = "<group>"; };
 		FAF6B6981CB635620043164C /* ShopmodsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopmodsModel.swift; sourceTree = "<group>"; };
 		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
@@ -674,7 +672,6 @@
 				4096FD611CB4BCE800E8E31E /* ShopDetail.storyboard */,
 				4096FD581CB4B5BE00E8E31E /* ShopDetailVC.swift */,
 				FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */,
-				FAF6B68F1CB5FA0E0043164C /* ShopDetailCell.xib */,
 				FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */,
 				FAF6B6981CB635620043164C /* ShopmodsModel.swift */,
 			);
@@ -1085,7 +1082,6 @@
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
-				FAF6B6911CB5FA0E0043164C /* ShopDetailCell.xib in Resources */,
 				FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */,
 				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
 				40DE25B01C9D6CCB00CA7F26 /* SettingTVC.storyboard in Resources */,

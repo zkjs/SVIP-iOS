@@ -16,11 +16,12 @@ class ShopDetailCell: UITableViewCell {
   @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var titleConstraint: NSLayoutConstraint!
   @IBOutlet weak var titleAndImageConstraint: NSLayoutConstraint!
+  @IBOutlet weak var seperatorLine: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
       
       self.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
-        // Initialization code
+      seperatorLine.backgroundColor = UIColor(patternImage: UIImage(named: "home_line")!)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -39,23 +40,27 @@ class ShopDetailCell: UITableViewCell {
   }
   
   func configCell(shopmod:ShopmodsModel) {
-    guard let title:String = shopmod.title else {
+    if shopmod.title.isEmpty  {
       titleConstraint.constant = 0
-      return
+    } else {
+      titleConstraint.constant = 25
+      titleLabel.text = shopmod.title
     }
-    titleLabel.text = title
-    guard let arr:NSArray = shopmod.photos where arr.count > 0 else {return}
-    guard let url:String = arr[0] as? String else {
+    
+    if shopmod.photos.count > 0  {
+      titleAndImageConstraint.constant = 25
+      imageHeightConstraint.constant = 210
+      
+      customImageView.sd_setImageWithURL(NSURL(string: shopmod.photos[0]))
+    } else {
       titleAndImageConstraint.constant = 0
       imageHeightConstraint.constant = 0
-      return
     }
-    customImageView.sd_setImageWithURL(NSURL(string: url))
-    guard let body:String = shopmod.body else {
-      
-      return
+    
+    if let body:String = shopmod.body {
+      introduceLabel.text = body
     }
-    introduceLabel.text = body
+    
   }
     
 }

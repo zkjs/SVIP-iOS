@@ -55,7 +55,7 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
     addGuestures()
     
-    navigationController?.delegate = self
+    //navigationController?.delegate = self
     
     // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
     //walletButton.hidden = true
@@ -325,9 +325,9 @@ extension HomeVC: CBCentralManagerDelegate {
 extension HomeVC: UINavigationControllerDelegate {
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-    if !fromVC.isKindOfClass(ShopDetailVC) && !toVC.isKindOfClass(ShopDetailVC) {
-      return nil
-    }
+//    if !fromVC.isKindOfClass(ShopDetailVC) && !toVC.isKindOfClass(ShopDetailVC) {
+//      return nil
+//    }
     
     if (operation == .Push) {
       swipeInteractionController.wireToViewController(toVC)
