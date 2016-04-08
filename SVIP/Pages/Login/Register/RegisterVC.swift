@@ -60,6 +60,14 @@ class RegisterVC: UIViewController {
     
   }
   
+  
+  @IBAction func showTips(sender: UIButton) {
+    let vc = TipsBubble()
+    vc.anglePoint = sender.center
+    vc.modalPresentationStyle = .Custom
+    presentViewController(vc, animated: false, completion: nil)
+  }
+  
 }
 
 extension RegisterVC:UITextFieldDelegate {

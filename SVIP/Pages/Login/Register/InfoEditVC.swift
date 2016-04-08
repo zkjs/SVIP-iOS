@@ -91,6 +91,12 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
     presentViewController(alertController, animated: true, completion: nil)
   }
   
+  @IBAction func showTips(sender: UIButton) {
+    let vc = TipsBubble()
+    vc.anglePoint = sender.center
+    vc.modalPresentationStyle = .Custom
+    presentViewController(vc, animated: false, completion: nil)
+  }
   
   // MARK: - Gesture
   

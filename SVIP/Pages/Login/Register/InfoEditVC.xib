@@ -17,18 +17,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的真实脸部照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYk-eQ-59m">
-                    <rect key="frame" x="49" y="95" width="136" height="21"/>
+                    <rect key="frame" x="40" y="95" width="136" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_xiangqing" translatesAutoresizingMaskIntoConstraints="NO" id="DQt-EN-JVa">
-                    <rect key="frame" x="225" y="95" width="15" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="0oj-2y-XxV"/>
-                        <constraint firstAttribute="width" constant="15" id="xlF-tC-gu5"/>
-                    </constraints>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_shangchuan" translatesAutoresizingMaskIntoConstraints="NO" id="8wG-L3-qpf">
                     <rect key="frame" x="115" y="135" width="90" height="90"/>
                     <constraints>
@@ -81,6 +74,17 @@
                         <action selector="selectAvatar:" destination="-1" eventType="touchUpInside" id="hq0-MH-Ack"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sej-7l-5bn">
+                    <rect key="frame" x="251" y="84" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="PBB-Ma-PEO"/>
+                        <constraint firstAttribute="height" constant="44" id="dM5-7B-u38"/>
+                    </constraints>
+                    <state key="normal" image="ic_xiangqing"/>
+                    <connections>
+                        <action selector="showTips:" destination="-1" eventType="touchUpInside" id="hWZ-yM-LtH"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.062745098040000002" green="0.062745098040000002" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -88,18 +92,17 @@
                 <constraint firstItem="F3T-Ew-EaP" firstAttribute="centerX" secondItem="2KD-MB-mwv" secondAttribute="centerX" id="8Tu-2i-tM5"/>
                 <constraint firstAttribute="bottom" secondItem="Ira-cv-oOH" secondAttribute="bottom" constant="40" id="8ts-U2-5fg"/>
                 <constraint firstItem="2KD-MB-mwv" firstAttribute="top" secondItem="8wG-L3-qpf" secondAttribute="bottom" constant="55" id="9cy-bX-2Ht"/>
-                <constraint firstItem="DQt-EN-JVa" firstAttribute="leading" secondItem="pYk-eQ-59m" secondAttribute="trailing" constant="40" id="BPY-nE-Ocx"/>
                 <constraint firstItem="Ira-cv-oOH" firstAttribute="leading" secondItem="F3T-Ew-EaP" secondAttribute="leading" id="ErI-cK-Ro3"/>
                 <constraint firstItem="IXL-j9-hcY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="135" id="HBF-9n-QZg"/>
+                <constraint firstItem="pYk-eQ-59m" firstAttribute="leading" secondItem="F3T-Ew-EaP" secondAttribute="leading" id="MBg-Ka-LBa"/>
                 <constraint firstItem="8wG-L3-qpf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MIO-zI-idy"/>
                 <constraint firstItem="0t8-Ud-PLE" firstAttribute="trailing" secondItem="F3T-Ew-EaP" secondAttribute="trailing" id="PPU-ep-cRV"/>
                 <constraint firstItem="0t8-Ud-PLE" firstAttribute="leading" secondItem="Ira-cv-oOH" secondAttribute="trailing" constant="20" id="TM4-GQ-JAW"/>
                 <constraint firstItem="IXL-j9-hcY" firstAttribute="width" secondItem="8wG-L3-qpf" secondAttribute="width" id="VJL-ac-67B"/>
-                <constraint firstAttribute="trailing" secondItem="DQt-EN-JVa" secondAttribute="trailing" constant="80" id="ZHb-o1-GYi"/>
-                <constraint firstAttribute="trailing" secondItem="DQt-EN-JVa" secondAttribute="trailing" constant="80" id="b6l-Sf-Jua"/>
+                <constraint firstItem="sej-7l-5bn" firstAttribute="trailing" secondItem="F3T-Ew-EaP" secondAttribute="trailing" constant="15" id="Vas-lI-30X"/>
                 <constraint firstItem="F3T-Ew-EaP" firstAttribute="top" secondItem="2KD-MB-mwv" secondAttribute="bottom" constant="30" id="bvl-qE-jOL"/>
-                <constraint firstItem="DQt-EN-JVa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="cBj-6v-A2z"/>
                 <constraint firstItem="pYk-eQ-59m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="hKd-5v-I1h"/>
+                <constraint firstItem="sej-7l-5bn" firstAttribute="centerY" secondItem="pYk-eQ-59m" secondAttribute="centerY" id="jdl-94-pTk"/>
                 <constraint firstItem="0t8-Ud-PLE" firstAttribute="centerY" secondItem="Ira-cv-oOH" secondAttribute="centerY" id="kB0-vo-ByT"/>
                 <constraint firstItem="8wG-L3-qpf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="135" id="mzm-g6-QyH"/>
                 <constraint firstItem="IXL-j9-hcY" firstAttribute="height" secondItem="8wG-L3-qpf" secondAttribute="height" id="q7l-oU-E74"/>
@@ -110,7 +113,6 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="b6l-Sf-Jua"/>
                     <exclude reference="yWP-ke-b0O"/>
                 </mask>
             </variation>
