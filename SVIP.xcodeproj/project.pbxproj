@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		400888E31CB74E5A0004E0A1 /* TipsBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400888E11CB74E5A0004E0A1 /* TipsBubble.swift */; };
 		400888E41CB74E5A0004E0A1 /* TipsBubble.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400888E21CB74E5A0004E0A1 /* TipsBubble.xib */; };
+		400888EA1CB7A26C0004E0A1 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 400888E71CB7A26C0004E0A1 /* DACircularProgressView.m */; };
+		400888EB1CB7A26C0004E0A1 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 400888E91CB7A26C0004E0A1 /* DALabeledCircularProgressView.m */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
@@ -242,6 +244,10 @@
 /* Begin PBXFileReference section */
 		400888E11CB74E5A0004E0A1 /* TipsBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsBubble.swift; sourceTree = "<group>"; };
 		400888E21CB74E5A0004E0A1 /* TipsBubble.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsBubble.xib; sourceTree = "<group>"; };
+		400888E61CB7A26C0004E0A1 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		400888E71CB7A26C0004E0A1 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		400888E81CB7A26C0004E0A1 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
+		400888E91CB7A26C0004E0A1 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -497,6 +503,17 @@
 				DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		400888E51CB7A26C0004E0A1 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				400888E61CB7A26C0004E0A1 /* DACircularProgressView.h */,
+				400888E71CB7A26C0004E0A1 /* DACircularProgressView.m */,
+				400888E81CB7A26C0004E0A1 /* DALabeledCircularProgressView.h */,
+				400888E91CB7A26C0004E0A1 /* DALabeledCircularProgressView.m */,
+			);
+			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
 		404177CF1C993E6100113721 /* ViewModel */ = {
@@ -928,6 +945,7 @@
 		40E3A18C1BFF01B000516EC4 /* 3rdparty-oc */ = {
 			isa = PBXGroup;
 			children = (
+				400888E51CB7A26C0004E0A1 /* DACircularProgress */,
 				FA60C1B51CB74D58005711A2 /* MWPhotoBrowser */,
 				409E73DD1C9B98B30040186C /* Category */,
 				409E73FD1C9BE51E0040186C /* MBProgressHUD+Add */,
@@ -1417,6 +1435,7 @@
 				40CE7F331CAD0DD40027E715 /* TPKeyboardAvoidingTableView.m in Sources */,
 				F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
+				400888EB1CB7A26C0004E0A1 /* DALabeledCircularProgressView.m in Sources */,
 				40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				400888E31CB74E5A0004E0A1 /* TipsBubble.swift in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
@@ -1469,6 +1488,7 @@
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				FA60C1D11CB74D58005711A2 /* MWPhotoBrowser.m in Sources */,
+				400888EA1CB7A26C0004E0A1 /* DACircularProgressView.m in Sources */,
 				40DE24F11C9BFA9300CA7F26 /* BeaconErrors.swift in Sources */,
 				4096FD501CB36CA400E8E31E /* PushMessageVC.swift in Sources */,
 				FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */,
