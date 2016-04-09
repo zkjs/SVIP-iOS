@@ -147,9 +147,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if let data = msg["data"] as? NSDictionary,
           let type = msg["type"] as? String where data.count > 0 {
         // 支付通知
-        if type == "PAYMENT_CONFIRM" {
+        if type == "PAYMENT_CONFIRM" {//大额支付
           let  payInfo = PaylistmModel(dict: data)
           NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_PAYMENT, object: nil, userInfo: ["payInfo":payInfo])
+        }
+        else if type == "PAYMENT_RESULT" {//小额支付
+          let  payInfo = PaylistmModel(dict: data)
+          
+          /*let notification = UILocalNotification()
+          notification.alertBody = (aps["alert"] as? String) ?? "您有一笔收款:\(payInfo.displayAmount)"
+          //notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+          notification.fireDate = NSDate()
+          notification.soundName = UILocalNotificationDefaultSoundName // play default sound
+          UIApplication.sharedApplication().scheduleLocalNotification(notification)*/
+          
+          let alert = UIAlertView(title: "收款提醒", message: (aps["alert"] as? String) ?? "您有一笔收款:\(payInfo.displayAmount)", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "确认")
+          alert.show()
         }
         // 到店欢迎,营销推送通知
         else if type == "BLE_ACTIVITY" {
@@ -157,8 +170,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let content = data["content"] as? String else {
               return
           }
-          //let alert = UIAlertView(title: title, message: content, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "确认")
-          //alert.show()
           
           let  payInfo = PushMessageModel(dict: data)
           NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_WELCOME, object: nil, userInfo: ["welcomeInfo":payInfo])

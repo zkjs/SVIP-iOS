@@ -67,8 +67,8 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     showHUDInTableView(tableView, withLoading: "")
     HttpService.sharedInstance.getShopDetail { (shopDetail, error) -> Void in
       self.hideHUD()
-      if let _ = error {
-        
+      if let error = error {
+        self.showErrorHint(error)
       } else {
         self.shopDetail = shopDetail 
         self.shopDetailArray = self.shopDetail.shopmods
