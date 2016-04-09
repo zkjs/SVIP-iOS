@@ -273,8 +273,12 @@ class HomeVC: UIViewController {
   func doMultipleTap() {
     HttpService.sharedInstance.deleteToken(nil)
     TokenPayload.sharedInstance.clearCacheTokenPayload()
-    let window = UIApplication.sharedApplication().keyWindow
-    window?.rootViewController = BaseNC(rootViewController: LoginFirstVC())
+    
+    if let nav = navigationController {
+      nav.viewControllers = [LoginFirstVC()]
+    } else if let window = UIApplication.sharedApplication().keyWindow {
+      window.rootViewController = BaseNC(rootViewController: LoginFirstVC())
+    }
   }
   
   func gotoShopDetail(gestureRecognizer:UISwipeGestureRecognizer) {
