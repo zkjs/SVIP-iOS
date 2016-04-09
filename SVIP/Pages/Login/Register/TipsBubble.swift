@@ -44,7 +44,7 @@ class TipsBubble: UIViewController {
       leadingConstraint.constant = anglePoint.x - 26
     }
     
-    contentLabel.text = tipsContent ?? "您提供的真实姓名／头像个人信息，我们将对其严格保密，保证不对外公开或向第三方提供您的个人信息。"
+    contentLabel.text = tipsContent ?? "隐私信息未经本人许可严格保密"
     
     widthConstraint.constant = 1
     blurView.alpha = 0

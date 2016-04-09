@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiK-VK-AEE">
-                                <rect key="frame" x="30" y="188" width="260" height="193"/>
+                                <rect key="frame" x="30" y="139" width="260" height="290"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您注册的手机号码无激活权限！若需激活，需得到本平台内合作闪家的认证推荐！如果您是平台内任一合作商家的协议客户或者vip会员，请您联系在该商家的专属经理并提出激活申请。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Eu-gIe">
-                                        <rect key="frame" x="25" y="25" width="210" height="143"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果您是超级身份合作商家的协议客户或VIP会员，请您联系该商家的专属经理提出加入申请。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Eu-gIe">
+                                        <rect key="frame" x="25" y="214" width="210" height="51"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THH-V2-ylU">
-                                        <rect key="frame" x="94" y="185" width="72" height="0.0"/>
+                                        <rect key="frame" x="94" y="282" width="72" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="HIt-XK-hWN"/>
                                         </constraints>
@@ -39,15 +39,32 @@
                                             <action selector="registerAction:" destination="9Wc-X1-fOh" eventType="touchUpInside" id="73s-ca-WiY"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_yaoqingyonghu" translatesAutoresizingMaskIntoConstraints="NO" id="vsd-ML-ftI">
+                                        <rect key="frame" x="5" y="5" width="250" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="edC-vP-ZBE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您不是邀请用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwh-h5-FUh">
+                                        <rect key="frame" x="71" y="169" width="119" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="vsd-ML-ftI" firstAttribute="leading" secondItem="HiK-VK-AEE" secondAttribute="leading" constant="5" id="2ov-cg-qNA"/>
                                     <constraint firstAttribute="trailing" secondItem="ahW-Eu-gIe" secondAttribute="trailing" constant="25" id="6cD-z2-luY"/>
+                                    <constraint firstItem="Wwh-h5-FUh" firstAttribute="centerX" secondItem="HiK-VK-AEE" secondAttribute="centerX" id="75d-jO-S1E"/>
+                                    <constraint firstItem="Wwh-h5-FUh" firstAttribute="top" secondItem="vsd-ML-ftI" secondAttribute="bottom" constant="24" id="8e6-8L-fCg"/>
                                     <constraint firstAttribute="bottom" secondItem="ahW-Eu-gIe" secondAttribute="bottom" constant="25" id="MB8-rc-JtP"/>
+                                    <constraint firstAttribute="trailing" secondItem="vsd-ML-ftI" secondAttribute="trailing" constant="5" id="Mgh-j1-WNy"/>
+                                    <constraint firstItem="vsd-ML-ftI" firstAttribute="top" secondItem="HiK-VK-AEE" secondAttribute="top" constant="5" id="UhA-ZW-AmY"/>
                                     <constraint firstItem="THH-V2-ylU" firstAttribute="centerX" secondItem="HiK-VK-AEE" secondAttribute="centerX" id="ZdE-UA-8uo"/>
                                     <constraint firstItem="THH-V2-ylU" firstAttribute="top" secondItem="ahW-Eu-gIe" secondAttribute="bottom" constant="17" id="g0H-zE-jgA"/>
-                                    <constraint firstItem="ahW-Eu-gIe" firstAttribute="top" secondItem="HiK-VK-AEE" secondAttribute="top" constant="25" id="out-IC-euW"/>
                                     <constraint firstItem="ahW-Eu-gIe" firstAttribute="leading" secondItem="HiK-VK-AEE" secondAttribute="leading" constant="25" id="uXv-LA-ZSG"/>
+                                    <constraint firstItem="ahW-Eu-gIe" firstAttribute="top" secondItem="Wwh-h5-FUh" secondAttribute="bottom" constant="24" id="uuH-pe-Vt2"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -74,4 +91,7 @@
             <point key="canvasLocation" x="721" y="401"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="img_yaoqingyonghu" width="239" height="140"/>
+    </resources>
 </document>
