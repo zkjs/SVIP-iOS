@@ -60,9 +60,10 @@ class ShopDetailCell: UITableViewCell,MWPhotoBrowserDelegate {
       customImageView.addGestureRecognizer(tapGR)
       photosArray.removeAllObjects()
       for image in shopmod.photos {
-        let url = NSURL(string: image)
-        self.photo = MWPhoto(URL: url!)
-        self.photosArray.addObject(photo)
+        if let url = NSURL(string: image) {
+          self.photo = MWPhoto(URL: url)
+          self.photosArray.addObject(photo)
+        }
       }
 
       customImageView.sd_setImageWithURL(NSURL(string: shopmod.photos[0]), placeholderImage: UIImage(named: "img_placeholder"))

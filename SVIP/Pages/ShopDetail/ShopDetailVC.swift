@@ -57,7 +57,7 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
   
  
   func setupView() {
-    shoplogoImageView.sd_setImageWithURL(NSURL(string: shopDetail.shoplogo.fullImageUrl), placeholderImage: UIImage(named: "星空中心大一圈"))
+    shoplogoImageView.sd_setImageWithURL(NSURL(string: shopDetail.shoplogo.fullImageUrl), placeholderImage: UIImage(named: "img_shangjia"))
     shopnameLabel.text = shopDetail.shopname
     shopAddressLabel.text = shopDetail.shopaddress
     phoneLabel.text = shopDetail.telephone

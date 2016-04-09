@@ -18,7 +18,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星空中心大一圈" translatesAutoresizingMaskIntoConstraints="NO" id="8jV-Yc-lN1">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_shangjia" translatesAutoresizingMaskIntoConstraints="NO" id="8jV-Yc-lN1">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="320" id="yBF-bT-6N2"/>
@@ -177,6 +177,6 @@
     <resources>
         <image name="ic_dingwei_gary" width="10" height="14"/>
         <image name="ic_phone_gary" width="12" height="12"/>
-        <image name="星空中心大一圈" width="479" height="852"/>
+        <image name="img_shangjia" width="375" height="320"/>
     </resources>
 </document>
