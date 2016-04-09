@@ -17,10 +17,10 @@ struct ZKJSConfig {
   //// 测试环境
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com/test"
+  let BaseURL = "http://p.zkjinshi.com/"
   // 图片服务器
-  //let BaseImageURL = "http://cdn.zkjinshi.com"
-  let BaseImageURL = "http://d2.zkjinshi.com"
+  let BaseImageURL = "http://cdn.zkjinshi.com"
+  //let BaseImageURL = "http://d2.zkjinshi.com"
   // 云巴
   let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
   // 友盟
