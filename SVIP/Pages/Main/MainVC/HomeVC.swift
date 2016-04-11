@@ -272,7 +272,7 @@ class HomeVC: UIViewController {
   // 点击屏幕6次退出登录
   func doMultipleTap() {
     HttpService.sharedInstance.deleteToken(nil)
-    TokenPayload.sharedInstance.clearCacheTokenPayload()
+    clearCacheAfterLogout()
     
     if let nav = navigationController {
       nav.viewControllers = [LoginFirstVC()]

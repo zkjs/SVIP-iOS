@@ -23,14 +23,11 @@ class SettingTVC: UITableViewController {
   func logout() {
     showHUDInView(view, withLoading: "")
     HttpService.sharedInstance.deleteToken { (json, error) -> () in
-      //退出登录，主动把token消除
-      TokenPayload.sharedInstance.clearCacheTokenPayload()
       self.hideHUD()
       
       // 清理系统缓存
-      AccountManager.sharedInstance().clearAccountCache()
-      //登出友盟统计
-      MobClick.profileSignOff()
+      clearCacheAfterLogout()
+      
       NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_LOGINCHANGE, object: NSNumber(bool: false))
     }
     YunbaSubscribeService.sharedInstance.unsubscribeAllTopics()

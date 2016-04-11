@@ -212,6 +212,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func didReceiveInvalidToken() {
     // 清理系统缓存
     AccountManager.sharedInstance().clearAccountCache()
+    // 取消yunba订阅
+    YunbaSubscribeService.sharedInstance.unsubscribeAllTopics()
+    YunbaSubscribeService.sharedInstance.setAlias("")
     
     // 弹出登录框
     let nc = BaseNC(rootViewController: LoginFirstVC())
@@ -262,12 +265,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func didLogout() {
-    // 清理系统缓存
-    AccountManager.sharedInstance().clearAccountCache()
-    TokenPayload.sharedInstance.clearCacheTokenPayload()
+    clearCacheAfterLogout()
     
     let window =  UIApplication.sharedApplication().keyWindow
+    if let nav = window?.rootViewController as? UINavigationController {
+      nav.popToRootViewControllerAnimated(false)
+    }
     window?.rootViewController = BaseNC(rootViewController: LoginFirstVC())
+    
     ZKJSTool.showMsg("登录过期，请重新重录")
   }
   
@@ -280,5 +285,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
   
+}
+
+func clearCacheAfterLogout() {
+  AccountManager.sharedInstance().clearAccountCache()
+  TokenPayload.sharedInstance.clearCacheTokenPayload()
+  YunbaSubscribeService.sharedInstance.unsubscribeAllTopics()
+  YunbaSubscribeService.sharedInstance.setAlias("")
+  
+  //登出友盟统计
+  MobClick.profileSignOff()
 }
 
