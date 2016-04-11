@@ -79,7 +79,7 @@ class PayInfoVC: UIViewController {
   
   @IBAction func rejectpay(sender: AnyObject) {
     self.showHUDInView(view, withLoading: "")
-    HttpService.sharedInstance.userPay(payInfo.orderno,action:2) { (succ,error) -> Void in
+    HttpService.sharedInstance.userPay(payInfo.orderno,action:-1) { (succ,error) -> Void in
       self.hideHUD()
       if succ {
         self.showHint("已拒绝支付")

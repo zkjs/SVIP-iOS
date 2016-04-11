@@ -18,23 +18,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiK-VK-AEE">
-                                <rect key="frame" x="30" y="139" width="260" height="290"/>
+                                <rect key="frame" x="30" y="117" width="260" height="335"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果您是超级身份合作商家的协议客户或VIP会员，请您联系该商家的专属经理提出加入申请。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Eu-gIe">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果您是超级身份合作商家的协议客户或VIP会员，请您联系该商家的专属经理提出申请。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Eu-gIe">
                                         <rect key="frame" x="25" y="214" width="210" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THH-V2-ylU">
-                                        <rect key="frame" x="94" y="282" width="72" height="0.0"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THH-V2-ylU">
+                                        <rect key="frame" x="79" y="282" width="102" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="HIt-XK-hWN"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="立即申请">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="查看商家列表">
                                             <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="HIt-XK-hWN"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="registerAction:" destination="9Wc-X1-fOh" eventType="touchUpInside" id="73s-ca-WiY"/>
                                         </connections>
@@ -45,8 +50,8 @@
                                             <constraint firstAttribute="height" constant="140" id="edC-vP-ZBE"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您不是邀请用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwh-h5-FUh">
-                                        <rect key="frame" x="71" y="169" width="119" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="对不起，您还不是被邀请用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwh-h5-FUh">
+                                        <rect key="frame" x="20" y="169" width="221" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -58,9 +63,9 @@
                                     <constraint firstAttribute="trailing" secondItem="ahW-Eu-gIe" secondAttribute="trailing" constant="25" id="6cD-z2-luY"/>
                                     <constraint firstItem="Wwh-h5-FUh" firstAttribute="centerX" secondItem="HiK-VK-AEE" secondAttribute="centerX" id="75d-jO-S1E"/>
                                     <constraint firstItem="Wwh-h5-FUh" firstAttribute="top" secondItem="vsd-ML-ftI" secondAttribute="bottom" constant="24" id="8e6-8L-fCg"/>
-                                    <constraint firstAttribute="bottom" secondItem="ahW-Eu-gIe" secondAttribute="bottom" constant="25" id="MB8-rc-JtP"/>
                                     <constraint firstAttribute="trailing" secondItem="vsd-ML-ftI" secondAttribute="trailing" constant="5" id="Mgh-j1-WNy"/>
                                     <constraint firstItem="vsd-ML-ftI" firstAttribute="top" secondItem="HiK-VK-AEE" secondAttribute="top" constant="5" id="UhA-ZW-AmY"/>
+                                    <constraint firstAttribute="bottom" secondItem="THH-V2-ylU" secondAttribute="bottom" constant="20" id="W0v-K9-dYT"/>
                                     <constraint firstItem="THH-V2-ylU" firstAttribute="centerX" secondItem="HiK-VK-AEE" secondAttribute="centerX" id="ZdE-UA-8uo"/>
                                     <constraint firstItem="THH-V2-ylU" firstAttribute="top" secondItem="ahW-Eu-gIe" secondAttribute="bottom" constant="17" id="g0H-zE-jgA"/>
                                     <constraint firstItem="ahW-Eu-gIe" firstAttribute="leading" secondItem="HiK-VK-AEE" secondAttribute="leading" constant="25" id="uXv-LA-ZSG"/>

@@ -17,7 +17,7 @@ struct ZKJSConfig {
   //// 测试环境
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com/"
+  let BaseURL = "http://p.zkjinshi.com/test"
   // 图片服务器
   let BaseImageURL = "http://cdn.zkjinshi.com"
   //let BaseImageURL = "http://d2.zkjinshi.com"
@@ -27,7 +27,7 @@ struct ZKJSConfig {
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
   
-  let RegisterURL = "http://www.zkjinshi.com/about_us/"
+  let RegisterURL = "http://zkjinshi.com/shop/"
   
   #elseif PRE_RELEASE
   
@@ -43,7 +43,7 @@ struct ZKJSConfig {
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
   
-  let RegisterURL = "http://www.zkjinshi.com/about_us/"
+  let RegisterURL = "http://zkjinshi.com/shop/"
   
   #else
   
@@ -59,7 +59,7 @@ struct ZKJSConfig {
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
   
-  let RegisterURL = "http://www.zkjinshi.com/about_us/"
+  let RegisterURL = "http://zkjinshi.com/shop/"
   
   #endif
   
