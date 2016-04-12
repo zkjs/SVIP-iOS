@@ -47,7 +47,6 @@ class HomeVC: UIViewController {
     self.navigationController!.navigationBar.shadowImage = UIImage()
     
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLoginStateChange:", name: KNOTIFICATION_LOGINCHANGE, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:KNOTIFICATION_PAYMENT, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:KNOTIFICATION_WELCOME, object: nil)
@@ -67,7 +66,6 @@ class HomeVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
-    //payInfo()
     getBalance()
     getOrderList()
     refreshUserInfo()
@@ -157,7 +155,6 @@ class HomeVC: UIViewController {
   }
   
   func updateLogo() {
-    let shop = StorageManager.sharedInstance().cachedShopLogo()
     if let shopLogo = StorageManager.sharedInstance().cachedShopLogo()
        where shopLogo.validthru.timeIntervalSinceNow > 0 {
       shopLogoImageView.sd_setImageWithURL(NSURL(string: shopLogo.logo.fullImageUrl), placeholderImage: UIImage(named: "shop_logo_default"))
@@ -185,9 +182,6 @@ class HomeVC: UIViewController {
     self.presentViewController(nc, animated: true, completion: nil)
   }
   
-
-  func didLoginStateChange(notification: NSNotification) {
-  }
   
   // show/hide the money bubble
   func toggleMoney() {

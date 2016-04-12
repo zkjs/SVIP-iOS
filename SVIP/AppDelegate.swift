@@ -264,7 +264,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let message = notification.object as? YBMessage {
       if let payloadString = NSString(data:message.data, encoding:NSUTF8StringEncoding) as? String {
         print("[Message] \(message.topic) -> \(payloadString)")
-        
       }
     }
   }
