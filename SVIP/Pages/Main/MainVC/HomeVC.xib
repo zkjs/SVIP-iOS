@@ -26,10 +26,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOl-5E-Pt4" userLabel="LogoContainerView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="531"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="526"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_wyndham" translatesAutoresizingMaskIntoConstraints="NO" id="cNW-pJ-VSy">
-                            <rect key="frame" x="87" y="218" width="202" height="96"/>
+                            <rect key="frame" x="87" y="215" width="202" height="96"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -70,25 +70,25 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9b-Ss-psd">
-                    <rect key="frame" x="314" y="567" width="27" height="27"/>
+                    <rect key="frame" x="307" y="559" width="44" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="27" id="lcx-Wv-1CP"/>
-                        <constraint firstAttribute="height" constant="27" id="ycr-dF-Kip"/>
+                        <constraint firstAttribute="width" constant="44" id="lcx-Wv-1CP"/>
+                        <constraint firstAttribute="height" constant="44" id="ycr-dF-Kip"/>
                     </constraints>
-                    <state key="normal" backgroundImage="ic_wallet"/>
+                    <state key="normal" image="ic_wallet"/>
                     <connections>
                         <action selector="walletAction:" destination="-1" eventType="touchUpInside" id="I3j-Xc-rKX"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDh-Zc-8WF">
-                    <rect key="frame" x="287" y="468" width="80" height="87"/>
+                    <rect key="frame" x="287" y="472" width="80" height="87"/>
                     <state key="normal" backgroundImage="ic_money"/>
                     <connections>
                         <action selector="moneyAction:" destination="-1" eventType="touchUpInside" id="aEW-5l-yUS"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ4-wY-tUN">
-                    <rect key="frame" x="312" y="508" width="31" height="18"/>
+                    <rect key="frame" x="312" y="512" width="31" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -139,10 +139,10 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="YCF-Iy-Uvs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="1mw-AI-L46"/>
-                <constraint firstItem="Sri-rI-aGS" firstAttribute="top" secondItem="pOl-5E-Pt4" secondAttribute="bottom" constant="20" id="2Td-zK-iZd"/>
+                <constraint firstItem="Sri-rI-aGS" firstAttribute="top" secondItem="pOl-5E-Pt4" secondAttribute="bottom" constant="25" id="2Td-zK-iZd"/>
                 <constraint firstItem="zrB-WU-zoV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Wc-Cs-drk"/>
+                <constraint firstItem="f9b-Ss-psd" firstAttribute="centerY" secondItem="Sri-rI-aGS" secondAttribute="centerY" id="7DS-Ah-TOm"/>
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="939-Yx-3k7"/>
-                <constraint firstAttribute="bottom" secondItem="f9b-Ss-psd" secondAttribute="bottom" constant="73" id="AAz-SC-HZ1"/>
                 <constraint firstAttribute="trailing" secondItem="pOl-5E-Pt4" secondAttribute="trailing" id="Ag3-2p-6XL"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="centerY" secondItem="YCF-Iy-Uvs" secondAttribute="centerY" id="Evf-7y-VnJ"/>
                 <constraint firstAttribute="bottom" secondItem="waA-wE-0fQ" secondAttribute="bottom" constant="148" id="FSP-Bu-qeb"/>
@@ -162,8 +162,8 @@
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cQB-nz-EZX"/>
                 <constraint firstItem="Wl2-r5-YWc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="cqk-1a-iPT"/>
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="top" secondItem="zrB-WU-zoV" secondAttribute="bottom" constant="8" id="kDP-eF-1vT"/>
-                <constraint firstAttribute="trailing" secondItem="f9b-Ss-psd" secondAttribute="trailing" constant="34" id="lqQ-dQ-Pke"/>
-                <constraint firstItem="f9b-Ss-psd" firstAttribute="top" secondItem="PDh-Zc-8WF" secondAttribute="bottom" constant="12" id="v96-Bc-JLa"/>
+                <constraint firstAttribute="trailing" secondItem="f9b-Ss-psd" secondAttribute="trailing" constant="24" id="lqQ-dQ-Pke"/>
+                <constraint firstItem="f9b-Ss-psd" firstAttribute="top" secondItem="PDh-Zc-8WF" secondAttribute="bottom" id="v96-Bc-JLa"/>
                 <constraint firstItem="zQ4-wY-tUN" firstAttribute="centerY" secondItem="PDh-Zc-8WF" secondAttribute="centerY" constant="5" id="xQO-TL-ubG"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

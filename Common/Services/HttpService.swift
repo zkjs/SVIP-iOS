@@ -197,7 +197,7 @@ class HttpService {
   }
   
   func handleResult(request request:NSURLRequest?, response:NSHTTPURLResponse?,data:NSData?, error:NSError?, record:Bool = false ,completionHandler:HttpCompletionHandler) -> Void {
-    print("statusCode:\(response?.statusCode)")
+    print("statusCode:\(response?.statusCode) for url:\(request?.URL?.absoluteString)")
     guard let statusCode = response?.statusCode else{
       let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
                       code: 0,

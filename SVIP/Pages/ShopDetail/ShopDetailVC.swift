@@ -50,14 +50,14 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     if gestureRecognizer.state != .Ended {
       return
     }
-    UIView.transitionWithView((self.navigationController?.view)!, duration: 1.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+    UIView.transitionWithView((self.navigationController?.view)!, duration: 0.8, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
       self.navigationController?.popViewControllerAnimated(false)
       }, completion: nil)
   }
   
  
   func setupView() {
-    shoplogoImageView.sd_setImageWithURL(NSURL(string: shopDetail.shoplogo.fullImageUrl), placeholderImage: UIImage(named: "星空中心大一圈"))
+    shoplogoImageView.sd_setImageWithURL(NSURL(string: shopDetail.shoplogo.fullImageUrl), placeholderImage: UIImage(named: "img_shangjia"))
     shopnameLabel.text = shopDetail.shopname
     shopAddressLabel.text = shopDetail.shopaddress
     phoneLabel.text = shopDetail.telephone
@@ -67,8 +67,8 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     showHUDInTableView(tableView, withLoading: "")
     HttpService.sharedInstance.getShopDetail { (shopDetail, error) -> Void in
       self.hideHUD()
-      if let _ = error {
-        
+      if let error = error {
+        self.showErrorHint(error)
       } else {
         self.shopDetail = shopDetail 
         self.shopDetailArray = self.shopDetail.shopmods

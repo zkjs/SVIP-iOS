@@ -16,7 +16,7 @@ enum FacePayOrderStatus:Int {
 }
 
 extension HttpService {
-  // 用户确认付款
+  // 用户确认付款 : 1:确认 -1:拒绝
   func userPay(orderno:String,action:Int,completionHandler:(success:Bool,NSError?) ->Void ) {
     let urlString = ResourcePath.UserEnsurePay.description.fullUrl
     let dict = ["orderno":orderno,"action":action]

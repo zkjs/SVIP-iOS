@@ -266,9 +266,13 @@ class HomeVC: UIViewController {
   // 点击屏幕6次退出登录
   func doMultipleTap() {
     HttpService.sharedInstance.deleteToken(nil)
-    TokenPayload.sharedInstance.clearCacheTokenPayload()
-    let window = UIApplication.sharedApplication().keyWindow
-    window?.rootViewController = BaseNC(rootViewController: LoginFirstVC())
+    clearCacheAfterLogout()
+    
+    if let nav = navigationController {
+      nav.viewControllers = [LoginFirstVC()]
+    } else if let window = UIApplication.sharedApplication().keyWindow {
+      window.rootViewController = BaseNC(rootViewController: LoginFirstVC())
+    }
   }
   
   func gotoShopDetail(gestureRecognizer:UISwipeGestureRecognizer) {
@@ -279,7 +283,7 @@ class HomeVC: UIViewController {
     let shopVC = storyBoard.instantiateViewControllerWithIdentifier("ShopDetailVC") as! ShopDetailVC
 
     
-    UIView.transitionWithView((self.navigationController?.view)!, duration: 1.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: { () -> Void in
+    UIView.transitionWithView((self.navigationController?.view)!, duration: 0.8, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: { () -> Void in
         self.navigationController?.pushViewController(shopVC, animated: false)
       }, completion: nil)
   }
