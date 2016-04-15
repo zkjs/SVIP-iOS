@@ -44,7 +44,7 @@ class MainTBC: UITabBarController {
     
     // 新手用户使用指南
     if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
-      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
+      NSUserDefaults.standardUserDefaults().setBool(false, forKey:"everLaunched")
       showTipView()
     }
   }

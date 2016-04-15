@@ -84,7 +84,7 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
   }
   
   
-  override   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return shopDetailArray.count
   }
   

@@ -45,11 +45,11 @@ class LoginManager: NSObject {
     /*
      * 暂时取消Guide
      */
-//    if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
-//      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
-//      let guideViewController = GuideVC()
-//      appWindow.rootViewController = guideViewController
-//    } else {
+    if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
+      NSUserDefaults.standardUserDefaults().setBool(false, forKey:"everLaunched")
+      let guideViewController = GuideVC()
+      appWindow.rootViewController = guideViewController
+    } else {
       var nc: BaseNC
       if TokenPayload.sharedInstance.isLogin {
         nc = BaseNC(rootViewController: HomeVC())
@@ -57,7 +57,7 @@ class LoginManager: NSObject {
         nc = BaseNC(rootViewController: LoginFirstVC())
       }
       appWindow.rootViewController = nc
-//    }
+    }
   }
   
 }
