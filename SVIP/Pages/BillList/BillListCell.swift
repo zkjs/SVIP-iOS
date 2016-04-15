@@ -36,7 +36,7 @@ class BillListCell: UICollectionViewCell {
         hotelLabel.text = bill.shopname
         timeLabel.text = bill.createtime
         moneyLabel.text = bill.displayAmount
-        orderNoLabel.text = bill.orderno
+        orderNoLabel.text = bill.paymentno
         hotelNameLabel.text = bill.shopname
       }
     }

@@ -51,7 +51,7 @@ class PayInfoVC: UIViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
-    ordernoLabel.text = "支付单号:\( payInfo.orderno)"
+    ordernoLabel.text = "支付单号:\( payInfo.paymentno)"
     payamountLabel.text = payInfo.displayAmount
     shopnameLabel.text = payInfo.shopname
     animateView()

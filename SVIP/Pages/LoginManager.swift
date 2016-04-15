@@ -46,7 +46,7 @@ class LoginManager: NSObject {
      * 暂时取消Guide
      */
     if (!(NSUserDefaults.standardUserDefaults().boolForKey("everLaunched"))) {
-      NSUserDefaults.standardUserDefaults().setBool(false, forKey:"everLaunched")
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"everLaunched")
       let guideViewController = GuideVC()
       appWindow.rootViewController = guideViewController
     } else {
