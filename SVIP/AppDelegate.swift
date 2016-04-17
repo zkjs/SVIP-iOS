@@ -72,10 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print("applicationDidEnterBackground")
     // 根据测试情况调整，Backgournd 模式下选择 startMonitoringSignificantLocationChanges 还是 startUpdatingLocation ?
     // startMonitoringSignificantLocationChanges 省电但是频率慢，精度低
-    // startUpdatingLocation 精度高，上传频率有保证，但是耗电
-    /*LocationMonitor.sharedInstance.stopUpdatingLocation()
+    // startUpdatingLocation 精度高，上传频率有保证，但是耗电，而且苹果审核被拒
+    LocationMonitor.sharedInstance.stopUpdatingLocation()
     LocationMonitor.sharedInstance.afterResume = false
-    LocationMonitor.sharedInstance.startMonitoringLocation() */
+    LocationMonitor.sharedInstance.startMonitoringLocation()
   }
 
   func applicationWillEnterForeground(application: UIApplication) {

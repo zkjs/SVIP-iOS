@@ -115,7 +115,8 @@ class LocationMonitor:NSObject {
     locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     locationManager?.activityType = CLActivityType.OtherNavigation
     if #available(iOS 9.0, *) {
-      locationManager?.allowsBackgroundLocationUpdates = true
+      // 注意： Background Modes中的 Location updates 权限打开的时候下面的代码才会work,否则App crash
+      //locationManager?.allowsBackgroundLocationUpdates = true
     }
     
     locationManager?.requestAlwaysAuthorization()
