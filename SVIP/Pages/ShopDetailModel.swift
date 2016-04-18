@@ -18,6 +18,7 @@ class ShopDetailModel: ShopmodsModel {
   let shopID:String
   let shopname:String
   let shoplogo:String
+  let shopbg:String
   let shopmods:[ShopmodsModel]
   
   
@@ -26,6 +27,7 @@ class ShopDetailModel: ShopmodsModel {
     shopaddress = json["shopaddress"].string ?? ""
     shopname = json["shopname"].string ?? ""
     shoplogo = json["shoplogo"].string ?? ""
+    shopbg = json["shopbg"].string ?? ""
     shopdesc = json["shopdesc"].string ?? ""
     shopstatus = json["shopstatus"].int ?? 0
     telephone = json["telephone"].string ?? ""

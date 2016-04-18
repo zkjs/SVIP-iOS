@@ -54,6 +54,9 @@ extension String {
     return (self =~ "^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$")
   }
   
+  /*
+   * 图片完整URL: Endpoint + ResourcePath
+   */
   var fullImageUrl: String {
     return ZKJSConfig.sharedInstance.BaseImageURL.stringByTrimmingCharactersInSet(
       NSCharacterSet(charactersInString: "/")
@@ -62,12 +65,37 @@ extension String {
     )
   }
   
+  /*
+   * 完整URL: Endpoint + ResourcePath
+   */
   var fullUrl:String {
     return ZKJSConfig.sharedInstance.BaseURL.stringByTrimmingCharactersInSet(
       NSCharacterSet(charactersInString: "/")
       ) + "/" + self.stringByTrimmingCharactersInSet(
       NSCharacterSet(charactersInString: "/")
     )
+  }
+  
+  /*
+   * 根据设备尺寸返回相应尺寸的图片: 比如 path/file.png => path/file.png@1080w
+   */
+  var fittedImage: String {
+    if self.isEmpty {
+      return ""
+    }
+    if DeviceType.IS_IPHONE_6P {
+      return "\(self)@1080w"
+    } else if DeviceType.IS_IPHONE_6 {
+      return "\(self)@750w"
+    }
+    return "\(self)@640w"
+  }
+  
+  /*
+   * 根据设备尺寸返回相应尺寸图片的完整URL: Endpoint + ResourcePath
+   */
+  var fittedImageUrl: String {
+    return fittedImage.fullImageUrl
   }
   
 }

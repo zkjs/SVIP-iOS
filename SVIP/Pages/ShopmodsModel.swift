@@ -25,7 +25,7 @@ class ShopmodsModel: NSObject {
     shopid = json["shopid"].string ?? ""
     modid = json["modid"].string ?? ""
     sort = json["sort"].string ?? ""
-    photos = json["photos"].array?.flatMap{ $0.string?.fullImageUrl } ?? []
+    photos = json["photos"].array?.flatMap{ $0.string?.fittedImageUrl } ?? []
       
   }
 

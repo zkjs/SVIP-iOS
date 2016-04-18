@@ -14,17 +14,26 @@ class ShopLogoModel: NSObject,NSCoding {
   var locid: String = ""          //区域id
   var shopid: String = ""         //商户id
   var shopname: String = ""       //商户名称
-  var logo: String = ""           //商户logo
   var changetime:NSDate           //变更时间
   var validthru:NSDate            //当前logo有效期截止时间
-  
+  private var originLogo:String = "" //商户logo
+  var logo: String {
+    if originLogo.isEmpty {
+      return ""
+    }
+    if DeviceType.IS_IPHONE_6P {
+      return "\(originLogo)@900w.png"
+    } else if DeviceType.IS_IPHONE_6 {
+      return "\(originLogo)@600w.png"
+    }
+    return "\(originLogo)@480w.png"
+  }
   
   init(dic: NSDictionary) {
     locid = dic["locid"] as? String ?? ""
     shopid = dic["shopid"] as? String ?? ""
     shopname = dic["shopname"] as? String ?? ""
-    logo = dic["logo"] as? String ?? ""
-    logo = DeviceType.IS_IPHONE_6P ? "\(logo)_3x.png" : "\(logo)_2x.png"
+    originLogo = dic["logo"] as? String ?? ""
     changetime = NSDate.dateFromString(dic["changetime"] as? String ?? "") ?? NSDate()
     validthru = NSDate.dateFromString(dic["validthru"] as? String ?? "") ?? NSDate()
   }
@@ -33,8 +42,7 @@ class ShopLogoModel: NSObject,NSCoding {
     locid = json["locid"].string ?? ""
     shopid = json["shopid"].string ?? ""
     shopname = json["shopname"].string ?? ""
-    logo = json["logo"].string ?? ""
-    logo = DeviceType.IS_IPHONE_6P ? "\(logo)_3x.png" : "\(logo)_2x.png"
+    originLogo = json["logo"].string ?? ""
     changetime = NSDate.dateFromString(json["changetime"].string ?? "") ?? NSDate()
     validthru = NSDate.dateFromString(json["validthru"].string ?? "") ?? NSDate()
   }
@@ -43,10 +51,11 @@ class ShopLogoModel: NSObject,NSCoding {
     self.locid = locid
     self.shopid = shopid
     self.shopname = shopname
-    self.logo = logo
+    self.originLogo = logo
     self.changetime = changetime
     self.validthru = validthru
   }
+  
   
   // MARK: NSCoding
   
@@ -54,19 +63,19 @@ class ShopLogoModel: NSObject,NSCoding {
     guard let locid = decoder.decodeObjectForKey("locid") as? String,
       let shopid = decoder.decodeObjectForKey("shopid") as? String,
       let shopname = decoder.decodeObjectForKey("shopname") as? String,
-      let logo = decoder.decodeObjectForKey("logo") as? String,
+      let originLogo = decoder.decodeObjectForKey("originLogo") as? String,
       let changetime = decoder.decodeObjectForKey("changetime") as? NSDate,
       let validthru = decoder.decodeObjectForKey("validthru") as? NSDate
       else { return nil }
     
-    self.init(locid:locid, shopid:shopid, shopname:shopname, logo:logo, changetime:changetime, validthru:validthru)
+    self.init(locid:locid, shopid:shopid, shopname:shopname, logo:originLogo, changetime:changetime, validthru:validthru)
   }
   
   func encodeWithCoder(coder: NSCoder) {
     coder.encodeObject(self.locid, forKey: "locid")
     coder.encodeObject(self.shopid, forKey: "shopid")
     coder.encodeObject(self.shopname, forKey: "shopname")
-    coder.encodeObject(self.logo, forKey: "logo")
+    coder.encodeObject(self.originLogo, forKey: "originLogo")
     coder.encodeObject(self.changetime, forKey: "changetime")
     coder.encodeObject(self.validthru, forKey: "validthru")
   }
