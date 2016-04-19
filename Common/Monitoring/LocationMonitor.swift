@@ -216,7 +216,7 @@ extension LocationMonitor : CLLocationManagerDelegate {
       bssid = convertToValidMac(wifiInfo["BSSID"]!)
       ssid = wifiInfo["SSID"]!
     }
-    HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970),mac:bssid,ssid:ssid, completionHandler: nil)
+    HttpService.sharedInstance.sendGpsChanges(location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, timestamp: Int(NSDate().timeIntervalSince1970 * 1000),mac:bssid,ssid:ssid, completionHandler: nil)
     
   }
   

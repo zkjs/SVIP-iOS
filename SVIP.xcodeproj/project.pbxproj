@@ -11,6 +11,8 @@
 		400888E41CB74E5A0004E0A1 /* TipsBubble.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400888E21CB74E5A0004E0A1 /* TipsBubble.xib */; };
 		400888EA1CB7A26C0004E0A1 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 400888E71CB7A26C0004E0A1 /* DACircularProgressView.m */; };
 		400888EB1CB7A26C0004E0A1 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 400888E91CB7A26C0004E0A1 /* DALabeledCircularProgressView.m */; };
+		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
+		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
@@ -248,6 +250,8 @@
 		400888E71CB7A26C0004E0A1 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		400888E81CB7A26C0004E0A1 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
 		400888E91CB7A26C0004E0A1 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -687,6 +691,8 @@
 		406B0AE01C85AA7D006C9C73 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */,
+				40232A441CC611DE00323AEF /* Beacons.swift */,
 				40FD343E1C92C3F40019A8CA /* LocalStorage.swift */,
 				B20812C41B8DD8650070D96F /* SVIP.xcdatamodeld */,
 				408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */,
@@ -1421,6 +1427,7 @@
 				40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */,
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
 				4096FD591CB4B5BE00E8E31E /* ShopDetailVC.swift in Sources */,
+				40232A461CC611DE00323AEF /* Beacons.swift in Sources */,
 				4051F1D81CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift in Sources */,
 				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
@@ -1465,6 +1472,7 @@
 				FA60C1D51CB74D58005711A2 /* UIImage+MWPhotoBrowser.m in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
+				40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */,
 				FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,

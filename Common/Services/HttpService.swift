@@ -41,6 +41,7 @@ class HttpService {
     case ApiURL(path:String)            // demo
     case Beacon                         // PYXIS 位置服务API : Beacon 位置信息 :
     case GPS                            // PYXIS 位置服务API : GPS 位置信息 :
+    case UploadBeacons                  // 上传用户收集到的所有beacon信息
     case CodeLogin                      // PAVO 认证服务API : 验证码 : HEADER不需要Token
     case CodeRegister                   // 注册获取验证码
     case register                       // 注册获取token
@@ -72,6 +73,7 @@ class HttpService {
       case .ApiURL(let path):           return "/api/\(path)"
       case .Beacon:                     return "/pyx/lbs/v1/loc/beacon"
       case .GPS:                        return "/pyx/lbs/v1/loc/gps"
+      case .UploadBeacons:              return "/pyx/lbs/v1/loc/beacons"
       case .CodeLogin:                  return "/pav/sso/vcode/v1/si?source=login&dist=\(DIST)"
       case .CodeRegister:               return "/pav/sso/vcode/v1/si?source=register&dist=\(DIST)"
       case .Login:                      return "/pav/sso/token/v1/phone/si?dist=\(DIST)"

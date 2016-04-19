@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import Alamofire
+import SwiftyJSON
 
 extension HttpService {
   
@@ -102,5 +103,51 @@ extension HttpService {
           print(encodingError)
         }
     })
+  }
+  
+  func uploadBeacons(beacons:[[String:String]], completionHandler:HttpCompletionHandler?) {
+    if beacons.isEmpty { return }
+    guard let token = TokenPayload.sharedInstance.token  where !token.isEmpty else {
+      print("********* Token is required for [beacons] **********")
+      return
+    }
+    
+    //print(beacons)
+    
+    let urlString = ResourcePath.UploadBeacons.description.fullUrl
+    
+    let req = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+    req.HTTPMethod = "POST"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    req.setValue(token, forHTTPHeaderField: "Token")
+    
+    do {
+      req.HTTPBody = try NSJSONSerialization.dataWithJSONObject(beacons, options: [])
+      
+      request(req).response { (req, res, data, error) in
+        print("statusCode:\(res?.statusCode) for url:\(req?.URL?.absoluteString)")
+        
+        if let error = error {
+          print("api request fail [res code:,\(res?.statusCode)]:\(error)")
+          completionHandler?(nil,error)
+        } else {
+          print(self.jsonFromData(data))
+          
+          if let data = data {
+            let json = JSON(data: data)
+            if json["res"].int == 0 {
+              completionHandler?(json,nil)
+              print(json["resDesc"].string)
+            } else {
+              print("error with reason: \(json["resDesc"].string)")
+            }
+          }
+        }
+      }
+    } catch _ {
+      
+    }
+    
+    
   }
 }

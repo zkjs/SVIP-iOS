@@ -22,11 +22,11 @@ class ShopLogoModel: NSObject,NSCoding {
       return ""
     }
     if DeviceType.IS_IPHONE_6P {
-      return "\(originLogo)@900w.png"
+      return "\(originLogo)@420h.png"
     } else if DeviceType.IS_IPHONE_6 {
-      return "\(originLogo)@600w.png"
+      return "\(originLogo)@280h.png"
     }
-    return "\(originLogo)@480w.png"
+    return "\(originLogo)@220h.png"
   }
   
   init(dic: NSDictionary) {

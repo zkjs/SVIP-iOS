@@ -19,7 +19,11 @@ class BeaconMonitor:NSObject {
   static let sharedInstance = BeaconMonitor()
   let locationManager = CLLocationManager()
   var beaconRegions = [CLBeaconRegion]()
+  // 缓存beacon, 通过此数组判断是否beacon进入，退出状态。其中key的格式为 uuid-major-minor
   var beaconInfoCache = [String:BeaconInfo]()
+  // 缓存所有扫描到的beacon, 其中key的格式为 其中key的格式为 uuid-major-minor
+  var detectedBeacons = [String:BeaconInfo]()
+  
   private override init () {
     for (idx,uuid) in BEACON_UUIDS.enumerate() {
       let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid)!, identifier: "\(BEACON_IDENTIFIER).\(idx)")
@@ -61,6 +65,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
         self.locationManager.startRangingBeaconsInRegion(beaconRegion)
       }
       //didEnterBeaconRegion(region as! CLBeaconRegion)
+      //Beacons.upload()
     }
   }
   
@@ -76,6 +81,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     for beacon  in beacons {
       //print("range beacon:\(beacon)")
       didRangeBeacons(beacon)
+      saveBeaconInfo(beacon)
     }
   }
   
@@ -87,10 +93,26 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
   }
   
+  /**
+   * 保存扫描到的beacon信息到本地，等待稍后批量上传至server
+   */
+  private func saveBeaconInfo(beacon: CLBeacon) {
+    let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)-\(beacon.minor)"
+    if let beaconInfo = detectedBeacons[key], let bc = beaconInfo.beacon {
+      if fabs(beaconInfo.timestamp.timeIntervalSinceNow) > 30 {
+        Beacons.recordBeaconInfo(bc, location: LocationMonitor.sharedInstance.lastLocationInfo.lastLocation)
+        beaconInfo.timestamp = NSDate()
+      }
+    } else {
+      detectedBeacons[key] = BeaconInfo(beacon: beacon)
+      Beacons.recordBeaconInfo(beacon, location: LocationMonitor.sharedInstance.lastLocationInfo.lastLocation)
+    }
+  }
+  
   private func didRangeBeacons(beacon: CLBeacon!) {
-    let currentTimeStamp = Int(NSDate().timeIntervalSince1970)
+    let currentTimeStamp = Int(NSDate().timeIntervalSince1970 * 1000)
     
-    let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)"
+    let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)-\(beacon.minor)"
     
     //print("\(key) : \(beacon.proximity.rawValue)")
     

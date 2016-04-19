@@ -17,7 +17,7 @@ struct ZKJSConfig {
   //// 测试环境
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com/test"
+  let BaseURL = "https://api.zkjinshi.com/dev"
   // 图片服务器
   //let BaseImageURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
@@ -52,7 +52,7 @@ struct ZKJSConfig {
   // 新API服务器
   let BaseURL = "http://p.zkjinshi.com"
   // 图片服务器
-  let BaseImageURL = "http://cdn.zkjinshi.com"
+  let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
   let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
   // 友盟

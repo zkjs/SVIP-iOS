@@ -89,6 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print("applicationDidBecomeActive")
 
     
+    delay(seconds: 10 ){Beacons.upload()}
+    
     LocationMonitor.sharedInstance.afterResume = false
     LocationMonitor.sharedInstance.stopMonitoringLocation()
     if StorageManager.sharedInstance().settingMonitoring() {

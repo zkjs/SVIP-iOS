@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
     <entity name="BeaconErrors" representedClassName=".BeaconErrors" syncable="YES">
         <attribute name="connectionType" optional="YES" attributeType="String" defaultValueString="Unknown" syncable="YES"/>
         <attribute name="error" attributeType="String" syncable="YES"/>
         <attribute name="major" attributeType="String" syncable="YES"/>
         <attribute name="minor" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Beacons" representedClassName=".Beacons" syncable="YES">
+        <attribute name="accuracy" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="major" attributeType="String" syncable="YES"/>
+        <attribute name="minor" attributeType="String" syncable="YES"/>
+        <attribute name="rssi" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="timestamp" attributeType="Date" syncable="YES"/>
         <attribute name="uuid" attributeType="String" syncable="YES"/>
     </entity>
@@ -33,5 +44,6 @@
     <elements>
         <element name="BeaconErrors" positionX="-54" positionY="144" width="128" height="135"/>
         <element name="Message" positionX="-63" positionY="-18" width="128" height="345"/>
+        <element name="Beacons" positionX="-54" positionY="135" width="128" height="180"/>
     </elements>
 </model>
