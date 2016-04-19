@@ -49,16 +49,20 @@ class LocationStateObserver:NSObject {
 
 extension LocationStateObserver: CLLocationManagerDelegate {
   func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-    if status != CLAuthorizationStatus.AuthorizedAlways {
+    switch status {
+    case .Denied,.Restricted:
       let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
-    } else {
+    case .AuthorizedAlways, .AuthorizedWhenInUse:
       //开始监听beacon
       if StorageManager.sharedInstance().settingMonitoring() {
         BeaconMonitor.sharedInstance.startMonitoring()
         LocationMonitor.sharedInstance.startUpdatingLocation()
       }
+    default:
+      break
     }
+
   }
   
   
