@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--AccountTVC-->
@@ -23,8 +24,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="67"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份图片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DQ-7S-JIQ">
-                                                    <rect key="frame" x="16" y="24" width="64" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份识别图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DQ-7S-JIQ">
+                                                    <rect key="frame" x="16" y="24" width="80" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -41,8 +42,16 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(每月可修改一次)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5c-Fw-JP8">
+                                                    <rect key="frame" x="106" y="26" width="101" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="s5c-Fw-JP8" firstAttribute="centerY" secondItem="Ckj-VP-lAp" secondAttribute="centerY" id="Ag8-Aa-6sg"/>
+                                                <constraint firstItem="s5c-Fw-JP8" firstAttribute="leading" secondItem="0DQ-7S-JIQ" secondAttribute="trailing" constant="10" id="LLC-qH-36t"/>
                                                 <constraint firstAttribute="trailing" secondItem="mKQ-ct-KJd" secondAttribute="trailing" constant="16" id="geO-D0-tTi"/>
                                                 <constraint firstItem="0DQ-7S-JIQ" firstAttribute="leading" secondItem="Ckj-VP-lAp" secondAttribute="leading" constant="16" id="mZA-77-hKE"/>
                                                 <constraint firstItem="0DQ-7S-JIQ" firstAttribute="centerY" secondItem="Ckj-VP-lAp" secondAttribute="centerY" id="nWj-Uw-aPi"/>
@@ -149,14 +158,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改手机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-hE-jtK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息推送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-hE-jtK">
                                                     <rect key="frame" x="16" y="14" width="64" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wmt-zA-yTi">
+                                                    <rect key="frame" x="535" y="8" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="pushSwitch:" destination="mpV-lB-Hut" eventType="valueChanged" id="aRN-On-Qut"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Wmt-zA-yTi" secondAttribute="trailing" constant="8" id="2W4-jK-g8x"/>
+                                                <constraint firstItem="Wmt-zA-yTi" firstAttribute="centerY" secondItem="QBj-fY-e56" secondAttribute="centerY" id="6PP-qH-t7H"/>
                                                 <constraint firstItem="JgJ-hE-jtK" firstAttribute="centerY" secondItem="QBj-fY-e56" secondAttribute="centerY" id="hnS-QR-Uwg"/>
                                                 <constraint firstItem="JgJ-hE-jtK" firstAttribute="leading" secondItem="QBj-fY-e56" secondAttribute="leading" constant="16" id="mZE-YE-1eQ"/>
                                             </constraints>
@@ -174,6 +191,7 @@
                         <outlet property="emailTextFiled" destination="yWz-Gw-Tkc" id="QkU-x9-cdD"/>
                         <outlet property="sexTextField" destination="DLB-ls-Wob" id="Bsn-r2-kQJ"/>
                         <outlet property="surnameTextField" destination="PBf-PT-xw8" id="3lk-1A-Ifv"/>
+                        <outlet property="switchPush" destination="Wmt-zA-yTi" id="9hA-Ud-tEz"/>
                         <outlet property="userImage" destination="mKQ-ct-KJd" id="dCL-OQ-fPI"/>
                     </connections>
                 </tableViewController>
@@ -183,6 +201,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="img_background" width="375" height="373"/>
+        <image name="img_background" width="16" height="16"/>
     </resources>
 </document>

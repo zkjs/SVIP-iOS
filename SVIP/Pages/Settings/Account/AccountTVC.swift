@@ -15,6 +15,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   @IBOutlet weak var surnameTextField: UITextField!
   @IBOutlet weak var userImage: UIImageView!
   
+  @IBOutlet weak var switchPush: UISwitch!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,6 +46,15 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   func myClosure(testStr:String)->Void{
     surnameTextField.text = testStr
     emailTextFiled.text = testStr
+  }
+  
+  
+  @IBAction func pushSwitch(sender: AnyObject) {
+    if switchPush.on {
+      
+    } else {
+      
+    }
   }
   
   func loadUserData() {

@@ -138,7 +138,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       } */
       
       // xx分钟以内，不发送通知
-      if fabs(cachedInfo.timestamp.timeIntervalSinceNow) < Double(BEACON_INERVAL_MIN) * 30 {
+      if fabs(cachedInfo.timestamp.timeIntervalSinceNow) < Double(BEACON_INERVAL_MIN) * 30 { 
         //return
       }
       

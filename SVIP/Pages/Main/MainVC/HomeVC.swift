@@ -194,7 +194,7 @@ class HomeVC: UIViewController {
   // 点击头像到账号管理页面
   @IBAction func accountAction(sender: AnyObject) {
     // 产品要求暂时屏蔽该功能 2016-03-21
-    //gotoSetting()
+    gotoSetting()
   }
   
   // 点击钱包打开金额气泡

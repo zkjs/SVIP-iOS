@@ -30,7 +30,7 @@ class MainTBC: UITabBarController {
     
     //首页
     let vc1 = HomeVC()
-    let nc1 = BaseNC(rootViewController: vc1)
+    let nc1 = UINavigationController(rootViewController: vc1)
     let image1 = UIImage(named: "ic_shouye_nor")
     vc1.tabBarItem.image = image1
     vc1.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)

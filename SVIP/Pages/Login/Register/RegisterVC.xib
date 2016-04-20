@@ -76,10 +76,10 @@
                                         <action selector="nextStep:" destination="-1" eventType="touchUpInside" id="2eZ-rH-DwK"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入您的真实姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-gM-42y">
-                                    <rect key="frame" x="100" y="324" width="120" height="15"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建议使用真实姓名,一旦填写较难修改" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-gM-42y">
+                                    <rect key="frame" x="60" y="324" width="200" height="15"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="120" id="iSj-YG-Sql"/>
+                                        <constraint firstAttribute="width" constant="200" id="iSj-YG-Sql"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
