@@ -18,6 +18,9 @@ class PushMessageModel: NSObject {
   var alert: String = ""
   var shopid: String = ""
   var content: String = ""
+  var imgUrl: String = ""
+  var linkTitle: String = ""
+  var link: String = ""
   
   override init() {
     super.init()
@@ -29,6 +32,9 @@ class PushMessageModel: NSObject {
     alert = dict["alert"] as? String ?? ""
     shopid = dict["shopid"] as? String ?? ""
     content = dict["content"] as? String ?? ""
+    imgUrl = dict["img_url"] as? String ?? ""
+    linkTitle = dict["button"] as? String ?? ""
+    link = dict["button_url"] as? String ?? ""
   }
   
   init(json:JSON) {
@@ -37,6 +43,9 @@ class PushMessageModel: NSObject {
     alert = json["alert"].string ?? ""
     shopid = json["shopid"].string ?? ""
     content = json["content"].string ?? ""
+    imgUrl = json["img_url"].string ?? ""
+    linkTitle = json["button"].string ?? ""
+    link = json["button_url"].string ?? ""
   }
   
 }

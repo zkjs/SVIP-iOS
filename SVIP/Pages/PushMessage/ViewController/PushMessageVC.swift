@@ -9,12 +9,15 @@
 import UIKit
 
 class PushMessageVC: UIViewController {
-  var alertTitle: String?
-  var alertContent: String?
+  var pushInfo: PushMessageModel?
 
   @IBOutlet weak var contentLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var linkButton: UIButton!
   @IBOutlet weak var pushView: UIView!
+  @IBOutlet weak var linkButtonHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var seperator: UIView!
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("PushMessageVC", owner:self, options:nil)
@@ -30,13 +33,58 @@ class PushMessageVC: UIViewController {
     blurView.alpha = 0.8
     self.view.insertSubview(blurView, atIndex: 0)
     
-    titleLabel.text = alertTitle ?? ""
-    contentLabel.text = alertContent ?? ""
+    titleLabel.text = pushInfo?.title ?? ""
+    contentLabel.text = pushInfo?.content ?? ""
+    if let imgUrl = pushInfo?.imgUrl, url = NSURL(string: imgUrl.fittedImageUrl) {
+      imageView.sd_setImageWithURL(url)
+    }
+    if let linkTitle = pushInfo?.linkTitle where !linkTitle.isEmpty {
+      linkButton.setTitle(linkTitle, forState: .Normal)
+    } else {
+      linkButtonHeightConstraint.constant = 0
+      seperator.hidden = true
+      linkButton.hidden = true
+    }
+    
+    pushView.alpha = 0
   }
+  
+  override func viewDidAppear(animated: Bool) {
+    animateView()
+  }
+
   
   override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     super.touchesEnded(touches, withEvent: event)
     dismissViewControllerAnimated(true, completion: nil)
   }
   
+  private func animateView() {
+    pushView.frame = CGRectOffset(pushView.frame, 0, -ScreenSize.SCREEN_HEIGHT)
+    UIView.animateWithDuration(0.5, delay: 0.0,
+                               usingSpringWithDamping: 0.6,
+                               initialSpringVelocity: 0.0,
+                               options: .CurveEaseInOut,
+                               animations: {
+                                self.pushView.frame = CGRectOffset(self.pushView.frame, 0, +ScreenSize.SCREEN_HEIGHT)
+                                self.pushView.alpha = 1
+      },completion: { (finished) in
+        
+    })
+  }
+  
+  @IBAction func linkButtonPressed(sender: UIButton) {
+    guard let link =  pushInfo?.link, url = NSURL(string: link) else {
+      return
+    }
+    dismissViewControllerAnimated(false) { 
+      let vc = WebViewVC()
+      vc.url = link
+      if let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController as? BaseNC {
+        rootVC.pushViewController(vc, animated: true)
+      } else {
+        UIApplication.sharedApplication().openURL(url)
+      }
+    }
+  }
 }

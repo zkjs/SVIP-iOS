@@ -90,11 +90,10 @@ class HomeVC: UIViewController {
     }
     let vc = PushMessageVC()
 
-    vc.alertTitle = pushInfo.title
-    vc.alertContent = pushInfo.content
+    vc.pushInfo = pushInfo
 
     vc.modalPresentationStyle = .OverFullScreen
-    self.presentViewController(vc, animated: true, completion: nil)
+    self.presentViewController(vc, animated: false, completion: nil)
   }
   
   func changeLogo(notification: NSNotification) {
