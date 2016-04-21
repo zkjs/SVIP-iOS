@@ -101,6 +101,22 @@ class StorageManager: NSObject {
     NSKeyedArchiver.archiveRootObject(shopsInfo, toFile: path)
   }
   
+  /*
+  消息推送的状态，根据用户的userid存储
+  */
+  
+  func savepushMessageWithUserid(userid: String,slientmode:String) {
+    let path = documentDirectory().stringByAppendingPathComponent(userid)
+    NSKeyedArchiver.archiveRootObject(slientmode, toFile: path)
+  }
+  
+  func pushMessageWithUserid(userid: String) -> String? {
+    let path = documentDirectory().stringByAppendingPathComponent(userid)
+    let silentmode = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? String
+    return silentmode
+  }
+  
+  
   func shopNameWithShopID(shopID: String) -> String? {
     let predicate = NSPredicate(format: "shopid = %@", shopID)
     let shopInfo = shopsInfo()?.filteredArrayUsingPredicate(predicate).first as! NSDictionary

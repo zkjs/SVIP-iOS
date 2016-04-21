@@ -39,7 +39,7 @@ class EmailVC: UIViewController {
       return
     }
 
-    HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: nil, email: email) {[unowned self] (json, error) -> () in
+    HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: nil, email: email,silentmode: nil) {[unowned self] (json, error) -> () in
       if let _ = error {
         self.showHint("修改邮箱失败")
       } else {

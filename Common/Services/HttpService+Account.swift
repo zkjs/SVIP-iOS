@@ -26,8 +26,8 @@ extension HttpService {
   
   
   //////注册流程 完善资料
-  func updateUserInfo(isRegister: Bool, realname:String?,sex:String?,image:UIImage?,email:String?, completionHandler:HttpCompletionHandler) {
-    if realname == nil && sex == nil && image == nil && email == nil {
+  func updateUserInfo(isRegister: Bool, realname:String?,sex:String?,image:UIImage?,email:String?,silentmode:String?, completionHandler:HttpCompletionHandler) {
+    if realname == nil && sex == nil && image == nil && email == nil && silentmode == nil {
       return
     }
     
@@ -48,6 +48,10 @@ extension HttpService {
     }
     if let email = email {
       parameters["email"] = email
+    }
+    
+    if let silentmode = silentmode {
+      parameters["silentmode"] = silentmode
     }
     guard  let token = TokenPayload.sharedInstance.token else {return}
     var headers = ["Content-Type":"multipart/form-data"]
