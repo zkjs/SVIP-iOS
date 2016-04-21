@@ -24,6 +24,8 @@ class AccountManager: NSObject {
   private(set) var realname = ""
   private(set) var userstatus = 0
   private(set) var viplevel = 0
+  private(set) var ismodifyimage = 0
+  private(set) var ismodifyusername = 0
   private(set) var password = ""
   private(set) var payCreatetime = ""
   var avatarURL : String {
@@ -77,7 +79,8 @@ class AccountManager: NSObject {
     realname = userDefaults.objectForKey("realname") as? String ?? "0"
     password = userDefaults.objectForKey("password") as? String ?? "0"
     payCreatetime = userDefaults.objectForKey("payCreatetime") as? String ?? ""
-    
+    ismodifyimage = userDefaults.objectForKey("ismodifyimage") as? Int ?? 0
+    ismodifyusername = userDefaults.objectForKey("ismodifyusername") as? Int ?? 0
   }
   
   func isLogin() -> Bool {
@@ -102,6 +105,8 @@ class AccountManager: NSObject {
     viplevel = json["viplevel"]?.int ?? 0
     password = json["password"]?.string ?? ""
     realname = json["realname"]?.string ?? ""
+    ismodifyusername = json["ismodifyusername"]?.int ?? 0
+    ismodifyimage = json["ismodifyimage"]?.int ?? 0
     let userDefaults = NSUserDefaults()
     userDefaults.setObject(imgURL, forKey: "avatarURL")
     userDefaults.setObject(userName, forKey: "userName")
@@ -112,6 +117,8 @@ class AccountManager: NSObject {
     userDefaults.setObject(viplevel, forKey: "viplevel")
     userDefaults.setObject(realname, forKey: "realname")
     userDefaults.setObject(userstatus, forKey: "userstatus")
+    userDefaults.setObject(ismodifyusername, forKey: "ismodifyusername")
+    userDefaults.setObject(ismodifyimage, forKey: "ismodifyimage")
     userDefaults.setObject(password, forKey: "password")
     userDefaults.synchronize()
   }
@@ -191,6 +198,8 @@ class AccountManager: NSObject {
     userDefaults.setObject(nil, forKey: "password")
     userDefaults.setObject(nil, forKey: "viplevel")
     userDefaults.setObject(nil, forKey: "realname")
+    userDefaults.setObject(nil, forKey: "ismodifyusername")
+    userDefaults.setObject(nil, forKey: "ismodifyimage")
     userDefaults.synchronize()
     
     userID = ""
@@ -206,6 +215,8 @@ class AccountManager: NSObject {
     userstatus = 0
     viplevel = 0
     password = ""
+    ismodifyimage = 0
+    ismodifyusername = 0
   }
   
 }

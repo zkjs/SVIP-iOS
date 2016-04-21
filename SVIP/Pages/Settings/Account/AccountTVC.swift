@@ -78,9 +78,21 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     
     switch indexPath {
     case photo:
-      choosePhoto()
+      if let ismodifyimage:Int = AccountManager.sharedInstance().ismodifyimage {
+        if ismodifyimage == 1 {
+          self.showHint("每月只能修改一次头像", withFontSize: 18)
+        } else {
+          choosePhoto()
+        }
+      }
     case name:
-      navigationController?.pushViewController(NameVC(), animated: true)
+      if let ismodifyusername:Int = AccountManager.sharedInstance().ismodifyusername {
+        if ismodifyusername == 1 {
+          self.showHint("用户名只能修改一次哦", withFontSize: 18)
+        } else {
+          navigationController?.pushViewController(NameVC(), animated: true)
+        }
+      }
     case sex:
       chooseSex()
     case email:
@@ -161,6 +173,8 @@ extension AccountTVC: UIImagePickerControllerDelegate {
       let persent = CGFloat(100 - i++) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
+    
+    
     
     HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: image,email: nil) {[unowned self] (json, error) -> () in
       self.hideHUD()
