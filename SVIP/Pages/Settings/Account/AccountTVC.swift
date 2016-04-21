@@ -47,6 +47,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
       switchPush.on = false
     }
     
+    HttpService.sharedInstance.getUserinfo(nil)
     loadUserData()
     tableView.reloadData()
   }

@@ -54,6 +54,9 @@ extension String {
     return (self =~ "^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$")
   }
   
+  var isValidName: Bool {
+    return (self =~ "^[\\u4e00-\\u9fa5]+$")
+  }
   /*
    * 图片完整URL: Endpoint + ResourcePath
    */

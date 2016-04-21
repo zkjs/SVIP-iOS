@@ -63,8 +63,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE5-FI-XLy">
-                    <rect key="frame" x="90" y="566" width="72" height="29"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE5-FI-XLy">
+                    <rect key="frame" x="90" y="566" width="209" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                         <action selector="billAction:" destination="-1" eventType="touchUpInside" id="42B-99-roK"/>
                     </connections>
                 </view>
-                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrB-WU-zoV">
+                <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrB-WU-zoV">
                     <rect key="frame" x="140" y="397" width="95" height="113"/>
                     <state key="normal" image="btn_notify"/>
                     <connections>
@@ -140,6 +140,7 @@
             <constraints>
                 <constraint firstItem="YCF-Iy-Uvs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="1mw-AI-L46"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="top" secondItem="pOl-5E-Pt4" secondAttribute="bottom" constant="25" id="2Td-zK-iZd"/>
+                <constraint firstItem="f9b-Ss-psd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AE5-FI-XLy" secondAttribute="trailing" constant="8" id="2lZ-I0-RWm"/>
                 <constraint firstItem="zrB-WU-zoV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Wc-Cs-drk"/>
                 <constraint firstItem="f9b-Ss-psd" firstAttribute="centerY" secondItem="Sri-rI-aGS" secondAttribute="centerY" id="7DS-Ah-TOm"/>
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="939-Yx-3k7"/>

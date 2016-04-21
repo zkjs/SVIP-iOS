@@ -160,9 +160,10 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     HttpService.sharedInstance.sendBeaconChanges(beacon.proximityUUID.UUIDString.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
     
-    /*
-     //for test
-     let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=\(beacon.major)&minor=\(beacon.minor)&uuid=\(beacon.proximityUUID.UUIDString)"
+    
+    //for test
+    /*let userid = TokenPayload.sharedInstance.userID ?? ""
+     let url = "http://api.lvzlv.com/index/beacon?source=svpi008-\(userid)-\(appState())&type=enter&major=\(beacon.major)&minor=\(beacon.minor)&uuid=\(beacon.proximityUUID.UUIDString)"
     Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
       if let error = error {
         print(error)
@@ -189,9 +190,10 @@ extension BeaconMonitor : CLLocationManagerDelegate {
         
         print("exit: \(key) : \(ts)")
         
-        /*
-         //for test
-         let url = "http://api.lvzlv.com/index/beacon?source=svpi007-\(appState())&type=enter&major=exit&minor=0&uuid=\(key)"
+        
+        //for test
+        /*let userid = TokenPayload.sharedInstance.userID ?? ""
+         let url = "http://api.lvzlv.com/index/beacon?source=svpi-\(userid)-\(appState())&type=enter&major=exit&minor=0&uuid=\(key)"
         Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
           if let error = error {
             print(error)

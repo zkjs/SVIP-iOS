@@ -49,8 +49,12 @@ class RegisterVC: UIViewController {
       self.showHint("请填写姓名")
       return
     }
-    if nameTextFiled.text!.characters.count > 6 {
-      showHint("用户名最多6位")
+    if !nameTextFiled.text!.isValidName {
+      showHint("填写不合符规范，请填写真实姓名")
+      return
+    }
+    if nameTextFiled.text!.characters.count > 12 {
+      showHint("姓名不超过12个中文字符")
       return
     }
     vc.username = str

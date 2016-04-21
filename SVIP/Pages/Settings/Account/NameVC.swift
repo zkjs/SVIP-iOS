@@ -38,9 +38,12 @@ class NameVC: UIViewController {
       showHint("姓名不能为空")
       return
     }
-    
-    if userName.characters.count > 6 {
-      showHint("用户名最多6位")
+    if !userName.isValidName {
+      showHint("填写不合符规范，请填写真实姓名")
+      return
+    }
+    if userName.characters.count > 12 {
+      showHint("姓名不超过12个中文字符")
       return
     }
     
