@@ -105,6 +105,7 @@ class AccountManager: NSObject {
     viplevel = json["viplevel"]?.int ?? 0
     password = json["password"]?.string ?? ""
     realname = json["realname"]?.string ?? ""
+
     ismodifyusername = json["ismodifyusername"]?.int ?? 0
     ismodifyimage = json["ismodifyimage"]?.int ?? 0
     let userDefaults = NSUserDefaults()
@@ -120,6 +121,7 @@ class AccountManager: NSObject {
     userDefaults.setObject(ismodifyusername, forKey: "ismodifyusername")
     userDefaults.setObject(ismodifyimage, forKey: "ismodifyimage")
     userDefaults.setObject(password, forKey: "password")
+
     userDefaults.synchronize()
   }
   
@@ -161,6 +163,8 @@ class AccountManager: NSObject {
     userDefaults.synchronize()
   }
   
+  
+  
   func saveEmail(email: String) {
     self.email = email
     let userDefaults = NSUserDefaults()
@@ -200,6 +204,7 @@ class AccountManager: NSObject {
     userDefaults.setObject(nil, forKey: "realname")
     userDefaults.setObject(nil, forKey: "ismodifyusername")
     userDefaults.setObject(nil, forKey: "ismodifyimage")
+
     userDefaults.synchronize()
     
     userID = ""
@@ -217,6 +222,7 @@ class AccountManager: NSObject {
     password = ""
     ismodifyimage = 0
     ismodifyusername = 0
+
   }
   
 }

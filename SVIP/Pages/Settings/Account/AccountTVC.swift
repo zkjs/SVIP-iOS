@@ -16,7 +16,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   @IBOutlet weak var userImage: UIImageView!
   
   @IBOutlet weak var switchPush: UISwitch!
-  
+  var silentMode = "0"//消息免打扰
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -37,6 +37,15 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     surnameTextField.attributedPlaceholder = attributeString
     sexTextField.attributedPlaceholder = attributeString
     emailTextFiled.attributedPlaceholder = attributeString
+    guard let userid = TokenPayload.sharedInstance.userID else {return}
+    guard let silentmode:String = StorageManager.sharedInstance().pushMessageWithUserid(userid) else {
+      return
+    }
+    if silentmode == silentMode {
+      switchPush.on = true
+    } else {
+      switchPush.on = false
+    }
     
     loadUserData()
     tableView.reloadData()
@@ -51,9 +60,24 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   
   @IBAction func pushSwitch(sender: AnyObject) {
     if switchPush.on {
-      
+      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: nil, email: nil,silentmode:"0") { (json, error) -> () in
+        if let _ = error {
+          
+        } else {
+          guard let userid = TokenPayload.sharedInstance.userID else {return}
+          StorageManager.sharedInstance().savepushMessageWithUserid(userid,slientmode: "0")
+        }
+      }
     } else {
-      
+      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: nil, email: nil,silentmode:"1") { (json, error) -> () in
+        if let _ = error {
+          
+        } else {
+          guard let userid = TokenPayload.sharedInstance.userID else {return}
+          StorageManager.sharedInstance().savepushMessageWithUserid(userid,slientmode: "1")
+        }
+      }
+  
     }
   }
   
@@ -130,7 +154,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   func chooseSex() {
     let alertController = UIAlertController(title: "请选择性别", message: "", preferredStyle: .ActionSheet)
     let manAction = UIAlertAction(title: "男", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: "1", image: nil, email: nil) { (json, error) -> () in
+      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: "1", image: nil, email: nil,silentmode:nil) { (json, error) -> () in
         if let _ = error {
           
         } else {
@@ -141,7 +165,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     })
     alertController.addAction(manAction)
     let womanAction = UIAlertAction(title: "女", style:.Default, handler: { (action: UIAlertAction) -> Void in
-      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: "0", image: nil, email: nil) { (json, error) -> () in
+      HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: "0", image: nil, email: nil,silentmode:nil) { (json, error) -> () in
         if let _ = error {
           
         } else {
@@ -176,7 +200,7 @@ extension AccountTVC: UIImagePickerControllerDelegate {
     
     
     
-    HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: image,email: nil) {[unowned self] (json, error) -> () in
+    HttpService.sharedInstance.updateUserInfo(false, realname:nil, sex: nil, image: image,email: nil,silentmode:nil) {[unowned self] (json, error) -> () in
       self.hideHUD()
       if let error = error {
         self.showHint("上传头像失败")
