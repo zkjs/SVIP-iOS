@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewVC: UIViewController {
   
-  var webView: UIWebView!
+  var webView: WKWebView!
   var url = ""
   
   override func viewDidLoad() {
@@ -28,13 +29,12 @@ class WebViewVC: UIViewController {
   }
   
   func initSubviews() {
-    webView = UIWebView(frame: UIScreen.mainScreen().bounds)
-    webView.scalesPageToFit = true
+    webView = WKWebView(frame: UIScreen.mainScreen().bounds)
     let url = NSURL(string: self.url)
     webView.loadRequest(NSURLRequest(URL: url!))
     webView.scrollView.bounces = true
     webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
-    webView.delegate = self
+    webView.navigationDelegate = self
     view.addSubview(webView)
   }
   
@@ -48,17 +48,12 @@ class WebViewVC: UIViewController {
   
 }
 
-extension WebViewVC: UIWebViewDelegate {
-  
-  func webViewDidStartLoad(webView: UIWebView) {
+extension WebViewVC: WKNavigationDelegate {
+  func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
     showHUDInView(view, withLoading: "")
   }
   
-  func webViewDidFinishLoad(webView: UIWebView) {
-    let result = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight;")
-    let height = CGFloat((result! as NSString).doubleValue)
-    webView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height)
+  func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
     hideHUD()
   }
-  
 }

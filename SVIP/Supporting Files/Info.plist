@@ -70,7 +70,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>我们将为您提供免登记办理入住手续等贴心服务需要使用该功能,请允许</string>
+	<string></string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
