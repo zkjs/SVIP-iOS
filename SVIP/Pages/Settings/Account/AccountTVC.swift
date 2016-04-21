@@ -38,10 +38,10 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     sexTextField.attributedPlaceholder = attributeString
     emailTextFiled.attributedPlaceholder = attributeString
     guard let userid = TokenPayload.sharedInstance.userID else {return}
-    guard let silentmode:String = StorageManager.sharedInstance().pushMessageWithUserid(userid) else {
-      return
+    if let silentMode:String = StorageManager.sharedInstance().pushMessageWithUserid(userid) {
+      self.silentMode = silentMode
     }
-    if silentmode == silentMode {
+    if silentMode == "0" {
       switchPush.on = true
     } else {
       switchPush.on = false
