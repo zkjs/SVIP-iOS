@@ -7,11 +7,12 @@
 //
 
 import UIKit
-
+typealias ReasonSelectedClourse = (reason:String) ->Void
 private let ReasonOfTipsIdentifier = "ReasonOfTipsCollectionViewCell"
 
 class ReasonCollectionVC: UICollectionViewController {
 var selectedIndex:NSIndexPath?
+  var reasonSelectedClourse: ReasonSelectedClourse?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,6 +67,9 @@ var selectedIndex:NSIndexPath?
     cell.contentView.backgroundColor = UIColor(hex: "F89502")
     if let selectedIndex = selectedIndex {
       collectionView.deselectItemAtIndexPath(selectedIndex, animated: true)
+    }
+    if let closure = self.reasonSelectedClourse {
+      closure(reason:cell.reasonLabel.text!)
     }
     selectedIndex = indexPath
   }

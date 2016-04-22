@@ -131,6 +131,9 @@
                                     <constraint firstAttribute="height" constant="30" id="sD2-zU-uOM"/>
                                 </constraints>
                                 <state key="normal" title="确认"/>
+                                <connections>
+                                    <action selector="checkoutTip:" destination="ur3-q5-Vdi" eventType="touchUpInside" id="OzV-ZT-IAL"/>
+                                </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5C-sf-TfN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="308"/>

@@ -7,12 +7,13 @@
 //
 
 import UIKit
-
+typealias AmountSelectedClourse = (amount:String) ->Void
 private let AmountReuseIdentifier = "AmountCollectionViewCell"
 
 
 class AmountChooseVC: UICollectionViewController {
   var selectedIndex:NSIndexPath?
+  var amountSelectedClourse: AmountSelectedClourse?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +74,11 @@ class AmountChooseVC: UICollectionViewController {
     if let selectedIndex = selectedIndex {
       collectionView.deselectItemAtIndexPath(selectedIndex, animated: true)
     }
+    if let closure = self.amountSelectedClourse {
+      closure(amount: cell.amountLabel.text!)
+    } 
+      
+    
     selectedIndex = indexPath
   }
   
