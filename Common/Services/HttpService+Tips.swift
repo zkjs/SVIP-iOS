@@ -9,7 +9,8 @@
 import Foundation
 
 extension HttpService {
-  func getNearbyWaiters(shopid shopid:String,locids:String,completionHandler:([Waiter]?,NSError?) -> ()) {
+  
+  func getNearbyWaiters(completionHandler:([Waiter]?,NSError?) -> ()) {
     let urlString = ResourcePath.NearbyWaiters.description.fullUrl
     
     let dict = ["page":"0","page_size":"40"]

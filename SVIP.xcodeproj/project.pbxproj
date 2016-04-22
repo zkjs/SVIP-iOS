@@ -14,12 +14,8 @@
 		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
-		4030A3AB1CCA3C1B00DCD34B /* HttpService+Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4030A3AA1CCA3C1B00DCD34B /* HttpService+Tips.swift */; };
+		4030A3AD1CCA5C7400DCD34B /* HttpService+Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4030A3AC1CCA5C7400DCD34B /* HttpService+Tips.swift */; };
 		403DA8A01CC9CA0B0049BC96 /* WaitersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */; };
-		403DA8A21CC9D1EB0049BC96 /* WaiterPopupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */; };
-		403DA8A41CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */; };
-		403DA8A61CCA12740049BC96 /* TipsSuccessVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403DA8A51CCA12740049BC96 /* TipsSuccessVC.storyboard */; };
-		403DA8A81CCA12980049BC96 /* TipsSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA8A71CCA12980049BC96 /* TipsSuccessVC.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
@@ -198,6 +194,18 @@
 		FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */; };
 		FAF6B6971CB6351F0043164C /* ShopDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */; };
 		FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6981CB635620043164C /* ShopmodsModel.swift */; };
+		FAF734991CCA49DA00AC38D7 /* AmountAndReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7348C1CCA49DA00AC38D7 /* AmountAndReasonVC.swift */; };
+		FAF7349A1CCA49DA00AC38D7 /* AmountChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7348D1CCA49DA00AC38D7 /* AmountChooseVC.swift */; };
+		FAF7349B1CCA49DA00AC38D7 /* AmountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7348E1CCA49DA00AC38D7 /* AmountCollectionViewCell.swift */; };
+		FAF7349C1CCA49DA00AC38D7 /* ReasonCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7348F1CCA49DA00AC38D7 /* ReasonCollectionVC.swift */; };
+		FAF7349D1CCA49DA00AC38D7 /* ReasonOfTipsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734901CCA49DA00AC38D7 /* ReasonOfTipsCollectionViewCell.swift */; };
+		FAF7349E1CCA49DA00AC38D7 /* TipsSuccessVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF734911CCA49DA00AC38D7 /* TipsSuccessVC.storyboard */; };
+		FAF7349F1CCA49DA00AC38D7 /* TipsSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734921CCA49DA00AC38D7 /* TipsSuccessVC.swift */; };
+		FAF734A01CCA49DA00AC38D7 /* WaiterPopupsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF734931CCA49DA00AC38D7 /* WaiterPopupsVC.storyboard */; };
+		FAF734A11CCA49DA00AC38D7 /* WaiterPopupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734941CCA49DA00AC38D7 /* WaiterPopupsVC.swift */; };
+		FAF734A31CCA49DA00AC38D7 /* WaiterTipsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734961CCA49DA00AC38D7 /* WaiterTipsCell.swift */; };
+		FAF734A41CCA49DA00AC38D7 /* WaiterTipVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF734971CCA49DA00AC38D7 /* WaiterTipVC.storyboard */; };
+		FAF734A51CCA49DA00AC38D7 /* WaiterTipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734981CCA49DA00AC38D7 /* WaiterTipVC.swift */; };
 		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
 		FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */; };
 		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
@@ -259,12 +267,8 @@
 		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
-		4030A3AA1CCA3C1B00DCD34B /* HttpService+Tips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Tips.swift"; sourceTree = "<group>"; };
+		4030A3AC1CCA5C7400DCD34B /* HttpService+Tips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Tips.swift"; sourceTree = "<group>"; };
 		403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitersData.swift; sourceTree = "<group>"; };
-		403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterPopupsVC.swift; sourceTree = "<group>"; };
-		403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterPopupsVC.storyboard; sourceTree = "<group>"; };
-		403DA8A51CCA12740049BC96 /* TipsSuccessVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TipsSuccessVC.storyboard; sourceTree = "<group>"; };
-		403DA8A71CCA12980049BC96 /* TipsSuccessVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsSuccessVC.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
@@ -479,6 +483,18 @@
 		FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailCell.swift; sourceTree = "<group>"; };
 		FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailModel.swift; sourceTree = "<group>"; };
 		FAF6B6981CB635620043164C /* ShopmodsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopmodsModel.swift; sourceTree = "<group>"; };
+		FAF7348C1CCA49DA00AC38D7 /* AmountAndReasonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountAndReasonVC.swift; sourceTree = "<group>"; };
+		FAF7348D1CCA49DA00AC38D7 /* AmountChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountChooseVC.swift; sourceTree = "<group>"; };
+		FAF7348E1CCA49DA00AC38D7 /* AmountCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAF7348F1CCA49DA00AC38D7 /* ReasonCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonCollectionVC.swift; sourceTree = "<group>"; };
+		FAF734901CCA49DA00AC38D7 /* ReasonOfTipsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonOfTipsCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAF734911CCA49DA00AC38D7 /* TipsSuccessVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TipsSuccessVC.storyboard; sourceTree = "<group>"; };
+		FAF734921CCA49DA00AC38D7 /* TipsSuccessVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsSuccessVC.swift; sourceTree = "<group>"; };
+		FAF734931CCA49DA00AC38D7 /* WaiterPopupsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterPopupsVC.storyboard; sourceTree = "<group>"; };
+		FAF734941CCA49DA00AC38D7 /* WaiterPopupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterPopupsVC.swift; sourceTree = "<group>"; };
+		FAF734961CCA49DA00AC38D7 /* WaiterTipsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterTipsCell.swift; sourceTree = "<group>"; };
+		FAF734971CCA49DA00AC38D7 /* WaiterTipVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterTipVC.storyboard; sourceTree = "<group>"; };
+		FAF734981CCA49DA00AC38D7 /* WaiterTipVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterTipVC.swift; sourceTree = "<group>"; };
 		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -535,11 +551,19 @@
 		403DA89E1CC9C9B90049BC96 /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				FAF7348C1CCA49DA00AC38D7 /* AmountAndReasonVC.swift */,
+				FAF7348D1CCA49DA00AC38D7 /* AmountChooseVC.swift */,
+				FAF7348E1CCA49DA00AC38D7 /* AmountCollectionViewCell.swift */,
+				FAF7348F1CCA49DA00AC38D7 /* ReasonCollectionVC.swift */,
+				FAF734901CCA49DA00AC38D7 /* ReasonOfTipsCollectionViewCell.swift */,
+				FAF734911CCA49DA00AC38D7 /* TipsSuccessVC.storyboard */,
+				FAF734921CCA49DA00AC38D7 /* TipsSuccessVC.swift */,
+				FAF734931CCA49DA00AC38D7 /* WaiterPopupsVC.storyboard */,
+				FAF734941CCA49DA00AC38D7 /* WaiterPopupsVC.swift */,
+				FAF734961CCA49DA00AC38D7 /* WaiterTipsCell.swift */,
+				FAF734971CCA49DA00AC38D7 /* WaiterTipVC.storyboard */,
+				FAF734981CCA49DA00AC38D7 /* WaiterTipVC.swift */,
 				403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */,
-				403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */,
-				403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */,
-				403DA8A51CCA12740049BC96 /* TipsSuccessVC.storyboard */,
-				403DA8A71CCA12980049BC96 /* TipsSuccessVC.swift */,
 			);
 			path = Tips;
 			sourceTree = "<group>";
@@ -698,10 +722,10 @@
 		406B0ADD1C859860006C9C73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4030A3AC1CCA5C7400DCD34B /* HttpService+Tips.swift */,
 				40DE24E41C9BF96C00CA7F26 /* HttpErrorRecordingService.swift */,
 				40DE24E51C9BF96C00CA7F26 /* HttpService+Account.swift */,
 				FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */,
-				4030A3AA1CCA3C1B00DCD34B /* HttpService+Tips.swift */,
 				40DE24E61C9BF96C00CA7F26 /* HttpService+Home.swift */,
 				40DE24E71C9BF96C00CA7F26 /* HttpService+Location.swift */,
 				404177CB1C98143700113721 /* HttpService+Others.swift */,
@@ -1291,11 +1315,11 @@
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
 				FA60C2031CB74D79005711A2 /* ImageSelectedSmallOff.png in Resources */,
+				FAF7349E1CCA49DA00AC38D7 /* TipsSuccessVC.storyboard in Resources */,
 				FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */,
 				FA60C2141CB74D79005711A2 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				FA60C20E1CB74D79005711A2 /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				4096FD531CB36D1700E8E31E /* PushMessageVC.xib in Resources */,
-				403DA8A61CCA12740049BC96 /* TipsSuccessVC.storyboard in Resources */,
 				FA60C2151CB74D79005711A2 /* UIBarButtonItemGrid.png in Resources */,
 				40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
@@ -1308,6 +1332,7 @@
 				FA004E6F1C3B992000A951DD /* BluetoothDescriptionVC.xib in Resources */,
 				40BC848F1BFC570700038C81 /* (null) in Resources */,
 				FA60C20C1CB74D79005711A2 /* PlayButtonOverlayLargeTap.png in Resources */,
+				FAF734A01CCA49DA00AC38D7 /* WaiterPopupsVC.storyboard in Resources */,
 				FA60C1FD1CB74D79005711A2 /* ImageSelectedOff.png in Resources */,
 				FA60C2161CB74D79005711A2 /* UIBarButtonItemGrid@2x.png in Resources */,
 				FA0D36141C9D28FB00E0AA78 /* PaylistCell.xib in Resources */,
@@ -1343,11 +1368,11 @@
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
 				FA60C20B1CB74D79005711A2 /* PlayButtonOverlayLarge@3x.png in Resources */,
 				FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */,
-				403DA8A41CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard in Resources */,
 				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
 				FA60C20F1CB74D79005711A2 /* UIBarButtonItemArrowLeft.png in Resources */,
 				FA60C2101CB74D79005711A2 /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				40DE25B01C9D6CCB00CA7F26 /* SettingTVC.storyboard in Resources */,
+				FAF734A41CCA49DA00AC38D7 /* WaiterTipVC.storyboard in Resources */,
 				FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */,
 				FA60C1FE1CB74D79005711A2 /* ImageSelectedOff@2x.png in Resources */,
 				40DE256F1C9D6CCB00CA7F26 /* AccountTVC.storyboard in Resources */,
@@ -1424,6 +1449,7 @@
 				40CE7F341CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				403DA8A01CC9CA0B0049BC96 /* WaitersData.swift in Sources */,
 				FA60C1D21CB74D58005711A2 /* MWTapDetectingImageView.m in Sources */,
+				FAF7349B1CCA49DA00AC38D7 /* AmountCollectionViewCell.swift in Sources */,
 				FA60C1D41CB74D58005711A2 /* MWZoomingScrollView.m in Sources */,
 				FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */,
 				FA06ADE61C87E2E30060DD33 /* RegisterVC.swift in Sources */,
@@ -1461,7 +1487,6 @@
 				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
 				FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */,
-				403DA8A81CCA12980049BC96 /* TipsSuccessVC.swift in Sources */,
 				40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */,
 				40DE24EC1C9BF96C00CA7F26 /* HttpService+Location.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
@@ -1478,11 +1503,12 @@
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				40DE24F21C9BFA9300CA7F26 /* BeaconErrors+CoreDataProperties.swift in Sources */,
+				FAF734A31CCA49DA00AC38D7 /* WaiterTipsCell.swift in Sources */,
 				409E73FC1C9BE1950040186C /* NSData+AES256.m in Sources */,
 				408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */,
-				403DA8A21CC9D1EB0049BC96 /* WaiterPopupsVC.swift in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */,
+				FAF7349A1CCA49DA00AC38D7 /* AmountChooseVC.swift in Sources */,
 				4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */,
 				FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */,
 				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
@@ -1490,18 +1516,21 @@
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
 				40DE25051C9BFC9B00CA7F26 /* ZKJSErrorMessages.swift in Sources */,
 				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
+				FAF7349F1CCA49DA00AC38D7 /* TipsSuccessVC.swift in Sources */,
 				40DE25701C9D6CCB00CA7F26 /* AccountTVC.swift in Sources */,
 				40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */,
 				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
 				408F503B1CA3E51700AEBA83 /* TableViewCellNoData.swift in Sources */,
+				FAF734991CCA49DA00AC38D7 /* AmountAndReasonVC.swift in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
 				40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */,
+				FAF7349C1CCA49DA00AC38D7 /* ReasonCollectionVC.swift in Sources */,
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				407DA3631CABD658009855E5 /* WalletBubble.swift in Sources */,
 				40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */,
 				40DE24F71C9BFB1800CA7F26 /* String+Extension+ZKJS.swift in Sources */,
 				FA60C1D51CB74D58005711A2 /* UIImage+MWPhotoBrowser.m in Sources */,
-				4030A3AB1CCA3C1B00DCD34B /* HttpService+Tips.swift in Sources */,
+				FAF7349D1CCA49DA00AC38D7 /* ReasonOfTipsCollectionViewCell.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
 				40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */,
@@ -1512,6 +1541,7 @@
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
 				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
+				FAF734A51CCA49DA00AC38D7 /* WaiterTipVC.swift in Sources */,
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
 				40CB68C81CB652FD001AF6CF /* ShopLogoModel.swift in Sources */,
@@ -1524,6 +1554,7 @@
 				407DA3611CABB7E0009855E5 /* YunbaSubscribeService.swift in Sources */,
 				406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */,
 				4096FD4E1CB36C6D00E8E31E /* PushMessageModel.swift in Sources */,
+				FAF734A11CCA49DA00AC38D7 /* WaiterPopupsVC.swift in Sources */,
 				40DE251C1C9D3E4200CA7F26 /* BreathLight.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
@@ -1534,6 +1565,7 @@
 				FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */,
 				FA60C1D31CB74D58005711A2 /* MWTapDetectingView.m in Sources */,
 				40DE25071C9BFCFD00CA7F26 /* HttpService.swift in Sources */,
+				4030A3AD1CCA5C7400DCD34B /* HttpService+Tips.swift in Sources */,
 				40DE25121C9BFE6600CA7F26 /* LocationMonitor.swift in Sources */,
 				402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */,
 			);

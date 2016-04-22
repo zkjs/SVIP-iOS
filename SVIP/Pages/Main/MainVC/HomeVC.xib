@@ -120,6 +120,25 @@
                         <constraint firstAttribute="width" constant="130" id="epm-u1-38f"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmH-Ae-Lf5">
+                    <rect key="frame" x="304" y="491" width="50" height="50"/>
+                    <color key="backgroundColor" red="1" green="0.60392156860000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="H9c-60-GHo"/>
+                        <constraint firstAttribute="width" constant="50" id="e0X-Uv-7y3"/>
+                    </constraints>
+                    <state key="normal" title="TIPS">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="gotoWaiterTips:" destination="-1" eventType="touchUpInside" id="5VS-zS-pXU"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9b-Ss-psd">
                     <rect key="frame" x="307" y="559" width="44" height="44"/>
                     <constraints>
@@ -166,9 +185,11 @@
                 <constraint firstItem="HIq-fp-PWO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="38" id="SP4-Or-QTD"/>
                 <constraint firstAttribute="trailing" secondItem="HIq-fp-PWO" secondAttribute="trailing" constant="15" id="SRT-D1-jCc"/>
                 <constraint firstItem="AE5-FI-XLy" firstAttribute="leading" secondItem="YCF-Iy-Uvs" secondAttribute="trailing" constant="15" id="T4h-Hc-Ve2"/>
+                <constraint firstItem="f9b-Ss-psd" firstAttribute="top" secondItem="RmH-Ae-Lf5" secondAttribute="bottom" constant="18" id="WtN-Th-kAy"/>
                 <constraint firstAttribute="bottom" secondItem="YCF-Iy-Uvs" secondAttribute="bottom" constant="56" id="Wu7-Yq-SzA"/>
                 <constraint firstAttribute="trailing" secondItem="waA-wE-0fQ" secondAttribute="trailing" id="Y4t-Ah-320"/>
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y9a-wI-CzT"/>
+                <constraint firstItem="RmH-Ae-Lf5" firstAttribute="centerX" secondItem="f9b-Ss-psd" secondAttribute="centerX" id="Yot-oY-ngn"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="width" secondItem="YCF-Iy-Uvs" secondAttribute="width" id="Zzk-da-2Yh"/>
                 <constraint firstAttribute="trailing" secondItem="LKL-Yv-d9T" secondAttribute="trailing" id="bL3-BD-DYy"/>
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cQB-nz-EZX"/>
