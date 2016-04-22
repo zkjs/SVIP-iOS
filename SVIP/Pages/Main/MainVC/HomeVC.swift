@@ -22,6 +22,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var logoutView: UIView!
   @IBOutlet weak var monitoringButton: UIButton!
   @IBOutlet weak var shopLogoImageView: UIImageView!
+  @IBOutlet weak var gestureUpView: UIView!
   
   
   var bluetoothManager = CBCentralManager()
@@ -260,6 +261,10 @@ class HomeVC: UIViewController {
     let swipeGesture = UISwipeGestureRecognizer(target: self, action: "gotoShopDetail:")
     swipeGesture.direction = .Left
     self.view.addGestureRecognizer(swipeGesture)
+    
+    let swipeGestureUp = UISwipeGestureRecognizer(target: self, action: "showWaiter:")
+    swipeGestureUp.direction = .Up
+    gestureUpView.addGestureRecognizer(swipeGestureUp)
   }
   //小费
   @IBAction func gotoWaiterTips(sender: AnyObject) {
@@ -291,6 +296,23 @@ class HomeVC: UIViewController {
     UIView.transitionWithView((self.navigationController?.view)!, duration: 0.8, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: { () -> Void in
         self.navigationController?.pushViewController(shopVC, animated: false)
       }, completion: nil)
+  }
+  
+  func showWaiter(gestureRecognizer:UISwipeGestureRecognizer) {
+    if gestureRecognizer.state != .Ended {
+      return
+    }
+    
+    if WaitersData.allWaiters.count < 1 {
+      showHint("无服务人员信息")
+      return
+    }
+    
+    let storyBoard = UIStoryboard(name: "WaiterPopupsVC", bundle: nil)
+    let waiterVC = storyBoard.instantiateViewControllerWithIdentifier("WaiterPopupsVC") as! WaiterPopupsVC
+    
+    waiterVC.modalPresentationStyle = .Custom
+    presentViewController(waiterVC, animated: false, completion: nil)
   }
   
 }
