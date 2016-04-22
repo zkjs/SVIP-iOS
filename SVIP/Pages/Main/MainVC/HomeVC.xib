@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="avatarsImageView" destination="YCF-Iy-Uvs" id="GkI-Ao-WLI"/>
                 <outlet property="breathLight" destination="HIq-fp-PWO" id="zXY-GY-Vbr"/>
+                <outlet property="gestureUpView" destination="LKL-Yv-d9T" id="Ngq-75-4eY"/>
                 <outlet property="lineView" destination="waA-wE-0fQ" id="gz7-vo-TVT"/>
                 <outlet property="logoutView" destination="Wl2-r5-YWc" id="csr-M5-CpB"/>
                 <outlet property="moneyButton" destination="PDh-Zc-8WF" id="UQs-IF-hja"/>
@@ -63,34 +64,10 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE5-FI-XLy">
-                    <rect key="frame" x="90" y="566" width="209" height="29"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE5-FI-XLy">
+                    <rect key="frame" x="90" y="566" width="72" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9b-Ss-psd">
-                    <rect key="frame" x="307" y="559" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="44" id="lcx-Wv-1CP"/>
-                        <constraint firstAttribute="height" constant="44" id="ycr-dF-Kip"/>
-                    </constraints>
-                    <state key="normal" image="ic_wallet"/>
-                    <connections>
-                        <action selector="walletAction:" destination="-1" eventType="touchUpInside" id="I3j-Xc-rKX"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDh-Zc-8WF">
-                    <rect key="frame" x="287" y="472" width="80" height="87"/>
-                    <state key="normal" backgroundImage="ic_money"/>
-                    <connections>
-                        <action selector="moneyAction:" destination="-1" eventType="touchUpInside" id="aEW-5l-yUS"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ4-wY-tUN">
-                    <rect key="frame" x="312" y="512" width="31" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sri-rI-aGS">
@@ -135,6 +112,38 @@
                         <action selector="toggleBeaconMonitoring:" destination="-1" eventType="touchUpInside" id="k9I-50-IoD"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKL-Yv-d9T">
+                    <rect key="frame" x="245" y="467" width="130" height="200"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="8m4-RK-R5x"/>
+                        <constraint firstAttribute="width" constant="130" id="epm-u1-38f"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9b-Ss-psd">
+                    <rect key="frame" x="307" y="559" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="lcx-Wv-1CP"/>
+                        <constraint firstAttribute="height" constant="44" id="ycr-dF-Kip"/>
+                    </constraints>
+                    <state key="normal" image="ic_wallet"/>
+                    <connections>
+                        <action selector="walletAction:" destination="-1" eventType="touchUpInside" id="I3j-Xc-rKX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDh-Zc-8WF">
+                    <rect key="frame" x="287" y="472" width="80" height="87"/>
+                    <state key="normal" backgroundImage="ic_money"/>
+                    <connections>
+                        <action selector="moneyAction:" destination="-1" eventType="touchUpInside" id="aEW-5l-yUS"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ4-wY-tUN">
+                    <rect key="frame" x="312" y="512" width="31" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -153,6 +162,7 @@
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="height" secondItem="YCF-Iy-Uvs" secondAttribute="height" id="Lij-o5-6wI"/>
                 <constraint firstItem="Wl2-r5-YWc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N43-aT-ciR"/>
                 <constraint firstAttribute="trailing" secondItem="PDh-Zc-8WF" secondAttribute="trailing" constant="8" id="QsJ-VU-nfL"/>
+                <constraint firstAttribute="bottom" secondItem="LKL-Yv-d9T" secondAttribute="bottom" id="SKy-T2-bcA"/>
                 <constraint firstItem="HIq-fp-PWO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="38" id="SP4-Or-QTD"/>
                 <constraint firstAttribute="trailing" secondItem="HIq-fp-PWO" secondAttribute="trailing" constant="15" id="SRT-D1-jCc"/>
                 <constraint firstItem="AE5-FI-XLy" firstAttribute="leading" secondItem="YCF-Iy-Uvs" secondAttribute="trailing" constant="15" id="T4h-Hc-Ve2"/>
@@ -160,6 +170,7 @@
                 <constraint firstAttribute="trailing" secondItem="waA-wE-0fQ" secondAttribute="trailing" id="Y4t-Ah-320"/>
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y9a-wI-CzT"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="width" secondItem="YCF-Iy-Uvs" secondAttribute="width" id="Zzk-da-2Yh"/>
+                <constraint firstAttribute="trailing" secondItem="LKL-Yv-d9T" secondAttribute="trailing" id="bL3-BD-DYy"/>
                 <constraint firstItem="pOl-5E-Pt4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cQB-nz-EZX"/>
                 <constraint firstItem="Wl2-r5-YWc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="cqk-1a-iPT"/>
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="top" secondItem="zrB-WU-zoV" secondAttribute="bottom" constant="8" id="kDP-eF-1vT"/>

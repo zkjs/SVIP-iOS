@@ -15,6 +15,10 @@
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
 		403DA8A01CC9CA0B0049BC96 /* WaitersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */; };
+		403DA8A21CC9D1EB0049BC96 /* WaiterPopupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */; };
+		403DA8A41CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */; };
+		403DA8A61CCA12740049BC96 /* TipsSuccessVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403DA8A51CCA12740049BC96 /* TipsSuccessVC.storyboard */; };
+		403DA8A81CCA12980049BC96 /* TipsSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA8A71CCA12980049BC96 /* TipsSuccessVC.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
@@ -255,6 +259,10 @@
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
 		403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitersData.swift; sourceTree = "<group>"; };
+		403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterPopupsVC.swift; sourceTree = "<group>"; };
+		403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterPopupsVC.storyboard; sourceTree = "<group>"; };
+		403DA8A51CCA12740049BC96 /* TipsSuccessVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TipsSuccessVC.storyboard; sourceTree = "<group>"; };
+		403DA8A71CCA12980049BC96 /* TipsSuccessVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsSuccessVC.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
@@ -526,6 +534,10 @@
 			isa = PBXGroup;
 			children = (
 				403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */,
+				403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */,
+				403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */,
+				403DA8A51CCA12740049BC96 /* TipsSuccessVC.storyboard */,
+				403DA8A71CCA12980049BC96 /* TipsSuccessVC.swift */,
 			);
 			path = Tips;
 			sourceTree = "<group>";
@@ -1280,6 +1292,7 @@
 				FA60C2141CB74D79005711A2 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				FA60C20E1CB74D79005711A2 /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				4096FD531CB36D1700E8E31E /* PushMessageVC.xib in Resources */,
+				403DA8A61CCA12740049BC96 /* TipsSuccessVC.storyboard in Resources */,
 				FA60C2151CB74D79005711A2 /* UIBarButtonItemGrid.png in Resources */,
 				40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
@@ -1327,6 +1340,7 @@
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
 				FA60C20B1CB74D79005711A2 /* PlayButtonOverlayLarge@3x.png in Resources */,
 				FA0D36101C9D28BA00E0AA78 /* PayListTVC.xib in Resources */,
+				403DA8A41CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard in Resources */,
 				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
 				FA60C20F1CB74D79005711A2 /* UIBarButtonItemArrowLeft.png in Resources */,
 				FA60C2101CB74D79005711A2 /* UIBarButtonItemArrowLeft@2x.png in Resources */,
@@ -1444,6 +1458,7 @@
 				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
 				FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */,
+				403DA8A81CCA12980049BC96 /* TipsSuccessVC.swift in Sources */,
 				40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */,
 				40DE24EC1C9BF96C00CA7F26 /* HttpService+Location.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
@@ -1462,6 +1477,7 @@
 				40DE24F21C9BFA9300CA7F26 /* BeaconErrors+CoreDataProperties.swift in Sources */,
 				409E73FC1C9BE1950040186C /* NSData+AES256.m in Sources */,
 				408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */,
+				403DA8A21CC9D1EB0049BC96 /* WaiterPopupsVC.swift in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */,
 				4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */,
