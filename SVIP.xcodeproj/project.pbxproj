@@ -14,6 +14,7 @@
 		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
+		403DA8A01CC9CA0B0049BC96 /* WaitersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
@@ -253,6 +254,7 @@
 		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
+		403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitersData.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
@@ -518,6 +520,14 @@
 				400888E91CB7A26C0004E0A1 /* DALabeledCircularProgressView.m */,
 			);
 			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
+		403DA89E1CC9C9B90049BC96 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */,
+			);
+			path = Tips;
 			sourceTree = "<group>";
 		};
 		404177CF1C993E6100113721 /* ViewModel */ = {
@@ -835,6 +845,7 @@
 		409E73F01C9B99F80040186C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				403DA89E1CC9C9B90049BC96 /* Tips */,
 				4096FD5A1CB4B5C500E8E31E /* ShopDetail */,
 				406C4B5F1CA41F5600B7E241 /* BillList */,
 				408F50381CA3E51700AEBA83 /* Common */,
@@ -1394,6 +1405,7 @@
 			files = (
 				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
 				40CE7F341CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				403DA8A01CC9CA0B0049BC96 /* WaitersData.swift in Sources */,
 				FA60C1D21CB74D58005711A2 /* MWTapDetectingImageView.m in Sources */,
 				FA60C1D41CB74D58005711A2 /* MWZoomingScrollView.m in Sources */,
 				FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */,
