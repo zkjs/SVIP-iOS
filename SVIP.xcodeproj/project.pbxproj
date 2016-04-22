@@ -193,6 +193,14 @@
 		FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */; };
 		FAF6B6971CB6351F0043164C /* ShopDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */; };
 		FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6B6981CB635620043164C /* ShopmodsModel.swift */; };
+		FAF7347D1CC9CEA500AC38D7 /* WaiterTipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7347C1CC9CEA500AC38D7 /* WaiterTipVC.swift */; };
+		FAF7347F1CC9CEB400AC38D7 /* WaiterTipVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF7347E1CC9CEB400AC38D7 /* WaiterTipVC.storyboard */; };
+		FAF734811CC9CF6000AC38D7 /* WaiterTipsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734801CC9CF6000AC38D7 /* WaiterTipsCell.swift */; };
+		FAF734831CCA10C100AC38D7 /* AmountChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734821CCA10C100AC38D7 /* AmountChooseVC.swift */; };
+		FAF734851CCA10DC00AC38D7 /* AmountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734841CCA10DC00AC38D7 /* AmountCollectionViewCell.swift */; };
+		FAF734871CCA111200AC38D7 /* ReasonOfTipsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734861CCA111200AC38D7 /* ReasonOfTipsCollectionViewCell.swift */; };
+		FAF734891CCA29FA00AC38D7 /* AmountAndReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF734881CCA29FA00AC38D7 /* AmountAndReasonVC.swift */; };
+		FAF7348B1CCA2A2300AC38D7 /* ReasonCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7348A1CCA2A2300AC38D7 /* ReasonCollectionVC.swift */; };
 		FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */; };
 		FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */; };
 		FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA518E1C16C62900BF04F2 /* HomeVC.swift */; };
@@ -469,6 +477,14 @@
 		FAF6B68E1CB5FA0E0043164C /* ShopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailCell.swift; sourceTree = "<group>"; };
 		FAF6B6961CB6351F0043164C /* ShopDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailModel.swift; sourceTree = "<group>"; };
 		FAF6B6981CB635620043164C /* ShopmodsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopmodsModel.swift; sourceTree = "<group>"; };
+		FAF7347C1CC9CEA500AC38D7 /* WaiterTipVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterTipVC.swift; sourceTree = "<group>"; };
+		FAF7347E1CC9CEB400AC38D7 /* WaiterTipVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterTipVC.storyboard; sourceTree = "<group>"; };
+		FAF734801CC9CF6000AC38D7 /* WaiterTipsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterTipsCell.swift; sourceTree = "<group>"; };
+		FAF734821CCA10C100AC38D7 /* AmountChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountChooseVC.swift; sourceTree = "<group>"; };
+		FAF734841CCA10DC00AC38D7 /* AmountCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAF734861CCA111200AC38D7 /* ReasonOfTipsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonOfTipsCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAF734881CCA29FA00AC38D7 /* AmountAndReasonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountAndReasonVC.swift; sourceTree = "<group>"; };
+		FAF7348A1CCA2A2300AC38D7 /* ReasonCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonCollectionVC.swift; sourceTree = "<group>"; };
 		FAF7B9151C1D646900F8B3C8 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		FAF7B9161C1D646900F8B3C8 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		FAFA518E1C16C62900BF04F2 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -525,7 +541,15 @@
 		403DA89E1CC9C9B90049BC96 /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				FAF7347E1CC9CEB400AC38D7 /* WaiterTipVC.storyboard */,
 				403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */,
+				FAF7347C1CC9CEA500AC38D7 /* WaiterTipVC.swift */,
+				FAF734881CCA29FA00AC38D7 /* AmountAndReasonVC.swift */,
+				FAF734821CCA10C100AC38D7 /* AmountChooseVC.swift */,
+				FAF7348A1CCA2A2300AC38D7 /* ReasonCollectionVC.swift */,
+				FAF734841CCA10DC00AC38D7 /* AmountCollectionViewCell.swift */,
+				FAF734861CCA111200AC38D7 /* ReasonOfTipsCollectionViewCell.swift */,
+				FAF734801CC9CF6000AC38D7 /* WaiterTipsCell.swift */,
 			);
 			path = Tips;
 			sourceTree = "<group>";
@@ -1322,6 +1346,7 @@
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FA60C2131CB74D79005711A2 /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
+				FAF7347F1CC9CEB400AC38D7 /* WaiterTipVC.storyboard in Resources */,
 				400888E41CB74E5A0004E0A1 /* TipsBubble.xib in Resources */,
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
@@ -1432,6 +1457,7 @@
 				409E74001C9BE51E0040186C /* MBProgressHUD+Add.m in Sources */,
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
 				40DE25771C9D6CCB00CA7F26 /* InvoiceModel.swift in Sources */,
+				FAF734851CCA10DC00AC38D7 /* AmountCollectionViewCell.swift in Sources */,
 				40DE257A1C9D6CCB00CA7F26 /* PhoneFirstVC.swift in Sources */,
 				40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				40DE25111C9BFE6600CA7F26 /* BeaconMonitor.swift in Sources */,
@@ -1444,6 +1470,7 @@
 				40DE25711C9D6CCB00CA7F26 /* EmailVC.swift in Sources */,
 				409E73EF1C9B98B30040186C /* UIViewController+HUD.m in Sources */,
 				FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */,
+				FAF734831CCA10C100AC38D7 /* AmountChooseVC.swift in Sources */,
 				40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */,
 				40DE24EC1C9BF96C00CA7F26 /* HttpService+Location.swift in Sources */,
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
@@ -1473,6 +1500,7 @@
 				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
 				40DE25701C9D6CCB00CA7F26 /* AccountTVC.swift in Sources */,
 				40D0D3EB1C1FFE310015C00D /* LTBouncyTextField.swift in Sources */,
+				FAF734811CC9CF6000AC38D7 /* WaiterTipsCell.swift in Sources */,
 				FAF7B9171C1D646900F8B3C8 /* HomeCell.swift in Sources */,
 				408F503B1CA3E51700AEBA83 /* TableViewCellNoData.swift in Sources */,
 				40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */,
@@ -1480,15 +1508,19 @@
 				40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */,
 				407DA3631CABD658009855E5 /* WalletBubble.swift in Sources */,
 				40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */,
+				FAF7348B1CCA2A2300AC38D7 /* ReasonCollectionVC.swift in Sources */,
 				40DE24F71C9BFB1800CA7F26 /* String+Extension+ZKJS.swift in Sources */,
 				FA60C1D51CB74D58005711A2 /* UIImage+MWPhotoBrowser.m in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
+				FAF734871CCA111200AC38D7 /* ReasonOfTipsCollectionViewCell.swift in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
 				40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */,
+				FAF734891CCA29FA00AC38D7 /* AmountAndReasonVC.swift in Sources */,
 				FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
 				F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */,
+				FAF7347D1CC9CEA500AC38D7 /* WaiterTipVC.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
 				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,

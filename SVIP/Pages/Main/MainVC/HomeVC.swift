@@ -261,7 +261,13 @@ class HomeVC: UIViewController {
     swipeGesture.direction = .Left
     self.view.addGestureRecognizer(swipeGesture)
   }
-  
+  //小费
+  @IBAction func gotoWaiterTips(sender: AnyObject) {
+    let storyboard = UIStoryboard(name: "WaiterTipVC", bundle: nil)
+    let tipsVC = storyboard.instantiateViewControllerWithIdentifier("WaiterTipVC") as! WaiterTipVC
+    self.navigationController?.pushViewController(tipsVC, animated: true)
+
+  }
   // 点击屏幕6次退出登录
   func doMultipleTap() {
     HttpService.sharedInstance.deleteToken(nil)
