@@ -7,11 +7,29 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Waiter {
   let userid:String
   let name:String
   let avatar:String
+  
+  init(json:JSON) {
+    //locid = json["locid"].string ?? ""
+    userid = json["userid"].string ?? ""
+    name = json["username"].string ?? ""
+    avatar = json["userimage"].string ?? ""
+    //sex = json["sex"].int ?? 0
+    //shopid = json["shopid"].string ?? ""
+    //arrivetime = json["arrivetime"].string ?? ""
+  }
+  
+  init(userid:String, name:String, avatar:String) {
+    self.userid = userid
+    self.name = name
+    self.avatar = avatar
+  }
+
 }
 
 struct WaitersData {

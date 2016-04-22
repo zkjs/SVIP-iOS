@@ -14,6 +14,7 @@
 		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
+		4030A3AB1CCA3C1B00DCD34B /* HttpService+Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4030A3AA1CCA3C1B00DCD34B /* HttpService+Tips.swift */; };
 		403DA8A01CC9CA0B0049BC96 /* WaitersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */; };
 		403DA8A21CC9D1EB0049BC96 /* WaiterPopupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */; };
 		403DA8A41CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */; };
@@ -258,6 +259,7 @@
 		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
+		4030A3AA1CCA3C1B00DCD34B /* HttpService+Tips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Tips.swift"; sourceTree = "<group>"; };
 		403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitersData.swift; sourceTree = "<group>"; };
 		403DA8A11CC9D1EB0049BC96 /* WaiterPopupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterPopupsVC.swift; sourceTree = "<group>"; };
 		403DA8A31CC9D1FF0049BC96 /* WaiterPopupsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterPopupsVC.storyboard; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				40DE24E41C9BF96C00CA7F26 /* HttpErrorRecordingService.swift */,
 				40DE24E51C9BF96C00CA7F26 /* HttpService+Account.swift */,
 				FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */,
+				4030A3AA1CCA3C1B00DCD34B /* HttpService+Tips.swift */,
 				40DE24E61C9BF96C00CA7F26 /* HttpService+Home.swift */,
 				40DE24E71C9BF96C00CA7F26 /* HttpService+Location.swift */,
 				404177CB1C98143700113721 /* HttpService+Others.swift */,
@@ -1498,6 +1501,7 @@
 				40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */,
 				40DE24F71C9BFB1800CA7F26 /* String+Extension+ZKJS.swift in Sources */,
 				FA60C1D51CB74D58005711A2 /* UIImage+MWPhotoBrowser.m in Sources */,
+				4030A3AB1CCA3C1B00DCD34B /* HttpService+Tips.swift in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
 				40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */,
