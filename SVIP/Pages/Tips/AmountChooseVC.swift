@@ -103,6 +103,8 @@ class AmountChooseVC: UICollectionViewController {
     cell.backgroundColor = UIColor(hex: "C17E22")
     cell.contentView.backgroundColor = UIColor(hex: "C17E22")
   }
+
+
   
   func getRandomAmount() -> Double {
     return 50
