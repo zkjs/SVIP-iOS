@@ -333,6 +333,7 @@ class HomeVC: UIViewController {
   }
   
   func refreshBalance() {
+    StorageManager.sharedInstance().saveCash(19)
     var cash = StorageManager.sharedInstance().curentCash()
     if cash <= 0.001 {
       cash = 999

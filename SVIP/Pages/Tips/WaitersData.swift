@@ -75,7 +75,7 @@ class WaitersData {
   func fetchNearbyWaiters() {
     HttpService.sharedInstance.getNearbyWaiters { (waiters, error) in
       if let waiters = waiters {
-        self.allWaiters = waiters
+        //self.allWaiters = waiters
         self.currentIndex = 0
       }
     }

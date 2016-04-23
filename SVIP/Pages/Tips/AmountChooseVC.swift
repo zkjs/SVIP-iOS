@@ -9,7 +9,7 @@
 import UIKit
 
 private let AmountReuseIdentifier = "AmountCollectionViewCell"
-let wallet = 130
+let wallet = StorageManager.sharedInstance().curentCash()
 protocol AmountChooseDelegate {
   func didSelectAmount(amount:Double)
 }
@@ -74,11 +74,18 @@ class AmountChooseVC: UICollectionViewController {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier(AmountReuseIdentifier, forIndexPath: indexPath) as! AmountCollectionViewCell
     let tip = AmountData[indexPath.row]
     cell.configCell(tip.0)
+    if Double(tip.1) > wallet {
+      cell.contentView.backgroundColor = UIColor(hex: "B8B8B8")
+    }
     return cell
    
   }
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    let tip = AmountData[indexPath.row]
+    if Double(tip.1) > wallet {
+      return
+    }
     let cell = collectionView.cellForItemAtIndexPath(indexPath) as! AmountCollectionViewCell
     cell.backgroundColor = UIColor(hex: "F89502")
     cell.contentView.backgroundColor = UIColor(hex: "F89502")
@@ -100,6 +107,10 @@ class AmountChooseVC: UICollectionViewController {
   }
   
   override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    let tip = AmountData[indexPath.row]
+    if Double(tip.1) > wallet {
+      return
+    }
     print("de select:\(indexPath.row)")
     let cell = collectionView.cellForItemAtIndexPath(indexPath) as! AmountCollectionViewCell
     cell.backgroundColor = UIColor(hex: "C17E22")
@@ -129,7 +140,8 @@ class AmountChooseVC: UICollectionViewController {
       showHint("余额不足")
       return 0
     }
-    if let amount = AmountData.filter({ $0.2 <= p &&  $0.3 > p }).first {
+    print(p)
+    if let amount = AmountData.filter({ $0.2 < p &&  $0.3 >= p }).first {
       print(amount.1)
       return amount.1
     }
