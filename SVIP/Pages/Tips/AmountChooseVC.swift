@@ -125,27 +125,18 @@ class AmountChooseVC: UICollectionViewController {
 
   
   func getRandomAmount() -> Double {
-    var p = 0
-    if wallet >= 100 {
-      p = Int(arc4random()%100)+1
-    }
-    if wallet < 100  && wallet >= 50 {
-      p = Int(arc4random()%95)+1 
-    }
-    if wallet < 50 && wallet >= 20 {
-      p = Int(arc4random()%80)+1 
-    }
-    if wallet < 20 && wallet >= 10 {
-      p = Int(arc4random()%60)+1 
-    }
-    if wallet < 10 && wallet >= 5 {
-      p = 5
-    }
     if wallet < 5 {
       showHint("余额不足")
       return 0
     }
-    print(p)
+    let total = AmountData.reduce(0) { (total, amount) -> Int in
+      if wallet > amount.1 {
+        return max(total, amount.3)
+      }
+      return total
+    }
+    let p = Int(arc4random() % UInt32(total))+1 
+    print("\(total), \(p)")
     if let amount = AmountData.filter({ $0.2 < p &&  $0.3 >= p }).first {
       print(amount.1)
       return amount.1
