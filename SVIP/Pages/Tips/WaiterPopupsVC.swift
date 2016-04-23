@@ -15,7 +15,7 @@ class WaiterPopupsVC: UIViewController {
   @IBOutlet weak var tipsButtonLeft: UIButton!
   @IBOutlet weak var tipsButtonRight: UIButton!
   
-  var waiterData = WaitersData()
+  var waiterData = WaitersData.sharedInstance
   var blurView: UIVisualEffectView!
   
   
@@ -115,6 +115,18 @@ class WaiterPopupsVC: UIViewController {
   }
   
   func showSuccessWithAmount(amount:Double, waiter:Waiter) {
+    
+    var cash = StorageManager.sharedInstance().curentCash()
+    if cash < amount {
+      showHint("余额不足")
+      return
+    } else {
+      cash -= amount
+      StorageManager.sharedInstance().saveCash(cash)
+      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_BALANCECHANGE, object: nil)
+    }
+    
+    
     let presentingVC =  self.presentingViewController
     dismissViewControllerAnimated(false) {
       

@@ -36,9 +36,17 @@ class AmountAndReasonVC: UIViewController {
   }
 
   @IBAction func confirmPayment(sender: UIButton) {
-    print(amount)
+    var cash = StorageManager.sharedInstance().curentCash()
+    if cash < amount {
+      showHint("余额不足")
+      return
+    } else {
+      cash -= amount
+      StorageManager.sharedInstance().saveCash(cash)
+      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_BALANCECHANGE, object: nil)
+    }
     showHint("打赏成功")
-    navigationController?.popToRootViewControllerAnimated(true)
+    navigationController?.popViewControllerAnimated(true)
   }
   
 }

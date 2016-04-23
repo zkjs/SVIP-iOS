@@ -23,6 +23,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var monitoringButton: UIButton!
   @IBOutlet weak var shopLogoImageView: UIImageView!
   @IBOutlet weak var gestureUpView: UIView!
+  @IBOutlet weak var tipsButton: UIButton!
   
   
   var bluetoothManager = CBCentralManager()
@@ -54,6 +55,8 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:KNOTIFICATION_WELCOME, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name:KNOTIFICATION_CHANGELOGO, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshBalance", name:KNOTIFICATION_BALANCECHANGE, object: nil)
+    
     addGuestures()
     
     //navigationController?.delegate = self
@@ -68,13 +71,15 @@ class HomeVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
-    getBalance()
+    //getBalance()
     refreshData()
     refreshUserInfo()
     updateLogo()
     HttpService.sharedInstance.getUserinfo { (json, error) in
       self.refreshUserInfo()
     }
+    
+    refreshBalance()
   }
   
   private func setButtonView() {
@@ -178,7 +183,7 @@ class HomeVC: UIViewController {
   func getBalance() {
     HttpService.sharedInstance.getBalance { (balance, error) -> Void in
       if error == nil {
-        self.moneyLabel.text = (balance / 100).format(".2")
+        self.moneyLabel.text = "￥" + (balance / 100).format(".2")
       }
     }
   }
@@ -191,8 +196,10 @@ class HomeVC: UIViewController {
   
   // show/hide the money bubble
   func toggleMoney() {
-    moneyButton.hidden = hideMoney
+    refreshBalance()
+    //moneyButton.hidden = hideMoney
     moneyLabel.hidden = hideMoney
+    tipsButton.hidden = hideMoney
     hideMoney = !hideMoney
 
   }
@@ -205,7 +212,7 @@ class HomeVC: UIViewController {
   
   // 点击钱包打开金额气泡
   @IBAction func walletAction(sender: AnyObject) {
-    getBalance()
+    //getBalance()
     toggleMoney()
   }
   
@@ -309,6 +316,10 @@ class HomeVC: UIViewController {
       return
     }
     
+    if hideMoney {
+      toggleMoney()
+    }
+    
     if WaitersData.sharedInstance.allWaiters.count < 1 {
       showHint("无服务人员信息")
       return
@@ -319,6 +330,15 @@ class HomeVC: UIViewController {
     
     waiterVC.modalPresentationStyle = .Custom
     presentViewController(waiterVC, animated: false, completion: nil)
+  }
+  
+  func refreshBalance() {
+    var cash = StorageManager.sharedInstance().curentCash()
+    if cash <= 0.001 {
+      cash = 999
+      StorageManager.sharedInstance().saveCash(cash)
+    }
+    self.moneyLabel.text = "￥" + cash.format(".2")
   }
   
 }

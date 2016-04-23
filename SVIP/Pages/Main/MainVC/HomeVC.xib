@@ -17,6 +17,7 @@
                 <outlet property="monitoringButton" destination="zrB-WU-zoV" id="qPr-FK-BHj"/>
                 <outlet property="nameLabel" destination="AE5-FI-XLy" id="uuN-ck-uHb"/>
                 <outlet property="shopLogoImageView" destination="cNW-pJ-VSy" id="ckk-gQ-cPE"/>
+                <outlet property="tipsButton" destination="RmH-Ae-Lf5" id="9g6-ca-WlW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Ull-wK-ExY"/>
                 <outlet property="walletButton" destination="f9b-Ss-psd" id="QWk-zc-pHm"/>
             </connections>
@@ -150,7 +151,7 @@
                         <action selector="walletAction:" destination="-1" eventType="touchUpInside" id="I3j-Xc-rKX"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDh-Zc-8WF">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDh-Zc-8WF">
                     <rect key="frame" x="287" y="472" width="80" height="87"/>
                     <state key="normal" backgroundImage="ic_money"/>
                     <connections>
@@ -158,7 +159,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ4-wY-tUN">
-                    <rect key="frame" x="312" y="512" width="31" height="18"/>
+                    <rect key="frame" x="268" y="572" width="31" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -184,9 +185,11 @@
                 <constraint firstAttribute="bottom" secondItem="LKL-Yv-d9T" secondAttribute="bottom" id="SKy-T2-bcA"/>
                 <constraint firstItem="HIq-fp-PWO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="38" id="SP4-Or-QTD"/>
                 <constraint firstAttribute="trailing" secondItem="HIq-fp-PWO" secondAttribute="trailing" constant="15" id="SRT-D1-jCc"/>
+                <constraint firstItem="zQ4-wY-tUN" firstAttribute="centerY" secondItem="f9b-Ss-psd" secondAttribute="centerY" id="T2M-st-sNk"/>
                 <constraint firstItem="AE5-FI-XLy" firstAttribute="leading" secondItem="YCF-Iy-Uvs" secondAttribute="trailing" constant="15" id="T4h-Hc-Ve2"/>
                 <constraint firstItem="f9b-Ss-psd" firstAttribute="top" secondItem="RmH-Ae-Lf5" secondAttribute="bottom" constant="18" id="WtN-Th-kAy"/>
                 <constraint firstAttribute="bottom" secondItem="YCF-Iy-Uvs" secondAttribute="bottom" constant="56" id="Wu7-Yq-SzA"/>
+                <constraint firstItem="f9b-Ss-psd" firstAttribute="leading" secondItem="zQ4-wY-tUN" secondAttribute="trailing" constant="8" id="XwS-mR-cT2"/>
                 <constraint firstAttribute="trailing" secondItem="waA-wE-0fQ" secondAttribute="trailing" id="Y4t-Ah-320"/>
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y9a-wI-CzT"/>
                 <constraint firstItem="RmH-Ae-Lf5" firstAttribute="centerX" secondItem="f9b-Ss-psd" secondAttribute="centerX" id="Yot-oY-ngn"/>
@@ -200,6 +203,12 @@
                 <constraint firstItem="zQ4-wY-tUN" firstAttribute="centerY" secondItem="PDh-Zc-8WF" secondAttribute="centerY" constant="5" id="xQO-TL-ubG"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="JDL-Vl-yDA"/>
+                    <exclude reference="xQO-TL-ubG"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>
