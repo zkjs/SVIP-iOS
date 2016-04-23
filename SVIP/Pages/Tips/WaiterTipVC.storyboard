@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -115,34 +115,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTi-Lt-dgW">
-                                <rect key="frame" x="0.0" y="354" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="328" width="320" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="cYn-hU-Rxl"/>
+                                    <constraint firstAttribute="height" constant="150" id="cYn-hU-Rxl"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="m49-QS-Wfg" kind="embed" identifier="reasonSegue" id="CQ1-5t-feB"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GqG-LS-OZr">
-                                <rect key="frame" x="125" y="494" width="70" height="30"/>
+                                <rect key="frame" x="120" y="498" width="80" height="40"/>
                                 <color key="backgroundColor" red="0.97254901960784312" green="0.58431372549019611" blue="0.0078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="R5O-lU-Jx6"/>
-                                    <constraint firstAttribute="height" constant="30" id="sD2-zU-uOM"/>
+                                    <constraint firstAttribute="width" constant="80" id="R5O-lU-Jx6"/>
+                                    <constraint firstAttribute="height" constant="40" id="sD2-zU-uOM"/>
                                 </constraints>
-                                <state key="normal" title="确认"/>
+                                <state key="normal" title="确认">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="checkoutTip:" destination="ur3-q5-Vdi" eventType="touchUpInside" id="OzV-ZT-IAL"/>
+                                    <action selector="confirmPayment:" destination="ur3-q5-Vdi" eventType="touchUpInside" id="oKP-dn-snr"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5C-sf-TfN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="308"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="328"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="308" id="QxD-RJ-sT3"/>
+                                    <constraint firstAttribute="height" constant="280" id="QxD-RJ-sT3"/>
+                                    <constraint firstAttribute="width" secondItem="B5C-sf-TfN" secondAttribute="height" multiplier="1:1" id="Zk1-ZL-YSb"/>
                                     <constraint firstAttribute="height" constant="200" id="qPQ-FX-BzL"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="QxD-RJ-sT3"/>
+                                        <exclude reference="Zk1-ZL-YSb"/>
                                         <exclude reference="qPQ-FX-BzL"/>
                                     </mask>
                                 </variation>
@@ -158,12 +168,13 @@
                             <constraint firstItem="B5C-sf-TfN" firstAttribute="width" secondItem="USM-El-R5c" secondAttribute="width" id="10e-2D-S3U"/>
                             <constraint firstItem="B5C-sf-TfN" firstAttribute="width" secondItem="USM-El-R5c" secondAttribute="width" id="8Uh-ZQ-5iN"/>
                             <constraint firstItem="B5C-sf-TfN" firstAttribute="leading" secondItem="USM-El-R5c" secondAttribute="leading" id="ANC-uk-Bxk"/>
-                            <constraint firstItem="GqG-LS-OZr" firstAttribute="top" secondItem="zTi-Lt-dgW" secondAttribute="bottom" constant="40" id="BpY-SM-Pmr"/>
+                            <constraint firstItem="GqG-LS-OZr" firstAttribute="top" secondItem="zTi-Lt-dgW" secondAttribute="bottom" constant="20" id="BpY-SM-Pmr"/>
                             <constraint firstAttribute="trailing" secondItem="B5C-sf-TfN" secondAttribute="trailing" id="DJw-Or-5Fg"/>
-                            <constraint firstItem="zTi-Lt-dgW" firstAttribute="top" secondItem="B5C-sf-TfN" secondAttribute="bottom" constant="46" id="FjK-nX-cHk"/>
+                            <constraint firstItem="zTi-Lt-dgW" firstAttribute="top" secondItem="B5C-sf-TfN" secondAttribute="bottom" id="FjK-nX-cHk"/>
                             <constraint firstItem="B5C-sf-TfN" firstAttribute="trailing" secondItem="zTi-Lt-dgW" secondAttribute="trailing" id="Mvk-8e-FEK"/>
                             <constraint firstItem="B5C-sf-TfN" firstAttribute="top" secondItem="USM-El-R5c" secondAttribute="top" id="R3N-4a-w7n"/>
                             <constraint firstItem="B5C-sf-TfN" firstAttribute="centerX" secondItem="USM-El-R5c" secondAttribute="centerX" id="TuD-hv-WtU"/>
+                            <constraint firstItem="9jh-EP-iAu" firstAttribute="top" secondItem="GqG-LS-OZr" secondAttribute="bottom" constant="30" id="Ye9-X6-c5Q"/>
                             <constraint firstItem="zTi-Lt-dgW" firstAttribute="top" secondItem="B5C-sf-TfN" secondAttribute="bottom" constant="46" id="aCU-Mc-Llz"/>
                             <constraint firstItem="zTi-Lt-dgW" firstAttribute="centerX" secondItem="B5C-sf-TfN" secondAttribute="centerX" id="aV3-0y-h8z"/>
                             <constraint firstItem="B5C-sf-TfN" firstAttribute="top" secondItem="USM-El-R5c" secondAttribute="top" id="cmg-te-oZ5"/>

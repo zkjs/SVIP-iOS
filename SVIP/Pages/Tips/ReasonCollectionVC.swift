@@ -7,69 +7,51 @@
 //
 
 import UIKit
-typealias ReasonSelectedClourse = (reason:String) ->Void
+
 private let ReasonOfTipsIdentifier = "ReasonOfTipsCollectionViewCell"
 
 class ReasonCollectionVC: UICollectionViewController {
-var selectedIndex:NSIndexPath?
-  var reasonSelectedClourse: ReasonSelectedClourse?
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  var selectedIndex:NSIndexPath?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+    // Register cell classes
+    let width = (CGRectGetWidth(collectionView!.frame) - 100)/3
+    let layout = collectionViewLayout as! UICollectionViewFlowLayout
+    layout.itemSize = CGSize(width: width, height: 40)
+  }
 
-        // Register cell classes
-      let width = (CGRectGetWidth(collectionView!.frame) - 100)/3
-      let layout = collectionViewLayout as! UICollectionViewFlowLayout
-      layout.itemSize = CGSize(width: width, height: 20)
-        // Do any additional setup after loading the view.
-    }
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  // MARK: UICollectionViewDataSource
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+  override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    return 1
+  }
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return TipsCountData.tips.count
+  }
 
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return TipsCountData.tips.count
-    }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReasonOfTipsIdentifier, forIndexPath: indexPath) as! ReasonOfTipsCollectionViewCell
-      let tip = TipsCountData.tips[indexPath.row]
-      cell.configCell(tip)
-      return cell
-    }
+  override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReasonOfTipsIdentifier, forIndexPath: indexPath) as! ReasonOfTipsCollectionViewCell
+    let tip = TipsCountData.tips[indexPath.row]
+    cell.configCell(tip)
+    return cell
+  }
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ReasonOfTipsCollectionViewCell
     cell.backgroundColor = UIColor(hex: "F89502")
     cell.contentView.backgroundColor = UIColor(hex: "F89502")
-    if let selectedIndex = selectedIndex {
+    if let selectedIndex = selectedIndex where selectedIndex != indexPath {
       collectionView.deselectItemAtIndexPath(selectedIndex, animated: true)
-    }
-    if let closure = self.reasonSelectedClourse {
-      closure(reason:cell.reasonLabel.text!)
     }
     selectedIndex = indexPath
   }

@@ -15,8 +15,8 @@ class AmountCollectionViewCell: UICollectionViewCell {
   override func awakeFromNib() {
     
   }
-  func configCell(tips:Count) {
-    amountLabel.text = tips.tip
+  func configCell(title:String) {
+    amountLabel.text = title
 
   }
 }

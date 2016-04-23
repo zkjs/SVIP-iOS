@@ -31,6 +31,7 @@ class HomeVC: UIViewController {
   var hideMoney: Bool = true
   let flipAnimationController = FlipAnimationController()
   let swipeInteractionController = SwipeInteractionController()
+  var waiterData = WaitersData.sharedInstance
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
@@ -49,7 +50,7 @@ class HomeVC: UIViewController {
     
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:KNOTIFICATION_PAYMENT, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshData", name: UIApplicationWillEnterForegroundNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:KNOTIFICATION_WELCOME, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name:KNOTIFICATION_CHANGELOGO, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
@@ -68,7 +69,7 @@ class HomeVC: UIViewController {
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
     getBalance()
-    getOrderList()
+    refreshData()
     refreshUserInfo()
     updateLogo()
     HttpService.sharedInstance.getUserinfo { (json, error) in
@@ -120,6 +121,11 @@ class HomeVC: UIViewController {
     vc.modalPresentationStyle = .OverFullScreen
     self.presentViewController(vc, animated: false, completion: nil)
 
+  }
+  
+  func refreshData() {
+    getOrderList()
+    waiterData.fetchNearbyWaiters()
   }
   
   func getOrderList() {
@@ -303,7 +309,7 @@ class HomeVC: UIViewController {
       return
     }
     
-    if WaitersData.allWaiters.count < 1 {
+    if WaitersData.sharedInstance.allWaiters.count < 1 {
       showHint("无服务人员信息")
       return
     }

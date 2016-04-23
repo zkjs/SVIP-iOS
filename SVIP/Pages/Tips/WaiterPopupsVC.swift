@@ -16,12 +16,13 @@ class WaiterPopupsVC: UIViewController {
   @IBOutlet weak var tipsButtonRight: UIButton!
   
   var waiterData = WaitersData()
+  var blurView: UIVisualEffectView!
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
     let blur = UIBlurEffect(style: .Dark)
-    let blurView = UIVisualEffectView(effect: blur)
+    blurView = UIVisualEffectView(effect: blur)
     blurView.frame = self.view.bounds
     blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
     blurView.translatesAutoresizingMaskIntoConstraints = true
@@ -74,6 +75,7 @@ class WaiterPopupsVC: UIViewController {
                                animations: {
         self.containerView.frame = CGRectOffset(self.containerView.frame, 0, -ScreenSize.SCREEN_HEIGHT)
         self.containerView.alpha = 0
+        self.blurView.alpha = 0
       },completion: { (finished) in
         self.dismissViewControllerAnimated(false, completion: nil)
     })

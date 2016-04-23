@@ -65,6 +65,7 @@ class HttpService {
     case UserEnsurePay                  // 用户确认付款
     case PaymentInfo                    // 获取首付款列表，含明细
     case Balance                        // 账户余额
+    case NearbyWaiters                  // 附近服务员
 
      
     
@@ -97,7 +98,7 @@ class HttpService {
       case .UserEnsurePay:              return "/for/res/v1/payment"
       case .PaymentInfo:                return "/for/res/v1/payment/si"
       case .Balance:                    return "/for/res/v1/payment/balance"
-  
+      case .NearbyWaiters:              return "/for/res/v1/payment/payable"
         
       }
     }

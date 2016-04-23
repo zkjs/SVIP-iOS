@@ -14,6 +14,7 @@
 		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
+		4030A3AD1CCA5C7400DCD34B /* HttpService+Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4030A3AC1CCA5C7400DCD34B /* HttpService+Tips.swift */; };
 		403DA8A01CC9CA0B0049BC96 /* WaitersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
@@ -266,6 +267,7 @@
 		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
+		4030A3AC1CCA5C7400DCD34B /* HttpService+Tips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Tips.swift"; sourceTree = "<group>"; };
 		403DA89F1CC9CA0B0049BC96 /* WaitersData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitersData.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 		406B0ADD1C859860006C9C73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4030A3AC1CCA5C7400DCD34B /* HttpService+Tips.swift */,
 				40DE24E41C9BF96C00CA7F26 /* HttpErrorRecordingService.swift */,
 				40DE24E51C9BF96C00CA7F26 /* HttpService+Account.swift */,
 				FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */,
@@ -1562,6 +1565,7 @@
 				FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */,
 				FA60C1D31CB74D58005711A2 /* MWTapDetectingView.m in Sources */,
 				40DE25071C9BFCFD00CA7F26 /* HttpService.swift in Sources */,
+				4030A3AD1CCA5C7400DCD34B /* HttpService+Tips.swift in Sources */,
 				40DE25121C9BFE6600CA7F26 /* LocationMonitor.swift in Sources */,
 				402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */,
 			);

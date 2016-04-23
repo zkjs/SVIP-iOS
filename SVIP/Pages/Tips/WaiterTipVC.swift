@@ -54,13 +54,13 @@ class WaiterTipVC: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return WaitersData.allWaiters.count
+        return WaitersData.sharedInstance.allWaiters.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
       let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! WaiterTipsCell
       // Configure the cell
-      let waiter = WaitersData.allWaiters[indexPath.row]
+      let waiter = WaitersData.sharedInstance.allWaiters[indexPath.row]
       cell.configCell(waiter)
       return cell
     }
