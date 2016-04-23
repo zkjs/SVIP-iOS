@@ -41,6 +41,7 @@ class AmountAndReasonVC: UIViewController {
   }
 
   @IBAction func confirmPayment(sender: UIButton) {
+    print("amount:\(amount)")
     if amount == 0.0 {
       showHint("未选择打赏金额")
       return

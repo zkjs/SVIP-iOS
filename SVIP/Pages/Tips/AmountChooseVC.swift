@@ -9,7 +9,7 @@
 import UIKit
 
 private let AmountReuseIdentifier = "AmountCollectionViewCell"
-let wallet = StorageManager.sharedInstance().curentCash()
+
 protocol AmountChooseDelegate {
   func didSelectAmount(amount:Double)
 }
@@ -27,6 +27,7 @@ let AmountData = [
 class AmountChooseVC: UICollectionViewController {
   var selectedIndex:NSIndexPath?
   var delegate : AmountChooseDelegate?
+  let wallet = StorageManager.sharedInstance().curentCash()
   
 
   override func viewDidLoad() {
@@ -110,6 +111,10 @@ class AmountChooseVC: UICollectionViewController {
     let tip = AmountData[indexPath.row]
     if Double(tip.1) > wallet {
       return
+    }
+    if let selectedIndex = selectedIndex where selectedIndex == indexPath {
+      delegate?.didSelectAmount(0)
+      self.selectedIndex = nil
     }
     print("de select:\(indexPath.row)")
     let cell = collectionView.cellForItemAtIndexPath(indexPath) as! AmountCollectionViewCell
