@@ -16,6 +16,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   @IBOutlet weak var userImage: UIImageView!
   
   @IBOutlet weak var switchPush: UISwitch!
+  @IBOutlet weak var switchMonitoring: UISwitch!
   var silentMode = "0"//消息免打扰
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,6 +47,8 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     } else {
       switchPush.on = false
     }
+    
+    switchMonitoring.on = StorageManager.sharedInstance().settingMonitoring()
     
     HttpService.sharedInstance.getUserinfo(nil)
     loadUserData()
@@ -79,6 +82,31 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
         }
       }
   
+    }
+  }
+  
+  
+  @IBAction func monitoringSwitch(sender: UISwitch) {
+    let monitoring = StorageManager.sharedInstance().settingMonitoring()
+    if monitoring {// stop monitoring
+      let confirmAlert = UIAlertController(title: "提示", message: "确定要关闭身份吗?", preferredStyle: .Alert)
+      let confirmAction = UIAlertAction(title: "确定", style: .Default) { (_) in
+        BeaconMonitor.sharedInstance.stopMonitoring()
+        LocationMonitor.sharedInstance.stopUpdatingLocation()
+        LocationMonitor.sharedInstance.stopMonitoringLocation()
+        StorageManager.sharedInstance().settingMonitoring(!monitoring)
+        self.switchMonitoring.on = StorageManager.sharedInstance().settingMonitoring()
+      }
+      let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { (_) in }
+      confirmAlert.addAction(confirmAction)
+      confirmAlert.addAction(cancelAction)
+      presentViewController(confirmAlert, animated: true, completion: nil)
+      
+    } else { // start monitoring
+      BeaconMonitor.sharedInstance.startMonitoring()
+      LocationMonitor.sharedInstance.startUpdatingLocation()
+      StorageManager.sharedInstance().settingMonitoring(!monitoring)
+      switchMonitoring.on = StorageManager.sharedInstance().settingMonitoring()
     }
   }
   

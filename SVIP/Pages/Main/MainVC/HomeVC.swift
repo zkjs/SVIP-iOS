@@ -247,9 +247,12 @@ class HomeVC: UIViewController {
   }
   
   func gotoSetting() {
-    let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
+    /*let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
     let vcMe = storyboard.instantiateViewControllerWithIdentifier("MeTVC") as! MeTVC
-    self.navigationController?.pushViewController(vcMe, animated: true)
+    */
+    let storyboard = UIStoryboard(name: "AccountTVC", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("AccountTVC") as! AccountTVC
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   func addGuestures() {

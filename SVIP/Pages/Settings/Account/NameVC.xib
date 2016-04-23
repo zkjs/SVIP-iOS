@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NameVC" customModule="SVIP" customModuleProvider="target">
@@ -18,7 +18,6 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nba-yg-4Kr">
                     <rect key="frame" x="0.0" y="552" width="600" height="48"/>
-                    <animations/>
                     <color key="backgroundColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="E1N-A2-xKl"/>
@@ -32,7 +31,6 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rBT-WC-9iY">
                     <rect key="frame" x="155" y="80" width="290" height="44"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Ja6-1t-Qd4"/>
                         <constraint firstAttribute="width" constant="290" id="VCt-SN-e8x"/>
@@ -51,18 +49,25 @@
                         <constraint firstAttribute="height" constant="1" id="waW-EX-jxM"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请用真实姓名，只可修改一次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ts5-0J-YVd">
+                    <rect key="frame" x="155" y="160" width="221" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="rBT-WC-9iY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9ii-ZX-gCL"/>
+                <constraint firstItem="Ts5-0J-YVd" firstAttribute="top" secondItem="rBT-WC-9iY" secondAttribute="bottom" constant="36" id="F2B-mf-k4a"/>
                 <constraint firstItem="rBH-Of-g7K" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wpa-bZ-ONa"/>
                 <constraint firstItem="Nba-yg-4Kr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XO3-Yb-Cqf"/>
                 <constraint firstAttribute="bottom" secondItem="Nba-yg-4Kr" secondAttribute="bottom" id="gpG-0H-J0l"/>
                 <constraint firstItem="rBH-Of-g7K" firstAttribute="top" secondItem="rBT-WC-9iY" secondAttribute="bottom" constant="8" id="kHa-Dl-V1j"/>
+                <constraint firstItem="Ts5-0J-YVd" firstAttribute="leading" secondItem="rBT-WC-9iY" secondAttribute="leading" id="lHX-kG-h4F"/>
                 <constraint firstItem="rBT-WC-9iY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="nId-iX-XdP"/>
                 <constraint firstAttribute="trailing" secondItem="Nba-yg-4Kr" secondAttribute="trailing" id="uco-jr-i3s"/>
             </constraints>

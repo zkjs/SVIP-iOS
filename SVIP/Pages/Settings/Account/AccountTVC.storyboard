@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mpV-lB-Hut">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -158,7 +158,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息推送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-hE-jtK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="信息推送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-hE-jtK">
                                                     <rect key="frame" x="16" y="14" width="64" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -179,6 +179,35 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="48" id="BVX-8Q-gtp">
+                                        <rect key="frame" x="0.0" y="280" width="600" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BVX-8Q-gtp" id="RZF-S3-bNp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开启身份" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJr-hX-2Pg">
+                                                    <rect key="frame" x="16" y="14" width="64" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSd-RA-KLs">
+                                                    <rect key="frame" x="535" y="8" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="monitoringSwitch:" destination="mpV-lB-Hut" eventType="valueChanged" id="Xji-CL-YPg"/>
+                                                        <action selector="pushSwitch:" destination="mpV-lB-Hut" eventType="valueChanged" id="EAs-sZ-1aO"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jJr-hX-2Pg" firstAttribute="leading" secondItem="RZF-S3-bNp" secondAttribute="leading" constant="16" id="0Hz-bu-lHM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qSd-RA-KLs" secondAttribute="trailing" constant="8" id="2a0-KP-3Re"/>
+                                                <constraint firstItem="jJr-hX-2Pg" firstAttribute="centerY" secondItem="RZF-S3-bNp" secondAttribute="centerY" id="ISO-nH-bmT"/>
+                                                <constraint firstItem="qSd-RA-KLs" firstAttribute="centerY" secondItem="RZF-S3-bNp" secondAttribute="centerY" id="pzz-ta-im3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -191,6 +220,7 @@
                         <outlet property="emailTextFiled" destination="yWz-Gw-Tkc" id="QkU-x9-cdD"/>
                         <outlet property="sexTextField" destination="DLB-ls-Wob" id="Bsn-r2-kQJ"/>
                         <outlet property="surnameTextField" destination="PBf-PT-xw8" id="3lk-1A-Ifv"/>
+                        <outlet property="switchMonitoring" destination="qSd-RA-KLs" id="zNG-01-DTa"/>
                         <outlet property="switchPush" destination="Wmt-zA-yTi" id="9hA-Ud-tEz"/>
                         <outlet property="userImage" destination="mKQ-ct-KJd" id="dCL-OQ-fPI"/>
                     </connections>
