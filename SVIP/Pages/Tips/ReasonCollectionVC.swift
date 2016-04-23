@@ -9,9 +9,15 @@
 import UIKit
 
 private let ReasonOfTipsIdentifier = "ReasonOfTipsCollectionViewCell"
-
+protocol ReasonChooseDelegate {
+  func didSelectReason(reason:String)
+}
+let ReasonData = [
+  ("超预期"),("态度好"),("质量好"),("说不清"),("一种感觉"),("喜欢给")
+]
 class ReasonCollectionVC: UICollectionViewController {
   var selectedIndex:NSIndexPath?
+  var Delegate:ReasonChooseDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,12 +42,12 @@ class ReasonCollectionVC: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
   override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return TipsCountData.tips.count
+    return ReasonData.count
   }
 
   override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReasonOfTipsIdentifier, forIndexPath: indexPath) as! ReasonOfTipsCollectionViewCell
-    let tip = TipsCountData.tips[indexPath.row]
+    let tip = ReasonData[indexPath.row]
     cell.configCell(tip)
     return cell
   }
@@ -54,6 +60,8 @@ class ReasonCollectionVC: UICollectionViewController {
       collectionView.deselectItemAtIndexPath(selectedIndex, animated: true)
     }
     selectedIndex = indexPath
+    let reason = ReasonData[indexPath.row]
+    Delegate?.didSelectReason(reason)
   }
   
   override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {

@@ -9,23 +9,25 @@
 import UIKit
 
 private let AmountReuseIdentifier = "AmountCollectionViewCell"
-
+let wallet = 130
 protocol AmountChooseDelegate {
   func didSelectAmount(amount:Double)
 }
 
 let AmountData = [
-  ("￥50", 50.0),
-  ("￥100",  100.0),
-  ("￥?", 0.0),
-  ("￥10", 10.0),
-  ("￥5", 5.0),
-  ("￥20", 20.0),
+  ("￥5", 5.0, 0,30),
+  ("￥10", 10.0 , 30,60),
+  ("￥?", 0.0, 0, 0),
+  ("￥20", 20.0, 60,80),
+  ("￥50", 50.0, 80,95),
+  ("￥100",  100.0, 95,100),
+  
 ]
 
 class AmountChooseVC: UICollectionViewController {
   var selectedIndex:NSIndexPath?
   var delegate : AmountChooseDelegate?
+  
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -37,7 +39,7 @@ class AmountChooseVC: UICollectionViewController {
     let width = (CGRectGetWidth(collectionView!.frame) - 30)/3
     let layout = collectionViewLayout as! UICollectionViewFlowLayout
     layout.itemSize = CGSize(width: width, height: width)
-
+    print(AmountData.map{($0.1)})
       // Do any additional setup after loading the view.
   }
 
@@ -107,7 +109,33 @@ class AmountChooseVC: UICollectionViewController {
 
   
   func getRandomAmount() -> Double {
-    return 50
+    var p = 0
+    if wallet >= 100 {
+      p = Int(arc4random()%100)+1
+    }
+    if wallet < 100  && wallet >= 50 {
+      p = Int(arc4random()%95)+1 
+    }
+    if wallet < 50 && wallet >= 20 {
+      p = Int(arc4random()%80)+1 
+    }
+    if wallet < 20 && wallet >= 10 {
+      p = Int(arc4random()%60)+1 
+    }
+    if wallet < 10 && wallet >= 5 {
+      p = 5
+    }
+    if wallet < 5 {
+      showHint("余额不足")
+      return 0
+    }
+    if let amount = AmountData.filter({ $0.2 <= p &&  $0.3 > p }).first {
+      print(amount.1)
+      return amount.1
+    }
+    
+    
+    return 0
   }
   
   

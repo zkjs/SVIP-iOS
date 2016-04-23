@@ -21,8 +21,8 @@ class ReasonOfTipsCollectionViewCell: UICollectionViewCell {
 
   }
   
-  func configCell(tips:Count) {
-    reasonLabel.text = tips.reason
+  func configCell(tips:String) {
+    reasonLabel.text = tips
     
   }
 }
