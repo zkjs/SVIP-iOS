@@ -967,8 +967,8 @@
 			isa = PBXGroup;
 			children = (
 				40DE25271C9D6CCB00CA7F26 /* Model */,
-				40DE251F1C9D6CCB00CA7F26 /* AccountTVC.storyboard */,
 				40DE25201C9D6CCB00CA7F26 /* AccountTVC.swift */,
+				40DE251F1C9D6CCB00CA7F26 /* AccountTVC.storyboard */,
 				40DE25211C9D6CCB00CA7F26 /* EmailVC.swift */,
 				40DE25221C9D6CCB00CA7F26 /* EmailVC.xib */,
 				40DE25291C9D6CCB00CA7F26 /* NameVC.swift */,

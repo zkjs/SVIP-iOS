@@ -40,7 +40,6 @@ class AmountChooseVC: UICollectionViewController {
     let width = (CGRectGetWidth(collectionView!.frame) - 30)/3
     let layout = collectionViewLayout as! UICollectionViewFlowLayout
     layout.itemSize = CGSize(width: width, height: width)
-    print(AmountData.map{($0.1)})
       // Do any additional setup after loading the view.
   }
 
@@ -49,15 +48,6 @@ class AmountChooseVC: UICollectionViewController {
       // Dispose of any resources that can be recreated.
   }
 
-  /*
-  // MARK: - Navigation
-
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      // Get the new view controller using [segue destinationViewController].
-      // Pass the selected object to the new view controller.
-  }
-  */
 
   // MARK: UICollectionViewDataSource
 
@@ -141,8 +131,6 @@ class AmountChooseVC: UICollectionViewController {
       print(amount.1)
       return amount.1
     }
-    
-    
     return 0
   }
   
