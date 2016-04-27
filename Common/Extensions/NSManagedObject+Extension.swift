@@ -42,6 +42,10 @@ extension NSManagedObject {
     return self.query(condition, inContext: CoreDataStack.sharedInstance.context, order: nil, limit: nil)
   }
   
+  static func query(condition: AnyObject, order: AnyObject, limit:Int?) -> [AnyObject] {
+    return self.query(condition, inContext: CoreDataStack.sharedInstance.context, order: order, limit: limit)
+  }
+  
   static func query(condition: AnyObject, inContext context: NSManagedObjectContext, order: AnyObject) -> [AnyObject] {
     return self.query(condition, inContext: context, order: order, limit: nil)
   }

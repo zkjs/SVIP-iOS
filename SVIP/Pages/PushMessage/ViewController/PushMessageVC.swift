@@ -9,7 +9,7 @@
 import UIKit
 
 class PushMessageVC: UIViewController {
-  var pushInfo: PushMessageModel?
+  var pushInfo: PushMessage?
 
   @IBOutlet weak var contentLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
@@ -19,6 +19,8 @@ class PushMessageVC: UIViewController {
   @IBOutlet weak var linkButtonHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var seperator: UIView!
   
+  private var blurView: UIVisualEffectView!
+  
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("PushMessageVC", owner:self, options:nil)
   }
@@ -26,7 +28,7 @@ class PushMessageVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     let blur = UIBlurEffect(style: .Dark)
-    let blurView = UIVisualEffectView(effect: blur)
+    blurView = UIVisualEffectView(effect: blur)
     blurView.frame = self.view.bounds
     blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
     blurView.translatesAutoresizingMaskIntoConstraints = true
@@ -56,20 +58,38 @@ class PushMessageVC: UIViewController {
   
   override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     super.touchesEnded(touches, withEvent: event)
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss()
   }
   
   private func animateView() {
     pushView.frame = CGRectOffset(pushView.frame, 0, -ScreenSize.SCREEN_HEIGHT)
     UIView.animateWithDuration(0.5, delay: 0.0,
-                               usingSpringWithDamping: 0.6,
-                               initialSpringVelocity: 0.0,
-                               options: .CurveEaseInOut,
+                   usingSpringWithDamping: 0.6,
+                    initialSpringVelocity: 0.0,
+                                  options: .CurveEaseInOut,
                                animations: {
-                                self.pushView.frame = CGRectOffset(self.pushView.frame, 0, +ScreenSize.SCREEN_HEIGHT)
-                                self.pushView.alpha = 1
-      },completion: { (finished) in
+        self.pushView.frame = CGRectOffset(self.pushView.frame, 0, +ScreenSize.SCREEN_HEIGHT)
+        self.pushView.alpha = 1
+      },completion: nil)
+  }
+  
+  private func dismiss() {
+    UIView.animateKeyframesWithDuration(0.8,
+                                 delay: 0.0,
+                               options: [.CalculationModeCubic],
+                            animations: {
+        UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.4, animations: {
+          self.pushView.transform = CGAffineTransformMakeScale(0.5, 0.5)
+          self.pushView.alpha = 0.5
+          self.blurView.alpha = 0.5
+        })
         
+        UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.5, animations: {
+          self.pushView.frame = CGRectOffset(self.pushView.frame, 0, +ScreenSize.SCREEN_HEIGHT)
+          self.blurView.alpha = 0
+        })
+      }, completion: { (finished) in
+        self.dismissViewControllerAnimated(false, completion: nil)
     })
   }
   

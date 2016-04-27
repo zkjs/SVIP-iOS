@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="KGk-i7-Jjw" customClass="PaylistCell" customModule="SVIP" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="KGk-i7-Jjw" customClass="MesssageListCell" customModule="SVIP" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="365" height="112"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -32,34 +32,56 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUj-ye-TqV">
                                 <rect key="frame" x="229" y="0.0" width="120" height="103"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Money" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBt-2b-nHc">
-                                        <rect key="frame" x="8" y="40" width="61" height="24"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y0k-f8-Mta">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="103"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBt-2b-nHc">
+                                        <rect key="frame" x="8" y="40" width="6" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_zip_white" translatesAutoresizingMaskIntoConstraints="NO" id="G7r-Kq-Xmg">
+                                        <rect key="frame" x="0.0" y="0.0" width="5" height="103"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="5" id="nq6-PM-94z"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.76470588235294112" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="y0k-f8-Mta" firstAttribute="top" secondItem="sUj-ye-TqV" secondAttribute="top" id="6od-ca-rCR"/>
+                                    <constraint firstAttribute="bottom" secondItem="y0k-f8-Mta" secondAttribute="bottom" id="G1S-19-bKn"/>
                                     <constraint firstItem="KBt-2b-nHc" firstAttribute="centerY" secondItem="sUj-ye-TqV" secondAttribute="centerY" id="JRS-ne-YbA"/>
+                                    <constraint firstAttribute="trailing" secondItem="y0k-f8-Mta" secondAttribute="trailing" id="JlE-Iz-at7"/>
+                                    <constraint firstItem="y0k-f8-Mta" firstAttribute="leading" secondItem="sUj-ye-TqV" secondAttribute="leading" id="NDz-gs-4Nn"/>
+                                    <constraint firstItem="G7r-Kq-Xmg" firstAttribute="top" secondItem="sUj-ye-TqV" secondAttribute="top" id="RQo-5V-yPE"/>
+                                    <constraint firstAttribute="bottom" secondItem="y0k-f8-Mta" secondAttribute="bottom" id="VDd-Nc-3dl"/>
+                                    <constraint firstItem="G7r-Kq-Xmg" firstAttribute="leading" secondItem="sUj-ye-TqV" secondAttribute="leading" id="ZgS-AJ-gUn"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KBt-2b-nHc" secondAttribute="trailing" constant="5" id="b4d-hw-Dks"/>
+                                    <constraint firstItem="y0k-f8-Mta" firstAttribute="leading" secondItem="sUj-ye-TqV" secondAttribute="leading" id="buB-gF-Wzn"/>
+                                    <constraint firstItem="y0k-f8-Mta" firstAttribute="top" secondItem="sUj-ye-TqV" secondAttribute="top" id="ip9-Ba-1vm"/>
+                                    <constraint firstAttribute="trailing" secondItem="y0k-f8-Mta" secondAttribute="trailing" id="jfU-iA-maO"/>
                                     <constraint firstItem="KBt-2b-nHc" firstAttribute="leading" secondItem="sUj-ye-TqV" secondAttribute="leading" constant="8" id="t2O-0F-Mds"/>
+                                    <constraint firstAttribute="bottom" secondItem="G7r-Kq-Xmg" secondAttribute="bottom" id="tvp-wk-tfc"/>
                                     <constraint firstAttribute="width" constant="120" id="wgh-Hd-5Uh"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="VDd-Nc-3dl"/>
+                                        <exclude reference="buB-gF-Wzn"/>
+                                        <exclude reference="ip9-Ba-1vm"/>
+                                        <exclude reference="jfU-iA-maO"/>
+                                    </mask>
+                                </variation>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="img_zip_orange" translatesAutoresizingMaskIntoConstraints="NO" id="G7r-Kq-Xmg">
-                                <rect key="frame" x="224" y="0.0" width="5" height="103"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oWh-cE-8Ny" firstAttribute="leading" secondItem="dBi-Wq-wwK" secondAttribute="leading" id="5L7-Sk-KTX"/>
-                            <constraint firstItem="G7r-Kq-Xmg" firstAttribute="bottom" secondItem="sUj-ye-TqV" secondAttribute="bottom" id="6SL-zB-AtK"/>
-                            <constraint firstItem="G7r-Kq-Xmg" firstAttribute="top" secondItem="sUj-ye-TqV" secondAttribute="top" id="9rK-9P-L5w"/>
                             <constraint firstItem="sUj-ye-TqV" firstAttribute="top" secondItem="PDV-NY-SRN" secondAttribute="top" id="AH4-Ax-q4D"/>
                             <constraint firstItem="dBi-Wq-wwK" firstAttribute="top" secondItem="PDV-NY-SRN" secondAttribute="top" constant="10" id="Lyx-1M-AZQ"/>
                             <constraint firstAttribute="bottom" secondItem="oWh-cE-8Ny" secondAttribute="bottom" constant="8" id="PJI-Rr-1gu"/>
-                            <constraint firstItem="sUj-ye-TqV" firstAttribute="leading" secondItem="G7r-Kq-Xmg" secondAttribute="trailing" id="R7j-sN-zoH"/>
                             <constraint firstAttribute="bottom" secondItem="sUj-ye-TqV" secondAttribute="bottom" id="VIN-9H-3Xk"/>
                             <constraint firstAttribute="trailing" secondItem="sUj-ye-TqV" secondAttribute="trailing" id="evI-Mp-Qmd"/>
                             <constraint firstItem="sUj-ye-TqV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dBi-Wq-wwK" secondAttribute="trailing" constant="10" id="i9j-NC-CQf"/>
@@ -81,14 +103,15 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="hotelNamelabel" destination="dBi-Wq-wwK" id="vdu-nl-mcK"/>
-                <outlet property="moneyPayLabel" destination="KBt-2b-nHc" id="EF9-Qx-iyX"/>
-                <outlet property="timeLabel" destination="oWh-cE-8Ny" id="gp8-eJ-Qce"/>
+                <outlet property="moneyPayLabel" destination="KBt-2b-nHc" id="tpN-am-Ism"/>
+                <outlet property="msgImgView" destination="y0k-f8-Mta" id="3dv-I6-HmY"/>
+                <outlet property="timeLabel" destination="oWh-cE-8Ny" id="LWL-52-PBl"/>
+                <outlet property="titleLabel" destination="dBi-Wq-wwK" id="PQ8-g0-bgt"/>
             </connections>
             <point key="canvasLocation" x="603.5" y="482"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="img_zip_orange" width="5" height="104"/>
+        <image name="img_zip_white" width="5" height="104"/>
     </resources>
 </document>

@@ -33,7 +33,7 @@ class EmailVC: UIViewController {
   }
   
   @IBAction func done(sender: AnyObject) {
-    guard let email = emailTextField.text else { return }
+    guard let email = emailTextField.text?.trim else { return }
     if ZKJSTool.validateEmail(email) == false {
       showHint("邮箱格式有误")
       return

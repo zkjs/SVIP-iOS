@@ -55,7 +55,7 @@ extension String {
   }
   
   var isValidName: Bool {
-    return (self =~ "^[\\u4e00-\\u9fa5]+$")
+    return (self =~ "^[ [a-z][A-Z]\\u4e00-\\u9fa5]+$")
   }
   /*
    * 图片完整URL: Endpoint + ResourcePath
@@ -99,6 +99,28 @@ extension String {
    */
   var fittedImageUrl: String {
     return fittedImage.fullImageUrl
+  }
+  
+  /*
+   * 根据指定尺寸返回相应图片: 比如 path/file.png => path/file.png@200w_300h_2e
+   * ref: http://zbox.zkjinshi.com/doc-view-50.html
+   */
+  func fullImageUrlWith(width width:Int = 0, height:Int = 0, scale: Bool = false) -> String {
+    if self.isEmpty {
+      return ""
+    }
+    var url = self
+    if width > 0 && height > 0 {
+      url = self + "@\(width)w_\(height)h"
+      if scale {
+        url += "_2e"
+      }
+    } else if width > 0 {
+      url = self + "@\(width)w"
+    } else if height > 0 {
+      url = self + "@\(height)h"
+    }
+    return url.fullImageUrl
   }
   
 }

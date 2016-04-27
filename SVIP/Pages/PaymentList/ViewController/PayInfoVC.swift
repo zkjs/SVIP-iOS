@@ -21,8 +21,9 @@ class PayInfoVC: UIViewController {
   @IBOutlet weak var payamountLabel: UILabel!
   @IBOutlet weak var shopnameLabel: UILabel!
   @IBOutlet weak var constraintCenterY: NSLayoutConstraint!
-
   @IBOutlet weak var rootView: UIView!
+  private var blurView: UIVisualEffectView!
+  
   var payInfo = PaylistmModel()
   
   var payInfoDismissClosure: PayInfoDismissClosure?
@@ -31,7 +32,7 @@ class PayInfoVC: UIViewController {
     super.viewDidLoad()
     
     let blur = UIBlurEffect(style: .Dark)
-    let blurView = UIVisualEffectView(effect: blur)
+    blurView = UIVisualEffectView(effect: blur)
     blurView.frame = self.view.bounds
     blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
     blurView.translatesAutoresizingMaskIntoConstraints = true
@@ -58,23 +59,39 @@ class PayInfoVC: UIViewController {
   }
   
   private func animateView() {
-    rootView.frame = CGRectOffset(rootView.frame, 0, ScreenSize.SCREEN_HEIGHT)
-    UIView.animateWithDuration(0.5, delay: 0.0,
-                   usingSpringWithDamping: 0.6,
-                    initialSpringVelocity: 0.0,
-                                  options: .CurveEaseInOut,
-                                  animations: {
-        self.rootView.frame = CGRectOffset(self.rootView.frame, 0, -ScreenSize.SCREEN_HEIGHT)
-      },completion: { (finished) in
-        
-    })
+    rootView.frame = CGRectOffset(rootView.frame, 0, -ScreenSize.SCREEN_HEIGHT)
+    UIView.animateWithDuration(0.5,
+                        delay: 0.0,
+       usingSpringWithDamping: 0.6,
+        initialSpringVelocity: 0.0,
+                      options: .CurveEaseInOut,
+                   animations: {
+        self.rootView.frame = CGRectOffset(self.rootView.frame, 0, +ScreenSize.SCREEN_HEIGHT)
+        self.rootView.alpha = 1
+      },completion: nil)
   }
     
   @IBAction func dismiss(sender: AnyObject) {
     if let closure = self.payInfoDismissClosure {
       closure(false)
     }
-    self.dismissViewControllerAnimated(true, completion: nil)
+    UIView.animateKeyframesWithDuration(0.8,
+                                 delay: 0.0,
+                               options: [.CalculationModeCubic],
+                            animations: {
+        UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.4, animations: {
+          self.rootView.transform = CGAffineTransformMakeScale(0.5, 0.5)
+          self.rootView.alpha = 0.5
+          self.blurView.alpha = 0.5
+        })
+        
+        UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.5, animations: {
+          self.rootView.frame = CGRectOffset(self.rootView.frame, 0, +ScreenSize.SCREEN_HEIGHT)
+          self.blurView.alpha = 0
+        })
+      }, completion: { (finished) in
+        self.dismissViewControllerAnimated(false, completion: nil)
+    })
   }
   
   @IBAction func rejectpay(sender: AnyObject) {

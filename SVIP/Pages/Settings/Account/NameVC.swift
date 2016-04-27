@@ -33,7 +33,7 @@ class NameVC: UIViewController {
   }
   
   @IBAction func done(sender: AnyObject) {
-    guard let userName = nameTextField.text else { return }
+    guard let userName = nameTextField.text?.trim else { return }
     if userName.isEmpty == true {
       showHint("姓名不能为空")
       return
@@ -42,14 +42,14 @@ class NameVC: UIViewController {
       showHint("填写不合符规范，请填写真实姓名")
       return
     }
-    if userName.characters.count > 12 {
-      showHint("姓名不超过12个中文字符")
+    if userName.characters.count > 20 {
+      showHint("填写的姓名超过限制长度")
       return
     }
     
     HttpService.sharedInstance.updateUserInfo(false, realname: userName, sex: nil, image: nil, email: nil,silentmode: nil) { [unowned self](json, error) -> () in
-      if let _ = error {
-        self.showHint("修改姓名失败")
+      if let error = error {
+        self.showErrorHint(error)
       } else {
         AccountManager.sharedInstance().saveUserName(userName)
         self.navigationController?.popViewControllerAnimated(true)

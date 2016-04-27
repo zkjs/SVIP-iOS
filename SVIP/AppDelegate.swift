@@ -168,13 +168,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // 到店欢迎,营销推送通知
         else if type == "BLE_ACTIVITY" {
-          guard let title = data["title"] as? String,
-            let content = data["content"] as? String else {
+          guard let _ = data["title"] as? String,
+            let _ = data["content"] as? String else {
               return
           }
           
-          let  payInfo = PushMessageModel(dict: data)
-          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_WELCOME, object: nil, userInfo: ["welcomeInfo":payInfo])
+          if let msg = PushMessage.createFromDict(data) {
+            msg.save()
+            NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_WELCOME, object: nil, userInfo: ["welcomeInfo":msg])
+          }
         }
         // change logo
         else if type == "ANOTHER_SHOP" {

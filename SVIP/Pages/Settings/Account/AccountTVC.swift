@@ -127,7 +127,6 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     let name = NSIndexPath(forRow: 1, inSection: 0)
     let sex = NSIndexPath(forRow: 2, inSection: 0)
     let email = NSIndexPath(forRow: 3, inSection: 0)
-    let phone = NSIndexPath(forRow: 5, inSection: 0)
     
     switch indexPath {
     case photo:
@@ -141,7 +140,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     case name:
       if let ismodifyusername:Int = AccountManager.sharedInstance().ismodifyusername {
         if ismodifyusername == 1 {
-          self.showHint("用户名只能修改一次哦", withFontSize: 18)
+          self.showHint("姓名只能修改一次", withFontSize: 18)
         } else {
           navigationController?.pushViewController(NameVC(), animated: true)
         }
@@ -150,8 +149,6 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
       chooseSex()
     case email:
       navigationController?.pushViewController(EmailVC(), animated: true)
-    case phone:
-      navigationController?.pushViewController(PhoneFirstVC(), animated: true)
     default:
       break
     }

@@ -85,7 +85,7 @@ class HomeVC: UIViewController {
   
   
   func welcomeInfo(notification: NSNotification) {
-    guard let userInfo = notification.userInfo, let pushInfo = userInfo["welcomeInfo"] as? PushMessageModel else {
+    guard let userInfo = notification.userInfo, let pushInfo = userInfo["welcomeInfo"] as? PushMessage else {
       return
     }
     let vc = PushMessageVC()
@@ -205,9 +205,6 @@ class HomeVC: UIViewController {
   // 点击气泡打开账单列表
   @IBAction func moneyAction(sender: AnyObject) {
     toggleMoney()
-    /*let vc = PayListTVC()
-    vc.orderStatus = .Paid
-    self.navigationController?.pushViewController(vc, animated: true)*/
     let billStoryboard = UIStoryboard(name:"BillList",bundle: nil)
     let vc = billStoryboard.instantiateViewControllerWithIdentifier("BillListVC") as! BillListVC
     self.navigationController?.pushViewController(vc, animated: true)
@@ -216,8 +213,7 @@ class HomeVC: UIViewController {
   // 点击呼吸灯打开付款请求
   @IBAction func billAction(sender: AnyObject) {
     self.breathLight.stopAnimation()
-    let vc = PayListTVC()
-    vc.orderStatus = .NotPaid
+    let vc = MessageListTVC()
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
@@ -247,9 +243,6 @@ class HomeVC: UIViewController {
   }
   
   func gotoSetting() {
-    /*let storyboard = UIStoryboard(name: "MeTVC", bundle: nil)
-    let vcMe = storyboard.instantiateViewControllerWithIdentifier("MeTVC") as! MeTVC
-    */
     let storyboard = UIStoryboard(name: "AccountTVC", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("AccountTVC") as! AccountTVC
     self.navigationController?.pushViewController(vc, animated: true)
@@ -260,9 +253,10 @@ class HomeVC: UIViewController {
     multiTap.numberOfTapsRequired = 6
     self.logoutView.addGestureRecognizer(multiTap)
     
-    let swipeGesture = UISwipeGestureRecognizer(target: self, action: "gotoShopDetail:")
-    swipeGesture.direction = .Left
-    self.view.addGestureRecognizer(swipeGesture)
+    let tap = UITapGestureRecognizer(target: self, action: "gotoShopDetail")
+    view.bringSubviewToFront(shopLogoImageView)
+    shopLogoImageView.userInteractionEnabled = true
+    shopLogoImageView.addGestureRecognizer(tap)
   }
   
   // 点击屏幕6次退出登录
@@ -277,10 +271,7 @@ class HomeVC: UIViewController {
     }
   }
   
-  func gotoShopDetail(gestureRecognizer:UISwipeGestureRecognizer) {
-    if gestureRecognizer.state != .Ended {
-      return
-    }
+  func gotoShopDetail() {
     let storyBoard = UIStoryboard(name: "ShopDetail", bundle: nil)
     let shopVC = storyBoard.instantiateViewControllerWithIdentifier("ShopDetailVC") as! ShopDetailVC
 

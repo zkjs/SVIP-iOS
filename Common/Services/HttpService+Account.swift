@@ -134,7 +134,7 @@ extension HttpService {
                   completionHandler(json,e)
                   print("error with reason: \(json["resDesc"].string)")
                   if let key = json["res"].int {
-                    ZKJSTool.showMsg("\(key)")
+                    //ZKJSTool.showMsg("\(key)")
                   }
                 }
               }
