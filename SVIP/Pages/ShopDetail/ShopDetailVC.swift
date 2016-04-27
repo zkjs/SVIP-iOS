@@ -37,6 +37,10 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     let swipeGesture = UISwipeGestureRecognizer(target: self, action: "popToHomeVC:")
     swipeGesture.direction = .Right
     self.view.addGestureRecognizer(swipeGesture)
+    
+    let backButton = UIBarButtonItem(image: UIImage(named: "ic_fanhui_orange"), style: UIBarButtonItemStyle.Plain, target: self, action: "popToHomeVC")
+    self.navigationItem.leftBarButtonItem = backButton
+    
     loadData()
     title = "商家详情"
   }
@@ -56,6 +60,10 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     if gestureRecognizer.state != .Ended {
       return
     }
+    popToHomeVC()
+  }
+  
+  func popToHomeVC() {
     UIView.transitionWithView((self.navigationController?.view)!, duration: 0.8, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
       self.navigationController?.popViewControllerAnimated(false)
       }, completion: nil)

@@ -288,6 +288,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
   
+  func checkVersion() {
+    HttpService.sharedInstance.checkNewVersion { (isForceUpgrade, hasNewVersion) -> Void in
+      if isForceUpgrade {
+        // 强制更新
+        let alertController = UIAlertController(title: "升级提示", message: "请您升级到最新版本，以保证软件的正常使用", preferredStyle: .Alert)
+        let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
+          let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
+          if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
+          }
+        })
+        alertController.addAction(upgradeAction)
+        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+      } else if hasNewVersion {
+        // 提示更新
+        let alertController = UIAlertController(title: "升级提示", message: "已有新版本可供升级", preferredStyle: .Alert)
+        let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
+          let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
+          if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
+          }
+        })
+        alertController.addAction(upgradeAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+      }
+      
+    }
+  }
+  
 }
 
 func clearCacheAfterLogout() {
