@@ -14,7 +14,7 @@ import SwiftyJSON
 extension HttpService {
   
   //// PYXIS 位置服务API : Beacon 位置信息 :
-  func sendBeaconChanges(uuid:String, major:String, minor:String, sensorID: String = "", timestamp:Int, completionHandler:HttpCompletionHandler?){
+  func sendBeaconChanges(uuid:String, major:String, minor:String, sensorID: String = "", timestamp:Int64, completionHandler:HttpCompletionHandler?){
     let urlString = ResourcePath.Beacon.description.fullUrl
     guard  let token = TokenPayload.sharedInstance.token else {return}
     print(token)
@@ -48,7 +48,7 @@ extension HttpService {
   }
   
   //// PYXIS 位置服务API : GPS 位置信息 :
-  func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int,mac:String,ssid:String, completionHandler:HttpCompletionHandler?){
+  func sendGpsChanges(latitude:CLLocationDegrees, longitude:CLLocationDegrees, altitude:CLLocationDistance,  timestamp:Int64, mac:String,ssid:String, completionHandler:HttpCompletionHandler?){
     let urlString = ResourcePath.GPS.description.fullUrl
     
     var dict = ["latitude":latitude.format("0.6"),"longitude":longitude.format("0.6"),"altitude":altitude.format("0.6"), "timestamp":"\(timestamp)"]

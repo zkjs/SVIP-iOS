@@ -110,7 +110,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
   }
   
   private func didRangeBeacons(beacon: CLBeacon!) {
-    let currentTimeStamp = Int(NSDate().timeIntervalSince1970 * 1000)
+    let currentTimeStamp = Int64(NSDate().timeIntervalSince1970 * 1000)
     
     let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)-\(beacon.minor)"
     

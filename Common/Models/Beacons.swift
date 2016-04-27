@@ -76,7 +76,7 @@ class Beacons: NSManagedObject {
         "uuid": beacon.uuid,
         "rssi": "\(beacon.rssi.intValue)",
         "accuracy": "\(beacon.accuracy.doubleValue)",
-        "timestamp": "\(Int(beacon.timestamp.timeIntervalSince1970 * 1000))"
+        "timestamp": "\(Int64(beacon.timestamp.timeIntervalSince1970 * 1000))"
       ]
       if let lat = beacon.latitude?.doubleValue, let lng = beacon.longitude?.doubleValue,
         let alt = beacon.altitude?.doubleValue {
