@@ -24,7 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
-    refreshToken()
+    let succ = HttpService.sharedInstance.refreshTokenSync()
+    if !succ {
+      TokenPayload.sharedInstance.clearCacheTokenPayload()
+    }
     
     HttpService.sharedInstance.getUserinfo(nil)
     
