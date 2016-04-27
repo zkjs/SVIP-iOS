@@ -14,6 +14,7 @@
 		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
+		403F5CE21CD0E1D200EB1C1E /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 403F5CE11CD0E1D200EB1C1E /* UINavigationBar+Awesome.m */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
@@ -254,6 +255,8 @@
 		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
+		403F5CE01CD0E1D200EB1C1E /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		403F5CE11CD0E1D200EB1C1E /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
@@ -522,6 +525,15 @@
 			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
+		403F5CDF1CD0E1D200EB1C1E /* LTNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				403F5CE01CD0E1D200EB1C1E /* UINavigationBar+Awesome.h */,
+				403F5CE11CD0E1D200EB1C1E /* UINavigationBar+Awesome.m */,
+			);
+			path = LTNavigationBar;
+			sourceTree = "<group>";
+		};
 		404177CF1C993E6100113721 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +632,7 @@
 		40641F861B3E79A300CF150D /* CommonOC */ = {
 			isa = PBXGroup;
 			children = (
+				403F5CDF1CD0E1D200EB1C1E /* LTNavigationBar */,
 				40E3A18C1BFF01B000516EC4 /* 3rdparty-oc */,
 				4077C79B1C26578F000DD7DC /* Cryptography */,
 				40641F9A1B3E79A300CF150D /* Tool */,
@@ -1443,6 +1456,7 @@
 				40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				400888E31CB74E5A0004E0A1 /* TipsBubble.swift in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
+				403F5CE21CD0E1D200EB1C1E /* UINavigationBar+Awesome.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				40DE24F21C9BFA9300CA7F26 /* BeaconErrors+CoreDataProperties.swift in Sources */,
 				407D3BF21CD056AC00930CDA /* PushMessage.swift in Sources */,

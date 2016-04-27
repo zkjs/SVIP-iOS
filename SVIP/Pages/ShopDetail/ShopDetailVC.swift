@@ -26,7 +26,7 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     super.viewDidLoad()
 
     tableView.tableFooterView = UIView()
-    tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0)
+    tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0)
     self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
     headerView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
     tableView.separatorStyle = .None
@@ -38,12 +38,18 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     swipeGesture.direction = .Right
     self.view.addGestureRecognizer(swipeGesture)
     loadData()
-
+    title = "商家详情"
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBarHidden = true
+    navigationController?.navigationBarHidden = false
+    navigationController?.navigationBar.translucent = true
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.navigationBar.translucent = false
   }
   
   func popToHomeVC(gestureRecognizer:UISwipeGestureRecognizer) {
@@ -57,6 +63,7 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
   
  
   func setupView() {
+    title = shopDetail.shopname
     shoplogoImageView.sd_setImageWithURL(NSURL(string: shopDetail.shopbg.fittedImageUrl), placeholderImage: UIImage(named: "img_shangjia"))
     shopnameLabel.text = shopDetail.shopname
     shopAddressLabel.text = shopDetail.shopaddress
@@ -100,6 +107,20 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
   func gotoPhotoViewerDelegate(Brower:AnyObject) {
     self.navigationController?.pushViewController(Brower  as! UIViewController , animated: true)
   }
- 
+  
+  
+  //MARK: - ScrollView Delegate
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
+    let color = UIColor.ZKJS_mainColor()
+    let offsetY = scrollView.contentOffset.y
+    if (offsetY > 50) {
+      let alpha = min(1, 1 - ((50 + 64 - offsetY) / 64))
+      navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
+      navigationItem.titleView?.alpha = alpha
+    } else {
+      navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
+      navigationItem.titleView?.alpha = 0
+    }
+  }
   
 }
