@@ -111,9 +111,6 @@
                             <color key="value" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="billAction:" destination="-1" eventType="touchUpInside" id="42B-99-roK"/>
-                    </connections>
                 </view>
                 <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrB-WU-zoV">
                     <rect key="frame" x="140" y="397" width="95" height="113"/>
@@ -125,6 +122,16 @@
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_wyndham" translatesAutoresizingMaskIntoConstraints="NO" id="cNW-pJ-VSy">
                     <rect key="frame" x="86" y="246" width="202" height="96"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zV-6H-xQT">
+                    <rect key="frame" x="316" y="38" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="7wG-bX-8FJ"/>
+                        <constraint firstAttribute="height" constant="44" id="wHK-oQ-2AG"/>
+                    </constraints>
+                    <connections>
+                        <action selector="billAction:" destination="-1" eventType="touchUpInside" id="9vm-oW-nwh"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -137,6 +144,7 @@
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="centerX" secondItem="YCF-Iy-Uvs" secondAttribute="centerX" id="Gd2-Ze-LUn"/>
                 <constraint firstItem="AE5-FI-XLy" firstAttribute="centerY" secondItem="YCF-Iy-Uvs" secondAttribute="centerY" id="J8M-fL-Esx"/>
                 <constraint firstItem="zQ4-wY-tUN" firstAttribute="centerX" secondItem="PDh-Zc-8WF" secondAttribute="centerX" id="JDL-Vl-yDA"/>
+                <constraint firstItem="0zV-6H-xQT" firstAttribute="trailing" secondItem="HIq-fp-PWO" secondAttribute="trailing" id="Kkn-0C-RfF"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="height" secondItem="YCF-Iy-Uvs" secondAttribute="height" id="Lij-o5-6wI"/>
                 <constraint firstItem="Wl2-r5-YWc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N43-aT-ciR"/>
                 <constraint firstAttribute="trailing" secondItem="PDh-Zc-8WF" secondAttribute="trailing" constant="8" id="QsJ-VU-nfL"/>
@@ -147,6 +155,7 @@
                 <constraint firstAttribute="trailing" secondItem="waA-wE-0fQ" secondAttribute="trailing" id="Y4t-Ah-320"/>
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y9a-wI-CzT"/>
                 <constraint firstItem="cNW-pJ-VSy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Yoa-5E-c3Q"/>
+                <constraint firstItem="0zV-6H-xQT" firstAttribute="top" secondItem="HIq-fp-PWO" secondAttribute="top" id="ZEq-K6-C7H"/>
                 <constraint firstItem="cNW-pJ-VSy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-40" id="ZqG-Wx-CdH"/>
                 <constraint firstItem="Sri-rI-aGS" firstAttribute="width" secondItem="YCF-Iy-Uvs" secondAttribute="width" id="Zzk-da-2Yh"/>
                 <constraint firstItem="Wl2-r5-YWc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="cqk-1a-iPT"/>

@@ -15,7 +15,7 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
   var username:String!
   
   var avatarData: NSData? = nil
-  var sex = 1
+  var sex = -1
   var image = UIImage()
   
   override func loadView() {

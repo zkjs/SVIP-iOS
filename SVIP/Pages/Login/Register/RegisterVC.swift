@@ -45,16 +45,16 @@ class RegisterVC: UIViewController {
   
   @IBAction func nextStep(sender: AnyObject) {
     let vc = InfoEditVC()
-    guard let str = nameTextFiled.text where !str.isEmpty else {
-      self.showHint("请填写姓名")
+    guard let str = nameTextFiled.text?.trim where !str.isEmpty else {
+      self.showHint("姓名不能为空")
       return
     }
     if !nameTextFiled.text!.isValidName {
       showHint("填写不合符规范，请填写真实姓名")
       return
     }
-    if nameTextFiled.text!.characters.count > 12 {
-      showHint("姓名不超过12个中文字符")
+    if nameTextFiled.text!.characters.count > MAX_NAME_LENGTH {
+      showHint("填写的姓名超过限制长度")
       return
     }
     vc.username = str

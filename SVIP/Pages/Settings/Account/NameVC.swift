@@ -42,7 +42,7 @@ class NameVC: UIViewController {
       showHint("填写不合符规范，请填写真实姓名")
       return
     }
-    if userName.characters.count > 20 {
+    if userName.characters.count > MAX_NAME_LENGTH {
       showHint("填写的姓名超过限制长度")
       return
     }
