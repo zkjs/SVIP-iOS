@@ -89,7 +89,9 @@ class PushMessageVC: UIViewController {
           self.blurView.alpha = 0
         })
       }, completion: { (finished) in
-        self.dismissViewControllerAnimated(false, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: { 
+          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_WELCOME_DISMISS, object: nil)
+        })
     })
   }
   

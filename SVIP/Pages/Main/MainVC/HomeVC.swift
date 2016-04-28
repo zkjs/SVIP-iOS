@@ -30,6 +30,7 @@ class HomeVC: UIViewController {
   var hideMoney: Bool = true
   let flipAnimationController = FlipAnimationController()
   let swipeInteractionController = SwipeInteractionController()
+  var pushMessages  = [PushMessage]()
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
@@ -52,6 +53,8 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:KNOTIFICATION_WELCOME, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name:KNOTIFICATION_CHANGELOGO, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeDismissed", name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
+    
     addGuestures()
     
     //navigationController?.delegate = self
@@ -92,6 +95,23 @@ class HomeVC: UIViewController {
 
     vc.pushInfo = pushInfo
 
+    if let _ = self.presentedViewController {
+      print(pushInfo)
+      pushMessages.append(pushInfo)
+    } else {
+      vc.modalPresentationStyle = .OverFullScreen
+      self.presentViewController(vc, animated: false, completion: nil)
+    }
+    
+  }
+  
+  func welcomeDismissed() {
+    guard let pushInfo = pushMessages.popLast() else {
+      return
+    }
+    print(pushInfo)
+    let vc = PushMessageVC()
+    vc.pushInfo = pushInfo
     vc.modalPresentationStyle = .OverFullScreen
     self.presentViewController(vc, animated: false, completion: nil)
   }
@@ -131,7 +151,6 @@ class HomeVC: UIViewController {
             strongSelf.breathLight.startAnimation()
           //}
         }
-        
       } else {
         strongSelf.breathLight.stopAnimation()
       }
