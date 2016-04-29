@@ -40,7 +40,8 @@ class PushMessageVC: UIViewController {
     if let imgUrl = pushInfo?.imgUrl, url = NSURL(string: imgUrl.fittedImageUrl) {
       imageView.sd_setImageWithURL(url)
     }
-    if let linkTitle = pushInfo?.linkTitle where !linkTitle.isEmpty {
+    if let linkTitle = pushInfo?.linkTitle, link =  pushInfo?.link, _ = NSURL(string: link)
+      where !link.isEmpty && !linkTitle.isEmpty {
       linkButton.setTitle(linkTitle, forState: .Normal)
     } else {
       linkButtonHeightConstraint.constant = 0
@@ -96,7 +97,7 @@ class PushMessageVC: UIViewController {
   }
   
   @IBAction func linkButtonPressed(sender: UIButton) {
-    guard let link =  pushInfo?.link, url = NSURL(string: link) else {
+    guard let link =  pushInfo?.link, url = NSURL(string: link) where !link.isEmpty else {
       return
     }
     dismissViewControllerAnimated(false) { 
