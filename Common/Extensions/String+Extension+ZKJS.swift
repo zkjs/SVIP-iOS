@@ -58,13 +58,24 @@ extension String {
     return (self =~ "^[ [a-z][A-Z]\\u4e00-\\u9fa5]+$")
   }
   /*
-   * 图片完整URL: Endpoint + ResourcePath
+   * 图片完整URL(无适配): Endpoint + ResourcePath
    */
   var fullImageUrl: String {
-    return ZKJSConfig.sharedInstance.BaseImageURL.stringByTrimmingCharactersInSet(
+    return ZKJSConfig.sharedInstance.BaseImageCDNURL.stringByTrimmingCharactersInSet(
       NSCharacterSet(charactersInString: "/")
       )  + "/" + self.stringByTrimmingCharactersInSet(
       NSCharacterSet(charactersInString: "/")
+    )
+  }
+  
+  /*
+   * 图片完整URL(根据设备尺寸适配): Endpoint + ResourcePath
+   */
+  var fullImageUrlFitted: String {
+    return ZKJSConfig.sharedInstance.BaseImageURL.stringByTrimmingCharactersInSet(
+      NSCharacterSet(charactersInString: "/")
+      )  + "/" + self.stringByTrimmingCharactersInSet(
+        NSCharacterSet(charactersInString: "/")
     )
   }
   
@@ -98,7 +109,7 @@ extension String {
    * 根据设备尺寸返回相应尺寸图片的完整URL: Endpoint + ResourcePath
    */
   var fittedImageUrl: String {
-    return fittedImage.fullImageUrl
+    return fittedImage.fullImageUrlFitted
   }
   
   /*
@@ -120,7 +131,7 @@ extension String {
     } else if height > 0 {
       url = self + "@\(height)h"
     }
-    return url.fullImageUrl
+    return url.fullImageUrlFitted
   }
   
 }

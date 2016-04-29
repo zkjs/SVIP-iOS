@@ -19,7 +19,7 @@ struct ZKJSConfig {
   // 新API服务器
   let BaseURL = "https://api.zkjinshi.com/dev"
   // 图片服务器
-  //let BaseImageURL = "http://cdn.zkjinshi.com"
+  let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
   let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
@@ -36,7 +36,8 @@ struct ZKJSConfig {
   // 新API服务器
   let BaseURL = "http://p.zkjinshi.com/beta"
   // 图片服务器
-  let BaseImageURL = "http://svip02.oss-cn-shenzhen.aliyuncs.com/"
+  let BaseImageCDNURL = "http://cdn.zkjinshi.com"
+  let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
   let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
   // 友盟
@@ -52,6 +53,7 @@ struct ZKJSConfig {
   // 新API服务器
   let BaseURL = "https://api.zkjinshi.com/release"
   // 图片服务器
+  let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
   let YunBaAppKey = "56f0e58a4407a3cd028ad5de"

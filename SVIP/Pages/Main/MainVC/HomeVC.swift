@@ -175,7 +175,7 @@ class HomeVC: UIViewController {
   func updateLogo() {
     if let shopLogo = StorageManager.sharedInstance().cachedShopLogo()
        where shopLogo.validthru.timeIntervalSinceNow > 0 {
-      shopLogoImageView.sd_setImageWithURL(NSURL(string: shopLogo.logo.fullImageUrl), placeholderImage: UIImage(named: "shop_logo_default"))
+      shopLogoImageView.sd_setImageWithURL(NSURL(string: shopLogo.logo.fullImageUrlFitted), placeholderImage: UIImage(named: "shop_logo_default"))
     } else {
       shopLogoImageView.image = UIImage(named: "shop_logo_default")
     }
