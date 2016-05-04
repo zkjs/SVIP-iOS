@@ -8,7 +8,6 @@
 
 import Foundation
 
-//TODO: api调试完成后在,在根据 build config 配置不同环境url
 struct ZKJSConfig {
   static let sharedInstance = ZKJSConfig()
   

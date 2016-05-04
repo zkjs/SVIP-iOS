@@ -78,7 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // startUpdatingLocation 精度高，上传频率有保证，但是耗电，而且苹果审核被拒
     LocationMonitor.sharedInstance.stopUpdatingLocation()
     LocationMonitor.sharedInstance.afterResume = false
-    LocationMonitor.sharedInstance.startMonitoringLocation()
+    if TokenPayload.sharedInstance.token != nil {
+      LocationMonitor.sharedInstance.startMonitoringLocation()
+    }
   }
 
   func applicationWillEnterForeground(application: UIApplication) {
@@ -96,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     LocationMonitor.sharedInstance.afterResume = false
     LocationMonitor.sharedInstance.stopMonitoringLocation()
-    if StorageManager.sharedInstance().settingMonitoring() {
+    if StorageManager.sharedInstance().settingMonitoring() && TokenPayload.sharedInstance.token != nil {
       LocationMonitor.sharedInstance.startUpdatingLocation()
     }
 

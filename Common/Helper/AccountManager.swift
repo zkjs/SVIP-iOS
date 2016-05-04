@@ -31,7 +31,7 @@ class AccountManager: NSObject {
   var avatarURL : String {
     let userDefaults = NSUserDefaults()
     if let url = userDefaults.objectForKey("avatarURL") as? String {
-      return url.fullImageUrl
+      return url.fullImageUrlWith(width: 120, height: 120)
     } else {
       return ""
     }

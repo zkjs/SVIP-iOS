@@ -123,10 +123,10 @@ class ShopDetailVC: UITableViewController,PhotoViewerDelegate {
     let offsetY = scrollView.contentOffset.y
     if (offsetY > 50) {
       let alpha = min(1, 1 - ((50 + 64 - offsetY) / 64))
-      navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(alpha))
+      navigationController?.navigationBar.yj_setBackgroundColor(color.colorWithAlphaComponent(alpha))
       navigationItem.titleView?.alpha = alpha
     } else {
-      navigationController?.navigationBar.lt_setBackgroundColor(color.colorWithAlphaComponent(0))
+      navigationController?.navigationBar.yj_setBackgroundColor(color.colorWithAlphaComponent(0))
       navigationItem.titleView?.alpha = 0
     }
   }

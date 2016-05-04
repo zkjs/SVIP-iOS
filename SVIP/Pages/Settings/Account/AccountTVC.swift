@@ -217,7 +217,7 @@ extension AccountTVC: UIImagePickerControllerDelegate {
     picker.dismissViewControllerAnimated(true, completion: nil)
 
     showHudInView(view, hint: "正在上传头像...")
-    var imageData = UIImageJPEGRepresentation(image, 1.0)!
+    var imageData = UIImageJPEGRepresentation(image, 0.8)!
     var i = 0
     while imageData.length / 1024 > 80 {
       let persent = CGFloat(100 - i++) / 100.0

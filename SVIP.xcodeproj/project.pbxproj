@@ -14,7 +14,6 @@
 		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
-		403F5CE21CD0E1D200EB1C1E /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 403F5CE11CD0E1D200EB1C1E /* UINavigationBar+Awesome.m */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
@@ -54,6 +53,7 @@
 		409E73F21C9B9A040040186C /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409E73F11C9B9A040040186C /* AboutUsVC.swift */; };
 		409E73FC1C9BE1950040186C /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73FB1C9BE1950040186C /* NSData+AES256.m */; };
 		409E74001C9BE51E0040186C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 409E73FF1C9BE51E0040186C /* MBProgressHUD+Add.m */; };
+		40A3F5891CDA0CF2000B6AB7 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A3F5881CDA0CF2000B6AB7 /* UINavigationBar+Extension.swift */; };
 		40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */; };
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
 		40BC848F1BFC570700038C81 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -255,8 +255,6 @@
 		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
-		403F5CE01CD0E1D200EB1C1E /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
-		403F5CE11CD0E1D200EB1C1E /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
@@ -313,6 +311,7 @@
 		409E73FB1C9BE1950040186C /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		409E73FE1C9BE51E0040186C /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		409E73FF1C9BE51E0040186C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		40A3F5881CDA0CF2000B6AB7 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkDismissAnimationController.swift; sourceTree = "<group>"; };
@@ -525,15 +524,6 @@
 			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
-		403F5CDF1CD0E1D200EB1C1E /* LTNavigationBar */ = {
-			isa = PBXGroup;
-			children = (
-				403F5CE01CD0E1D200EB1C1E /* UINavigationBar+Awesome.h */,
-				403F5CE11CD0E1D200EB1C1E /* UINavigationBar+Awesome.m */,
-			);
-			path = LTNavigationBar;
-			sourceTree = "<group>";
-		};
 		404177CF1C993E6100113721 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,7 +622,6 @@
 		40641F861B3E79A300CF150D /* CommonOC */ = {
 			isa = PBXGroup;
 			children = (
-				403F5CDF1CD0E1D200EB1C1E /* LTNavigationBar */,
 				40E3A18C1BFF01B000516EC4 /* 3rdparty-oc */,
 				4077C79B1C26578F000DD7DC /* Cryptography */,
 				40641F9A1B3E79A300CF150D /* Tool */,
@@ -682,6 +671,7 @@
 				40D9C6BC1B93FACF003A656A /* UIImage+Decompression.swift */,
 				40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */,
 				40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */,
+				40A3F5881CDA0CF2000B6AB7 /* UINavigationBar+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1456,7 +1446,6 @@
 				40CE7F311CAD0DD40027E715 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				400888E31CB74E5A0004E0A1 /* TipsBubble.swift in Sources */,
 				40DE251A1C9D17DD00CA7F26 /* RoundedImageView.swift in Sources */,
-				403F5CE21CD0E1D200EB1C1E /* UINavigationBar+Awesome.m in Sources */,
 				B21250B11B74586F0056835D /* LoginManager.swift in Sources */,
 				40DE24F21C9BFA9300CA7F26 /* BeaconErrors+CoreDataProperties.swift in Sources */,
 				407D3BF21CD056AC00930CDA /* PushMessage.swift in Sources */,
@@ -1484,6 +1473,7 @@
 				FA60C1D51CB74D58005711A2 /* UIImage+MWPhotoBrowser.m in Sources */,
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
+				40A3F5891CDA0CF2000B6AB7 /* UINavigationBar+Extension.swift in Sources */,
 				40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */,
 				FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
