@@ -200,6 +200,9 @@
 		FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA518F1C16C62900BF04F2 /* HomeVC.xib */; };
 		FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */; };
 		FAFA51991C16D80400BF04F2 /* OrderCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFA51971C16D80400BF04F2 /* OrderCustomCell.xib */; };
+		FAFD27B01CDDD795009E95A1 /* PopOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD27AF1CDDD795009E95A1 /* PopOverVC.swift */; };
+		FAFD27B21CDDD79F009E95A1 /* PopOverVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFD27B11CDDD79F009E95A1 /* PopOverVC.storyboard */; };
+		FAFD27B41CDDDC14009E95A1 /* PopOverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD27B31CDDDC14009E95A1 /* PopOverCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -477,6 +480,9 @@
 		FAFA518F1C16C62900BF04F2 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		FAFA51961C16D80400BF04F2 /* OrderCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCustomCell.swift; sourceTree = "<group>"; };
 		FAFA51971C16D80400BF04F2 /* OrderCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCustomCell.xib; sourceTree = "<group>"; };
+		FAFD27AF1CDDD795009E95A1 /* PopOverVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverVC.swift; sourceTree = "<group>"; };
+		FAFD27B11CDDD79F009E95A1 /* PopOverVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopOverVC.storyboard; sourceTree = "<group>"; };
+		FAFD27B31CDDDC14009E95A1 /* PopOverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1154,6 +1160,9 @@
 				FAFA518E1C16C62900BF04F2 /* HomeVC.swift */,
 				FAFA518F1C16C62900BF04F2 /* HomeVC.xib */,
 				FAF60C0A1C1183F300C0AE7C /* MainTBC.swift */,
+				FAFD27AF1CDDD795009E95A1 /* PopOverVC.swift */,
+				FAFD27B11CDDD79F009E95A1 /* PopOverVC.storyboard */,
+				FAFD27B31CDDDC14009E95A1 /* PopOverCell.swift */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -1262,6 +1271,7 @@
 				FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */,
 				FA60C1CC1CB74D58005711A2 /* .gitkeep in Resources */,
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
+				FAFD27B21CDDD79F009E95A1 /* PopOverVC.storyboard in Resources */,
 				40D4121E1BCB4FAB00FC28DB /* Localizable.strings in Resources */,
 				FA60C2031CB74D79005711A2 /* ImageSelectedSmallOff.png in Resources */,
 				FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */,
@@ -1436,6 +1446,7 @@
 				40641FA51B3E79A300CF150D /* ZKJSTool.m in Sources */,
 				404FACD31B84792700352023 /* NSDate+Days.swift in Sources */,
 				407D3BF11CD056AC00930CDA /* PushMessage+CoreDataProperties.swift in Sources */,
+				FAFD27B01CDDD795009E95A1 /* PopOverVC.swift in Sources */,
 				40DE24E91C9BF96C00CA7F26 /* HttpErrorRecordingService.swift in Sources */,
 				40DE24ED1C9BF96C00CA7F26 /* HttpService+Token.swift in Sources */,
 				40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */,
@@ -1489,6 +1500,7 @@
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
+				FAFD27B41CDDDC14009E95A1 /* PopOverCell.swift in Sources */,
 				4096FD651CB4D3ED00E8E31E /* SwipeInteractionController.swift in Sources */,
 				40CB68C21CB6441E001AF6CF /* RegisterAlertVC.swift in Sources */,
 				407DA3611CABB7E0009855E5 /* YunbaSubscribeService.swift in Sources */,

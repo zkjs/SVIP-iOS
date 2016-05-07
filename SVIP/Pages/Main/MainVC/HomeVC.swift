@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate,PushDelegate {
   
   @IBOutlet weak var lineView: UIView!
   @IBOutlet weak var avatarsImageView: RoundedImageView!
@@ -231,9 +231,37 @@ class HomeVC: UIViewController {
   
   // 点击呼吸灯打开付款请求
   @IBAction func billAction(sender: AnyObject) {
-    self.breathLight.stopAnimation()
-    let vc = MessageListTVC()
-    self.navigationController?.pushViewController(vc, animated: true)
+//    self.breathLight.stopAnimation()
+//    let vc = MessageListTVC()
+//    self.navigationController?.pushViewController(vc, animated: true)
+    let storyBoard = UIStoryboard(name: "PopOverVC", bundle: nil)
+    let popOverVC = storyBoard.instantiateViewControllerWithIdentifier("PopOverVC") as! PopOverVC
+    popOverVC.Delegate = self
+    let nav = UINavigationController(rootViewController: popOverVC)
+    nav.modalPresentationStyle = UIModalPresentationStyle.Popover
+    let popover = nav.popoverPresentationController
+    popOverVC.preferredContentSize = CGSizeMake(100,160)
+    popover?.backgroundColor = UIColor.whiteColor()
+    popover!.delegate = self
+    popover!.sourceView = self.view
+    popover!.sourceRect = CGRectMake(ScreenSize.SCREEN_WIDTH-44,70,0,0)
+    nav.navigationBarHidden = true
+    self.presentViewController(nav, animated: true, completion: nil)
+  }
+  
+  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    return .None
+  }
+  
+  func push(desination:desinationType) {
+    switch desination {
+    case desinationType.Message:
+      let vc = MessageListTVC()
+      super.navigationController?.pushViewController(vc, animated: true)
+    default:
+      break
+    }
+    
   }
   
   @IBAction func toggleBeaconMonitoring(sender: UIButton) {
