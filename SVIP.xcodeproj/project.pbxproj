@@ -36,6 +36,8 @@
 		407D3BF21CD056AC00930CDA /* PushMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D3BF01CD056AC00930CDA /* PushMessage.swift */; };
 		407DA3611CABB7E0009855E5 /* YunbaSubscribeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DA3601CABB7E0009855E5 /* YunbaSubscribeService.swift */; };
 		407DA3631CABD658009855E5 /* WalletBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DA3621CABD658009855E5 /* WalletBubble.swift */; };
+		408736D41CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408736D21CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift */; };
+		408736D51CDDF2A0000449DB /* RegionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408736D31CDDF2A0000449DB /* RegionComment.swift */; };
 		408ABBE01CDDE6310087237C /* RegionDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408ABBDF1CDDE6310087237C /* RegionDetailTVC.swift */; };
 		408ABBE21CDDE68A0087237C /* RegionDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408ABBE11CDDE68A0087237C /* RegionDetail.storyboard */; };
 		408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */; };
@@ -295,6 +297,8 @@
 		407D3BF01CD056AC00930CDA /* PushMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushMessage.swift; sourceTree = "<group>"; };
 		407DA3601CABB7E0009855E5 /* YunbaSubscribeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YunbaSubscribeService.swift; sourceTree = "<group>"; };
 		407DA3621CABD658009855E5 /* WalletBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletBubble.swift; sourceTree = "<group>"; };
+		408736D21CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RegionComment+CoreDataProperties.swift"; path = "Pages/Demo/RegionComment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		408736D31CDDF2A0000449DB /* RegionComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegionComment.swift; path = Pages/Demo/RegionComment.swift; sourceTree = "<group>"; };
 		408ABBDF1CDDE6310087237C /* RegionDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegionDetailTVC.swift; path = Pages/Demo/RegionDetailTVC.swift; sourceTree = "<group>"; };
 		408ABBE11CDDE68A0087237C /* RegionDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegionDetail.storyboard; path = Pages/Demo/RegionDetail.storyboard; sourceTree = "<group>"; };
 		408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPayload.swift; sourceTree = "<group>"; };
@@ -553,6 +557,8 @@
 		4023110A1CDDC21700C6B8F9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				408736D21CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift */,
+				408736D31CDDF2A0000449DB /* RegionComment.swift */,
 				4023110D1CDDC34D00C6B8F9 /* RegionData.swift */,
 				4023110F1CDDC42800C6B8F9 /* Region.swift */,
 				402311111CDDC73A00C6B8F9 /* demo.json */,
@@ -1517,6 +1523,7 @@
 				4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */,
 				FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */,
 				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
+				408736D41CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift in Sources */,
 				FA60C1D01CB74D58005711A2 /* MWPhoto.m in Sources */,
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
 				40DE25051C9BFC9B00CA7F26 /* ZKJSErrorMessages.swift in Sources */,
@@ -1546,6 +1553,7 @@
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
 				40CB68C81CB652FD001AF6CF /* ShopLogoModel.swift in Sources */,
+				408736D51CDDF2A0000449DB /* RegionComment.swift in Sources */,
 				40DE24F31C9BFA9300CA7F26 /* CoreDataStack.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
