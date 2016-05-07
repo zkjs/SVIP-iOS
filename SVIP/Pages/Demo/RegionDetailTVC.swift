@@ -38,10 +38,10 @@ class RegionDetailTVC: UITableViewController {
     let rightBtn = UIBarButtonItem(title: "评论", style: UIBarButtonItemStyle.Plain, target: self, action: "comment:")
     self.navigationItem.rightBarButtonItem = rightBtn
     
+    self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
+    //self.tableView.tableFooterView = UIView()
     self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.estimatedRowHeight = 80
-    
-    
     
   }
   
@@ -59,25 +59,24 @@ class RegionDetailTVC: UITableViewController {
   }
 
   override func didReceiveMemoryWarning() {
-      super.didReceiveMemoryWarning()
-      // Dispose of any resources that can be recreated.
+    super.didReceiveMemoryWarning()
   }
 
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-      return 1
+      return 2
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-      return comments.count + 1
+    return section == 0 ? 1 : comments.count
    
   }
 
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.row == 0 {
+    if indexPath.section == 0 {
       let detailCell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as! DetailCell
       detailCell.titleLabel.text = region.locdesc
       detailCell.detailDescLabel.text = region.brief
@@ -85,7 +84,7 @@ class RegionDetailTVC: UITableViewController {
       return detailCell
     } else {
       let commentCell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
-      commentCell.configCell(comments[indexPath.row-1])
+      commentCell.configCell(comments[indexPath.row])
       commentCell.selectionStyle = UITableViewCellSelectionStyle.None
       return commentCell
     }
