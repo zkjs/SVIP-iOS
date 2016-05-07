@@ -61,8 +61,6 @@ class PopOverVC: UIViewController {
     case 0:
       self.dismissViewControllerAnimated(true, completion: nil)
       self.Delegate?.push(desinationType.Message)
-      
-      
     case 1:
       print(11)
     case 2:

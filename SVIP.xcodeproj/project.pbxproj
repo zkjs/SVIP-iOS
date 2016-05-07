@@ -191,6 +191,10 @@
 		FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */; };
 		FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */; };
 		FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */; };
+		FAA559A81CDDFB4300BB1DB3 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA559A71CDDFB4300BB1DB3 /* CommentCell.swift */; };
+		FAA559AA1CDDFB5400BB1DB3 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA559A91CDDFB5400BB1DB3 /* DetailCell.swift */; };
+		FAA559AC1CDE099800BB1DB3 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA559AB1CDE099800BB1DB3 /* CommentVC.swift */; };
+		FAA559AE1CDE09A300BB1DB3 /* CommentVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA559AD1CDE09A300BB1DB3 /* CommentVC.storyboard */; };
 		FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */; };
 		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
 		FAF139271C26947700B84F47 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139261C26947700B84F47 /* loading@3x.gif */; };
@@ -478,6 +482,10 @@
 		FA6E985C1C24194C00CBC791 /* PrivilegeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegeModel.swift; sourceTree = "<group>"; };
 		FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFirstVC.swift; sourceTree = "<group>"; };
 		FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginFirstVC.xib; sourceTree = "<group>"; };
+		FAA559A71CDDFB4300BB1DB3 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		FAA559A91CDDFB5400BB1DB3 /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		FAA559AB1CDE099800BB1DB3 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
+		FAA559AD1CDE09A300BB1DB3 /* CommentVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentVC.storyboard; sourceTree = "<group>"; };
 		FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+FacePay.swift"; sourceTree = "<group>"; };
 		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
 		FAF139261C26947700B84F47 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
@@ -570,6 +578,8 @@
 			isa = PBXGroup;
 			children = (
 				408ABBDF1CDDE6310087237C /* RegionDetailTVC.swift */,
+				FAA559AB1CDE099800BB1DB3 /* CommentVC.swift */,
+				FAA559AD1CDE09A300BB1DB3 /* CommentVC.storyboard */,
 				408ABBE11CDDE68A0087237C /* RegionDetail.storyboard */,
 			);
 			name = Controller;
@@ -578,6 +588,8 @@
 		4023110C1CDDC22800C6B8F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FAA559A71CDDFB4300BB1DB3 /* CommentCell.swift */,
+				FAA559A91CDDFB5400BB1DB3 /* DetailCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1362,6 +1374,7 @@
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
 				40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */,
 				408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */,
+				FAA559AE1CDE09A300BB1DB3 /* CommentVC.storyboard in Resources */,
 				4096FD621CB4BCE800E8E31E /* ShopDetail.storyboard in Resources */,
 				F626F6541CA63C7200263C4B /* BillList.storyboard in Resources */,
 				FA60C2181CB74D79005711A2 /* VideoOverlay.png in Resources */,
@@ -1488,6 +1501,7 @@
 				40DE257A1C9D6CCB00CA7F26 /* PhoneFirstVC.swift in Sources */,
 				40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				40DE25111C9BFE6600CA7F26 /* BeaconMonitor.swift in Sources */,
+				FAA559AA1CDDFB5400BB1DB3 /* DetailCell.swift in Sources */,
 				40DE24FC1C9BFBC700CA7F26 /* Double+Extension+ZKJS.swift in Sources */,
 				40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */,
 				4077DE091C1EC62200E13D6B /* UIColor+Theme.swift in Sources */,
@@ -1521,6 +1535,7 @@
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
 				409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */,
 				4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */,
+				FAA559A81CDDFB4300BB1DB3 /* CommentCell.swift in Sources */,
 				FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */,
 				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
 				408736D41CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift in Sources */,
@@ -1548,6 +1563,7 @@
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
 				F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
+				FAA559AC1CDE099800BB1DB3 /* CommentVC.swift in Sources */,
 				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,

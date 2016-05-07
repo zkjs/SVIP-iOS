@@ -33,10 +33,25 @@ class RegionDetailTVC: UITableViewController {
     data.content = "测试评论 \(NSDate().timeIntervalSince1970)"
     data.save()
     
+    let rightBtn = UIBarButtonItem(title: "评论", style: UIBarButtonItemStyle.Plain, target: self, action: "comment:")
+    self.navigationItem.rightBarButtonItem = rightBtn
+    
     // end of test
     
-    comments = RegionComment.commentsForRegion(region.locid)
     
+    
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(true)
+    comments = RegionComment.commentsForRegion(region.locid)
+    self.tableView.reloadData()
+  }
+  
+  func comment(sender:UIBarButtonItem) {
+    let storyBoard = UIStoryboard(name: "CommentVC", bundle: nil)
+    let commentVC = storyBoard.instantiateViewControllerWithIdentifier("CommentVC") as! CommentVC
+    self.navigationController?.pushViewController(commentVC, animated: true)
   }
 
   override func didReceiveMemoryWarning() {
@@ -51,14 +66,24 @@ class RegionDetailTVC: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return comments.count
+       
+      return comments.count + 1
+   
   }
 
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath)
-    cell.textLabel?.text = comments[indexPath.row].content
-    return cell
+    if indexPath.row == 0 {
+      let detailCell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as! DetailCell
+      detailCell.titleLabel.text = region.locdesc
+      detailCell.selectionStyle = UITableViewCellSelectionStyle.None
+      return detailCell
+    } else {
+      let commentCell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
+      commentCell.configCell(comments[indexPath.row-1])
+      commentCell.selectionStyle = UITableViewCellSelectionStyle.None
+      return commentCell
+    }
   }
 
 

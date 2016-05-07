@@ -260,6 +260,7 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     return .None
   }
   
+  ///PushDelegate
   func push(desination:desinationType) {
     switch desination {
     case desinationType.Message:
@@ -384,6 +385,7 @@ extension HomeVC: CBCentralManagerDelegate {
   }
   
   func updateRegionView() {
+    regionData.latestRegion = regionData.allRegions?.last!
     if let region = regionData.latestRegion
       where fabs(regionData.latestTime.timeIntervalSinceNow) < 10 * 60 {
       btnRegion.setTitle(region.locdesc, forState: .Normal)

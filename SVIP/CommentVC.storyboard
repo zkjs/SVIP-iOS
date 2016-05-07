@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--CommentVC-->
+        <scene sceneID="COo-Yj-QVc">
+            <objects>
+                <viewController storyboardIdentifier="CommentVC" id="xgb-3u-1Ci" customClass="CommentVC" customModule="SVIP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uRO-Lx-KPV"/>
+                        <viewControllerLayoutGuide type="bottom" id="BF4-Si-KMd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h2e-uh-r4t">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fFK-tV-Ly0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fFK-tV-Ly0" firstAttribute="top" secondItem="h2e-uh-r4t" secondAttribute="top" id="7VH-XP-MKd"/>
+                            <constraint firstAttribute="trailing" secondItem="fFK-tV-Ly0" secondAttribute="trailing" id="RGK-hK-Ras"/>
+                            <constraint firstItem="fFK-tV-Ly0" firstAttribute="leading" secondItem="h2e-uh-r4t" secondAttribute="leading" id="V38-Vf-XYK"/>
+                            <constraint firstItem="BF4-Si-KMd" firstAttribute="top" secondItem="fFK-tV-Ly0" secondAttribute="bottom" id="rBb-QS-01I"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="commentsView" destination="fFK-tV-Ly0" id="5n9-bA-ped"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DK1-DL-4Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="643" y="504"/>
+        </scene>
+    </scenes>
+</document>
