@@ -58,7 +58,7 @@ extension String {
     return (self =~ "^[ [a-z][A-Z]\\u4e00-\\u9fa5]+$")
   }
   /*
-   * 图片完整URL(无适配): Endpoint + ResourcePath
+   * 图片完整URL(使用cdn,无适配): Endpoint + ResourcePath
    */
   var fullImageUrl: String {
     return ZKJSConfig.sharedInstance.BaseImageCDNURL.stringByTrimmingCharactersInSet(
@@ -69,7 +69,7 @@ extension String {
   }
   
   /*
-   * 图片完整URL(根据设备尺寸适配): Endpoint + ResourcePath
+   * 图片完整URL(根据设备尺寸适配,pcd): Endpoint + ResourcePath
    */
   var fullImageUrlFitted: String {
     return ZKJSConfig.sharedInstance.BaseImageURL.stringByTrimmingCharactersInSet(
