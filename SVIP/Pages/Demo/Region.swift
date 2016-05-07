@@ -29,6 +29,7 @@ struct Region {
   let map: String
   let logo: String
   let brief: String
+  let videoUrl: String
   let coord: Coord
   
   init(json:JSON) {
@@ -41,6 +42,7 @@ struct Region {
     map = json["map"].string ?? ""
     logo = json["logo"].string ?? ""
     brief = json["brief"].string ?? ""
+    videoUrl = json["video_url"].string ?? ""
     coord = Coord(json: json)
   }
 }
