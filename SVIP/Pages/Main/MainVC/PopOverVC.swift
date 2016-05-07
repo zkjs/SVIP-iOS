@@ -8,18 +8,19 @@
 
 import UIKit
 let items = ["消息","视频直播","室内导航","门锁开关"]
-protocol PushDelegate {
-  func push(desination:desinationType)
+
+protocol MenuDelegate {
+  func selectItem(item:MenuItemType)
 }
-enum  desinationType:String {
+enum  MenuItemType:String {
   case Message
-  case video
+  case Video
   case Navigation
   case Switch
 }
 
 class PopOverVC: UIViewController {
-  var Delegate:PushDelegate?
+  var delegate:MenuDelegate?
   @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,18 +58,16 @@ class PopOverVC: UIViewController {
   }
   
    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    self.dismissViewControllerAnimated(true, completion: nil)
     switch indexPath.row {
-    case 0:
-      self.dismissViewControllerAnimated(true, completion: nil)
-      self.Delegate?.push(desinationType.Message)
-      
-      
-    case 1:
-      print(11)
-    case 2:
-      print(11)
-    case 3:
-      print(11)
+    case 0://"消息"
+      self.delegate?.selectItem(.Message)
+    case 1://"视频直播"
+      self.delegate?.selectItem(.Video)
+    case 2://"室内导航"
+      self.delegate?.selectItem(.Navigation)
+    case 3://"门锁开关"
+      self.delegate?.selectItem(.Switch)
     default:
       break
     }

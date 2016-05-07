@@ -32,6 +32,13 @@ class  RegionData {
     return nil
   }()
   
+  var videoRegions: [Region] {
+    guard let regions = allRegions else {
+      return []
+    }
+    return regions.filter{ !$0.videoUrl.isEmpty }
+  }
+  
   func RegionWithBeacon(beacon:CLBeacon) -> Region? {
     return allRegions?.filter{ $0.uuid.uppercaseString == beacon.proximityUUID.UUIDString.uppercaseString
                             && $0.major == beacon.major.integerValue }.first

@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate,PushDelegate {
+class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate {
   
   @IBOutlet weak var lineView: UIView!
   @IBOutlet weak var avatarsImageView: RoundedImageView!
@@ -243,7 +243,7 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
 //    self.navigationController?.pushViewController(vc, animated: true)
     let storyBoard = UIStoryboard(name: "PopOverVC", bundle: nil)
     let popOverVC = storyBoard.instantiateViewControllerWithIdentifier("PopOverVC") as! PopOverVC
-    popOverVC.Delegate = self
+    popOverVC.delegate = self
     let nav = UINavigationController(rootViewController: popOverVC)
     nav.modalPresentationStyle = UIModalPresentationStyle.Popover
     let popover = nav.popoverPresentationController
@@ -258,17 +258,6 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
   
   func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
     return .None
-  }
-  
-  func push(desination:desinationType) {
-    switch desination {
-    case desinationType.Message:
-      let vc = MessageListTVC()
-      super.navigationController?.pushViewController(vc, animated: true)
-    default:
-      break
-    }
-    
   }
   
   @IBAction func toggleBeaconMonitoring(sender: UIButton) {
@@ -421,5 +410,27 @@ extension HomeVC: UINavigationControllerDelegate {
   
   func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
     return swipeInteractionController.interactionInProgress ? swipeInteractionController : nil
+  }
+}
+
+extension HomeVC: MenuDelegate {
+  func selectItem(item: MenuItemType) {
+    switch item {
+    case .Message:
+      let vc = MessageListTVC()
+      super.navigationController?.pushViewController(vc, animated: true)
+    case .Navigation:
+      let storyboard = UIStoryboard(name:"MapInDoors",bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("MapInDoorsVC") as! MapInDoorsVC
+      navigationController?.pushViewController(vc, animated: true)
+    case .Video:
+      let storyboard = UIStoryboard(name:"VideoList",bundle: nil)
+      let vc = storyboard.instantiateViewControllerWithIdentifier("VideoListTVC") as! VideoListTVC
+      navigationController?.pushViewController(vc, animated: true)
+    case .Switch:
+      break
+    default:
+      break
+    }
   }
 }
