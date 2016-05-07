@@ -24,6 +24,8 @@ class BeaconMonitor:NSObject {
   // 缓存所有扫描到的beacon, 其中key的格式为 其中key的格式为 uuid-major-minor
   var detectedBeacons = [String:BeaconInfo]()
   
+  private var timer:NSTimer?
+  
   private override init () {
     for (idx,uuid) in BEACON_UUIDS.enumerate() {
       let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid)!, identifier: "\(BEACON_IDENTIFIER).\(idx)")
@@ -36,6 +38,8 @@ class BeaconMonitor:NSObject {
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
     startMonitoringRegion()
+    
+    timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "searchRegion", userInfo: nil, repeats: true)
   }
   
   private func startMonitoringRegion() {
@@ -49,6 +53,8 @@ class BeaconMonitor:NSObject {
   }
   
   func stopMonitoring() {
+    timer?.invalidate()
+    timer = nil
     for beaconRegion in beaconRegions {
       locationManager.stopMonitoringForRegion(beaconRegion)
       locationManager.stopRangingBeaconsInRegion(beaconRegion)
@@ -79,7 +85,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
     
     for beacon  in beacons {
-      //print("range beacon:\(beacon)")
+      print("range beacon:\(beacon), \(beacon.accuracy)")
       didRangeBeacons(beacon)
       saveBeaconInfo(beacon)
     }
@@ -150,7 +156,8 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       return
     }
     
-    beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity, uploadTime: NSDate())
+    //beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity, uploadTime: NSDate())
+    beaconInfoCache[key] = BeaconInfo(beacon: beacon, uploadTime: NSDate())
     
     /*if beacon.proximity == .Unknown {
       return
@@ -217,6 +224,20 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       return "Background"
     case .Inactive:
       return "Inactive"
+    }
+  }
+  
+  func searchRegion() {
+    print("=========")
+    for b in beaconInfoCache {
+      print(b.1.beacon)
+      print(b.1.beacon?.accuracy)
+    }
+    let r = beaconInfoCache.map{ $0.1 }.filter{ $0.beacon != nil }.sort { (b1, b2) -> Bool in
+      b1.beacon!.accuracy < b2.beacon!.accuracy
+    }.first
+    if let b = r?.beacon {
+      NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_BEACON_FOUND, object: nil, userInfo: ["beacon":b])
     }
   }
 }

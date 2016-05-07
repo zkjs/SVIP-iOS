@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="avatarsImageView" destination="YCF-Iy-Uvs" id="GkI-Ao-WLI"/>
                 <outlet property="breathLight" destination="HIq-fp-PWO" id="zXY-GY-Vbr"/>
+                <outlet property="btnRegion" destination="m95-EZ-Fm1" id="FOz-xM-LRE"/>
                 <outlet property="lineView" destination="waA-wE-0fQ" id="gz7-vo-TVT"/>
                 <outlet property="logoutView" destination="Wl2-r5-YWc" id="csr-M5-CpB"/>
                 <outlet property="moneyButton" destination="PDh-Zc-8WF" id="UQs-IF-hja"/>
@@ -132,9 +133,20 @@
                         <action selector="billAction:" destination="-1" eventType="touchUpInside" id="9vm-oW-nwh"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m95-EZ-Fm1">
+                    <rect key="frame" x="172" y="362" width="30" height="36"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <state key="normal">
+                        <color key="titleColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="regionTapped:" destination="-1" eventType="touchUpInside" id="fmv-eZ-m71"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="m95-EZ-Fm1" firstAttribute="centerX" secondItem="cNW-pJ-VSy" secondAttribute="centerX" id="15O-r8-arx"/>
                 <constraint firstItem="YCF-Iy-Uvs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="1mw-AI-L46"/>
                 <constraint firstItem="f9b-Ss-psd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AE5-FI-XLy" secondAttribute="trailing" constant="8" id="2lZ-I0-RWm"/>
                 <constraint firstItem="zrB-WU-zoV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Wc-Cs-drk"/>
@@ -152,6 +164,7 @@
                 <constraint firstAttribute="trailing" secondItem="HIq-fp-PWO" secondAttribute="trailing" constant="15" id="SRT-D1-jCc"/>
                 <constraint firstItem="AE5-FI-XLy" firstAttribute="leading" secondItem="YCF-Iy-Uvs" secondAttribute="trailing" constant="15" id="T4h-Hc-Ve2"/>
                 <constraint firstAttribute="bottom" secondItem="YCF-Iy-Uvs" secondAttribute="bottom" constant="56" id="Wu7-Yq-SzA"/>
+                <constraint firstItem="m95-EZ-Fm1" firstAttribute="top" secondItem="cNW-pJ-VSy" secondAttribute="bottom" constant="20" id="XjQ-dA-5VH"/>
                 <constraint firstAttribute="trailing" secondItem="waA-wE-0fQ" secondAttribute="trailing" id="Y4t-Ah-320"/>
                 <constraint firstItem="waA-wE-0fQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y9a-wI-CzT"/>
                 <constraint firstItem="cNW-pJ-VSy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Yoa-5E-c3Q"/>

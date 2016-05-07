@@ -43,6 +43,14 @@ class BeaconInfo: NSObject {
     super.init()
   }
   
+  init(beacon:CLBeacon,uploadTime:NSDate) {
+    self.timestamp = NSDate()
+    self.uploadTime = uploadTime
+    self.proximity = beacon.proximity
+    self.beacon = beacon
+    super.init()
+  }
+  
   init(beacon:CLBeacon) {
     timestamp = NSDate()
     uploadTime = NSDate(timeIntervalSinceNow: Double(BEACON_INERVAL_MIN * -60))

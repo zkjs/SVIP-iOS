@@ -31,6 +31,9 @@ class HomeVC: UIViewController {
   let flipAnimationController = FlipAnimationController()
   let swipeInteractionController = SwipeInteractionController()
   var pushMessages  = [PushMessage]()
+  let regionData = RegionData.sharedInstance
+  
+  @IBOutlet weak var btnRegion: UIButton!
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
@@ -54,6 +57,7 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name:KNOTIFICATION_CHANGELOGO, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeDismissed", name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "beaconFound:", name: KNOTIFICATION_BEACON_FOUND, object: nil)
     
     addGuestures()
     
@@ -62,6 +66,7 @@ class HomeVC: UIViewController {
     // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
     //walletButton.hidden = true
     //breathLight.hidden = true
+    print(regionData.allRegions);
   }
   
   
@@ -76,6 +81,8 @@ class HomeVC: UIViewController {
     HttpService.sharedInstance.getUserinfo { (json, error) in
       self.refreshUserInfo()
     }
+    
+    updateRegionView()
   }
   
   private func setButtonView() {
@@ -331,6 +338,39 @@ extension HomeVC: CBCentralManagerDelegate {
     case .Unsupported:
       print(".Unsupported")
     }
+  }
+  
+  func beaconFound(notification: NSNotification) {
+    guard let userInfo = notification.userInfo, let beacon = userInfo["beacon"] as? CLBeacon else {
+      return
+    }
+    print(beacon)
+    
+    if let region = regionData.RegionWithBeacon(beacon) {
+      print("========================= enter region")
+      print(region)
+      regionData.latestRegion = region
+      regionData.latestTime = NSDate()
+      updateRegionView()
+    }
+  }
+  
+  func updateRegionView() {
+    if let region = regionData.latestRegion
+      where fabs(regionData.latestTime.timeIntervalSinceNow) < 10 * 60 {
+      btnRegion.setTitle(region.locdesc, forState: .Normal)
+      btnRegion.hidden = false
+    } else {
+      btnRegion.hidden = true
+    }
+  }
+
+  @IBAction func regionTapped(sender: UIButton) {
+    guard let region = regionData.latestRegion else { return }
+    let storyBoard = UIStoryboard(name: "RegionDetail", bundle: nil)
+    let vc = storyBoard.instantiateViewControllerWithIdentifier("RegionDetailTVC") as! RegionDetailTVC
+    vc.region = region
+    navigationController?.pushViewController(vc, animated: true)
   }
 }
 
