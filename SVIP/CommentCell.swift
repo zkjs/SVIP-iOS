@@ -33,7 +33,7 @@ class CommentCell: UITableViewCell {
     nowDateFormate.dateFormat = "MM-dd HH:mm" 
     let nowString = nowDateFormate.stringFromDate(nowDate)
     commentTime.text = nowString
-    userImageView.sd_setImageWithURL(NSURL(string: (region.avatarUrl?.fullImageUrlFitted)!))
+    userImageView.sd_setImageWithURL(NSURL(string: region.avatarUrl!))
     username.text = region.userName
     
     

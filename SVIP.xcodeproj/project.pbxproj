@@ -38,6 +38,10 @@
 		407DA3631CABD658009855E5 /* WalletBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DA3621CABD658009855E5 /* WalletBubble.swift */; };
 		408736D41CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408736D21CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift */; };
 		408736D51CDDF2A0000449DB /* RegionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408736D31CDDF2A0000449DB /* RegionComment.swift */; };
+		408736D71CDDFB7F000449DB /* MapInDoors.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408736D61CDDFB7F000449DB /* MapInDoors.storyboard */; };
+		408736D91CDDFBAC000449DB /* MapInDoorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408736D81CDDFBAC000449DB /* MapInDoorsVC.swift */; };
+		408736DB1CDE0A5D000449DB /* VideoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408736DA1CDE0A5D000449DB /* VideoList.storyboard */; };
+		408736DD1CDE0A7A000449DB /* VideoListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408736DC1CDE0A7A000449DB /* VideoListTVC.swift */; };
 		408ABBE01CDDE6310087237C /* RegionDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408ABBDF1CDDE6310087237C /* RegionDetailTVC.swift */; };
 		408ABBE21CDDE68A0087237C /* RegionDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408ABBE11CDDE68A0087237C /* RegionDetail.storyboard */; };
 		408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */; };
@@ -303,6 +307,10 @@
 		407DA3621CABD658009855E5 /* WalletBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletBubble.swift; sourceTree = "<group>"; };
 		408736D21CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RegionComment+CoreDataProperties.swift"; path = "Pages/Demo/RegionComment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		408736D31CDDF2A0000449DB /* RegionComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegionComment.swift; path = Pages/Demo/RegionComment.swift; sourceTree = "<group>"; };
+		408736D61CDDFB7F000449DB /* MapInDoors.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MapInDoors.storyboard; path = Pages/Demo/MapInDoors.storyboard; sourceTree = "<group>"; };
+		408736D81CDDFBAC000449DB /* MapInDoorsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapInDoorsVC.swift; path = Pages/Demo/MapInDoorsVC.swift; sourceTree = "<group>"; };
+		408736DA1CDE0A5D000449DB /* VideoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = VideoList.storyboard; path = Pages/Demo/VideoList.storyboard; sourceTree = "<group>"; };
+		408736DC1CDE0A7A000449DB /* VideoListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoListTVC.swift; path = Pages/Demo/VideoListTVC.swift; sourceTree = "<group>"; };
 		408ABBDF1CDDE6310087237C /* RegionDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegionDetailTVC.swift; path = Pages/Demo/RegionDetailTVC.swift; sourceTree = "<group>"; };
 		408ABBE11CDDE68A0087237C /* RegionDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegionDetail.storyboard; path = Pages/Demo/RegionDetail.storyboard; sourceTree = "<group>"; };
 		408C47CE1C868C2C00F9B0C7 /* TokenPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPayload.swift; sourceTree = "<group>"; };
@@ -581,6 +589,10 @@
 				FAA559AB1CDE099800BB1DB3 /* CommentVC.swift */,
 				FAA559AD1CDE09A300BB1DB3 /* CommentVC.storyboard */,
 				408ABBE11CDDE68A0087237C /* RegionDetail.storyboard */,
+				408736D61CDDFB7F000449DB /* MapInDoors.storyboard */,
+				408736D81CDDFBAC000449DB /* MapInDoorsVC.swift */,
+				408736DA1CDE0A5D000449DB /* VideoList.storyboard */,
+				408736DC1CDE0A7A000449DB /* VideoListTVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1331,6 +1343,7 @@
 			files = (
 				40DE257B1C9D6CCB00CA7F26 /* PhoneFirstVC.xib in Resources */,
 				408ABBE21CDDE68A0087237C /* RegionDetail.storyboard in Resources */,
+				408736DB1CDE0A5D000449DB /* VideoList.storyboard in Resources */,
 				FA60C2021CB74D79005711A2 /* ImageSelectedOn@3x.png in Resources */,
 				FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */,
 				FA60C2081CB74D79005711A2 /* ImageSelectedSmallOn@3x.png in Resources */,
@@ -1401,6 +1414,7 @@
 				40DE256F1C9D6CCB00CA7F26 /* AccountTVC.storyboard in Resources */,
 				4077C7A21C26578F000DD7DC /* server.der in Resources */,
 				FA60C1FF1CB74D79005711A2 /* ImageSelectedOff@3x.png in Resources */,
+				408736D71CDDFB7F000449DB /* MapInDoors.storyboard in Resources */,
 				FA60C2071CB74D79005711A2 /* ImageSelectedSmallOn@2x.png in Resources */,
 				402311121CDDC73A00C6B8F9 /* demo.json in Resources */,
 				FA60C2121CB74D79005711A2 /* UIBarButtonItemArrowRight.png in Resources */,
@@ -1483,6 +1497,7 @@
 				40DE24EA1C9BF96C00CA7F26 /* HttpService+Account.swift in Sources */,
 				409E73F21C9B9A040040186C /* AboutUsVC.swift in Sources */,
 				409E73EE1C9B98B30040186C /* UIViewController+DismissKeyboard.m in Sources */,
+				408736D91CDDFBAC000449DB /* MapInDoorsVC.swift in Sources */,
 				40DE24FD1C9BFBC700CA7F26 /* NSManagedObject+Extension.swift in Sources */,
 				40DE25131C9BFE6600CA7F26 /* LocationStateObserver.swift in Sources */,
 				404177CC1C98143700113721 /* HttpService+Others.swift in Sources */,
@@ -1589,6 +1604,7 @@
 				4096FD501CB36CA400E8E31E /* PushMessageVC.swift in Sources */,
 				FAF6B6901CB5FA0E0043164C /* ShopDetailCell.swift in Sources */,
 				402311101CDDC42800C6B8F9 /* Region.swift in Sources */,
+				408736DD1CDE0A7A000449DB /* VideoListTVC.swift in Sources */,
 				FA60C1D31CB74D58005711A2 /* MWTapDetectingView.m in Sources */,
 				40DE25071C9BFCFD00CA7F26 /* HttpService.swift in Sources */,
 				40DE25121C9BFE6600CA7F26 /* LocationMonitor.swift in Sources */,

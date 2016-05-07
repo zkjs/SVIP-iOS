@@ -9,7 +9,7 @@
 import UIKit
 
 class CommentVC: UIViewController,UITextViewDelegate {
-
+  var region:Region!
   @IBOutlet weak var commentsView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class CommentVC: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
   func send(sender:UIBarButtonItem) {
-    guard let comment = commentsView.text  else {
+    guard let comment = commentsView.text where !comment.trim.isEmpty && comment.trim != "写评论..."  else {
       self.showHint("请填写评论内容")
       return
     }
@@ -41,6 +41,7 @@ class CommentVC: UIViewController,UITextViewDelegate {
     data.userName = AccountManager.sharedInstance().userName
     data.avatarUrl = AccountManager.sharedInstance().avatarURL
     data.timestamp = NSDate()
+    data.locid = region.locid
     data.content = "\(comment)"
     data.save()
     navigationController?.popViewControllerAnimated(true)

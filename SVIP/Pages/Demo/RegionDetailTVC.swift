@@ -24,19 +24,22 @@ class RegionDetailTVC: UITableViewController {
     title = "区域信息"
     
     // for test 新建一条评论
-    let data = RegionComment.create() as! RegionComment
-    data.userID = TokenPayload.sharedInstance.userID
-    data.userName = AccountManager.sharedInstance().userName
-    data.avatarUrl = AccountManager.sharedInstance().avatarURL
-    data.locid = region.locid
-    data.timestamp = NSDate()
-    data.content = "测试评论 \(NSDate().timeIntervalSince1970)"
-    data.save()
+//    let data = RegionComment.create() as! RegionComment
+//    data.userID = TokenPayload.sharedInstance.userID
+//    data.userName = AccountManager.sharedInstance().userName
+//    data.avatarUrl = AccountManager.sharedInstance().avatarURL
+//    data.locid = region.locid
+//    data.timestamp = NSDate()
+//    data.content = "测试评论 \(NSDate().timeIntervalSince1970)"
+//    data.save()
+    
+    // end of test
     
     let rightBtn = UIBarButtonItem(title: "评论", style: UIBarButtonItemStyle.Plain, target: self, action: "comment:")
     self.navigationItem.rightBarButtonItem = rightBtn
     
-    // end of test
+    self.tableView.rowHeight = UITableViewAutomaticDimension
+    self.tableView.estimatedRowHeight = 80
     
     
     
@@ -51,6 +54,7 @@ class RegionDetailTVC: UITableViewController {
   func comment(sender:UIBarButtonItem) {
     let storyBoard = UIStoryboard(name: "CommentVC", bundle: nil)
     let commentVC = storyBoard.instantiateViewControllerWithIdentifier("CommentVC") as! CommentVC
+    commentVC.region = region
     self.navigationController?.pushViewController(commentVC, animated: true)
   }
 
@@ -76,6 +80,7 @@ class RegionDetailTVC: UITableViewController {
     if indexPath.row == 0 {
       let detailCell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as! DetailCell
       detailCell.titleLabel.text = region.locdesc
+      detailCell.detailDescLabel.text = region.brief
       detailCell.selectionStyle = UITableViewCellSelectionStyle.None
       return detailCell
     } else {

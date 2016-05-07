@@ -260,7 +260,21 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     return .None
   }
   
+<<<<<<< HEAD
+  ///PushDelegate
+  func push(desination:desinationType) {
+    switch desination {
+    case desinationType.Message:
+      let vc = MessageListTVC()
+      super.navigationController?.pushViewController(vc, animated: true)
+    default:
+      break
+    }
+    
+  }
   
+=======
+>>>>>>> origin/branch-video-map-demo
   @IBAction func toggleBeaconMonitoring(sender: UIButton) {
     let monitoring = StorageManager.sharedInstance().settingMonitoring()
     if monitoring {// stop monitoring

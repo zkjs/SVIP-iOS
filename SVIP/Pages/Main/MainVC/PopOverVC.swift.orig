@@ -60,6 +60,17 @@ class PopOverVC: UIViewController {
    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.dismissViewControllerAnimated(true, completion: nil)
     switch indexPath.row {
+<<<<<<< HEAD
+    case 0:
+      self.dismissViewControllerAnimated(true, completion: nil)
+      self.Delegate?.push(desinationType.Message)
+    case 1:
+      print(11)
+    case 2:
+      print(11)
+    case 3:
+      print(11)
+=======
     case 0://"消息"
       self.delegate?.selectItem(.Message)
     case 1://"视频直播"
@@ -68,6 +79,7 @@ class PopOverVC: UIViewController {
       self.delegate?.selectItem(.Navigation)
     case 3://"门锁开关"
       self.delegate?.selectItem(.Switch)
+>>>>>>> origin/branch-video-map-demo
     default:
       break
     }
