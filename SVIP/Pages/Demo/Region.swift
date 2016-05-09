@@ -15,7 +15,7 @@ struct Coord {
   
   init(json:JSON) {
     x = json["coord_x"].double ?? 0
-    y = json["coord_x"].double ?? 0
+    y = json["coord_y"].double ?? 0
   }
 }
 

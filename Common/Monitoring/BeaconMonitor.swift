@@ -39,7 +39,7 @@ class BeaconMonitor:NSObject {
     locationManager.requestAlwaysAuthorization()
     startMonitoringRegion()
     
-    timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "searchRegion", userInfo: nil, repeats: true)
+    timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "searchRegion", userInfo: nil, repeats: true)
   }
   
   private func startMonitoringRegion() {
@@ -85,7 +85,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     }
     
     for beacon  in beacons {
-      print("range beacon:\(beacon), \(beacon.accuracy)")
+      //print("range beacon:\(beacon), \(beacon.accuracy)")
       didRangeBeacons(beacon)
       saveBeaconInfo(beacon)
     }
@@ -228,14 +228,25 @@ extension BeaconMonitor : CLLocationManagerDelegate {
   }
   
   func searchRegion() {
-    print("=========")
+    print("========= search region")
     for b in beaconInfoCache {
       print(b.1.beacon)
       print(b.1.beacon?.accuracy)
+      print(b.1.timestamp.timeIntervalSinceNow)
+      print("\n")
     }
-    let r = beaconInfoCache.map{ $0.1 }.filter{ $0.beacon != nil }.sort { (b1, b2) -> Bool in
-      b1.beacon!.accuracy < b2.beacon!.accuracy
-    }.first
+    let r = beaconInfoCache.map{ $0.1 }
+      .filter{ $0.beacon != nil && fabs($0.timestamp.timeIntervalSinceNow) < 6 }
+      .filter{ b in
+        return RegionData.sharedInstance.allRegions!.contains{ (r) -> Bool in
+          return r.uuid.uppercaseString == b.beacon!.proximityUUID.UUIDString.uppercaseString
+            && r.major == b.beacon!.major.integerValue
+        }
+      }
+      .sort { (b1, b2) -> Bool in
+        b1.beacon!.accuracy < b2.beacon!.accuracy
+      }.first
+    print("found region:\(r)")
     if let b = r?.beacon {
       NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_BEACON_FOUND, object: nil, userInfo: ["beacon":b])
     }

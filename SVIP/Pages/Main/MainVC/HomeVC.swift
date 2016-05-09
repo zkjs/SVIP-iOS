@@ -362,11 +362,12 @@ extension HomeVC: CBCentralManagerDelegate {
     guard let userInfo = notification.userInfo, let beacon = userInfo["beacon"] as? CLBeacon else {
       return
     }
-    print(beacon)
+    //print("beacon found")
+    //print(beacon)
     
     if let region = regionData.RegionWithBeacon(beacon) {
-      print("========================= enter region")
-      print(region)
+      //print("========================= enter region")
+      //print(region)
       regionData.latestRegion = region
       regionData.latestTime = NSDate()
       updateRegionView()
@@ -374,7 +375,6 @@ extension HomeVC: CBCentralManagerDelegate {
   }
   
   func updateRegionView() {
-    regionData.latestRegion = regionData.allRegions?.last!
     if let region = regionData.latestRegion
       where fabs(regionData.latestTime.timeIntervalSinceNow) < 10 * 60 {
       btnRegion.setTitle(region.locdesc, forState: .Normal)

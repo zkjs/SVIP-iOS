@@ -43,4 +43,11 @@ class  RegionData {
     return allRegions?.filter{ $0.uuid.uppercaseString == beacon.proximityUUID.UUIDString.uppercaseString
                             && $0.major == beacon.major.integerValue }.first
   }
+  
+  func inRegion(beacon:CLBeacon) -> Bool {
+    return allRegions!.contains({ (r) -> Bool in
+      return r.uuid.uppercaseString == beacon.proximityUUID.UUIDString.uppercaseString
+        && r.major == beacon.major.integerValue
+    })
+  }
 }
