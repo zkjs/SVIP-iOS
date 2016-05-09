@@ -58,6 +58,7 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeDismissed", name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "beaconFound:", name: KNOTIFICATION_BEACON_FOUND, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshBalance", name:KNOTIFICATION_BALANCECHANGE, object: nil)
     
     addGuestures()
     
@@ -81,9 +82,19 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     HttpService.sharedInstance.getUserinfo { (json, error) in
       self.refreshUserInfo()
     }
-    
+    refreshBalance()
     updateRegionView()
   }
+  
+  func refreshBalance() {
+    var cash = StorageManager.sharedInstance().curentCash()
+    if cash <= 0.001 {
+      cash = 999
+      StorageManager.sharedInstance().saveCash(cash)
+    }
+    self.moneyLabel.text = "￥" + cash.format(".2")
+  }
+  
   
   private func setButtonView() {
     if StorageManager.sharedInstance().settingMonitoring() {
@@ -430,7 +441,9 @@ extension HomeVC: MenuDelegate {
       let vc = storyboard.instantiateViewControllerWithIdentifier("VideoListTVC") as! VideoListTVC
       navigationController?.pushViewController(vc, animated: true)
     case .Switch:
-      break
+      let storyboard = UIStoryboard(name: "WaiterTipVC", bundle: nil)
+      let tipsVC = storyboard.instantiateViewControllerWithIdentifier("WaiterTipVC") as! WaiterTipVC
+      self.navigationController?.pushViewController(tipsVC, animated: true)
     default:
       break
     }

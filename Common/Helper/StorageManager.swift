@@ -184,4 +184,14 @@ class StorageManager: NSObject {
     NSKeyedArchiver.archiveRootObject(cachedLogo, toFile: path)
   }
   
+  func curentCash() -> Double {
+     return NSUserDefaults.standardUserDefaults().doubleForKey("kTipsCache") ?? 0
+  }
+  
+  func saveCash(amount:Double) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setDouble(amount, forKey: "kTipsCache")
+    defaults.synchronize()
+  }
+  
 }

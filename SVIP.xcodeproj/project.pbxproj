@@ -146,6 +146,21 @@
 		FA0D36131C9D28FB00E0AA78 /* MesssageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D36111C9D28FB00E0AA78 /* MesssageListCell.swift */; };
 		FA0D36141C9D28FB00E0AA78 /* MesssageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D36121C9D28FB00E0AA78 /* MesssageListCell.xib */; };
 		FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */; };
+		FA1343011CE042E100965764 /* AmountAndReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342F31CE042E100965764 /* AmountAndReasonVC.swift */; };
+		FA1343021CE042E100965764 /* AmountAndReasonVC.swift.orig in Resources */ = {isa = PBXBuildFile; fileRef = FA1342F41CE042E100965764 /* AmountAndReasonVC.swift.orig */; };
+		FA1343031CE042E100965764 /* AmountChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342F51CE042E100965764 /* AmountChooseVC.swift */; };
+		FA1343041CE042E100965764 /* AmountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342F61CE042E100965764 /* AmountCollectionViewCell.swift */; };
+		FA1343051CE042E100965764 /* ReasonCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342F71CE042E100965764 /* ReasonCollectionVC.swift */; };
+		FA1343061CE042E100965764 /* ReasonOfTipsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342F81CE042E100965764 /* ReasonOfTipsCollectionViewCell.swift */; };
+		FA1343071CE042E100965764 /* TipsSuccessVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1342F91CE042E100965764 /* TipsSuccessVC.storyboard */; };
+		FA1343081CE042E100965764 /* TipsSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342FA1CE042E100965764 /* TipsSuccessVC.swift */; };
+		FA1343091CE042E100965764 /* WaiterPopupsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1342FB1CE042E100965764 /* WaiterPopupsVC.storyboard */; };
+		FA13430A1CE042E100965764 /* WaiterPopupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342FC1CE042E100965764 /* WaiterPopupsVC.swift */; };
+		FA13430B1CE042E100965764 /* WaitersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342FD1CE042E100965764 /* WaitersData.swift */; };
+		FA13430C1CE042E100965764 /* WaiterTipsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1342FE1CE042E100965764 /* WaiterTipsCell.swift */; };
+		FA13430D1CE042E100965764 /* WaiterTipVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1342FF1CE042E100965764 /* WaiterTipVC.storyboard */; };
+		FA13430E1CE042E100965764 /* WaiterTipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1343001CE042E100965764 /* WaiterTipVC.swift */; };
+		FA1343101CE0605D00965764 /* HttpService+Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13430F1CE0605D00965764 /* HttpService+Tips.swift */; };
 		FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1414E11C9D48B000A0666F /* PayInfoVC.swift */; };
 		FA1414E41C9D48B000A0666F /* PayInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1414E21C9D48B000A0666F /* PayInfoVC.xib */; };
 		FA60C1CC1CB74D58005711A2 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = FA60C1B61CB74D58005711A2 /* .gitkeep */; };
@@ -429,6 +444,21 @@
 		FA0D36111C9D28FB00E0AA78 /* MesssageListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MesssageListCell.swift; sourceTree = "<group>"; };
 		FA0D36121C9D28FB00E0AA78 /* MesssageListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MesssageListCell.xib; sourceTree = "<group>"; };
 		FA0D36151C9D376600E0AA78 /* PaylistmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaylistmModel.swift; sourceTree = "<group>"; };
+		FA1342F31CE042E100965764 /* AmountAndReasonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountAndReasonVC.swift; sourceTree = "<group>"; };
+		FA1342F41CE042E100965764 /* AmountAndReasonVC.swift.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AmountAndReasonVC.swift.orig; sourceTree = "<group>"; };
+		FA1342F51CE042E100965764 /* AmountChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountChooseVC.swift; sourceTree = "<group>"; };
+		FA1342F61CE042E100965764 /* AmountCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA1342F71CE042E100965764 /* ReasonCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonCollectionVC.swift; sourceTree = "<group>"; };
+		FA1342F81CE042E100965764 /* ReasonOfTipsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonOfTipsCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA1342F91CE042E100965764 /* TipsSuccessVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TipsSuccessVC.storyboard; sourceTree = "<group>"; };
+		FA1342FA1CE042E100965764 /* TipsSuccessVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsSuccessVC.swift; sourceTree = "<group>"; };
+		FA1342FB1CE042E100965764 /* WaiterPopupsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterPopupsVC.storyboard; sourceTree = "<group>"; };
+		FA1342FC1CE042E100965764 /* WaiterPopupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterPopupsVC.swift; sourceTree = "<group>"; };
+		FA1342FD1CE042E100965764 /* WaitersData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitersData.swift; sourceTree = "<group>"; };
+		FA1342FE1CE042E100965764 /* WaiterTipsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterTipsCell.swift; sourceTree = "<group>"; };
+		FA1342FF1CE042E100965764 /* WaiterTipVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WaiterTipVC.storyboard; sourceTree = "<group>"; };
+		FA1343001CE042E100965764 /* WaiterTipVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaiterTipVC.swift; sourceTree = "<group>"; };
+		FA13430F1CE0605D00965764 /* HttpService+Tips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Tips.swift"; sourceTree = "<group>"; };
 		FA1414E11C9D48B000A0666F /* PayInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayInfoVC.swift; sourceTree = "<group>"; };
 		FA1414E21C9D48B000A0666F /* PayInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayInfoVC.xib; sourceTree = "<group>"; };
 		FA60C1B61CB74D58005711A2 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -661,6 +691,7 @@
 		40641EFA1B3E569700CF150D /* SVIP */ = {
 			isa = PBXGroup;
 			children = (
+				FA1342F21CE042E100965764 /* Tips */,
 				402311091CDDC20B00C6B8F9 /* Demo */,
 				409E73F01C9B99F80040186C /* Pages */,
 				40641EFB1B3E569700CF150D /* Supporting Files */,
@@ -770,6 +801,7 @@
 				404177CB1C98143700113721 /* HttpService+Others.swift */,
 				40FD34421C92F4380019A8CA /* HttpService+Shops.swift */,
 				40DE24E81C9BF96C00CA7F26 /* HttpService+Token.swift */,
+				FA13430F1CE0605D00965764 /* HttpService+Tips.swift */,
 				40DE25061C9BFCFD00CA7F26 /* HttpService.swift */,
 				407DA3601CABB7E0009855E5 /* YunbaSubscribeService.swift */,
 			);
@@ -1131,6 +1163,27 @@
 			path = PaymentList;
 			sourceTree = "<group>";
 		};
+		FA1342F21CE042E100965764 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				FA1342F31CE042E100965764 /* AmountAndReasonVC.swift */,
+				FA1342F41CE042E100965764 /* AmountAndReasonVC.swift.orig */,
+				FA1342F51CE042E100965764 /* AmountChooseVC.swift */,
+				FA1342F61CE042E100965764 /* AmountCollectionViewCell.swift */,
+				FA1342F71CE042E100965764 /* ReasonCollectionVC.swift */,
+				FA1342F81CE042E100965764 /* ReasonOfTipsCollectionViewCell.swift */,
+				FA1342F91CE042E100965764 /* TipsSuccessVC.storyboard */,
+				FA1342FA1CE042E100965764 /* TipsSuccessVC.swift */,
+				FA1342FB1CE042E100965764 /* WaiterPopupsVC.storyboard */,
+				FA1342FC1CE042E100965764 /* WaiterPopupsVC.swift */,
+				FA1342FD1CE042E100965764 /* WaitersData.swift */,
+				FA1342FE1CE042E100965764 /* WaiterTipsCell.swift */,
+				FA1342FF1CE042E100965764 /* WaiterTipVC.storyboard */,
+				FA1343001CE042E100965764 /* WaiterTipVC.swift */,
+			);
+			path = Tips;
+			sourceTree = "<group>";
+		};
 		FA60C1B51CB74D58005711A2 /* MWPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1348,6 +1401,7 @@
 				FA02C5851C0D42D100D0D439 /* LoginVC.xib in Resources */,
 				FA60C2081CB74D79005711A2 /* ImageSelectedSmallOn@3x.png in Resources */,
 				FA06ADE71C87E2E30060DD33 /* RegisterVC.xib in Resources */,
+				FA1343071CE042E100965764 /* TipsSuccessVC.storyboard in Resources */,
 				FA60C1CC1CB74D58005711A2 /* .gitkeep in Resources */,
 				FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */,
 				FAFD27B21CDDD79F009E95A1 /* PopOverVC.storyboard in Resources */,
@@ -1359,6 +1413,7 @@
 				4096FD531CB36D1700E8E31E /* PushMessageVC.xib in Resources */,
 				FA60C2151CB74D79005711A2 /* UIBarButtonItemGrid.png in Resources */,
 				40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */,
+				FA13430D1CE042E100965764 /* WaiterTipVC.storyboard in Resources */,
 				FAFA51911C16C62900BF04F2 /* HomeVC.xib in Resources */,
 				FA60C2171CB74D79005711A2 /* UIBarButtonItemGrid@3x.png in Resources */,
 				FA60C2051CB74D79005711A2 /* ImageSelectedSmallOff@3x.png in Resources */,
@@ -1384,6 +1439,7 @@
 				FA60C2041CB74D79005711A2 /* ImageSelectedSmallOff@2x.png in Resources */,
 				408F503C1CA3E51700AEBA83 /* TableViewCellNoData.xib in Resources */,
 				FA1414E41C9D48B000A0666F /* PayInfoVC.xib in Resources */,
+				FA1343091CE042E100965764 /* WaiterPopupsVC.storyboard in Resources */,
 				408D28E91C3F8C3600183849 /* GuideVC.xib in Resources */,
 				40DE257D1C9D6CCB00CA7F26 /* PhoneSecondVC.xib in Resources */,
 				408C47D51C86DBB900F9B0C7 /* errorMessages.plist in Resources */,
@@ -1399,6 +1455,7 @@
 				FA60C2191CB74D79005711A2 /* VideoOverlay@2x.png in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FA60C2131CB74D79005711A2 /* UIBarButtonItemArrowRight@2x.png in Resources */,
+				FA1343021CE042E100965764 /* AmountAndReasonVC.swift.orig in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				400888E41CB74E5A0004E0A1 /* TipsBubble.xib in Resources */,
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
@@ -1484,8 +1541,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAFA51981C16D80400BF04F2 /* OrderCustomCell.swift in Sources */,
+				FA1343101CE0605D00965764 /* HttpService+Tips.swift in Sources */,
 				40CE7F341CAD0DD40027E715 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				FA60C1D21CB74D58005711A2 /* MWTapDetectingImageView.m in Sources */,
+				FA1343061CE042E100965764 /* ReasonOfTipsCollectionViewCell.swift in Sources */,
 				FA60C1D41CB74D58005711A2 /* MWZoomingScrollView.m in Sources */,
 				4023110E1CDDC34D00C6B8F9 /* RegionData.swift in Sources */,
 				FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */,
@@ -1503,6 +1562,7 @@
 				404177CC1C98143700113721 /* HttpService+Others.swift in Sources */,
 				FA60C1CF1CB74D58005711A2 /* MWGridViewController.m in Sources */,
 				FA0D36131C9D28FB00E0AA78 /* MesssageListCell.swift in Sources */,
+				FA13430A1CE042E100965764 /* WaiterPopupsVC.swift in Sources */,
 				FA0D360F1C9D28BA00E0AA78 /* MessageListTVC.swift in Sources */,
 				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
@@ -1511,6 +1571,7 @@
 				FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */,
 				FA60C1CE1CB74D58005711A2 /* MWGridCell.m in Sources */,
 				409E74001C9BE51E0040186C /* MBProgressHUD+Add.m in Sources */,
+				FA13430E1CE042E100965764 /* WaiterTipVC.swift in Sources */,
 				FA004E6E1C3B992000A951DD /* BluetoothDescriptionVC.swift in Sources */,
 				40DE25771C9D6CCB00CA7F26 /* InvoiceModel.swift in Sources */,
 				40DE257A1C9D6CCB00CA7F26 /* PhoneFirstVC.swift in Sources */,
@@ -1548,6 +1609,7 @@
 				409E73FC1C9BE1950040186C /* NSData+AES256.m in Sources */,
 				408C47CF1C868C2C00F9B0C7 /* TokenPayload.swift in Sources */,
 				FAF60C0B1C1183F300C0AE7C /* MainTBC.swift in Sources */,
+				FA1343041CE042E100965764 /* AmountCollectionViewCell.swift in Sources */,
 				409E73ED1C9B98B30040186C /* NSString+Valid.m in Sources */,
 				4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */,
 				FAA559A81CDDFB4300BB1DB3 /* CommentCell.swift in Sources */,
@@ -1555,6 +1617,7 @@
 				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
 				408736D41CDDF2A0000449DB /* RegionComment+CoreDataProperties.swift in Sources */,
 				FA60C1D01CB74D58005711A2 /* MWPhoto.m in Sources */,
+				FA13430C1CE042E100965764 /* WaiterTipsCell.swift in Sources */,
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
 				40DE25051C9BFC9B00CA7F26 /* ZKJSErrorMessages.swift in Sources */,
 				40D9C9E31C2037B200E992AB /* InfoEditVC.swift in Sources */,
@@ -1572,15 +1635,18 @@
 				B2564D431B4BFAED0098608F /* JSHAnimationVC.m in Sources */,
 				40DE25031C9BFBF100CA7F26 /* ZKJSHelper.swift in Sources */,
 				40A3F5891CDA0CF2000B6AB7 /* UINavigationBar+Extension.swift in Sources */,
+				FA1343051CE042E100965764 /* ReasonCollectionVC.swift in Sources */,
 				40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */,
 				FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
+				FA1343031CE042E100965764 /* AmountChooseVC.swift in Sources */,
 				F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
 				FAA559AC1CDE099800BB1DB3 /* CommentVC.swift in Sources */,
 				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
+				FA1343011CE042E100965764 /* AmountAndReasonVC.swift in Sources */,
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
 				40CB68C81CB652FD001AF6CF /* ShopLogoModel.swift in Sources */,
@@ -1606,7 +1672,9 @@
 				402311101CDDC42800C6B8F9 /* Region.swift in Sources */,
 				408736DD1CDE0A7A000449DB /* VideoListTVC.swift in Sources */,
 				FA60C1D31CB74D58005711A2 /* MWTapDetectingView.m in Sources */,
+				FA1343081CE042E100965764 /* TipsSuccessVC.swift in Sources */,
 				40DE25071C9BFCFD00CA7F26 /* HttpService.swift in Sources */,
+				FA13430B1CE042E100965764 /* WaitersData.swift in Sources */,
 				40DE25121C9BFE6600CA7F26 /* LocationMonitor.swift in Sources */,
 				402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */,
 			);
