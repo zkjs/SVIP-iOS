@@ -17,7 +17,7 @@ class  RegionData {
   var latestRegion: Region?
   var latestTime = NSDate()
   
-  lazy var allRegions:[Region]? = {
+  lazy var allRegions:[Region] = {
     if let path = NSBundle.mainBundle().pathForResource("demo", ofType: "json") {
       if let data = try? NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe) {
         if let jsonArr = JSON(data: data).array {
@@ -29,25 +29,22 @@ class  RegionData {
         }
       }
     }
-    return nil
+    return []
   }()
   
   var videoRegions: [Region] {
-    guard let regions = allRegions else {
-      return []
-    }
-    return regions.filter{ !$0.videoUrl.isEmpty }
+    return allRegions.filter{ !$0.videoUrl.isEmpty }
   }
   
   func RegionWithBeacon(beacon:CLBeacon) -> Region? {
-    return allRegions?.filter{ $0.uuid.uppercaseString == beacon.proximityUUID.UUIDString.uppercaseString
+    return allRegions.filter{ $0.uuid.uppercaseString == beacon.proximityUUID.UUIDString.uppercaseString
                             && $0.major == beacon.major.integerValue }.first
   }
   
-  func inRegion(beacon:CLBeacon) -> Bool {
-    return allRegions!.contains({ (r) -> Bool in
+  /*func inRegion(beacon:CLBeacon) -> Bool {
+    return allRegions.contains({ (r) -> Bool in
       return r.uuid.uppercaseString == beacon.proximityUUID.UUIDString.uppercaseString
         && r.major == beacon.major.integerValue
     })
-  }
+  }*/
 }

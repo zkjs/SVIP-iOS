@@ -235,14 +235,15 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       print(b.1.timestamp.timeIntervalSinceNow)
       print("\n")
     }
+    //let regions = RegionData.sharedInstance.allRegions
     let r = beaconInfoCache.map{ $0.1 }
       .filter{ $0.beacon != nil && fabs($0.timestamp.timeIntervalSinceNow) < 6 }
-      .filter{ b in
+      /*.filter{ b in
         return RegionData.sharedInstance.allRegions!.contains{ (r) -> Bool in
           return r.uuid.uppercaseString == b.beacon!.proximityUUID.UUIDString.uppercaseString
             && r.major == b.beacon!.major.integerValue
         }
-      }
+      }*/
       .sort { (b1, b2) -> Bool in
         b1.beacon!.accuracy < b2.beacon!.accuracy
       }.first
