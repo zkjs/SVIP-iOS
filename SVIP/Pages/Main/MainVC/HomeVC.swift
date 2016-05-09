@@ -33,7 +33,7 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
   let swipeInteractionController = SwipeInteractionController()
   var pushMessages  = [PushMessage]()
   let regionData = RegionData.sharedInstance
-  
+  var messageList = [PushMessage]()
   @IBOutlet weak var btnRegion: UIButton!
   
   override func loadView() {
@@ -76,6 +76,7 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
+    noReadMessage()
     getBalance()
     getOrderList()
     refreshUserInfo()
@@ -105,9 +106,9 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
       return
     }
     
-//    if hideMoney {
-//      toggleMoney()
-//    }
+    if hideMoney {
+      toggleMoney()
+    }
     
     if WaitersData.sharedInstance.allWaiters.count < 1 {
       showHint("无服务人员信息")
@@ -183,6 +184,29 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     self.presentViewController(vc, animated: false, completion: nil)
 
   }
+  
+  //未读消息
+  func noReadMessage() {
+    if let msgs = PushMessage.query("userid == '\(TokenPayload.sharedInstance.userID!)'", order: ["timestamp":"DESC"], limit: nil) as? [PushMessage] {
+      messageList = msgs
+//      if msgs.count > PushMessage.MAX_CACHE_COUNT {
+//        for i in PushMessage.MAX_CACHE_COUNT ..< msgs.count {
+//          msgs[i].remove()
+//        }
+//        PushMessage.saveAllChanges()
+//        messageList = Array(msgs[0..<PushMessage.MAX_CACHE_COUNT])
+//      }
+    }
+    guard let unread = messageList.first?.isUnRead where unread == true else {
+        return
+      }
+    let vc = PushMessageVC()
+    vc.pushInfo = messageList.first
+    vc.modalPresentationStyle = .OverFullScreen
+    self.presentViewController(vc, animated: false, completion: nil)
+
+  }
+  
   
   func getOrderList() {
     HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) {[weak self] (data,error) -> Void in
