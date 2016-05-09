@@ -23,6 +23,7 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
   @IBOutlet weak var monitoringButton: UIButton!
   @IBOutlet weak var shopLogoImageView: UIImageView!
   
+  @IBOutlet weak var gestureUpView: UIView!
   
   var bluetoothManager = CBCentralManager()
   var originOffsetY: CGFloat = 0.0
@@ -84,6 +85,10 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     }
     refreshBalance()
     updateRegionView()
+    
+    let swipeGestureUp = UISwipeGestureRecognizer(target: self, action: "showWaiter:")
+    swipeGestureUp.direction = .Up
+    gestureUpView.addGestureRecognizer(swipeGestureUp)
   }
   
   func refreshBalance() {
@@ -95,6 +100,26 @@ class HomeVC: UIViewController,UIPopoverControllerDelegate, UIPopoverPresentatio
     self.moneyLabel.text = "￥" + cash.format(".2")
   }
   
+  func showWaiter(gestureRecognizer:UISwipeGestureRecognizer) {
+    if gestureRecognizer.state != .Ended {
+      return
+    }
+    
+//    if hideMoney {
+//      toggleMoney()
+//    }
+    
+    if WaitersData.sharedInstance.allWaiters.count < 1 {
+      showHint("无服务人员信息")
+      return
+    }
+    
+    let storyBoard = UIStoryboard(name: "WaiterPopupsVC", bundle: nil)
+    let waiterVC = storyBoard.instantiateViewControllerWithIdentifier("WaiterPopupsVC") as! WaiterPopupsVC
+    
+    waiterVC.modalPresentationStyle = .Custom
+    presentViewController(waiterVC, animated: false, completion: nil)
+  }
   
   private func setButtonView() {
     if StorageManager.sharedInstance().settingMonitoring() {
