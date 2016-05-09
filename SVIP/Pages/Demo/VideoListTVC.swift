@@ -28,14 +28,14 @@ class VideoListTVC: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return regions.count
+    return 1
   }
 
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("VideoListCell", forIndexPath: indexPath)
 
-    cell.textLabel?.text = regions[indexPath.row].locdesc
+    cell.textLabel?.text = "四季秀"
 
     return cell
   }
@@ -43,7 +43,7 @@ class VideoListTVC: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let vc = WebViewVC()
-    vc.url = regions[indexPath.row].videoUrl
+    vc.url = "http://www.tudou.com/programs/view/EkI_Khntk8o"
     navigationController?.pushViewController(vc, animated: true)
   }
 

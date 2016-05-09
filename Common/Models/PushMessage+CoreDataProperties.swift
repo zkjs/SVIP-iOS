@@ -24,5 +24,6 @@ extension PushMessage {
   @NSManaged var link: String?
   @NSManaged var timestamp: NSDate
   @NSManaged var userid: String
+  @NSManaged var isUnRead: Bool
 
 }

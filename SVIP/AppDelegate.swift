@@ -179,6 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           }
           
           if let msg = PushMessage.createFromDict(data) {
+            msg.isUnRead = false
             msg.save()
             NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_WELCOME, object: nil, userInfo: ["welcomeInfo":msg])
           }
