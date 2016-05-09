@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let items = ["消息","视频直播","室内导航","门锁开关"]
+let items = ["消息","视频直播","室内导航","小费"]
 
 protocol MenuDelegate {
   func selectItem(item:MenuItemType)
