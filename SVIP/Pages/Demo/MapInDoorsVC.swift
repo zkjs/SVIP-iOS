@@ -59,6 +59,10 @@ class MapInDoorsVC: UIViewController {
       regionData.latestTime = NSDate()
       currentRegion = region
       updateMap(region)
+      
+      if let region = currentRegion {
+        title = "\(region.floor)楼地图"
+      }
     }
   }
   
@@ -82,7 +86,7 @@ class MapInDoorsVC: UIViewController {
       currentMap = region.map
       setupMap()
     }
-    updatePinPosition()
+    updatePinPosition(true)
     
   }
   
@@ -98,9 +102,10 @@ class MapInDoorsVC: UIViewController {
     scrollView.zoomScale = max(widthScale, heightScale)
   }
   
-  func updatePinPosition() {
+  func updatePinPosition(recenter:Bool = false) {
     guard let region = currentRegion else { return }
-    let pinHeight:CGFloat = 94
+    let pinWidth:CGFloat = 30
+    let pinHeight:CGFloat = 47
     //region = regionData.allRegions!.first! //for test
     let x = region.coord.x
     let y = region.coord.y
@@ -110,13 +115,41 @@ class MapInDoorsVC: UIViewController {
     let scaleX = CGFloat(x) * scale
     let scaleY = CGFloat(y) * scale
     
-    let finalX = scaleX - scrollView.contentOffset.x
-    let finalY = scaleY - scrollView.contentOffset.y - pinHeight * scale
+    var finalX = scaleX - scrollView.contentOffset.x
+    var finalY = scaleY - scrollView.contentOffset.y
+    
+    let pinScale = min(max(scale, 0.7), 1.0)
+    
+    finalY -= pinHeight * pinScale
+    
+    if recenter {
+      var offsetX:CGFloat = 0
+      var offsetY:CGFloat = 0
+      let originOffset = scrollView.contentOffset
+      let width = CGRectGetWidth(scrollView.bounds)
+      let height = CGRectGetHeight(scrollView.bounds)
+      
+      if finalX > width || finalX < 0 {
+        offsetX = finalX - width / 2
+        finalX = width / 2
+      }
+      
+      if finalY > height || finalY < 0 {
+        offsetY = finalY - height / 2
+        finalY = height / 2
+      }
+
+      scrollView.setContentOffset(CGPointMake(originOffset.x + offsetX, originOffset.y + offsetY), animated: true)
+    }
+    
+    let pinFrame = CGRectMake(finalX, finalY, pinWidth * pinScale, pinHeight * pinScale)
+    
     
     print("origin: [\(x),\(y)]")
     print("scale: [\(scaleX),\(scaleY)]")
     print("final: [\(finalX),\(finalY)]")
-    pin.frame.origin = CGPointMake(finalX, finalY)
+    //pin.frame.origin = CGPointMake(finalX, finalY)
+    pin.frame = pinFrame
     pin.hidden = false
   }
 

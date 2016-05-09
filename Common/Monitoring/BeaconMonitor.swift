@@ -130,6 +130,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     if let cachedInfo = beaconInfoCache[key] {
       beaconInfoCache[key]?.refreshTime = NSDate()
+      beaconInfoCache[key]?.beacon = beacon
       //print("\(key) : \(beacon.proximity.rawValue) : update time")
       
       /* 距离为 Far, Near, Immediate 三种情况记录当前时间戳。 Unknown忽略

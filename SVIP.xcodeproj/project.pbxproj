@@ -121,6 +121,7 @@
 		40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */; };
 		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
 		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
+		40EFB1BF1CE0A94200105FB8 /* demo_dev.json in Resources */ = {isa = PBXBuildFile; fileRef = 40EFB1BE1CE0A94200105FB8 /* demo_dev.json */; };
 		40FD343F1C92C3F40019A8CA /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD343E1C92C3F40019A8CA /* LocalStorage.swift */; };
 		40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD34421C92F4380019A8CA /* HttpService+Shops.swift */; };
 		B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20812C31B8DD8650070D96F /* StorageManager.swift */; };
@@ -416,6 +417,7 @@
 		40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
 		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZKJSConfig.swift; sourceTree = "<group>"; };
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		40EFB1BE1CE0A94200105FB8 /* demo_dev.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = demo_dev.json; path = Pages/Demo/demo_dev.json; sourceTree = "<group>"; };
 		40FD343E1C92C3F40019A8CA /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		40FD34421C92F4380019A8CA /* HttpService+Shops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Shops.swift"; sourceTree = "<group>"; };
 		67993CCF61D2F89ACCD5A76A /* Pods_SVIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SVIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -608,6 +610,7 @@
 				4023110D1CDDC34D00C6B8F9 /* RegionData.swift */,
 				4023110F1CDDC42800C6B8F9 /* Region.swift */,
 				402311111CDDC73A00C6B8F9 /* demo.json */,
+				40EFB1BE1CE0A94200105FB8 /* demo_dev.json */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1410,6 +1413,7 @@
 				FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */,
 				FA60C2141CB74D79005711A2 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				FA60C20E1CB74D79005711A2 /* PlayButtonOverlayLargeTap@3x.png in Resources */,
+				40EFB1BF1CE0A94200105FB8 /* demo_dev.json in Resources */,
 				4096FD531CB36D1700E8E31E /* PushMessageVC.xib in Resources */,
 				FA60C2151CB74D79005711A2 /* UIBarButtonItemGrid.png in Resources */,
 				40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */,
