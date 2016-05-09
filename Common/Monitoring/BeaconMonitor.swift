@@ -129,6 +129,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
      }*/
     
     if let cachedInfo = beaconInfoCache[key] {
+      beaconInfoCache[key]?.refreshTime = NSDate()
       //print("\(key) : \(beacon.proximity.rawValue) : update time")
       
       /* 距离为 Far, Near, Immediate 三种情况记录当前时间戳。 Unknown忽略
@@ -228,26 +229,44 @@ extension BeaconMonitor : CLLocationManagerDelegate {
   }
   
   func searchRegion() {
-    print("========= search region")
+    /*print("========= search region")
     for b in beaconInfoCache {
       print(b.1.beacon)
       print(b.1.beacon?.accuracy)
       print(b.1.timestamp.timeIntervalSinceNow)
       print("\n")
+    }*/
+    let regions:[Region] = RegionData.sharedInstance.allRegions
+    
+    var beacons:[BeaconInfo] = beaconInfoCache.map{ $0.1 }
+    beacons =  beacons.filter({ (b) -> Bool in
+      return regions.contains({ (r) -> Bool in
+        return r.uuid.uppercaseString == b.beacon!.proximityUUID.UUIDString.uppercaseString
+          && r.major == b.beacon!.major.integerValue
+      })
+    })
+    beacons = beacons.filter{ $0.beacon != nil && fabs($0.refreshTime.timeIntervalSinceNow) < 6 }
+    let tmp = beacons.filter{ $0.beacon?.accuracy > 0 }
+    if tmp.count > 0 {
+      beacons = tmp
     }
-    //let regions = RegionData.sharedInstance.allRegions
-    let r = beaconInfoCache.map{ $0.1 }
+    let r = beacons.sort { (b1, b2) -> Bool in
+        b1.beacon!.accuracy < b2.beacon!.accuracy
+      }.first
+    
+    /*let r = beaconInfoCache.map{ $0.1 }
       .filter{ $0.beacon != nil && fabs($0.timestamp.timeIntervalSinceNow) < 6 }
-      /*.filter{ b in
+      .filter{ b in
         return RegionData.sharedInstance.allRegions!.contains{ (r) -> Bool in
           return r.uuid.uppercaseString == b.beacon!.proximityUUID.UUIDString.uppercaseString
             && r.major == b.beacon!.major.integerValue
         }
-      }*/
+      }
       .sort { (b1, b2) -> Bool in
         b1.beacon!.accuracy < b2.beacon!.accuracy
-      }.first
-    print("found region:\(r)")
+      }.first*/
+    
+    print("found region:\(r?.beacon)")
     if let b = r?.beacon {
       NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_BEACON_FOUND, object: nil, userInfo: ["beacon":b])
     }

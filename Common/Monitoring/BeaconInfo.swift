@@ -14,6 +14,7 @@ class BeaconInfo: NSObject {
   var uploadTime: NSDate
   var proximity: CLProximity
   var beacon: CLBeacon?
+  var refreshTime = NSDate()
   
   override init () {
     timestamp = NSDate()
