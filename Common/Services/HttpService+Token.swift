@@ -107,6 +107,7 @@ extension HttpService {
     request.HTTPMethod = "PUT"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.setValue(token, forHTTPHeaderField: "Token")
+    request.timeoutInterval = 5
     
     var response: NSURLResponse?
     if let data = try? NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) {
