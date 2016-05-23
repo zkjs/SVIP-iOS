@@ -11,26 +11,24 @@ import CoreLocation
 import CoreBluetooth
 
 class HomeVC: UIViewController {
+  let ConstraintBottomHeight:CGFloat = -360
   
-  @IBOutlet weak var lineView: UIView!
   @IBOutlet weak var avatarsImageView: RoundedImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var walletButton: UIButton!
-  @IBOutlet weak var moneyLabel: UILabel!
-  @IBOutlet weak var moneyButton: UIButton!
   @IBOutlet weak var breathLight: BreathLight!
   @IBOutlet weak var logoutView: UIView!
-  @IBOutlet weak var monitoringButton: UIButton!
   @IBOutlet weak var shopLogoImageView: UIImageView!
-  
+  @IBOutlet weak var constraintBottom: NSLayoutConstraint!
+  @IBOutlet weak var bottomGestureView: UIView!
   
   var bluetoothManager = CBCentralManager()
-  var originOffsetY: CGFloat = 0.0
   var bluetoothStats: Bool!
   var hideMoney: Bool = true
   let flipAnimationController = FlipAnimationController()
   let swipeInteractionController = SwipeInteractionController()
   var pushMessages  = [PushMessage]()
+  var initialConstraintHeight:CGFloat = 0
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
@@ -59,9 +57,6 @@ class HomeVC: UIViewController {
     
     //navigationController?.delegate = self
     
-    // V2.0版本暂时屏蔽钱包和支付记录(呼吸灯)功能
-    //walletButton.hidden = true
-    //breathLight.hidden = true
   }
   
   
@@ -69,20 +64,14 @@ class HomeVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBarHidden = true
     navigationController?.navigationBar.translucent = true
-    getBalance()
+    constraintBottom.constant = ConstraintBottomHeight
+    initialConstraintHeight = ConstraintBottomHeight
+    //getBalance()
     getOrderList()
     refreshUserInfo()
     updateLogo()
     HttpService.sharedInstance.getUserinfo { (json, error) in
       self.refreshUserInfo()
-    }
-  }
-  
-  private func setButtonView() {
-    if StorageManager.sharedInstance().settingMonitoring() {
-      monitoringButton.setImage(UIImage(named: "btn_notify"), forState: .Normal)
-    } else {
-      monitoringButton.setImage(UIImage(named: "btn_mute"), forState: .Normal)
     }
   }
   
@@ -166,15 +155,14 @@ class HomeVC: UIViewController {
   
   func setupView() {
     self.view.backgroundColor = UIColor(patternImage: UIImage(named: "texture_bg")!)
-    self.lineView.backgroundColor = UIColor(patternImage: UIImage(named: "home_line")!)
     //updateLogo()
-    toggleMoney()
     refreshUserInfo()
   }
   
   func updateLogo() {
     if let shopLogo = StorageManager.sharedInstance().cachedShopLogo()
        where shopLogo.validthru.timeIntervalSinceNow > 0 {
+      print("change logo:\(shopLogo.logo.fullImageUrlFitted)")
       shopLogoImageView.sd_setImageWithURL(NSURL(string: shopLogo.logo.fullImageUrlFitted), placeholderImage: UIImage(named: "shop_logo_default"))
     } else {
       shopLogoImageView.image = UIImage(named: "shop_logo_default")
@@ -190,7 +178,7 @@ class HomeVC: UIViewController {
   func getBalance() {
     HttpService.sharedInstance.getBalance { (balance, error) -> Void in
       if error == nil {
-        self.moneyLabel.text = (balance / 100).format(".2")
+        //self.moneyLabel.text = (balance / 100).format(".2")
       }
     }
   }
@@ -200,30 +188,13 @@ class HomeVC: UIViewController {
     self.presentViewController(nc, animated: true, completion: nil)
   }
   
-  
-  // show/hide the money bubble
-  func toggleMoney() {
-    moneyButton.hidden = hideMoney
-    moneyLabel.hidden = hideMoney
-    hideMoney = !hideMoney
-
-  }
-  
   // 点击头像到账号管理页面
   @IBAction func accountAction(sender: AnyObject) {
-    // 产品要求暂时屏蔽该功能 2016-03-21
     gotoSetting()
-  }
-  
-  // 点击钱包打开金额气泡
-  @IBAction func walletAction(sender: AnyObject) {
-    getBalance()
-    toggleMoney()
   }
   
   // 点击气泡打开账单列表
   @IBAction func moneyAction(sender: AnyObject) {
-    toggleMoney()
     let billStoryboard = UIStoryboard(name:"BillList",bundle: nil)
     let vc = billStoryboard.instantiateViewControllerWithIdentifier("BillListVC") as! BillListVC
     self.navigationController?.pushViewController(vc, animated: true)
@@ -236,30 +207,6 @@ class HomeVC: UIViewController {
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
-  @IBAction func toggleBeaconMonitoring(sender: UIButton) {
-    let monitoring = StorageManager.sharedInstance().settingMonitoring()
-    if monitoring {// stop monitoring
-      let confirmAlert = UIAlertController(title: "提示", message: "确定要关闭身份吗?", preferredStyle: .Alert)
-      let confirmAction = UIAlertAction(title: "确定", style: .Default) { (_) in
-        BeaconMonitor.sharedInstance.stopMonitoring()
-        LocationMonitor.sharedInstance.stopUpdatingLocation()
-        LocationMonitor.sharedInstance.stopMonitoringLocation()
-        StorageManager.sharedInstance().settingMonitoring(!monitoring)
-        self.setButtonView()
-      }
-      let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { (_) in }
-      confirmAlert.addAction(confirmAction)
-      confirmAlert.addAction(cancelAction)
-      presentViewController(confirmAlert, animated: true, completion: nil)
-      
-    } else { // start monitoring
-      BeaconMonitor.sharedInstance.startMonitoring()
-      LocationMonitor.sharedInstance.startUpdatingLocation()
-      StorageManager.sharedInstance().settingMonitoring(!monitoring)
-      setButtonView()
-    }
-    
-  }
   
   func gotoSetting() {
     let storyboard = UIStoryboard(name: "AccountTVC", bundle: nil)
@@ -272,10 +219,19 @@ class HomeVC: UIViewController {
     multiTap.numberOfTapsRequired = 6
     self.logoutView.addGestureRecognizer(multiTap)
     
+    // tap to show shop detail ViewController
     let tap = UITapGestureRecognizer(target: self, action: "gotoShopDetail")
-    view.bringSubviewToFront(shopLogoImageView)
+    //view.bringSubviewToFront(shopLogoImageView)
     shopLogoImageView.userInteractionEnabled = true
     shopLogoImageView.addGestureRecognizer(tap)
+    
+    // tap to open menu
+    let showMenu = UITapGestureRecognizer(target: self, action: "showMenu")
+    bottomGestureView.addGestureRecognizer(showMenu)
+    
+    // drap to open menu
+    let pan = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+    bottomGestureView.addGestureRecognizer(pan)
   }
   
   // 点击屏幕6次退出登录
@@ -300,6 +256,52 @@ class HomeVC: UIViewController {
       }, completion: nil)
   }
   
+  func showMenu() {
+    var constant:CGFloat = 0
+    if constraintBottom.constant == 0 {
+      constant = ConstraintBottomHeight
+    } else {
+      constant = 0
+    }
+    snapMenu(constant)
+  }
+  
+  func snapMenu(constraintConstant:CGFloat){
+    constraintBottom.constant = constraintConstant
+    UIView.animateWithDuration(0.6, delay: 0,
+                               usingSpringWithDamping: 0.5,
+                               initialSpringVelocity: 0,
+                               options: UIViewAnimationOptions.CurveEaseInOut,
+                               animations: {
+                                self.view.layoutIfNeeded()
+      }, completion: nil)
+  }
+  
+  func handlePanGesture(gestureRecognizer:UIPanGestureRecognizer) {
+    let translation:CGPoint = gestureRecognizer.translationInView(view)
+    //print(translation)
+    switch gestureRecognizer.state {
+    case .Began:
+      initialConstraintHeight = constraintBottom.constant
+      navigationController?.popViewControllerAnimated(true)
+      break
+    case .Changed:
+      constraintBottom.constant = initialConstraintHeight - translation.y
+      break
+    case .Ended, .Cancelled:
+      var fraction = fabs(translation.y / ConstraintBottomHeight)
+      fraction = CGFloat(fminf(fmaxf(Float(fraction), 0.0), 1.0))
+      if fraction < 0.4 || gestureRecognizer.state == .Cancelled {
+        snapMenu(initialConstraintHeight)
+      } else {
+        snapMenu(initialConstraintHeight == 0 ? ConstraintBottomHeight : 0)
+      }
+      initialConstraintHeight = 0
+      break
+    default:
+      break
+    }
+  }
 }
 
 
@@ -338,10 +340,6 @@ extension HomeVC: CBCentralManagerDelegate {
 
 extension HomeVC: UINavigationControllerDelegate {
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    
-//    if !fromVC.isKindOfClass(ShopDetailVC) && !toVC.isKindOfClass(ShopDetailVC) {
-//      return nil
-//    }
     
     if (operation == .Push) {
       swipeInteractionController.wireToViewController(toVC)

@@ -18,8 +18,6 @@
 
 #pragma mark - 检测邮箱格式
 + (BOOL)validateEmail:(NSString *)email;
-+ (NSString *)getIPAddress:(BOOL)preferIPv4;
-+ (NSDictionary *)getIPAddresses;
 
 #pragma mark - JSON String <=> Dictionary
 + (NSDictionary *)convertJSONStringToDictionary:(NSString *)jsonString;

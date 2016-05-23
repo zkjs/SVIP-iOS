@@ -6,7 +6,7 @@ use_frameworks!
 target 'SVIP' do
   ###########################################
   # Swift Pods
-  pod 'UMengAnalytics-NO-IDFA'#无IDFA版友盟SDK
+  pod 'UMengAnalytics-NO-IDFA', '~> 3.6'#无IDFA版友盟SDK
   pod 'Alamofire', '~> 3.0'
   pod 'SwiftyJSON', '~> 2.3'
   pod 'ReachabilitySwift', '~> 2.3'
