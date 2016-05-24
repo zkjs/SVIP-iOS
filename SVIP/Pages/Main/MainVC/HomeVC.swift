@@ -66,7 +66,6 @@ class HomeVC: UIViewController {
     navigationController?.navigationBar.translucent = true
     constraintBottom.constant = ConstraintBottomHeight
     initialConstraintHeight = ConstraintBottomHeight
-    //getBalance()
     getOrderList()
     refreshUserInfo()
     updateLogo()
@@ -174,15 +173,6 @@ class HomeVC: UIViewController {
     self.nameLabel.text = AccountManager.sharedInstance().userName
   }
   
-  // 账户余额
-  func getBalance() {
-    HttpService.sharedInstance.getBalance { (balance, error) -> Void in
-      if error == nil {
-        //self.moneyLabel.text = (balance / 100).format(".2")
-      }
-    }
-  }
-  
   func login(sender:UIButton) {
     let nc = BaseNC(rootViewController: LoginFirstVC())
     self.presentViewController(nc, animated: true, completion: nil)
@@ -193,7 +183,7 @@ class HomeVC: UIViewController {
     gotoSetting()
   }
   
-  // 点击气泡打开账单列表
+  // 点击钱包打开账单列表
   @IBAction func moneyAction(sender: AnyObject) {
     let billStoryboard = UIStoryboard(name:"BillList",bundle: nil)
     let vc = billStoryboard.instantiateViewControllerWithIdentifier("BillListVC") as! BillListVC

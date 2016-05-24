@@ -10,6 +10,7 @@ import UIKit
 
 class BillListVC: UICollectionViewController {
   var billListArr = [PaylistmModel]()
+  var balance = -0.1
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -21,6 +22,9 @@ class BillListVC: UICollectionViewController {
     collectionView!.backgroundColor = UIColor(hex: "#f0f0f0")
     collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
     //let layout = collectionView!.collectionViewLayout as! BillListLayout
+    
+    let rightButton = UIBarButtonItem(image: UIImage(named: "ic_balance"), landscapeImagePhone: nil, style: .Plain, target: self, action: "showBalance:")
+    navigationItem.rightBarButtonItem = rightButton
   }
 
   override func didReceiveMemoryWarning() {
@@ -32,6 +36,7 @@ class BillListVC: UICollectionViewController {
     self.showHUDInView(view, withLoading: "")
     
     loadOrderList()
+    getBalance()
   }
   
   func loadOrderList() {
@@ -56,6 +61,39 @@ class BillListVC: UICollectionViewController {
     }
   }
   
+  func showBalance(sender:AnyObject) {
+    
+    let storyboard = UIStoryboard(name: "BillList", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("BalancePopoverVC") as! BalancePopoverVC
+    vc.balance = balance
+    vc.modalPresentationStyle = .Popover
+    vc.popoverPresentationController?.permittedArrowDirections = .Up
+    vc.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem;
+    vc.popoverPresentationController?.permittedArrowDirections = .Up;
+    vc.popoverPresentationController?.delegate = self;
+    vc.preferredContentSize = CGSizeMake(180, 60);
+    presentViewController(vc, animated: true, completion: nil)
+    
+  }
+  
+  // 账户余额
+  func getBalance() {
+    HttpService.sharedInstance.getBalance { (balance, error) -> Void in
+      if error == nil {
+        self.balance = balance
+      }
+    }
+  }
+  
+}
+
+extension BillListVC:UIPopoverPresentationControllerDelegate {
+  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    return .None
+  }
+}
+
+extension BillListVC {
 
   // MARK: UICollectionViewDataSource
 

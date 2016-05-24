@@ -57,6 +57,7 @@
 		40B84E781BFDAB0B00C327E1 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */; };
 		40B84E7B1BFDB28900C327E1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */; };
 		40BC848F1BFC570700038C81 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		40C87C731CF3F9C800130D8C /* BalancePopoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C87C721CF3F9C800130D8C /* BalancePopoverVC.swift */; };
 		40CB68801CB5157C001AF6CF /* ShrinkDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */; };
 		40CB68C21CB6441E001AF6CF /* RegisterAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB68C11CB6441E001AF6CF /* RegisterAlertVC.swift */; };
 		40CB68C61CB647B1001AF6CF /* RegisterAlertVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CB68C51CB647B1001AF6CF /* RegisterAlertVC.storyboard */; };
@@ -314,6 +315,7 @@
 		40A3F5881CDA0CF2000B6AB7 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		40B84E761BFDAB0B00C327E1 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		40B84E7A1BFDB28900C327E1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		40C87C721CF3F9C800130D8C /* BalancePopoverVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancePopoverVC.swift; sourceTree = "<group>"; };
 		40CB687F1CB5157C001AF6CF /* ShrinkDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkDismissAnimationController.swift; sourceTree = "<group>"; };
 		40CB68C11CB6441E001AF6CF /* RegisterAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAlertVC.swift; sourceTree = "<group>"; };
 		40CB68C51CB647B1001AF6CF /* RegisterAlertVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegisterAlertVC.storyboard; path = SVIP/Pages/Login/RegisterAlertVC.storyboard; sourceTree = SOURCE_ROOT; };
@@ -714,6 +716,7 @@
 				F6B467501CA63E8E008AF9A1 /* BillListCell.swift */,
 				F6B467521CA64A93008AF9A1 /* BillListLayout.swift */,
 				406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */,
+				40C87C721CF3F9C800130D8C /* BalancePopoverVC.swift */,
 			);
 			path = BillList;
 			sourceTree = "<group>";
@@ -1408,6 +1411,7 @@
 				40DE25131C9BFE6600CA7F26 /* LocationStateObserver.swift in Sources */,
 				404177CC1C98143700113721 /* HttpService+Others.swift in Sources */,
 				FA60C1CF1CB74D58005711A2 /* MWGridViewController.m in Sources */,
+				40C87C731CF3F9C800130D8C /* BalancePopoverVC.swift in Sources */,
 				FA0D36131C9D28FB00E0AA78 /* MesssageListCell.swift in Sources */,
 				FA0D360F1C9D28BA00E0AA78 /* MessageListTVC.swift in Sources */,
 				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,

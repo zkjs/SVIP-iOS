@@ -143,5 +143,39 @@
             </objects>
             <point key="canvasLocation" x="544" y="343"/>
         </scene>
+        <!--Balance PopoverVC-->
+        <scene sceneID="EWv-JR-ELp">
+            <objects>
+                <viewController storyboardIdentifier="BalancePopoverVC" id="MwL-iB-lqp" customClass="BalancePopoverVC" customModule="SVIP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QJc-BI-Wwf"/>
+                        <viewControllerLayoutGuide type="bottom" id="DvI-N0-Jnb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TJA-Yc-t1S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kho-se-wfN">
+                                <rect key="frame" x="135" y="272" width="51" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.77647058820000003" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kho-se-wfN" firstAttribute="centerX" secondItem="TJA-Yc-t1S" secondAttribute="centerX" id="RMu-NE-3jS"/>
+                            <constraint firstItem="Kho-se-wfN" firstAttribute="centerY" secondItem="TJA-Yc-t1S" secondAttribute="centerY" id="n1k-Sc-6Q1"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="balanceLabel" destination="Kho-se-wfN" id="Hzq-Ff-YDF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ffj-11-vrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1043" y="343"/>
+        </scene>
     </scenes>
 </document>

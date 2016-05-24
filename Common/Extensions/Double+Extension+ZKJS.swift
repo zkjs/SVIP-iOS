@@ -12,4 +12,8 @@ extension Double {
   func format(f: String) -> String {
     return NSString(format: "%\(f)f", self) as String
   }
+  
+  var formattedCash:String {
+    return "￥" + self.format(".2")
+  }
 }
