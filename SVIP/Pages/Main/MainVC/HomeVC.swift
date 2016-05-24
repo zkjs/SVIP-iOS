@@ -284,7 +284,11 @@ class HomeVC: UIViewController {
       if fraction < 0.4 || gestureRecognizer.state == .Cancelled {
         snapMenu(initialConstraintHeight)
       } else {
-        snapMenu(initialConstraintHeight == 0 ? ConstraintBottomHeight : 0)
+        if translation.y < 0 {
+          snapMenu(0)
+        } else {
+          snapMenu(initialConstraintHeight == 0 ? ConstraintBottomHeight : 0)
+        }
       }
       initialConstraintHeight = 0
       break

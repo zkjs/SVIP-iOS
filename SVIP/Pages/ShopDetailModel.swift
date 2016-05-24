@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-class ShopDetailModel: ShopmodsModel {
+class ShopDetailModel {
   let shopdesc:String
   let shopaddress:String
   let shopstatus:Int
@@ -22,7 +22,7 @@ class ShopDetailModel: ShopmodsModel {
   let shopmods:[ShopmodsModel]
   
   
-  override init(json:JSON) {
+  init(json:JSON) {
     shopID = json["shopid"].string ?? ""
     shopaddress = json["shopaddress"].string ?? ""
     shopname = json["shopname"].string ?? ""
@@ -35,6 +35,5 @@ class ShopDetailModel: ShopmodsModel {
     score = json["score"].double ?? 0.0
     shopmods = json["shopmods"].array?.flatMap{ return ShopmodsModel(json: $0) } ?? []
 
-    super.init(json: json)
   }
 }

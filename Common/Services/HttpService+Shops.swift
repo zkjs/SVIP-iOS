@@ -33,4 +33,28 @@ extension HttpService {
       }
     }
   }
+  
+  //我的商家列表[GET /res/v1/shop/belong/si]
+  func getMyShops( completionHandler: ([ShopDetailModel],NSError?)->Void) {
+    let urlString = ResourcePath.MyShops.description.fullUrl
+    
+    get(urlString, parameters: nil, tokenRequired: false) { (json, error) -> Void in
+      if let error = error {
+        print(error)
+        completionHandler([],error)
+      } else {
+        if let data = json?["data"].array where data.count > 0 {
+          var shops = [ShopDetailModel]()
+          for d in data {
+            let shop = ShopDetailModel(json: d)
+            shops.append(shop)
+          }
+          completionHandler(shops,nil)
+        } else {
+          completionHandler([],nil)
+        }
+        
+      }
+    }
+  }
 }

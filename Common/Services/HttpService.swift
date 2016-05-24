@@ -54,6 +54,7 @@ class HttpService {
     case UploadLogs                     // 上传用户错误日志
     case ShopList                       // 商家列表
     case ShopDetail(id:String)          // 商家详情
+    case MyShops                        // 我的商家
     case ShopComments(shopid:String)    // 商家评论
     case querySaleFromCode              // 根据邀请码查询销售员
     case ActiveCode                     // 邀请码激活
@@ -97,7 +98,7 @@ class HttpService {
       case .UserEnsurePay:              return "/for/res/v1/payment"
       case .PaymentInfo:                return "/for/res/v1/payment/si"
       case .Balance:                    return "/for/res/v1/payment/balance"
-  
+      case .MyShops:                    return "/for/res/v1/shop/belong/si"
         
       }
     }
@@ -235,7 +236,7 @@ class HttpService {
     } else {
       print(self.jsonFromData(data))
       
-      if let data = data {
+      if let data = data where data.length > 0 {
         let json = JSON(data: data)
         if json["res"].int == 0 {
           completionHandler(json,nil)
@@ -261,7 +262,7 @@ class HttpService {
       } else {
         let e = NSError(domain: NSBundle.mainBundle().bundleIdentifier ?? "com.zkjinshi.svip",
           code: -2,
-          userInfo: ["res":"-2","resDesc": "no data from server"])
+          userInfo: ["res":"-2","resDesc": "服务器返回空数据"])
         completionHandler(nil,e)
         print("error with reason: \(e)")
       }

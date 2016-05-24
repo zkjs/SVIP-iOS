@@ -10,7 +10,7 @@ import UIKit
 
 class BillListVC: UICollectionViewController {
   var billListArr = [PaylistmModel]()
-  var balance = -0.1
+  var balance = 0.0
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -114,8 +114,6 @@ extension BillListVC {
 
     return cell
   }
-  
-  
 
   // MARK: UICollectionViewDelegate
   
