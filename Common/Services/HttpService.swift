@@ -36,7 +36,7 @@ class HttpService {
   var refreshTokenTime: NSTimeInterval = NSDate().timeIntervalSince1970
   
   // 豪庭
-  static let DIST = "568e8db288b8a95d7ecfeb9a5d6936b9c521253f3cad30cd9b83ed2d87db9605"
+  //static let DIST = "568e8db288b8a95d7ecfeb9a5d6936b9c521253f3cad30cd9b83ed2d87db9605"
   enum ResourcePath: CustomStringConvertible {
     case ApiURL(path:String)            // demo
     case Beacon                         // PYXIS 位置服务API : Beacon 位置信息 :
@@ -75,12 +75,16 @@ class HttpService {
       case .Beacon:                     return "/pyx/lbs/v1/loc/beacon"
       case .GPS:                        return "/pyx/lbs/v1/loc/gps"
       case .UploadBeacons:              return "/pyx/lbs/v1/loc/beacons"
-      case .CodeLogin:                  return "/pav/sso/vcode/v1/si?source=login&dist=\(DIST)"
-      case .CodeRegister:               return "/pav/sso/vcode/v1/si?source=register&dist=\(DIST)"
-      case .Login:                      return "/pav/sso/token/v1/phone/si?dist=\(DIST)"
+      //case .CodeLogin:                return "/pav/sso/vcode/v1/si?source=login&dist=\(DIST)"
+      //case .CodeRegister:             return "/pav/sso/vcode/v1/si?source=register&dist=\(DIST)"
+      //case .Login:                    return "/pav/sso/token/v1/phone/si?dist=\(DIST)"
+      case .CodeLogin:                  return "/pav/sso/vcode/v1/si?source=login"
+      case .CodeRegister:               return "/pav/sso/vcode/v1/si?source=register"
+      case .Login:                      return "/pav/sso/token/v1/phone/si"
       case .Token:                      return "/pav/sso/token/v1"
       case .DeleteToken:                return "/pav/sso/token/v1"
-      case .register:                   return "/pav/res/v1/register/si?dist=\(DIST)"
+      //case .register:                 return "/pav/res/v1/register/si?dist=\(DIST)"
+      case .register:                   return "/pav/res/v1/register/si"
       case .RegisterUpdata:             return "/for/res/v1/register/update/si"
       case .UserInfo:                   return "/for/res/v1/query/user/all"
       case .UserInfoUpdate:             return "/for/res/v1/update/user"
