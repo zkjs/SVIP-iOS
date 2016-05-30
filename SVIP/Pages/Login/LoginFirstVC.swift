@@ -86,11 +86,13 @@ class LoginFirstVC: UIViewController {
         HttpService.sharedInstance.requestSmsCodeWithPhoneNumber(phone, completionHandler: { (json, error) -> () in
           self.hideHUD()
           if let error = error {
-            if error.code != 5 {// 未注册用户/不在白名单用户 不跳转
-              self.showErrorHint(error, withFontSize: 16)
-              self.gotoVCodeVC(.Login)
-            } else {
+            //1:参数错误, 5:不在白名单, 9:超过上限 ，10:手机号加密错误, 12:手机号已经注册
+            if error.code == 5 {// 未注册用户/不在白名单用户 不跳转
               self.showRegisterAlert()
+            } else if error.code != 0 {
+              self.showErrorHint(error, withFontSize: 16)
+            } else {
+              self.gotoVCodeVC(.Login)
             }
           } else {
             self.showHint("验证码已发送", withFontSize: 18)

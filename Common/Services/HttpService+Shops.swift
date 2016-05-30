@@ -35,10 +35,11 @@ extension HttpService {
   }
   
   //我的商家列表[GET /res/v1/shop/belong/si]
-  func getMyShops( completionHandler: ([ShopDetailModel],NSError?)->Void) {
+  func getMyShops(page:Int = 0, completionHandler: ([ShopDetailModel],NSError?)->Void) {
     let urlString = ResourcePath.MyShops.description.fullUrl
     
-    get(urlString, parameters: nil, tokenRequired: false) { (json, error) -> Void in
+    let parameters = ["page":page,"page_size":HttpService.DefaultPageSize]
+    get(urlString, parameters: parameters, tokenRequired: false) { (json, error) -> Void in
       if let error = error {
         print(error)
         completionHandler([],error)

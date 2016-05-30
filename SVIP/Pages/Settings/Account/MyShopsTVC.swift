@@ -11,6 +11,7 @@ import MJRefresh
 
 class MyShopsTVC: UITableViewController {
   var shops = [ShopDetailModel]()
+  var page = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,27 +20,50 @@ class MyShopsTVC: UITableViewController {
     tableView.separatorInset = UIEdgeInsetsZero
     tableView.layoutMargins = UIEdgeInsetsZero
     
-    tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "getShops")
+    tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "loadData")
+    tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMore")
     
     showHUDInView(view, withLoading: "")
-    getShops()
+    loadData()
   }
   
-  func getShops() {
-    HttpService.sharedInstance.getMyShops { (shops, error) in
+  func getShops(page:Int) {
+    HttpService.sharedInstance.getMyShops(page) { (shops, error) in
       self.hideHUD()
       self.tableView.mj_header.endRefreshing()
+      self.tableView.mj_footer.endRefreshing()
       if let error = error {
         self.showErrorHint(error)
       } else {
-        if shops.count == 0 {
-          self.showHint("没有商家数据")
+        if shops.count < HttpService.DefaultPageSize {
+          self.tableView.mj_footer.hidden = true
         } else {
-          self.shops = shops
+          self.tableView.mj_footer.hidden = false
+        }
+        if shops.count == 0 {
+          if page == 0 {
+            self.showHint("没有商家数据")
+          }
+        } else {
+          if page > 0 {
+            self.shops += shops
+          } else {
+            self.shops = shops
+          }
           self.tableView.reloadData()
         }
       }
     }
+  }
+  
+  func loadData() {
+    page = 0
+    getShops(page)
+  }
+  
+  func loadMore() {
+    page += 1
+    getShops(page)
   }
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
