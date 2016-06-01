@@ -25,11 +25,11 @@ class LocationStateObserver:NSObject {
   
   func start() {
     if CLLocationManager.authorizationStatus() == .Denied {
-      let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
+      let alert = UIAlertView(title: "无法获得位置", message: "仅在您有预约时，在您抵达之前提醒服务人员准备好您的服务；您可以在个人设置中开启或关闭", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
       return
     } else if CLLocationManager.authorizationStatus() == .Restricted {
-      let alert = UIAlertView(title: "无法获得位置", message: "我们将为您提供免登记入住手续,该项服务需要使用定位功能,需要您前往设置中心打开定位服务", delegate: nil, cancelButtonTitle: "确定")
+      let alert = UIAlertView(title: "无法获得位置", message: "仅在您有预约时，在您抵达之前提醒服务人员准备好您的服务；您可以在个人设置中开启或关闭", delegate: nil, cancelButtonTitle: "确定")
       alert.show()
       return
     }

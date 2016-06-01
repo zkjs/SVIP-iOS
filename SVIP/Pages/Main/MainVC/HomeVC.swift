@@ -219,7 +219,7 @@ class HomeVC: UIViewController {
     let showMenu = UITapGestureRecognizer(target: self, action: "showMenu")
     bottomGestureView.addGestureRecognizer(showMenu)
     
-    // drap to open menu
+    // drag to open menu
     let pan = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
     bottomGestureView.addGestureRecognizer(pan)
   }
@@ -273,7 +273,6 @@ class HomeVC: UIViewController {
     switch gestureRecognizer.state {
     case .Began:
       initialConstraintHeight = constraintBottom.constant
-      navigationController?.popViewControllerAnimated(true)
       break
     case .Changed:
       constraintBottom.constant = initialConstraintHeight - translation.y
