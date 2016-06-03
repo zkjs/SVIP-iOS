@@ -52,7 +52,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>201605250</string>
+	<string>201606010</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
@@ -70,7 +70,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>仅在您有预约时，在您抵达之前提醒服务人员准备好您的服务；您可以在个人设置中开启或关闭</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

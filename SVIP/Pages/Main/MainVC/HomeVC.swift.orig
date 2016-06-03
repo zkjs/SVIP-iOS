@@ -55,8 +55,6 @@ class HomeVC: UIViewController {
     
     addGuestures()
     
-    //navigationController?.delegate = self
-    
   }
   
   
@@ -219,8 +217,13 @@ class HomeVC: UIViewController {
     let showMenu = UITapGestureRecognizer(target: self, action: #selector(HomeVC.showMenu))
     bottomGestureView.addGestureRecognizer(showMenu)
     
+<<<<<<< HEAD
     // drap to open menu
     let pan = UIPanGestureRecognizer(target: self, action: #selector(HomeVC.handlePanGesture(_:)))
+=======
+    // drag to open menu
+    let pan = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+>>>>>>> origin/master
     bottomGestureView.addGestureRecognizer(pan)
   }
   
