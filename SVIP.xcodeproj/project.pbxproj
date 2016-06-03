@@ -123,7 +123,8 @@
 		B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */; };
 		B2B2EC3D1B73493D00CA5158 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3C1B73493D00CA5158 /* libc++.dylib */; };
 		B2B2EC3F1B73494E00CA5158 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */; };
-		D8945633F4C6945FD4AAB411 /* Pods_SVIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67993CCF61D2F89ACCD5A76A /* Pods_SVIP.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BB0A80CDB76FB79D8D57AD8D /* Pods_SVIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BC20AAEC6EB8B9C85052FF /* Pods_SVIP.framework */; };
+		C11B684FB737526DCFE2DF7A /* Pods_SVIPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FA72CE6D060B58C39CDF6A /* Pods_SVIPTests.framework */; };
 		F626F6541CA63C7200263C4B /* BillList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F626F6531CA63C7200263C4B /* BillList.storyboard */; };
 		F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B467501CA63E8E008AF9A1 /* BillListCell.swift */; };
 		F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B467521CA64A93008AF9A1 /* BillListLayout.swift */; };
@@ -188,8 +189,6 @@
 		FA6F0D611CAA213900210EC2 /* LoginFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */; };
 		FA6F0D621CAA213900210EC2 /* LoginFirstVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */; };
 		FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */; };
-		FAF139251C26945600B84F47 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139241C26945600B84F47 /* loading@2x.gif */; };
-		FAF139271C26947700B84F47 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF139261C26947700B84F47 /* loading@3x.gif */; };
 		FAF253F21C12C5C800768A4D /* CustonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF253F01C12C5C800768A4D /* CustonCell.swift */; };
 		FAF253F31C12C5C800768A4D /* CustonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF253F11C12C5C800768A4D /* CustonCell.xib */; };
 		FAF5B9C21C21125200FEA3FD /* PushInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */; };
@@ -249,6 +248,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DD104D22474D9DF63C51ECA /* Pods-SVIP.prerelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.prerelease.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.prerelease.xcconfig"; sourceTree = "<group>"; };
+		36D850B35D34D1351DBCE9CC /* Pods-SVIPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests.debug.xcconfig"; sourceTree = "<group>"; };
 		400888E11CB74E5A0004E0A1 /* TipsBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsBubble.swift; sourceTree = "<group>"; };
 		400888E21CB74E5A0004E0A1 /* TipsBubble.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsBubble.xib; sourceTree = "<group>"; };
 		400888E61CB7A26C0004E0A1 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
@@ -380,10 +381,11 @@
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		40FD343E1C92C3F40019A8CA /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		40FD34421C92F4380019A8CA /* HttpService+Shops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Shops.swift"; sourceTree = "<group>"; };
-		67993CCF61D2F89ACCD5A76A /* Pods_SVIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SVIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44A59A13AA5F79F160691DA3 /* Pods-SVIPTests.prerelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIPTests.prerelease.xcconfig"; path = "Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests.prerelease.xcconfig"; sourceTree = "<group>"; };
+		9FC560BEF820488AD8B47B3A /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
+		B1FA72CE6D060B58C39CDF6A /* Pods_SVIPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SVIPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20812C31B8DD8650070D96F /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B20812C51B8DD8650070D96F /* SVIP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SVIP.xcdatamodel; sourceTree = "<group>"; };
-		B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.debug.xcconfig"; sourceTree = "<group>"; };
 		B21250B01B74586F0056835D /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B2564D371B4BFAED0098608F /* JSHAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSHAnimationVC.h; sourceTree = "<group>"; };
@@ -391,10 +393,12 @@
 		B2564D421B4BFAED0098608F /* RegisterAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterAnimationView.xib; sourceTree = "<group>"; };
 		B2B2EC3C1B73493D00CA5158 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		B2B2EC3E1B73494E00CA5158 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
+		B6B214D53C383DC0A39CE349 /* Pods-SVIPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests.release.xcconfig"; sourceTree = "<group>"; };
+		C7BC20AAEC6EB8B9C85052FF /* Pods_SVIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SVIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F626F6531CA63C7200263C4B /* BillList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BillList.storyboard; sourceTree = "<group>"; };
 		F6B467501CA63E8E008AF9A1 /* BillListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillListCell.swift; sourceTree = "<group>"; };
 		F6B467521CA64A93008AF9A1 /* BillListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillListLayout.swift; sourceTree = "<group>"; };
+		F9416DA21188546CD7C4DEF9 /* Pods-SVIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVIP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVIP/Pods-SVIP.release.xcconfig"; sourceTree = "<group>"; };
 		FA004E6C1C3B992000A951DD /* BluetoothDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDescriptionVC.swift; sourceTree = "<group>"; };
 		FA004E6D1C3B992000A951DD /* BluetoothDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothDescriptionVC.xib; sourceTree = "<group>"; };
 		FA02C5821C0D42D100D0D439 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -468,8 +472,6 @@
 		FA6F0D5F1CAA213900210EC2 /* LoginFirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFirstVC.swift; sourceTree = "<group>"; };
 		FA6F0D601CAA213900210EC2 /* LoginFirstVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginFirstVC.xib; sourceTree = "<group>"; };
 		FAC9980F1C9C16BD00AF4534 /* HttpService+FacePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+FacePay.swift"; sourceTree = "<group>"; };
-		FAF139241C26945600B84F47 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
-		FAF139261C26947700B84F47 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
 		FAF253F01C12C5C800768A4D /* CustonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustonCell.swift; sourceTree = "<group>"; };
 		FAF253F11C12C5C800768A4D /* CustonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustonCell.xib; sourceTree = "<group>"; };
 		FAF5B9C11C21125200FEA3FD /* PushInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushInfoModel.swift; sourceTree = "<group>"; };
@@ -496,7 +498,7 @@
 				4077DC581C1EAF4B00E13D6B /* libYunBa.a in Frameworks */,
 				B23E53851B4BBB1500CB7761 /* SystemConfiguration.framework in Frameworks */,
 				40DE25171C9C07C700CA7F26 /* openssl.framework in Frameworks */,
-				D8945633F4C6945FD4AAB411 /* Pods_SVIP.framework in Frameworks */,
+				BB0A80CDB76FB79D8D57AD8D /* Pods_SVIP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,21 +506,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11B684FB737526DCFE2DF7A /* Pods_SVIPTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35D3481E8EFB7901D0E20AFC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */,
-				DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		400888E51CB7A26C0004E0A1 /* DACircularProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,11 +559,11 @@
 				406B0AD31C858A8A006C9C73 /* Common */,
 				40641F861B3E79A300CF150D /* CommonOC */,
 				D8D0F96B75FA018B7CF90312 /* Frameworks */,
-				35D3481E8EFB7901D0E20AFC /* Pods */,
 				40641EF91B3E569700CF150D /* Products */,
 				40641EFA1B3E569700CF150D /* SVIP */,
 				40641F101B3E569800CF150D /* SVIPTests */,
 				40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */,
+				A015100ECB9EF49205C153C7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -602,8 +596,6 @@
 				40641F041B3E569700CF150D /* Images.xcassets */,
 				40641EFC1B3E569700CF150D /* Info.plist */,
 				40641F061B3E569700CF150D /* LaunchScreen.xib */,
-				FAF139241C26945600B84F47 /* loading@2x.gif */,
-				FAF139261C26947700B84F47 /* loading@3x.gif */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -978,6 +970,19 @@
 			path = Monitoring;
 			sourceTree = "<group>";
 		};
+		A015100ECB9EF49205C153C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9FC560BEF820488AD8B47B3A /* Pods-SVIP.debug.xcconfig */,
+				F9416DA21188546CD7C4DEF9 /* Pods-SVIP.release.xcconfig */,
+				0DD104D22474D9DF63C51ECA /* Pods-SVIP.prerelease.xcconfig */,
+				36D850B35D34D1351DBCE9CC /* Pods-SVIPTests.debug.xcconfig */,
+				B6B214D53C383DC0A39CE349 /* Pods-SVIPTests.release.xcconfig */,
+				44A59A13AA5F79F160691DA3 /* Pods-SVIPTests.prerelease.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B20812B71B8DD8650070D96F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1026,7 +1031,8 @@
 				404C184B1B5368FE00F11122 /* libz.dylib */,
 				B23E53841B4BBB1500CB7761 /* SystemConfiguration.framework */,
 				405352161BA66251007157FC /* NotificationCenter.framework */,
-				67993CCF61D2F89ACCD5A76A /* Pods_SVIP.framework */,
+				C7BC20AAEC6EB8B9C85052FF /* Pods_SVIP.framework */,
+				B1FA72CE6D060B58C39CDF6A /* Pods_SVIPTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1174,15 +1180,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F171B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIP" */;
 			buildPhases = (
-				CE9D0013278675E332F984EB /* Check Pods Manifest.lock */,
+				001F1241A3207E691C3795E3 /* 📦 Check Pods Manifest.lock */,
 				40641EF41B3E569700CF150D /* Sources */,
 				40641EF51B3E569700CF150D /* Frameworks */,
 				40641EF61B3E569700CF150D /* Resources */,
-				667A5268AD89F73F6ECE5B4F /* Copy Pods Resources */,
 				405352251BA66251007157FC /* Embed App Extensions */,
 				404A36D41BA6B2490094CEB3 /* Embed Frameworks */,
 				40F3CD111C32225E0044845D /* Embed Watch Content */,
-				7F9BFA7AD8D108253EF1E4C9 /* Embed Pods Frameworks */,
+				163893355ECDCAAA2BBC4E11 /* 📦 Embed Pods Frameworks */,
+				0E997EBCEF82EA833EBFC025 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1197,9 +1203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F1A1B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIPTests" */;
 			buildPhases = (
+				3BA67408B8EEE7A3DA128D81 /* 📦 Check Pods Manifest.lock */,
 				40641F091B3E569800CF150D /* Sources */,
 				40641F0A1B3E569800CF150D /* Frameworks */,
 				40641F0B1B3E569800CF150D /* Resources */,
+				F39012A56F699000E77AADEF /* 📦 Embed Pods Frameworks */,
+				67F27C267D1A7CCBCE3CF587 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1300,7 +1309,6 @@
 				FA60C2011CB74D79005711A2 /* ImageSelectedOn@2x.png in Resources */,
 				FA60C2061CB74D79005711A2 /* ImageSelectedSmallOn.png in Resources */,
 				FA60C20A1CB74D79005711A2 /* PlayButtonOverlayLarge@2x.png in Resources */,
-				FAF139251C26945600B84F47 /* loading@2x.gif in Resources */,
 				FA60C21A1CB74D79005711A2 /* VideoOverlay@3x.png in Resources */,
 				FA60C2041CB74D79005711A2 /* ImageSelectedSmallOff@2x.png in Resources */,
 				408F503C1CA3E51700AEBA83 /* TableViewCellNoData.xib in Resources */,
@@ -1325,7 +1333,6 @@
 				FAF7B9181C1D646900F8B3C8 /* HomeCell.xib in Resources */,
 				FA60C20B1CB74D79005711A2 /* PlayButtonOverlayLarge@3x.png in Resources */,
 				FA0D36101C9D28BA00E0AA78 /* MessageListTVC.xib in Resources */,
-				FAF139271C26947700B84F47 /* loading@3x.gif in Resources */,
 				FA60C20F1CB74D79005711A2 /* UIBarButtonItemArrowLeft.png in Resources */,
 				FA60C2101CB74D79005711A2 /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				40DE25B01C9D6CCB00CA7F26 /* SettingTVC.storyboard in Resources */,
@@ -1349,14 +1356,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		667A5268AD89F73F6ECE5B4F /* Copy Pods Resources */ = {
+		001F1241A3207E691C3795E3 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0E997EBCEF82EA833EBFC025 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1364,14 +1386,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7F9BFA7AD8D108253EF1E4C9 /* Embed Pods Frameworks */ = {
+		163893355ECDCAAA2BBC4E11 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1379,19 +1401,49 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE9D0013278675E332F984EB /* Check Pods Manifest.lock */ = {
+		3BA67408B8EEE7A3DA128D81 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		67F27C267D1A7CCBCE3CF587 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F39012A56F699000E77AADEF /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1650,7 +1702,7 @@
 		};
 		40641F181B3E569800CF150D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B20AF80C4F4A999BFEFEA2AB /* Pods-SVIP.debug.xcconfig */;
+			baseConfigurationReference = 9FC560BEF820488AD8B47B3A /* Pods-SVIP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1710,7 +1762,7 @@
 		};
 		40641F191B3E569800CF150D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */;
+			baseConfigurationReference = F9416DA21188546CD7C4DEF9 /* Pods-SVIP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1769,6 +1821,7 @@
 		};
 		40641F1B1B3E569800CF150D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36D850B35D34D1351DBCE9CC /* Pods-SVIPTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1786,6 +1839,7 @@
 		};
 		40641F1C1B3E569800CF150D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6B214D53C383DC0A39CE349 /* Pods-SVIPTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1840,7 +1894,7 @@
 		};
 		40E88AD31C9431B900258E72 /* PreRelease */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAFE8F7DD4BA684404DF6065 /* Pods-SVIP.release.xcconfig */;
+			baseConfigurationReference = 0DD104D22474D9DF63C51ECA /* Pods-SVIP.prerelease.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1899,6 +1953,7 @@
 		};
 		40E88AD51C9431B900258E72 /* PreRelease */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44A59A13AA5F79F160691DA3 /* Pods-SVIPTests.prerelease.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

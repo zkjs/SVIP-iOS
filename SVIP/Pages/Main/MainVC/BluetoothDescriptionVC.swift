@@ -13,9 +13,8 @@ class BluetoothDescriptionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       title = "请打开您的蓝牙"
-//      navigationController?.navigationBar.tintColor = UIColor.ZKJS_navTitleColor()
       let image = UIImage(named: "ic_fanhui_orange")
-      let  item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")
+      let  item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: #selector(BluetoothDescriptionVC.back))
       self.navigationItem.leftBarButtonItem = item1
 
     }
@@ -44,15 +43,4 @@ class BluetoothDescriptionVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

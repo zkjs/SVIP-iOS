@@ -46,16 +46,14 @@ class HomeVC: UIViewController {
     self.navigationController!.navigationBar.shadowImage = UIImage()
     
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertPayInfo:", name:KNOTIFICATION_PAYMENT, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "getOrderList", name: UIApplicationWillEnterForegroundNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeInfo:", name:KNOTIFICATION_WELCOME, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name:KNOTIFICATION_CHANGELOGO, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeLogo:", name: UIApplicationDidBecomeActiveNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "welcomeDismissed", name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.alertPayInfo(_:)), name:KNOTIFICATION_PAYMENT, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.getOrderList), name: UIApplicationWillEnterForegroundNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.welcomeInfo(_:)), name:KNOTIFICATION_WELCOME, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.changeLogo(_:)), name:KNOTIFICATION_CHANGELOGO, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.changeLogo(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.welcomeDismissed), name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
     
     addGuestures()
-    
-    //navigationController?.delegate = self
     
   }
   
@@ -205,22 +203,22 @@ class HomeVC: UIViewController {
   }
   
   func addGuestures() {
-    let multiTap = UITapGestureRecognizer(target: self, action: "doMultipleTap")
+    let multiTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doMultipleTap))
     multiTap.numberOfTapsRequired = 6
     self.logoutView.addGestureRecognizer(multiTap)
     
     // tap to show shop detail ViewController
-    let tap = UITapGestureRecognizer(target: self, action: "gotoShopDetail")
+    let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.gotoShopDetail))
     //view.bringSubviewToFront(shopLogoImageView)
     shopLogoImageView.userInteractionEnabled = true
     shopLogoImageView.addGestureRecognizer(tap)
     
     // tap to open menu
-    let showMenu = UITapGestureRecognizer(target: self, action: "showMenu")
+    let showMenu = UITapGestureRecognizer(target: self, action: #selector(HomeVC.showMenu))
     bottomGestureView.addGestureRecognizer(showMenu)
     
     // drap to open menu
-    let pan = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+    let pan = UIPanGestureRecognizer(target: self, action: #selector(HomeVC.handlePanGesture(_:)))
     bottomGestureView.addGestureRecognizer(pan)
   }
   
