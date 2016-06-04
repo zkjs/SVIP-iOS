@@ -15,15 +15,17 @@ struct ZKJSConfig {
   
   //// 测试环境
   
+  // 默认商家id
+  let DefaultShopID = "9001"
   // 新API服务器
   let BaseURL = "https://api.zkjinshi.com/dev"
   // 图片服务器
   let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
-  let YunBaAppKey = "566563014407a3cd028aa72f"
+  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
   // 友盟
-  let UMAppKey = "55c31431e0f55a65c1002597"
+  let UMAppKey = "575287efe0f55af4bc0013dd"
   let UMURL = ""
   let RegisterURL = "http://zkjinshi.com/shop/"
   
@@ -31,15 +33,17 @@ struct ZKJSConfig {
   
   //// 预上线
   
+  // 默认商家id
+  let DefaultShopID = "9001"
   // 新API服务器
   let BaseURL = "http://p.zkjinshi.com/beta"
   // 图片服务器
   let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
-  let YunBaAppKey = "566563014407a3cd028aa72f"
+  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
   // 友盟
-  let UMAppKey = "55c31431e0f55a65c1002597"
+  let UMAppKey = "575287efe0f55af4bc0013dd"
   let UMURL = ""
   let RegisterURL = "http://zkjinshi.com/shop/"
   
@@ -47,15 +51,17 @@ struct ZKJSConfig {
   
   //// 生产环境
   
+  // 默认商家id
+  let DefaultShopID = "9001"
   // 新API服务器
   let BaseURL = "https://api.zkjinshi.com/release"
   // 图片服务器
   let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
-  let YunBaAppKey = "566563014407a3cd028aa72f"
+  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
   // 友盟
-  let UMAppKey = "55c31431e0f55a65c1002597"
+  let UMAppKey = "575287efe0f55af4bc0013dd"
   let UMURL = ""
   let RegisterURL = "http://zkjinshi.com/shop/"
   

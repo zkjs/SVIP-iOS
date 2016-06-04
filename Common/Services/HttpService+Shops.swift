@@ -12,7 +12,7 @@ extension HttpService {
   
   //取商家详情GET/res/v1/shop/detail/{shopid}
   func getShopDetail( completionHandler: (ShopDetailModel?,NSError?)->Void) {
-    var shopid = ""
+    var shopid = ZKJSConfig.sharedInstance.DefaultShopID
     if let shopLogo = StorageManager.sharedInstance().cachedShopLogo() where shopLogo.validthru.timeIntervalSinceNow > 0 {
       shopid = shopLogo.shopid
     }

@@ -11,7 +11,7 @@ import CoreLocation
 import CoreBluetooth
 
 class HomeVC: UIViewController {
-  let ConstraintBottomHeight:CGFloat = -360
+  let ConstraintBottomHeight:CGFloat = -225
   
   @IBOutlet weak var avatarsImageView: RoundedImageView!
   @IBOutlet weak var nameLabel: UILabel!
@@ -159,13 +159,14 @@ class HomeVC: UIViewController {
   }
   
   func updateLogo() {
-    if let shopLogo = StorageManager.sharedInstance().cachedShopLogo()
+    // 屏蔽切换logo功能 by qinyejun @ 2016-06-04
+    /*if let shopLogo = StorageManager.sharedInstance().cachedShopLogo()
        where shopLogo.validthru.timeIntervalSinceNow > 0 {
       print("change logo:\(shopLogo.logo.fullImageUrlFitted)")
       shopLogoImageView.sd_setImageWithURL(NSURL(string: shopLogo.logo.fullImageUrlFitted), placeholderImage: UIImage(named: "shop_logo_default"))
     } else {
       shopLogoImageView.image = UIImage(named: "shop_logo_default")
-    }
+    }*/
   }
   
   func refreshUserInfo() {

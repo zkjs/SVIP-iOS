@@ -129,7 +129,6 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
     let name = NSIndexPath(forRow: 1, inSection: 0)
     let sex = NSIndexPath(forRow: 2, inSection: 0)
     let email = NSIndexPath(forRow: 3, inSection: 0)
-    let myShops = NSIndexPath(forRow: 5, inSection: 0)
     
     switch indexPath {
     case photo:
@@ -152,10 +151,6 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
       chooseSex()
     case email:
       navigationController?.pushViewController(EmailVC(), animated: true)
-    case myShops:
-      let storyboard = UIStoryboard(name: "MyShopsTVC", bundle: nil)
-      let vc = storyboard.instantiateViewControllerWithIdentifier("MyShopsTVC")
-      navigationController?.pushViewController(vc, animated: true)
     default:
       break
     }
