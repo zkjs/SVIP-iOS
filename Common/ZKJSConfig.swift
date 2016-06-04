@@ -21,11 +21,10 @@ struct ZKJSConfig {
   let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
-  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
+  let YunBaAppKey = "566563014407a3cd028aa72f"
   // 友盟
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
-  
   let RegisterURL = "http://zkjinshi.com/shop/"
   
   #elseif PRE_RELEASE
@@ -38,11 +37,10 @@ struct ZKJSConfig {
   let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
-  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
+  let YunBaAppKey = "566563014407a3cd028aa72f"
   // 友盟
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
-  
   let RegisterURL = "http://zkjinshi.com/shop/"
   
   #else
@@ -55,11 +53,10 @@ struct ZKJSConfig {
   let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
   // 云巴
-  let YunBaAppKey = "56f0e58a4407a3cd028ad5de"
+  let YunBaAppKey = "566563014407a3cd028aa72f"
   // 友盟
   let UMAppKey = "55c31431e0f55a65c1002597"
   let UMURL = ""
-  
   let RegisterURL = "http://zkjinshi.com/shop/"
   
   #endif
