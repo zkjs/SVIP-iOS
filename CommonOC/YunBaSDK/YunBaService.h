@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // sdk version
-extern NSString * const kYunBaSDKVersion;   //@"1.6.0"
+extern NSString * const kYunBaSDKVersion;   //@"1.7.3"
 
 // notifications
 extern NSString * const kYBConnectionStatusChangedNotification;
@@ -68,15 +68,17 @@ typedef NS_ENUM(unsigned long, YBLogLevel) {
     kYBLogLevelWarn = 2,
     kYBLogLevelInfo = 3,
     kYBLogLevelDebug = 4,
+    kYBLogLevelMax,
     kYBLogLevelDefault = kYBLogLevelInfo,
 };
+extern NSString * const kYBLogLevelString[kYBLogLevelMax];
 
 extern YBLogLevel kYBLogLevel;  // You can change log level by modify this global variable, default is kYBLogLevelDefault
 
 #define YBLog(level, fmt, ...) \
 do { \
     if (kYBLogLevel >= level) { \
-        NSLog(@"YUNBA[%lu]: "fmt, level, ##__VA_ARGS__); \
+        NSLog(@"YUNBA[%@]: "fmt, kYBLogLevelString[level], ##__VA_ARGS__); \
     } \
 } while(0)
 
@@ -101,12 +103,18 @@ do { \
 @end
 
 #pragma mark - options
+#define kYBMinHeartbeatInterval     (@10)
+#define kYBDefaultHeartbeatInterval (@300)
+#define kYbMaxHeartbeatInterval     (@5000)
+#define kYbMinApiTimeout            (@3)
+#define kYbDefaultApiTimeout        (@20)
+#define kYbMaxApiTimeout            (@50)
+#define kYBDefaultApiRetryEnabled   (@NO)
+
 @interface YBSetupOption : NSObject
-@property (nonatomic, copy) NSString *subscribeKey;             // subscribe key
-@property (nonatomic, copy) NSString *publishKey;               // publish key
-@property (nonatomic, copy) NSString *secreteKey;               // secrete key
-@property (nonatomic, copy) NSString *authorizeKey;             // authorize key
-+ (instancetype)optionWithSubKey:(NSString *)subcribeKey pubKey:(NSString *)publishKey secKey:(NSString *)secreteKey authKey:(NSString *)authorizeKey;
+@property (nonatomic, copy) NSNumber *heartbeatInterval;        // heartbeat time interval, @10 - @5000, default @300
+@property (nonatomic, copy) NSNumber *APITimeout;               // API timeout, @3 - @200, default @20
+@property (nonatomic, copy) NSNumber *APIRetryEnabled;          // enabled retry API, @YES/@NO, default @NO
 @end
 
 @interface YBPublishOption : NSObject
@@ -151,6 +159,7 @@ typedef void (^YBDictResultBolck)(NSDictionary *res, NSError *error);
 + (BOOL)setup;
 + (BOOL)close;
 + (BOOL)isConnected;
++ (BOOL)isSetuped;
 
 // publish/subscribe/unsubscribe
 + (void)subscribe:(NSString *)topic resultBlock:(YBResultBlock)resultBlock;
@@ -193,4 +202,8 @@ typedef void (^YBDictResultBolck)(NSDictionary *res, NSError *error);
 // store device token for apns
 + (void)storeDeviceToken:(NSData *)token resultBlock:(YBResultBlock)resultBlock;
 
+// get API timeout / API retry ability / heartbeat interval
++ (NSUInteger)getAPITimeout;
++ (BOOL)getAPIRetryEnabled;
++ (NSUInteger)getHeartbeatInterval;
 @end
