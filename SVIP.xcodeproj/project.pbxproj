@@ -1180,15 +1180,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F171B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIP" */;
 			buildPhases = (
-				001F1241A3207E691C3795E3 /* 📦 Check Pods Manifest.lock */,
+				001F1241A3207E691C3795E3 /* [CP] Check Pods Manifest.lock */,
 				40641EF41B3E569700CF150D /* Sources */,
 				40641EF51B3E569700CF150D /* Frameworks */,
 				40641EF61B3E569700CF150D /* Resources */,
 				405352251BA66251007157FC /* Embed App Extensions */,
 				404A36D41BA6B2490094CEB3 /* Embed Frameworks */,
 				40F3CD111C32225E0044845D /* Embed Watch Content */,
-				163893355ECDCAAA2BBC4E11 /* 📦 Embed Pods Frameworks */,
-				0E997EBCEF82EA833EBFC025 /* 📦 Copy Pods Resources */,
+				163893355ECDCAAA2BBC4E11 /* [CP] Embed Pods Frameworks */,
+				0E997EBCEF82EA833EBFC025 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1203,12 +1203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F1A1B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIPTests" */;
 			buildPhases = (
-				3BA67408B8EEE7A3DA128D81 /* 📦 Check Pods Manifest.lock */,
+				3BA67408B8EEE7A3DA128D81 /* [CP] Check Pods Manifest.lock */,
 				40641F091B3E569800CF150D /* Sources */,
 				40641F0A1B3E569800CF150D /* Frameworks */,
 				40641F0B1B3E569800CF150D /* Resources */,
-				F39012A56F699000E77AADEF /* 📦 Embed Pods Frameworks */,
-				67F27C267D1A7CCBCE3CF587 /* 📦 Copy Pods Resources */,
+				F39012A56F699000E77AADEF /* [CP] Embed Pods Frameworks */,
+				67F27C267D1A7CCBCE3CF587 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1356,14 +1356,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		001F1241A3207E691C3795E3 /* 📦 Check Pods Manifest.lock */ = {
+		001F1241A3207E691C3795E3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1371,14 +1371,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		0E997EBCEF82EA833EBFC025 /* 📦 Copy Pods Resources */ = {
+		0E997EBCEF82EA833EBFC025 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1386,14 +1386,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		163893355ECDCAAA2BBC4E11 /* 📦 Embed Pods Frameworks */ = {
+		163893355ECDCAAA2BBC4E11 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1401,14 +1401,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3BA67408B8EEE7A3DA128D81 /* 📦 Check Pods Manifest.lock */ = {
+		3BA67408B8EEE7A3DA128D81 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1416,14 +1416,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		67F27C267D1A7CCBCE3CF587 /* 📦 Copy Pods Resources */ = {
+		67F27C267D1A7CCBCE3CF587 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1431,14 +1431,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F39012A56F699000E77AADEF /* 📦 Embed Pods Frameworks */ = {
+		F39012A56F699000E77AADEF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1709,7 +1709,7 @@
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
@@ -1769,7 +1769,7 @@
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
@@ -1901,7 +1901,7 @@
 				CODE_SIGN_ENTITLEMENTS = SVIP/SVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common",
