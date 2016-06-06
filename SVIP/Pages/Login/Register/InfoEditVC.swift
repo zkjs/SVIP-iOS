@@ -62,7 +62,13 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
         }
       } else {
         AccountManager.sharedInstance().saveUserName(self.username)
-        self.navigationController?.pushViewController(HomeVC(), animated: true)
+        //self.navigationController?.pushViewController(HomeVC(), animated: true)
+        if let nav = self.navigationController {
+          nav.viewControllers = []
+        }
+        if let window = UIApplication.sharedApplication().keyWindow {
+          window.rootViewController = BaseNC(rootViewController: HomeVC())
+        }
       }
       
     }

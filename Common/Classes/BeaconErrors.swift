@@ -76,6 +76,9 @@ class BeaconErrors: NSManagedObject {
   
   //上传BLE日志到server
   static func uploadLogs() {
+    if TokenPayload.sharedInstance.isRegestering {
+      return
+    }
     //don't upload logs to the server if last upload time is within 24 hours
     if let lastUploadTime = BeaconErrors.getLastUploadTime() where fabs(lastUploadTime.timeIntervalSinceNow) < 24 * 3600 {
       return
