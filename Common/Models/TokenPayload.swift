@@ -45,6 +45,8 @@ class TokenPayload:NSObject {
     return userID != nil
   }
   
+  var isRegestering = false
+  
   
   private var json: JSON? {
     guard let data = self.tokenPayload?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) else {
@@ -83,6 +85,7 @@ class TokenPayload:NSObject {
   
   //// 持久化保存token
   func saveTokenPayload(tokenFullString:String) {
+    isRegestering = false
     parseToken(tokenFullString)
     let userDefaults = NSUserDefaults.standardUserDefaults()
     userDefaults.setObject(tokenFullString, forKey: TokenPayload.kNSDefaults)
@@ -99,6 +102,7 @@ class TokenPayload:NSObject {
   
   //// 临时保存token
   func saveTemporaryTokenPayload(tokenFullString:String) {
+    isRegestering = true
     parseToken(tokenFullString)
   }
 

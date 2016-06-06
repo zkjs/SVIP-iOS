@@ -52,6 +52,9 @@ class Beacons: NSManagedObject {
 
   //上传Beacons到server
   static func upload() {
+    if TokenPayload.sharedInstance.isRegestering {
+      return
+    }
     //don't upload beacons to the server if last upload time is within 30 minutes
     if let lastUploadTime = BeaconErrors.getLastUploadTime() where fabs(lastUploadTime.timeIntervalSinceNow) < 10 * 60 {
       return
