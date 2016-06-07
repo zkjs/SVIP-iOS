@@ -33,7 +33,7 @@ struct ZKJSConfig {
   //// 预上线
   
   // 新API服务器
-  let BaseURL = "http://p.zkjinshi.com/beta"
+  let BaseURL = "http://p.zkjinshi.com/demo"
   // 图片服务器
   let BaseImageCDNURL = "http://cdn.zkjinshi.com"
   let BaseImageURL = "http://pcd.zkjinshi.com"
