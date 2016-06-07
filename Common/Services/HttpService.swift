@@ -98,7 +98,7 @@ class HttpService {
       case .HomePrivilegeIntro:         return "/for/res/v1/systempub/ssintroduction"
       case .HomeRecom(let city):        return "/for/res/v1/systempub/localservice/recommend/\(city)"
       case .HomeAllMessages(let city):  return "/for/res/v1/system/sihomedetail/\(city)"
-      case .CheckVersion(let version):  return "/for/res/v1/systempub/upgrade/newestversion/1/IOS/\(version)"
+      case .CheckVersion(let version):  return "/for/res/v1/systempub/upgrade/newestversion/3/IOS/\(version)"
       case .UserEnsurePay:              return "/for/res/v1/payment"
       case .PaymentInfo:                return "/for/res/v1/payment/si"
       case .Balance:                    return "/for/res/v1/payment/balance"

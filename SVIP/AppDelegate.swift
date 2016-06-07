@@ -105,6 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       LocationMonitor.sharedInstance.startUpdatingLocation()
     }
 
+    checkVersion()
   }
 
   func applicationWillTerminate(application: UIApplication) {
@@ -302,7 +303,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 强制更新
         let alertController = UIAlertController(title: "升级提示", message: "请您升级到最新版本，以保证软件的正常使用", preferredStyle: .Alert)
         let upgradeAction = UIAlertAction(title: "升级", style: .Default, handler: { (action: UIAlertAction) -> Void in
-          let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/chao-ji-shen-fen/id1018581123?ls=1&mt=8")
+          let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/jing-xiang/id1025286846?ls=1&mt=8")
           if UIApplication.sharedApplication().canOpenURL(url!) {
             UIApplication.sharedApplication().openURL(url!)
           }
