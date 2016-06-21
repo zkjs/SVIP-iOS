@@ -7,14 +7,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="SVIP" customModuleProvider="target">
             <connections>
+                <outlet property="aboutVIPButton" destination="LyG-jK-mq4" id="pf8-fD-b4p"/>
                 <outlet property="avatarsImageView" destination="YCF-Iy-Uvs" id="GkI-Ao-WLI"/>
                 <outlet property="bottomGestureView" destination="v3F-FF-xf8" id="fpB-Vh-eo3"/>
                 <outlet property="breathLight" destination="HIq-fp-PWO" id="zXY-GY-Vbr"/>
+                <outlet property="callServerButton" destination="dFp-kN-1sb" id="nkb-Sr-Rpp"/>
                 <outlet property="constraintBottom" destination="i7S-WR-fTl" id="WT6-Rh-XLt"/>
                 <outlet property="logoutView" destination="Wl2-r5-YWc" id="csr-M5-CpB"/>
                 <outlet property="nameLabel" destination="AE5-FI-XLy" id="uuN-ck-uHb"/>
+                <outlet property="newsButton" destination="WLl-x5-DHA" id="NyA-qr-p19"/>
                 <outlet property="shopLogoImageView" destination="cNW-pJ-VSy" id="ckk-gQ-cPE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Ull-wK-ExY"/>
+                <outlet property="vipOpinionButton" destination="fbw-WR-M47" id="MPc-JN-Owa"/>
                 <outlet property="walletButton" destination="f9b-Ss-psd" id="QWk-zc-pHm"/>
             </connections>
         </placeholder>

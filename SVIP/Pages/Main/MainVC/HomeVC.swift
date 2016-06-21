@@ -9,9 +9,21 @@
 import UIKit
 import CoreLocation
 import CoreBluetooth
-
+enum ButtonType:Int {
+  case AboutVIP = 0
+  case CallServer
+  case News
+  case Opinion
+}
 class HomeVC: UIViewController {
   let ConstraintBottomHeight:CGFloat = -425
+  var bluetoothManager = CBCentralManager()
+  var bluetoothStats: Bool!
+  var hideMoney: Bool = true
+  let flipAnimationController = FlipAnimationController()
+  let swipeInteractionController = SwipeInteractionController()
+  var pushMessages  = [PushMessage]()
+  var initialConstraintHeight:CGFloat = 0
   
   @IBOutlet weak var avatarsImageView: RoundedImageView!
   @IBOutlet weak var nameLabel: UILabel!
@@ -22,13 +34,34 @@ class HomeVC: UIViewController {
   @IBOutlet weak var constraintBottom: NSLayoutConstraint!
   @IBOutlet weak var bottomGestureView: UIView!
   
-  var bluetoothManager = CBCentralManager()
-  var bluetoothStats: Bool!
-  var hideMoney: Bool = true
-  let flipAnimationController = FlipAnimationController()
-  let swipeInteractionController = SwipeInteractionController()
-  var pushMessages  = [PushMessage]()
-  var initialConstraintHeight:CGFloat = 0
+  @IBOutlet weak var newsButton: UIButton! {
+    didSet {
+      newsButton.tag = ButtonType.News.rawValue
+      newsButton.addTarget(self, action:#selector(HomeVC.pushtoWebView), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+  }
+  @IBOutlet weak var vipOpinionButton: UIButton! {
+    didSet {
+      vipOpinionButton.tag = ButtonType.Opinion.rawValue
+      vipOpinionButton.addTarget(self, action:#selector(HomeVC.pushtoWebView), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+  }
+
+  @IBOutlet weak var callServerButton: UIButton! {
+    didSet {
+      callServerButton.tag = ButtonType.CallServer.rawValue
+      callServerButton.addTarget(self, action:#selector(HomeVC.toast), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+  }
+
+  @IBOutlet weak var aboutVIPButton: UIButton! {
+    didSet {
+      aboutVIPButton.tag = ButtonType.AboutVIP.rawValue
+      aboutVIPButton.addTarget(self, action:#selector(HomeVC.pushtoWebView), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+  }
+
+  
   
   override func loadView() {
     NSBundle.mainBundle().loadNibNamed("HomeVC", owner:self, options:nil)
@@ -72,6 +105,28 @@ class HomeVC: UIViewController {
     }
   }
   
+  func toast() {
+    let alertController = UIAlertController(title: "该功能暂未开通，敬请期待", message: "", preferredStyle: .Alert)
+    let checkAction = UIAlertAction(title: "确定", style: .Default) { (_) in
+    }
+    alertController.addAction(checkAction)
+    self.presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+  // PUSH TO WEBVIEW 
+  func pushtoWebView(sender:UIButton) {
+    let vc = WebViewVC()
+    switch sender.tag {
+    case 0:
+      vc.url = "http://116.205.5.231:8087/"
+    case 2:
+      vc.url = "http://zkjinshi.com/web/news.html"
+    case 3:
+      vc.url = "https://mp.weixin.qq.com/s?__biz=MzA5Njg1MDg3OA==&mid=207204460&idx=1&sn=17110e552f4c5f575ede3b44cce1dbdd"
+    default:break
+    }
+     navigationController?.pushViewController(vc, animated: true)
+  }
   
   func welcomeInfo(notification: NSNotification) {
     guard let userInfo = notification.userInfo, let pushInfo = userInfo["welcomeInfo"] as? PushMessage else {
@@ -269,7 +324,6 @@ class HomeVC: UIViewController {
   
   func handlePanGesture(gestureRecognizer:UIPanGestureRecognizer) {
     let translation:CGPoint = gestureRecognizer.translationInView(view)
-    //print(translation)
     switch gestureRecognizer.state {
     case .Began:
       initialConstraintHeight = constraintBottom.constant
