@@ -106,7 +106,7 @@ class HomeVC: UIViewController {
   }
   
   func toast() {
-    let alertController = UIAlertController(title: "该功能暂未开通，敬请期待", message: "", preferredStyle: .Alert)
+    let alertController = UIAlertController(title: "正在开发中..", message: "", preferredStyle: .Alert)
     let checkAction = UIAlertAction(title: "确定", style: .Default) { (_) in
     }
     alertController.addAction(checkAction)
