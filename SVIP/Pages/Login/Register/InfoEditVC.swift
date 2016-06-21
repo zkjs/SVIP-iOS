@@ -117,7 +117,8 @@ class InfoEditVC: UIViewController, UINavigationControllerDelegate, UIImagePicke
     var imageData = UIImageJPEGRepresentation(image, 0.8)!
     var i = 0
     while imageData.length / 1024 > 80 {
-      let persent = CGFloat(100 - i++) / 100.0
+      i += 1
+      let persent = CGFloat(100 - i) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     avatarData = imageData
