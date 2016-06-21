@@ -12,10 +12,10 @@ extension HttpService {
   
   //取商家详情GET/res/v1/shop/detail/{shopid}
   func getShopDetail( completionHandler: (ShopDetailModel?,NSError?)->Void) {
-    var shopid = ZKJSConfig.sharedInstance.DefaultShopID
-    if let shopLogo = StorageManager.sharedInstance().cachedShopLogo() where shopLogo.validthru.timeIntervalSinceNow > 0 {
+    let shopid = ZKJSConfig.sharedInstance.DefaultShopID
+    /*if let shopLogo = StorageManager.sharedInstance().cachedShopLogo() where shopLogo.validthru.timeIntervalSinceNow > 0 {
       shopid = shopLogo.shopid
-    }
+    }*/
     let urlString = ResourcePath.ShopDetail(id: shopid).description.fullUrl
     
     get(urlString, parameters: nil, tokenRequired: false) { (json, error) -> Void in

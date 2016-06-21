@@ -48,7 +48,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
       switchPush.on = false
     }
     
-    switchMonitoring.on = StorageManager.sharedInstance().settingMonitoring()
+    switchMonitoring.on = !StorageManager.sharedInstance().settingMonitoring()
     
     HttpService.sharedInstance.getUserinfo(nil)
     loadUserData()
@@ -89,16 +89,16 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
   @IBAction func monitoringSwitch(sender: UISwitch) {
     let monitoring = StorageManager.sharedInstance().settingMonitoring()
     if monitoring {// stop monitoring
-      let confirmAlert = UIAlertController(title: "提示", message: "确定要关闭身份吗?", preferredStyle: .Alert)
+      let confirmAlert = UIAlertController(title: "提示", message: "确定要隐藏身份吗?", preferredStyle: .Alert)
       let confirmAction = UIAlertAction(title: "确定", style: .Default) { (_) in
         BeaconMonitor.sharedInstance.stopMonitoring()
         LocationMonitor.sharedInstance.stopUpdatingLocation()
         LocationMonitor.sharedInstance.stopMonitoringLocation()
         StorageManager.sharedInstance().settingMonitoring(!monitoring)
-        self.switchMonitoring.on = StorageManager.sharedInstance().settingMonitoring()
+        self.switchMonitoring.on = !StorageManager.sharedInstance().settingMonitoring()
       }
       let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { (_) in
-        self.switchMonitoring.on = true
+        self.switchMonitoring.on = false
       }
       confirmAlert.addAction(confirmAction)
       confirmAlert.addAction(cancelAction)
@@ -108,7 +108,7 @@ class AccountTVC: UITableViewController, UINavigationControllerDelegate {
       BeaconMonitor.sharedInstance.startMonitoring()
       LocationMonitor.sharedInstance.startUpdatingLocation()
       StorageManager.sharedInstance().settingMonitoring(!monitoring)
-      switchMonitoring.on = StorageManager.sharedInstance().settingMonitoring()
+      switchMonitoring.on = !StorageManager.sharedInstance().settingMonitoring()
     }
   }
   
@@ -222,7 +222,8 @@ extension AccountTVC: UIImagePickerControllerDelegate {
     var imageData = UIImageJPEGRepresentation(image, 0.8)!
     var i = 0
     while imageData.length / 1024 > 80 {
-      let persent = CGFloat(100 - i++) / 100.0
+      i += 1
+      let persent = CGFloat(100 - i) / 100.0
       imageData = UIImageJPEGRepresentation(image, persent)!
     }
     
