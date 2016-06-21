@@ -11,7 +11,7 @@ import CoreLocation
 import CoreBluetooth
 
 class HomeVC: UIViewController {
-  let ConstraintBottomHeight:CGFloat = -225
+  let ConstraintBottomHeight:CGFloat = -425
   
   @IBOutlet weak var avatarsImageView: RoundedImageView!
   @IBOutlet weak var nameLabel: UILabel!
@@ -54,8 +54,6 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.welcomeDismissed), name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
     
     addGuestures()
-    
-    //navigationController?.delegate = self
     
   }
   
@@ -231,6 +229,7 @@ class HomeVC: UIViewController {
     clearCacheAfterLogout()
     
     if let nav = navigationController {
+      
       nav.viewControllers = [LoginFirstVC()]
     } else if let window = UIApplication.sharedApplication().keyWindow {
       window.rootViewController = BaseNC(rootViewController: LoginFirstVC())

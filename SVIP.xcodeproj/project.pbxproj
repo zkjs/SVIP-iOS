@@ -1180,6 +1180,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F171B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIP" */;
 			buildPhases = (
+				7092C22C9572BDD26375E6D5 /* 📦 Check Pods Manifest.lock */,
 				001F1241A3207E691C3795E3 /* [CP] Check Pods Manifest.lock */,
 				40641EF41B3E569700CF150D /* Sources */,
 				40641EF51B3E569700CF150D /* Frameworks */,
@@ -1189,6 +1190,8 @@
 				40F3CD111C32225E0044845D /* Embed Watch Content */,
 				163893355ECDCAAA2BBC4E11 /* [CP] Embed Pods Frameworks */,
 				0E997EBCEF82EA833EBFC025 /* [CP] Copy Pods Resources */,
+				8B25D1E974A8F504ACED9B2B /* 📦 Embed Pods Frameworks */,
+				A1DE70B5FBC22C72C20A16F9 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1203,12 +1206,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40641F1A1B3E569800CF150D /* Build configuration list for PBXNativeTarget "SVIPTests" */;
 			buildPhases = (
+				124F9C7D5E8345F96A123B1B /* 📦 Check Pods Manifest.lock */,
 				3BA67408B8EEE7A3DA128D81 /* [CP] Check Pods Manifest.lock */,
 				40641F091B3E569800CF150D /* Sources */,
 				40641F0A1B3E569800CF150D /* Frameworks */,
 				40641F0B1B3E569800CF150D /* Resources */,
 				F39012A56F699000E77AADEF /* [CP] Embed Pods Frameworks */,
 				67F27C267D1A7CCBCE3CF587 /* [CP] Copy Pods Resources */,
+				C0F649E5D42BB959D4F226EF /* 📦 Embed Pods Frameworks */,
+				B21B1407D35B7715DF71C3FF /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1386,6 +1392,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		124F9C7D5E8345F96A123B1B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		163893355ECDCAAA2BBC4E11 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1429,6 +1450,81 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7092C22C9572BDD26375E6D5 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8B25D1E974A8F504ACED9B2B /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1DE70B5FBC22C72C20A16F9 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIP/Pods-SVIP-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B21B1407D35B7715DF71C3FF /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0F649E5D42BB959D4F226EF /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SVIPTests/Pods-SVIPTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F39012A56F699000E77AADEF /* [CP] Embed Pods Frameworks */ = {
