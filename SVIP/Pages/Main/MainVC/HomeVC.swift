@@ -118,11 +118,14 @@ class HomeVC: UIViewController {
     let vc = WebViewVC()
     switch sender.tag {
     case 0:
-      vc.url = "http://116.205.5.231:8087/"
+      vc.url = "http://zkjinshi.com/web/about.html"
+      vc.webTitle = "关于会籍"
     case 2:
       vc.url = "http://zkjinshi.com/web/news.html"
+      vc.webTitle = "最新资讯"
     case 3:
       vc.url = "https://mp.weixin.qq.com/s?__biz=MzA5Njg1MDg3OA==&mid=207204460&idx=1&sn=17110e552f4c5f575ede3b44cce1dbdd"
+      vc.webTitle = "会员意见"
     default:break
     }
      navigationController?.pushViewController(vc, animated: true)

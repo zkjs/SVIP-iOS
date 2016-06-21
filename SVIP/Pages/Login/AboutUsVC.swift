@@ -13,11 +13,13 @@ class WebViewVC: UIViewController {
   
   var webView: WKWebView!
   var url = ""
+  var webTitle = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.translucent = false
     initSubviews()
+    title = webTitle
     
     let image = UIImage(named: "ic_fanhui_orange")
     let item1 = UIBarButtonItem(image: image, style:.Done, target: self, action: "back")
