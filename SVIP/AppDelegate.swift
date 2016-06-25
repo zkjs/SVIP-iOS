@@ -193,6 +193,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           StorageManager.sharedInstance().saveShopLogoToCache(shopLogo)
           NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_CHANGELOGO, object: nil, userInfo: ["logoInfo":shopLogo])
         }
+        else if type == "CALL_DONE" {
+          let  order = PushOrderStatus(dict: data)
+          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_ORDER, object: nil, userInfo: ["order":order])
+        }
       }
     }
     completionHandler(.NewData)

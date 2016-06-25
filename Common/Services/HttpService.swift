@@ -66,7 +66,11 @@ class HttpService {
     case UserEnsurePay                  // 用户确认付款
     case PaymentInfo                    // 获取首付款列表，含明细
     case Balance                        // 账户余额
-
+    case ServiceTag                     // 商家提供服务列表
+    case Myorders                       // 我的呼叫服务列表
+    case CreateOrder                    // 创建呼叫服务
+    case BeaconAreas                    // 获取商家区域列表
+    case RatingOrder                    // 评价服务
      
     
     var description: String {
@@ -103,7 +107,11 @@ class HttpService {
       case .PaymentInfo:                return "/for/res/v1/payment/si"
       case .Balance:                    return "/for/res/v1/payment/balance"
       case .MyShops:                    return "/for/res/v1/shop/belong/si"
-        
+      case .ServiceTag:                 return "/for/res/v1/call/servicetag"
+      case .Myorders:                   return "/for/res/v1/call/service/task"
+      case .CreateOrder:                return "/for/res/v1/call/service/task"
+      case .BeaconAreas:                return "/for/lbs/v1/loc/beacon"
+      case .RatingOrder:                return "/for/res/v1/call/service/task"
       }
     }
   }

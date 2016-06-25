@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -99,13 +99,13 @@
                                     </connections>
                                 </button>
                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE5-FI-XLy">
-                                    <rect key="frame" x="0.0" y="-273" width="72" height="29"/>
+                                    <rect key="frame" x="0.0" y="-293" width="72" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                     <color key="textColor" red="1" green="0.77254901960784317" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9b-Ss-psd">
-                                    <rect key="frame" x="157" y="185" width="60" height="60"/>
+                                    <rect key="frame" x="87" y="185" width="60" height="60"/>
                                     <color key="backgroundColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="lcx-Wv-1CP"/>
@@ -121,8 +121,31 @@
                                         <action selector="moneyAction:" destination="-1" eventType="touchUpInside" id="e7e-6X-Lhh"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jR-zI-9ZF">
+                                    <rect key="frame" x="227" y="185" width="60" height="60"/>
+                                    <color key="backgroundColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="25U-24-uSX"/>
+                                        <constraint firstAttribute="width" constant="60" id="5VM-FR-jsr"/>
+                                    </constraints>
+                                    <state key="normal" image="ic_service"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="serviceAction:" destination="-1" eventType="touchUpInside" id="XYq-i1-zBh"/>
+                                    </connections>
+                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wZ-gd-2l9">
-                                    <rect key="frame" x="159" y="257" width="56" height="17"/>
+                                    <rect key="frame" x="89" y="257" width="56" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="呼叫服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbu-iT-ino">
+                                    <rect key="frame" x="229" y="257" width="56" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="1" green="0.7725490196" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -131,15 +154,19 @@
                             <color key="backgroundColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="YCF-Iy-Uvs" firstAttribute="centerX" secondItem="h6A-vw-Fss" secondAttribute="centerX" id="4Zz-ug-mDE"/>
+                                <constraint firstItem="pbu-iT-ino" firstAttribute="top" secondItem="2jR-zI-9ZF" secondAttribute="bottom" constant="12" id="7GC-e5-NmS"/>
                                 <constraint firstItem="4wZ-gd-2l9" firstAttribute="centerX" secondItem="f9b-Ss-psd" secondAttribute="centerX" id="Eaw-r5-l2g"/>
                                 <constraint firstItem="YCF-Iy-Uvs" firstAttribute="top" secondItem="h6A-vw-Fss" secondAttribute="top" constant="45" id="Fts-tX-gk6"/>
+                                <constraint firstItem="2jR-zI-9ZF" firstAttribute="centerY" secondItem="f9b-Ss-psd" secondAttribute="centerY" id="GM0-ZS-WTE"/>
                                 <constraint firstItem="Sri-rI-aGS" firstAttribute="centerX" secondItem="YCF-Iy-Uvs" secondAttribute="centerX" id="I8F-7Q-rmW"/>
                                 <constraint firstItem="4wZ-gd-2l9" firstAttribute="top" secondItem="f9b-Ss-psd" secondAttribute="bottom" constant="12" id="JkT-ZB-s3X"/>
                                 <constraint firstItem="Sri-rI-aGS" firstAttribute="width" secondItem="YCF-Iy-Uvs" secondAttribute="width" id="QMM-1W-HZh"/>
-                                <constraint firstItem="f9b-Ss-psd" firstAttribute="centerX" secondItem="YCF-Iy-Uvs" secondAttribute="centerX" id="WES-eV-Xls"/>
+                                <constraint firstItem="f9b-Ss-psd" firstAttribute="centerX" secondItem="YCF-Iy-Uvs" secondAttribute="centerX" constant="-70" id="WES-eV-Xls"/>
                                 <constraint firstAttribute="bottom" secondItem="4wZ-gd-2l9" secondAttribute="bottom" constant="100" id="a4q-c1-83M"/>
                                 <constraint firstItem="Sri-rI-aGS" firstAttribute="height" secondItem="YCF-Iy-Uvs" secondAttribute="height" id="aJT-cc-ipK"/>
                                 <constraint firstItem="4wZ-gd-2l9" firstAttribute="top" secondItem="f9b-Ss-psd" secondAttribute="bottom" constant="150" id="d1c-U4-igS"/>
+                                <constraint firstItem="pbu-iT-ino" firstAttribute="centerX" secondItem="2jR-zI-9ZF" secondAttribute="centerX" id="eXc-VF-ddZ"/>
+                                <constraint firstItem="2jR-zI-9ZF" firstAttribute="centerX" secondItem="Sri-rI-aGS" secondAttribute="centerX" constant="70" id="gmZ-Xc-feq"/>
                                 <constraint firstItem="f9b-Ss-psd" firstAttribute="top" secondItem="YCF-Iy-Uvs" secondAttribute="bottom" constant="50" id="iBo-GJ-f1w"/>
                                 <constraint firstItem="Sri-rI-aGS" firstAttribute="centerY" secondItem="YCF-Iy-Uvs" secondAttribute="centerY" id="yHR-HL-MFy"/>
                             </constraints>
@@ -206,6 +233,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ic_service" width="25" height="25"/>
         <image name="ic_wallet" width="27" height="27"/>
         <image name="img_home_bottom" width="375" height="68"/>
         <image name="logo_white" width="60" height="60"/>

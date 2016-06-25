@@ -110,11 +110,13 @@ extension HttpService {
     request.timeoutInterval = 5
     
     var response: NSURLResponse?
-    if let data = try? NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) {
+    do {
+      let data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
       let json = JSON(data: data)
       print(json["resDesc"].string)
       if json["res"].int == 0 {
         if let token = json["token"].string {
+          print("get new token:\n\(token)")
           TokenPayload.sharedInstance.saveTokenPayload(token)
           return true
         }
@@ -122,9 +124,17 @@ extension HttpService {
       } else {
         return false
       }
-    } else {
+    } catch (let error as NSURLError) {
+      if error == .TimedOut {
+        print("refresh token timeout, use old token")
+        return true
+      }
+      print(error.rawValue)
+      return false
+    } catch {
       return false
     }
+    
   }
   
   //// PAVO 认证服务API : Token管理 :

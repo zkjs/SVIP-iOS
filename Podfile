@@ -12,6 +12,7 @@ target 'SVIP' do
   pod 'ReachabilitySwift', '~> 2.3'
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
   pod 'MJRefresh'
+  pod 'Cosmos', '~> 1.2'
   # pod 'Reveal-iOS-SDK', :configurations => ['Debug']
   ###########################################
   # Objective C Pods

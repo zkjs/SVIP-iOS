@@ -23,7 +23,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var bottomGestureView: UIView!
   
   var bluetoothManager = CBCentralManager()
-  var bluetoothStats: Bool!
+  var bluetoothStats: Bool = false
   var hideMoney: Bool = true
   let flipAnimationController = FlipAnimationController()
   let swipeInteractionController = SwipeInteractionController()
@@ -46,12 +46,13 @@ class HomeVC: UIViewController {
     self.navigationController!.navigationBar.shadowImage = UIImage()
     
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.alertPayInfo(_:)), name:KNOTIFICATION_PAYMENT, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.getOrderList), name: UIApplicationWillEnterForegroundNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.welcomeInfo(_:)), name:KNOTIFICATION_WELCOME, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.changeLogo(_:)), name:KNOTIFICATION_CHANGELOGO, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.changeLogo(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.welcomeDismissed), name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(alertPayInfo(_:)), name:KNOTIFICATION_PAYMENT, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(getOrderList), name: UIApplicationWillEnterForegroundNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(welcomeInfo(_:)), name:KNOTIFICATION_WELCOME, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeLogo(_:)), name:KNOTIFICATION_CHANGELOGO, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeLogo(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(welcomeDismissed), name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ratingOrder(_:)), name: KNOTIFICATION_ORDER, object: nil)
     
     addGuestures()
     
@@ -129,6 +130,17 @@ class HomeVC: UIViewController {
 
   }
   
+  func ratingOrder(notification: NSNotification) {
+    guard let userInfo = notification.userInfo, let orderInfo = userInfo["order"] as? PushOrderStatus else {
+      return
+    }
+    let storyboard = UIStoryboard(name:"Service",bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("RatingVC") as! RatingVC
+    vc.order = orderInfo
+    vc.modalPresentationStyle = .OverFullScreen
+    self.presentViewController(vc, animated: false, completion: nil)
+  }
+  
   func getOrderList() {
     HttpService.sharedInstance.userPaylistInfo(.NotPaid, page: 0) {[weak self] (data,error) -> Void in
       guard let strongSelf = self else { return }
@@ -197,6 +209,13 @@ class HomeVC: UIViewController {
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
+  // 呼叫服务
+  @IBAction func serviceAction(sender: AnyObject) {
+    let storyboard = UIStoryboard(name:"Service",bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("ServiceListTVC") as! ServiceListTVC
+    vc.bluetoothOn = bluetoothStats
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
   
   func gotoSetting() {
     let storyboard = UIStoryboard(name: "AccountTVC", bundle: nil)
