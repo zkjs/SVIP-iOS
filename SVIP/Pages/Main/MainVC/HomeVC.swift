@@ -57,7 +57,7 @@ class HomeVC: UIViewController {
     addGuestures()
     
     //navigationController?.delegate = self
-    
+    //getPushMessages()
   }
   
   
@@ -72,6 +72,13 @@ class HomeVC: UIViewController {
     updateLogo()
     HttpService.sharedInstance.getUserinfo { (json, error) in
       self.refreshUserInfo()
+    }
+  }
+  
+  func getPushMessages() {
+    if let msgs = PushMessage.query("userid == '\(TokenPayload.sharedInstance.userID!)' AND read == 0", order: ["timestamp":"DESC"], limit: nil) as? [PushMessage] {
+      pushMessages = msgs
+      print("msgs:\(msgs.count)")
     }
   }
   

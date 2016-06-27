@@ -29,6 +29,7 @@ class PushMessage: NSManagedObject {
     message.link = dict["button_url"] as? String ?? ""
     message.timestamp = NSDate()
     message.userid = TokenPayload.sharedInstance.userID ?? ""
+    message.read = 0
     
     return message
   }
@@ -48,6 +49,7 @@ class PushMessage: NSManagedObject {
     message.link = json["button_url"].string ?? ""
     message.timestamp = NSDate()
     message.userid = TokenPayload.sharedInstance.userID ?? ""
+    message.read = 0
     
     return message
   }
