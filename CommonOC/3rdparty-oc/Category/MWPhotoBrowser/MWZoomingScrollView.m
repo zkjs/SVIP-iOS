@@ -78,6 +78,9 @@
 }
 
 - (void)dealloc {
+    if ([_photo respondsToSelector:@selector(cancelAnyLoading)]) {
+        [_photo cancelAnyLoading];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -233,6 +236,13 @@
             zoomScale = MAX(xScale, yScale);
             // Ensure we don't zoom in or out too far, just in case
             zoomScale = MIN(MAX(self.minimumZoomScale, zoomScale), self.maximumZoomScale);
+        } else // Screen size > 3.5in : Adapt according device orientation
+        {
+          if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            zoomScale = xScale; // scale to fit on screen width only in portrait mode
+          } else {
+            zoomScale = yScale; // scale to fit on screen height only in landscape mode
+          }
         }
     }
     return zoomScale;
@@ -280,14 +290,44 @@
     self.zoomScale = [self initialZoomScaleWithMinScale];
     
     // If we're zooming to fill then centralise
-    if (self.zoomScale != minScale) {
-        
+//    if (self.zoomScale != minScale) {
+//        
+//        // Centralise
+//        self.contentOffset = CGPointMake((imageSize.width * self.zoomScale - boundsSize.width) / 2.0,
+//                                         (imageSize.height * self.zoomScale - boundsSize.height) / 2.0);
+//
+//    }
+  
+    CGFloat boundsAR = boundsSize.width / boundsSize.height;
+    CGFloat imageAR = imageSize.width / imageSize.height;
+    
+    // If we're zooming to fill then centralise
+    if (self.zoomScale != minScale &&  (ABS(boundsAR - imageAR) < 0.17)) {
+      // Centralise
+      self.contentOffset = CGPointMake((imageSize.width * self.zoomScale - boundsSize.width) / 2.0,
+                                       (imageSize.height * self.zoomScale - boundsSize.height) / 2.0);
+      // Disable scrolling initially until the first pinch to fix issues with swiping on an initally zoomed in photo
+      self.scrollEnabled = NO;
+    }
+    else if ( (ABS(boundsAR - imageAR) > 0.17) ) // Screen size > 3.5in : Adapt according device orientation
+    {
+      if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
+      {
         // Centralise
         self.contentOffset = CGPointMake((imageSize.width * self.zoomScale - boundsSize.width) / 2.0,
+                                         0.0);
+      }
+      else
+      {
+        // Centralise
+        self.contentOffset = CGPointMake(0.0,
                                          (imageSize.height * self.zoomScale - boundsSize.height) / 2.0);
-
+      }
+      
+      // Disable scrolling initially until the first pinch to fix issues with swiping on an initally zoomed in photo
+      self.scrollEnabled = NO;
     }
-    
+  
     // Disable scrolling initially until the first pinch to fix issues with swiping on an initally zoomed in photo
     self.scrollEnabled = NO;
     
