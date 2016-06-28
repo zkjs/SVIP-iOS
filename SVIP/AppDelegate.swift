@@ -183,6 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           }
           
           if let msg = PushMessage.createFromDict(data) {
+            msg.read = 1 // 如果从core data中取未读消息则需要删除该行代码
             msg.save()
             NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_WELCOME, object: nil, userInfo: ["welcomeInfo":msg])
           }

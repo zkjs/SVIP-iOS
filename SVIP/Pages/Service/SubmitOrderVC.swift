@@ -29,7 +29,7 @@ class SubmitOrderVC: UIViewController {
   @IBAction func submitAction(sender: AnyObject) {
     remarkTextField.resignFirstResponder()
     showHudInView(view, hint: "")
-    HttpService.sharedInstance.createOrder(srvid, locid: locid) { (json, error) in
+    HttpService.sharedInstance.createOrder(srvid, locid: locid, remark: getRemark()) { (json, error) in
       self.hideHUD()
       if let error = error {
         self.showErrorHint(error)

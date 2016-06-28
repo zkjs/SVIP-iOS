@@ -57,7 +57,7 @@ class HomeVC: UIViewController {
     addGuestures()
     
     //navigationController?.delegate = self
-    //getPushMessages()
+    //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(getPushMessages), name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   
   
@@ -77,8 +77,15 @@ class HomeVC: UIViewController {
   
   func getPushMessages() {
     if let msgs = PushMessage.query("userid == '\(TokenPayload.sharedInstance.userID!)' AND read == 0", order: ["timestamp":"DESC"], limit: nil) as? [PushMessage] {
-      pushMessages = msgs
-      print("msgs:\(msgs.count)")
+      //pushMessages = msgs
+      //print("msgs:\(msgs.count)")
+      for m in msgs {
+        if !pushMessages.contains(m) {
+          pushMessages.append(m)
+        }
+      }
+      
+      welcomeDismissed()
     }
   }
   
@@ -98,18 +105,27 @@ class HomeVC: UIViewController {
       vc.modalPresentationStyle = .OverFullScreen
       self.presentViewController(vc, animated: false, completion: nil)
     }
-    
+    //getPushMessages()
   }
   
   func welcomeDismissed() {
-    guard let pushInfo = pushMessages.popLast() else {
+    guard let pushInfo = pushMessages.last else {
       return
     }
     print(pushInfo)
-    let vc = PushMessageVC()
-    vc.pushInfo = pushInfo
-    vc.modalPresentationStyle = .OverFullScreen
-    self.presentViewController(vc, animated: false, completion: nil)
+    
+//    if let _ = self.presentedViewController {
+//      print("not show")
+//    } else {
+      pushMessages.popLast()
+      pushInfo.read = 1
+      pushInfo.save()
+      
+      let vc = PushMessageVC()
+      vc.pushInfo = pushInfo
+      vc.modalPresentationStyle = .OverFullScreen
+      self.presentViewController(vc, animated: false, completion: nil)
+//    }
   }
   
   func changeLogo(notification: NSNotification) {
