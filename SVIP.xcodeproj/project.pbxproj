@@ -16,6 +16,7 @@
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
+		4044201B1D24F1DE00DA815E /* AttendActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4044201A1D24F1DE00DA815E /* AttendActivityVC.swift */; };
 		404C184C1B5368FE00F11122 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C184B1B5368FE00F11122 /* libz.dylib */; };
 		404FACD31B84792700352023 /* NSDate+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404FACD21B84792700352023 /* NSDate+Days.swift */; };
 		4051F1D81CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4051F1D71CA0DE9500498441 /* NSTimer+Extension+ZKJS.swift */; };
@@ -124,6 +125,12 @@
 		40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE25331C9D6CCB00CA7F26 /* MeTVC.swift */; };
 		40DE25B01C9D6CCB00CA7F26 /* SettingTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DE256D1C9D6CCB00CA7F26 /* SettingTVC.storyboard */; };
 		40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */; };
+		40DFE4501D23C0A20057F0A0 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DFE44F1D23C0A20057F0A0 /* Activity.storyboard */; };
+		40DFE4551D23C5020057F0A0 /* MyScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DFE4541D23C5020057F0A0 /* MyScheduleTVC.swift */; };
+		40DFE4571D23C5440057F0A0 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DFE4561D23C5440057F0A0 /* ScheduleCell.swift */; };
+		40DFE4591D23C6AC0057F0A0 /* MySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DFE4581D23C6AC0057F0A0 /* MySchedule.swift */; };
+		40DFE45B1D23C76E0057F0A0 /* HttpService+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DFE45A1D23C76E0057F0A0 /* HttpService+Activity.swift */; };
+		40DFE45D1D23D1DD0057F0A0 /* NumberControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DFE45C1D23D1DD0057F0A0 /* NumberControl.swift */; };
 		40E88ACA1C93F4AC00258E72 /* ZKJSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */; };
 		40EE67EE1C3B74FF00D96FE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */; };
 		40EF8DB01D1E335200422AB5 /* PushOrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EF8DAF1D1E335200422AB5 /* PushOrderStatus.swift */; };
@@ -275,6 +282,7 @@
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4044201A1D24F1DE00DA815E /* AttendActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttendActivityVC.swift; path = Activity/AttendActivityVC.swift; sourceTree = "<group>"; };
 		404A36AF1BA6983E0094CEB3 /* SVIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SVIP.entitlements; sourceTree = "<group>"; };
 		404C184B1B5368FE00F11122 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		404FACD21B84792700352023 /* NSDate+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Days.swift"; sourceTree = "<group>"; };
@@ -404,6 +412,12 @@
 		40DE25331C9D6CCB00CA7F26 /* MeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTVC.swift; sourceTree = "<group>"; };
 		40DE256D1C9D6CCB00CA7F26 /* SettingTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTVC.storyboard; sourceTree = "<group>"; };
 		40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
+		40DFE44F1D23C0A20057F0A0 /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Activity.storyboard; path = Activity/Activity.storyboard; sourceTree = "<group>"; };
+		40DFE4541D23C5020057F0A0 /* MyScheduleTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyScheduleTVC.swift; path = Activity/MyScheduleTVC.swift; sourceTree = "<group>"; };
+		40DFE4561D23C5440057F0A0 /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleCell.swift; path = Activity/ScheduleCell.swift; sourceTree = "<group>"; };
+		40DFE4581D23C6AC0057F0A0 /* MySchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySchedule.swift; path = Activity/MySchedule.swift; sourceTree = "<group>"; };
+		40DFE45A1D23C76E0057F0A0 /* HttpService+Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Activity.swift"; sourceTree = "<group>"; };
+		40DFE45C1D23D1DD0057F0A0 /* NumberControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberControl.swift; sourceTree = "<group>"; };
 		40E88AC91C93F4AC00258E72 /* ZKJSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZKJSConfig.swift; sourceTree = "<group>"; };
 		40EE67ED1C3B74FF00D96FE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		40EF8DAF1D1E335200422AB5 /* PushOrderStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushOrderStatus.swift; path = Service/PushOrderStatus.swift; sourceTree = "<group>"; };
@@ -758,6 +772,7 @@
 				40FD34421C92F4380019A8CA /* HttpService+Shops.swift */,
 				40DE24E81C9BF96C00CA7F26 /* HttpService+Token.swift */,
 				4053AD9E1D1BC5960045016E /* HttpService+Order.swift */,
+				40DFE45A1D23C76E0057F0A0 /* HttpService+Activity.swift */,
 				40DE25061C9BFCFD00CA7F26 /* HttpService.swift */,
 				407DA3601CABB7E0009855E5 /* YunbaSubscribeService.swift */,
 			);
@@ -814,6 +829,7 @@
 			children = (
 				408F50391CA3E51700AEBA83 /* TableViewCellNoData.swift */,
 				408F503A1CA3E51700AEBA83 /* TableViewCellNoData.xib */,
+				40DFE45C1D23D1DD0057F0A0 /* NumberControl.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -905,6 +921,7 @@
 		409E73F01C9B99F80040186C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				40DFE44E1D23BFB60057F0A0 /* Activity */,
 				406AF2D01D1A355B00C876D3 /* Service */,
 				4096FD5A1CB4B5C500E8E31E /* ShopDetail */,
 				406C4B5F1CA41F5600B7E241 /* BillList */,
@@ -1019,6 +1036,42 @@
 				40DE256E1C9D6CCB00CA7F26 /* SettingTVC.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		40DFE44E1D23BFB60057F0A0 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				40DFE4531D23C49D0057F0A0 /* ViewController */,
+				40DFE4521D23C4970057F0A0 /* View */,
+				40DFE4511D23C48C0057F0A0 /* Model */,
+				40DFE44F1D23C0A20057F0A0 /* Activity.storyboard */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		40DFE4511D23C48C0057F0A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40DFE4581D23C6AC0057F0A0 /* MySchedule.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		40DFE4521D23C4970057F0A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				40DFE4561D23C5440057F0A0 /* ScheduleCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		40DFE4531D23C49D0057F0A0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				40DFE4541D23C5020057F0A0 /* MyScheduleTVC.swift */,
+				4044201A1D24F1DE00DA815E /* AttendActivityVC.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		40E3A18C1BFF01B000516EC4 /* 3rdparty-oc */ = {
@@ -1402,6 +1455,7 @@
 				FA60C2191CB74D79005711A2 /* VideoOverlay@2x.png in Resources */,
 				B2564D481B4BFAED0098608F /* RegisterAnimationView.xib in Resources */,
 				FA60C2131CB74D79005711A2 /* UIBarButtonItemArrowRight@2x.png in Resources */,
+				40DFE4501D23C0A20057F0A0 /* Activity.storyboard in Resources */,
 				40641F051B3E569700CF150D /* Images.xcassets in Resources */,
 				400888E41CB74E5A0004E0A1 /* TipsBubble.xib in Resources */,
 				40D9C9E41C2037B200E992AB /* InfoEditVC.xib in Resources */,
@@ -1554,6 +1608,7 @@
 				40FD34431C92F4380019A8CA /* HttpService+Shops.swift in Sources */,
 				FA02C5841C0D42D100D0D439 /* LoginVC.swift in Sources */,
 				404177CE1C99082300113721 /* HomeViewModel.swift in Sources */,
+				40DFE4591D23C6AC0057F0A0 /* MySchedule.swift in Sources */,
 				40CB68CA1CB66399001AF6CF /* ZKJSConstant.swift in Sources */,
 				FAC998101C9C16BD00AF4534 /* HttpService+FacePay.swift in Sources */,
 				FA60C1CE1CB74D58005711A2 /* MWGridCell.m in Sources */,
@@ -1563,6 +1618,7 @@
 				40DE25771C9D6CCB00CA7F26 /* InvoiceModel.swift in Sources */,
 				40DE257A1C9D6CCB00CA7F26 /* PhoneFirstVC.swift in Sources */,
 				40CE7F321CAD0DD40027E715 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				40DFE45D1D23D1DD0057F0A0 /* NumberControl.swift in Sources */,
 				40DE25111C9BFE6600CA7F26 /* BeaconMonitor.swift in Sources */,
 				40DE24FC1C9BFBC700CA7F26 /* Double+Extension+ZKJS.swift in Sources */,
 				40DE257C1C9D6CCB00CA7F26 /* PhoneSecondVC.swift in Sources */,
@@ -1582,6 +1638,7 @@
 				40DE24E91C9BF96C00CA7F26 /* HttpErrorRecordingService.swift in Sources */,
 				40DE24ED1C9BF96C00CA7F26 /* HttpService+Token.swift in Sources */,
 				40DE25811C9D6CCB00CA7F26 /* MeTVC.swift in Sources */,
+				40DFE4571D23C5440057F0A0 /* ScheduleCell.swift in Sources */,
 				40CE7F331CAD0DD40027E715 /* TPKeyboardAvoidingTableView.m in Sources */,
 				F6B467531CA64A93008AF9A1 /* BillListLayout.swift in Sources */,
 				40CC73871BECA36D00A49E09 /* BaseNC.swift in Sources */,
@@ -1600,6 +1657,7 @@
 				4096FD571CB4AC8A00E8E31E /* FlipAnimationController.swift in Sources */,
 				FA1414E31C9D48B000A0666F /* PayInfoVC.swift in Sources */,
 				40EF8DB01D1E335200422AB5 /* PushOrderStatus.swift in Sources */,
+				40DFE45B1D23C76E0057F0A0 /* HttpService+Activity.swift in Sources */,
 				FA6E985D1C24194C00CBC791 /* PrivilegeModel.swift in Sources */,
 				FA60C1D01CB74D58005711A2 /* MWPhoto.m in Sources */,
 				FAFA51901C16C62900BF04F2 /* HomeVC.swift in Sources */,
@@ -1626,6 +1684,7 @@
 				FAF6B6991CB635620043164C /* ShopmodsModel.swift in Sources */,
 				FA0D36161C9D376600E0AA78 /* PaylistmModel.swift in Sources */,
 				40DE25781C9D6CCB00CA7F26 /* NameVC.swift in Sources */,
+				4044201B1D24F1DE00DA815E /* AttendActivityVC.swift in Sources */,
 				F6B467511CA63E8E008AF9A1 /* BillListCell.swift in Sources */,
 				40DE25021C9BFBF100CA7F26 /* RegexHelper.swift in Sources */,
 				40DE25B11C9D6CCB00CA7F26 /* SettingTVC.swift in Sources */,
@@ -1638,6 +1697,7 @@
 				409E73EA1C9B98B30040186C /* NSDate+Category.m in Sources */,
 				408D28E81C3F8C3600183849 /* GuideVC.swift in Sources */,
 				4096FD651CB4D3ED00E8E31E /* SwipeInteractionController.swift in Sources */,
+				40DFE4551D23C5020057F0A0 /* MyScheduleTVC.swift in Sources */,
 				40CB68C21CB6441E001AF6CF /* RegisterAlertVC.swift in Sources */,
 				407DA3611CABB7E0009855E5 /* YunbaSubscribeService.swift in Sources */,
 				406C4B5E1CA41F3C00B7E241 /* BillListVC.swift in Sources */,

@@ -11,7 +11,7 @@ import CoreLocation
 import CoreBluetooth
 
 class HomeVC: UIViewController {
-  let ConstraintBottomHeight:CGFloat = -360
+  let ConstraintBottomHeight:CGFloat = -425
   
   @IBOutlet weak var avatarsImageView: RoundedImageView!
   @IBOutlet weak var nameLabel: UILabel!
@@ -53,6 +53,9 @@ class HomeVC: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeLogo(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(welcomeDismissed), name: KNOTIFICATION_WELCOME_DISMISS, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ratingOrder(_:)), name: KNOTIFICATION_ORDER, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(welcomeInfo(_:)), name:KNOTIFICATION_ACT_INV, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(welcomeInfo(_:)), name:KNOTIFICATION_ACT_UPDATE, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(activityCancelled(_:)), name:KNOTIFICATION_ACT_CANCEL, object: nil)
     
     addGuestures()
     
@@ -153,6 +156,15 @@ class HomeVC: UIViewController {
 
   }
   
+  func activityCancelled(notification: NSNotification) {
+    guard let userInfo = notification.userInfo, let msg = userInfo["alert"] as? String else {
+      return
+    }
+    let alert = UIAlertController(title: "活动取消", message: msg, preferredStyle: .Alert)
+    alert.addAction(UIAlertAction(title: "确定", style: .Default, handler: nil))
+    self.presentViewController(alert, animated: true, completion: nil)
+  }
+  
   func ratingOrder(notification: NSNotification) {
     guard let userInfo = notification.userInfo, let orderInfo = userInfo["order"] as? PushOrderStatus else {
       return
@@ -237,6 +249,20 @@ class HomeVC: UIViewController {
     let storyboard = UIStoryboard(name:"Service",bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("ServiceListTVC") as! ServiceListTVC
     vc.bluetoothOn = bluetoothStats
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  // 我的行程
+  @IBAction func scheduleAction(sender:AnyObject) {
+    let storyboard = UIStoryboard(name:"Activity",bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("MyScheduleTVC") as! MyScheduleTVC
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  // 预定
+  @IBAction func reserveAction(sender:AnyObject) {
+    let storyboard = UIStoryboard(name:"Activity",bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("AttendActivityVC") as! AttendActivityVC
     self.navigationController?.pushViewController(vc, animated: true)
   }
   

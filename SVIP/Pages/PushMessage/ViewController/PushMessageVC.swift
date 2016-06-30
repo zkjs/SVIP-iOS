@@ -18,6 +18,8 @@ class PushMessageVC: UIViewController {
   @IBOutlet weak var pushView: UIView!
   @IBOutlet weak var linkButtonHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var seperator: UIView!
+  @IBOutlet weak var constraintLinkBottom: NSLayoutConstraint!
+  @IBOutlet weak var attendButton: UIButton!
   
   private var blurView: UIVisualEffectView!
   
@@ -47,6 +49,13 @@ class PushMessageVC: UIViewController {
       linkButtonHeightConstraint.constant = 0
       seperator.hidden = true
       linkButton.hidden = true
+    }
+    if let _ = pushInfo?.actid {
+      constraintLinkBottom.constant = 50
+      linkButtonHeightConstraint.constant = 50
+      linkButton.setTitle("查看详情", forState: .Normal)
+      linkButton.hidden = false
+      attendButton.hidden = false
     }
     
     pushView.alpha = 0
@@ -110,4 +119,22 @@ class PushMessageVC: UIViewController {
       }
     }
   }
+  
+  @IBAction func attendButtonPressed(sender: AnyObject) {
+    if let actid = pushInfo?.actid {
+      dismissViewControllerAnimated(false) {
+        let storyboard = UIStoryboard(name:"Activity",bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("AttendActivityVC") as! AttendActivityVC
+        let max = self.pushInfo?.maxtake?.intValue ?? 0
+        vc.actid = actid
+        vc.startTime = self.pushInfo?.startdate ?? ""
+        vc.endTime = self.pushInfo?.enddate ?? ""
+        vc.maxMemberCount = Int(max)
+        if let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController as? BaseNC {
+          rootVC.pushViewController(vc, animated: true)
+        }
+      }
+    }
+  }
+  
 }

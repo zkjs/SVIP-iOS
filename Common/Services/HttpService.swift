@@ -71,6 +71,8 @@ class HttpService {
     case CreateOrder                    // 创建呼叫服务
     case BeaconAreas                    // 获取商家区域列表
     case RatingOrder                    // 评价服务
+    case MySchedule                     // 我的行程列表
+    case AttendActivity                 // 参加活动
      
     
     var description: String {
@@ -112,6 +114,8 @@ class HttpService {
       case .CreateOrder:                return "/for/res/v1/call/service/task"
       case .BeaconAreas:                return "/for/lbs/v1/loc/beacon"
       case .RatingOrder:                return "/for/res/v1/call/service/task"
+      case .MySchedule:                 return ""
+      case .AttendActivity:             return ""
       }
     }
   }

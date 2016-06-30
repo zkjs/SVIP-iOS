@@ -198,6 +198,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           let  order = PushOrderStatus(dict: data)
           NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_ORDER, object: nil, userInfo: ["order":order])
         }
+          // 活动邀请推送通知
+        else if type == "ACT_INVITATION" {
+          guard let _ = data["actid"] as? String else {
+              return
+          }
+          
+          if let msg = PushMessage.createFromDict(data) {
+            msg.read = 1 // 如果从core data中取未读消息则需要删除该行代码
+            msg.save()
+            NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_ACT_INV, object: nil, userInfo: ["welcomeInfo":msg])
+          }
+        }
+          // 活动取消推送通知
+        else if type == "ACT_IVT_CANCELLED" {
+          guard let actid = data["actid"] as? String,
+              let alert = data["alert"] as? String else {
+              return
+          }
+          NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_ACT_CANCEL,
+                                  object: nil, userInfo: ["actid":actid, "alert":alert])
+          PushMessage.cancelActivity(actid)
+        }
+          // 活动更新推送通知
+        else if type == "ACT_IVT_UPDATE" {
+          guard let _ = data["actid"] as? String else {
+              return
+          }
+
+          if let msg = PushMessage.updateActivityWithDict(data) {
+            NSNotificationCenter.defaultCenter().postNotificationName(KNOTIFICATION_ACT_UPDATE, object: nil, userInfo: ["welcomeInfo":msg])
+          }
+        }
       }
     }
     completionHandler(.NewData)

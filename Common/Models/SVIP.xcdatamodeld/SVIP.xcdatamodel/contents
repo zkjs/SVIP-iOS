@@ -42,14 +42,18 @@
         <attribute name="voiceUrl" optional="YES" attributeType="String" valueTransformerName="EncryptionTransformer" syncable="YES"/>
     </entity>
     <entity name="PushMessage" representedClassName=".PushMessage" syncable="YES">
+        <attribute name="actid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="alert" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" attributeType="String" syncable="YES"/>
+        <attribute name="enddate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imgUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="linkTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maxtake" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="shopid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" attributeType="Date" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="userid" attributeType="String" syncable="YES"/>
@@ -58,6 +62,6 @@
         <element name="BeaconErrors" positionX="-54" positionY="144" width="128" height="135"/>
         <element name="Beacons" positionX="-54" positionY="135" width="128" height="180"/>
         <element name="Message" positionX="-63" positionY="-18" width="128" height="345"/>
-        <element name="PushMessage" positionX="-54" positionY="135" width="128" height="210"/>
+        <element name="PushMessage" positionX="-54" positionY="135" width="128" height="270"/>
     </elements>
 </model>
