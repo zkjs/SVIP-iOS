@@ -23,6 +23,8 @@ class BeaconMonitor:NSObject {
   var beaconInfoCache = [String:BeaconInfo]()
   // 缓存所有扫描到的beacon, 其中key的格式为 其中key的格式为 uuid-major-minor
   var detectedBeacons = [String:BeaconInfo]()
+  // 等待上传的beacons
+  var uploadBeacons = [String:BeaconInfo]()
   
   private override init () {
     for (idx,uuid) in BEACON_UUIDS.enumerate() {
@@ -82,6 +84,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       //print("range beacon:\(beacon)")
       didRangeBeacons(beacon)
       saveBeaconInfo(beacon)
+      saveUploadBeacons(beacon)
     }
   }
   
@@ -90,6 +93,19 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     if let region = region as? CLBeaconRegion {
       print("exit beaconRegion:\(region)")
       didExitBeaconRegion(region)
+    }
+  }
+  
+  /**
+   * 保存扫描到的beacon信息到本地，等待稍后批量上传至server
+   */
+  private func saveUploadBeacons(beacon: CLBeacon) {
+    let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)-\(beacon.minor)"
+    if let beaconInfo = uploadBeacons[key], let bc = beaconInfo.beacon {
+      beaconInfo.timestamp = NSDate()
+      beaconInfo.addRssi(beacon.rssi, timestamp: Int(NSDate().timeIntervalSince1970))
+    } else {
+      uploadBeacons[key] = BeaconInfo(beacon: beacon)
     }
   }
   
@@ -110,32 +126,12 @@ extension BeaconMonitor : CLLocationManagerDelegate {
   }
   
   private func didRangeBeacons(beacon: CLBeacon!) {
-    let currentTimeStamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-    
     let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)-\(beacon.minor)"
     
     //print("\(key) : \(beacon.proximity.rawValue)")
     
-    // beacon足够接近才发送到服务器
-    /*if beacon.proximity == .Unknown {
-     beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity)
-     return
-     }*/
-    
     if let cachedInfo = beaconInfoCache[key] {
       //print("\(key) : \(beacon.proximity.rawValue) : update time")
-      
-      /* 距离为 Far, Near, Immediate 三种情况记录当前时间戳。 Unknown忽略
-       * 在10秒以内beacon状态一直未Unknown则判定beacon已经退出
-       * 此处代码为了解决测试中发现, Beacon不稳定，没有调用 didExitBeaconRegion: 的情况
-       */
-      /*if beacon.proximity != .Unknown {
-        beaconInfoCache[key]?.timestamp = NSDate()
-      }
-      if fabs(cachedInfo.timestamp.timeIntervalSinceNow) > 10 {
-        print("exit in range: \(key):\(cachedInfo.timestamp)")
-        beaconInfoCache.removeValueForKey(key)
-      } */
       
       // xx分钟以内，不发送通知
       if fabs(cachedInfo.timestamp.timeIntervalSinceNow) < Double(BEACON_INERVAL_MIN) * 30 { 
@@ -152,26 +148,10 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     
     beaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity, uploadTime: NSDate())
     
-    /*if beacon.proximity == .Unknown {
-      return
-    }*/
-    
     print("\(key) : \(beacon.proximity.rawValue) : upload")
     
-    HttpService.sharedInstance.sendBeaconChanges(beacon.proximityUUID.UUIDString.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
-    
-    
-    //for test
-    /*let userid = TokenPayload.sharedInstance.userID ?? ""
-     let url = "http://api.lvzlv.com/index/beacon?source=svpi008-\(userid)-\(appState())&type=enter&major=\(beacon.major)&minor=\(beacon.minor)&uuid=\(beacon.proximityUUID.UUIDString)"
-    Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
-      if let error = error {
-        print(error)
-      } else {
-        print("success")
-      }
-    }*/
-    
+    //HttpService.sharedInstance.sendBeaconChanges(beacon.proximityUUID.UUIDString.lowercaseString, major: String(beacon.major), minor: String(beacon.minor), timestamp: currentTimeStamp, completionHandler:nil);
+    delay(seconds: 3, completion: uploadBeaconsLater)
   }
   
   private func didExitBeaconRegion(region: CLBeaconRegion) {
@@ -190,18 +170,6 @@ extension BeaconMonitor : CLLocationManagerDelegate {
         
         print("exit: \(key) : \(ts)")
         
-        
-        //for test
-        /*let userid = TokenPayload.sharedInstance.userID ?? ""
-         let url = "http://api.lvzlv.com/index/beacon?source=svpi-\(userid)-\(appState())&type=enter&major=exit&minor=0&uuid=\(key)"
-        Alamofire.request(.GET, url).response{ (request, ResponseSerializer, data, error) -> Void in
-          if let error = error {
-            print(error)
-          } else {
-            print("success")
-          }
-        }*/
-        
       }
     }
   }
@@ -218,5 +186,14 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     case .Inactive:
       return "Inactive"
     }
+  }
+  
+  func uploadBeaconsLater() {
+    if uploadBeacons.count < 1 {
+      return
+    }
+    let beacons = uploadBeacons.map { $1 }
+    HttpService.sharedInstance.sendMultiBeacons(beacons, completionHandler:nil)
+    uploadBeacons.removeAll()
   }
 }

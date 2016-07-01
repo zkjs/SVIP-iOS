@@ -14,6 +14,7 @@ class BeaconInfo: NSObject {
   var uploadTime: NSDate
   var proximity: CLProximity
   var beacon: CLBeacon?
+  var rssis = [[String:Int]]()
   
   override init () {
     timestamp = NSDate()
@@ -48,6 +49,7 @@ class BeaconInfo: NSObject {
     uploadTime = NSDate(timeIntervalSinceNow: Double(BEACON_INERVAL_MIN * -60))
     proximity = beacon.proximity
     self.beacon = beacon
+    rssis = [["rssi":beacon.rssi, "timestamp":Int(NSDate().timeIntervalSince1970)]]
     super.init()
   }
   
@@ -82,5 +84,9 @@ class BeaconInfo: NSObject {
       return false
     }
     return true
+  }
+  
+  func addRssi(rssi:Int,timestamp:Int) {
+    rssis.append(["rssi":rssi, "timestamp":timestamp])
   }
 }

@@ -147,7 +147,54 @@ extension HttpService {
     } catch _ {
       
     }
+  }
+  
+  //// PYXIS 位置服务API : Beacon 位置信息 :
+  func sendMultiBeacons(beacons:[BeaconInfo], completionHandler:HttpCompletionHandler?){
+    let urlString = ResourcePath.MultiBeacon.description.fullUrl
+    if beacons.isEmpty { return }
+    guard let token = TokenPayload.sharedInstance.token  where !token.isEmpty else {
+      print("********* Token is required for [multi beacons] **********")
+      return
+    }
     
+    //print(beacons)
+    let uploadBeacons = beacons.filter{ $0.beacon != nil }.map { bi -> [String:AnyObject] in
+      let bc = bi.beacon!
+      return ["major":"\(bc.major)", "minor":"\(bc.minor)", "uuid":"\(bc.proximityUUID.UUIDString)","rssis":bi.rssis]
+    }
+    
+    let req = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+    req.HTTPMethod = "PUT"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    req.setValue(token, forHTTPHeaderField: "Token")
+    
+    do {
+      req.HTTPBody = try NSJSONSerialization.dataWithJSONObject(uploadBeacons, options: [])
+      
+      request(req).response { (req, res, data, error) in
+        print("statusCode:\(res?.statusCode) for url:\(req?.URL?.absoluteString)")
+        
+        if let error = error {
+          print("api request fail [res code:,\(res?.statusCode)]:\(error)")
+          completionHandler?(nil,error)
+        } else {
+          print(self.jsonFromData(data))
+          
+          if let data = data {
+            let json = JSON(data: data)
+            if json["res"].int == 0 {
+              completionHandler?(json,nil)
+              print(json["resDesc"].string)
+            } else {
+              print("error with reason: \(json["resDesc"].string)")
+            }
+          }
+        }
+      }
+    } catch _ {
+      
+    }
     
   }
 }
