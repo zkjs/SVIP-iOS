@@ -14,6 +14,12 @@ class PushMessage: NSManagedObject {
   static let MAX_CACHE_COUNT = 20
   
   static func createFromDict(dict: NSDictionary) -> PushMessage? {
+    if let actid = dict["actid"] as? String where !actid.isEmpty {
+      if let msgs = PushMessage.query("actid == '\(actid)'") as? [PushMessage] {
+        return msgs.first!
+      }
+    }
+
     guard let message = PushMessage.create() as? PushMessage else {
       return nil
     }

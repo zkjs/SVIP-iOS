@@ -50,7 +50,8 @@ class PushMessageVC: UIViewController {
       seperator.hidden = true
       linkButton.hidden = true
     }
-    if let _ = pushInfo?.actid {
+    if let actid = pushInfo?.actid {
+      print("actid:\(actid)")
       constraintLinkBottom.constant = 50
       linkButtonHeightConstraint.constant = 50
       linkButton.setTitle("查看详情", forState: .Normal)

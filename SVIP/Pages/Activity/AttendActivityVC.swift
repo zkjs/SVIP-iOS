@@ -25,6 +25,9 @@ class AttendActivityVC: UIViewController {
     
     title = "参加活动"
     
+    nameLabel.text = AccountManager.sharedInstance().userName
+    startTimeLabel.text = startTime
+    endTimeLabel.text = endTime
     attendanceControl.minValue = 1
     attendanceControl.maxValue = maxMemberCount
   }

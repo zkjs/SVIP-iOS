@@ -37,8 +37,22 @@ extension HttpService {
   func attendActivity(actid:String, memdersCount:Int, completionHandler:HttpCompletionHandler){
     let urlString = ResourcePath.AttendActivity.description.fullUrl
     
-    let dict = ["actid":actid, "memdersCount":"\(memdersCount)"]
-    post(urlString, parameters: dict) { (json, error) in
+    let dict = ["actstatus":"1","actid":actid, "takeperson":"\(memdersCount)"]
+    put(urlString, parameters: dict) { (json, error) in
+      if let error = error {
+        completionHandler(nil,error)
+      } else {
+        completionHandler(json,nil)
+      }
+    }
+  }
+  
+  /// 参加活动
+  func quitActivity(actid:String, completionHandler:HttpCompletionHandler){
+    let urlString = ResourcePath.QuitActivity.description.fullUrl
+    
+    let dict = ["actstatus":"2","actid":actid]
+    put(urlString, parameters: dict) { (json, error) in
       if let error = error {
         completionHandler(nil,error)
       } else {

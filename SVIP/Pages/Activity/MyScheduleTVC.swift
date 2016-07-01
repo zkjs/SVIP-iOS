@@ -86,5 +86,28 @@ class MyScheduleTVC: UITableViewController {
     cell.schedule = data[indexPath.row]
     return cell
   }
+  
+  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return data[indexPath.row].statusCode == .Ongoing
+  }
+  
+  override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+    return "取消"
+  }
+  
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    let act = data[indexPath.row]
+    showHUDInView(view, withLoading: "")
+    HttpService.sharedInstance.quitActivity(act.actid) {[weak self] (json, error) in
+      guard let strongSelf = self else { return }
+      strongSelf.hideHUD()
+      if let error = error {
+        strongSelf.showErrorHint(error)
+      } else {
+        strongSelf.data.removeAtIndex(indexPath.row)
+        strongSelf.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      }
+    }
+  }
 
 }

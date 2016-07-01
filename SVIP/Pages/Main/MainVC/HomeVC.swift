@@ -92,18 +92,31 @@ class HomeVC: UIViewController {
     }
   }
   
+  func messageExist(m:PushMessage) -> Bool {
+    if m.actid == nil {
+      return false
+    }
+    for msg in pushMessages {
+      if msg.actid == m.actid {
+        return true
+      }
+    }
+    return false
+  }
+  
   
   func welcomeInfo(notification: NSNotification) {
     guard let userInfo = notification.userInfo, let pushInfo = userInfo["welcomeInfo"] as? PushMessage else {
       return
     }
     let vc = PushMessageVC()
-
     vc.pushInfo = pushInfo
 
     if let _ = self.presentedViewController {
       print(pushInfo)
-      pushMessages.append(pushInfo)
+      if !messageExist(pushInfo) {
+        pushMessages.append(pushInfo)
+      }
     } else {
       vc.modalPresentationStyle = .OverFullScreen
       self.presentViewController(vc, animated: false, completion: nil)
@@ -261,9 +274,7 @@ class HomeVC: UIViewController {
   
   // 预定
   @IBAction func reserveAction(sender:AnyObject) {
-    let storyboard = UIStoryboard(name:"Activity",bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("AttendActivityVC") as! AttendActivityVC
-    self.navigationController?.pushViewController(vc, animated: true)
+    showHint("coming soon")
   }
   
   func gotoSetting() {
