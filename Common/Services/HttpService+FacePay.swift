@@ -36,9 +36,13 @@ extension HttpService {
   }
   
   // 获取付款列表，含明细
-  func userPaylistInfo(status:FacePayOrderStatus,page:Int = 0,completionHandler:([PaylistmModel]?,NSError?) ->Void) {
+  func userPaylistInfo(status:FacePayOrderStatus, page:Int = 0, shopid:String = "",
+                       completionHandler:([PaylistmModel]?,NSError?) ->Void) {
     let urlString = ResourcePath.PaymentInfo.description.fullUrl
-    let dict = ["status":status.rawValue,"page":page,"page_size":1000]
+    var dict = ["status":"\(status.rawValue)","page":"\(page)","page_size":"1000"]
+    if !shopid.isEmpty {
+      dict["shopid"] = shopid
+    }
     get(urlString, parameters: dict) { (json, error) -> Void in
       if let error = error {
         print(error)

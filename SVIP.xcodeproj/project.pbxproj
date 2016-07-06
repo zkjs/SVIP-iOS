@@ -14,6 +14,8 @@
 		40232A451CC611DE00323AEF /* Beacons+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */; };
 		40232A461CC611DE00323AEF /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40232A441CC611DE00323AEF /* Beacons.swift */; };
 		402627EA1CA2C2010042382B /* BeaconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402627E91CA2C2010042382B /* BeaconInfo.swift */; };
+		40320C7B1D2BA70C00F7F1BF /* MemberCardTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40320C7A1D2BA70C00F7F1BF /* MemberCardTVC.swift */; };
+		40320C801D2BA90100F7F1BF /* MemberCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40320C7F1D2BA90100F7F1BF /* MemberCard.swift */; };
 		404177CC1C98143700113721 /* HttpService+Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CB1C98143700113721 /* HttpService+Others.swift */; };
 		404177CE1C99082300113721 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404177CD1C99082300113721 /* HomeViewModel.swift */; };
 		4044201B1D24F1DE00DA815E /* AttendActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4044201A1D24F1DE00DA815E /* AttendActivityVC.swift */; };
@@ -280,6 +282,8 @@
 		40232A431CC611DE00323AEF /* Beacons+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beacons+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		40232A441CC611DE00323AEF /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 		402627E91CA2C2010042382B /* BeaconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfo.swift; sourceTree = "<group>"; };
+		40320C7A1D2BA70C00F7F1BF /* MemberCardTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCardTVC.swift; sourceTree = "<group>"; };
+		40320C7F1D2BA90100F7F1BF /* MemberCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCard.swift; sourceTree = "<group>"; };
 		404177CB1C98143700113721 /* HttpService+Others.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpService+Others.swift"; sourceTree = "<group>"; };
 		404177CD1C99082300113721 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4044201A1D24F1DE00DA815E /* AttendActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttendActivityVC.swift; path = Activity/AttendActivityVC.swift; sourceTree = "<group>"; };
@@ -566,6 +570,14 @@
 			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
+		40320C7C1D2BA7E500F7F1BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40320C7F1D2BA90100F7F1BF /* MemberCard.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		404177CF1C993E6100113721 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -796,11 +808,13 @@
 		406C4B5F1CA41F5600B7E241 /* BillList */ = {
 			isa = PBXGroup;
 			children = (
+				40320C7C1D2BA7E500F7F1BF /* Model */,
 				F626F6531CA63C7200263C4B /* BillList.storyboard */,
 				F6B467501CA63E8E008AF9A1 /* BillListCell.swift */,
 				F6B467521CA64A93008AF9A1 /* BillListLayout.swift */,
 				406C4B5D1CA41F3C00B7E241 /* BillListVC.swift */,
 				40C87C721CF3F9C800130D8C /* BalancePopoverVC.swift */,
+				40320C7A1D2BA70C00F7F1BF /* MemberCardTVC.swift */,
 			);
 			path = BillList;
 			sourceTree = "<group>";
@@ -1691,6 +1705,7 @@
 				40DE24EB1C9BF96C00CA7F26 /* HttpService+Home.swift in Sources */,
 				409E73EB1C9B98B30040186C /* NSDateFormatter+Category.m in Sources */,
 				B20812CE1B8DD8650070D96F /* StorageManager.swift in Sources */,
+				40320C7B1D2BA70C00F7F1BF /* MemberCardTVC.swift in Sources */,
 				40CB68C81CB652FD001AF6CF /* ShopLogoModel.swift in Sources */,
 				40DE24F31C9BFA9300CA7F26 /* CoreDataStack.swift in Sources */,
 				40641EFE1B3E569700CF150D /* AppDelegate.swift in Sources */,
@@ -1704,6 +1719,7 @@
 				40DE251C1C9D3E4200CA7F26 /* BreathLight.swift in Sources */,
 				B20812CF1B8DD8650070D96F /* SVIP.xcdatamodeld in Sources */,
 				4053AD9D1D1BB8090045016E /* Service.swift in Sources */,
+				40320C801D2BA90100F7F1BF /* MemberCard.swift in Sources */,
 				40D9C6BD1B93FACF003A656A /* UIImage+Decompression.swift in Sources */,
 				FA60C1D11CB74D58005711A2 /* MWPhotoBrowser.m in Sources */,
 				400888EA1CB7A26C0004E0A1 /* DACircularProgressView.m in Sources */,

@@ -56,6 +56,7 @@ class HttpService {
     case ShopList                       // 商家列表
     case ShopDetail(id:String)          // 商家详情
     case MyShops                        // 我的商家
+    case MyCards                        // 我的会员卡
     case ShopComments(shopid:String)    // 商家评论
     case querySaleFromCode              // 根据邀请码查询销售员
     case ActiveCode                     // 邀请码激活
@@ -112,6 +113,7 @@ class HttpService {
       case .PaymentInfo:                return "/for/res/v1/payment/si"
       case .Balance:                    return "/for/res/v1/payment/balance"
       case .MyShops:                    return "/for/res/v1/shop/belong/si"
+      case .MyCards:                    return "/for/res/v1/payment/balance/list"
       case .ServiceTag:                 return "/for/res/v1/call/servicetag"
       case .Myorders:                   return "/for/res/v1/call/service/task"
       case .CreateOrder:                return "/for/res/v1/call/service/task"

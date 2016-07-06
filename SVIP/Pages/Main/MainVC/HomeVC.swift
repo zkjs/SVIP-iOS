@@ -11,7 +11,7 @@ import CoreLocation
 import CoreBluetooth
 
 class HomeVC: UIViewController {
-  let ConstraintBottomHeight:CGFloat = -425
+  let ConstraintBottomHeight:CGFloat = -310
   
   @IBOutlet weak var avatarsImageView: RoundedImageView!
   @IBOutlet weak var nameLabel: UILabel!
@@ -28,6 +28,7 @@ class HomeVC: UIViewController {
   let flipAnimationController = FlipAnimationController()
   let swipeInteractionController = SwipeInteractionController()
   var pushMessages  = [PushMessage]()
+  var cachedMessages = [PushMessage]()
   var initialConstraintHeight:CGFloat = 0
   
   override func loadView() {
@@ -92,12 +93,12 @@ class HomeVC: UIViewController {
     }
   }
   
-  func messageExist(m:PushMessage) -> Bool {
-    if m.actid == nil {
-      return false
-    }
-    for msg in pushMessages {
-      if msg.actid == m.actid {
+  func messageExist(lhs:PushMessage) -> Bool {
+    for rhs in cachedMessages {
+      if lhs.actid == rhs.actid && lhs.title == rhs.title &&
+        lhs.content == rhs.content && lhs.link == rhs.link &&
+        lhs.alert == rhs.alert && lhs.shopid == rhs.shopid &&
+        lhs.startdate == rhs.startdate && lhs.enddate == rhs.enddate {
         return true
       }
     }
@@ -109,15 +110,18 @@ class HomeVC: UIViewController {
     guard let userInfo = notification.userInfo, let pushInfo = userInfo["welcomeInfo"] as? PushMessage else {
       return
     }
-    let vc = PushMessageVC()
-    vc.pushInfo = pushInfo
+    
+    if messageExist(pushInfo) {
+      return
+    }
+    cachedMessages.append(pushInfo)
 
     if let _ = self.presentedViewController {
       print(pushInfo)
-      if !messageExist(pushInfo) {
-        pushMessages.append(pushInfo)
-      }
+      pushMessages.append(pushInfo)
     } else {
+      let vc = PushMessageVC()
+      vc.pushInfo = pushInfo
       vc.modalPresentationStyle = .OverFullScreen
       self.presentViewController(vc, animated: false, completion: nil)
     }
@@ -246,7 +250,7 @@ class HomeVC: UIViewController {
   // 点击钱包打开账单列表
   @IBAction func moneyAction(sender: AnyObject) {
     let billStoryboard = UIStoryboard(name:"BillList",bundle: nil)
-    let vc = billStoryboard.instantiateViewControllerWithIdentifier("BillListVC") as! BillListVC
+    let vc = billStoryboard.instantiateViewControllerWithIdentifier("MemberCardTVC") as! MemberCardTVC
     self.navigationController?.pushViewController(vc, animated: true)
   }
   

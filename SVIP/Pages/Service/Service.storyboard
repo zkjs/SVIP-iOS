@@ -17,7 +17,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_location_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="HpT-sX-qsd">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_location_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="HpT-sX-qsd">
                                     <rect key="frame" x="14" y="13" width="13" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="crf-UL-AP4"/>
@@ -30,7 +30,7 @@
                                         </mask>
                                     </variation>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jd6-Ny-JgJ">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jd6-Ny-JgJ">
                                     <rect key="frame" x="43" y="7" width="324" height="30"/>
                                     <state key="normal" title="选择您所在的商家">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>

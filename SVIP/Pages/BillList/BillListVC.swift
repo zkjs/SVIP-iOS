@@ -9,6 +9,8 @@
 import UIKit
 
 class BillListVC: UICollectionViewController {
+  var shopid = ""
+  
   var billListArr = [PaylistmModel]()
   var balance = 0.0
 
@@ -23,8 +25,8 @@ class BillListVC: UICollectionViewController {
     collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
     //let layout = collectionView!.collectionViewLayout as! BillListLayout
     
-    let rightButton = UIBarButtonItem(image: UIImage(named: "ic_balance"), landscapeImagePhone: nil, style: .Plain, target: self, action: "showBalance:")
-    navigationItem.rightBarButtonItem = rightButton
+    //let rightButton = UIBarButtonItem(image: UIImage(named: "ic_balance"), landscapeImagePhone: nil, style: .Plain, target: self, action: "showBalance:")
+    //navigationItem.rightBarButtonItem = rightButton
   }
 
   override func didReceiveMemoryWarning() {
@@ -36,11 +38,11 @@ class BillListVC: UICollectionViewController {
     self.showHUDInView(view, withLoading: "")
     
     loadOrderList()
-    getBalance()
+    //getBalance()
   }
   
   func loadOrderList() {
-    HttpService.sharedInstance.userPaylistInfo(.Paid, page: 0) {[weak self] (data,error) -> Void in
+    HttpService.sharedInstance.userPaylistInfo(.Paid, page: 0, shopid: shopid) {[weak self] (data,error) -> Void in
       guard let strongSelf = self else {
         return
       }

@@ -15,11 +15,18 @@ class PushMessage: NSManagedObject {
   
   static func createFromDict(dict: NSDictionary) -> PushMessage? {
     if let actid = dict["actid"] as? String where !actid.isEmpty {
-      if let msgs = PushMessage.query("actid == '\(actid)'") as? [PushMessage] {
+      if let msgs = PushMessage.query("actid == '\(actid)'") as? [PushMessage]
+        where msgs.count > 0 {
+        return msgs.first!
+      }
+    } else if let title = dict["title"] as? String, content = dict["content"] as? String
+      where !title.isEmpty && !content.isEmpty {
+      if let msgs = PushMessage.query("title == '\(title.stringByReplacingOccurrencesOfString("'", withString: ""))' AND content == '\(content.stringByReplacingOccurrencesOfString("'", withString: ""))'") as? [PushMessage]
+        where msgs.count > 0 {
         return msgs.first!
       }
     }
-
+    
     guard let message = PushMessage.create() as? PushMessage else {
       return nil
     }
@@ -114,5 +121,17 @@ class PushMessage: NSManagedObject {
     
     return msgs.first
   }
+  
+  /*override func isEqual(object: AnyObject?) -> Bool {
+    guard let rhs = object as? PushMessage else {
+      return false
+    }
+    let lhs = self
+    
+    return lhs.actid == rhs.actid && lhs.title == rhs.title &&
+           lhs.content == rhs.content && lhs.link == rhs.link &&
+           lhs.alert == rhs.alert && lhs.shopid == rhs.shopid &&
+           lhs.startdate == rhs.startdate && lhs.enddate == rhs.enddate
+  }*/
 
 }

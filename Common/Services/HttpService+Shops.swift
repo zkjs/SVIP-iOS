@@ -12,7 +12,7 @@ extension HttpService {
   
   //取商家详情GET/res/v1/shop/detail/{shopid}
   func getShopDetail( completionHandler: (ShopDetailModel?,NSError?)->Void) {
-    var shopid = ""
+    var shopid = "8888"
     if let shopLogo = StorageManager.sharedInstance().cachedShopLogo() where shopLogo.validthru.timeIntervalSinceNow > 0 {
       shopid = shopLogo.shopid
     }
@@ -48,6 +48,30 @@ extension HttpService {
           var shops = [ShopDetailModel]()
           for d in data {
             let shop = ShopDetailModel(json: d)
+            shops.append(shop)
+          }
+          completionHandler(shops,nil)
+        } else {
+          completionHandler([],nil)
+        }
+        
+      }
+    }
+  }
+  
+  func getMyCards(page:Int = 0, pageSize:Int = 20, completionHandler: ([MemberCard],NSError?)->Void) {
+    let urlString = ResourcePath.MyCards.description.fullUrl
+    
+    let parameters = ["page":page,"page_size":pageSize]
+    get(urlString, parameters: parameters, tokenRequired: false) { (json, error) -> Void in
+      if let error = error {
+        print(error)
+        completionHandler([],error)
+      } else {
+        if let data = json?["data"].array where data.count > 0 {
+          var shops = [MemberCard]()
+          for d in data {
+            let shop = MemberCard(json: d)
             shops.append(shop)
           }
           completionHandler(shops,nil)
