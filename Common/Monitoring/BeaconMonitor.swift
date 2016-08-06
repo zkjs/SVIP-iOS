@@ -14,6 +14,7 @@ import Alamofire
 let BEACON_UUIDS = ["FDA50693-A4E2-4FB1-AFCF-C6EB07647835","931DDF8E-10E4-11E5-9493-1697F925EC7B"]
 let BEACON_IDENTIFIER = "com.zkjinshi.svip.beacon"
 let BEACON_INERVAL_MIN = 1 //BEACON 重复发起API请求最小时间间隔,单位：分钟
+let RSSI_THRESHOLD = -60   // 自动扣款beacon信号强度阈值
 
 class BeaconMonitor:NSObject {
   static let sharedInstance = BeaconMonitor()
@@ -25,6 +26,10 @@ class BeaconMonitor:NSObject {
   var detectedBeacons = [String:BeaconInfo]()
   // 等待上传的beacons
   var uploadBeacons = [String:BeaconInfo]()
+  // autopay beacons
+  var autopayBeacons = [String:BeaconInfo]()
+  // 缓存beacon, 通过此数组判断是否beacon进入，退出状态。其中key的格式为 uuid-major-minor
+  var autopayBeaconInfoCache = [String:BeaconInfo]()
   
   private override init () {
     for (idx,uuid) in BEACON_UUIDS.enumerate() {
@@ -56,6 +61,7 @@ class BeaconMonitor:NSObject {
       locationManager.stopRangingBeaconsInRegion(beaconRegion)
     }
     beaconInfoCache.removeAll()
+    autopayBeaconInfoCache.removeAll()
   }
 }
 
@@ -85,6 +91,7 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       didRangeBeacons(beacon)
       saveBeaconInfo(beacon)
       saveUploadBeacons(beacon)
+      saveAutopayBeacons(beacon)
     }
   }
   
@@ -106,6 +113,32 @@ extension BeaconMonitor : CLLocationManagerDelegate {
       beaconInfo.addRssi(beacon.rssi, timestamp: Int(NSDate().timeIntervalSince1970))
     } else {
       uploadBeacons[key] = BeaconInfo(beacon: beacon)
+    }
+  }
+  
+  /**
+   * 保存扫描到的beacon信息到本地，等待稍后批量上传至server
+   */
+  private func saveAutopayBeacons(beacon: CLBeacon) {
+    if beacon.rssi < RSSI_THRESHOLD || beacon.rssi >= 0 {
+      if beacon.major == 8882 {
+        print("weak rssi:\(beacon)")
+      }
+      return
+    }
+    let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)-\(beacon.minor)"
+    if let beaconInfo = autopayBeacons[key], let _ = beaconInfo.beacon {
+      beaconInfo.timestamp = NSDate()
+      beaconInfo.replaceRssi(beacon.rssi, timestamp: Int(NSDate().timeIntervalSince1970))
+      //don't send beacon to server in 60 seconds
+      if fabs(beaconInfo.uploadTime.timeIntervalSinceNow) > 60 {
+        uploadAutopayBeacons(beacon)
+      } else {
+        print("in 60 seconds:\(beacon)")
+      }
+    } else {
+      autopayBeacons[key] = BeaconInfo(beacon: beacon)
+      uploadAutopayBeacons(beacon)
     }
   }
   
@@ -172,6 +205,16 @@ extension BeaconMonitor : CLLocationManagerDelegate {
         
       }
     }
+    // for autopay
+    for (key,info) in autopayBeaconInfoCache {
+      let ts = fabs(info.timestamp.timeIntervalSinceNow)
+      if ts > 5 {// check the beacon exit
+        autopayBeaconInfoCache.removeValueForKey(key)
+        
+        print("exit: \(key) : \(ts)")
+        
+      }
+    }
   }
   
   
@@ -195,5 +238,27 @@ extension BeaconMonitor : CLLocationManagerDelegate {
     let beacons = uploadBeacons.map { $1 }
     HttpService.sharedInstance.sendMultiBeacons(beacons, completionHandler:nil)
     uploadBeacons.removeAll()
+  }
+  
+  func uploadAutopayBeacons(beacon: CLBeacon) {
+    if autopayBeacons.count < 1 {
+      return
+    }
+    
+    // 判断是否一直在beacon区域内, 如果一直在区域内就不发送到服务器
+    let key = "\(beacon.proximityUUID.UUIDString)-\(beacon.major)-\(beacon.minor)"
+    if let _ = autopayBeaconInfoCache[key] {
+      // 已经发送过通知到server就返回
+      print("still in range(cache)")
+      return
+    }
+    autopayBeaconInfoCache[key] = BeaconInfo(proximity: beacon.proximity, uploadTime: NSDate())
+    // 判断结束
+    
+    // 更新beacon上传时间
+    autopayBeacons[key]?.uploadTime = NSDate()
+    
+    let beacons = autopayBeacons.map { $1 }
+    HttpService.sharedInstance.sendAutoPayBeacons(beacons, completionHandler:nil)
   }
 }

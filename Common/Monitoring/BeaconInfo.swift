@@ -89,4 +89,14 @@ class BeaconInfo: NSObject {
   func addRssi(rssi:Int,timestamp:Int) {
     rssis.append(["rssi":rssi, "timestamp":timestamp])
   }
+  
+  func clearRssi() {
+    rssis.removeAll()
+  }
+  
+  // 自动支付用，只保持最后一个rssi 
+  func replaceRssi(rssi:Int,timestamp:Int) {
+    rssis.popLast()
+    rssis.append(["rssi":rssi, "timestamp":timestamp])
+  }
 }

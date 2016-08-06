@@ -40,7 +40,8 @@ class HttpService {
   enum ResourcePath: CustomStringConvertible {
     case ApiURL(path:String)            // demo
     case Beacon                         // PYXIS 位置服务API : Beacon 位置信息 :
-    case MultiBeacon                    // PYXIS 位置服务API : 一次上传多个beacon信息
+    case MultiBeacon                    // 扫描beacon自动支付
+    case AutoPayBeacon                  // PYXIS 位置服务API : Beacon 位置信息 :
     case GPS                            // PYXIS 位置服务API : GPS 位置信息 :
     case UploadBeacons                  // 上传用户收集到的所有beacon信息
     case CodeLogin                      // PAVO 认证服务API : 验证码 : HEADER不需要Token
@@ -83,6 +84,7 @@ class HttpService {
       case .ApiURL(let path):           return "/api/\(path)"
       case .Beacon:                     return "/pyx/lbs/v1/loc/beacon"
       case .MultiBeacon:                return "/pyx/lbs/v2/loc/beacon"
+      case .AutoPayBeacon:              return "/for/res/v1/autopay/beacon"
       case .GPS:                        return "/pyx/lbs/v1/loc/gps"
       case .UploadBeacons:              return "/pyx/lbs/v1/loc/beacons"
       //case .CodeLogin:                return "/pav/sso/vcode/v1/si?source=login&dist=\(DIST)"
